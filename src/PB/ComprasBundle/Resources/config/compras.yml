@@ -1,0 +1,11 @@
+tipo_proveedor:
+  1: "Materia Prima"
+  2: "Servicios"
+  3: "Materiales Auxiliares"
+  4: "Reparación y Conservación"
+  5: "Otros Servicios"
+  
+medio_envio:
+  1: "Agencia"
+  2: "Transporte propio"
+  3: "Internacional"

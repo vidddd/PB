@@ -1,0 +1,159 @@
+PB\VentasBundle\Entity\Cliente:
+  type: entity
+  table: clientes
+  repositoryClass: PB\VentasBundle\Entity\ClienteRepository
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    codcliente:
+      type: bigint
+      nullable: true
+    nombre:
+      type: string
+      length: 50
+      fixed: false
+      nullable: false
+    nombrecomercial:
+      type: string
+      length: 50
+      fixed: false
+      nullable: true
+    nif:
+      type: string
+      length: 15
+      fixed: false
+      nullable: false
+    fechaalta:
+      type: date
+      nullable: false
+    direccion:
+      type: string
+      length: 50
+      fixed: false
+      nullable: false
+    localidad:
+      type: string
+      length: 50
+      fixed: false
+      nullable: false
+    cp:
+      type: string
+      length: 5
+      fixed: false
+      nullable: false
+    codprovincia:
+      type: smallint
+      fixed: false
+      nullable: false
+    pais:
+      type: string
+      length: 100
+      fixed: false
+      nullable: false
+    telefono:
+      type: string
+      length: 15
+      fixed: false
+      nullable: false
+    fax:
+      type: string
+      length: 15
+      fixed: false
+      nullable: true
+    movil:
+      type: string
+      length: 15
+      fixed: false
+      nullable: true
+    web:
+      type: string
+      length: 50
+      fixed: false
+      nullable: true
+    email:
+      type: string
+      length: 40
+      fixed: false
+      nullable: true
+    cuenta:
+      type: string
+      length: 30
+      fixed: false
+      nullable: true
+    descuento:
+      type: boolean
+      nullable: true
+    recargo:
+      type: string
+      length: 5
+      fixed: false
+      nullable: true
+    observaciones:
+      type: text
+      nullable: true
+    codfp:
+      type: integer
+      unsigned: false
+      nullable: true
+    facturaciona:
+      type: decimal
+      nullable: true
+    facturacionb:
+      type: decimal
+      nullable: true
+    debea:
+      type: decimal
+      nullable: true
+    habera:
+      type: decimal
+      nullable: true
+    saldoa:
+      type: decimal
+      nullable: true
+    debeb:
+      type: decimal
+      nullable: true
+    haberb:
+      type: decimal
+      nullable: true
+    saldob:
+      type: decimal
+      nullable: true
+    albaranespendientes:
+      type: decimal
+      nullable: true
+    albaranespendientesa:
+      type: decimal
+      nullable: true
+    albaranespendientesb:
+      type: decimal
+      nullable: true
+    codigoultimafactura:
+      type: string
+      length: 20
+      fixed: false
+      nullable: true
+    fechaultimafactura:
+      type: datetime
+      nullable: true
+    codigoultimoalbaran:
+      type: string
+      length: 20
+      fixed: false
+      nullable: true
+    fechaultimoalbaran:
+      type: datetime
+      nullable: true
+#  oneToOne:
+#    cliente_provincias:
+#      targetEntity: PB\InicioBundle\Entity\Provincias
+#      inversedBy: clientes
+#      joinColumn:
+#        name: codprovincia
+#        referencedColumnName: id
+
+  lifecycleCallbacks: 
+    prePersist: [ setFechaAltaPre ]

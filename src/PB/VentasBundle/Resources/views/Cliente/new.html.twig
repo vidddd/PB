@@ -1,0 +1,93 @@
+{% extends '::base.html.twig' %}
+{% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
+
+{% block content %}
+<div class="title title-spacing">
+					<h2>Nuevo Cliente</h2>
+</div>
+<form action="{{ path('cliente_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
+<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+	<div class="portlet-header ui-widget-header">Nuevo Cliente</div>
+		{{ form_errors(form) }}
+		<div class="portlet-content">
+		    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+		<table id="form-alta">
+   <tbody>
+     <tr><td colspan="3" class="grupo-campos">Datos Principales</td></tr>
+     <tr>
+        <td class="label">{{ form_label(form.nombre) }}</td>
+        <td class="campo">{{ form_widget(form.nombre, { 'attr': {'class': 'foo'} }) }}</td>
+        <td class="errores">{{ form_errors(form.nombre) }}</td>
+	 </td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.nombrecomercial, 'Nombre Comercial') }}</td>
+        <td>{{ form_widget(form.nombrecomercial) }}</td><td>{{ form_errors(form.nombrecomercial) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.nif, 'NIF') }}</td>
+        <td>{{ form_widget(form.nif) }}</td><td>{{ form_errors(form.nif) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.direccion, 'Direccion') }}</td>
+        <td>{{ form_widget(form.direccion) }}</td><td>{{ form_errors(form.direccion) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.cp, 'Codigo postal') }}</td>
+        <td>{{ form_widget(form.cp, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(form.cp) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(form.localidad) }}</td>
+        <td>{{ form_widget(form.localidad) }}</td><td>{{ form_errors(form.localidad) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(form.codprovincia, 'Provincia') }}</td>
+        <td>{{ form_widget(form.codprovincia) }}</td><td>{{ form_errors(form.codprovincia) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.pais) }}</td>
+        <td>{{ form_widget(form.pais) }}</td><td>{{ form_errors(form.pais) }}</td>
+      </tr> 
+      <tr>
+        <td>{{ form_label(form.telefono) }}</td>
+        <td>{{ form_widget(form.telefono) }}</td><td>{{ form_errors(form.telefono) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.fax) }}</td>
+        <td>{{ form_widget(form.fax) }}</td><td>{{ form_errors(form.fax) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.cuenta, 'Cuenta Bancaria') }}</td>
+        <td>{{ form_widget(form.cuenta) }}</td><td>{{ form_errors(form.cuenta) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.descuento) }}</td>
+        <td>{{ form_widget(form.descuento) }}</td><td>{{ form_errors(form.descuento) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.recargo) }}</td>
+        <td>{{ form_widget(form.recargo) }}</td><td>{{ form_errors(form.recargo) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.codfp, 'Forma de pago') }}</td>
+        <td>{{ form_widget(form.codfp) }}</td><td>{{ form_errors(form.codfp) }}</td>
+      </tr>
+       <tr>
+        <td>{{ form_label(form.observaciones) }}</td>
+        <td>{{ form_widget(form.observaciones, { 'attr': {'cols': '30', 'rows': '7'} }) }}</td><td>{{ form_errors(form.observaciones) }}</td>
+      </tr> 
+        </tbody>
+     </table>  </div>
+<div class="guardar">
+       <input type="submit" class="submit" value="Guardar" />
+    </div> 
+{{ form_widget(form._token) }}</form>
+		</div></div>
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('cliente') }}">
+            Back to tde list
+        </a>
+    </li>
+</ul>
+{%  endblock %}

@@ -1,0 +1,36 @@
+PB\ComprasBundle\Entity\PedidoCompra:
+  type: entity
+  table: null
+  oneToMany:
+    pedidoscompralinea:
+      targetEntity: PedidoCompraLinea
+      mappedBy: codpedido
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    codproveedor:
+      type: integer
+    codpedido:
+      type: string
+      length: 255
+    fecha:
+      type: date
+    fecha_entrega:
+      type: date
+    referencia:
+      type: string
+      length: '100'
+    forma_envio:
+      type: integer
+    importe:
+      type: float
+    iva:
+      type: smallint
+    total:
+      type: float
+    descuento:
+      type: float
+  lifecycleCallbacks: {  }

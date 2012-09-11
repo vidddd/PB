@@ -1,0 +1,15 @@
+
+Atajos de Symfony
+__________________________
+
+php symfony cc
+php symfony doctrine:build-schema
+
+
+Plantillas Admin
+________________________
+
+http://themeforest.net/item/slate-admin/full_screen_preview/133854
+http://themeforest.net/item/adminique-admin-template/full_screen_preview/155706
+http://themeforest.net/item/mustache-admin/full_screen_preview/1614352
+http://preview.walkingpixels.com/wuxia

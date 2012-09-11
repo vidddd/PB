@@ -1,0 +1,20 @@
+PB\InicioBundle\Entity\Provincias:
+  type: entity
+  table: provincias
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    codprovincia:
+      type: string
+      length: '10'
+    denprovincia:
+      type: string
+      length: '100'
+ # oneToOne:
+ #   clientes:
+ #     targetEntity: PB\VentasBundle\Entity\Cliente
+ #     mappedBy: cliente_provincias
+  lifecycleCallbacks: {  }

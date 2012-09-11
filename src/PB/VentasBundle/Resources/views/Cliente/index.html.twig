@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block title "Nuevo Cliente" %}
+
+{% block content %}
+
+<div class="title title-spacing">
+					<h2>Clientes</h2>
+</div>
+<div class="btn-nuevo">
+<a class="btn ui-state-default ui-corner-all" href="{{ path('cliente_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Cliente</a></div>
+<div class="clearfix"></div>
+
+<div class="hastable">
+<table class="records_list" id="sort-table">
+     <thead>
+        <tr>
+            <th style="width:50px;" class="header">Codigo Cliente</th>
+            <th class="header">Nombre</th>
+            <th class="header">Nombre Comercial</th>
+            <th class="header">Localidad</th>
+            <th class="header">Operaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in clientes %}
+        <tr>
+            <td><a href="{{ path('cliente_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.nombrecomercial }}</td>
+            <td>{{ entity.localidad }}</td>
+            <td>
+              				<a href="{{ path('cliente_edit', { 'id': entity.id }) }}" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+		        <a href="" class="btn_no_text btn ui-state-default ui-corner-all tooltip"> <span class="ui-icon ui-icon-circle-close"></span> </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+<div class="navigation">
+    {{ clientes.render()|raw }}
+</div>
+
+{# include 'PBInicioBundle:Default:paginator.html.twig' #}
+
+{% endblock %}

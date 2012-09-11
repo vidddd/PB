@@ -1,0 +1,5 @@
+PBInicioBundle_homepage:
+    pattern:  /
+    defaults: { _controller: PBInicioBundle:Default:index }
+    requirements:
+        _method:  GET

@@ -1,0 +1,26 @@
+PB\ComprasBundle\Entity\PedidoCompraLinea:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    referencia:
+      type: string
+      length: 255
+    codpedido:
+      type: integer
+    descripcion:
+      type: string
+      length: 255
+    cantidad:
+      type: decimal
+    precio:
+      type: float
+    descuento:
+      type: float
+    total:
+      type: float
+  lifecycleCallbacks: {  }

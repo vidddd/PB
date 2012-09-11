@@ -1,0 +1,266 @@
+
+	/* General */
+
+.column-fixed .form-container {
+	margin:0 1em 1em 0;
+}
+
+.form-container {
+	background:#f8f8f8!important;
+	margin:0;
+}
+
+form ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+form li{
+	display:block;
+	margin:0;
+	padding:6px 0 9px;
+}
+form li:after, form li div:after{
+	content:"."; 
+	display:block;
+	height:0; 
+	clear:both; 
+	visibility:hidden;
+}
+* html form li{height: 1%;}
+* html form li div{display:inline-block;}
+*+html form li div{display:inline-block;}
+
+form li div, form li span{
+	margin:0 .3em 0 0;
+	padding:0;
+	color:#444;
+}
+form li span{
+	float:left;
+}
+
+	/* Inputs */
+input{
+	font-size:1.1em;
+}
+/*
+input.text, input.file, textarea.textarea, select.select{
+	color:#333;
+	margin:0;
+	padding:5px;
+}*/
+input, textarea{
+	border:1px solid #ccc;
+    padding:6px;
+	margin-left:3px;
+
+}
+input, textarea, select {
+	margin:0 0 5px 0;
+	margin-left:3px;	
+}
+input:focus, textarea.textarea:focus{
+	background-color:#FFFFCC;
+	margin-left:3px;
+}
+select.select{
+	padding:1px 5px 0 0;
+}
+
+input.checkbox, input.radio{
+	display:block;
+	margin:4px 0 0 0;
+	padding:0;
+	width:13px;
+	height:14px;
+}
+input.other{
+	margin:0 0 8px 25px;
+}
+.buscador input,.buscador textarea{
+	border:1px solid #ccc;
+    padding:5px;
+	margin-left:3px;
+}
+.buscador input,.buscador textarea,.buscador select {
+	margin-left:0px;	
+}
+.buscador input{
+	font-size:1em;
+}
+.buscador hr{
+	-moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #CCCCCC -moz-use-text-color -moz-use-text-color;
+    border-right: 0 none;
+    border-style: solid none none;
+    border-width: 1px 0 0;
+    display: block;
+    height: 1px;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/* Size */
+.portlet-content input {
+	width:280px;
+}
+input.small, select.small{
+	width:100px;
+}
+
+input.medium, select.medium{
+	width:250px;
+}
+
+input.large, select.large, textarea.textarea {
+	width:300px;
+}
+
+input.full, select.full, textarea.full {
+	width:99%;
+}
+
+textarea.small{
+	height:5.5em;
+}
+
+textarea.medium{
+	height:10em;
+}
+
+textarea.large{
+	height:20em;
+}
+
+	/* Buttons */
+
+input.btTxt{
+	padding:0 7px;
+	width:auto;
+	overflow:visible;
+}
+form li.buttons{
+	clear:both;
+	padding-top:10px;
+}
+form li.buttons input{
+	margin-right: 5px;
+}
+
+	/* Labels */
+
+label{
+	margin:0;
+	padding-top:6px;
+	clear:both;
+	font-size:100%;
+	line-height:100%;
+	color:#444;
+	display:block;
+}
+form li div span label{
+	padding-bottom:12px;
+}
+label.desc{
+	font-size:95%;
+	font-weight:bold;
+	margin:0;
+	padding:0 0 3px 0;
+	border:none;
+	display:block;
+}
+label.choice{
+	display:block;
+	font-size:100%;
+	line-height:150%;
+	margin:-17px 0 0 23px;
+	padding:0 0 5px 0;
+	color:#222;
+	width:88%;
+}
+.portlet-content label{
+    color: #878D96;
+   font-size:1.1em;
+}
+
+	/* Required */
+
+form span.req, .error_list li{
+	display:inline;
+	float:none;
+	color:red !important;
+	font-weight:bold;
+}
+
+form table td {
+
+}
+#main-content .portlet-content table{
+	width:740px;
+}
+
+input.submit{
+    background: url("images/ui-bg_highlight-soft_100_f6f6f6_1x100.png") repeat-x scroll 50% 50% #F6F6F6;
+    border: 1px solid #DDDDDD;
+    color: #0073EA;
+    font-weight: bold;
+    outline: medium none;
+    font-size:1em;
+    width:auto;
+}
+#main-content .portlet-content input.submit{
+	float:right;
+}
+.guardar{
+	padding:10px 40px 10px 0;
+	margin-bottom:30px;
+}
+.error-left {
+    background: url("../images/error_left.gif") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 32px;
+    margin-left: 5px;
+    width: 13px;
+}
+.error-inner {
+    background: url("../images/error_right.gif") no-repeat scroll right center transparent;
+    color: #FFFFFF;
+    float: left;
+    height: 25px;
+    line-height: 14px;
+    padding: 7px 10px 0 4px;
+}
+.error-inner ul li {
+	margin:0; padding:0;
+}
+
+#form-alta td.label{
+    width: 140px;
+	}
+#form-alta td.campo{
+    width: 280px;	
+}
+#form-alta td.errores{
+	
+}
+#form-alta label {
+	margin-left:5px;
+	
+}
+.grupo-campos{
+ float: left;
+    padding: 0.5em 1em;
+    text-decoration: none;
+        color: #0073EA;
+    outline: medium none;
+    background: url("images/ui-bg_highlight-soft_100_f6f6f6_1x100.png") repeat-x scroll 50% 50% #F6F6F6;
+    color: #0073EA;
+    font-weight: bold;
+    text-transform:uppercase;
+    outline: medium none;
+}

@@ -1,0 +1,17 @@
+PB\VentasBundle\Entity\Cliente:
+    properties:
+        nombre:
+            - NotBlank: ~
+            #- MinLength: 3
+        nif: 
+            - NotBlank: ~
+        direccion:
+            - NotBlank: ~
+        localidad:
+            - NotBlank: ~
+        cp:
+            - NotBlank: ~
+        codprovincia: 
+            - NotBlank: ~  
+        telefono: 
+            - NotBlank: ~     

@@ -1,0 +1,7 @@
+PBVentasBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: PBVentasBundle:Default:index }
+    
+PBVentasBundle_cliente:
+    resource: "@PBVentasBundle/Resources/config/routing/cliente.yml"
+    prefix:   /cliente

@@ -1,0 +1,170 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+<div class="title title-spacing">
+					<h2>{{ entity.nombre }}</h2>
+</div>
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ entity.nombre }}</td>
+        </tr>
+        <tr>
+            <th>Nombrecomercial</th>
+            <td>{{ entity.nombrecomercial }}</td>
+        </tr>
+        <tr>
+            <th>Nif</th>
+            <td>{{ entity.nif }}</td>
+        </tr>
+        <tr>
+            <th>Fechaalta</th>
+            <td>{{ entity.fechaalta|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Direccion</th>
+            <td>{{ entity.direccion }}</td>
+        </tr>
+        <tr>
+            <th>Localidad</th>
+            <td>{{ entity.localidad }}</td>
+        </tr>
+        <tr>
+            <th>Cp</th>
+            <td>{{ entity.cp }}</td>
+        </tr>
+        <tr>
+            <th>Codprovincia</th>
+            <td>{{ entity.codprovincia }}</td>
+        </tr>
+        <tr>
+            <th>Provincia</th>
+            <td>{{ entity.provincia }}</td>
+        </tr>
+        <tr>
+            <th>Telefono</th>
+            <td>{{ entity.telefono }}</td>
+        </tr>
+        <tr>
+            <th>Fax</th>
+            <td>{{ entity.fax }}</td>
+        </tr>
+        <tr>
+            <th>Movil</th>
+            <td>{{ entity.movil }}</td>
+        </tr>
+        <tr>
+            <th>Web</th>
+            <td>{{ entity.web }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ entity.email }}</td>
+        </tr>
+        <tr>
+            <th>Cuenta</th>
+            <td>{{ entity.cuenta }}</td>
+        </tr>
+        <tr>
+            <th>Descuento</th>
+            <td>{{ entity.descuento }}</td>
+        </tr>
+        <tr>
+            <th>Recargo</th>
+            <td>{{ entity.recargo }}</td>
+        </tr>
+        <tr>
+            <th>Observaciones</th>
+            <td>{{ entity.observaciones }}</td>
+        </tr>
+        <tr>
+            <th>Codfp</th>
+            <td>{{ entity.codfp }}</td>
+        </tr>
+        <tr>
+            <th>Facturaciona</th>
+            <td>{{ entity.facturaciona }}</td>
+        </tr>
+        <tr>
+            <th>Facturacionb</th>
+            <td>{{ entity.facturacionb }}</td>
+        </tr>
+        <tr>
+            <th>Debea</th>
+            <td>{{ entity.debea }}</td>
+        </tr>
+        <tr>
+            <th>Habera</th>
+            <td>{{ entity.habera }}</td>
+        </tr>
+        <tr>
+            <th>Saldoa</th>
+            <td>{{ entity.saldoa }}</td>
+        </tr>
+        <tr>
+            <th>Debeb</th>
+            <td>{{ entity.debeb }}</td>
+        </tr>
+        <tr>
+            <th>Haberb</th>
+            <td>{{ entity.haberb }}</td>
+        </tr>
+        <tr>
+            <th>Saldob</th>
+            <td>{{ entity.saldob }}</td>
+        </tr>
+        <tr>
+            <th>Albaranespendientes</th>
+            <td>{{ entity.albaranespendientes }}</td>
+        </tr>
+        <tr>
+            <th>Albaranespendientesa</th>
+            <td>{{ entity.albaranespendientesa }}</td>
+        </tr>
+        <tr>
+            <th>Albaranespendientesb</th>
+            <td>{{ entity.albaranespendientesb }}</td>
+        </tr>
+        <tr>
+            <th>Codigoultimafactura</th>
+            <td>{{ entity.codigoultimafactura }}</td>
+        </tr>
+        <tr>
+            <th>Fechaultimafactura</th>
+            <td>{{ entity.fechaultimafactura|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Codigoultimoalbaran</th>
+            <td>{{ entity.codigoultimoalbaran }}</td>
+        </tr>
+        <tr>
+            <th>Fechaultimoalbaran</th>
+            <td>{{ entity.fechaultimoalbaran|date('Y-m-d H:i:s') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('cliente') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('cliente_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('cliente_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

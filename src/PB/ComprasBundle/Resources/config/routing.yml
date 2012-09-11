@@ -1,0 +1,7 @@
+PBComprasBundle_homepage:
+    pattern:  /compras/{name}
+    defaults: { _controller: PBComprasBundle:Default:index }
+
+PBComprasBundle_proveedor:
+    resource: "@PBComprasBundle/Resources/config/routing/proveedor.yml"
+    prefix:   /proveedor

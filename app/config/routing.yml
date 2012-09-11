@@ -1,0 +1,22 @@
+PBVentasBundle:
+    resource: "@PBVentasBundle/Resources/config/routing.yml"
+    prefix:   /ventas
+
+PBComprasBundle:
+    resource: "@PBComprasBundle/Resources/config/routing.yml"
+    prefix:   /compras
+
+PBInicioBundle:
+    resource: "@PBInicioBundle/Resources/config/routing.yml"
+    prefix:   /inicio
+
+# _welcome:
+#    pattern:  /
+#    defaults: { _controller: PBInicioBundle:Default:index }
+
+# Internal routing configuration to handle ESI
+#_internal:
+#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#   prefix:   /_internal
+
+

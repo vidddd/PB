@@ -1,0 +1,91 @@
+PB\ComprasBundle\Entity\Proveedor:
+  type: entity
+  table: proveedores
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    nombre:
+      type: string
+      length: 255
+    nombrecomercial:
+      type: string
+      length: 255
+      nullable: true
+    nif:
+      type: string
+      length: '50'
+    nombrecontacto:
+      type: string
+      length: 255
+      nullable: true
+    telefono_contacto:
+      type: integer
+      nullable: true
+    email_contacto:
+      type: string
+      length: 255
+      nullable: true
+    telefono:
+      type: bigint
+      nullable: true
+    fax:
+      type: bigint
+      nullable: true
+    email:
+      type: string
+      length: 255
+      nullable: true
+    direccion:
+      type: string
+      length: 255
+    cp:
+      type: integer
+    localidad:
+      type: string
+      length: 255
+    provincia:
+      type: integer
+      nullable: true
+    pais:
+      type: string
+      lenght: 100
+      nullable: true
+    tipo_proveedor:
+      type: smallint
+    es_cliente:
+      type: boolean
+      nullable: true
+    activo:
+      type: boolean
+      nullable: true
+    observaciones:
+      type: text
+      nullable: true
+    medio_envio:
+      type: smallint
+      nullable: true
+    paga_iva:
+      type: boolean
+      nullable: true
+    irpf:
+      type: boolean
+      nullable: true
+    codigo_formapago:
+      type: smallint
+      nullable: true
+    codigo_externo:
+      type: smallint
+      nullable: true
+    cuenta_bancaria:
+      type: string
+      nullable: true
+    codigo_contabilidad:
+      type: string
+      nullable: true
+    fechaalta:
+      type: date
+      nullable: true
+lifecycleCallbacks: {  }

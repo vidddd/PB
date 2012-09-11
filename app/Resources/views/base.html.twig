@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
+        <title>{% block title %}Inicio {% endblock %} - Pl&aacute;sticos Baltasar, S.A.</title>
+        {% block stylesheets %}
+            <link href="{{ asset('css/general.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('css/forms.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('css/messages.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('css/reset.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('css/tables.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('css/styles/default/ui.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        {% block javascripts %}
+             <script type="text/javascript" src="{{ asset('js/jquery-1.3.2.js') }}" /> </script>
+            <script type="text/javascript" src="{{ asset('js/jquery-ui-1.7.2.js') }}" /> </script>
+            <script type="text/javascript" src="{{ asset('js/superfish.js') }}"  /> </script>
+            <script type="text/javascript" src="{{ asset('js/custom.js') }}"  /> </script>
+            <script type="text/javascript" src="{{ asset('js/cookie.js') }}"  /> </script>
+            <script type="text/javascript" src="{{ asset('js/tooltip.js') }}"  /> </script>
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+<body>
+<div id="header">
+		<div id="top-menu">		
+			<span>Logged in as <a href="#" title="Logged in as admin">admin</a></span>
+			| <a href="#" title="Edit profile">Edit profile</a>
+			| <a href="#" title="Logout">Salir</a>
+		</div>
+		<div id="sitename">
+			<a href="index.php" class="logo float-left" title="Admintasia">Pl&aacute;sticos Baltasar, S.A.</a>
+			<!--
+			<div class="button float-right">
+				<a href="#" id="dialog_link" class="btn ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>Open Dialog</a>
+				<a href="#" id="login_dialog" class="btn ui-state-default ui-corner-all"><span class="ui-icon ui-icon-image"></span>Open Login Box</a>
+			</div>
+		
+			<div id="login" title="Members Login">
+				<form action="#" method="post" enctype="multipart/form-data" class="forms" name="form" >
+					<ul>
+						<li>
+							<label for="email" class="desc">
+								Email:
+							</label>
+							<div>
+								<input type="text" tabindex="1" maxlength="255" value="" class="field text full" name="email" id="email" />
+							</div>
+						</li>
+						<li>
+							<label for="password" class="desc">
+								Password:
+							</label>
+							<div>
+								<input type="text" tabindex="1" maxlength="255" value="" class="field text full" name="password" id="password" />
+							</div>
+						</li>
+					</ul>
+				</form>
+			</div>
+			<div id="dialog" title="Dialog Title">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+				-->
+		</div>
+		<ul id="navigation" class="sf-navbar">
+			<li><a href="{{ path('PBInicioBundle_homepage') }}">Inicio</a></li>
+			<li><a href="{{ path('PBComprasBundle_homepage', { 'name': 'aaaa' })  }}">Compras</a>
+				<ul>
+					<li><a href="{{ path('proveedor') }}">Proveedores</a></li>
+					<li><a href="#">Formas de Pago</a></li> 
+				</ul>
+			</li>
+			<li><a href="{{ path('PBVentasBundle_homepage', { 'name': 'aaaa' }) }}">Ventas</a>
+				<ul>
+					<li><a href="{{ path('cliente') }}">Clientes</a></li>
+					<li><a href="#">Formas de Pago</a></li> 
+				</ul>
+			</li>
+			<!-- 
+			<li>
+				<a href="#">Dummy menu</a>
+				<ul>
+					<li>
+						<a href="#">Menu item 1</a>
+						<ul>
+							<li><a href="#">Subitem 1</a></li>
+							<li><a href="#">Subitem 2</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Menu item 2</a>
+					</li>
+					<li>
+						<a href="#">Menu item 3</a>
+					</li>
+					<li>
+						<a href="#">Menu item 4</a>
+						<ul>
+							<li><a href="#">Subitem 1</a></li>
+							<li>
+								<a href="#">Subitem 2</a>
+								<ul>
+									<li><a href="#">Subitem 1</a></li>
+									<li>
+										<a href="#">Subitem 2</a>
+										<ul>
+											<li><a href="#">Subitem 1</a></li>
+											<li>
+												<a href="#">Subitem 2</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Menu item 5</a>
+						<ul>
+							<li><a href="#">Subitem 1</a></li>
+							<li><a href="#">Subitem 2</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Menu item 6</a>
+					</li>
+					<li>
+						<a href="#">Menu item 7</a>
+					</li>
+				</ul>
+			</li> -->
+		</ul>
+	</div>
+    
+	<div id="page-wrapper" class="fixed">
+		<div id="main-wrapper">
+			<div id="main-content">
+    		  {% block content %}{% endblock %}
+      		</div>
+		<div class="clearfix"></div>
+
+	</div>
+    <!--    sidebar --->
+ 		 {% include '::sidebar.html.twig' %}
+	<!-- sidebar -->
+		</div>
+	<div class="clearfix"></div>
+	
+	<!-- footer -->
+		<div id="footer">
+	<!--	<div id="menu"><a href="#" title="Home">Home</a><a href="#" title="Administration">Administration</a><a href="#" title="Settings">Settings</a> 	</div> -->
+
+		Pl&aacute;sticos Baltasar S.A. &copy; 2012 - David &Aacute;lvarez (davidalvarezcalvo@gmail.com)
+	</div>
+	<!-- footer -->
+  </body>
+</html>
