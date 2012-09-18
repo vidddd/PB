@@ -198,6 +198,8 @@ class Cliente
     public function __construct()
     {
     	//$this->codprovincia = new ArrayCollection();
+    	$this->codprovincia_id = new \Doctrine\Common\Collections\ArrayCollection();
+    	
     }
     
 
@@ -355,8 +357,8 @@ class Cliente
     /**
      * Get codprovincia
      *
-     * @return string 
-     */
+     * @return Doctrine\Common\Collections\Collection
+     */ 
     public function getCodprovincia()
     {
         return $this->codprovincia;

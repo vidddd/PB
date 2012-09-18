@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /web/bundles/
 /app/bootstrap*
 /app/cache/*
@@ -7,3 +8,17 @@
 .project
 .settings
 .buildpath
+=======
+# Bootstrap
+app/bootstrap*
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+
+# Configuration files
+app/config/parameters.ini
+>>>>>>> 8b92ee1779ee68f5b79c545a0fb17e044166a19c

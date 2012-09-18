@@ -84,11 +84,10 @@ PB\VentasBundle\Entity\Cliente:
       fixed: false
       nullable: true
     descuento:
-      type: boolean
+      type: smallint
       nullable: true
     recargo:
-      type: string
-      length: 5
+      type: boolean
       fixed: false
       nullable: true
     observaciones:
@@ -147,13 +146,12 @@ PB\VentasBundle\Entity\Cliente:
     fechaultimoalbaran:
       type: datetime
       nullable: true
-#  oneToOne:
-#    cliente_provincias:
-#      targetEntity: PB\InicioBundle\Entity\Provincias
-#      inversedBy: clientes
-#      joinColumn:
-#        name: codprovincia
-#        referencedColumnName: id
+  oneToOne:
+    cliente_provincias:
+      targetEntity: PB\InicioBundle\Entity\Provincias
+      joinColumn:
+        name: codprovincia_id
+        referencedColumnName: id
 
   lifecycleCallbacks: 
     prePersist: [ setFechaAltaPre ]

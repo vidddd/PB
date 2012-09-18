@@ -4,11 +4,15 @@ namespace PB\VentasBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Choice;
 
 class ClienteType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+    	$descuentos = array(
+    			'0' => '0', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10',
+    	);
         
     	$builder
             ->add('codcliente')
@@ -21,15 +25,13 @@ class ClienteType extends AbstractType
             ->add('cp')
 			->add('codprovincia', 'entity', array('class' => 'PBInicioBundle:Provincias',
 					              'property' => 'denprovincia', 'empty_value' => 'Elige una provincia',
-					/*'multiple'=>'true','query_builder' => function ($repository) {
-							return $repository->createQueryBuilder('es')->orderBy('es.denprovincia', 'ASC');
-							},
-					 			   /*'query_builder' => function (\Doctrine\ORM\EntityRepository $repository)
-						                 {
-						                     return $repository->createQueryBuilder('l')
-						                            ->where('l.status = ?1')
-						                            ->setParameter(1, '1');
-						                 }*/
+					  //			  'data' => '45',
+					//'preferred_choices' => 45,
+					/*'query_builder' => function ($repository) {
+							return $repository->createQueryBuilder('p')->where("p.id = '45'");
+					
+							},*/
+
 						                ))
             ->add('provincia')
             ->add('pais')
@@ -39,25 +41,12 @@ class ClienteType extends AbstractType
             ->add('web')
             ->add('email')
             ->add('cuenta')
-            ->add('descuento')
+			->add('descuento' , 'choice', array(
+					    'choices'   => $descuentos,
+					))
             ->add('recargo')
             ->add('observaciones')
             ->add('codfp')
-            ->add('facturaciona')
-            ->add('facturacionb')
-            ->add('debea')
-            ->add('habera')
-            ->add('saldoa')
-            ->add('debeb')
-            ->add('haberb')
-            ->add('saldob')
-            ->add('albaranespendientes')
-            ->add('albaranespendientesa')
-            ->add('albaranespendientesb')
-            ->add('codigoultimafactura')
-            ->add('fechaultimafactura')
-            ->add('codigoultimoalbaran')
-            ->add('fechaultimoalbaran')
         ;
     }
 

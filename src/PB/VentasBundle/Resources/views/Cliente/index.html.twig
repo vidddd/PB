@@ -1,11 +1,43 @@
 {% extends '::base.html.twig' %}
 
-{% block title "Nuevo Cliente" %}
+{% block title "Clientes" %}
 
 {% block content %}
 
 <div class="title title-spacing">
 					<h2>Clientes</h2>
+</div>
+<div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
+<div class="portlet-header ui-widget-header">Buscador de clientes</div>
+<div class="portlet-content">
+		<form action="{{ path('cliente') }}" method="post" {{ form_enctype(form) }}>
+		{# form_widget(form) #}
+			<table id="form-alta">
+   				<tbody>		
+   				  <tr>
+        <td class="label">{{ form_label(form.codcliente) }}</td>
+        <td class="campo">{{ form_widget(form.codcliente, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(form.codcliente) }}</td>
+	 </td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.nombre, 'Nombre') }}</td>
+        <td>{{ form_widget(form.nombre) }}</td><td>{{ form_errors(form.nombre) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.cp) }}</td>
+        <td>{{ form_widget(form.cp, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(form.cp) }}</td>
+      </tr>		
+      <tr>
+        <td>{{ form_label(form.localidad, 'Nombre') }}</td>
+        <td>{{ form_widget(form.localidad) }}</td><td>{{ form_errors(form.localidad) }}</td>
+      </tr>			  
+		<tr><td>
+											<button id="saveForm" class="ui-state-default ui-corner-all" value="Submit" type="submit">Buscar</button>
+										</td>
+									</tr>
+            </tbody></table>
+			</form>
+	</div>
 </div>
 <div class="btn-nuevo">
 <a class="btn ui-state-default ui-corner-all" href="{{ path('cliente_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Cliente</a></div>
@@ -31,7 +63,7 @@
             <td>{{ entity.localidad }}</td>
             <td>
               				<a href="{{ path('cliente_edit', { 'id': entity.id }) }}" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
-		        <a href="" class="btn_no_text btn ui-state-default ui-corner-all tooltip"> <span class="ui-icon ui-icon-circle-close"></span> </a>
+		        <a href="" class="btn_no_text btn ui-state-default ui-corner-all tooltip"  onclick="return confirm('Estas seguro de borrar?? esta acci�n no se puede deshacer')"> <span class="ui-icon ui-icon-circle-close"></span> </a>
             </td>
         </tr>
     {% endfor %}

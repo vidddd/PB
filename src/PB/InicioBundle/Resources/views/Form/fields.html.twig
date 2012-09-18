@@ -15,11 +15,12 @@
 {% block field_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
-    <div class="error-left"></div><div class="error-inner">
+    {# <div class="error-left"></div><div class="error-inner">    </div> #}
+        <span class="error2">
         {% for error in errors %}
-            {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}
+            << {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}
         {% endfor %}
-    </div>
+		</span>
     {% endif %}
 {% endspaceless %}
 {% endblock field_errors %}

@@ -136,6 +136,7 @@ textarea.medium{
 textarea.large{
 	height:20em;
 }
+input[type='radio'],input[type='checkbox'] { width:auto; }
 
 	/* Buttons */
 
@@ -225,7 +226,7 @@ input.submit{
     float: left;
     height: 32px;
     margin-left: 5px;
-    width: 13px;
+    width: 15px;
 }
 .error-inner {
     background: url("../images/error_right.gif") no-repeat scroll right center transparent;
@@ -246,6 +247,8 @@ input.submit{
     width: 280px;	
 }
 #form-alta td.errores{
+	border:1px solid red;
+	height:20px;
 	
 }
 #form-alta label {
@@ -263,4 +266,9 @@ input.submit{
     font-weight: bold;
     text-transform:uppercase;
     outline: medium none;
+}
+.error2{
+    color: #B50007;
+	font-weight:bold;
+	margin-left:7px;
 }

@@ -2,7 +2,7 @@ PB\VentasBundle\Entity\Cliente:
     properties:
         nombre:
             - NotBlank: ~
-            #- MinLength: 3
+            - MinLength: 3
         nif: 
             - NotBlank: ~
         direccion:
@@ -14,4 +14,16 @@ PB\VentasBundle\Entity\Cliente:
         codprovincia: 
             - NotBlank: ~  
         telefono: 
-            - NotBlank: ~     
+            - NotBlank: ~
+        email:
+            - Email: ~
+        telefono:
+            - Type:
+                type: integer
+        fax:
+            - Type:
+                type: integer
+        movil:
+            - Type:
+                type: integer
+            

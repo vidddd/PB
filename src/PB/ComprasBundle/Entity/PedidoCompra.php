@@ -307,4 +307,27 @@ class PedidoCompra
     {
         return $this->pedidoscompralinea;
     }
+
+    /**
+     * Add pedidoscompralinea
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompraLinea $pedidoscompralinea
+     * @return PedidoCompra
+     */
+    public function addPedidoscompralinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidoscompralinea)
+    {
+        $this->pedidoscompralinea[] = $pedidoscompralinea;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pedidoscompralinea
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompraLinea $pedidoscompralinea
+     */
+    public function removePedidoscompralinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidoscompralinea)
+    {
+        $this->pedidoscompralinea->removeElement($pedidoscompralinea);
+    }
 }

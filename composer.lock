@@ -88,8 +88,8 @@
         {
             "package": "monolog/monolog",
             "version": "dev-master",
-            "source-reference": "e5bf7ba5d1df622b68d004b3c0277bc94286e1b7",
-            "commit-date": "1347105894"
+            "source-reference": "0f3dc95c4a0ed7d17bec237d07af3da6c0c1071a",
+            "commit-date": "1347363321"
         },
         {
             "package": "sensio/distribution-bundle",

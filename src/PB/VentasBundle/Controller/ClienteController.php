@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use PB\VentasBundle\Entity\Cliente;
 use PB\VentasBundle\Form\ClienteType;
+use PB\VentasBundle\Form\Type\ClienteSearchType;
 
 /**
  * Cliente controller.
@@ -22,13 +23,26 @@ class ClienteController extends Controller
     {
     	$params = array(
     			'itemPerPage' => 10,
-    			'pageRange' => 20
+    			'pageRange' => 20,
+    			'filters' => array()
     	);
         $params['order'] = 'a.id DESC';
+
+        $form = $this->createForm(new ClienteSearchType());
+        $request = $this->getRequest();
+        
+        if ($request->getMethod() == 'POST') {$form->bind($request);
+        	if ($form->isValid()) {
+        		$params['filters'] = $form->getData();
+        		//print_r($form->getData());
+        	}
+        }
+            
         $clientes = $this->paginator('PBVentasBundle:Cliente', $params);
         
         return $this->render('PBVentasBundle:Cliente:index.html.twig', array(
-        	'clientes' => $clientes
+        		'form' => $form->createView(),
+        		'clientes' => $clientes
         ));
     }
 
@@ -192,23 +206,25 @@ class ClienteController extends Controller
     
     public function paginator($entity, $options = array()) {
     
-    	$_default_options = array(
-    			'itemPerPage' => 5,
-    			'pageRange' => 5
-    	);
+    	$_default_options = array('itemPerPage' => 5,'pageRange' => 5 ); 
     
     	$options = array_merge($_default_options, $options);
     	 
     	if ($entity instanceof \Doctrine\ORM\Query) {
     		$query = $entity;
     	} else {
-    		//$entity = isset($options['entity']) ? $options['entity'] : $entity;
-    
     		$dql = "SELECT a FROM " . $entity . " a";
-    
-    		if (isset($options['where']))
-    			$dql .= ' WHERE ' . $options['where'];
-    
+    		$filter = array();
+    		$dql .= ' WHERE 1=1';
+    		if($options['filters']) {
+    			$filter = $options['filters'];
+    			if ($filter['codcliente'] != '') $dql .= ' AND a.codcliente = '. $filter['codcliente'];
+    			if ($filter['nombre'] != '') $dql .= ' AND a.nombre LIKE \'%'. $filter['nombre']. '%\'';
+    		}
+    		/*if (isset($options['filters'])){
+    			      print_r($options);
+    		          
+    		}*/
     		if (isset($options['order']))
     			$dql .= ' ORDER BY ' . $options['order'];
     
