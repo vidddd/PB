@@ -3,3 +3,7 @@ PBInicioBundle_homepage:
     defaults: { _controller: PBInicioBundle:Default:index }
     requirements:
         _method:  GET
+
+PBInicioBundle_provincias:
+    resource: "@PBInicioBundle/Resources/config/routing/provincias.yml"
+    prefix:   /provincias

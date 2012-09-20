@@ -64,10 +64,15 @@ input:focus, textarea.textarea:focus{
 	background-color:#FFFFCC;
 	margin-left:3px;
 }
-select.select{
-	padding:1px 5px 0 0;
-}
 
+select {
+    background-color: #FFFFFF;
+    border: 1px solid #BBBBBB;
+    width: 220px;
+}
+select, input[type="file"] {
+    height: 25px;
+}
 input.checkbox, input.radio{
 	display:block;
 	margin:4px 0 0 0;
@@ -272,3 +277,32 @@ input.submit{
 	font-weight:bold;
 	margin-left:7px;
 }
+/*
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  display: inline-block;
+  height: 20px;
+  padding: 4px 6px;
+  margin-bottom: 9px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}*/

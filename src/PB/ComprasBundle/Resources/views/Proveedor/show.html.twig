@@ -1,138 +1,115 @@
-{% extends '::base.html.twig' %}
+{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
 
-{% block content %}
-<div class="title title-spacing">
-					<h2>Proveedor</h2>
-</div>
-<table class="record_properties">
-    <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ entity.id }}</td>
-        </tr>
-        <tr>
-            <th>Nombre</th>
-            <td>{{ entity.nombre }}</td>
-        </tr>
-        <tr>
-            <th>Nombrecomercial</th>
-            <td>{{ entity.nombrecomercial }}</td>
-        </tr>
-        <tr>
-            <th>Nif</th>
-            <td>{{ entity.nif }}</td>
-        </tr>
-        <tr>
-            <th>Nombrecontacto</th>
-            <td>{{ entity.nombrecontacto }}</td>
-        </tr>
-        <tr>
-            <th>Telefono_contacto</th>
-            <td>{{ entity.telefonocontacto }}</td>
-        </tr>
-        <tr>
-            <th>Email_contacto</th>
-            <td>{{ entity.emailcontacto }}</td>
-        </tr>
-        <tr>
-            <th>Telefono</th>
-            <td>{{ entity.telefono }}</td>
-        </tr>
-        <tr>
-            <th>Fax</th>
-            <td>{{ entity.fax }}</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>{{ entity.email }}</td>
-        </tr>
-        <tr>
-            <th>Direccion</th>
-            <td>{{ entity.direccion }}</td>
-        </tr>
-        <tr>
-            <th>Cp</th>
-            <td>{{ entity.cp }}</td>
-        </tr>
-        <tr>
-            <th>Localidad</th>
-            <td>{{ entity.localidad }}</td>
-        </tr>
-        <tr>
-            <th>Provincia</th>
-            <td>{{ entity.provincia }}</td>
-        </tr>
-        <tr>
-            <th>Pais</th>
-            <td>{{ entity.pais }}</td>
-        </tr>
-        <tr>
-            <th>Tipo_proveedor</th>
-            <td>{{ entity.tipoproveedor }}</td>
-        </tr>
-        <tr>
-            <th>Es_cliente</th>
-            <td>{{ entity.escliente }}</td>
-        </tr>
-        <tr>
-            <th>Activo</th>
-            <td>{{ entity.activo }}</td>
-        </tr>
-        <tr>
-            <th>Observaciones</th>
-            <td>{{ entity.observaciones }}</td>
-        </tr>
-        <tr>
-            <th>Medio_envio</th>
-            <td>{{ entity.medioenvio }}</td>
-        </tr>
-        <tr>
-            <th>Paga_iva</th>
-            <td>{{ entity.pagaiva }}</td>
-        </tr>
-        <tr>
-            <th>Irpf</th>
-            <td>{{ entity.irpf }}</td>
-        </tr>
-        <tr>
-            <th>Codigo_formapago</th>
-            <td>{{ entity.codigoformapago }}</td>
-        </tr>
-        <tr>
-            <th>Codigo_externo</th>
-            <td>{{ entity.codigoexterno }}</td>
-        </tr>
-        <tr>
-            <th>Cuenta_bancaria</th>
-            <td>{{ entity.cuentabancaria }}</td>
-        </tr>
-        <tr>
-            <th>Codigo_contabilidad</th>
-            <td>{{ entity.codigocontabilidad }}</td>
-        </tr>
-        <tr>
-            <th>Fechaalta</th>
-            <td>{{ entity.fechaalta|date('Y-m-d H:i:s') }}</td>
-        </tr>
-    </tbody>
-</table>
+{% block title %}
+{{ parent() }} - Proveedor {{ 'views.show.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('proveedor') }}">
-            Back to the list
+{% block page %}
+
+<h1>Proveedor</h1>
+
+<form class="form-horizontal">
+    <fieldset>        <div class="control-group">
+            <label class="control-label">Id</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.id }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Nombre</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.nombre }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Nombrecomercial</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.nombrecomercial }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Nif</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.nif }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Nombrecontacto</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.nombrecontacto }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Telefono_contacto</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.telefonocontacto }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Email_contacto</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.emailcontacto }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Telefono</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.telefono }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Fax</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fax }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Email</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.email }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Direccion</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.direccion }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Cp</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.cp }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Localidad</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.localidad }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Provincia</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.provincia }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Pais</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.pais }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Tipo_proveedor</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.tipoproveedor }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Es_cliente</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.escliente }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Activo</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.activo }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Observaciones</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.observaciones }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Medio_envio</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.medioenvio }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Paga_iva</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.pagaiva }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Irpf</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.irpf }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Codigo_formapago</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codigoformapago }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Codigo_externo</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codigoexterno }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Cuenta_bancaria</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.cuentabancaria }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Codigo_contabilidad</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codigocontabilidad }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Fechaalta</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechaalta|date('Y-m-d H:i:s') }}</span>            </div>
+        </div>    </fieldset>
+</form>
+
+<div>
+    <div class="float-left">
+        <a class="btn" href="{{ path('proveedor') }}">
+            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
-    </li>
-    <li>
-        <a href="{{ path('proveedor_edit', { 'id': entity.id }) }}">
-            Edit
+    </div>
+    <div class="float-left">
+        <a class="btn" href="{{ path('proveedor_edit', { 'id': entity.id }) }}">
+            {{ 'views.recordactions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
-    </li>
-    <li>
+    </div>
+    <div class="float-left">
         <form action="{{ path('proveedor_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button class="btn btn-danger" type="submit">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
         </form>
-    </li>
-</ul>
+    </div>
+</div>
+
 {% endblock %}

@@ -446,7 +446,8 @@ class Proveedor
      */
     public function getTipoProveedor()
     {
-		$yaml = new Parser();
+		/*
+    	$yaml = new Parser();
 		$value = array();
 		try {
 			$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
@@ -459,6 +460,7 @@ class Proveedor
 			return $tipos[$this->tipo_proveedor];
 		else 
 			return $this->tipo_proveedor;
+			*/
     }
 
     /**

@@ -1,0 +1,30 @@
+provincias:
+    pattern:  /
+    defaults: { _controller: "PBInicioBundle:Provincias:index" }
+
+provincias_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBInicioBundle:Provincias:show" }
+
+provincias_new:
+    pattern:  /new
+    defaults: { _controller: "PBInicioBundle:Provincias:new" }
+
+provincias_create:
+    pattern:  /create
+    defaults: { _controller: "PBInicioBundle:Provincias:create" }
+    requirements: { _method: post }
+
+provincias_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBInicioBundle:Provincias:edit" }
+
+provincias_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBInicioBundle:Provincias:update" }
+    requirements: { _method: post }
+
+provincias_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBInicioBundle:Provincias:delete" }
+    requirements: { _method: post }

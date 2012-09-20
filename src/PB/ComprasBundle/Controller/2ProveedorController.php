@@ -4,13 +4,8 @@ namespace PB\ComprasBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Pagerfanta\Pagerfanta;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\View\TwitterBootstrapView;
-
 use PB\ComprasBundle\Entity\Proveedor;
 use PB\ComprasBundle\Form\ProveedorType;
-use PB\ComprasBundle\Form\ProveedorFilterType;
 
 /**
  * Proveedor controller.
@@ -24,98 +19,22 @@ class ProveedorController extends Controller
      */
     public function indexAction()
     {
-        list($filterForm, $queryBuilder) = $this->filter();
+        $em = $this->getDoctrine()->getEntityManager();
 
-        list($entities, $pagerHtml) = $this->paginator($queryBuilder);
+        $entities = $em->getRepository('PBComprasBundle:Proveedor')->findAll();
 
-    
         return $this->render('PBComprasBundle:Proveedor:index.html.twig', array(
-            'entities' => $entities,
-            'pagerHtml' => $pagerHtml,
-            'filterForm' => $filterForm->createView(),
+            'entities' => $entities
         ));
     }
 
-    /**
-    * Create filter form and process filter request.
-    *
-    */
-    protected function filter()
-    {
-        $request = $this->getRequest();
-        $session = $request->getSession();
-        $filterForm = $this->createForm(new ProveedorFilterType());
-        $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBComprasBundle:Proveedor')->createQueryBuilder('e');
-    
-        // Reset filter
-        if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
-            $session->remove('ProveedorControllerFilter');
-        }
-    
-        // Filter action
-        if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
-            // Bind values from the request
-            $filterForm->bind($request);
-
-            if ($filterForm->isValid()) {
-                // Build the query from the given form object
-                $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
-                // Save filter to session
-                $filterData = $filterForm->getData();
-                $session->set('ProveedorControllerFilter', $filterData);
-            }
-        } else {
-            // Get filter from session
-            if ($session->has('ProveedorControllerFilter')) {
-                $filterData = $session->get('ProveedorControllerFilter');
-                $filterForm = $this->createForm(new ProveedorFilterType(), $filterData);
-                $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
-            }
-        }
-    
-        return array($filterForm, $queryBuilder);
-    }
-
-    /**
-    * Get results from paginator and get paginator view.
-    *
-    */
-    protected function paginator($queryBuilder)
-    {
-        // Paginator
-        $adapter = new DoctrineORMAdapter($queryBuilder);
-        $pagerfanta = new Pagerfanta($adapter);
-        $currentPage = $this->getRequest()->get('page', 1);
-        $pagerfanta->setCurrentPage($currentPage);
-        $entities = $pagerfanta->getCurrentPageResults();
-    
-        // Paginator - route generator
-        $me = $this;
-        $routeGenerator = function($page) use ($me)
-        {
-            return $me->generateUrl('proveedor', array('page' => $page));
-        };
-    
-        // Paginator - view
-        $translator = $this->get('translator');
-        $view = new TwitterBootstrapView();
-        $pagerHtml = $view->render($pagerfanta, $routeGenerator, array(
-            'proximity' => 3,
-            'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
-            'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
-        ));
-    
-        return array($entities, $pagerHtml);
-    }
-    
     /**
      * Finds and displays a Proveedor entity.
      *
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
 
@@ -127,7 +46,9 @@ class ProveedorController extends Controller
 
         return $this->render('PBComprasBundle:Proveedor:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'delete_form' => $deleteForm->createView(),
+
+        ));
     }
 
     /**
@@ -138,10 +59,10 @@ class ProveedorController extends Controller
     {
         $entity = new Proveedor();
         $form   = $this->createForm(new ProveedorType(), $entity);
-
+        
         return $this->render('PBComprasBundle:Proveedor:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form'   => $form->createView()
         ));
     }
 
@@ -154,19 +75,32 @@ class ProveedorController extends Controller
         $entity  = new Proveedor();
         $request = $this->getRequest();
         $form    = $this->createForm(new ProveedorType(), $entity);
-        $form->bind($request);
-
+        $form->bindRequest($request);
+/*
+        $validator = $this->get('validator');
+        $errors = $validator->validate($entity);
+        
+        if (count($errors) > 0) {
+  
+        	//return new Response(print_r($errors, true));
+        } else {
+        	//return new Response('The author is valid! Yes!');
+        }
+        */
+        
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            
+        	$em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('proveedor_show', array('id' => $entity->getId())));
+            
         }
 
         return $this->render('PBComprasBundle:Proveedor:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form'   => $form->createView()
         ));
     }
 
@@ -176,10 +110,10 @@ class ProveedorController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
-
+        
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Proveedor entity.');
         }
@@ -200,7 +134,7 @@ class ProveedorController extends Controller
      */
     public function updateAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
 
@@ -213,7 +147,7 @@ class ProveedorController extends Controller
 
         $request = $this->getRequest();
 
-        $editForm->bind($request);
+        $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -238,10 +172,10 @@ class ProveedorController extends Controller
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
-        $form->bind($request);
+        $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
 
             if (!$entity) {

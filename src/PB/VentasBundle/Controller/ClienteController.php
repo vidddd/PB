@@ -24,7 +24,6 @@ class ClienteController extends Controller
     	$params = array(
     			'itemPerPage' => 10,
     			'pageRange' => 20,
-    			'filters' => array()
     	);
         $params['order'] = 'a.id DESC';
 
@@ -34,7 +33,6 @@ class ClienteController extends Controller
         if ($request->getMethod() == 'POST') {$form->bind($request);
         	if ($form->isValid()) {
         		$params['filters'] = $form->getData();
-        		//print_r($form->getData());
         	}
         }
             
@@ -206,7 +204,7 @@ class ClienteController extends Controller
     
     public function paginator($entity, $options = array()) {
     
-    	$_default_options = array('itemPerPage' => 5,'pageRange' => 5 ); 
+    	$_default_options = array('itemPerPage' => 5,'pageRange' => 5 , 'filters' => array()); 
     
     	$options = array_merge($_default_options, $options);
     	 
@@ -214,9 +212,10 @@ class ClienteController extends Controller
     		$query = $entity;
     	} else {
     		$dql = "SELECT a FROM " . $entity . " a";
-    		$filter = array();
     		$dql .= ' WHERE 1=1';
+    		//print_r($options);
     		if($options['filters']) {
+    			
     			$filter = $options['filters'];
     			if ($filter['codcliente'] != '') $dql .= ' AND a.codcliente = '. $filter['codcliente'];
     			if ($filter['nombre'] != '') $dql .= ' AND a.nombre LIKE \'%'. $filter['nombre']. '%\'';

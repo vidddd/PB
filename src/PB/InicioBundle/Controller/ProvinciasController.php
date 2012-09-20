@@ -1,6 +1,6 @@
 <?php
 
-namespace PB\ComprasBundle\Controller;
+namespace PB\InicioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,18 +8,18 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrapView;
 
-use PB\ComprasBundle\Entity\Proveedor;
-use PB\ComprasBundle\Form\ProveedorType;
-use PB\ComprasBundle\Form\ProveedorFilterType;
+use PB\InicioBundle\Entity\Provincias;
+use PB\InicioBundle\Form\ProvinciasType;
+use PB\InicioBundle\Form\ProvinciasFilterType;
 
 /**
- * Proveedor controller.
+ * Provincias controller.
  *
  */
-class ProveedorController extends Controller
+class ProvinciasController extends Controller
 {
     /**
-     * Lists all Proveedor entities.
+     * Lists all Provincias entities.
      *
      */
     public function indexAction()
@@ -29,7 +29,7 @@ class ProveedorController extends Controller
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
     
-        return $this->render('PBComprasBundle:Proveedor:index.html.twig', array(
+        return $this->render('PBInicioBundle:Provincias:index.html.twig', array(
             'entities' => $entities,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
@@ -44,13 +44,13 @@ class ProveedorController extends Controller
     {
         $request = $this->getRequest();
         $session = $request->getSession();
-        $filterForm = $this->createForm(new ProveedorFilterType());
+        $filterForm = $this->createForm(new ProvinciasFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBComprasBundle:Proveedor')->createQueryBuilder('e');
+        $queryBuilder = $em->getRepository('PBInicioBundle:Provincias')->createQueryBuilder('e');
     
         // Reset filter
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
-            $session->remove('ProveedorControllerFilter');
+            $session->remove('ProvinciasControllerFilter');
         }
     
         // Filter action
@@ -63,13 +63,13 @@ class ProveedorController extends Controller
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
                 // Save filter to session
                 $filterData = $filterForm->getData();
-                $session->set('ProveedorControllerFilter', $filterData);
+                $session->set('ProvinciasControllerFilter', $filterData);
             }
         } else {
             // Get filter from session
-            if ($session->has('ProveedorControllerFilter')) {
-                $filterData = $session->get('ProveedorControllerFilter');
-                $filterForm = $this->createForm(new ProveedorFilterType(), $filterData);
+            if ($session->has('ProvinciasControllerFilter')) {
+                $filterData = $session->get('ProvinciasControllerFilter');
+                $filterForm = $this->createForm(new ProvinciasFilterType(), $filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
@@ -94,7 +94,7 @@ class ProveedorController extends Controller
         $me = $this;
         $routeGenerator = function($page) use ($me)
         {
-            return $me->generateUrl('proveedor', array('page' => $page));
+            return $me->generateUrl('provincias', array('page' => $page));
         };
     
         // Paginator - view
@@ -110,50 +110,50 @@ class ProveedorController extends Controller
     }
     
     /**
-     * Finds and displays a Proveedor entity.
+     * Finds and displays a Provincias entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
+        $entity = $em->getRepository('PBInicioBundle:Provincias')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Proveedor entity.');
+            throw $this->createNotFoundException('Unable to find Provincias entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PBComprasBundle:Proveedor:show.html.twig', array(
+        return $this->render('PBInicioBundle:Provincias:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
-     * Displays a form to create a new Proveedor entity.
+     * Displays a form to create a new Provincias entity.
      *
      */
     public function newAction()
     {
-        $entity = new Proveedor();
-        $form   = $this->createForm(new ProveedorType(), $entity);
+        $entity = new Provincias();
+        $form   = $this->createForm(new ProvinciasType(), $entity);
 
-        return $this->render('PBComprasBundle:Proveedor:new.html.twig', array(
+        return $this->render('PBInicioBundle:Provincias:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a new Proveedor entity.
+     * Creates a new Provincias entity.
      *
      */
     public function createAction()
     {
-        $entity  = new Proveedor();
+        $entity  = new Provincias();
         $request = $this->getRequest();
-        $form    = $this->createForm(new ProveedorType(), $entity);
+        $form    = $this->createForm(new ProvinciasType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -161,33 +161,33 @@ class ProveedorController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('proveedor_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('provincias_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('PBComprasBundle:Proveedor:new.html.twig', array(
+        return $this->render('PBInicioBundle:Provincias:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Proveedor entity.
+     * Displays a form to edit an existing Provincias entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
+        $entity = $em->getRepository('PBInicioBundle:Provincias')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Proveedor entity.');
+            throw $this->createNotFoundException('Unable to find Provincias entity.');
         }
 
-        $editForm = $this->createForm(new ProveedorType(), $entity);
+        $editForm = $this->createForm(new ProvinciasType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PBComprasBundle:Proveedor:edit.html.twig', array(
+        return $this->render('PBInicioBundle:Provincias:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -195,20 +195,20 @@ class ProveedorController extends Controller
     }
 
     /**
-     * Edits an existing Proveedor entity.
+     * Edits an existing Provincias entity.
      *
      */
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
+        $entity = $em->getRepository('PBInicioBundle:Provincias')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Proveedor entity.');
+            throw $this->createNotFoundException('Unable to find Provincias entity.');
         }
 
-        $editForm   = $this->createForm(new ProveedorType(), $entity);
+        $editForm   = $this->createForm(new ProvinciasType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -219,10 +219,10 @@ class ProveedorController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('proveedor_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('provincias_edit', array('id' => $id)));
         }
 
-        return $this->render('PBComprasBundle:Proveedor:edit.html.twig', array(
+        return $this->render('PBInicioBundle:Provincias:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -230,7 +230,7 @@ class ProveedorController extends Controller
     }
 
     /**
-     * Deletes a Proveedor entity.
+     * Deletes a Provincias entity.
      *
      */
     public function deleteAction($id)
@@ -242,17 +242,17 @@ class ProveedorController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
+            $entity = $em->getRepository('PBInicioBundle:Provincias')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Proveedor entity.');
+                throw $this->createNotFoundException('Unable to find Provincias entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('proveedor'));
+        return $this->redirect($this->generateUrl('provincias'));
     }
 
     private function createDeleteForm($id)
