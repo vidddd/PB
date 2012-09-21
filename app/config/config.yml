@@ -21,6 +21,7 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    charset:          UTF-8
     form:
         resources:
             - LexikFormFilterBundle:Form:form_div_layout.html.twig
