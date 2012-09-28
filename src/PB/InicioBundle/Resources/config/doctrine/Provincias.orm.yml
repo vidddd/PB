@@ -13,8 +13,9 @@ PB\InicioBundle\Entity\Provincias:
     denprovincia:
       type: string
       length: '100'
- # oneToOne:
- #   clientes:
- #     targetEntity: PB\VentasBundle\Entity\Cliente
- #     mappedBy: cliente_provincias
+  manyToOne:
+    provincia:
+      targetEntity: PB\ComprasBundle\Entity\Proveedor
+      mappedBy: provincia_proveedor
+      unique: false
   lifecycleCallbacks: {  }

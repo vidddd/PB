@@ -30,6 +30,12 @@ class Provincias
     }
 
     /**
+     * @var PB\ComprasBundle\Entity\Proveedor
+     */
+    private $provincia;
+
+
+    /**
      * Get id
      *
      * @return integer 
@@ -43,10 +49,13 @@ class Provincias
      * Set codprovincia
      *
      * @param string $codprovincia
+     * @return Provincias
      */
     public function setCodprovincia($codprovincia)
     {
         $this->codprovincia = $codprovincia;
+    
+        return $this;
     }
 
     /**
@@ -63,10 +72,13 @@ class Provincias
      * Set denprovincia
      *
      * @param string $denprovincia
+     * @return Provincias
      */
     public function setDenprovincia($denprovincia)
     {
         $this->denprovincia = $denprovincia;
+    
+        return $this;
     }
 
     /**
@@ -78,54 +90,57 @@ class Provincias
     {
         return $this->denprovincia;
     }
-    /**
-     * @var PB\VentasBundle\Entity\Cliente
-     */
-    private $cliente;
-
 
     /**
-     * Set cliente
+     * Set provincia
      *
-     * @param PB\VentasBundle\Entity\Cliente $cliente
+     * @param PB\ComprasBundle\Entity\Proveedor $provincia
+     * @return Provincias
      */
-    public function setCliente(\PB\VentasBundle\Entity\Cliente $cliente)
+    public function setProvincia(\PB\ComprasBundle\Entity\Proveedor $provincia = null)
     {
-        $this->cliente = $cliente;
+        $this->provincia = $provincia;
+    
+        return $this;
     }
 
     /**
-     * Get cliente
+     * Get provincia
      *
-     * @return PB\VentasBundle\Entity\Cliente 
+     * @return PB\ComprasBundle\Entity\Proveedor 
      */
-    public function getCliente()
+    public function getProvincia()
     {
-        return $this->cliente;
+        return $this->provincia;
     }
     /**
-     * @var PB\VentasBundle\Entity\Cliente
+     * Constructor
      */
-    private $clientes;
-
-
-    /**
-     * Set clientes
-     *
-     * @param PB\VentasBundle\Entity\Cliente $clientes
-     */
-    public function setClientes(\PB\VentasBundle\Entity\Cliente $clientes)
+    public function __construct()
     {
-        $this->clientes = $clientes;
+        $this->provincia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add provincia
+     *
+     * @param PB\ComprasBundle\Entity\Proveedor $provincia
+     * @return Provincias
+     */
+    public function addProvincia(\PB\ComprasBundle\Entity\Proveedor $provincia)
+    {
+        $this->provincia[] = $provincia;
+    
+        return $this;
     }
 
     /**
-     * Get clientes
+     * Remove provincia
      *
-     * @return PB\VentasBundle\Entity\Cliente 
+     * @param PB\ComprasBundle\Entity\Proveedor $provincia
      */
-    public function getClientes()
+    public function removeProvincia(\PB\ComprasBundle\Entity\Proveedor $provincia)
     {
-        return $this->clientes;
+        $this->provincia->removeElement($provincia);
     }
 }
