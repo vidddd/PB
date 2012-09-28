@@ -1,97 +1,118 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+{% extends '::base.html.twig' %}
 
-{% block title %}
-{{ parent() }} - Proveedor {{ 'views.show.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-{% endblock %}
+{% block title "Proveedores" %}
 
-{% block page %}
+{% block content %}
+<div class="title title-spacing">
+					<h2>{{ entity.nombre }}</h2>
+</div>
 
-<h1>Proveedor</h1>
+  <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+		<div class="portlet-content show">
 
-<form class="form-horizontal">
-    <fieldset>        <div class="control-group">
-            <label class="control-label">Id</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.id }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Nombre</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.nombre }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Nombrecomercial</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.nombrecomercial }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Nif</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.nif }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Nombrecontacto</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.nombrecontacto }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Telefono_contacto</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.telefonocontacto }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Email_contacto</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.emailcontacto }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Telefono</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.telefono }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fax</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fax }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Email</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.email }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Direccion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.direccion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Cp</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.cp }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Localidad</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.localidad }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Provincia</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.provincia }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Pais</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.pais }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Tipo_proveedor</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.tipoproveedor }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Es_cliente</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.escliente }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Activo</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.activo }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Observaciones</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.observaciones }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Medio_envio</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.medioenvio }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Paga_iva</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.pagaiva }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Irpf</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.irpf }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Codigo_formapago</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codigoformapago }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Codigo_externo</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codigoexterno }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Cuenta_bancaria</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.cuentabancaria }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Codigo_contabilidad</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codigocontabilidad }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fechaalta</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechaalta|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>    </fieldset>
-</form>
+    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+		<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+			<li class="ui-state-default ui-corner-top"><a href="#tabs-1">Datos Principales</a></li>
+		    <li class="ui-state-default ui-corner-top"><a href="#tabs-2">Datos de contacto</a></li>
+			<li class="ui-state-default ui-corner-top"><a href="#tabs-3">Contabilidad</a></li>
+			<li class="ui-state-default ui-corner-top"><a href="#tabs-4">Observaciones</a></li>
+		</ul>
+    <div id="tabs-1">
+    <table>
+   <tbody>
+     <tr>
+        <td class="label">Nombre</td><td class="campo">{{ entity.nombre }}</td>
+      </tr>
+      <tr>
+        <td>Nombre Comercial</td><td>{{ entity.nombrecomercial }}</td>
+      </tr>
+      <tr>
+        <td>NIF</td><td>{{ entity.nif }}</td>
+      </tr>
+      <tr>
+        <td>Direccion</td><td>{{ entity.direccion }}</td>
+      </tr>
+      <tr>
+        <td>Código Postal</td><td>{{ entity.cp }}</td>
+      </tr>
+	  <tr>
+        <td>Localidad</td><td>{{ entity.localidad }}</td>
+      </tr>
+	  <tr>
+        <td>Provincia</td><td>{{ entity.provinciaproveedor }}</td>
+      </tr>
+      <tr>
+        <td>Pais</td><td>{{ entity.pais }}</td>
+      </tr>
+      <tr>
+        <td>Tipo de Proveedor</td><td>{{ entity.tipoproveedor }}</td>
+	  </tr>
+	  <tr>
+        <td>Medio Envio</td><td>{{ entity.medioenvio }}</td>
+	  </tr>
+    </tbody>
+   </table>  
+    </div>
+	<div id="tabs-2">
+	  <table>
+   		<tbody>
+   			 <tr>
+        		<td class="label">Teléfono</td><td class="campo">{{ entity.telefono }}</td>
+		      </tr>
+   			 <tr>
+        		<td>Fax</td><td>{{ entity.fax }}</td>
+		      </tr>
+		      <tr>
+        		<td>Email</td><td>{{ entity.email }}</td>
+		      </tr>
+		      <tr>
+                <td>Nombre de Contacto</td><td>{{ entity.nombrecontacto }}</td>
+		      </tr>
+		      <tr>
+        		<td>Teléfono de Contacto</td><td>{{  entity.Telefonocontacto }}</td>
+		      </tr>
+		      <tr>
+        		<td>Email de Contacto</td><td>{{ entity.emailcontacto }}</td>
+		      </tr>
+        </tbody>
+     </table>
+	</div>
+	<div id="tabs-3">
+	   <table>
+   		<tbody>
+     		<tr>
+        		<td class="label">Paga IVA</td><td class="campo">{{  entity.pagaiva }}</td>
+		     </tr>
+		     <tr>
+        		<td>Es Cliente</td><td>{{ entity.escliente }}</td>
+		     </tr>
+		     <tr>
+        		<td>Paga IRPF</td><td>{{ entity.irpf }}</td>
+		      </tr>
+		      <tr>
+                <td>Forma de Pago</td><td>{{ entity.formapagoproveedor }}</td>
+		      </tr>
+		      <tr>
+        		<td>Cuenta Bancaria</td><td>{{ entity.cuentabancaria }}</td>
+		      </tr>
+		      <tr>
+        		<td>Codigo Externo</td><td>{{ entity.codigoexterno }}</td>
+		      </tr>
+			  <tr>
+        		<td>Codigo Contabilidad</td><td>{{ entity.codigocontabilidad }}</td>
+		       <tr>
+     </tbody></table>
+	</div>
+	<div id="tabs-4">
+		<table>
+			<tbody>
+			   <tr> <td class="label">Observaciones</td><td class="campo">{{ entity.observaciones }}</td>
+		            </td></tr>
+			</tbody>
+		</table>
+	</div>
+</div></div> </div>
+
 
 <div>
     <div class="float-left">

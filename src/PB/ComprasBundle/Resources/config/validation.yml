@@ -3,3 +3,15 @@ PB\ComprasBundle\Entity\Proveedor:
         nombre:
             - NotBlank: ~
             - MinLength: 3
+            - NotNull: ~
+        nif:
+            - NotBlank: ~
+        direccion:
+            - NotBlank: ~
+        cp:
+            - NotBlank: ~
+            - Type:
+                type: numeric
+                message: El codigo postal no es un número.
+        localidad:
+            - NotBlank: ~

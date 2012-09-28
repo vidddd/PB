@@ -1,24 +1,155 @@
 {% extends '::base.html.twig' %}
 
 {% block title "Nuevo Proveedor" %}
-
+{% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
 {% block content %}
 
-<h1>Proveedor {{ 'views.new.creation'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
-
-<form class="well" action="{{ path('proveedor_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <p>
-        <button type="submit">{{ 'views.new.create'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-    </p>
-</form>
-
-<div>
-    <div class="float-left">
-        <a class="btn" href="{{ path('proveedor') }}">
-            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-    </div>
+<div class="title title-spacing">
+					<h2>Nuevo Proveedor</h2>
 </div>
 
+<form class="well" action="{{ path('proveedor_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
+    {# form_widget(form) #}
+<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+	<div class="portlet-header ui-widget-header">Nuevo Proveedor</div>
+		<div class="portlet-content form-alta">
+		{{ form_errors(form) }}
+
+    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+		<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+			<li class="ui-state-default ui-corner-top"><a href="#tabs-1">Datos Principales</a></li>
+		    <li class="ui-state-default ui-corner-top"><a href="#tabs-2">Datos de contacto</a></li>
+			<li class="ui-state-default ui-corner-top"><a href="#tabs-3">Contabilidad</a></li>
+			<li class="ui-state-default ui-corner-top"><a href="#tabs-4">Observaciones</a></li>
+		</ul>
+    <div id="tabs-1">
+    <table>
+   <tbody>
+     <tr>
+        <td class="label">{{ form_label(form.nombre) }}</td>
+        <td class="campo">{{ form_widget(form.nombre, { 'attr': {'class': 'foo'} }) }}</td><td>{{ form_errors(form.nombre) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.nombrecomercial, 'Nombre Comercial') }}</td>
+        <td>{{ form_widget(form.nombrecomercial) }}</td><td>{{ form_errors(form.nombrecomercial) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.nif, 'NIF') }}</td>
+        <td>{{ form_widget(form.nif) }}</td><td>{{ form_errors(form.nif) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.direccion, 'Direccion') }}</td>
+        <td>{{ form_widget(form.direccion) }}</td><td>{{ form_errors(form.direccion) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.cp, 'Codigo postal') }}</td>
+        <td>{{ form_widget(form.cp, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(form.cp) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(form.localidad) }}</td>
+        <td>{{ form_widget(form.localidad) }}</td><td>{{ form_errors(form.localidad) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(form.provincia_proveedor) }}</td>
+        <td>{{ form_widget(form.provincia_proveedor) }}</td><td>{{ form_errors(form.provincia_proveedor) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.pais) }}</td>
+        <td>{{ form_widget(form.pais) }}</td><td>{{ form_errors(form.pais) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(form.tipo_proveedor, 'Tipo de Proveedor') }}</td>
+		<td>{{ form_widget(form.tipo_proveedor, { 'attr': {'class': 'foo'} }) }}</td><td> {{ form_errors(form.tipo_proveedor) }}</td>
+	  </tr>
+	  <tr>
+        <td>{{ form_label(form.medio_envio, 'Medio Envio') }}</td>
+		<td>{{ form_widget(form.medio_envio) }}</td><td>{{ form_errors(form.medio_envio) }}</td>
+	  </tr>
+    </tbody>
+   </table>  
+    </div>
+	<div id="tabs-2">
+	  <table>
+   		<tbody>
+   			 <tr>
+        		<td class="label">{{ form_label(form.telefono) }}</td>
+		        <td class="campo">{{ form_widget(form.telefono) }}</td><td>{{ form_errors(form.telefono) }}</td>
+		      </tr>
+   			 <tr>
+        		<td>{{ form_label(form.fax) }}</td>
+		        <td>{{ form_widget(form.fax) }}</td><td>{{ form_errors(form.fax) }}</td>
+		      </tr>
+		      <tr>
+        		<td>{{ form_label(form.email) }}</td>
+		        <td>{{ form_widget(form.email) }}</td><td>{{ form_errors(form.email) }}</td>
+		      </tr>
+		      <tr>
+                <td>{{ form_label(form.nombrecontacto, 'Nombre de Contacto') }}</td>
+		        <td>{{ form_widget(form.nombrecontacto) }}</td><td>{{ form_errors(form.nombrecontacto) }}</td>
+		      </tr>
+		      <tr>
+        		<td>{{ form_label(form.telefono_contacto, 'Telefono de Contacto') }}</td>
+		        <td>{{ form_widget(form.telefono_contacto) }}</td><td>{{ form_errors(form.telefono_contacto) }}</td>
+		      </tr>
+		      <tr>
+        		<td>{{ form_label(form.email_contacto, 'Email de Contacto') }}</td>
+		        <td>{{ form_widget(form.email_contacto) }}</td><td>{{ form_errors(form.email_contacto) }}</td>
+		      </tr>
+        </tbody>
+     </table>
+	</div>
+	<div id="tabs-3">
+	   <table>
+   		<tbody>
+     		<tr>
+        		<td class="label">{{ form_label(form.paga_iva, 'Paga IVA') }}</th>
+		        <td class="campo">{{ form_widget(form.paga_iva) }}</td><td>{{ form_errors(form.paga_iva) }}</td>
+		     </tr>
+		     <tr>
+        		<td>{{ form_label(form.es_cliente, 'Es Cliente') }}</td>
+		        <td>{{ form_widget(form.es_cliente) }}</td><td>{{ form_errors(form.es_cliente) }}</td>
+		     </tr>
+		     <tr>
+        		<td>{{ form_label(form.irpf, 'Paga IRPF') }}</td>
+		        <td>{{ form_widget(form.irpf) }}</td><td>{{ form_errors(form.irpf) }}</td>
+		      </tr>
+		      <tr>
+                <td>{{ form_label(form.formapago_proveedor, 'Forma de Pago') }}</td>
+		        <td>{{ form_widget(form.formapago_proveedor) }}</td><td>{{ form_errors(form.formapago_proveedor) }}</td>
+		      </tr>
+		      <tr>
+        		<td>{{ form_label(form.cuenta_bancaria, 'Cuenta Bancaria') }}</td>
+		        <td>{{ form_widget(form.cuenta_bancaria) }}</td><td>{{ form_errors(form.cuenta_bancaria) }}</td>
+		      </tr>
+		      <tr>
+        		<td>{{ form_label(form.codigo_externo, 'Codigo Externo') }}</td>
+        		<td>{{ form_widget(form.codigo_externo, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(form.codigo_externo) }}</td>
+		      </tr>
+			  <tr>
+        		<td>{{ form_label(form.codigo_contabilidad, 'Codigo Contabilidad') }}</td>
+		        <td>{{ form_widget(form.codigo_contabilidad, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(form.codigo_contabilidad)}}</td>
+		       <tr>
+     </tbody></table>
+	</div>
+	<div id="tabs-4">
+		<table>
+			<tbody>
+			   <tr> <td class="label">{{ form_label(form.observaciones) }}</td>
+		           <td class="campo">{{ form_widget(form.observaciones, { 'attr': {'cols': '40', 'rows': '12'}}) }}</td><td> {{ form_errors(form.observaciones) }}
+		            </td></tr>
+			</tbody>
+		</table>
+	</div></div>
+<div class="guardar">
+          <p>
+        <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
+    </p>
+</div> 
+</div></div>{{ form_widget(form._token) }}
+</form>
+    <div class="float-left volver">
+        <a href="{{ path('proveedor') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
 {% endblock %}

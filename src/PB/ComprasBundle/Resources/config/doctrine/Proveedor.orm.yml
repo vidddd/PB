@@ -1,5 +1,6 @@
 PB\ComprasBundle\Entity\Proveedor:
   type: entity
+  repositoryClass: PB\ComprasBundle\Repository\ProveedorRepository
   table: proveedores
   fields:
     id:
@@ -46,15 +47,13 @@ PB\ComprasBundle\Entity\Proveedor:
     localidad:
       type: string
       length: 255
-    provincia:
-      type: integer
-      nullable: true
     pais:
       type: string
       lenght: 100
       nullable: true
     tipo_proveedor:
       type: smallint
+      nullable: true
     es_cliente:
       type: boolean
       nullable: true
@@ -73,9 +72,6 @@ PB\ComprasBundle\Entity\Proveedor:
     irpf:
       type: boolean
       nullable: true
-    codigo_formapago:
-      type: smallint
-      nullable: true
     codigo_externo:
       type: smallint
       nullable: true
@@ -88,4 +84,17 @@ PB\ComprasBundle\Entity\Proveedor:
     fechaalta:
       type: date
       nullable: true
+  manyToOne:
+    formapago_proveedor:
+      targetEntity: PB\GeneralBundle\Entity\FormaPago
+      inversedBy: formapagos
+      joinColumn:
+        name: formapago_id
+        referencedColumnName: id
+    provincia_proveedor:
+      targetEntity: PB\InicioBundle\Entity\Provincias
+      inversedBy: provincia
+      joinColumn:
+        name: provincia_id
+        referencedColumnName: id
 lifecycleCallbacks: {  }
