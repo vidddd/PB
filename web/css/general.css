@@ -443,7 +443,6 @@ ul#icons span.ui-icon {
 }
 
 .pagination .previous-off, .pagination .next-off, .pagination .active, .pagination .current{
-	padding:8px 4px;
 }
 
 	/* Buttons, submit inputs */
@@ -529,7 +528,7 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 }
 
 #page-wrapper #main-wrapper #main-content {
-	margin-right:242px;
+	margin-right:250px;
 	padding:10px 10px 10px;
 	margin-bottom:80px;
 }
@@ -728,7 +727,7 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 }
 
 .portlet {
-	margin:0 1em 1em 0;
+
 }
 
 .portlet-content {
