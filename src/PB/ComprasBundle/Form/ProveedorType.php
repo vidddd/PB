@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProveedorType extends AbstractType
 {
@@ -22,31 +23,34 @@ class ProveedorType extends AbstractType
     	
         $builder
             ->add('nombre', 'text', array('required' => true))
-            ->add('nombrecomercial', 'text', array('required' => false))
-            ->add('nif')
-            ->add('nombrecontacto', 'text', array('required' => false))
+            ->add('nombrecomercial', 'text')
+            ->add('nif', 'text', array('required' => true))
+            ->add('nombrecontacto', 'text')
             ->add('telefono_contacto')
             ->add('email_contacto')
             ->add('telefono')
             ->add('fax')
             ->add('email')
-            ->add('direccion')
-            ->add('cp')
-            ->add('localidad')
-            ->add('provincia', 'entity', array('class' => 'PBInicioBundle:Provincias', 'property' => 'denprovincia', 'empty_value' => 'Elige una provincia',))
+            ->add('direccion', 'text', array('required' => true))
+            ->add('cp', 'text', array('max_length' => '5'))
+            ->add('localidad', 'text', array('required' => true))
+            ->add('provincia_proveedor', 'entity', array('class' => 'PBInicioBundle:Provincias',
+            								   'property' => 'denprovincia', 
+            		 						   'empty_value' => 'Elige una provincia',))
+            
+            //->add('provincia_proveedor')
             ->add('pais')
-            ->add('tipo_proveedor', 'choice', array('choices'   => $tipos, 'empty_value' => '---'))
+            ->add('tipo_proveedor', 'choice', array( 'choices' => $tipos, 'empty_value' => '---'))
             ->add('es_cliente')
-            ->add('activo')
+            //->add('activo')
             ->add('observaciones')
-            ->add('medio_envio', 'choice', array('choices'   => $medios ,'required'  => true))
+            ->add('medio_envio', 'choice', array('choices'   => $medios ,'empty_value' => '---'))
             ->add('paga_iva')
             ->add('irpf')
-            ->add('codigo_formapago')
+            ->add('formapago_proveedor')
             ->add('codigo_externo')
             ->add('cuenta_bancaria')
             ->add('codigo_contabilidad')
-            ->add('fechaalta')
         ;
     }
 

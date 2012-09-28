@@ -9,13 +9,22 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
 
+use Lexik\Bundle\FormFilterBundle\Filter\Expr;
+use Doctrine\ORM\QueryBuilder;
+
 class ProveedorFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('id', 'filter_number_range')
-            ->add('nombre', 'filter_text')
+            ->add('nombre', 'filter_text', array(
+            'apply_filter' => function (QueryBuilder $queryBuilder, Expr $expr, $field, array $values) {
+
+                // add conditions you need :)
+
+		            },
+		        ))
             ->add('nombrecomercial', 'filter_text')
             ->add('nif', 'filter_text')
             ->add('nombrecontacto', 'filter_text')
@@ -30,17 +39,11 @@ class ProveedorFilterType extends AbstractType
             ->add('provincia', 'filter_number_range')
             ->add('pais', 'filter_text')
             ->add('tipo_proveedor', 'filter_number_range')
-            ->add('es_cliente', 'filter_choice')
-            ->add('activo', 'filter_choice')
-            ->add('observaciones', 'filter_text')
-            ->add('medio_envio', 'filter_number_range')
-            ->add('paga_iva', 'filter_choice')
-            ->add('irpf', 'filter_choice')
-            ->add('codigo_formapago', 'filter_number_range')
+          /*  ->add('es_cliente', 'filter_choice')->add('activo', 'filter_choice')->add('observaciones', 'filter_text')  ->add('medio_envio', 'filter_number_range')  ->add('paga_iva', 'filter_choice')->add('irpf', 'filter_choice')->add('codigo_formapago', 'filter_number_range')
             ->add('codigo_externo', 'filter_number_range')
             ->add('cuenta_bancaria', 'filter_text')
             ->add('codigo_contabilidad', 'filter_text')
-            ->add('fechaalta', 'filter_date_range')
+            ->add('fechaalta', 'filter_date_range')*/
         ;
 
         $listener = function(FormEvent $event)
