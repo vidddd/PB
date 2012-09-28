@@ -5,6 +5,7 @@ namespace PB\ComprasBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * PB\ComprasBundle\Entity\Proveedor
@@ -56,11 +57,6 @@ class Proveedor
     private $localidad;
     
     /**
-     * @var smallint $provincia
-     */
-    private $provincia;
-    
-    /**
      * @var smallint $pais
      */
     private $pais;
@@ -101,11 +97,6 @@ class Proveedor
     private $irpf;
     
     /**
-     * @var smallint $codigo_formapago
-     */
-    private $codigo_formapago;
-    
-    /**
      * @var smallint $codigo_externo
      */
     private $codigo_externo;
@@ -119,6 +110,26 @@ class Proveedor
      * @var string $codigo_contabilidad
      */
     private $codigo_contabilidad;
+
+    /**
+     * @var bigint $fax
+     */
+    private $fax;
+    
+    /**
+     * @var string $email
+     */
+    private $email;
+    
+    /**
+     * @var string $direccion
+     */
+    private $direccion;
+    
+    /**
+     * @var integer $cp
+     */
+    private $cp;
     
 
     /**
@@ -270,25 +281,6 @@ class Proveedor
     {
         return $this->telefono;
     }
-    /**
-     * @var bigint $fax
-     */
-    private $fax;
-
-    /**
-     * @var string $email
-     */
-    private $email;
-
-    /**
-     * @var string $direccion
-     */
-    private $direccion;
-
-    /**
-     * @var integer $cp
-     */
-    private $cp;
 
 
     /**
@@ -390,26 +382,6 @@ class Proveedor
         return $this->localidad;
     }
     /**
-     * Set provincia
-     *
-     * @param smallint $provincia
-     */
-    public function setProvincia($provincia)
-    {
-        //var_dump($provincia); die;
-        
-    	$this->provincia = $provincia->getId();
-    }
-    /**
-     * Get provincia
-     *
-     * @return smallint 
-     */
-    public function getProvincia()
-    {
-    	return $this->provincia;
-    }
-    /**
      * Set pais
      *
      * @param smallint $pais
@@ -458,9 +430,10 @@ class Proveedor
 		$tipos = $value['tipo_proveedor'];
 		if(!is_null($this->tipo_proveedor))
 			return $tipos[$this->tipo_proveedor];
-		else 
-			return $this->tipo_proveedor;
-			*/
+		else
+			return $this->tipo_proveedor; 
+		*/	
+    	return $this->tipo_proveedor;
     }
 
     /**
@@ -582,27 +555,6 @@ class Proveedor
     {
         return $this->irpf;
     }
-
-    /**
-     * Set codigo_formapago
-     *
-     * @param smallint $codigoFormapago
-     */
-    public function setCodigoFormapago($codigoFormapago)
-    {
-        $this->codigo_formapago = $codigoFormapago;
-    }
-
-    /**
-     * Get codigo_formapago
-     *
-     * @return smallint 
-     */
-    public function getCodigoFormapago()
-    {
-        return $this->codigo_formapago;
-    }
-
     /**
      * Set codigo_externo
      *
@@ -712,4 +664,124 @@ class Proveedor
     {
         return $this->codproveedor;
     }
+    /**
+     * @var string $oneToOne
+     */
+    private $oneToOne;
+
+
+    /**
+     * Set oneToOne
+     *
+     * @param string $oneToOne
+     * @return Proveedor
+     */
+    public function setOneToOne($oneToOne)
+    {
+        $this->oneToOne = $oneToOne;
+    
+        return $this;
+    }
+
+    /**
+     * Get oneToOne
+     *
+     * @return string 
+     */
+    public function getOneToOne()
+    {
+        return $this->oneToOne;
+    }
+    /**
+     * @var PB\GeneralBundle\Entity\FormaPago
+     */
+    private $formapago;
+
+
+    /**
+     * Set formapago
+     *
+     * @param PB\GeneralBundle\Entity\FormaPago $formapago
+     * @return Proveedor
+     */
+    public function setFormapago(\PB\GeneralBundle\Entity\FormaPago $formapago = null)
+    {
+        $this->formapago = $formapago;
+    
+        return $this;
+    }
+
+    /**
+     * Get formapago
+     *
+     * @return PB\GeneralBundle\Entity\FormaPago 
+     */
+    public function getFormapago()
+    {
+        return $this->formapago;
+    }
+    /**
+     * @var PB\GeneralBundle\Entity\FormaPago
+     */
+    private $formapago_proveedor;
+
+
+    /**
+     * Set formapago_proveedor
+     *
+     * @param PB\GeneralBundle\Entity\FormaPago $formapagoProveedor
+     * @return Proveedor
+     */
+    public function setFormapagoProveedor(\PB\GeneralBundle\Entity\FormaPago $formapagoProveedor = null)
+    {
+        $this->formapago_proveedor = $formapagoProveedor;
+    
+        return $this;
+    }
+
+    /**
+     * Get formapago_proveedor
+     *
+     * @return PB\GeneralBundle\Entity\FormaPago 
+     */
+    public function getFormapagoProveedor()
+    {
+        return $this->formapago_proveedor;
+    }
+    /**
+     * @var PB\InicioBundle\Entity\Provincias
+     */
+    private $provincia_proveedor;
+    
+    /**
+     * @var integer $provincia
+     */
+    private $provincia;
+
+    /**
+     * Set provincia_proveedor
+     *
+     * @param PB\InicioBundle\Entity\Provincias $provinciaProveedor
+     * @return Proveedor
+     */
+    public function setProvinciaProveedor(\PB\InicioBundle\Entity\Provincias $provinciaProveedor = null)
+    {
+        $this->provincia_proveedor = $provinciaProveedor;
+    
+        return $this;
+    }
+
+    /**
+     * Get provincia_proveedor
+     *
+     * @return PB\InicioBundle\Entity\Provincias 
+     */
+    public function getProvinciaProveedor()
+    {
+        return $this->provincia_proveedor;
+    }
+    function __construct() {
+    	//$this->provincia_proveecdor = new ArrayCollection();
+    	//$this->formapago_proveedor = new ArrayCollection();
+     }
 }

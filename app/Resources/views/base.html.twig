@@ -68,16 +68,19 @@
 		</div>
 		<ul id="navigation" class="sf-navbar">
 			<li><a href="{{ path('PBInicioBundle_homepage') }}">Inicio</a></li>
+			<li><a href="{{ path('pb_general_homepage', { 'name': 'aaaa' })  }}">General</a>
+				<ul>
+					<li><a href="{{ path('formapago') }}">Formas de Pago</a></li>
+				</ul>
+			</li>
 			<li><a href="{{ path('PBComprasBundle_homepage', { 'name': 'aaaa' })  }}">Compras</a>
 				<ul>
-					<li><a href="{{ path('proveedor') }}">Proveedores</a></li>
-					<li><a href="#">Formas de Pago</a></li> 
+					<li><a href="{{ path('proveedor') }}">Proveedores</a></li> 
 				</ul>
 			</li>
 			<li><a href="{{ path('PBVentasBundle_homepage', { 'name': 'aaaa' }) }}">Ventas</a>
 				<ul>
 					<li><a href="{{ path('cliente') }}">Clientes</a></li>
-					<li><a href="#">Formas de Pago</a></li> 
 				</ul>
 			</li>
 			<!-- 
@@ -139,6 +142,19 @@
 	<div id="page-wrapper" class="fixed">
 		<div id="main-wrapper">
 			<div id="main-content">
+    {% for type, flashMessages in app.session.flashbag.all() %}
+        {% for flashMessage in flashMessages %}
+        <!-- <div class=" success ui-corner-all">
+						<span>Success message</span>
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+					</div>
+			-->		
+            <div class="response-msg {{ type }}">
+                <span>Mensaje </span>
+        		{{ flashMessage|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+            </div>
+        {% endfor %}
+    {% endfor %}
     		  {% block content %}{% endblock %}
       		</div>
 		<div class="clearfix"></div>

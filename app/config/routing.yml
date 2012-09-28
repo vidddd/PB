@@ -1,3 +1,7 @@
+pb_general:
+    resource: "@PBGeneralBundle/Resources/config/routing.yml"
+    prefix:   /
+
 PBVentasBundle:
     resource: "@PBVentasBundle/Resources/config/routing.yml"
     prefix:   /ventas

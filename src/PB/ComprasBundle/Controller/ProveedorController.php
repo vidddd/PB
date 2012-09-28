@@ -11,6 +11,7 @@ use Pagerfanta\View\TwitterBootstrapView;
 use PB\ComprasBundle\Entity\Proveedor;
 use PB\ComprasBundle\Form\ProveedorType;
 use PB\ComprasBundle\Form\ProveedorFilterType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Proveedor controller.
@@ -142,6 +143,7 @@ class ProveedorController extends Controller
         return $this->render('PBComprasBundle:Proveedor:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+        	'errors' => array()
         ));
     }
 
@@ -160,13 +162,17 @@ class ProveedorController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('proveedor_show', array('id' => $entity->getId())));
+            $this->get('session')->setFlash('message', 'El proveedor se ha guardado!');
+            return $this->redirect($this->generateUrl('proveedor'));
         }
-
+        
+       $validator = $this->get('validator');
+        $errors = $validator->validate($form);
+        
         return $this->render('PBComprasBundle:Proveedor:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+        	'errors' => $errors
         ));
     }
 
@@ -185,6 +191,7 @@ class ProveedorController extends Controller
         }
 
         $editForm = $this->createForm(new ProveedorType(), $entity);
+
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('PBComprasBundle:Proveedor:edit.html.twig', array(
@@ -218,7 +225,8 @@ class ProveedorController extends Controller
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
-
+            $this->get('session')->setFlash('notice', 'Los cambios se han guardado!');
+            
             return $this->redirect($this->generateUrl('proveedor_edit', array('id' => $id)));
         }
 

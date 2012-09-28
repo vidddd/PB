@@ -1,6 +1,6 @@
 <?php
 
-namespace PB\ComprasBundle\Entity;
+namespace PB\ComprasBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
