@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block title "Editar Forma de Pago" %}
+
+{% block content %}
+
+<div class="title title-spacing">
+					<h2>Editar Forma de Pago</h2>
+</div>
+<form action="{{ path('formapago_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} novalidate="novalidate">
+<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+	<div class="portlet-header ui-widget-header">Editar Forma de Pago</div>
+		<div class="portlet-content form-alta">
+		{{ form_errors(edit_form) }}
+		  <table>
+   <tbody>
+     <tr>
+        <td class="label">{{ form_label(edit_form.nombre) }}</td>
+        <td class="campo">{{ form_widget(edit_form.nombre, { 'attr': {'class': 'foo'} }) }}</td><td>{{ form_errors(edit_form.nombre) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.descripcion, 'Descripcion') }}</td>
+        <td>{{ form_widget(edit_form.descripcion, { 'attr': {'cols': '40', 'rows': '10'}}) }}</td><td>{{ form_errors(edit_form.descripcion) }}</td>
+      </tr>
+    </tbody>
+   </table>    
+</div>
+<div class="guardar">
+          <p>
+        <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
+    </p>
+</div> {{ form_widget(edit_form._token) }}
+</form>
+</div>
+    <div class="float-left volver">
+        <a href="{{ path('formapago') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+     </div>
+     <div class="float-left">
+                <form action="{{ path('formapago_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="ui-state-default ui-corner-all" onclick="return confirm('Desea eliminar el item? Esta accion no se puede deshacer');"><!-- <span class="ui-icon ui-icon-circle-close"></span> -->
+            {{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+        </form>
+    </div>
+{% endblock %}

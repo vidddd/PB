@@ -1,0 +1,63 @@
+{% extends '::base.html.twig' %}
+
+{% block title "Formas de Pago" %}
+
+{% block content %}
+
+<div class="title title-spacing">
+					<h2>Formas de Pago</h2>
+</div>
+
+    <!-- 
+    <div class="span12">
+        <div id="filters" class="collapse">
+
+            <form class="well" action="{{ path('formapago') }}" method="post" {{ form_enctype(filterForm) }}>
+                {{ form_row(filterForm.id) }}
+                {{ form_row(filterForm.nombre) }}
+                {{ form_row(filterForm.descripcion) }}
+
+                <p>
+                    <button type="submit" name="filter_action" value="reset">{{ 'views.index.reset'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+                    <button type="submit" name="filter_action" value="filter">{{ 'views.index.filter'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+                </p>
+            </form>
+        </div>
+    </div>
+    -->
+        
+	<div class="btn-nuevo">
+	<a class="btn ui-state-default ui-corner-all" href="{{ path('formapago_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nueva Forma de Pago</a></div>
+
+	<div class="clearfix"></div>
+	<div class="hastable">
+	    <table class="records_list">
+	    <thead>
+	        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th width="15">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+	        </tr>
+	    </thead>
+        <tbody>
+    {% for entity in entities %}
+                <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+            <td><a href="{{ path('formapago_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.descripcion }}</td>
+            <td>
+             	<a href="{{ path('formapago_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>     </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    
+
+    </div>
+
+    <div class="span4">
+    {{ pagerHtml|raw }}
+    </div>
+
+{% endblock %}

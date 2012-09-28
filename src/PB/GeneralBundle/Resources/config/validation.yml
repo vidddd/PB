@@ -1,0 +1,4 @@
+PB\GeneralBundle\Entity\Formapago:
+    properties:
+        nombre:
+            - NotBlank: ~

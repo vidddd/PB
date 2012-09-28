@@ -1,0 +1,8 @@
+pb_general_homepage:
+    pattern:  /general/{name}
+    defaults: { _controller: PBGeneralBundle:Default:index }
+
+PBGeneralBundle_formapago:
+    resource: "@PBGeneralBundle/Resources/config/routing/formapago.yml"
+    prefix:   /formapago
+    

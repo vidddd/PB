@@ -1,0 +1,23 @@
+PB\GeneralBundle\Entity\FormaPago:
+    type: entity
+    repositoryClass: PB\GeneralBundle\Repository\FormaPagoRepository
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nombre:
+            type: string
+            length: '100'
+        descripcion:
+            type: text
+            nullable: true
+    manyToOne:
+        formapagos:
+            targetEntity: PB\ComprasBundle\Entity\Proveedor
+            mappedBy: formapago_proveedor
+            unique: false
+
+lifecycleCallbacks: {  }

@@ -1,0 +1,30 @@
+formapago:
+    pattern:  /general
+    defaults: { _controller: "PBGeneralBundle:FormaPago:index" }
+
+formapago_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBGeneralBundle:FormaPago:show" }
+
+formapago_new:
+    pattern:  /new
+    defaults: { _controller: "PBGeneralBundle:FormaPago:new" }
+
+formapago_create:
+    pattern:  /create
+    defaults: { _controller: "PBGeneralBundle:FormaPago:create" }
+    requirements: { _method: post }
+
+formapago_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBGeneralBundle:FormaPago:edit" }
+
+formapago_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBGeneralBundle:FormaPago:update" }
+    requirements: { _method: post }
+
+formapago_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBGeneralBundle:FormaPago:delete" }
+    requirements: { _method: post }
