@@ -8,6 +8,10 @@ PB\ComprasBundle\Entity\Proveedor:
       id: true
       generator:
         strategy: AUTO
+    codproveedor:
+      type: string
+      length: 50
+      nullable: true
     nombre:
       type: string
       length: 255
@@ -32,10 +36,17 @@ PB\ComprasBundle\Entity\Proveedor:
     telefono:
       type: bigint
       nullable: true
+    telefono2:
+      type: bigint
+      nullable: true
     fax:
       type: bigint
       nullable: true
     email:
+      type: string
+      length: 255
+      nullable: true
+    web:
       type: string
       length: 255
       nullable: true
@@ -97,4 +108,9 @@ PB\ComprasBundle\Entity\Proveedor:
       joinColumn:
         name: provincia_id
         referencedColumnName: id
-lifecycleCallbacks: {  }
+  oneToMany:
+    pedidocompra:
+        targetEntity: PB\ComprasBundle\Entity\PedidoCompra
+        mappedBy: proveedor
+  lifecycleCallbacks: 
+    prePersist: [ setFechaAltaPre ]

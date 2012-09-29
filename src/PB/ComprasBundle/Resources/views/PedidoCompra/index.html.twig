@@ -1,0 +1,84 @@
+{% extends '::base.html.twig' %}
+
+{% block title "Pedidos Compra" %}
+
+{% block content %}
+
+<div class="title title-spacing">
+					<h2>Pedidos Compra</h2>
+</div>
+    <div class="span2">
+        {% if form_errors(filterForm) %}
+        <div class="alert alert-block alert-error fade in form-errors">
+            {{ form_errors(filterForm) }}
+        </div>
+        {% endif %}
+        &nbsp;
+    </div>
+        <div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
+    <div class="portlet-content">
+            <form class="well" action="{{ path('compras_pedidocompra') }}" method="post" {{ form_enctype(filterForm) }}>
+	<table id="form-alta">
+   				<tbody>		
+         			<tr>
+        				<td class="label">{{ form_label(filterForm.id, 'Código Pedido') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
+      				<tr>
+
+            </tbody></table>
+                <p class="botones-buscador">
+                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
+                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+                </p>
+			 {{ form_widget(filterForm._token) }}</form>
+	</div><div class="clear"></div>
+</div>
+<div class="btn-nuevo">
+<a class="btn ui-state-default ui-corner-all" href="{{ path('compras_pedidocompra_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Pedido Compra</a></div>
+<div class="clearfix"></div>
+<div class="hastable">
+    <table class="records_list">
+    <thead>
+        <tr>
+			<th width="25">Código Pedido</th>
+            <th>Fecha</th>
+            <th>Fecha_entrega</th>
+            <th>Referencia</th>
+            <th>Forma_envio</th>
+            <th>Importe</th>
+            <th>Iva</th>
+            <th>Total</th>
+            <th>Descuento</th>
+            <th>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('compras_pedidocompra_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if entity.fechaentrega %}{{ entity.fechaentrega|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.referencia }}</td>
+            <td>{{ entity.formaenvio }}</td>
+            <td>{{ entity.importe }}</td>
+            <td>{{ entity.iva }}</td>
+            <td>{{ entity.total }}</td>
+            <td>{{ entity.descuento }}</td>
+            <td>
+        <a class="btn btn-mini" href="{{ path('compras_pedidocompra_show', { 'id': entity.id }) }}">
+            {{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+        <a class="btn btn-mini" href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}">
+            {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    </div>
+
+    <div class="span4">
+    {{ pagerHtml|raw }}
+    </div>
+
+{% endblock %}

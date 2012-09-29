@@ -113,4 +113,34 @@ class Provincias
     {
         return $this->provincia;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->provincia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add provincia
+     *
+     * @param PB\ComprasBundle\Entity\Proveedor $provincia
+     * @return Provincias
+     */
+    public function addProvincia(\PB\ComprasBundle\Entity\Proveedor $provincia)
+    {
+        $this->provincia[] = $provincia;
+    
+        return $this;
+    }
+
+    /**
+     * Remove provincia
+     *
+     * @param PB\ComprasBundle\Entity\Proveedor $provincia
+     */
+    public function removeProvincia(\PB\ComprasBundle\Entity\Proveedor $provincia)
+    {
+        $this->provincia->removeElement($provincia);
+    }
 }

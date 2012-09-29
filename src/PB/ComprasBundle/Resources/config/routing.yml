@@ -5,3 +5,7 @@ PBComprasBundle_homepage:
 PBComprasBundle_proveedor:
     resource: "@PBComprasBundle/Resources/config/routing/proveedor.yml"
     prefix:   /proveedor
+
+PBComprasBundle_compras_pedidocompra:
+    resource: "@PBComprasBundle/Resources/config/routing/pedidocompra.yml"
+    prefix:   /pedidocompra

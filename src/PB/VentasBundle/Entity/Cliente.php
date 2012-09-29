@@ -1018,4 +1018,32 @@ class Cliente
     {
         return $this->cliente_provincias;
     }
+    /**
+     * @var PB\InicioBundle\Entity\Provincias
+     */
+    private $provincia_cliente;
+
+
+    /**
+     * Set provincia_cliente
+     *
+     * @param PB\InicioBundle\Entity\Provincias $provinciaCliente
+     * @return Cliente
+     */
+    public function setProvinciaCliente(\PB\InicioBundle\Entity\Provincias $provinciaCliente = null)
+    {
+        $this->provincia_cliente = $provinciaCliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get provincia_cliente
+     *
+     * @return PB\InicioBundle\Entity\Provincias 
+     */
+    public function getProvinciaCliente()
+    {
+        return $this->provincia_cliente;
+    }
 }

@@ -13,3 +13,24 @@ http://themeforest.net/item/slate-admin/full_screen_preview/133854
 http://themeforest.net/item/adminique-admin-template/full_screen_preview/155706
 http://themeforest.net/item/mustache-admin/full_screen_preview/1614352
 http://preview.walkingpixels.com/wuxia
+
+FILTERS
+___________________________
+
+Text:
+	const PATTERN_EQUALS     
+    const PATTERN_START_WITH 
+    const PATTERN_END_WITH
+    const PATTERN_CONTAINS
+	
+Number
+
+    const OPERATOR_EQUAL             
+    const OPERATOR_GREATER_THAN      
+    const OPERATOR_GREATER_THAN_EQUAL
+    const OPERATOR_LOWER_THAN        
+    const OPERATOR_LOWER_THAN_EQUAL  
+
+Boolean:
+    const VALUE_YES = 'y';
+    const VALUE_NO  = 'n';

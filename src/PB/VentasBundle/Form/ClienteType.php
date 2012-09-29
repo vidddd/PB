@@ -23,17 +23,7 @@ class ClienteType extends AbstractType
             ->add('direccion')
             ->add('localidad')
             ->add('cp')
-			->add('codprovincia', 'entity', array('class' => 'PBInicioBundle:Provincias',
-					              'property' => 'denprovincia', 'empty_value' => 'Elige una provincia',
-					  //			  'data' => '45',
-					//'preferred_choices' => 45,
-					/*'query_builder' => function ($repository) {
-							return $repository->createQueryBuilder('p')->where("p.id = '45'");
-					
-							},*/
-
-						                ))
-            ->add('provincia')
+            ->add('provincia_cliente')
             ->add('pais')
             ->add('telefono')
             ->add('fax')

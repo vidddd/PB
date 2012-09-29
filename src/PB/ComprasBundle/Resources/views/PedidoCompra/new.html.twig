@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block title "Nuevo Proveedor" %}
+{% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
+{% block content %}
+
+<div class="title title-spacing">
+					<h2>Nuevo Pedido Compra</h2>
+</div>
+
+<form class="well" action="{{ path('compras_pedidocompra_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit" class="btn btn-success">{{ 'views.new.create'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+    </p>
+</form>
+
+<div>
+    <div class="float-left">
+        <a class="btn" href="{{ path('compras_pedidocompra') }}">
+            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+</div>
+{% endblock %}

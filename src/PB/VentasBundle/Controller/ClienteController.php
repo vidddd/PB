@@ -4,9 +4,13 @@ namespace PB\VentasBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\View\TwitterBootstrapView;
+
 use PB\VentasBundle\Entity\Cliente;
 use PB\VentasBundle\Form\ClienteType;
-use PB\VentasBundle\Form\Type\ClienteSearchType;
+use PB\VentasBundle\Form\ClienteFilterType;
 
 /**
  * Cliente controller.
@@ -14,43 +18,104 @@ use PB\VentasBundle\Form\Type\ClienteSearchType;
  */
 class ClienteController extends Controller
 {
-
-	protected $_commonNamespace;
-	
-	/**
-	*/
+    /**
+     * Lists all Cliente entities.
+     *
+     */
     public function indexAction()
     {
-    	$params = array(
-    			'itemPerPage' => 10,
-    			'pageRange' => 20,
-    	);
-        $params['order'] = 'a.id DESC';
+        list($filterForm, $queryBuilder) = $this->filter();
 
-        $form = $this->createForm(new ClienteSearchType());
-        $request = $this->getRequest();
-        
-        if ($request->getMethod() == 'POST') {$form->bind($request);
-        	if ($form->isValid()) {
-        		$params['filters'] = $form->getData();
-        	}
-        }
-            
-        $clientes = $this->paginator('PBVentasBundle:Cliente', $params);
-        
+        list($entities, $pagerHtml) = $this->paginator($queryBuilder);
+
+    
         return $this->render('PBVentasBundle:Cliente:index.html.twig', array(
-        		'form' => $form->createView(),
-        		'clientes' => $clientes
+            'entities' => $entities,
+            'pagerHtml' => $pagerHtml,
+            'filterForm' => $filterForm->createView(),
         ));
     }
 
+    /**
+    * Create filter form and process filter request.
+    *
+    */
+    protected function filter()
+    {
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $filterForm = $this->createForm(new ClienteFilterType());
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->getRepository('PBVentasBundle:Cliente')->createQueryBuilder('e');
+    
+        // Reset filter
+        if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
+            $session->remove('ClienteControllerFilter');
+        }
+    
+        // Filter action
+        if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
+            // Bind values from the request
+            $filterForm->bind($request);
+
+            if ($filterForm->isValid()) {
+                // Build the query from the given form object
+                $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
+                // Save filter to session
+                $filterData = $filterForm->getData();
+                $session->set('ClienteControllerFilter', $filterData);
+            }
+        } else {
+            // Get filter from session
+            if ($session->has('ClienteControllerFilter')) {
+                $filterData = $session->get('ClienteControllerFilter');
+                $filterForm = $this->createForm(new ClienteFilterType(), $filterData);
+                $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
+            }
+        }
+    
+        return array($filterForm, $queryBuilder);
+    }
+
+    /**
+    * Get results from paginator and get paginator view.
+    *
+    */
+    protected function paginator($queryBuilder)
+    {
+        // Paginator
+        $adapter = new DoctrineORMAdapter($queryBuilder);
+        $pagerfanta = new Pagerfanta($adapter);
+        $currentPage = $this->getRequest()->get('page', 1);
+        $pagerfanta->setCurrentPage($currentPage);
+        $entities = $pagerfanta->getCurrentPageResults();
+    
+        // Paginator - route generator
+        $me = $this;
+        $routeGenerator = function($page) use ($me)
+        {
+            return $me->generateUrl('cliente', array('page' => $page));
+        };
+    
+        // Paginator - view
+        $translator = $this->get('translator');
+        $view = new TwitterBootstrapView();
+        $pagerHtml = $view->render($pagerfanta, $routeGenerator, array(
+            'proximity' => 3,
+            'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
+            'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
+        ));
+    
+        return array($entities, $pagerHtml);
+    }
+    
     /**
      * Finds and displays a Cliente entity.
      *
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PBVentasBundle:Cliente')->find($id);
 
@@ -62,9 +127,7 @@ class ClienteController extends Controller
 
         return $this->render('PBVentasBundle:Cliente:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
-        ));
+            'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
@@ -76,7 +139,6 @@ class ClienteController extends Controller
         $entity = new Cliente();
         $form   = $this->createForm(new ClienteType(), $entity);
 
-        
         return $this->render('PBVentasBundle:Cliente:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
@@ -92,30 +154,30 @@ class ClienteController extends Controller
         $entity  = new Cliente();
         $request = $this->getRequest();
         $form    = $this->createForm(new ClienteType(), $entity);
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
-            return $this->redirect($this->generateUrl('cliente_show', array('id' => $entity->getId())));
-            
+            return $this->redirect($this->generateUrl('cliente_show', array('id' => $entity->getId())));        } else {
+            $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
         }
 
         return $this->render('PBVentasBundle:Cliente:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView()
+            'form'   => $form->createView(),
         ));
     }
-
     /**
      * Displays a form to edit an existing Cliente entity.
      *
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PBVentasBundle:Cliente')->find($id);
 
@@ -139,7 +201,7 @@ class ClienteController extends Controller
      */
     public function updateAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PBVentasBundle:Cliente')->find($id);
 
@@ -152,13 +214,16 @@ class ClienteController extends Controller
 
         $request = $this->getRequest();
 
-        $editForm->bindRequest($request);
+        $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
             return $this->redirect($this->generateUrl('cliente_edit', array('id' => $id)));
+        } else {
+            $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }
 
         return $this->render('PBVentasBundle:Cliente:edit.html.twig', array(
@@ -167,7 +232,6 @@ class ClienteController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
     /**
      * Deletes a Cliente entity.
      *
@@ -177,10 +241,10 @@ class ClienteController extends Controller
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('PBVentasBundle:Cliente')->find($id);
 
             if (!$entity) {
@@ -189,6 +253,9 @@ class ClienteController extends Controller
 
             $em->remove($entity);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
+        } else {
+            $this->get('session')->getFlashBag()->add('error', 'flash.delete.error');
         }
 
         return $this->redirect($this->generateUrl('cliente'));
@@ -200,46 +267,5 @@ class ClienteController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
-    }
-    
-    public function paginator($entity, $options = array()) {
-    
-    	$_default_options = array('itemPerPage' => 5,'pageRange' => 5 , 'filters' => array()); 
-    
-    	$options = array_merge($_default_options, $options);
-    	 
-    	if ($entity instanceof \Doctrine\ORM\Query) {
-    		$query = $entity;
-    	} else {
-    		$dql = "SELECT a FROM " . $entity . " a";
-    		$dql .= ' WHERE 1=1';
-    		//print_r($options);
-    		if($options['filters']) {
-    			
-    			$filter = $options['filters'];
-    			if ($filter['codcliente'] != '') $dql .= ' AND a.codcliente = '. $filter['codcliente'];
-    			if ($filter['nombre'] != '') $dql .= ' AND a.nombre LIKE \'%'. $filter['nombre']. '%\'';
-    		}
-    		/*if (isset($options['filters'])){
-    			      print_r($options);
-    		          
-    		}*/
-    		if (isset($options['order']))
-    			$dql .= ' ORDER BY ' . $options['order'];
-    
-    		$query = $this->getEm()->createQuery($dql);
-    	}
-    
-    	$paginator = $this->get('knp_paginator');
-    	$pagination = $paginator->paginate(
-    			$query,
-    			$this->get('request')->query->get('page', 1)/*page number*/,
-    			$options['itemPerPage']/*limit per page*/
-    	);
-    	 
-    	return $pagination;
-    }
-    public function getEm() {
-    	return $this->get('doctrine')->getEntityManager();
     }
 }

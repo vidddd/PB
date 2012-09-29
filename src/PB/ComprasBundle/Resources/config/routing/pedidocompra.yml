@@ -1,0 +1,30 @@
+compras_pedidocompra:
+    pattern:  /
+    defaults: { _controller: "PBComprasBundle:PedidoCompra:index" }
+
+compras_pedidocompra_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBComprasBundle:PedidoCompra:show" }
+
+compras_pedidocompra_new:
+    pattern:  /new
+    defaults: { _controller: "PBComprasBundle:PedidoCompra:new" }
+
+compras_pedidocompra_create:
+    pattern:  /create
+    defaults: { _controller: "PBComprasBundle:PedidoCompra:create" }
+    requirements: { _method: post }
+
+compras_pedidocompra_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBComprasBundle:PedidoCompra:edit" }
+
+compras_pedidocompra_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBComprasBundle:PedidoCompra:update" }
+    requirements: { _method: post }
+
+compras_pedidocompra_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBComprasBundle:PedidoCompra:delete" }
+    requirements: { _method: post }

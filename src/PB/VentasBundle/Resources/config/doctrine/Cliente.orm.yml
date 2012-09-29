@@ -146,11 +146,12 @@ PB\VentasBundle\Entity\Cliente:
     fechaultimoalbaran:
       type: datetime
       nullable: true
-  oneToOne:
-    cliente_provincias:
+  manyToOne:
+    provincia_cliente:
       targetEntity: PB\InicioBundle\Entity\Provincias
+      inversedBy: provincia2
       joinColumn:
-        name: codprovincia_id
+        name: provincia_id
         referencedColumnName: id
 
   lifecycleCallbacks: 

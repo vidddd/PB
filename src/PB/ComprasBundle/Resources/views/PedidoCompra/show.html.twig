@@ -1,0 +1,66 @@
+{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+
+{% block title %}
+{{ parent() }} - PedidoCompra {{ 'views.show.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+
+<h1>PedidoCompra</h1>
+
+<form class="form-horizontal">
+    <fieldset>        <div class="control-group">
+            <label class="control-label">Id</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.id }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Codproveedor</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codproveedor }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Codpedido</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codpedido }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Fecha</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fecha|date('Y-m-d H:i:s') }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Fecha_entrega</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechaentrega|date('Y-m-d H:i:s') }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Referencia</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.referencia }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Forma_envio</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.formaenvio }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Importe</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.importe }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Iva</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.iva }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Total</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.total }}</span>            </div>
+        </div>        <div class="control-group">
+            <label class="control-label">Descuento</label>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.descuento }}</span>            </div>
+        </div>    </fieldset>
+</form>
+
+<div>
+    <div class="float-left">
+        <a class="btn" href="{{ path('compras_pedidocompra') }}">
+            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+    <div class="float-left">
+        <a class="btn btn-primary" href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}">
+            {{ 'views.recordactions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+    <div class="float-left">
+        <form action="{{ path('compras_pedidocompra_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="btn btn-danger" type="submit" onclick="return confirm('Desea eliminar al proyecto del sistema?');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

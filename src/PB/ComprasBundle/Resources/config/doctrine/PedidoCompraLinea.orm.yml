@@ -1,5 +1,6 @@
 PB\ComprasBundle\Entity\PedidoCompraLinea:
   type: entity
+  repositoryClass: PB\ComprasBundle\Repository\PedidoCompraLineaRepository
   table: null
   fields:
     id:

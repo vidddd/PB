@@ -8,19 +8,18 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrapView;
 
-use PB\ComprasBundle\Entity\Proveedor;
-use PB\ComprasBundle\Form\ProveedorType;
-use PB\ComprasBundle\Form\ProveedorFilterType;
-use Symfony\Component\HttpFoundation\Response;
+use PB\ComprasBundle\Entity\PedidoCompra;
+use PB\ComprasBundle\Form\PedidoCompraType;
+use PB\ComprasBundle\Form\PedidoCompraFilterType;
 
 /**
- * Proveedor controller.
+ * PedidoCompra controller.
  *
  */
-class ProveedorController extends Controller
+class PedidoCompraController extends Controller
 {
     /**
-     * Lists all Proveedor entities.
+     * Lists all PedidoCompra entities.
      *
      */
     public function indexAction()
@@ -30,7 +29,7 @@ class ProveedorController extends Controller
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
     
-        return $this->render('PBComprasBundle:Proveedor:index.html.twig', array(
+        return $this->render('PBComprasBundle:PedidoCompra:index.html.twig', array(
             'entities' => $entities,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
@@ -45,37 +44,36 @@ class ProveedorController extends Controller
     {
         $request = $this->getRequest();
         $session = $request->getSession();
-        $filterForm = $this->createForm(new ProveedorFilterType());
+        $filterForm = $this->createForm(new PedidoCompraFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBComprasBundle:Proveedor')->createQueryBuilder('e');
+        $queryBuilder = $em->getRepository('PBComprasBundle:PedidoCompra')->createQueryBuilder('e');
     
         // Reset filter
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
-            $session->remove('ProveedorControllerFilter');
+            $session->remove('PedidoCompraControllerFilter');
         }
     
         // Filter action
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
             // Bind values from the request
             $filterForm->bind($request);
-           
+
             if ($filterForm->isValid()) {
                 // Build the query from the given form object
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
                 // Save filter to session
                 $filterData = $filterForm->getData();
-                
-                $session->set('ProveedorControllerFilter', $filterData);
+                $session->set('PedidoCompraControllerFilter', $filterData);
             }
         } else {
             // Get filter from session
-            if ($session->has('ProveedorControllerFilter')) {
-                $filterData = $session->get('ProveedorControllerFilter');
-                $filterForm = $this->createForm(new ProveedorFilterType(), $filterData);
+            if ($session->has('PedidoCompraControllerFilter')) {
+                $filterData = $session->get('PedidoCompraControllerFilter');
+                $filterForm = $this->createForm(new PedidoCompraFilterType(), $filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
-        //var_dump($queryBuilder->getDql());
+    
         return array($filterForm, $queryBuilder);
     }
 
@@ -96,7 +94,7 @@ class ProveedorController extends Controller
         $me = $this;
         $routeGenerator = function($page) use ($me)
         {
-            return $me->generateUrl('proveedor', array('page' => $page));
+            return $me->generateUrl('compras_pedidocompra', array('page' => $page));
         };
     
         // Paginator - view
@@ -112,90 +110,85 @@ class ProveedorController extends Controller
     }
     
     /**
-     * Finds and displays a Proveedor entity.
+     * Finds and displays a PedidoCompra entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
+        $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Proveedor entity.');
+            throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PBComprasBundle:Proveedor:show.html.twig', array(
+        return $this->render('PBComprasBundle:PedidoCompra:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
-     * Displays a form to create a new Proveedor entity.
+     * Displays a form to create a new PedidoCompra entity.
      *
      */
     public function newAction()
     {
-        $entity = new Proveedor();
-        $form   = $this->createForm(new ProveedorType(), $entity);
+        $entity = new PedidoCompra();
+        $form   = $this->createForm(new PedidoCompraType(), $entity);
 
-        return $this->render('PBComprasBundle:Proveedor:new.html.twig', array(
+        return $this->render('PBComprasBundle:PedidoCompra:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        	'errors' => array()
         ));
     }
 
     /**
-     * Creates a new Proveedor entity.
+     * Creates a new PedidoCompra entity.
      *
      */
     public function createAction()
     {
-        $entity  = new Proveedor();
+        $entity  = new PedidoCompra();
         $request = $this->getRequest();
-        $form    = $this->createForm(new ProveedorType(), $entity);
+        $form    = $this->createForm(new PedidoCompraType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-            $this->get('session')->setFlash('success', 'El proveedor se ha guardado!');
-            return $this->redirect($this->generateUrl('proveedor'));
+            $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
+
+            return $this->redirect($this->generateUrl('compras_pedidocompra_show', array('id' => $entity->getId())));        } else {
+            $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
         }
-        
-       $validator = $this->get('validator');
-        $errors = $validator->validate($form);
-        
-        return $this->render('PBComprasBundle:Proveedor:new.html.twig', array(
+
+        return $this->render('PBComprasBundle:PedidoCompra:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        	'errors' => $errors
         ));
     }
-
     /**
-     * Displays a form to edit an existing Proveedor entity.
+     * Displays a form to edit an existing PedidoCompra entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
+        $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Proveedor entity.');
+            throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
         }
 
-        $editForm = $this->createForm(new ProveedorType(), $entity);
-
+        $editForm = $this->createForm(new PedidoCompraType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PBComprasBundle:Proveedor:edit.html.twig', array(
+        return $this->render('PBComprasBundle:PedidoCompra:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -203,20 +196,20 @@ class ProveedorController extends Controller
     }
 
     /**
-     * Edits an existing Proveedor entity.
+     * Edits an existing PedidoCompra entity.
      *
      */
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
+        $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Proveedor entity.');
+            throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
         }
 
-        $editForm   = $this->createForm(new ProveedorType(), $entity);
+        $editForm   = $this->createForm(new PedidoCompraType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -226,20 +219,21 @@ class ProveedorController extends Controller
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
-            $this->get('session')->setFlash('success', 'Los cambios se han guardado!');
-            
-            return $this->redirect($this->generateUrl('proveedor'));
+            $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
+
+            return $this->redirect($this->generateUrl('compras_pedidocompra_edit', array('id' => $id)));
+        } else {
+            $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }
 
-        return $this->render('PBComprasBundle:Proveedor:edit.html.twig', array(
+        return $this->render('PBComprasBundle:PedidoCompra:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
     /**
-     * Deletes a Proveedor entity.
+     * Deletes a PedidoCompra entity.
      *
      */
     public function deleteAction($id)
@@ -251,17 +245,20 @@ class ProveedorController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
+            $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Proveedor entity.');
+                throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
             }
 
             $em->remove($entity);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
+        } else {
+            $this->get('session')->getFlashBag()->add('error', 'flash.delete.error');
         }
 
-        return $this->redirect($this->generateUrl('proveedor'));
+        return $this->redirect($this->generateUrl('compras_pedidocompra'));
     }
 
     private function createDeleteForm($id)

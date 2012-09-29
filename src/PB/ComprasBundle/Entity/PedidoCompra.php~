@@ -15,22 +15,12 @@ class PedidoCompra
     private $id;
 
     /**
-     * @var integer $codproveedor
-     */
-    private $codproveedor;
-
-    /**
-     * @var string $codpedido
-     */
-    private $codpedido;
-
-    /**
-     * @var date $fecha
+     * @var \DateTime $fecha
      */
     private $fecha;
 
     /**
-     * @var date $fecha_entrega
+     * @var \DateTime $fecha_entrega
      */
     private $fecha_entrega;
 
@@ -50,11 +40,6 @@ class PedidoCompra
     private $importe;
 
     /**
-     * @var smallint $iva
-     */
-    private $iva;
-
-    /**
      * @var float $total
      */
     private $total;
@@ -65,14 +50,23 @@ class PedidoCompra
     private $descuento;
 
     /**
-     * @ORM\OneToMany(targetEntity="PedidoCompraLinea", mappedBy="codpedido")
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
-    protected $pedidocompralineas;
-    
+    private $pedidoscompralinea;
+
+    /**
+     * @var PB\ComprasBundle\Entity\Proveedor
+     */
+    private $proveedor;
+
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-    	$this->pedidocompralineas = new ArrayCollection();
+        $this->pedidoscompralinea = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    
     /**
      * Get id
      *
@@ -84,59 +78,22 @@ class PedidoCompra
     }
 
     /**
-     * Set codproveedor
-     *
-     * @param integer $codproveedor
-     */
-    public function setCodproveedor($codproveedor)
-    {
-        $this->codproveedor = $codproveedor;
-    }
-
-    /**
-     * Get codproveedor
-     *
-     * @return integer 
-     */
-    public function getCodproveedor()
-    {
-        return $this->codproveedor;
-    }
-
-    /**
-     * Set codpedido
-     *
-     * @param string $codpedido
-     */
-    public function setCodpedido($codpedido)
-    {
-        $this->codpedido = $codpedido;
-    }
-
-    /**
-     * Get codpedido
-     *
-     * @return string 
-     */
-    public function getCodpedido()
-    {
-        return $this->codpedido;
-    }
-
-    /**
      * Set fecha
      *
-     * @param date $fecha
+     * @param \DateTime $fecha
+     * @return PedidoCompra
      */
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
+    
+        return $this;
     }
 
     /**
      * Get fecha
      *
-     * @return date 
+     * @return \DateTime 
      */
     public function getFecha()
     {
@@ -146,17 +103,20 @@ class PedidoCompra
     /**
      * Set fecha_entrega
      *
-     * @param date $fechaEntrega
+     * @param \DateTime $fechaEntrega
+     * @return PedidoCompra
      */
     public function setFechaEntrega($fechaEntrega)
     {
         $this->fecha_entrega = $fechaEntrega;
+    
+        return $this;
     }
 
     /**
      * Get fecha_entrega
      *
-     * @return date 
+     * @return \DateTime 
      */
     public function getFechaEntrega()
     {
@@ -167,10 +127,13 @@ class PedidoCompra
      * Set referencia
      *
      * @param string $referencia
+     * @return PedidoCompra
      */
     public function setReferencia($referencia)
     {
         $this->referencia = $referencia;
+    
+        return $this;
     }
 
     /**
@@ -187,10 +150,13 @@ class PedidoCompra
      * Set forma_envio
      *
      * @param integer $formaEnvio
+     * @return PedidoCompra
      */
     public function setFormaEnvio($formaEnvio)
     {
         $this->forma_envio = $formaEnvio;
+    
+        return $this;
     }
 
     /**
@@ -207,10 +173,13 @@ class PedidoCompra
      * Set importe
      *
      * @param float $importe
+     * @return PedidoCompra
      */
     public function setImporte($importe)
     {
         $this->importe = $importe;
+    
+        return $this;
     }
 
     /**
@@ -224,33 +193,16 @@ class PedidoCompra
     }
 
     /**
-     * Set iva
-     *
-     * @param smallint $iva
-     */
-    public function setIva($iva)
-    {
-        $this->iva = $iva;
-    }
-
-    /**
-     * Get iva
-     *
-     * @return smallint 
-     */
-    public function getIva()
-    {
-        return $this->iva;
-    }
-
-    /**
      * Set total
      *
      * @param float $total
+     * @return PedidoCompra
      */
     public function setTotal($total)
     {
         $this->total = $total;
+    
+        return $this;
     }
 
     /**
@@ -267,10 +219,13 @@ class PedidoCompra
      * Set descuento
      *
      * @param float $descuento
+     * @return PedidoCompra
      */
     public function setDescuento($descuento)
     {
         $this->descuento = $descuento;
+    
+        return $this;
     }
 
     /**
@@ -281,31 +236,6 @@ class PedidoCompra
     public function getDescuento()
     {
         return $this->descuento;
-    }
-    /**
-     * @var PB\ComprasBundle\Entity\PedidoCompraLinea
-     */
-    private $pedidoscompralinea;
-
-
-    /**
-     * Add pedidoscompralinea
-     *
-     * @param PB\ComprasBundle\Entity\PedidoCompraLinea $pedidoscompralinea
-     */
-    public function addPedidoCompraLinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidoscompralinea)
-    {
-        $this->pedidoscompralinea[] = $pedidoscompralinea;
-    }
-
-    /**
-     * Get pedidoscompralinea
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getPedidoscompralinea()
-    {
-        return $this->pedidoscompralinea;
     }
 
     /**
@@ -329,5 +259,66 @@ class PedidoCompra
     public function removePedidoscompralinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidoscompralinea)
     {
         $this->pedidoscompralinea->removeElement($pedidoscompralinea);
+    }
+
+    /**
+     * Get pedidoscompralinea
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPedidoscompralinea()
+    {
+        return $this->pedidoscompralinea;
+    }
+
+    /**
+     * Set proveedor
+     *
+     * @param PB\ComprasBundle\Entity\Proveedor $proveedor
+     * @return PedidoCompra
+     */
+    public function setProveedor(\PB\ComprasBundle\Entity\Proveedor $proveedor = null)
+    {
+        $this->proveedor = $proveedor;
+    
+        return $this;
+    }
+
+    /**
+     * Get proveedor
+     *
+     * @return PB\ComprasBundle\Entity\Proveedor 
+     */
+    public function getProveedor()
+    {
+        return $this->proveedor;
+    }
+    /**
+     * @var integer $iva
+     */
+    private $iva;
+
+
+    /**
+     * Set iva
+     *
+     * @param integer $iva
+     * @return PedidoCompra
+     */
+    public function setIva($iva)
+    {
+        $this->iva = $iva;
+    
+        return $this;
+    }
+
+    /**
+     * Get iva
+     *
+     * @return integer 
+     */
+    public function getIva()
+    {
+        return $this->iva;
     }
 }

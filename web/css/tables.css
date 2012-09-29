@@ -6,6 +6,7 @@
 	width:100%;
 	border:1px solid #dedede;
 	border-bottom:none;
+	border-collapse:collapse;
 }
 
 .hastable thead td, .hastable thead th {

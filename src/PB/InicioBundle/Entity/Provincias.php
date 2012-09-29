@@ -143,4 +143,32 @@ class Provincias
     {
         $this->provincia->removeElement($provincia);
     }
+    /**
+     * @var PB\VentasBundle\Entity\cliente
+     */
+    private $provincia2;
+
+
+    /**
+     * Set provincia2
+     *
+     * @param PB\VentasBundle\Entity\cliente $provincia2
+     * @return Provincias
+     */
+    public function setProvincia2(\PB\VentasBundle\Entity\cliente $provincia2 = null)
+    {
+        $this->provincia2 = $provincia2;
+    
+        return $this;
+    }
+
+    /**
+     * Get provincia2
+     *
+     * @return PB\VentasBundle\Entity\cliente 
+     */
+    public function getProvincia2()
+    {
+        return $this->provincia2;
+    }
 }

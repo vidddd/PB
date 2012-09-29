@@ -418,7 +418,7 @@ class Proveedor
      */
     public function getTipoProveedor()
     {
-		
+		/*
     	$yaml = new Parser();
 		$value = array();
 		try {
@@ -432,8 +432,8 @@ class Proveedor
 			return $tipos[$this->tipo_proveedor];
 		else
 			return $this->tipo_proveedor; 
-			
-    	//return $this->tipo_proveedor;
+		*/	
+    	return $this->tipo_proveedor;
     }
 
     /**
@@ -784,4 +784,175 @@ class Proveedor
     	//$this->provincia_proveecdor = new ArrayCollection();
     	//$this->formapago_proveedor = new ArrayCollection();
      }
+    /**
+     * @var string $web
+     */
+    private $web;
+
+
+    /**
+     * Set web
+     *
+     * @param string $web
+     * @return Proveedor
+     */
+    public function setWeb($web)
+    {
+        $this->web = $web;
+    
+        return $this;
+    }
+
+    /**
+     * Get web
+     *
+     * @return string 
+     */
+    public function getWeb()
+    {
+        return $this->web;
+    }
+    /**
+     * @var integer $telefono2
+     */
+    private $telefono2;
+
+
+    /**
+     * Set telefono2
+     *
+     * @param integer $telefono2
+     * @return Proveedor
+     */
+    public function setTelefono2($telefono2)
+    {
+        $this->telefono2 = $telefono2;
+    
+        return $this;
+    }
+
+    /**
+     * Get telefono2
+     *
+     * @return integer 
+     */
+    public function getTelefono2()
+    {
+        return $this->telefono2;
+    }
+    /**
+     * @var PB\ComprasBundle\Entity\PedidoCompra
+     */
+    private $proveedor;
+
+
+    /**
+     * Set proveedor
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompra $proveedor
+     * @return Proveedor
+     */
+    public function setProveedor(\PB\ComprasBundle\Entity\PedidoCompra $proveedor = null)
+    {
+        $this->proveedor = $proveedor;
+    
+        return $this;
+    }
+
+    /**
+     * Get proveedor
+     *
+     * @return PB\Compras\Entity\PedidoCompra 
+     */
+    public function getProveedor()
+    {
+        return $this->proveedor;
+    }
+    /**
+     * @var PB\ComprasBundle\Entity\PedidoCompra
+     */
+    private $pedidocompras;
+
+
+    /**
+     * Set pedidocompras
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompra $pedidocompras
+     * @return Proveedor
+     */
+    public function setPedidocompras(\PB\ComprasBundle\Entity\PedidoCompra $pedidocompras = null)
+    {
+        $this->pedidocompras = $pedidocompras;
+    
+        return $this;
+    }
+
+    /**
+     * Get pedidocompras
+     *
+     * @return PB\ComprasBundle\Entity\PedidoCompra 
+     */
+    public function getPedidocompras()
+    {
+        return $this->pedidocompras;
+    }
+    /**
+     * @var PB\ComprasBundle\Entity\PedidoCompra
+     */
+    private $pedidocompra;
+
+
+    /**
+     * Set pedidocompra
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompra $pedidocompra
+     * @return Proveedor
+     */
+    public function setPedidocompra(\PB\ComprasBundle\Entity\PedidoCompra $pedidocompra = null)
+    {
+        $this->pedidocompra = $pedidocompra;
+    
+        return $this;
+    }
+
+    /**
+     * Get pedidocompra
+     *
+     * @return PB\ComprasBundle\Entity\PedidoCompra 
+     */
+    public function getPedidocompra()
+    {
+        return $this->pedidocompra;
+    }
+    public function __toString()
+    {
+    	return $this->nombre;
+    }
+    public function setFechaAltaPre()
+    {
+    	$this->fechaalta = new \DateTime("now");
+    }
+
+    /**
+     * Add pedidocompra
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompra $pedidocompra
+     * @return Proveedor
+     */
+    public function addPedidocompra(\PB\ComprasBundle\Entity\PedidoCompra $pedidocompra)
+    {
+        $this->pedidocompra[] = $pedidocompra;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pedidocompra
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompra $pedidocompra
+     */
+    public function removePedidocompra(\PB\ComprasBundle\Entity\PedidoCompra $pedidocompra)
+    {
+        $this->pedidocompra->removeElement($pedidocompra);
+    }
 }

@@ -8,21 +8,21 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
-use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
 
-use Lexik\Bundle\FormFilterBundle\Filter\Expr;
-use Doctrine\ORM\QueryBuilder;
-
-class ProveedorFilterType extends AbstractType
+class PedidoCompraFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', 'filter_number')
-            ->add('nombre', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
-            ->add('nif', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
-            ->add('cp', 'filter_number')
-            ->add('localidad', 'filter_text' ,array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
+            ->add('id', 'filter_number_range')
+            ->add('fecha', 'filter_date_range')
+            ->add('fecha_entrega', 'filter_date_range')
+            ->add('referencia', 'filter_text')
+            ->add('forma_envio', 'filter_number_range')
+            ->add('importe', 'filter_number_range')
+            ->add('iva', 'filter_number_range')
+            ->add('total', 'filter_number_range')
+            ->add('descuento', 'filter_number_range')
         ;
 
         $listener = function(FormEvent $event)
@@ -46,6 +46,6 @@ class ProveedorFilterType extends AbstractType
 
     public function getName()
     {
-        return 'pb_comprasbundle_proveedorfiltertype';
+        return 'pb_comprasbundle_pedidocomprafiltertype';
     }
 }

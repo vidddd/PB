@@ -74,12 +74,21 @@
 		        <td class="campo">{{ form_widget(edit_form.telefono) }}</td><td>{{ form_errors(edit_form.telefono) }}</td>
 		      </tr>
    			 <tr>
+        		<td>{{ form_label(edit_form.telefono2) }}</td>
+		        <td>{{ form_widget(edit_form.telefono2) }}</td><td>{{ form_errors(edit_form.telefono2) }}</td>
+		      </tr>
+		      <tr>
+   			 <tr>
         		<td>{{ form_label(edit_form.fax) }}</td>
 		        <td>{{ form_widget(edit_form.fax) }}</td><td>{{ form_errors(edit_form.fax) }}</td>
 		      </tr>
 		      <tr>
         		<td>{{ form_label(edit_form.email) }}</td>
 		        <td>{{ form_widget(edit_form.email) }}</td><td>{{ form_errors(edit_form.email) }}</td>
+		      </tr>
+		      <tr>
+        		<td>{{ form_label(edit_form.web) }}</td>
+		        <td>{{ form_widget(edit_form.web) }}</td><td>{{ form_errors(edit_form.web) }}</td>
 		      </tr>
 		      <tr>
                 <td>{{ form_label(edit_form.nombrecontacto, 'Nombre de Contacto') }}</td>
@@ -137,12 +146,9 @@
 		            </td></tr>
 			</tbody>
 		</table>
-	</div>
+	</div>	</div>
 	<div class="guardar">
-          <p>
         <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
-    </p>
-</div> 
 	</div>
 {{ form_rest(edit_form) }}
 </div></div>{{ form_widget(edit_form._token) }}

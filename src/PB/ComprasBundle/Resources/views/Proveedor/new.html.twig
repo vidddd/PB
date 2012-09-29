@@ -76,12 +76,20 @@
 		        <td class="campo">{{ form_widget(form.telefono) }}</td><td>{{ form_errors(form.telefono) }}</td>
 		      </tr>
    			 <tr>
+        		<td>{{ form_label(form.telefono2) }}</td>
+		        <td>{{ form_widget(form.telefono2) }}</td><td>{{ form_errors(form.telefono2) }}</td>
+		      </tr>
+   			 <tr>
         		<td>{{ form_label(form.fax) }}</td>
 		        <td>{{ form_widget(form.fax) }}</td><td>{{ form_errors(form.fax) }}</td>
 		      </tr>
 		      <tr>
         		<td>{{ form_label(form.email) }}</td>
 		        <td>{{ form_widget(form.email) }}</td><td>{{ form_errors(form.email) }}</td>
+		      </tr>
+		      <tr>
+        		<td>{{ form_label(form.web) }}</td>
+		        <td>{{ form_widget(form.web) }}</td><td>{{ form_errors(form.web) }}</td>
 		      </tr>
 		      <tr>
                 <td>{{ form_label(form.nombrecontacto, 'Nombre de Contacto') }}</td>
@@ -140,11 +148,10 @@
 			</tbody>
 		</table>
 	</div></div>
-<div class="guardar">
-          <p>
-        <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
-    </p>
-</div> 
+	<div class="guardar">
+	
+	        <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
+	</div> 
 </div></div>{{ form_widget(form._token) }}
 </form>
     <div class="float-left volver">

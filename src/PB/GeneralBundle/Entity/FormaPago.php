@@ -179,7 +179,7 @@ class FormaPago
      */
     public function __construct()
     {
-        $this->formapagos = new \Doctrine\Common\Collections\ArrayCollection();
+      //  $this->formapagos = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**

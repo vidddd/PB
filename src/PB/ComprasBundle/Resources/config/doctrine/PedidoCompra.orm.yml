@@ -1,21 +1,13 @@
 PB\ComprasBundle\Entity\PedidoCompra:
   type: entity
-  table: null
-  oneToMany:
-    pedidoscompralinea:
-      targetEntity: PedidoCompraLinea
-      mappedBy: codpedido
+  repositoryClass: PB\ComprasBundle\Repository\PedidoCompraRepository
+  table: PedidoCompra
   fields:
     id:
       type: integer
       id: true
       generator:
         strategy: AUTO
-    codproveedor:
-      type: integer
-    codpedido:
-      type: string
-      length: 255
     fecha:
       type: date
     fecha_entrega:
@@ -23,14 +15,31 @@ PB\ComprasBundle\Entity\PedidoCompra:
     referencia:
       type: string
       length: '100'
+      nullable: true
     forma_envio:
       type: integer
+      nullable: true
     importe:
       type: float
-    iva:
-      type: smallint
+      nullable: true
     total:
       type: float
+      nullable: true
+    iva:
+      type: smallint
+      nullable: true
     descuento:
       type: float
+      nullable: true
+  oneToMany:
+    pedidoscompralinea:
+      targetEntity: PedidoCompraLinea
+      mappedBy: codpedido
+  manyToOne:
+    proveedor:
+      targetEntity: PB\ComprasBundle\Entity\Proveedor
+      inversedBy: pedidocompra
+      joinColumn:
+        name: proveedor_id
+        referencedColumnName: id
   lifecycleCallbacks: {  }
