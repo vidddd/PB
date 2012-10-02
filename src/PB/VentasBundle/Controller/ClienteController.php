@@ -162,7 +162,7 @@ class ClienteController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
-            return $this->redirect($this->generateUrl('cliente_show', array('id' => $entity->getId())));        } else {
+            return $this->redirect($this->generateUrl('cliente', array('id' => $entity->getId())));        } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
         }
 
@@ -221,7 +221,7 @@ class ClienteController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
-            return $this->redirect($this->generateUrl('cliente_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('cliente', array('id' => $id)));
         } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }

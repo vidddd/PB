@@ -204,4 +204,32 @@ class FormaPago
     {
         $this->formapagos->removeElement($formapagos);
     }
+    /**
+     * @var PB\VentasBundle\Entity\Cliente
+     */
+    private $formapagos2;
+
+
+    /**
+     * Set formapagos2
+     *
+     * @param PB\VentasBundle\Entity\Cliente $formapagos2
+     * @return FormaPago
+     */
+    public function setFormapagos2(\PB\VentasBundle\Entity\Cliente $formapagos2 = null)
+    {
+        $this->formapagos2 = $formapagos2;
+    
+        return $this;
+    }
+
+    /**
+     * Get formapagos2
+     *
+     * @return PB\VentasBundle\Entity\Cliente 
+     */
+    public function getFormapagos2()
+    {
+        return $this->formapagos2;
+    }
 }

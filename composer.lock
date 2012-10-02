@@ -58,12 +58,6 @@
         {
             "package": "jordillonch/crud-generator",
             "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
-        },
-        {
-            "package": "jordillonch/crud-generator",
-            "version": "dev-master",
             "source-reference": "a7f5dfc41add86c4e4aef3f7dfa07d3ae811846d",
             "commit-date": "1348124699"
         },
@@ -88,8 +82,8 @@
         {
             "package": "kriswallsmith/assetic",
             "version": "dev-master",
-            "source-reference": "a6baab9b4c4361aca51bf90ee47c1586dff3cb0c",
-            "commit-date": "1347622188"
+            "source-reference": "e22c5e07e672bb0cf43127e97e9368b53abf4aa8",
+            "commit-date": "1349004759"
         },
         {
             "package": "lexik/form-filter-bundle",
@@ -154,8 +148,8 @@
         {
             "package": "symfony/assetic-bundle",
             "version": "dev-master",
-            "source-reference": "64345e86761444c35679e1aed424e1ed2370f0de",
-            "commit-date": "1347626244"
+            "source-reference": "5ebcf72d9b2d7028ca8c9b71b464ccc81d4795d2",
+            "commit-date": "1348938560"
         },
         {
             "package": "symfony/monolog-bundle",
@@ -184,8 +178,8 @@
         {
             "package": "symfony/symfony",
             "version": "2.1.x-dev",
-            "source-reference": "f62fa8a79edc94240a7fd3ef3096ddd789eced4f",
-            "commit-date": "1348749927"
+            "source-reference": "4e3ea227360c631579a37d6071ea0bdee3dd2732",
+            "commit-date": "1348937790"
         },
         {
             "package": "twig/extensions",
@@ -208,8 +202,8 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "b8c917972f74da88f0e930ea32a90566739d87ac",
-            "commit-date": "1348667791"
+            "source-reference": "120cde3fa54c31047edf1cd003752ca119dec9a8",
+            "commit-date": "1348936415"
         }
     ],
     "packages-dev": null,

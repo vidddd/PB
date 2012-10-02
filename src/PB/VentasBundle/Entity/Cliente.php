@@ -6,8 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 
-/**
- */
 class Cliente
 {
     /**
@@ -15,16 +13,6 @@ class Cliente
      */
     private $id;
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
     /**
      * @var string $nombre
      */
@@ -59,16 +47,6 @@ class Cliente
      * @var string $cp
      */
     private $cp;
-
-    /**
-     * @var integer $codprovincia
-     */
-    private $codprovincia;
-
-    /**
-     * @var string $provincia
-     */
-    private $provincia;
 
     /**
      * @var string $telefono
@@ -195,22 +173,79 @@ class Cliente
      */
     private $fechaultimoalbaran;
     
+
+    /**
+     * @var bigint $codcliente
+     */
+    private $codcliente;
+
+    /**
+     * @var string $pais
+     */
+    private $pais;
+	
+    /**
+     * @var PB\InicioBundle\Entity\Provincias
+     */
+    private $provincia_cliente;
+
+    public function setFechaAltaPre()
+    {
+    	$this->fechaalta = new \DateTime("now");
+    }
     public function __construct()
     {
-    	//$this->codprovincia = new ArrayCollection();
-    	$this->codprovincia_id = new \Doctrine\Common\Collections\ArrayCollection();
-    	
+    
     }
     
+    public function __toString()
+    {
+    	return $this->nombre;
+    }
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set codcliente
+     *
+     * @param integer $codcliente
+     * @return Cliente
+     */
+    public function setCodcliente($codcliente)
+    {
+        $this->codcliente = $codcliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get codcliente
+     *
+     * @return integer 
+     */
+    public function getCodcliente()
+    {
+        return $this->codcliente;
+    }
 
     /**
      * Set nombre
      *
      * @param string $nombre
+     * @return Cliente
      */
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+    
+        return $this;
     }
 
     /**
@@ -227,10 +262,13 @@ class Cliente
      * Set nombrecomercial
      *
      * @param string $nombrecomercial
+     * @return Cliente
      */
     public function setNombrecomercial($nombrecomercial)
     {
         $this->nombrecomercial = $nombrecomercial;
+    
+        return $this;
     }
 
     /**
@@ -247,10 +285,13 @@ class Cliente
      * Set nif
      *
      * @param string $nif
+     * @return Cliente
      */
     public function setNif($nif)
     {
         $this->nif = $nif;
+    
+        return $this;
     }
 
     /**
@@ -266,17 +307,20 @@ class Cliente
     /**
      * Set fechaalta
      *
-     * @param date $fechaalta
+     * @param \DateTime $fechaalta
+     * @return Cliente
      */
     public function setFechaalta($fechaalta)
     {
         $this->fechaalta = $fechaalta;
+    
+        return $this;
     }
 
     /**
      * Get fechaalta
      *
-     * @return date 
+     * @return \DateTime 
      */
     public function getFechaalta()
     {
@@ -287,10 +331,13 @@ class Cliente
      * Set direccion
      *
      * @param string $direccion
+     * @return Cliente
      */
     public function setDireccion($direccion)
     {
         $this->direccion = $direccion;
+    
+        return $this;
     }
 
     /**
@@ -307,10 +354,13 @@ class Cliente
      * Set localidad
      *
      * @param string $localidad
+     * @return Cliente
      */
     public function setLocalidad($localidad)
     {
         $this->localidad = $localidad;
+    
+        return $this;
     }
 
     /**
@@ -327,10 +377,13 @@ class Cliente
      * Set cp
      *
      * @param string $cp
+     * @return Cliente
      */
     public function setCp($cp)
     {
         $this->cp = $cp;
+    
+        return $this;
     }
 
     /**
@@ -344,54 +397,39 @@ class Cliente
     }
 
     /**
-     * Set codprovincia
+     * Set pais
      *
-     * @param string $codprovincia
+     * @param string $pais
+     * @return Cliente
      */
-    //public function setCodprovincia(\PB\InicioBundle\Entity\Provincias $codprovincia)
-    public function setCodprovincia($codprovincia)
+    public function setPais($pais)
     {
-    	$this->codprovincia = $codprovincia->getId();
+        $this->pais = $pais;
+    
+        return $this;
     }
 
     /**
-     * Get codprovincia
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */ 
-    public function getCodprovincia()
-    {
-        return $this->codprovincia;
-    }
-
-    /**
-     * Set provincia
-     *
-     * @param string $provincia
-     */
-    public function setProvincia($provincia)
-    {
-        $this->provincia = $provincia;
-    }
-
-    /**
-     * Get provincia
+     * Get pais
      *
      * @return string 
      */
-    public function getProvincia()
+    public function getPais()
     {
-        return $this->provincia;
+        return $this->pais;
     }
 
     /**
      * Set telefono
      *
      * @param string $telefono
+     * @return Cliente
      */
     public function setTelefono($telefono)
     {
         $this->telefono = $telefono;
+    
+        return $this;
     }
 
     /**
@@ -408,10 +446,13 @@ class Cliente
      * Set fax
      *
      * @param string $fax
+     * @return Cliente
      */
     public function setFax($fax)
     {
         $this->fax = $fax;
+    
+        return $this;
     }
 
     /**
@@ -428,10 +469,13 @@ class Cliente
      * Set movil
      *
      * @param string $movil
+     * @return Cliente
      */
     public function setMovil($movil)
     {
         $this->movil = $movil;
+    
+        return $this;
     }
 
     /**
@@ -448,10 +492,13 @@ class Cliente
      * Set web
      *
      * @param string $web
+     * @return Cliente
      */
     public function setWeb($web)
     {
         $this->web = $web;
+    
+        return $this;
     }
 
     /**
@@ -468,10 +515,13 @@ class Cliente
      * Set email
      *
      * @param string $email
+     * @return Cliente
      */
     public function setEmail($email)
     {
         $this->email = $email;
+    
+        return $this;
     }
 
     /**
@@ -488,10 +538,13 @@ class Cliente
      * Set cuenta
      *
      * @param string $cuenta
+     * @return Cliente
      */
     public function setCuenta($cuenta)
     {
         $this->cuenta = $cuenta;
+    
+        return $this;
     }
 
     /**
@@ -507,17 +560,20 @@ class Cliente
     /**
      * Set descuento
      *
-     * @param boolean $descuento
+     * @param integer $descuento
+     * @return Cliente
      */
     public function setDescuento($descuento)
     {
         $this->descuento = $descuento;
+    
+        return $this;
     }
 
     /**
      * Get descuento
      *
-     * @return boolean 
+     * @return integer 
      */
     public function getDescuento()
     {
@@ -527,17 +583,20 @@ class Cliente
     /**
      * Set recargo
      *
-     * @param string $recargo
+     * @param boolean $recargo
+     * @return Cliente
      */
     public function setRecargo($recargo)
     {
         $this->recargo = $recargo;
+    
+        return $this;
     }
 
     /**
      * Get recargo
      *
-     * @return string 
+     * @return boolean 
      */
     public function getRecargo()
     {
@@ -547,17 +606,20 @@ class Cliente
     /**
      * Set observaciones
      *
-     * @param text $observaciones
+     * @param string $observaciones
+     * @return Cliente
      */
     public function setObservaciones($observaciones)
     {
         $this->observaciones = $observaciones;
+    
+        return $this;
     }
 
     /**
      * Get observaciones
      *
-     * @return text 
+     * @return string 
      */
     public function getObservaciones()
     {
@@ -568,10 +630,13 @@ class Cliente
      * Set codfp
      *
      * @param integer $codfp
+     * @return Cliente
      */
     public function setCodfp($codfp)
     {
         $this->codfp = $codfp;
+    
+        return $this;
     }
 
     /**
@@ -587,17 +652,20 @@ class Cliente
     /**
      * Set facturaciona
      *
-     * @param decimal $facturaciona
+     * @param float $facturaciona
+     * @return Cliente
      */
     public function setFacturaciona($facturaciona)
     {
         $this->facturaciona = $facturaciona;
+    
+        return $this;
     }
 
     /**
      * Get facturaciona
      *
-     * @return decimal 
+     * @return float 
      */
     public function getFacturaciona()
     {
@@ -607,17 +675,20 @@ class Cliente
     /**
      * Set facturacionb
      *
-     * @param decimal $facturacionb
+     * @param float $facturacionb
+     * @return Cliente
      */
     public function setFacturacionb($facturacionb)
     {
         $this->facturacionb = $facturacionb;
+    
+        return $this;
     }
 
     /**
      * Get facturacionb
      *
-     * @return decimal 
+     * @return float 
      */
     public function getFacturacionb()
     {
@@ -627,17 +698,20 @@ class Cliente
     /**
      * Set debea
      *
-     * @param decimal $debea
+     * @param float $debea
+     * @return Cliente
      */
     public function setDebea($debea)
     {
         $this->debea = $debea;
+    
+        return $this;
     }
 
     /**
      * Get debea
      *
-     * @return decimal 
+     * @return float 
      */
     public function getDebea()
     {
@@ -647,17 +721,20 @@ class Cliente
     /**
      * Set habera
      *
-     * @param decimal $habera
+     * @param float $habera
+     * @return Cliente
      */
     public function setHabera($habera)
     {
         $this->habera = $habera;
+    
+        return $this;
     }
 
     /**
      * Get habera
      *
-     * @return decimal 
+     * @return float 
      */
     public function getHabera()
     {
@@ -667,17 +744,20 @@ class Cliente
     /**
      * Set saldoa
      *
-     * @param decimal $saldoa
+     * @param float $saldoa
+     * @return Cliente
      */
     public function setSaldoa($saldoa)
     {
         $this->saldoa = $saldoa;
+    
+        return $this;
     }
 
     /**
      * Get saldoa
      *
-     * @return decimal 
+     * @return float 
      */
     public function getSaldoa()
     {
@@ -687,17 +767,20 @@ class Cliente
     /**
      * Set debeb
      *
-     * @param decimal $debeb
+     * @param float $debeb
+     * @return Cliente
      */
     public function setDebeb($debeb)
     {
         $this->debeb = $debeb;
+    
+        return $this;
     }
 
     /**
      * Get debeb
      *
-     * @return decimal 
+     * @return float 
      */
     public function getDebeb()
     {
@@ -707,17 +790,20 @@ class Cliente
     /**
      * Set haberb
      *
-     * @param decimal $haberb
+     * @param float $haberb
+     * @return Cliente
      */
     public function setHaberb($haberb)
     {
         $this->haberb = $haberb;
+    
+        return $this;
     }
 
     /**
      * Get haberb
      *
-     * @return decimal 
+     * @return float 
      */
     public function getHaberb()
     {
@@ -727,17 +813,20 @@ class Cliente
     /**
      * Set saldob
      *
-     * @param decimal $saldob
+     * @param float $saldob
+     * @return Cliente
      */
     public function setSaldob($saldob)
     {
         $this->saldob = $saldob;
+    
+        return $this;
     }
 
     /**
      * Get saldob
      *
-     * @return decimal 
+     * @return float 
      */
     public function getSaldob()
     {
@@ -747,17 +836,20 @@ class Cliente
     /**
      * Set albaranespendientes
      *
-     * @param decimal $albaranespendientes
+     * @param float $albaranespendientes
+     * @return Cliente
      */
     public function setAlbaranespendientes($albaranespendientes)
     {
         $this->albaranespendientes = $albaranespendientes;
+    
+        return $this;
     }
 
     /**
      * Get albaranespendientes
      *
-     * @return decimal 
+     * @return float 
      */
     public function getAlbaranespendientes()
     {
@@ -767,17 +859,20 @@ class Cliente
     /**
      * Set albaranespendientesa
      *
-     * @param decimal $albaranespendientesa
+     * @param float $albaranespendientesa
+     * @return Cliente
      */
     public function setAlbaranespendientesa($albaranespendientesa)
     {
         $this->albaranespendientesa = $albaranespendientesa;
+    
+        return $this;
     }
 
     /**
      * Get albaranespendientesa
      *
-     * @return decimal 
+     * @return float 
      */
     public function getAlbaranespendientesa()
     {
@@ -787,17 +882,20 @@ class Cliente
     /**
      * Set albaranespendientesb
      *
-     * @param decimal $albaranespendientesb
+     * @param float $albaranespendientesb
+     * @return Cliente
      */
     public function setAlbaranespendientesb($albaranespendientesb)
     {
         $this->albaranespendientesb = $albaranespendientesb;
+    
+        return $this;
     }
 
     /**
      * Get albaranespendientesb
      *
-     * @return decimal 
+     * @return float 
      */
     public function getAlbaranespendientesb()
     {
@@ -808,10 +906,13 @@ class Cliente
      * Set codigoultimafactura
      *
      * @param string $codigoultimafactura
+     * @return Cliente
      */
     public function setCodigoultimafactura($codigoultimafactura)
     {
         $this->codigoultimafactura = $codigoultimafactura;
+    
+        return $this;
     }
 
     /**
@@ -827,17 +928,20 @@ class Cliente
     /**
      * Set fechaultimafactura
      *
-     * @param datetime $fechaultimafactura
+     * @param \DateTime $fechaultimafactura
+     * @return Cliente
      */
     public function setFechaultimafactura($fechaultimafactura)
     {
         $this->fechaultimafactura = $fechaultimafactura;
+    
+        return $this;
     }
 
     /**
      * Get fechaultimafactura
      *
-     * @return datetime 
+     * @return \DateTime 
      */
     public function getFechaultimafactura()
     {
@@ -848,10 +952,13 @@ class Cliente
      * Set codigoultimoalbaran
      *
      * @param string $codigoultimoalbaran
+     * @return Cliente
      */
     public function setCodigoultimoalbaran($codigoultimoalbaran)
     {
         $this->codigoultimoalbaran = $codigoultimoalbaran;
+    
+        return $this;
     }
 
     /**
@@ -867,162 +974,25 @@ class Cliente
     /**
      * Set fechaultimoalbaran
      *
-     * @param datetime $fechaultimoalbaran
+     * @param \DateTime $fechaultimoalbaran
+     * @return Cliente
      */
     public function setFechaultimoalbaran($fechaultimoalbaran)
     {
         $this->fechaultimoalbaran = $fechaultimoalbaran;
+    
+        return $this;
     }
 
     /**
      * Get fechaultimoalbaran
      *
-     * @return datetime 
+     * @return \DateTime 
      */
     public function getFechaultimoalbaran()
     {
         return $this->fechaultimoalbaran;
     }
-    /**
-     * @var bigint $codpedido
-     */
-    private $codpedido;
-
-
-    /**
-     * Set codpedido
-     *
-     * @param bigint $codpedido
-     */
-    public function setCodpedido($codpedido)
-    {
-        $this->codpedido = $codpedido;
-    }
-
-    /**
-     * Get codpedido
-     *
-     * @return bigint 
-     */
-    public function getCodpedido()
-    {
-        return $this->codpedido;
-    }
-    /**
-     * @var bigint $codcliente
-     */
-    private $codcliente;
-
-
-    /**
-     * Set codcliente
-     *
-     * @param bigint $codcliente
-     */
-    public function setCodcliente($codcliente)
-    {
-        $this->codcliente = $codcliente;
-    }
-
-    /**
-     * Get codcliente
-     *
-     * @return bigint 
-     */
-    public function getCodcliente()
-    {
-        return $this->codcliente;
-    }
-    /**
-     * @var string $pais
-     */
-    private $pais;
-
-
-    /**
-     * Set pais
-     *
-     * @param string $pais
-     */
-    public function setPais($pais)
-    {
-        $this->pais = $pais;
-    }
-
-    /**
-     * Get pais
-     *
-     * @return string 
-     */
-    public function getPais()
-    {
-        return $this->pais;
-    }
-    public function setFechaAltaPre()
-    {
-    	$this->fechaalta = new \DateTime("now");
-    }
-    /**
-     * @var PB\InicioBundle\Entity\Provincia
-     */
-    private $Provincia;
-
-
-    /**
-     * @var PB\InicioBundle\Entity\Provincias
-     */
-    private $provincias;
-
-
-    /**
-     * Set provincias
-     *
-     * @param PB\InicioBundle\Entity\Provincias $provincias
-     */
-    public function setProvincias(\PB\InicioBundle\Entity\Provincias $provincias)
-    {
-        $this->provincias = $provincias;
-    }
-
-    /**
-     * Get provincias
-     *
-     * @return PB\InicioBundle\Entity\Provincias 
-     */
-    public function getProvincias()
-    {
-        return $this->provincias;
-    }
-    /**
-     * @var PB\InicioBundle\Entity\Provincias
-     */
-    private $cliente_provincias;
-
-
-    /**
-     * Set cliente_provincias
-     *
-     * @param PB\InicioBundle\Entity\Provincias $clienteProvincias
-     */
-    public function setClienteProvincias(\PB\InicioBundle\Entity\Provincias $clienteProvincias)
-    {
-        $this->cliente_provincias = $clienteProvincias;
-    }
-
-    /**
-     * Get cliente_provincias
-     *
-     * @return PB\InicioBundle\Entity\Provincias 
-     */
-    public function getClienteProvincias()
-    {
-        return $this->cliente_provincias;
-    }
-    /**
-     * @var PB\InicioBundle\Entity\Provincias
-     */
-    private $provincia_cliente;
-
 
     /**
      * Set provincia_cliente
@@ -1045,5 +1015,33 @@ class Cliente
     public function getProvinciaCliente()
     {
         return $this->provincia_cliente;
+    }
+    /**
+     * @var PB\GeneralBundle\Entity\FormaPago
+     */
+    private $formapago_cliente;
+
+
+    /**
+     * Set formapago_cliente
+     *
+     * @param PB\GeneralBundle\Entity\FormaPago $formapagoCliente
+     * @return Cliente
+     */
+    public function setFormapagoCliente(\PB\GeneralBundle\Entity\FormaPago $formapagoCliente = null)
+    {
+        $this->formapago_cliente = $formapagoCliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get formapago_cliente
+     *
+     * @return PB\GeneralBundle\Entity\FormaPago 
+     */
+    public function getFormapagoCliente()
+    {
+        return $this->formapago_cliente;
     }
 }

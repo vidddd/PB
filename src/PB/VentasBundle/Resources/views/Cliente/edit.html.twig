@@ -1,31 +1,108 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+{% extends '::layout.html.twig' %}
+{% block title "Editar Cliente" %}
 
-{% block title %}
-{{ parent() }} - Cliente {{ 'views.edit.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-{% endblock %}
+{% form_theme edit_form 'PBInicioBundle:Form:fields.html.twig' %}
 
-{% block page %}
-
-<h1>Cliente {{ 'views.edit.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
-
+{% block content %}
+<div class="title title-spacing">
+					<h2>Editar Cliente</h2>
+</div>
 <form class="well" action="{{ path('cliente_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    {{ form_widget(edit_form) }}
-    <p>
-        <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-    </p>
+   <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+	<div class="portlet-header ui-widget-header">Editar Proveedor</div>
+		<div class="portlet-content form-alta">
+		{{ form_errors(edit_form) }}   
+    <table>
+   <tbody>
+     <tr>
+        <td class="label">{{ form_label(edit_form.nombre) }}</td>
+        <td class="campo">{{ form_widget(edit_form.nombre, { 'attr': {'class': 'foo'} }) }}</td><td>{{ form_errors(edit_form.nombre) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.nombrecomercial, 'Nombre Comercial') }}</td>
+        <td>{{ form_widget(edit_form.nombrecomercial) }}</td><td>{{ form_errors(edit_form.nombrecomercial) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.nif, 'NIF') }}</td>
+        <td>{{ form_widget(edit_form.nif, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(edit_form.nif) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.direccion, 'Direccion') }}</td>
+        <td>{{ form_widget(edit_form.direccion) }}</td><td>{{ form_errors(edit_form.direccion) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.cp, 'Codigo postal') }}</td>
+        <td>{{ form_widget(edit_form.cp, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(edit_form.cp) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(edit_form.localidad) }}</td>
+        <td>{{ form_widget(edit_form.localidad) }}</td><td>{{ form_errors(edit_form.localidad) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(edit_form.provincia_cliente) }}</td>
+        <td>{{ form_widget(edit_form.provincia_cliente) }}</td><td>{{ form_errors(edit_form.provincia_cliente) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(edit_form.pais) }}</td>
+        <td>{{ form_widget(edit_form.pais) }}</td><td>{{ form_errors(edit_form.pais) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(edit_form.telefono) }}</td>
+        <td>{{ form_widget(edit_form.telefono, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(edit_form.telefono) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.fax) }}</td>
+        <td>{{ form_widget(edit_form.fax, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(edit_form.fax) }}</td>
+      </tr>      
+	  <tr>
+        <td>{{ form_label(edit_form.movil) }}</td>
+        <td>{{ form_widget(edit_form.movil, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(edit_form.movil) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.web) }}</td>
+        <td>{{ form_widget(edit_form.web) }}</td><td>{{ form_errors(edit_form.web) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.email) }}</td>
+        <td>{{ form_widget(edit_form.email) }}</td><td>{{ form_errors(edit_form.email) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.cuenta) }}</td>
+        <td>{{ form_widget(edit_form.cuenta) }}</td><td>{{ form_errors(edit_form.cuenta) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.descuento) }}</td>
+        <td>{{ form_widget(edit_form.descuento) }}</td><td>{{ form_errors(edit_form.descuento) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.formapago_cliente, 'Forma de Pago') }}</td>
+		<td>{{ form_widget(edit_form.formapago_cliente) }}</td><td>{{ form_errors(edit_form.formapago_cliente) }}</td>
+	  </tr>
+      <tr>
+        <td>{{ form_label(edit_form.recargo) }}</td>
+        <td>{{ form_widget(edit_form.recargo) }}</td><td>{{ form_errors(edit_form.recargo) }}</td>
+      </tr>
+      <tr> <td class="label">{{ form_label(edit_form.observaciones) }}</td>
+		<td class="campo">{{ form_widget(edit_form.observaciones, { 'attr': {'cols': '40', 'rows': '12'}}) }}</td><td> {{ form_errors(edit_form.observaciones) }}
+		</td>
+      </tr>
+      </tbody>
+   </table>  
+    </div>
+	<div class="guardar">
+        <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
+	</div>
+</div>{{ form_widget(edit_form._token) }}
 </form>
-
-<div>
-    <div class="float-left">
-        <a class="btn" href="{{ path('cliente') }}">
-            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+    <div class="float-left volver">
+        <a href="{{ path('cliente') }}">
+         <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
     <div class="float-left">
         <form action="{{ path('cliente_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
-            <button class="btn btn-danger" type="submit" onclick="return confirm('Desea eliminar al proyecto del sistema?');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+            <button class="ui-state-default ui-corner-all boton-eliminar" onclick="return confirm('Desea eliminar el item? Esta accion no se puede deshacer');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
         </form>
     </div>
-</div>
 {% endblock %}

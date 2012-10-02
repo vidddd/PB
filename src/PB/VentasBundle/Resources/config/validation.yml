@@ -10,20 +10,18 @@ PB\VentasBundle\Entity\Cliente:
         localidad:
             - NotBlank: ~
         cp:
-            - NotBlank: ~
-        codprovincia: 
-            - NotBlank: ~  
+            - NotBlank: ~ 
         telefono: 
             - NotBlank: ~
         email:
             - Email: ~
-        telefono:
-            - Type:
-                type: integer
-        fax:
-            - Type:
-                type: integer
-        movil:
-            - Type:
-                type: integer
+#        telefono:
+#            - Type:
+#                type: integer
+#        fax:
+#            - Type:
+#                type: integer
+#        movil:
+#            - Type:
+#                type: integer
             

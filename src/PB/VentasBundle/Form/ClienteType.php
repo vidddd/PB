@@ -19,12 +19,14 @@ class ClienteType extends AbstractType
             ->add('nombre')
             ->add('nombrecomercial')
             ->add('nif')
-            ->add('fechaalta')
+            //->add('fechaalta')
             ->add('direccion')
             ->add('localidad')
-            ->add('cp')
-            ->add('provincia_cliente')
-            ->add('pais')
+            ->add('cp')->add('pais')
+            ->add('provincia_cliente', 'entity', array('class' => 'PBInicioBundle:Provincias',
+            								   'property' => 'denprovincia', 
+            		 						   'empty_value' => '-- Elige una provincia --',))
+           ->add('pais')
             ->add('telefono')
             ->add('fax')
             ->add('movil')
@@ -36,7 +38,7 @@ class ClienteType extends AbstractType
 					))
             ->add('recargo')
             ->add('observaciones')
-            ->add('codfp')
+            ->add('formapago_cliente')
         ;
     }
 

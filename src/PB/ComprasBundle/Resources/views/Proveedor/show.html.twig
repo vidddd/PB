@@ -1,5 +1,5 @@
-{% extends '::base.html.twig' %}
-
+{# note que en este caso utilizamos el layout de ajax para así no cargar todo el contenido del layout general #}
+{% extends app.request.isXmlHttpRequest ? "::layout_ajax.html.twig" : "::layout.html.twig" %}
 {% block title "Proveedores" %}
 
 {% block content %}

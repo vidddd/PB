@@ -1,12 +1,10 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+{% extends '::layout.html.twig' %}
+{% block title "Editar Cliente" %}
 
-{% block title %}
-{{ parent() }} - Cliente {{ 'views.show.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-{% endblock %}
-
-{% block page %}
-
-<h1>Cliente</h1>
+{% block content %}
+<div class="title title-spacing">
+					<h2>Ver Cliente</h2>
+</div>
 
 <form class="form-horizontal">
     <fieldset>        <div class="control-group">
@@ -38,7 +36,7 @@
             <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.cp }}</span>            </div>
         </div>        <div class="control-group">
             <label class="control-label">Codprovincia</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codprovincia }}</span>            </div>
+            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.cp }}</span>            </div>
         </div>        <div class="control-group">
             <label class="control-label">Pais</label>
             <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.pais }}</span>            </div>
@@ -72,52 +70,9 @@
         </div>        <div class="control-group">
             <label class="control-label">Codfp</label>
             <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codfp }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Facturaciona</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.facturaciona }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Facturacionb</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.facturacionb }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Debea</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.debea }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Habera</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.habera }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Saldoa</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.saldoa }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Debeb</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.debeb }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Haberb</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.haberb }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Saldob</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.saldob }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Albaranespendientes</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.albaranespendientes }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Albaranespendientesa</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.albaranespendientesa }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Albaranespendientesb</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.albaranespendientesb }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Codigoultimafactura</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codigoultimafactura }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fechaultimafactura</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechaultimafactura|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Codigoultimoalbaran</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codigoultimoalbaran }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fechaultimoalbaran</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechaultimoalbaran|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>    </fieldset>
+        </div> 
+        
+        <div class="controls">     </fieldset>
 </form>
 
 <div>

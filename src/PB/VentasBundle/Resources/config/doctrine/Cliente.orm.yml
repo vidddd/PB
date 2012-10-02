@@ -1,7 +1,7 @@
 PB\VentasBundle\Entity\Cliente:
   type: entity
   table: clientes
-  repositoryClass: PB\VentasBundle\Entity\ClienteRepository
+  repositoryClass: PB\VentasBundle\Repository\ClienteRepository
   fields:
     id:
       type: integer
@@ -43,21 +43,17 @@ PB\VentasBundle\Entity\Cliente:
       type: string
       length: 5
       fixed: false
-      nullable: false
-    codprovincia:
-      type: smallint
-      fixed: false
-      nullable: false
+      nullable: false 
     pais:
       type: string
       length: 100
       fixed: false
-      nullable: false
+      nullable: true
     telefono:
       type: string
       length: 15
       fixed: false
-      nullable: false
+      nullable: true
     fax:
       type: string
       length: 15
@@ -152,6 +148,12 @@ PB\VentasBundle\Entity\Cliente:
       inversedBy: provincia2
       joinColumn:
         name: provincia_id
+        referencedColumnName: id
+    formapago_cliente:
+      targetEntity: PB\GeneralBundle\Entity\FormaPago
+      inversedBy: formapagos2
+      joinColumn:
+        name: formapago_id
         referencedColumnName: id
 
   lifecycleCallbacks: 

@@ -1,25 +1,122 @@
-{% extends '::base.html.twig' %}
+{% extends '::layout.html.twig' %}
 
-{% block title "Nuevo Proveedor" %}
+{% block title "Nuevo Pedido Compra" %}
 {% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
+{% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
 
 <div class="title title-spacing">
 					<h2>Nuevo Pedido Compra</h2>
 </div>
-
 <form class="well" action="{{ path('compras_pedidocompra_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
-    {{ form_widget(form) }}
+  <div class="form-invoice form-bg">
+	<div class="span-17 form-horizontal label-column-small form-condensed">
+		<div class="control-group required">
+				{{ form_label(form.proveedor, 'Proveedor', { 'attr': {'class': 'control-label'}}) }}
+				<div class="controls">
+			    <input type="text" maxlength="10" name="invoice_number" id="invoice_number" onkeypress="return invoicenumberonly(this, event)">
+		        </div>
+	</div>
+  </div>
+ </div>
+<div class="clearfix">
+<div id="invoice-lines">
+
+	<div style="display:none" class="loader" id="progress-container">
+		<div class="progress" id="progress-bar"></div>
+		<div class="text"></div>
+	</div>
+
+	<!-- time entries -->
+	<table cellspacing="0" style="" class="invoice-lines spreadsheet" id="invoice-time">
+		<thead>
+			<tr>
+				<td class="action-buttons">
+					<div class="delete"><a title="Delete section" class="invoice-delete" href="#">Delete section</a></div>
+				</td>
+				<th style="width: 124px;">Task</th>
+				<th style="width: 254px;">Time Entry Notes</th>
+				<th class="ta_right" style="width: 68px;">Rate</th>
+				<th class="ta_right" style="width: 45px;">Hours</th>
+				<th style="width: 62px;">Tax</th>
+				<th style="width: 62px;">Tax</th>
+				<th class="ta_right last" style="width: 72px;">Line Total</th>
+			</tr>
+		</thead>
+		<tbody>
+		<tr style="">
+	<td class="action-buttons">
+		<div class="handle"><a title="Move" class="invoice-drag" href="#">Move</a></div>
+		<div class="insert"><a title="Add line" class="invoice-add-line" href="#">Add line</a></div>
+		<div class="delete"><a title="Delete line" class="invoice-delete" href="#">Delete line</a></div>
+	</td>
+	<td class="first-column has-combobox editable">
+		<div class="task-name-container"><div style="width: 124px;" class="dhx_combo_box"><input type="text" autocomplete="off" class="dhx_combo_input" style="width: 105px;" readonly=""><input type="hidden" name="item_name[]" value=""><input type="hidden" name="__new_item_name[]" value="false"><img class="dhx_combo_img" src="/images/dhtmlx/combo_select.gif"></div></div>
+	</td>
+	<td class="editable">
+		<textarea name="descrip[]" style="overflow: hidden; display: block; height: 22px;"></textarea>
+	</td>
+	<td class="editable">
+		<input type="text" value="" class="ta_right iefix-3 ie7fix-1" name="unit_cost[]">
+	</td>
+	<td class="editable">
+		<input type="text" value="" class="ta_right iefix-3 ie7fix-1" name="qty[]">
+	</td>
+	<td class="editable has-combobox">
+		<div class="tax1-container"><div style="width: 64px;" class="dhx_combo_box"><input type="text" autocomplete="off" class="dhx_combo_input" style="width: 45px;" readonly=""><input type="hidden" name="tax11[]" value="{}" class="invTax leftTax"><input type="hidden" name="__new_tax11[]" value="false"><img class="dhx_combo_img" src="/images/dhtmlx/combo_select.gif"></div></div>
+	</td>
+	<td class="editable has-combobox">
+		<div class="tax2-container"><div style="width: 64px;" class="dhx_combo_box"><input type="text" autocomplete="off" class="dhx_combo_input" style="width: 45px;" readonly=""><input type="hidden" name="tax22[]" value="{}" class="invTax"><input type="hidden" name="__new_tax22[]" value="false"><img class="dhx_combo_img" src="/images/dhtmlx/combo_select.gif"></div></div>
+	</td>
+	<td class="total">
+		<span class="ta_right">0.00</span><!-- price -->
+		<input type="hidden" value="0.00" name="price[]">
+		<input type="hidden" value="" name="expenseid[]">
+		<input type="hidden" value="" name="logid_list[]">
+		<input type="hidden" value="2" name="line_type[]">
+		<input type="hidden" value="" name="todo_ids[]">
+		<input type="hidden" value="" name="lineid[]">
+	</td>
+</tr></tbody>
+	</table>
+	
+	<!-- items -->
+	<table cellspacing="0" style="display:none" class="invoice-lines spreadsheet" id="invoice-items">
+		<thead>
+			<tr>
+				<td class="action-buttons">
+					<div class="delete"><a title="Delete section" class="invoice-delete" href="#">Delete section</a></div>
+				</td>
+				<th style="width: 124px;">Item</th>
+				<th style="width: 254px;">Description</th>
+				<th class="ta_right" style="width: 68px;">Unit Cost</th>
+				<th class="ta_right" style="width: 45px;">Qty</th>
+				<th style="width: 62px;">Tax</th>
+				<th style="width: 62px;">Tax</th>
+				<th class="ta_right last" style="width: 72px;">Line Total</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	
+</div>
+<div class="content-box content-box-header ui-corner-all">
+							<div class="ui-state-default ui-corner-top ui-box-header"><span class="ui-icon float-left ui-icon-signal"></span>Datos de Pedido</div>
+							<div class="content-box-wrapper">
+								
+							</div>
+						</div>
+
+
     <p>
-        <button type="submit" class="btn btn-success">{{ 'views.new.create'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+        <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
     </p>
 </form>
 
-<div>
-    <div class="float-left">
-        <a class="btn" href="{{ path('compras_pedidocompra') }}">
-            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+    <div class="float-left volver">
+        <a href="{{ path('compras_pedidocompra') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
-</div>
 {% endblock %}

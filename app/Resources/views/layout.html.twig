@@ -1,0 +1,125 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div id="header">
+		<div id="top-menu">		
+			<span>Logged in as <a href="#" title="Logged in as admin">admin</a></span>
+			| <a href="#" title="Edit profile">Edit profile</a>
+			| <a href="#" title="Logout">Salir</a>
+		</div>
+		<div id="sitename">
+			<a href="index.php" class="logo float-left" title="Admintasia">Pl&aacute;sticos Baltasar, S.A.</a>
+		</div>
+		<ul id="navigation" class="sf-navbar">
+			<li><a href="{{ path('PBInicioBundle_homepage') }}">Inicio</a></li>
+			<li><a href="{{ path('pb_general_homepage', { 'name': 'aaaa' })  }}">General</a>
+				<ul>
+					<li><a href="{{ path('formapago') }}">Formas de Pago</a></li>
+				</ul>
+			</li>
+			<li><a href="{{ path('PBComprasBundle_homepage', { 'name': 'aaaa' })  }}">Compras</a>
+				<ul>
+					<li><a href="{{ path('proveedor') }}">Proveedores</a></li>
+					<li><a href="{{ path('compras_pedidocompra') }}">Pedido Compra</a></li> 
+				</ul>
+			</li>
+			<li><a href="{{ path('PBVentasBundle_homepage', { 'name': 'aaaa' }) }}">Ventas</a>
+				<ul>
+					<li><a href="{{ path('cliente') }}">Clientes</a></li>
+				</ul>
+			</li>
+			<!-- 
+			<li>
+				<a href="#">Dummy menu</a>
+				<ul>
+					<li>
+						<a href="#">Menu item 1</a>
+						<ul>
+							<li><a href="#">Subitem 1</a></li>
+							<li><a href="#">Subitem 2</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Menu item 2</a>
+					</li>
+					<li>
+						<a href="#">Menu item 3</a>
+					</li>
+					<li>
+						<a href="#">Menu item 4</a>
+						<ul>
+							<li><a href="#">Subitem 1</a></li>
+							<li>
+								<a href="#">Subitem 2</a>
+								<ul>
+									<li><a href="#">Subitem 1</a></li>
+									<li>
+										<a href="#">Subitem 2</a>
+										<ul>
+											<li><a href="#">Subitem 1</a></li>
+											<li>
+												<a href="#">Subitem 2</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Menu item 5</a>
+						<ul>
+							<li><a href="#">Subitem 1</a></li>
+							<li><a href="#">Subitem 2</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Menu item 6</a>
+					</li>
+					<li>
+						<a href="#">Menu item 7</a>
+					</li>
+				</ul>
+			</li> -->
+		</ul>
+	</div>
+    
+	<div id="page-wrapper" class="fixed">
+		<div id="main-wrapper">
+				<div style="{% block displaysidebar %}display:block;{% endblock %}">
+			      		    <!--    sidebar --->
+	 		 {% include '::sidebar.html.twig' %}
+					<!-- sidebar -->
+			</div>
+			<div id="main-content" class="{% block width100 %}{% endblock %}">
+    {% for type, flashMessages in app.session.flashbag.all() %}
+        {% for flashMessage in flashMessages %}
+        <!-- <div class=" success ui-corner-all">
+						<span>Success message</span>
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit
+					</div>
+			-->		
+            <div class="response-msg {{ type }}">
+                <span>Mensaje </span>
+        		{{ flashMessage|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    
+    		  {% block content %}{% endblock %}
+      		</div>
+
+		<div class="clearfix"></div>
+
+	</div>
+
+		</div>
+	<div class="clearfix"></div>
+	
+	<!-- footer -->
+		<div id="footer">
+	<!--	<div id="menu"><a href="#" title="Home">Home</a><a href="#" title="Administration">Administration</a><a href="#" title="Settings">Settings</a> 	</div> -->
+
+		Pl&aacute;sticos Baltasar S.A. &copy; 2012 - David &Aacute;lvarez (davidalvarezcalvo@gmail.com)
+	</div>
+{% endblock %}

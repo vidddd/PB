@@ -16,7 +16,9 @@ $(document).ready(function() {
 	function(){
 		$(this).removeClass('sfHover2');
 	});
-
+    //prettyPhoto
+	$("a[rel^='prettyPhoto']").prettyPhoto();
+	
 	// Accordion
 	$("#accordion, #accordion2").accordion({ header: "h3" });
 
