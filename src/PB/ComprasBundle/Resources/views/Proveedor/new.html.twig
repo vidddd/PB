@@ -4,10 +4,6 @@
 {% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
 {% block content %}
 
-<div class="title title-spacing">
-					<h2>Nuevo Proveedor</h2>
-</div>
-
 <form class="well" action="{{ path('proveedor_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
     {# form_widget(form) #}
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">

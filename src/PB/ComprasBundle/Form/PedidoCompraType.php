@@ -11,15 +11,23 @@ class PedidoCompraType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fecha')
-            ->add('fecha_entrega')
+            ->add('id', 'number', array('read_only' => true))
+            ->add('proveedor', 'text')
+            ->add('fecha', 'date', array(
+							    'widget' => 'single_text',
+							    //'format' => 'dd-MM-yy',
+							))
+            ->add('fecha_entrega', 'date', array(
+							    'widget' => 'single_text',
+            					'empty_value' => '',
+							))
             ->add('referencia')
             ->add('forma_envio')
             ->add('importe')
             ->add('iva')
             ->add('total')
             ->add('descuento')
-            ->add('proveedor')
+
         ;
     }
 

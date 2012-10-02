@@ -870,6 +870,7 @@ border-radius: 3px;
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #DDDDDD;
     margin: 0 0 20px;
+    float:left;
 }
 .content-box-header .ui-box-header, .content-box-header .other-box {
     -moz-border-bottom-colors: none;

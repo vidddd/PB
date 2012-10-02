@@ -289,6 +289,33 @@ input.submit, button.submit{
 	padding:0 20px 35px 0;
 	
 }
+/* form invoices */
+.form-horizontal input[type="text"], .form-horizontal input[type="number"],.form-horizontal input[type="date"],
+.form-horizontal input[type="password"], .form-horizontal textarea, .form-horizontal select, .form-stacked input[type="text"], .form-stacked input[type="password"], .form-stacked textarea, .form-stacked select {
+    background-color: #FAFAFA;
+    border-color: #BBBBBB #DDDDDD #DDDDDD #BBBBBB;
+    border-radius: 1px;
+    border-style: solid;
+    border-width: 1px;
+    /*box-shadow: 0 1px #E5E5E5 inset;*/
+    margin-top: -4px;
+    padding: 4px 3px;
+}
+.form-horizontal input, .form-horizontal textarea, .form-horizontal select {
+    display: inline-block;
+    margin-bottom: 0;
+}
+.form-horizontal label{
+	color:#666;
+}
+.form-horizontal .control-group {
+    margin-bottom: 18px;
+    padding-top: 4px;
+}
+.form-condensed .control-group {
+    margin-bottom: 12px;
+}
+
 /*
 select,
 textarea,
