@@ -4,7 +4,7 @@
 {% form_theme edit_form 'PBInicioBundle:Form:fields.html.twig' %}
 
 {% block content %}
-<div class="title title-spacing">
+<div class="title title-spacing ventas">
 					<h2>Editar Cliente</h2>
 </div>
 <form class="well" action="{{ path('cliente_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>

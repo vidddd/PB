@@ -13,16 +13,13 @@ use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
 use Lexik\Bundle\FormFilterBundle\Filter\Expr;
 use Doctrine\ORM\QueryBuilder;
 
-class ProveedorFilterType extends AbstractType
+class ProveedorBuscadorFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('id', 'filter_number')
             ->add('nombre', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
-            ->add('nif', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
-            ->add('cp', 'filter_number')
-            ->add('localidad', 'filter_text' ,array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
         ;
 
         $listener = function(FormEvent $event)
@@ -46,6 +43,6 @@ class ProveedorFilterType extends AbstractType
 
     public function getName()
     {
-        return 'pb_comprasbundle_proveedorfiltertype';
+        return 'pb_comprasbundle_proveedorbuscadorfiltertype';
     }
 }

@@ -5,3 +5,7 @@ PBVentasBundle_homepage:
 PBVentasBundle_cliente:
     resource: "@PBVentasBundle/Resources/config/routing/cliente.yml"
     prefix:   /cliente
+    
+PBVentasBundle_pedido:
+        resource: "@PBVentasBundle/Resources/config/routing/pedido.yml"
+        prefix:   /pedido

@@ -9,8 +9,8 @@
 </div>
     <div class="span2">
         {% if form_errors(filterForm) %}
-        <div class="alert alert-block alert-error fade in form-errors">
-            {{ form_errors(filterForm) }}
+        <div class="response-msg notice iu-corner-all"><span>
+            {{ form_errors(filterForm) }}</span>
         </div>
         {% endif %}
         &nbsp;

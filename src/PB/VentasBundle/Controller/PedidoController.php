@@ -1,6 +1,6 @@
 <?php
 
-namespace PB\ComprasBundle\Controller;
+namespace PB\VentasBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -8,18 +8,18 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrapView;
 
-use PB\ComprasBundle\Entity\PedidoCompra;
-use PB\ComprasBundle\Form\PedidoCompraType;
-use PB\ComprasBundle\Form\PedidoCompraFilterType;
+use PB\VentasBundle\Entity\Pedido;
+use PB\VentasBundle\Form\PedidoType;
+use PB\VentasBundle\Form\PedidoFilterType;
 
 /**
- * PedidoCompra controller.
+ * Pedido controller.
  *
  */
-class PedidoCompraController extends Controller
+class PedidoController extends Controller
 {
     /**
-     * Lists all PedidoCompra entities.
+     * Lists all Pedido entities.
      *
      */
     public function indexAction()
@@ -29,7 +29,7 @@ class PedidoCompraController extends Controller
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
     
-        return $this->render('PBComprasBundle:PedidoCompra:index.html.twig', array(
+        return $this->render('PBVentasBundle:Pedido:index.html.twig', array(
             'entities' => $entities,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
@@ -44,13 +44,13 @@ class PedidoCompraController extends Controller
     {
         $request = $this->getRequest();
         $session = $request->getSession();
-        $filterForm = $this->createForm(new PedidoCompraFilterType());
+        $filterForm = $this->createForm(new PedidoFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBComprasBundle:PedidoCompra')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
+        $queryBuilder = $em->getRepository('PBVentasBundle:Pedido')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
     
         // Reset filter
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
-            $session->remove('PedidoCompraControllerFilter');
+            $session->remove('PedidoControllerFilter');
         }
     
         // Filter action
@@ -63,13 +63,13 @@ class PedidoCompraController extends Controller
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
                 // Save filter to session
                 $filterData = $filterForm->getData();
-                $session->set('PedidoCompraControllerFilter', $filterData);
+                $session->set('PedidoControllerFilter', $filterData);
             }
         } else {
             // Get filter from session
-            if ($session->has('PedidoCompraControllerFilter')) {
-                $filterData = $session->get('PedidoCompraControllerFilter');
-                $filterForm = $this->createForm(new PedidoCompraFilterType(), $filterData);
+            if ($session->has('PedidoControllerFilter')) {
+                $filterData = $session->get('PedidoControllerFilter');
+                $filterForm = $this->createForm(new PedidoFilterType(), $filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
@@ -94,7 +94,7 @@ class PedidoCompraController extends Controller
         $me = $this;
         $routeGenerator = function($page) use ($me)
         {
-            return $me->generateUrl('compras_pedidocompra', array('page' => $page));
+            return $me->generateUrl('pedido', array('page' => $page));
         };
     
         // Paginator - view
@@ -110,85 +110,85 @@ class PedidoCompraController extends Controller
     }
     
     /**
-     * Finds and displays a PedidoCompra entity.
+     * Finds and displays a Pedido entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        
-        $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
+
+        $entity = $em->getRepository('PBVentasBundle:Pedido')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
+            throw $this->createNotFoundException('Unable to find Pedido entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PBComprasBundle:PedidoCompra:show.html.twig', array(
+        return $this->render('PBVentasBundle:Pedido:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
-     * Displays a form to create a new PedidoCompra entity.
+     * Displays a form to create a new Pedido entity.
      *
      */
     public function newAction()
     {
-        $entity = new PedidoCompra();
-        $form   = $this->createForm(new PedidoCompraType(), $entity);
+        $entity = new Pedido();
+        $form   = $this->createForm(new PedidoType(), $entity);
 
-        return $this->render('PBComprasBundle:PedidoCompra:new.html.twig', array(
+        return $this->render('PBVentasBundle:Pedido:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a new PedidoCompra entity.
+     * Creates a new Pedido entity.
      *
      */
     public function createAction()
     {
-        $entity  = new PedidoCompra();
+        $entity  = new Pedido();
         $request = $this->getRequest();
-        $form    = $this->createForm(new PedidoCompraType(), $entity);
+        $form    = $this->createForm(new PedidoType(), $entity);
         $form->bind($request);
-
+        
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
-            return $this->redirect($this->generateUrl('compras_pedidocompra_show', array('id' => $entity->getId())));        } else {
+            return $this->redirect($this->generateUrl('pedido_show', array('id' => $entity->getId())));        } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
         }
 
-        return $this->render('PBComprasBundle:PedidoCompra:new.html.twig', array(
+        return $this->render('PBVentasBundle:Pedido:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
     /**
-     * Displays a form to edit an existing PedidoCompra entity.
+     * Displays a form to edit an existing Pedido entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
+        $entity = $em->getRepository('PBVentasBundle:Pedido')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
+            throw $this->createNotFoundException('Unable to find Pedido entity.');
         }
 
-        $editForm = $this->createForm(new PedidoCompraType(), $entity);
+        $editForm = $this->createForm(new PedidoType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PBComprasBundle:PedidoCompra:edit.html.twig', array(
+        return $this->render('PBVentasBundle:Pedido:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -196,20 +196,20 @@ class PedidoCompraController extends Controller
     }
 
     /**
-     * Edits an existing PedidoCompra entity.
+     * Edits an existing Pedido entity.
      *
      */
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
+        $entity = $em->getRepository('PBVentasBundle:Pedido')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
+            throw $this->createNotFoundException('Unable to find Pedido entity.');
         }
 
-        $editForm   = $this->createForm(new PedidoCompraType(), $entity);
+        $editForm   = $this->createForm(new PedidoType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -221,19 +221,19 @@ class PedidoCompraController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
-            return $this->redirect($this->generateUrl('compras_pedidocompra_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('pedido_edit', array('id' => $id)));
         } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }
 
-        return $this->render('PBComprasBundle:PedidoCompra:edit.html.twig', array(
+        return $this->render('PBVentasBundle:Pedido:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a PedidoCompra entity.
+     * Deletes a Pedido entity.
      *
      */
     public function deleteAction($id)
@@ -245,10 +245,10 @@ class PedidoCompraController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
+            $entity = $em->getRepository('PBVentasBundle:Pedido')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
+                throw $this->createNotFoundException('Unable to find Pedido entity.');
             }
 
             $em->remove($entity);
@@ -258,7 +258,7 @@ class PedidoCompraController extends Controller
             $this->get('session')->getFlashBag()->add('error', 'flash.delete.error');
         }
 
-        return $this->redirect($this->generateUrl('compras_pedidocompra'));
+        return $this->redirect($this->generateUrl('pedido'));
     }
 
     private function createDeleteForm($id)

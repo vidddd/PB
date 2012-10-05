@@ -1,6 +1,10 @@
 proveedor:
     pattern:  /
     defaults: { _controller: "PBComprasBundle:Proveedor:index" }
+    
+buscador_proveedor:
+    pattern:  /buscador
+    defaults: { _controller: "PBComprasBundle:Proveedor:buscadorProveedor" }
 
 proveedor_show:
     pattern:  /{id}/show

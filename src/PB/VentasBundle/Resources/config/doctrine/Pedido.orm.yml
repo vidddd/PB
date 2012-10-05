@@ -1,0 +1,134 @@
+PB\VentasBundle\Entity\Pedido:
+    type: entity
+    table: null
+    repositoryClass: PB\VentasBundle\Repository\PedidoRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        codpedido:
+            type: string
+            length: '50'
+            nullable: true
+        estado:
+            type: smallint
+            nullable: true
+        codalbaran:
+            type: integer
+            nullable: true
+        codfactura:
+            type: integer
+            nullable: true
+        fecha:
+            type: date
+        fecha_entrega:
+            type: date
+            nullable: true
+        subcliente:
+            type: string
+            length: 255
+            nullable: true
+        cantidad:
+            type: integer
+        mtycolor:
+            type: string
+            length: '50'
+        tipomaterial:
+            type: smallint
+        ancho:
+            type: smallint
+        galga:
+            type: smallint
+            nullable: true
+        plegado:
+            type: smallint
+            nullable: true
+        bobinas:
+            type: smallint
+            nullable: true
+        metros:
+            type: smallint
+            nullable: true
+        pesoteorico:
+            type: float
+            nullable: true
+        tratado:
+            type: string
+            length: '10'
+            nullable: true
+        tipotubo:
+            type: string
+            length: '50'
+            nullable: true
+        kilosimp:
+            type: smallint
+            nullable: true
+        cliche:
+            type: string
+            length: '50'
+            nullable: true
+        medidaimp:
+            type: string
+            length: '50'
+            nullable: true
+        soldadura:
+            type: string
+            length: '50'
+            nullable: true
+        impresion:
+            type: string
+            length: '50'
+            nullable: true
+        colores:
+            type: string
+            length: 255
+            nullable: true
+        maquina:
+            type: string
+            length: 255
+            nullable: true
+        cantidadc:
+            type: string
+            length: '50'
+            nullable: true
+        anchoc:
+            type: smallint
+            nullable: true
+        largoc:
+            type: smallint
+            nullable: true
+        solapa:
+            type: smallint
+            nullable: true
+        almacen:
+            type: string
+            length: '50'
+            nullable: true
+        operario:
+            type: string
+            length: '50'
+            nullable: true
+        notasextrusion:
+            type: text
+            nullable: true
+        notasimpresion:
+            type: text
+            nullable: true
+        notascorte:
+            type: text
+            nullable: true
+        precio:
+            type: float
+            nullable: true
+    manyToOne:
+        cliente:
+            targetEntity: PB\VentasBundle\Entity\Cliente
+            inversedBy: pedido
+            joinColumn:
+                name: cliente_id
+                referencedColumnName: id
+    lifecycleCallbacks: 
+        prePersist: [  ]
+        loadClassMetadata: [ setClienteId ] 

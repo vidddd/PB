@@ -24,4 +24,13 @@ PB\VentasBundle\Entity\Cliente:
 #        movil:
 #            - Type:
 #                type: integer
-            
+PB\VentasBundle\Entity\Pedido:
+    properties:
+        cantidad:
+            - NotBlank: { message: "El campo Cantidad esta vacio."}
+        mtycolor: 
+            - NotBlank: { message: "El campo Material y color esta vacio."}
+        tipomaterial:
+            - NotBlank:  { message: "El campo Tipo Material esta vacio."}
+        ancho:
+            - NotBlank:  { message: "El campo Ancho esta vacio."}

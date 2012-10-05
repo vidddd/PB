@@ -20,67 +20,23 @@
 			<li><a href="{{ path('PBComprasBundle_homepage', { 'name': 'aaaa' })  }}">Compras</a>
 				<ul>
 					<li><a href="{{ path('proveedor') }}">Proveedores</a></li>
-					<li><a href="{{ path('compras_pedidocompra') }}">Pedido Compra</a></li> 
+					<li><a href="{{ path('compras_pedidocompra') }}">Pedido Compra</a>
+					<ul>
+								<li><a href="{{ path('compras_pedidocompra_new') }}">Nuevo Pedido Compra</a></li>
+						</ul>
+					</li> 
 				</ul>
 			</li>
 			<li><a href="{{ path('PBVentasBundle_homepage', { 'name': 'aaaa' }) }}">Ventas</a>
 				<ul>
 					<li><a href="{{ path('cliente') }}">Clientes</a></li>
+					<li><a href="{{ path('pedido') }}">Pedidos</a>
+						<ul>
+								<li><a href="{{ path('pedido_new') }}">Nuevo Pedido</a></li>
+						</ul>
+					</li>
 				</ul>
 			</li>
-			<!-- 
-			<li>
-				<a href="#">Dummy menu</a>
-				<ul>
-					<li>
-						<a href="#">Menu item 1</a>
-						<ul>
-							<li><a href="#">Subitem 1</a></li>
-							<li><a href="#">Subitem 2</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="#">Menu item 2</a>
-					</li>
-					<li>
-						<a href="#">Menu item 3</a>
-					</li>
-					<li>
-						<a href="#">Menu item 4</a>
-						<ul>
-							<li><a href="#">Subitem 1</a></li>
-							<li>
-								<a href="#">Subitem 2</a>
-								<ul>
-									<li><a href="#">Subitem 1</a></li>
-									<li>
-										<a href="#">Subitem 2</a>
-										<ul>
-											<li><a href="#">Subitem 1</a></li>
-											<li>
-												<a href="#">Subitem 2</a>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<a href="#">Menu item 5</a>
-						<ul>
-							<li><a href="#">Subitem 1</a></li>
-							<li><a href="#">Subitem 2</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="#">Menu item 6</a>
-					</li>
-					<li>
-						<a href="#">Menu item 7</a>
-					</li>
-				</ul>
-			</li> -->
 		</ul>
 	</div>
     

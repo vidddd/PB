@@ -5,9 +5,7 @@
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
 
-<div class="title title-spacing">
-					<h2>Nuevo Pedido Compra</h2>
-</div>
+<div class="title title-spacing"><h2>Nuevo Pedido Compra</h2></div>
 <form class="well" action="{{ path('compras_pedidocompra_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
 <div class="content-box content-box-header ui-corner-all">
 	<div class="ui-state-default ui-corner-top ui-box-header"><span class="ui-icon float-left ui-icon-signal"></span>Datos de Pedido</div>
@@ -17,15 +15,17 @@
 					<div class="control-group required">
 						{{ form_label(form.proveedor, null, { 'label': 'Proveedor', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.proveedor, { 'attr': {'class': 'small numeric'}}) }}
+			    			{{ form_widget(form.proveedor, { 'attr': {'class': 'small numeric'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_proveedor', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Proveedores"><img src="{{ asset('images/search.png') }}" /></a>
+			    			
 		        		</div>
 	     			</div>
      			</div>
      			<div class="span-17 form-horizontal label-column-small form-condensed">
 					<div class="control-group required">
-						{{ form_label(form.id, null, { 'label': 'Código Pedido', 'label_attr': {'class': 'control-label'} }) }}
+						{# form_label(form.id, null, { 'label': 'Código Pedido', 'label_attr': {'class': 'control-label'} }) #}
+						<label>Código Pedido</label>
 						<div class="controls">
-			    			{{ form_widget(form.id, { 'attr': {'class': 'small'}}) }}
+			    			{# form_widget(form.id, { 'attr': {'class': 'small'}}) #}
 		        		</div>
 	     			</div>
 	     			<div class="control-group required">
@@ -47,7 +47,7 @@
 		        		</div>
 	     			</div>
      			</div>
-      			<div class="span-17 form-horizontal label-column-small form-condensed">
+      			<div class="span-16 form-horizontal label-column-small form-condensed">
 					<div class="control-group required">
 						{{ form_label(form.id, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
@@ -145,7 +145,7 @@
     <p>
         <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
     </p>
-</form>
+{{ form_widget(form._token) }}</form>
 
     <div class="float-left volver">
         <a href="{{ path('compras_pedidocompra') }}">

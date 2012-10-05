@@ -11,6 +11,7 @@ use Pagerfanta\View\TwitterBootstrapView;
 use PB\ComprasBundle\Entity\Proveedor;
 use PB\ComprasBundle\Form\ProveedorType;
 use PB\ComprasBundle\Form\ProveedorFilterType;
+use PB\ComprasBundle\Form\ProveedorBuscadorFilterType;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -47,7 +48,7 @@ class ProveedorController extends Controller
         $session = $request->getSession();
         $filterForm = $this->createForm(new ProveedorFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBComprasBundle:Proveedor')->createQueryBuilder('e');
+        $queryBuilder = $em->getRepository('PBComprasBundle:Proveedor')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
     
         // Reset filter
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
@@ -110,7 +111,60 @@ class ProveedorController extends Controller
     
         return array($entities, $pagerHtml);
     }
+    public function buscadorProveedorAction()
+    {
+    	list($filterForm, $queryBuilder) = $this->filterBuscador();
     
+    	list($entities, $pagerHtml) = $this->paginator($queryBuilder);
+    
+    
+    	return $this->render('PBComprasBundle:Proveedor:buscador.html.twig', array(
+    			'entities' => $entities,
+    			'pagerHtml' => $pagerHtml,
+    			'filterForm' => $filterForm->createView(),
+    	));
+    }
+    /**
+     * Create filter form and process filter request.
+     *
+     */
+    protected function filterBuscador()
+    {
+    	$request = $this->getRequest();
+    	$session = $request->getSession();
+    	$filterForm = $this->createForm(new ProveedorBuscadorFilterType());
+    	$em = $this->getDoctrine()->getManager();
+    	$queryBuilder = $em->getRepository('PBComprasBundle:Proveedor')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
+    
+    	// Reset filter
+    	if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
+    		$session->remove('ProveedorControllerFilterBuscador');
+    	}
+    
+    	// Filter action
+    	if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
+    		// Bind values from the request
+    		$filterForm->bind($request);
+    		 
+    		if ($filterForm->isValid()) {
+    			// Build the query from the given form object
+    			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
+    			// Save filter to session
+    			$filterData = $filterForm->getData();
+    
+    			$session->set('ProveedorControllerFilter', $filterData);
+    		}
+    	} else {
+    		// Get filter from session
+    		if ($session->has('ProveedorControllerFilterBuscador')) {
+    			$filterData = $session->get('ProveedorControllerFilterBuscador');
+    			$filterForm = $this->createForm(new ProveedorBuscadorFilterType(), $filterData);
+    			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
+    		}
+    	}
+    	//var_dump($queryBuilder->getDql());
+    	return array($filterForm, $queryBuilder);
+    }
     /**
      * Finds and displays a Proveedor entity.
      *
@@ -118,7 +172,8 @@ class ProveedorController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
+        /*$request = $this->getRequest();
+        var_dump($request->isXmlHttpRequest()); // is it an Ajax request?*/
         $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
 
         if (!$entity) {

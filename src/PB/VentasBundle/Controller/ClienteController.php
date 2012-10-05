@@ -46,7 +46,7 @@ class ClienteController extends Controller
         $session = $request->getSession();
         $filterForm = $this->createForm(new ClienteFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBVentasBundle:Cliente')->createQueryBuilder('e');
+        $queryBuilder = $em->getRepository('PBVentasBundle:Cliente')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
     
         // Reset filter
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {

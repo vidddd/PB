@@ -14,7 +14,7 @@ class PedidoCompraFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', 'filter_number_range')
+            ->add('id', 'filter_number')
             ->add('fecha', 'filter_date_range')
             ->add('fecha_entrega', 'filter_date_range')
             ->add('referencia', 'filter_text')
@@ -39,7 +39,7 @@ class PedidoCompraFilterType extends AbstractType
                 }
             }
 
-            $event->getForm()->addError(new FormError('Filter empty'));
+            $event->getForm()->addError(new FormError('Filtros vacios'));
         };
         $builder->addEventListener(FormEvents::POST_BIND, $listener);
     }

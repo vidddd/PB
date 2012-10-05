@@ -312,6 +312,10 @@ input.submit, button.submit{
     margin-bottom: 18px;
     padding-top: 4px;
 }
+.form-horizontal .control-group img{
+    float: right;
+    margin: 0 100px 0 0;
+}
 .form-condensed .control-group {
     margin-bottom: 12px;
 }

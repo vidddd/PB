@@ -10,8 +10,8 @@
 	
     <div class="span2">
         {% if form_errors(filterForm) %}
-        <div class="alert alert-block alert-error fade in form-errors">
-            {{ form_errors(filterForm) }}
+        <div class="response-msg notice iu-corner-all"><span>
+            {{ form_errors(filterForm) }}</span>
         </div>
         {% endif %}
         &nbsp;
@@ -62,7 +62,7 @@
         <tr>
             <th width="25">Código Proveedor</th>
             <th>Nombre</th>
-            <th>Nombrecomercial</th>
+            <th>Nombre Comercial</th>
             <th>Localidad</th>
             <th>Telefono</th>
             <th>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
@@ -71,7 +71,7 @@
     <tbody>
     {% for entity in entities %}
         <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
-        	<!-- <a rel="prettyPhoto[iframe]" href="xhr_response.html?ajax=true&amp;width=400&amp;height=160">Sample AJAX</a> -->
+        	<!-- <a rel="prettyPhoto[ajax]" href="xhr_response.html?ajax=true&amp;width=400&amp;height=160">Sample AJAX</a> -->
             <td><a rel="prettyPhoto[iframe]" href="{{ path('proveedor_show', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.nombre }}</td>
             <td>{{ entity.nombrecomercial }}</td>

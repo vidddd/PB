@@ -1,5 +1,6 @@
 {# note que en este caso utilizamos el layout de ajax para así no cargar todo el contenido del layout general #}
-{% extends app.request.isXmlHttpRequest ? "::layout_ajax.html.twig" : "::layout.html.twig" %}
+{# extends app.request.isXmlHttpRequest ? "::layout_ajax.html.twig" : "::layout.html.twig" #}
+{% extends "::layout_ajax.html.twig" %}
 {% block title "Proveedores" %}
 
 {% block content %}
@@ -17,34 +18,37 @@
     <table>
    <tbody>
      <tr>
-        <td class="label">Nombre</td><td class="campo">{{ entity.nombre }}</td>
+        <td class="label">Código Proveedor</td><td class="campo">{{ entity.id }}</td>
+      </tr>
+     <tr>
+        <td class="label">Nombre</td><td class="campo"><b>{{ entity.nombre }}</b></td>
       </tr>
       <tr>
-        <td>Nombre Comercial</td><td>{{ entity.nombrecomercial }}</td>
+        <td class="label">Nombre Comercial</td><td class="campo">{{ entity.nombrecomercial }}</td>
       </tr>
       <tr>
-        <td>NIF</td><td>{{ entity.nif }}</td>
+        <td class="label">NIF</td><td class="campo">{{ entity.nif }}</td>
       </tr>
       <tr>
-        <td>Direccion</td><td>{{ entity.direccion }}</td>
+        <td class="label">Direccion</td><td class="campo">{{ entity.direccion }}</td>
       </tr>
       <tr>
-        <td>Código Postal</td><td>{{ entity.cp }}</td>
+        <td class="label">Código Postal</td><td class="campo">{{ entity.cp }}</td>
       </tr>
 	  <tr>
-        <td>Localidad</td><td>{{ entity.localidad }}</td>
+        <td class="label">Localidad</td><td class="campo">{{ entity.localidad }}</td>
       </tr>
 	  <tr>
-        <td>Provincia</td><td>{{ entity.provinciaproveedor }}</td>
+        <td class="label">Provincia</td><td class="campo">{{ entity.provinciaproveedor }}</td>
       </tr>
       <tr>
-        <td>Pais</td><td>{{ entity.pais }}</td>
+        <td class="label">Pais</td><td class="campo">{{ entity.pais }}</td>
       </tr>
       <tr>
-        <td>Tipo de Proveedor</td><td>{{ entity.tipoproveedor }}</td>
+        <td class="label">Tipo de Proveedor</td><td class="campo">{{ entity.tipoproveedor_show }}</td>
 	  </tr>
 	  <tr>
-        <td>Medio Envio</td><td>{{ entity.medioenvio }}</td>
+        <td class="label">Medio Envio</td><td class="campo">{{ entity.medioenvio }}</td>
 	  </tr>
     </tbody>
    </table>  
@@ -56,25 +60,25 @@
         		<td class="label">Teléfono</td><td class="campo">{{ entity.telefono }}</td>
 		      </tr>
    			 <tr>
-        		<td>Telefono 2</td><td>{{ entity.telefono2 }}</td>
+        		<td class="label">Telefono 2</td><td class="campo">{{ entity.telefono2 }}</td>
 		      </tr>
    			 <tr>
-        		<td>Fax</td><td>{{ entity.fax }}</td>
+        		<td class="label">Fax</td><td class="campo">{{ entity.fax }}</td>
 		      </tr>
 		      <tr>
-        		<td>Email</td><td>{{ entity.email }}</td>
-		      </tr>
-		      		      <tr>
-        		<td>Web</td><td>{{ entity.web }}</td>
+        		<td class="label">Email</td><td class="campo">{{ entity.email }}</td>
 		      </tr>
 		      <tr>
-                <td>Nombre de Contacto</td><td>{{ entity.nombrecontacto }}</td>
+        		<td class="label">Web</td><td class="campo">{{ entity.web }}</td>
 		      </tr>
 		      <tr>
-        		<td>Teléfono de Contacto</td><td>{{  entity.Telefonocontacto }}</td>
+                <td class="label">Nombre de Contacto</td><td class="campo">{{ entity.nombrecontacto }}</td>
 		      </tr>
 		      <tr>
-        		<td>Email de Contacto</td><td>{{ entity.emailcontacto }}</td>
+        		<td class="label">Teléfono de Contacto</td><td class="campo">{{  entity.Telefonocontacto }}</td>
+		      </tr>
+		      <tr>
+        		<td class="label">Email de Contacto</td><td class="campo">{{ entity.emailcontacto }}</td>
 		      </tr>
         </tbody>
      </table>
@@ -83,32 +87,32 @@
 	   <table>
    		<tbody>
      		<tr>
-        		<td class="label">Paga IVA</td><td class="campo">{{  entity.pagaiva }}</td>
+        		<td class="label">Paga IVA</td><td class="campo">{{  entity.pagaiva ? 'Si' : 'No' }}</td>
 		     </tr>
 		     <tr>
-        		<td>Es Cliente</td><td>{{ entity.escliente }}</td>
+        		<td class="label">Es Cliente</td><td class="campo">{{ entity.escliente ? 'Si' : 'No' }}</td>
 		     </tr>
 		     <tr>
-        		<td>Paga IRPF</td><td>{{ entity.irpf }}</td>
+        		<td class="label">Paga IRPF</td><td class="campo">{{ entity.irpf ? 'Si' : 'No' }}</td>
 		      </tr>
 		      <tr>
-                <td>Forma de Pago</td><td>{{ entity.formapagoproveedor }}</td>
+                <td class="label">Forma de Pago</td><td class="campo">{{ entity.formapagoproveedor }}</td>
 		      </tr>
 		      <tr>
-        		<td>Cuenta Bancaria</td><td>{{ entity.cuentabancaria }}</td>
+        		<td class="label">Cuenta Bancaria</td><td class="campo">{{ entity.cuentabancaria }}</td>
 		      </tr>
 		      <tr>
-        		<td>Codigo Externo</td><td>{{ entity.codigoexterno }}</td>
+        		<td class="label">Codigo Externo</td><td class="campo">{{ entity.codigoexterno }}</td>
 		      </tr>
 			  <tr>
-        		<td>Codigo Contabilidad</td><td>{{ entity.codigocontabilidad }}</td>
+        		<td class="label">Codigo Contabilidad</td><td class="campo">{{ entity.codigocontabilidad }}</td>
 		       <tr>
      </tbody></table>
 	</div>
 	<div id="tabs-4">
 		<table>
 			<tbody>
-			   <tr> <td class="label">Observaciones</td><td class="campo">{{ entity.observaciones }}</td>
+			   <tr> <td class="label">Observaciones</td><td class="campo">{{ entity.observaciones|nl2br }}</td>
 		            </td></tr>
 			</tbody>
 		</table>

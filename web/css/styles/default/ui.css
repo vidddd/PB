@@ -463,14 +463,14 @@ div.span-1, div.span-2, div.span-3, div.span-4, div.span-5, div.span-6, div.span
 }
 .form-horizontal .control-label {
     float: left;
-    font-weight: bold;
     line-height: 18px;
-    padding-right: 20px;
+    padding-right: 10px;
     text-align: right;
-    width: 160px;
+    width: 100px;
+    font-size:13px;
 }
 .label-column-small .control-label {
-    width: 120px;
+    width: 90px;
 }
 
 /* inovices ordenes albaranes */

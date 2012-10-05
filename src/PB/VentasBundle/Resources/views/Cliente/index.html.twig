@@ -4,54 +4,54 @@
 
 {% block content %}
 
-<div class="title title-spacing">
+<div class="title title-spacing ventas">
 					<h2>Clientes</h2>
 </div>
     <div class="span2">
         {% if form_errors(filterForm) %}
-        <div class="alert alert-block alert-error fade in form-errors">
-            {{ form_errors(filterForm) }}
+        <div class="response-msg notice iu-corner-all"><span>
+            {{ form_errors(filterForm) }}</span>
         </div>
         {% endif %}
         &nbsp;
     </div>
-<div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
-    <div class="portlet-content">
-		<form class="well" action="{{ path('cliente') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
-			<table id="form-alta">
-   				<tbody>		
-         			<tr>
-        				<td class="label">{{ form_label(filterForm.id, 'Código Cliente') }}</td>
-        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
-      				<tr>
-      				<tr>
-        				<td class="label">{{ form_label(filterForm.nombre, 'Nombre') }}</td>
-        				<td class="campo">{{ form_widget(filterForm.nombre) }}</td><td>{{ form_errors(filterForm.nombre) }}</td>
-      				<tr>
-      				<tr>
-        				<td class="label">{{ form_label(filterForm.nif, 'NIF') }}</td>
-        				<td class="campo">{{ form_widget(filterForm.nif) }}</td><td>{{ form_errors(filterForm.nif) }}</td>
-      				<tr>
-      	         	<tr>
-        				<td class="label">{{ form_label(filterForm.cp, 'Código Postal') }}</td>
-        				<td class="campo">{{ form_widget(filterForm.cp, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.cp) }}</td>
-      				<tr>
-               		<tr>
-        				<td class="label">{{ form_label(filterForm.localidad, 'Localidad') }}</td>
-        				<td class="campo">{{ form_widget(filterForm.localidad) }}</td><td>{{ form_errors(filterForm.localidad) }}</td>
-      				<tr> 
-            </tbody></table>
-                <p class="botones-buscador">
-                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
-                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
-                </p>
-			 {{ form_widget(filterForm._token) }}</form>
-	</div><div class="clear"></div>
-</div>
-    
-<div class="btn-nuevo">
-<a class="btn ui-state-default ui-corner-all" href="{{ path('cliente_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Cliente</a></div>
-
+	<div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
+	    <div class="portlet-content">
+			<form class="well" action="{{ path('cliente') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
+				<table id="form-alta">
+	   				<tbody>		
+	         			<tr>
+	        				<td class="label">{{ form_label(filterForm.id, 'Código Cliente') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
+	      				<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(filterForm.nombre, 'Nombre') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.nombre) }}</td><td>{{ form_errors(filterForm.nombre) }}</td>
+	      				<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(filterForm.nif, 'NIF') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.nif) }}</td><td>{{ form_errors(filterForm.nif) }}</td>
+	      				<tr>
+	      	         	<tr>
+	        				<td class="label">{{ form_label(filterForm.cp, 'Código Postal') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.cp, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.cp) }}</td>
+	      				<tr>
+	               		<tr>
+	        				<td class="label">{{ form_label(filterForm.localidad, 'Localidad') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.localidad) }}</td><td>{{ form_errors(filterForm.localidad) }}</td>
+	      				<tr> 
+	            </tbody></table>
+	                <p class="botones-buscador">
+	                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
+	                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+	                </p>
+				 {{ form_widget(filterForm._token) }}</form>
+		</div><div class="clear"></div>
+	</div>
+	    
+	<div class="btn-nuevo">
+	<a class="btn ui-state-default ui-corner-all" href="{{ path('cliente_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Cliente</a></div>
+	
 
 
 <div class="clearfix"></div>

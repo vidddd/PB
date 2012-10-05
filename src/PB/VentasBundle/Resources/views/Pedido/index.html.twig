@@ -1,0 +1,84 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Pedidos" %}
+
+{% block content %}
+
+<div class="title title-spacing ventas">
+					<h2>Pedidos</h2>
+</div>        
+    <div class="span2">
+        {% if form_errors(filterForm) %}
+        <div class="response-msg notice iu-corner-all"><span>
+            {{ form_errors(filterForm) }}</span>
+        </div>
+        {% endif %}
+        &nbsp;
+    </div>
+	<div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
+	    <div class="portlet-content">
+			<form class="well" action="{{ path('pedido') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
+				<table id="form-alta">
+	   				<tbody>		
+	         			<tr>
+	        				<td class="label">{{ form_label(filterForm.id, 'Código Pedido') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
+	      				<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(filterForm.mtycolor, 'Cliente') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.mtycolor) }}</td><td>{{ form_errors(filterForm.mtycolor) }}</td>
+	      				<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(filterForm.subcliente, 'Subcliente') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.subcliente) }}</td><td>{{ form_errors(filterForm.subcliente) }}</td>
+	      				<tr>
+	      	         	<tr>
+	        				<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
+	      				<tr>
+	            </tbody></table>
+	                <p class="botones-buscador">
+	                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
+	                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+	                </p>
+				 {{ form_widget(filterForm._token) }}</form>
+		</div><div class="clear"></div>
+	</div>
+	    
+	<div class="btn-nuevo">
+	<a class="btn ui-state-default ui-corner-all" href="{{ path('pedido_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Pedido</a></div>
+
+<div class="clearfix"></div>
+<div class="hastable">
+    <table class="records_list">
+    <thead>
+        <tr>
+            <th width="25">Código Pedido</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Subcliente</th>
+            <th>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+            <td><a href="{{ path('pedido_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.cliente }}</td>
+            <td>{{ entity.fecha|date('d.m.Y') }}</td>
+            <td>{{ entity.subcliente }}</td>
+            <td>
+        		<a href="{{ path('pedido_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+        		<a href="{{ path('pedido_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+          		<!-- <a href="{{ path('pedido_delete', { 'id': entity.id }) }}" title="Eliminar" class="btn_no_text btn ui-state-default ui-corner-all tooltip" onclick="return confirm('Estas seguro de borrar el cliente?')"><span class="ui-icon ui-icon-circle-close"></span></a> -->
+          </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    </div>
+
+    <div class="span4">
+    {{ pagerHtml|raw }}
+    </div>
+{% endblock %}
