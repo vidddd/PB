@@ -15,3 +15,11 @@ PB\ComprasBundle\Entity\Proveedor:
                 message: El codigo postal no es un número.
         localidad:
             - NotBlank: ~
+PB\ComprasBundle\Entity\PedidoCompra:
+    properties:
+        fecha:
+            - NotBlank:  { message: "El campo 'Fecha' esta vacio."}
+        fecha_entrega:
+            - NotBlank:  { message: "El campo 'Fecha de Entrega' esta vacio."}
+        proveedor:
+            - NotBlank:  { message: "El campo 'Proveedor' esta vacio."}

@@ -3,7 +3,9 @@
 .ui-helper-hidden {
 	display:none;
 }
-
+.float_left {
+    float: left;
+}
 .ui-helper-hidden-accessible {
 	position:absolute;
 	left:-99999999px;
@@ -525,13 +527,8 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 
 	/* Main content */
 
-#page-wrapper {
-
-}
-
 #page-wrapper #main-wrapper {
 	float:right;
-
 	width:100%;
 }
 

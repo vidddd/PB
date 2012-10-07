@@ -11,6 +11,8 @@ use Pagerfanta\View\TwitterBootstrapView;
 use PB\VentasBundle\Entity\Cliente;
 use PB\VentasBundle\Form\ClienteType;
 use PB\VentasBundle\Form\ClienteFilterType;
+use PB\VentasBundle\Form\ClienteBuscadorFilterType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Cliente controller.
@@ -109,6 +111,60 @@ class ClienteController extends Controller
         return array($entities, $pagerHtml);
     }
     
+    public function buscadorClienteAction()
+    {
+    	list($filterForm, $queryBuilder) = $this->filterBuscador();
+    
+    	list($entities, $pagerHtml) = $this->paginator($queryBuilder);
+    
+    
+    	return $this->render('PBVentasBundle:Cliente:buscador.html.twig', array(
+    			'entities' => $entities,
+    			'pagerHtml' => $pagerHtml,
+    			'filterForm' => $filterForm->createView(),
+    	));
+    }
+    /**
+     * Create filter form and process filter request.
+     *
+     */
+    protected function filterBuscador()
+    {
+    	$request = $this->getRequest();
+    	$session = $request->getSession();
+    	$filterForm = $this->createForm(new ClienteBuscadorFilterType());
+    	$em = $this->getDoctrine()->getManager();
+    	$queryBuilder = $em->getRepository('PBVentasBundle:Cliente')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
+    
+    	// Reset filter
+    	if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
+    		$session->remove('ClienteControllerFilterBuscador');
+    	}
+    
+    	// Filter action
+    	if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
+    		// Bind values from the request
+    		$filterForm->bind($request);
+    		 
+    		if ($filterForm->isValid()) {
+    			// Build the query from the given form object
+    			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
+    			// Save filter to session
+    			$filterData = $filterForm->getData();
+    
+    			$session->set('ClienteControllerFilter', $filterData);
+    		}
+    	} else {
+    		// Get filter from session
+    		if ($session->has('ClienteControllerFilterBuscador')) {
+    			$filterData = $session->get('ClienteControllerFilterBuscador');
+    			$filterForm = $this->createForm(new ClienteBuscadorFilterType(), $filterData);
+    			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
+    		}
+    	}
+    	//var_dump($queryBuilder->getDql());
+    	return array($filterForm, $queryBuilder);
+    }
     /**
      * Finds and displays a Cliente entity.
      *

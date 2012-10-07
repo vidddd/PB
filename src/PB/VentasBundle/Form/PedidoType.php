@@ -5,15 +5,19 @@ namespace PB\VentasBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use PB\VentasBundle\Form\DataTransformer\ClilenteToIdTransformer;
 
 class PedidoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
     	$hoy = new \DateTime();
+
+    	// add a normal text field, but add our transformer to it
+    	
         $builder
+        	->add('cliente', 'cliente_text', array('error_bubbling' => true))
             ->add('id', 'number', array('read_only' => true,'error_bubbling' => true))
-            ->add('cliente', 'number')
             ->add('fecha', 'date', array(
             		'widget' => 'single_text',
             		//'format' => 'dd/MM/yy',

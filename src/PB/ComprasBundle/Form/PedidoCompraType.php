@@ -10,23 +10,26 @@ class PedidoCompraType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('id', 'number', array('read_only' => true))
-            ->add('proveedor', 'text')
+    	$hoy = new \DateTime();
+    	$builder
+            ->add('id', 'number', array('read_only' => true, 'error_bubbling' => true))
+            ->add('proveedor', 'proveedor_text', array('error_bubbling' => true))
             ->add('fecha', 'date', array(
 							    'widget' => 'single_text',
-							    //'format' => 'dd-MM-yy',
+							    //'format' => 'dd.MM.yyyy',
+    							'data' => $hoy,
+            					'error_bubbling' => true
 							))
             ->add('fecha_entrega', 'date', array(
 							    'widget' => 'single_text',
-            					'empty_value' => '',
+            					'error_bubbling' => true
 							))
-            ->add('referencia')
-            ->add('forma_envio')
-            ->add('importe')
-            ->add('iva')
-            ->add('total')
-            ->add('descuento')
+            ->add('referencia', 'text', array('error_bubbling' => true))
+            ->add('forma_envio', 'text', array('error_bubbling' => true))
+            ->add('importe', 'text', array('error_bubbling' => true))
+            ->add('iva', 'text', array('error_bubbling' => true))
+            ->add('total', 'number', array('error_bubbling' => true))
+            ->add('descuento', 'number', array('error_bubbling' => true))
 
         ;
     }

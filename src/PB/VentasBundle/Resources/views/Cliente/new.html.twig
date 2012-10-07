@@ -10,7 +10,9 @@
 <form action="{{ path('cliente_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
 	<div class="portlet-header ui-widget-header">Nuevo Cliente</div>
-		{{ form_errors(form) }}
+          {% if form_errors(form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% endif %}
 		<div class="portlet-content">
 		    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 		<table id="form-alta">

@@ -1058,22 +1058,6 @@ class Pedido
      */
     public function getCliente()
     {
-        
-    	
     	return $this->cliente;
-    }
-    /*
-     * 
-    preRemove
-    postRemove
-    prePersist
-    postPersist
-    preUpdate
-    postUpdate
-    postLoad
-    loadClassMetadata
-     */
-    public function setClienteId(){
-    	echo $this->cliente; die;
     }
 }

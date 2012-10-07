@@ -418,7 +418,7 @@ class Proveedor
      */
     public function getTipoProveedor()
     {
-		/*
+		
     	$yaml = new Parser();
 		$value = array();
 		try {
@@ -432,8 +432,8 @@ class Proveedor
 			return $tipos[$this->tipo_proveedor];
 		else
 			return $this->tipo_proveedor; 
-		*/	
-    	return $this->tipo_proveedor;
+			
+    	//return $this->tipo_proveedor;
     }
 
     /**
@@ -954,5 +954,11 @@ class Proveedor
     public function removePedidocompra(\PB\ComprasBundle\Entity\PedidoCompra $pedidocompra)
     {
         $this->pedidocompra->removeElement($pedidocompra);
+    }
+    
+    private $tipoproveedor_show;
+    
+    public function getTipoproveedor_show(){
+         return $this->getTipoProveedor()."Preubaaaaaaa";
     }
 }

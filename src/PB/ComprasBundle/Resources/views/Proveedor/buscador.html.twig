@@ -3,7 +3,14 @@
 {% block title "Buscador de Proveedores" %}
 
 {% block content %}
-
+<script>
+$(document).ready(function() { 
+    $(".itemid").click(function () {
+        $('.buscadorid', window.parent.document).val(this.rel);
+        window.parent.$.prettyPhoto.close();
+    })
+});
+</script>
     <div class="span2">
         {% if form_errors(filterForm) %}
         <div class="response-msg notice iu-corner-all"><span>
@@ -14,7 +21,7 @@
     </div>
     <div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
     <div class="portlet-content">
-		<form class="well" action="{{ path('buscador_proveedor') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
+		<form class="well" action="{{ path('buscador_proveedor') }}" method="post" {{ form_enctype(filterForm) }}>
 			<table id="form-alta">
    				<tbody>		
          			<tr>
@@ -46,7 +53,7 @@
     <tbody>
     {% for entity in entities %}
         <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
-        	<td><a id="buscador-ok" href="#">{{ entity.id }}</a></td>
+        	<td><a rel="{{ entity.id }}" class="itemid" href="#">{{ entity.id }}</a></td>
             <td>{{ entity.nombre }}</td>
             <td>{{ entity.localidad }}</td>
         </tr>

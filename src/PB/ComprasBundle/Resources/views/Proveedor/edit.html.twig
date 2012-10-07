@@ -12,7 +12,9 @@
   <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
 	<div class="portlet-header ui-widget-header">Editar Proveedor</div>
 		<div class="portlet-content form-alta">
-		{{ form_errors(edit_form) }}   
+          {% if form_errors(form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% endif %}  
     <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 		<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 			<li class="ui-state-default ui-corner-top"><a href="#tabs-1">Datos Principales</a></li>

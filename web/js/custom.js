@@ -3,7 +3,7 @@ $(document).ready(function() {
 	// Navigation menu
 	$(".numeric").numeric();
 	//$(".numeric").numeric(","); //Sólo con esta instanciación tenemos que podemos escribir números y una coma
-	$('.date').datepicker({ dateFormat: 'dd-mm-yy' })
+	$('.date').datepicker({ dateFormat: 'yy-mm-dd' })
 
 
 	$('ul#navigation').superfish({ 

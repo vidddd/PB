@@ -473,7 +473,12 @@ div.span-1, div.span-2, div.span-3, div.span-4, div.span-5, div.span-6, div.span
     width: 90px;
 }
 
-/* inovices ordenes albaranes */
+/* inovices pedidoscompra albaranes */
+#invoice-lines{
+	/*width:700px;*/
+	/*line-height:18px;*/
+	font-size:12px;
+}
 table.spreadsheet {
     border-left: 1px solid #CCCCCC;
     border-spacing: 0;
@@ -487,20 +492,171 @@ table.spreadsheet td {
     text-align: left;
     vertical-align: top;
 }
+
 table.spreadsheet thead th.first-column, table.spreadsheet td.action-buttons {
     border: 0 none;
     padding: 0;
     width: 0;
 }
 table.spreadsheet th {
-	    background-color: #0D83DD;
-    color: #FFFFFF;
+	background-color: #E6E6E6;
+    text-shadow: 0 1px 0 #FFFFFF;
     border-bottom: 1px solid #CCCCCC;
     border-left: 0 none;
     border-top: 1px solid #CCCCCC;
-    color: #FFFFFF;
+    color: #616161;
     font-weight: bold;
     line-height: 18px;
-    padding: 3px 5px;
+    padding: 4px 5px;
     text-align: left;
+}
+.invoice-add-line, .invoice-delete, .invoice-drag {
+    display: none;
+}
+body .index thead th, body .index thead a, body .index thead .no-sort, .container .reports_currency th a, .container .report thead a, .container .report thead th, .container .report thead .no-sort, .container .report tbody.header a, .container .report tbody.header .no-sort, .container table.spreadsheet th, ul.permissions li.enabled {
+    background-color: #0D83DD;
+    color: #FFFFFF;
+}
+table.spreadsheet td.first-column {
+    padding-left: 1px;
+}
+.first-column {
+    padding-left: 5px;
+    white-space: nowrap;
+}
+table.spreadsheet select, table.spreadsheet input, table.spreadsheet textarea{
+	font-family: Verdana;
+	font-size: 12px;
+	line-height: normal;
+	margin:0;
+	padding:3px;
+}
+table.spreadsheet textarea, table.spreadsheet textarea:hover, table.spreadsheet textarea:focus {
+    padding-left: 5px;
+}
+table.spreadsheet textarea, table.spreadsheet textarea:hover {
+    background-color: transparent;
+    border: 0 none;
+    font-family: Verdana;
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    margin: 0;
+    padding: 0;
+    resize: none;
+    width: 100%;
+}
+table.spreadsheet input, table.spreadsheet input:hover {
+    background-color: transparent;
+    border: 0 none;
+    font-family: Verdana;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0;
+    width: 100%;
+}
+input[type="text"], input[type="password"], textarea, select {
+    border-color: #ABADB3 #DBDFE6 #E3E9EF #E2E3EA;
+    border-style: solid;
+    border-width: 1px;
+}
+.ta_right {
+    text-align: right;
+}
+.spreadsheet td.total, .spreadsheet .total:hover {
+    background-color: #F0F0F0;
+    padding-left: 0;
+    font-weight:bold;
+    font-size:14px;
+    text-align: right;
+}
+table.spreadsheet input:focus, table.spreadsheet textarea:focus{
+	background-color:#FFF8D5;
+	border: 0 none;
+	outline: 0 none;
+}
+.totals {
+    margin-bottom: 22px;
+        color: #000000;
+    font-family: Verdana,sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+}
+.totals .rule.top {
+    clear: both;
+    margin-top: -1px;
+}
+.totals .rule {
+    background-color: #E5E5E5;
+    border: 1px solid #CCCCCC;
+    height: 1px;
+    overflow: hidden;
+}
+.actions {
+    clear: both;
+    font-size: 12px;
+    height: 31px;
+    line-height: 24px;
+    padding: 4px 5px 9px;
+    position: relative;
+}
+.actions.spreadsheet ul {
+    padding: 0;
+}
+.actions .dropdown-button {
+    background-image: none;
+    height: 22px;
+    padding-left: 0;
+    position: relative;
+}
+.totals .box {
+    border-bottom: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    float: right;
+    margin-top: -1px;
+    width: 280px;
+}
+.totals .table-totals {
+    width: 100%;
+}
+.totals .table-totals th {
+    font-weight: normal;
+    text-align: left;
+}
+div.totals .table-totals td, div.totals .table-totals th {
+    border: 0 none;
+    margin: 0;
+    vertical-align: top;
+}
+tr#amount-row td, tr#amount-row th, #subtotal-row td, #subtotal-row th {
+    padding-top: 9px;
+}
+div.totals td.last-column {
+    padding-right: 3px;
+    text-align: right;
+}
+div.totals td.last-column {
+    padding-right: 3px;
+    text-align: right;
+}
+div.totals .table-totals tr.divider td, div.totals .table-totals tr.divider th {
+    padding: 9px 0 0;
+}
+div.totals .table-totals tr.divider div {
+    background-color: #E2E2E2;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #CCCCCC;
+    height: 1px;
+    overflow: hidden;
+}
+div.totals tr.invoice-total-box td, div.totals tr.invoice-total-box th {
+    background-color: #F0F0F0;
+    border-top: 1px solid #CCCCCC;
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+div.totals .table-totals #paid-row td, div.totals .table-totals #paid-row th {
+    padding-bottom: 9px;
 }

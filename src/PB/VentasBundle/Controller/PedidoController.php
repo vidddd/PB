@@ -138,7 +138,6 @@ class PedidoController extends Controller
     {
         $entity = new Pedido();
         $form   = $this->createForm(new PedidoType(), $entity);
-
         return $this->render('PBVentasBundle:Pedido:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),

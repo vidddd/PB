@@ -9,7 +9,9 @@
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
 	<div class="portlet-header ui-widget-header">Nuevo Proveedor</div>
 		<div class="portlet-content form-alta">
-		{{ form_errors(form) }}
+          {% if form_errors(form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% endif %}
 
     <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 		<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">

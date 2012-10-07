@@ -6,6 +6,9 @@
 {% block content %}
 
 <div class="title title-spacing"><h2>Nuevo Pedido Compra</h2></div>
+          {% if form_errors(form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% endif %}
 <form class="well" action="{{ path('compras_pedidocompra_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
 <div class="content-box content-box-header ui-corner-all">
 	<div class="ui-state-default ui-corner-top ui-box-header"><span class="ui-icon float-left ui-icon-signal"></span>Datos de Pedido</div>
@@ -15,19 +18,12 @@
 					<div class="control-group required">
 						{{ form_label(form.proveedor, null, { 'label': 'Proveedor', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.proveedor, { 'attr': {'class': 'small numeric'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_proveedor', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Proveedores"><img src="{{ asset('images/search.png') }}" /></a>
+			    			{{ form_widget(form.proveedor, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_proveedor', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Proveedores"><img src="{{ asset('images/search.png') }}" /></a>
 			    			
 		        		</div>
 	     			</div>
      			</div>
      			<div class="span-17 form-horizontal label-column-small form-condensed">
-					<div class="control-group required">
-						{# form_label(form.id, null, { 'label': 'Código Pedido', 'label_attr': {'class': 'control-label'} }) #}
-						<label>Código Pedido</label>
-						<div class="controls">
-			    			{# form_widget(form.id, { 'attr': {'class': 'small'}}) #}
-		        		</div>
-	     			</div>
 	     			<div class="control-group required">
 						{{ form_label(form.fecha, null, { 'label': 'Fecha', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
@@ -43,7 +39,7 @@
 					<div class="control-group required">
 						{{ form_label(form.referencia, null, { 'label': 'Referencia', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.referencia, { 'attr': {'class': 'small'}}) }}
+			    			{{ form_widget(form.referencia, { 'attr': {'class': ''}}) }}
 		        		</div>
 	     			</div>
      			</div>
@@ -52,6 +48,12 @@
 						{{ form_label(form.id, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
 			    			{{ form_widget(form.id, { 'attr': {'class': 'small'}}) }}
+		        		</div>
+	     			</div>
+					<div class="control-group required">
+						{{ form_label(form.forma_envio, null, { 'label': 'Forma Envio', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.forma_envio, { 'attr': {'class': ''}}) }}
 		        		</div>
 	     			</div>
      			</div>
@@ -67,81 +69,123 @@
 					<td class="action-buttons">
 						<div class="delete"><a title="Delete section" class="invoice-delete" href="#">Delete section</a></div>
 					</td>
-					<th style="width: 124px;">Task</th>
-					<th style="width: 254px;">Time Entry Notes</th>
-					<th class="ta_right" style="width: 68px;">Rate</th>
-					<th class="ta_right" style="width: 45px;">Hours</th>
-					<th style="width: 62px;">Tax</th>
-					<th style="width: 62px;">Tax</th>
-					<th class="ta_right last" style="width: 72px;">Line Total</th>
+					<th style="width: 64px;">Referencia</th>
+					<th style="width: 350px;">Descripcion</th>
+					<th class="ta_right" style="width: 45px;">Cantidad</th>
+					<th class="ta_right" style="width: 45px;">Precio</th>
+					<th style="width: 45px;">Descuento</th>
+					<th class="ta_right last" style="width: 45px;">Total</th>
 				</tr>
 			</thead>
 			<tbody>
-			<tr style="">
-		<td class="action-buttons">
-			<div class="handle"><a title="Move" class="invoice-drag" href="#">Move</a></div>
-			<div class="insert"><a title="Add line" class="invoice-add-line" href="#">Add line</a></div>
-			<div class="delete"><a title="Delete line" class="invoice-delete" href="#">Delete line</a></div>
-		</td>
-		<td class="first-column has-combobox editable">
-			<div class="task-name-container"><div style="width: 124px;" class="dhx_combo_box"><input type="text" autocomplete="off" class="dhx_combo_input" style="width: 105px;" readonly=""><input type="hidden" name="item_name[]" value=""><input type="hidden" name="__new_item_name[]" value="false"><img class="dhx_combo_img" src="/images/dhtmlx/combo_select.gif"></div></div>
-		</td>
-		<td class="editable">
-			<textarea name="descrip[]" style="overflow: hidden; display: block; height: 22px;"></textarea>
-		</td>
-		<td class="editable">
-			<input type="text" value="" class="ta_right iefix-3 ie7fix-1" name="unit_cost[]">
-		</td>
-		<td class="editable">
-			<input type="text" value="" class="ta_right iefix-3 ie7fix-1" name="qty[]">
-		</td>
-		<td class="editable has-combobox">
-			<div class="tax1-container"><div style="width: 64px;" class="dhx_combo_box"><input type="text" autocomplete="off" class="dhx_combo_input" style="width: 45px;" readonly=""><input type="hidden" name="tax11[]" value="{}" class="invTax leftTax"><input type="hidden" name="__new_tax11[]" value="false"><img class="dhx_combo_img" src="/images/dhtmlx/combo_select.gif"></div></div>
-		</td>
-		<td class="editable has-combobox">
-			<div class="tax2-container"><div style="width: 64px;" class="dhx_combo_box"><input type="text" autocomplete="off" class="dhx_combo_input" style="width: 45px;" readonly=""><input type="hidden" name="tax22[]" value="{}" class="invTax"><input type="hidden" name="__new_tax22[]" value="false"><img class="dhx_combo_img" src="/images/dhtmlx/combo_select.gif"></div></div>
-		</td>
-		<td class="total">
-			<span class="ta_right">0.00</span><!-- price -->
-			<input type="hidden" value="0.00" name="price[]">
-			<input type="hidden" value="" name="expenseid[]">
-			<input type="hidden" value="" name="logid_list[]">
-			<input type="hidden" value="2" name="line_type[]">
-			<input type="hidden" value="" name="todo_ids[]">
-			<input type="hidden" value="" name="lineid[]">
-		</td>
-	</tr></tbody>
+				<tr style="">
+					<td class="action-buttons">
+						<div class="handle"><a title="Move" class="invoice-drag" href="#">Move</a></div>
+						<div class="insert"><a title="Add line" class="invoice-add-line" href="#">Add line</a></div>
+						<div class="delete"><a title="Delete line" class="invoice-delete" href="#">Delete line</a></div>
+					</td>
+					<td class="first-column editable">
+					    <input type="text" value="" class="ta_right" name="referencia[]">
+					</td>
+					<td class="editable">
+						<textarea name="descrip[]" style="overflow: none;"></textarea>
+					</td>
+					<td class="editable">
+						<input type="text" value="" class="ta_right" name="unit_cost[]">
+					</td>
+					<td class="editable">
+						<input type="text" value="" class="ta_right iefix-3 ie7fix-1" name="qty[]">
+					</td>
+					<td class="editable">
+						<input type="text" value="" class="ta_right iefix-3 ie7fix-1" name="descuento[]">
+					</td>
+					<td class="total">
+						<span class="ta_right">0.00</span><!-- price -->
+						<input type="hidden" value="0.00" name="price[]">
+						<input type="hidden" value="" name="expenseid[]">
+						<input type="hidden" value="" name="logid_list[]">
+						<input type="hidden" value="2" name="line_type[]">
+						<input type="hidden" value="" name="todo_ids[]">
+						<input type="hidden" value="" name="lineid[]">
+					</td>
+				</tr>
+			</tbody>
 		</table>
-	
-	<!-- items -->
-	<table cellspacing="0" style="display:none" class="invoice-lines spreadsheet" id="invoice-items">
-		<thead>
-			<tr>
-				<td class="action-buttons">
-					<div class="delete"><a title="Delete section" class="invoice-delete" href="#">Delete section</a></div>
-				</td>
-				<th style="width: 124px;">Item</th>
-				<th style="width: 254px;">Description</th>
-				<th class="ta_right" style="width: 68px;">Unit Cost</th>
-				<th class="ta_right" style="width: 45px;">Qty</th>
-				<th style="width: 62px;">Tax</th>
-				<th style="width: 62px;">Tax</th>
-				<th class="ta_right last" style="width: 72px;">Line Total</th>
-			</tr>
-		</thead>
-		<tbody>
-		</tbody>
-	</table>
 	</div>	
+	<div class="totals">
+	<div class="rule top"></div>
+	
+    <div class="float_left">
+    	<div class="spreadsheet actions">
+    		<ul>
+    			<li class="dropdown-button no-static mar_r5" style="display: block;">
+    				<span style="float: left;"><a onclick="return false;" href="#">Add Line</a></span>
+    			</li>
+    		</ul>
+    	</div>
+    	
+    	    </div>
+		
+	<div class="box">
+		<table cellspacing="0" class="table-totals">
+			<thead>
+				<tr id="subtotal-row">
+					<td style="width: 20px">&nbsp;<input type="hidden" name="subtotal" readonly="" style="width: 100%" value="0.00"></td>
+					<th style="width: 150px">Subtotal</th>
+					<td class="last-column">€0.00</td>
+				</tr>
+
+				<tr id="discount-total-row">
+					<td style="width: 20px">&nbsp;<input type="hidden" name="discount_total" readonly="" style="width: 100%" value="0.00"></td>
+					<th style="width: 150px">Discount</th>
+					<td class="last-column">0.00</td>
+				</tr>
+				
+				<!-- taxes go here -->
+				<tr class="divider">
+					<td><div></div></td>
+					<td><div></div></td>
+					<td><div></div></td>
+				</tr>
+			</thead>
+			<tbody>			
+				<tr id="amount-row">
+					<td style="width: 20px">&nbsp;<input type="hidden" name="amount" value="0.00"></td>
+					<th class="span-9 amount-cell"><span class="amount-total">Invoice Total</span> <span class="currency">(EUR)</span></th>
+					<td class="last-column">€0.00</td>
+				</tr>
+								<tr id="paid-row">
+					<td style="width: 20px">&nbsp;<input type="hidden" value="0.00" name="paid"></td>
+					<th>Paid to Date</th>
+					<td class="last-column">0.00</td>
+				</tr>
+				<tr class="invoice-total-box" id="outstanding-row">
+					<td style="width: 20px">&nbsp;<input type="hidden" name="outstanding" value="0.00"></td>
+					<th>Balance <span class="currency">(EUR)</span></th>
+					<td class="last-column">€0.00</td>
+				</tr>
+							</tbody>
+		</table>
+
+	</div>
+
+
+	<div class="clearfix"></div>
+
+	<div class="functions form-stacked">
+				
+				
+		<span style="display:none" id="credit">
+			<span class="hl">
+				<input type="checkbox" id="apply_credit" name="apply_credit" value="1" class="checkbox" style="width:15px" disabled="disabled">
+				<label for="apply_credit" style="cursor:pointer;">Apply credit of <span id="credit_amount"></span>&nbsp;as payment</label>
+			</span>
+		</span>
+
+	</div>
+	<div class="clearb"></div>
+</div>
     <div class="clearfix"></div>
-<div class="content-box content-box-header ui-corner-all">
-							<div class="ui-state-default ui-corner-top ui-box-header"><span class="ui-icon float-left ui-icon-signal"></span>Datos de Pedido</div>
-							<div class="content-box-wrapper">
-								
-							</div>
-						</div>
-
-
     <p>
         <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
     </p>

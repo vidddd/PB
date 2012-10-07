@@ -2,16 +2,20 @@
 
 .response-msg {
 	padding:9px 10px 13px 55px;
-	font-size:0.9em;
+	font-size:1em;
 	margin:0 0 10px;
+	line-height:1.4em !important;
 }
 
 .response-msg span {
 	display:block;
 	font-weight:bold;
-	padding:0 0 4px;
-}
 
+}
+span.form-errors{
+	font-weight:normal !important;
+
+}
 .error {
 	background:#f9e5e6 url('../images/icons/error.png') 10px 50% no-repeat;
 	color:#b50007;

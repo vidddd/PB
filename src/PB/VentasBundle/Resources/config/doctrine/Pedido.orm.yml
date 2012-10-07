@@ -131,4 +131,3 @@ PB\VentasBundle\Entity\Pedido:
                 referencedColumnName: id
     lifecycleCallbacks: 
         prePersist: [  ]
-        loadClassMetadata: [ setClienteId ] 
