@@ -1,0 +1,69 @@
+{% extends '::layout_ajax.html.twig' %}
+
+{% block title "Buscador de Clientes" %}
+
+{% block content %}
+<script>
+$(document).ready(function() { 
+    $(".itemid").click(function () {
+        $('.buscadorid', window.parent.document).val(this.rel);
+        window.parent.$.prettyPhoto.close();
+    })
+});
+</script>
+    <div class="span2">
+        {% if form_errors(filterForm) %}
+        <div class="response-msg notice iu-corner-all"><span>
+            {{ form_errors(filterForm) }}</span>
+        </div>
+        {% endif %}
+        &nbsp;
+    </div>
+    <div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
+    <div class="portlet-content">
+		<form class="well" action="{{ path('buscador_cliente') }}" method="post" {{ form_enctype(filterForm) }}>
+			<table id="form-alta">
+   				<tbody>		
+         			<tr>
+        				<td class="label">{{ form_label(filterForm.id, 'Código Cliente') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
+      				<tr>
+      				<tr>
+        				<td class="label">{{ form_label(filterForm.nombre, 'Nombre') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.nombre) }}</td><td>{{ form_errors(filterForm.nombre) }}</td>
+      				<tr>
+            </tbody></table>
+                <p class="botones-buscador">
+                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
+                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+                </p>
+			 {{ form_widget(filterForm._token) }}</form>
+	</div><div class="clear"></div>
+</div>
+<div class="clearfix"></div>
+<div class="hastable">
+    <table class="records_list">
+    <thead>
+        <tr>
+            <th width="25">Código Cliente</th>
+            <th>Nombre</th>
+            <th>Localidad</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+        	<td><a rel="{{ entity.id }}" class="itemid" href="#">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.localidad }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    </div>
+
+    <div class="span4">
+    {{ pagerHtml|raw }}
+    </div>
+
+{% endblock %}
