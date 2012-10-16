@@ -12,6 +12,7 @@ PB\ComprasBundle\Entity\PedidoCompra:
       type: date
     fecha_entrega:
       type: date
+      nullalble: true
     referencia:
       type: string
       length: '100'
@@ -31,10 +32,6 @@ PB\ComprasBundle\Entity\PedidoCompra:
     descuento:
       type: float
       nullable: true
-  oneToMany:
-    pedidoscompralinea:
-      targetEntity: PedidoCompraLinea
-      mappedBy: codpedido
   manyToOne:
     proveedor:
       targetEntity: PB\ComprasBundle\Entity\Proveedor
@@ -42,4 +39,10 @@ PB\ComprasBundle\Entity\PedidoCompra:
       joinColumn:
         name: proveedor_id
         referencedColumnName: id
+  oneToMany:
+    pedidocompralineas:
+        targetEntity: PB\ComprasBundle\Entity\PedidoCompraLinea
+        mappedBy: pedidocompralinea
+        cascade: [ persist ]
+        
   lifecycleCallbacks: {  }

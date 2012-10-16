@@ -24,6 +24,7 @@ PB\VentasBundle\Entity\Cliente:
 #        movil:
 #            - Type:
 #                type: integer
+#                message: "El código de cliente no es un número"
 PB\VentasBundle\Entity\Pedido:
     properties:
         cantidad:

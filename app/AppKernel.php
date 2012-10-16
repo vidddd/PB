@@ -27,6 +27,7 @@ class AppKernel extends Kernel
         		new JordiLlonch\Bundle\CrudGeneratorBundle\JordiLlonchCrudGeneratorBundle(),
                // new kitpages\KitpagesShopBundle\KitpagesShopBundle(),
             new PB\GeneralBundle\PBGeneralBundle(),
+        	//	new Ps\PdfBundle\PsPdfBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

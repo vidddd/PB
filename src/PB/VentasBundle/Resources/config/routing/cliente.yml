@@ -6,6 +6,13 @@ buscador_cliente:
     pattern:  /buscador
     defaults: { _controller: "PBVentasBundle:Cliente:buscadorCliente" }
 
+get_nombre_cliente:
+    pattern:  /getnombre
+    defaults: { _controller: "PBVentasBundle:Cliente:getNombre", _format: json }
+    requirements:
+        _format: (xml|json)
+        _method:  POST
+        
 cliente_show:
     pattern:  /{id}/show
     defaults: { _controller: "PBVentasBundle:Cliente:show" }

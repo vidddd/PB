@@ -44,7 +44,7 @@ class ClienteType extends AbstractType
 
     public function getName()
     {
-        return 'pb_ventasbundle_clientetype';
+        return 'cliente';
     }
     
     public function getDefaultOptions(array $options)

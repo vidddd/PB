@@ -9,3 +9,7 @@ PBVentasBundle_cliente:
 PBVentasBundle_pedido:
         resource: "@PBVentasBundle/Resources/config/routing/pedido.yml"
         prefix:   /pedido
+ 
+PBVentasBundle_albaran:
+        resource: "@PBVentasBundle/Resources/config/routing/albaran.yml"
+        prefix:   /albaran

@@ -20,17 +20,12 @@ class PedidoCompraLinea
     private $referencia;
 
     /**
-     * @var integer $codpedido
-     */
-    private $codpedido;
-
-    /**
      * @var string $descripcion
      */
     private $descripcion;
 
     /**
-     * @var decimal $cantidad
+     * @var float $cantidad
      */
     private $cantidad;
 
@@ -49,6 +44,11 @@ class PedidoCompraLinea
      */
     private $total;
 
+    /**
+     * @var PB\ComprasBundle\Entity\PedidoCompra
+     */
+    private $pedidocompralinea;
+
 
     /**
      * Get id
@@ -64,10 +64,13 @@ class PedidoCompraLinea
      * Set referencia
      *
      * @param string $referencia
+     * @return PedidoCompraLinea
      */
     public function setReferencia($referencia)
     {
         $this->referencia = $referencia;
+    
+        return $this;
     }
 
     /**
@@ -81,33 +84,16 @@ class PedidoCompraLinea
     }
 
     /**
-     * Set codpedido
-     *
-     * @param integer $codpedido
-     */
-    public function setCodpedido($codpedido)
-    {
-        $this->codpedido = $codpedido;
-    }
-
-    /**
-     * Get codpedido
-     *
-     * @return integer 
-     */
-    public function getCodpedido()
-    {
-        return $this->codpedido;
-    }
-
-    /**
      * Set descripcion
      *
      * @param string $descripcion
+     * @return PedidoCompraLinea
      */
     public function setDescripcion($descripcion)
     {
         $this->descripcion = $descripcion;
+    
+        return $this;
     }
 
     /**
@@ -123,17 +109,20 @@ class PedidoCompraLinea
     /**
      * Set cantidad
      *
-     * @param decimal $cantidad
+     * @param float $cantidad
+     * @return PedidoCompraLinea
      */
     public function setCantidad($cantidad)
     {
         $this->cantidad = $cantidad;
+    
+        return $this;
     }
 
     /**
      * Get cantidad
      *
-     * @return decimal 
+     * @return float 
      */
     public function getCantidad()
     {
@@ -144,10 +133,13 @@ class PedidoCompraLinea
      * Set precio
      *
      * @param float $precio
+     * @return PedidoCompraLinea
      */
     public function setPrecio($precio)
     {
         $this->precio = $precio;
+    
+        return $this;
     }
 
     /**
@@ -164,10 +156,13 @@ class PedidoCompraLinea
      * Set descuento
      *
      * @param float $descuento
+     * @return PedidoCompraLinea
      */
     public function setDescuento($descuento)
     {
         $this->descuento = $descuento;
+    
+        return $this;
     }
 
     /**
@@ -184,10 +179,13 @@ class PedidoCompraLinea
      * Set total
      *
      * @param float $total
+     * @return PedidoCompraLinea
      */
     public function setTotal($total)
     {
         $this->total = $total;
+    
+        return $this;
     }
 
     /**
@@ -198,5 +196,28 @@ class PedidoCompraLinea
     public function getTotal()
     {
         return $this->total;
+    }
+
+    /**
+     * Set pedidocompralinea
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompra $pedidocompralinea
+     * @return PedidoCompraLinea
+     */
+    public function setPedidocompralinea(\PB\ComprasBundle\Entity\PedidoCompra $pedidocompralinea = null)
+    {
+        $this->pedidocompralinea = $pedidocompralinea;
+      //  $pedidocompralinea->setPedidocompralinea($this);
+        return $this;
+    }
+
+    /**
+     * Get pedidocompralinea
+     *
+     * @return PB\ComprasBundle\Entity\PedidoCompra 
+     */
+    public function getPedidocompralinea()
+    {
+        return $this->pedidocompralinea;
     }
 }

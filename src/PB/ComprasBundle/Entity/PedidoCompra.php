@@ -321,4 +321,52 @@ class PedidoCompra
     {
         return $this->iva;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $pedidocompralineas;
+
+
+    /**
+     * Add pedidocompralineas
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas
+     * @return PedidoCompra
+     */
+    public function addPedidocompralinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas)
+    {
+        $this->pedidocompralineas[] = $pedidocompralineas;
+        $pedidocompralineas->setPedidocompralinea($this);
+        return $this;
+    }
+
+    /**
+     * Remove pedidocompralineas
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas
+     */
+    public function removePedidocompralinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas)
+    {
+        $this->pedidocompralineas->removeElement($pedidocompralineas);
+    }
+
+    /**
+     * Get pedidocompralineas
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPedidocompralineas()
+    {
+        return $this->pedidocompralineas;
+    }
+    
+    function setPedidocompralineas(ArrayCollection $lineas){
+
+    	foreach ($lineas as $linea) {
+    		$linea->addPedidoCompra($this);
+    	}
+    	
+    	$this->pedidocompralineas = $lineas;
+    	
+    }
 }

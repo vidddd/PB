@@ -26,11 +26,11 @@ class ClienteController extends Controller
      */
     public function indexAction()
     {
-        list($filterForm, $queryBuilder) = $this->filter();
-
+    	
+    	list($filterForm, $queryBuilder) = $this->filter();
+        
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
-
-    
+		
         return $this->render('PBVentasBundle:Cliente:index.html.twig', array(
             'entities' => $entities,
             'pagerHtml' => $pagerHtml,
@@ -103,7 +103,7 @@ class ClienteController extends Controller
         $translator = $this->get('translator');
         $view = new TwitterBootstrapView();
         $pagerHtml = $view->render($pagerfanta, $routeGenerator, array(
-            'proximity' => 3,
+            'proximity' => 10,
             'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
             'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
         ));
@@ -115,7 +115,7 @@ class ClienteController extends Controller
     {
     	list($filterForm, $queryBuilder) = $this->filterBuscador();
     
-    	list($entities, $pagerHtml) = $this->paginator($queryBuilder);
+    	list($entities, $pagerHtml) = $this->paginatorBuscador($queryBuilder);
     
     
     	return $this->render('PBVentasBundle:Cliente:buscador.html.twig', array(
@@ -128,6 +128,7 @@ class ClienteController extends Controller
      * Create filter form and process filter request.
      *
      */
+    
     protected function filterBuscador()
     {
     	$request = $this->getRequest();
@@ -164,6 +165,37 @@ class ClienteController extends Controller
     	}
     	//var_dump($queryBuilder->getDql());
     	return array($filterForm, $queryBuilder);
+    }
+    /**
+     * Get results from paginator and get paginator view.
+     *
+     */
+    protected function paginatorBuscador($queryBuilder)
+    {
+    	// Paginator
+    	$adapter = new DoctrineORMAdapter($queryBuilder);
+    	$pagerfanta = new Pagerfanta($adapter);
+    	$currentPage = $this->getRequest()->get('page', 1);
+    	$pagerfanta->setCurrentPage($currentPage);
+    	$entities = $pagerfanta->getCurrentPageResults();
+    
+    	// Paginator - route generator
+    	$me = $this;
+    	$routeGenerator = function($page) use ($me)
+    	{
+    		return $me->generateUrl('buscador_cliente', array('page' => $page));
+    	};
+    
+    	// Paginator - view
+    	$translator = $this->get('translator');
+    	$view = new TwitterBootstrapView();
+    	$pagerHtml = $view->render($pagerfanta, $routeGenerator, array(
+    			'proximity' => 10,
+    			'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
+    			'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
+    	));
+    
+    	return array($entities, $pagerHtml);
     }
     /**
      * Finds and displays a Cliente entity.
@@ -323,5 +355,20 @@ class ClienteController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+    /**
+     * Return a ajax response
+     */
+    public function getNombreAction(){
+    	$request = $this->get('request');
+    	$id=$request->request->get('id');
+    	$em = $this->get('doctrine')->getEntityManager();
+    	
+    	$cliente = $em->getRepository('PBVentasBundle:cliente')->findOneById($id);
+        if($cliente && is_numeric($id)) {
+    		return new Response(json_encode(array('nombre' => $cliente->getNombre())));
+        } else {
+        	return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de cliente erróneo</span>')));
+        }
     }
 }

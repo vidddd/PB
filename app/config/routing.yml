@@ -14,9 +14,10 @@ PBInicioBundle:
     resource: "@PBInicioBundle/Resources/config/routing.yml"
     prefix:   /inicio
 
-# _welcome:
-#    pattern:  /
-#    defaults: { _controller: PBInicioBundle:Default:index }
+_welcome:
+    pattern:  /
+    defaults: { _controller: PBInicioBundle:Default:index }
+
 
 # Internal routing configuration to handle ESI
 #_internal:

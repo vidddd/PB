@@ -6,6 +6,12 @@ php symfony cc
 php symfony doctrine:build-schema
 
 
+Composer.json
+___________________________
+sudo composer self-update
+
+        "psliwa/pdf-bundle": "dev-master"
+
 Plantillas Admin
 ________________________
 
@@ -22,6 +28,7 @@ Text:
     const PATTERN_START_WITH 
     const PATTERN_END_WITH
     const PATTERN_CONTAINS
+    'condition_pattern' => TextFilterType::PATTERN_CONTAINS,
 	
 Number
 
@@ -30,6 +37,8 @@ Number
     const OPERATOR_GREATER_THAN_EQUAL
     const OPERATOR_LOWER_THAN        
     const OPERATOR_LOWER_THAN_EQUAL  
+	'condition_operator' => NumberFilterType::OPERATOR_GREATER_THAN,
+
 
 Boolean:
     const VALUE_YES = 'y';

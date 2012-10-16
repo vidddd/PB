@@ -8,49 +8,35 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\NumberFilterType;
+use PB\VentasBundle\Form\DataTransformer\ClilenteToIdTransformer;
 
 class PedidoFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+    	$hoy = new \DateTime();
         $builder
-            ->add('id', 'filter_number_range')
-            ->add('codpedido', 'filter_text')
-            ->add('estado', 'filter_number_range')
-            ->add('codalbaran', 'filter_number_range')
-            ->add('codfactura', 'filter_number_range')
-            ->add('fecha', 'filter_date_range')
-            ->add('fecha_entrega', 'filter_date_range')
-            ->add('subcliente', 'filter_text')
-            ->add('cantidad', 'filter_number_range')
-            ->add('mtycolor', 'filter_text')
-            ->add('tipomaterial', 'filter_number_range')
-            ->add('ancho', 'filter_number_range')
-            ->add('galga', 'filter_number_range')
-            ->add('plegado', 'filter_number_range')
-            ->add('bobinas', 'filter_number_range')
-            ->add('metros', 'filter_number_range')
-            ->add('pesoteorico', 'filter_number_range')
-            ->add('tratado', 'filter_text')
-            ->add('tipotubo', 'filter_text')
-            ->add('kilosimp', 'filter_number_range')
-            ->add('cliche', 'filter_text')
-            ->add('medidaimp', 'filter_text')
-            ->add('soldadura', 'filter_text')
-            ->add('impresion', 'filter_text')
-            ->add('colores', 'filter_text')
-            ->add('maquina', 'filter_text')
-            ->add('cantidadc', 'filter_text')
-            ->add('anchoc', 'filter_number_range')
-            ->add('largoc', 'filter_number_range')
-            ->add('solapa', 'filter_number_range')
-            ->add('almacen', 'filter_text')
-            ->add('operario', 'filter_text')
-            ->add('notasextrusion', 'filter_text')
-            ->add('notasimpresion', 'filter_text')
-            ->add('notascorte', 'filter_text')
-            ->add('precio', 'filter_number_range')
-        ;
+            ->add('id', 'filter_number')
+            ->add('cliente', 'filter_number')
+            ->add('subcliente', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS))
+            /*->add('fecha', 'filter_date', array(
+							    //'widget' => 'single_text',
+            					//'condition_pattern' => TextFilterType::PATTERN_CONTAINS,
+            					//'condition_operator' => NumberFilterType::OPERATOR_GREATER_THAN,
+							    //'format' => 'dd.MM.yyyy',
+    							//'data' => '',
+            					//'error_bubbling' => true
+							))*/
+		    ->add('fecha', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
+		    															   'label' => 'aaaaa',
+		    											//'format' => 'dd.MM.yyyy'
+		    											),
+		    										   'right_date' => array('widget' => 'single_text')
+		    									 ))
+
+         ;
 
         $listener = function(FormEvent $event)
         {

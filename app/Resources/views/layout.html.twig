@@ -35,6 +35,7 @@
 								<li><a href="{{ path('pedido_new') }}">Nuevo Pedido</a></li>
 						</ul>
 					</li>
+					<li><a href="{{ path('albaran') }}">Albaranes</a>
 				</ul>
 			</li>
 		</ul>
@@ -48,13 +49,9 @@
 					<!-- sidebar -->
 			</div>
 			<div id="main-content" class="{% block width100 %}{% endblock %}">
+			
     {% for type, flashMessages in app.session.flashbag.all() %}
         {% for flashMessage in flashMessages %}
-        <!-- <div class=" success ui-corner-all">
-						<span>Success message</span>
-						Lorem ipsum dolor sit amet, consectetuer adipiscing elit
-					</div>
-			-->		
             <div class="response-msg {{ type }}">
                 <span>Mensaje </span>
         		{{ flashMessage|trans({}, 'JordiLlonchCrudGeneratorBundle') }}

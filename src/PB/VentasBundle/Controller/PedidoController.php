@@ -105,7 +105,7 @@ class PedidoController extends Controller
             'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
             'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
         ));
-    
+       // var_dump($queryBuilder->getDql());
         return array($entities, $pagerHtml);
     }
     
@@ -220,7 +220,7 @@ class PedidoController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
-            return $this->redirect($this->generateUrl('pedido_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('pedido_show', array('id' => $id)));
         } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }

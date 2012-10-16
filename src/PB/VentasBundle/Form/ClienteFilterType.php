@@ -15,8 +15,8 @@ class ClienteFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', 'filter_number_range')
-            ->add('codcliente', 'filter_number_range')
+            ->add('id', 'filter_number')
+            ->add('codcliente', 'filter_number')
             ->add('nombre', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
             ->add('nif')
             ->add('localidad', 'filter_text')

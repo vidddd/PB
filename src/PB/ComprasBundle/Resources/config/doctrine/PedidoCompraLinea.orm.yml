@@ -11,17 +11,29 @@ PB\ComprasBundle\Entity\PedidoCompraLinea:
     referencia:
       type: string
       length: 255
-    codpedido:
-      type: integer
+      nullable: true
     descripcion:
       type: string
       length: 255
+      nullable: true
     cantidad:
       type: decimal
+      nullable: true
     precio:
       type: float
+      nullable: true
     descuento:
       type: float
+      nullable: true
     total:
       type: float
-  lifecycleCallbacks: {  }
+      nullable: true
+  manyToOne:
+    pedidocompralinea:
+      targetEntity: PB\ComprasBundle\Entity\PedidoCompra
+      inversedBy: pedidocompralineas
+      cascade: [persist]
+      joinColumn:
+        name: pedidocompra_id
+        referencedColumnName: id
+lifecycleCallbacks: {  }

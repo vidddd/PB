@@ -22,11 +22,11 @@
 	   				<tbody>		
 	         			<tr>
 	        				<td class="label">{{ form_label(filterForm.id, 'Código Pedido') }}</td>
-	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
 	      				<tr>
 	      				<tr>
-	        				<td class="label">{{ form_label(filterForm.mtycolor, 'Cliente') }}</td>
-	        				<td class="campo">{{ form_widget(filterForm.mtycolor) }}</td><td>{{ form_errors(filterForm.mtycolor) }}</td>
+	        				<td class="label">{{ form_label(filterForm.cliente, 'Código Cliente') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.cliente, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': '' , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a></td><td>{{ form_errors(filterForm.cliente) }}</td>
 	      				<tr>
 	      				<tr>
 	        				<td class="label">{{ form_label(filterForm.subcliente, 'Subcliente') }}</td>
@@ -34,7 +34,7 @@
 	      				<tr>
 	      	         	<tr>
 	        				<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
-	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
 	      				<tr>
 	            </tbody></table>
 	                <p class="botones-buscador">
@@ -57,7 +57,7 @@
             <th>Cliente</th>
             <th>Fecha</th>
             <th>Subcliente</th>
-            <th>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+            <th width="70">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
         </tr>
     </thead>
     <tbody>

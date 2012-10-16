@@ -828,7 +828,6 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 #footer {
 	padding:30px 0 50px;
 	text-align:center;
-	font-size:0.9em;
 }
 
 #footer #menu {
@@ -933,7 +932,7 @@ border-radius: 3px;
 	   border-top: 1px solid #DDDDDD;
 	   border-bottom: 1px solid #DDDDDD;
 	   float:left;
-	   height:480px;
+	   height:560px;
 }
 .column-pedido-last{
 	   border-right: 1px solid #DDDDDD;
@@ -951,3 +950,65 @@ border-radius: 3px;
     width:325px;
     border-bottom: 1px solid #DDDDDD;
 }
+.codpedido{
+	font-size:13px;
+	margin-top:3px;
+}
+#pedido{
+	font-family:'Lucida Grande';
+}
+.titulo2 {
+    border-bottom: 2px solid #EF853D;
+    display: inline-block;
+    margin: 20px 0;
+    padding-bottom: 5px;
+    padding-right: 20px;
+}
+.titulo2 h3 {
+    font-size: 20px;font-weight: bold;text-transform: uppercase;
+}
+
+#pedido .toppedido{
+	border-colapse:colapse;
+	border: 1px solid #DDDDDD;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    display: block;
+    line-height: 21.5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+#pedido .img-pedido{
+	float:left;
+	padding: 10px;
+	width: 120px;	
+	height:100px;
+	    border-right: 1px solid #DDDDDD;
+	}
+#pedido table{
+	float:right;
+	height:61px;	
+	width:86%;
+	margin-left:-2px;
+}
+#pedido .tabla1 {
+	border-bottom: 1px solid #DDDDDD;
+}
+#pedido .tabla2{
+	border-bottom: 1px solid #DDDDDD;
+}
+#pedido table td{
+	border-right: 1px solid #DDDDDD;
+	vertical-align:middle;
+}
+#pedido table td.label3 {
+    background: none repeat scroll 0 0 #F7F7F7;
+    color:#666;
+    padding:4px 6px;	
+	font-size:12px;
+}
+#pedido table td.dato{
+	font-weight:bolder;
+	font-size:14px;
+	padding-left:12px;
+} 

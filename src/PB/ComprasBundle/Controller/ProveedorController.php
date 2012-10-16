@@ -111,11 +111,12 @@ class ProveedorController extends Controller
     
         return array($entities, $pagerHtml);
     }
+    
     public function buscadorProveedorAction()
     {
     	list($filterForm, $queryBuilder) = $this->filterBuscador();
     
-    	list($entities, $pagerHtml) = $this->paginator($queryBuilder);
+    	list($entities, $pagerHtml) = $this->paginatorBuscador($queryBuilder);
     
     
     	return $this->render('PBComprasBundle:Proveedor:buscador.html.twig', array(
@@ -165,6 +166,34 @@ class ProveedorController extends Controller
     	//var_dump($queryBuilder->getDql());
     	return array($filterForm, $queryBuilder);
     }
+    protected function paginatorBuscador($queryBuilder)
+    {
+    	// Paginator
+    	$adapter = new DoctrineORMAdapter($queryBuilder);
+    	$pagerfanta = new Pagerfanta($adapter);
+    	$currentPage = $this->getRequest()->get('page', 1);
+    	$pagerfanta->setCurrentPage($currentPage);
+    	$entities = $pagerfanta->getCurrentPageResults();
+    
+    	// Paginator - route generator
+    	$me = $this;
+    	$routeGenerator = function($page) use ($me)
+    	{
+    		return $me->generateUrl('buscador_proveedor', array('page' => $page));
+    	};
+    
+    	// Paginator - view
+    	$translator = $this->get('translator');
+    	$view = new TwitterBootstrapView();
+    	$pagerHtml = $view->render($pagerfanta, $routeGenerator, array(
+    			'proximity' => 3,
+    			'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
+    			'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
+    	));
+    
+    	return array($entities, $pagerHtml);
+    }
+    
     /**
      * Finds and displays a Proveedor entity.
      *
@@ -325,5 +354,20 @@ class ProveedorController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+    /**
+     * Return a ajax response
+     */
+    public function getNombreAction(){
+    	$request = $this->get('request');
+    	$id=$request->request->get('id');
+    	$em = $this->get('doctrine')->getEntityManager();
+    	 
+    	$cliente = $em->getRepository('PBComprasBundle:proveedor')->findOneById($id);
+    	if($cliente && is_numeric($id)) {
+    		return new Response(json_encode(array('nombre' => $cliente->getNombre())));
+    	} else {
+    		return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de proveedor erróneo</span>')));
+    	}
     }
 }

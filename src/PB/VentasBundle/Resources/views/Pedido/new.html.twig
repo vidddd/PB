@@ -9,22 +9,25 @@
           <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
           {% endif %}
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">
-		<form class="well" action="{{ path('pedido_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
+		<form action="{{ path('pedido_create') }}" method="post" {{ form_enctype(form) }}>
 			<div class="form-invoice">
 				<div class="span-17 form-horizontal label-column-small form-condensed">
 					<div class="control-group">
 						{{ form_label(form.cliente, null, { 'label': ' Cliente', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.cliente, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a>
-			    			
+			    			{{ form_widget(form.cliente, { 'attr': {'class': 'small buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de CLIENTES"><img src="{{ asset('images/search.png') }}" /></a>
 		        		</div>
+	     			</div>
+	     			<div class="control-group">
+	     			      <label class="control-label">&nbsp;</label> 
+	     			      <div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div>
 	     			</div>
      			</div>
      			<div class="span-17 form-horizontal label-column-small form-condensed">
 					<div class="control-group required">
-						{{ form_label(form.id, null, { 'label': 'Código Pedido', 'label_attr': {'class': 'control-label'} }) }}
+						<label class="control-label required">Código Pedido</label>
 						<div class="controls">
-			    			{{ form_widget(form.id, { 'attr': {'class': 'small'}}) }}
+			    					{{ entity.id }}
 		        		</div>
 	     			</div>
      			</div>
@@ -106,6 +109,11 @@
 						<div class="controls">
 			    			{{ form_widget(form.tipotubo, { 'attr': {'class': 'small numeric'}}) }}	
 		      	</div></div>
+		 		<div class="control-group">
+						{{ form_label(form.notasextrusion, null, { 'label': 'Notas', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.notasextrusion, { 'attr': {'cols': '25', 'rows': '3'} }) }}	
+		      	</div></div>
 			</div>
 			<div class="span-17 form-horizontal label-column-small form-condensed column-pedido">
 				<span>IMPRESIÓN</span>
@@ -122,7 +130,12 @@
 		      	<div class="control-group">
 						{{ form_label(form.medidaimp, null, { 'label': 'Medida Imp', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.medidaimp, { 'attr': {'class': 'small '}}) }}	
+			    			{{ form_widget(form.medidaimp, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+		      	<div class="control-group">
+						{{ form_label(form.soldadura, null, { 'label': 'Soldadura', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.soldadura, { 'attr': {'class': 'small numeric'}}) }}	
 		      	</div></div>
 				<div class="control-group">
 						{{ form_label(form.impresion, null, { 'label': 'Impresión', 'label_attr': {'class': 'control-label'} }) }}
@@ -133,6 +146,11 @@
 						{{ form_label(form.colores, null, { 'label': 'Colores', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
 			    			{{ form_widget(form.colores, { 'attr': {'class': 'small'}}) }}	
+		      	</div></div>
+		 		<div class="control-group">
+						{{ form_label(form.notasimpresion, null, { 'label': 'Notas', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.notasimpresion, { 'attr': {'cols': '25', 'rows': '3'} }) }}	
 		      	</div></div>	
 			</div>
 			<div class="span-17 form-horizontal label-column-small form-condensed column-pedido column-pedido-last">
@@ -145,7 +163,7 @@
 				<div class="control-group">
 						{{ form_label(form.cantidadc, null, { 'label': 'Cantidad', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.cantidadc, { 'attr': {'class': 'small numeric'}}) }}	
+			    			{{ form_widget(form.cantidadc, { 'attr': {'class': 'small'}}) }}	
 		      	</div></div>
 				<div class="control-group">
 						{{ form_label(form.anchoc, null, { 'label': 'Ancho', 'label_attr': {'class': 'control-label'} }) }}
@@ -172,6 +190,11 @@
 						<div class="controls">
 			    			{{ form_widget(form.operario, { 'attr': {'class': 'small'}}) }}	
 		      	</div></div>
+		 		<div class="control-group">
+						{{ form_label(form.notascorte, null, { 'label': 'Notas', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.notascorte, { 'attr': {'cols': '25', 'rows': '3'} }) }}	
+		      	</div></div>
 			</div>
 	  </div><!-- datos-pedido -->
 	<div class="clearfix"></div>
@@ -184,5 +207,6 @@
           <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
+		{% include 'PBVentasBundle:Cliente:js_get_cliente.html.twig' %} 
 
 {% endblock %}

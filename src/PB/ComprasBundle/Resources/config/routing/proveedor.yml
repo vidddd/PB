@@ -6,6 +6,13 @@ buscador_proveedor:
     pattern:  /buscador
     defaults: { _controller: "PBComprasBundle:Proveedor:buscadorProveedor" }
 
+get_nombre_proveedor:
+    pattern:  /getnombre
+    defaults: { _controller: "PBComprasBundle:Proveedor:getNombre", _format: json }
+    requirements:
+        _format: (xml|json)
+        _method:  POST
+
 proveedor_show:
     pattern:  /{id}/show
     defaults: { _controller: "PBComprasBundle:Proveedor:show" }

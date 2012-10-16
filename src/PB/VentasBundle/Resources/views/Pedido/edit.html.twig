@@ -1,31 +1,213 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+{% extends '::layout.html.twig' %}
 
-{% block title %}
-{{ parent() }} - Pedido {{ 'views.edit.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-{% endblock %}
+{% block title "Editar Pedido" %}
+{% form_theme edit_form 'PBInicioBundle:Form:fields.html.twig' %}
+{% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
+{% block content %}
 
-{% block page %}
-
-<h1>Pedido {{ 'views.edit.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
-
+<div class="title title-spacing ventas"><h2>Editar Pedido</h2></div>
+          {% if form_errors(edit_form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(edit_form) }}</div>
+          {% endif %}
+ <div class="portlet ui-widget ui-corner-all form-container container-sin-header"> 
 <form class="well" action="{{ path('pedido_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    {{ form_widget(edit_form) }}
-    <p>
-        <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-    </p>
-</form>
-
-<div>
-    <div class="float-left">
-        <a class="btn" href="{{ path('pedido') }}">
-            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+<div class="form-invoice">
+				<div class="span-17 form-horizontal label-column-small form-condensed">
+					<div class="control-group">
+						{{ form_label(edit_form.cliente, null, { 'label': ' Cliente', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.cliente, { 'attr': {'class': 'small buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de CLIENTES"><img src="{{ asset('images/search.png') }}" /></a>
+		        		</div>
+	     			</div>
+	     			<div class="control-group">
+	     			      <label class="control-label">&nbsp;</label> 
+	     			      <div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div>
+	     			</div>
+     			</div>
+     			<div class="span-17 form-horizontal label-column-small form-condensed">
+					<div class="control-group required">
+						<label class="control-label required">Código Pedido</label>
+						<div class="controls">
+			    				<span class="codpedido">	{{ entity.id }}</span>
+		        		</div>
+	     			</div>
+     			</div>
+      			<div class="span-16 form-horizontal label-column-small form-condensed">
+	     			<div class="control-group required">
+						{{ form_label(edit_form.fecha, null, { 'label': 'Fecha', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.fecha, { 'attr': {'class': 'date small'}}) }}
+		        		</div>
+	     			</div>
+     			</div>
+     			<div class="span-17 form-horizontal label-column-small form-condensed">
+     			</div>
+     			<div class="span-34 form-horizontal label-column-small form-condensed">
+     		    	<div class="control-group required">
+						{{ form_label(edit_form.subcliente, null, { 'label': 'Subcliente', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.subcliente, { 'attr': {'class': 'large'}}) }}
+		        		</div>
+	     			</div>	
+     			</div>
+ 			</div>
+		</div>
+		<div id="datos-pedido">
+			<div class="span-17 form-horizontal label-column-small form-condensed column-pedido">
+				<span>EXTRUSION</span><div class="clearfix"></div>
+				<div class="control-group">
+						{{ form_label(edit_form.cantidad, null, { 'label': 'Cantidad', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.cantidad, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+				<div class="control-group">
+						{{ form_label(edit_form.mtycolor, null, { 'label': 'Material y Color', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.mtycolor, { 'attr': {'class': 'small'}}) }}	
+		      	</div></div>
+		      	<div class="control-group">
+						{{ form_label(edit_form.tipomaterial, null, { 'label': 'Tipo Material', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.tipomaterial, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+				<div class="control-group">
+						{{ form_label(edit_form.ancho, null, { 'label': 'Ancho', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.ancho, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>	
+		      	<div class="control-group">
+						{{ form_label(edit_form.galga, null, { 'label': 'Galga', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.galga, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+		     	<div class="control-group">
+						{{ form_label(edit_form.plegado, null, { 'label': 'Plegado', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.plegado, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>		
+		 		<div class="control-group">
+						{{ form_label(edit_form.bobinas, null, { 'label': 'Bobinas', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.bobinas, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+				<div class="control-group">
+						{{ form_label(edit_form.metros, null, { 'label': 'Metros', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.metros, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+		 		<div class="control-group">
+						{{ form_label(edit_form.pesoteorico, null, { 'label': 'Peso Teorico', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.pesoteorico, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+				<div class="control-group">
+						{{ form_label(edit_form.tratado, null, { 'label': 'Tratado', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.tratado, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+		 		<div class="control-group">
+						{{ form_label(edit_form.tipotubo, null, { 'label': 'Tipo Tubo', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.tipotubo, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+		 		<div class="control-group">
+						{{ form_label(edit_form.notasextrusion, null, { 'label': 'Notas', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.notasextrusion, { 'attr': {'cols': '25', 'rows': '3'} }) }}	
+		      	</div></div>
+			</div>
+			<div class="span-17 form-horizontal label-column-small form-condensed column-pedido">
+				<span>IMPRESIÓN</span>
+				<div class="control-group">
+						{{ form_label(edit_form.kilosimp, null, { 'label': 'Kilos', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.kilosimp, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+				<div class="control-group">
+						{{ form_label(edit_form.cliche, null, { 'label': 'Cliche', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.cliche, { 'attr': {'class': 'small'}}) }}	
+		      	</div></div>
+		      	<div class="control-group">
+						{{ form_label(edit_form.medidaimp, null, { 'label': 'Medida Imp', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.medidaimp, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+		      	<div class="control-group">
+						{{ form_label(edit_form.soldadura, null, { 'label': 'Soldadura', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.soldadura, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+				<div class="control-group">
+						{{ form_label(edit_form.impresion, null, { 'label': 'Impresión', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.impresion, { 'attr': {'class': 'small'}}) }}	
+		      	</div></div>	
+		      	<div class="control-group">
+						{{ form_label(edit_form.colores, null, { 'label': 'Colores', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.colores, { 'attr': {'class': 'small'}}) }}	
+		      	</div></div>
+		 		<div class="control-group">
+						{{ form_label(edit_form.notasimpresion, null, { 'label': 'Notas', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.notasimpresion, { 'attr': {'cols': '25', 'rows': '3'} }) }}	
+		      	</div></div>	
+			</div>
+			<div class="span-17 form-horizontal label-column-small form-condensed column-pedido column-pedido-last">
+				<span>CORTE</span>
+				<div class="control-group">
+						{{ form_label(edit_form.maquina, null, { 'label': 'Maquina', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.maquina, { 'attr': {'class': 'small'}}) }}	
+		      	</div></div>	
+				<div class="control-group">
+						{{ form_label(edit_form.cantidadc, null, { 'label': 'Cantidad', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.cantidadc, { 'attr': {'class': 'small'}}) }}	
+		      	</div></div>
+				<div class="control-group">
+						{{ form_label(edit_form.anchoc, null, { 'label': 'Ancho', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.anchoc, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+				<div class="control-group">
+						{{ form_label(edit_form.largoc, null, { 'label': 'Largo', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.largoc, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+				<div class="control-group">
+						{{ form_label(edit_form.solapa, null, { 'label': 'Solapa', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.solapa, { 'attr': {'class': 'small numeric'}}) }}	
+		      	</div></div>
+				<div class="control-group">
+						{{ form_label(edit_form.almacen, null, { 'label': 'Almacen', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.almacen, { 'attr': {'class': 'small'}}) }}	
+		      	</div></div>
+				<div class="control-group">
+						{{ form_label(edit_form.operario, null, { 'label': 'Operario', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.operario, { 'attr': {'class': 'small'}}) }}	
+		      	</div></div>
+		 		<div class="control-group">
+						{{ form_label(edit_form.notascorte, null, { 'label': 'Notas', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(edit_form.notascorte, { 'attr': {'cols': '25', 'rows': '3'} }) }}	
+		      	</div></div>
+			</div>
+	  </div><!-- datos-pedido -->
+	<div class="clearfix"></div>
+	<div class="guardar"><button type="submit" class="ui-state-default ui-corner-all">Guardar</button></div> 
+		{{ form_widget(edit_form._token) }}</form>
+	
+	<div class="clearfix"></div>
+    <div class="float-left volver">
+        <a href="{{ path('pedido') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
-    <div class="float-left">
-        <form action="{{ path('pedido_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button class="btn btn-danger" type="submit" onclick="return confirm('Desea eliminar al proyecto del sistema?');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-        </form>
-    </div>
 </div>
+		{% include 'PBVentasBundle:Cliente:js_get_cliente.html.twig' %} 
 {% endblock %}

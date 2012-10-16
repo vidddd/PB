@@ -3,7 +3,8 @@
 namespace PB\ComprasBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
  * PedidoCompraRepository
@@ -13,6 +14,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProveedorRepository extends EntityRepository
 {
+	function getTipoproveedor(){
+		
+	}
+	private $tipoproveedortag;
 	
+	public function getTipoProveedorTag(){
+		$yaml = new Parser();
+		try {
+			$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+		} catch (ParseException $e) {
+			printf("Unable to parse the YAML string: %s", $e->getMessage());
+		}
+		 
+		$tipos = $value['tipo_proveedor'];
+		$this->tipoproveedortag = $tipos[$this->tipo_proveedor];
+	}
 
 }

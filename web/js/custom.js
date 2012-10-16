@@ -1,7 +1,8 @@
 $(document).ready(function() { 
 
 	// Navigation menu
-	$(".numeric").numeric();
+	$(".numeric").numeric({ negative : false });
+	$(".numeric-negative").numeric();
 	//$(".numeric").numeric(","); //Sólo con esta instanciación tenemos que podemos escribir números y una coma
 	$('.date').datepicker({ dateFormat: 'yy-mm-dd' })
 
@@ -192,13 +193,6 @@ $(document).ready(function() {
 		function() { $(this).addClass('ui-state-hover'); }, 
 		function() { $(this).removeClass('ui-state-hover'); }
 	);
-	
-	//Sortable
-/*
-	$(".column").sortable({
-		connectWith: '.column'
-	});
-*/
 	//Sidebar only sortable boxes
 	$(".side-col").sortable({
 		axis: 'y',
@@ -233,63 +227,28 @@ $(document).ready(function() {
 			fade: 250
 			});
 		});
-		
-	/* Theme changer - set cookie */
-
-    $(function() {
-       
-		$("link[title='style']").attr("href","css/styles/default/ui.css");
-        $('a.set_theme').click(function() {
-           	var theme_name = $(this).attr("id");
-			$("link[title='style']").attr("href","css/styles/" + theme_name + "/ui.css");
-			$.cookie('theme', theme_name );
-			$('a.set_theme').css("fontWeight","normal");
-			$(this).css("fontWeight","bold");
-        });
-		
-		var theme = $.cookie('theme');
-	    
-		if (theme == 'default') {
-	        $("link[title='style']").attr("href","css/styles/default/ui.css");
-	    };
-	    
-		if (theme == 'light_blue') {
-	        $("link[title='style']").attr("href","css/styles/light_blue/ui.css");
-	    };
-	
-
-	/* Layout option - Change layout from fluid to fixed with set cookie */
-       
-       $("#fluid_layout a").click (function(){
-			$("#fluid_layout").hide();
-			$("#fixed_layout").show();
-			$("#page-wrapper").removeClass('fixed');
-			$.cookie('layout', 'fluid' );
-       });
-
-       $("#fixed_layout a").click (function(){
-			$("#fixed_layout").hide();
-			$("#fluid_layout").show();
-			$("#page-wrapper").addClass('fixed');
-			$.cookie('layout', 'fixed' );
-       });
-
-	    var layout = $.cookie('layout');
-	    
-		if (layout == 'fixed') {
-			$("#fixed_layout").hide();
-			$("#fluid_layout").show();
-	        $("#page-wrapper").addClass('fixed');
-	    };
-
-		if (layout == 'fluid') {
-			$("#fixed_layout").show();
-			$("#fluid_layout").hide();
-	        $("#page-wrapper").addClass('fluid');
-	    };
-	
+   
+    jQuery(function($){
+    	$.datepicker.regional['es'] = {
+    		closeText: 'Cerrar',
+    		prevText: '&#x3c;Ant',
+    		nextText: 'Sig&#x3e;',
+    		currentText: 'Hoy',
+    		monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+    		'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+    		monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+    		'Jul','Ago','Sep','Oct','Nov','Dic'],
+    		dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+    		dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+    		dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+    		weekHeader: 'Sm',
+    		dateFormat: 'dd/mm/yy',
+    		firstDay: 1,
+    		isRTL: false,
+    		showMonthAfterYear: false,
+    		yearSuffix: ''};
+    	$.datepicker.setDefaults($.datepicker.regional['es']);
     });
-    
     
  	/* Check all table rows */
 	

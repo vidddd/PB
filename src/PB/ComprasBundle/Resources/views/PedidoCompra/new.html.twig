@@ -22,6 +22,10 @@
 			    			
 		        		</div>
 	     			</div>
+	     			<div class="control-group">
+	     			      <label class="control-label">&nbsp;</label> 
+	     			      <div class="controls nombre-proveedor" style="display:none;"><h2>Nombre de proveedor</h2></div>
+	     			</div>
      			</div>
      			<div class="span-17 form-horizontal label-column-small form-condensed">
 	     			<div class="control-group required">
@@ -31,7 +35,7 @@
 		        		</div>
 	     			</div>
 	     			<div class="control-group required">
-						{{ form_label(form.fecha, null, { 'label': 'Fecha Entrega', 'label_attr': {'class': 'control-label'} }) }}
+						{{ form_label(form.fecha_entrega, null, { 'label': 'Fecha Entrega', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
 			    			{{ form_widget(form.fecha_entrega, { 'attr': {'class': 'date small'}}) }}
 		        		</div>
@@ -62,66 +66,62 @@
  	</div>
 	<div class="clearfix"></div>
 	<div id="invoice-lines">
+      <div class="clearfix"></div>
 		<!-- time entries -->
 		<table cellspacing="0" style="" class="invoice-lines spreadsheet" id="invoice-time">
 			<thead>
 				<tr>
-					<td class="action-buttons">
-						<div class="delete"><a title="Delete section" class="invoice-delete" href="#">Delete section</a></div>
-					</td>
 					<th style="width: 64px;">Referencia</th>
 					<th style="width: 350px;">Descripcion</th>
 					<th class="ta_right" style="width: 45px;">Cantidad</th>
 					<th class="ta_right" style="width: 45px;">Precio</th>
-					<th style="width: 45px;">Descuento</th>
+					<th style="width: 40px;">Descuento</th>
 					<th class="ta_right last" style="width: 45px;">Total</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr style="">
-					<td class="action-buttons">
-						<div class="handle"><a title="Move" class="invoice-drag" href="#">Move</a></div>
-						<div class="insert"><a title="Add line" class="invoice-add-line" href="#">Add line</a></div>
-						<div class="delete"><a title="Delete line" class="invoice-delete" href="#">Delete line</a></div>
-					</td>
-					<td class="first-column editable">
-					    <input type="text" value="" class="ta_right" name="referencia[]">
+	     {% macro prototype(linea) %}
+			<tr class="item-row">	
+					<td class="editable">
+					    {{ form_widget(linea.referencia, { 'attr': {'class': 'ta_right'}}) }}
+					    <div class="delete-wrap"><a title="Borrar Linea" class="delete" href="#" onclick="return false;">&nbsp;</a></div>
 					</td>
 					<td class="editable">
-						<textarea name="descrip[]" style="overflow: none;"></textarea>
+					    {{ form_widget(linea.descripcion, { 'attr': {'class': ''}}) }}
 					</td>
 					<td class="editable">
-						<input type="text" value="" class="ta_right" name="unit_cost[]">
+					    {{ form_widget(linea.cantidad, { 'attr': {'class': 'ta_right'}}) }}
 					</td>
 					<td class="editable">
-						<input type="text" value="" class="ta_right iefix-3 ie7fix-1" name="qty[]">
+					    {{ form_widget(linea.precio, { 'attr': {'class': 'ta_right'}}) }}
 					</td>
 					<td class="editable">
-						<input type="text" value="" class="ta_right iefix-3 ie7fix-1" name="descuento[]">
+					    {{ form_widget(linea.descuento, { 'attr': {'class': 'ta_right'}}) }}
 					</td>
 					<td class="total">
 						<span class="ta_right">0.00</span><!-- price -->
-						<input type="hidden" value="0.00" name="price[]">
-						<input type="hidden" value="" name="expenseid[]">
-						<input type="hidden" value="" name="logid_list[]">
-						<input type="hidden" value="2" name="line_type[]">
-						<input type="hidden" value="" name="todo_ids[]">
-						<input type="hidden" value="" name="lineid[]">
-					</td>
+					 {{ form_widget(linea.total, { 'attr': {'class': 'ta_right'}}) }}
+					</td> 
 				</tr>
+	     {% endmacro %}
+			<tbody>
+			  {% for linea in form.pedidocompralineas %}
+                {{_self.prototype(linea)}}
+  			   {% endfor %}
 			</tbody>
 		</table>
-	</div>	
+	</div>
+    <script type="text/html">
+        {{ _self.prototype(form.pedidocompralineas.get('prototype')) }} {# don't know if it is the best way to access prototype #}
+    </script>
+	
 	<div class="totals">
 	<div class="rule top"></div>
 	
     <div class="float_left">
     	<div class="spreadsheet actions">
     		<ul>
-    			<li class="dropdown-button no-static mar_r5" style="display: block;">
-    				<span style="float: left;"><a onclick="return false;" href="#">Add Line</a></span>
-    			</li>
-    		</ul>
+    		<li title="" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-plusthick"></span><a id="addrow" onclick="return false;" href="#">Añadir Línea</a></li>
+    		<ul>
     	</div>
     	
     	    </div>
@@ -131,13 +131,13 @@
 			<thead>
 				<tr id="subtotal-row">
 					<td style="width: 20px">&nbsp;<input type="hidden" name="subtotal" readonly="" style="width: 100%" value="0.00"></td>
-					<th style="width: 150px">Subtotal</th>
+					<th style="width: 150px">Total</th>
 					<td class="last-column">€0.00</td>
 				</tr>
 
 				<tr id="discount-total-row">
 					<td style="width: 20px">&nbsp;<input type="hidden" name="discount_total" readonly="" style="width: 100%" value="0.00"></td>
-					<th style="width: 150px">Discount</th>
+					<th style="width: 150px">Descuento</th>
 					<td class="last-column">0.00</td>
 				</tr>
 				
@@ -151,17 +151,17 @@
 			<tbody>			
 				<tr id="amount-row">
 					<td style="width: 20px">&nbsp;<input type="hidden" name="amount" value="0.00"></td>
-					<th class="span-9 amount-cell"><span class="amount-total">Invoice Total</span> <span class="currency">(EUR)</span></th>
+					<th class="span-9 amount-cell"><span class="amount-total">Total</span> <span class="currency">(EUR)</span></th>
 					<td class="last-column">€0.00</td>
 				</tr>
 								<tr id="paid-row">
 					<td style="width: 20px">&nbsp;<input type="hidden" value="0.00" name="paid"></td>
-					<th>Paid to Date</th>
+					<th>Iva</th>
 					<td class="last-column">0.00</td>
 				</tr>
 				<tr class="invoice-total-box" id="outstanding-row">
 					<td style="width: 20px">&nbsp;<input type="hidden" name="outstanding" value="0.00"></td>
-					<th>Balance <span class="currency">(EUR)</span></th>
+					<th>Total</th>
 					<td class="last-column">€0.00</td>
 				</tr>
 							</tbody>
@@ -198,4 +198,31 @@
     </div>
 
 </div>
+<script>
+    /* add pizzas */
+    var add = function() {
+        var index = $('table.invoice-lines tbody tr').length;
+        var row = $('script[type="text/html"]').text();
+        row.replace(/___name___/g, index);
+        alert(row);
+        $('table.invoice-lines tbody').append(row);
+    };
+
+    $('#addrow').live('click', function(event) {
+            add();
+            event.preventDefault();
+    });
+    $(".delete").live('click',function(){
+        $(this).closest('tr').remove();
+        //update_total();
+        if ($(".delete").length < 2) $(".delete").hide();
+        event.preventDefault();
+      });
+
+    if ($('table.invoice-lines tbody tr').length === 0) {
+        add();
+    }
+
+</script>
+		{% include 'PBComprasBundle:Proveedor:js_get_proveedor.html.twig' %} 
 {% endblock %}

@@ -1,49 +1,205 @@
 {% extends '::layout.html.twig' %}
 
-{% block title %}
-{{ parent() }} - PedidoCompra {{ 'views.show.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-{% endblock %}
+{% block title 'Pedido compra' %}
 
-{% block page %}
+{# block width100 "widthtotal" %}{% block displaysidebar "display:none;" #}
+{% block content %}
 
-<h1>PedidoCompra</h1>
+<div class="invoice-container">
+	<div class="invheader">
+		<div class="invheader-upper">
+		<div class="invheader-address-account">
+		<div class="titulo2"><h3>PEDIDO DE COMPRA</h3></div>
+			PB<br>Spain
+					</div>
 
-<form class="form-horizontal">
-    <fieldset>        <div class="control-group">
-            <label class="control-label">Id</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.id }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Codproveedor</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codproveedor }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Codpedido</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codpedido }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fecha</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fecha|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fecha_entrega</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechaentrega|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Referencia</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.referencia }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Forma_envio</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.formaenvio }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Importe</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.importe }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Iva</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.iva }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Total</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.total }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Descuento</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.descuento }}</span>            </div>
-        </div>    </fieldset>
-</form>
+		<div class="invheader-logo-container">
+			<div class="invheader-logo">
+				<img width="150" height="55" alt="" src="/images/logos/blank.gif"><br>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="invheader-lower">
+		<div class="invheader-address-client">
+			Cliente 1<br>Cruzada 5<br>Bahamas
+					</div>
+
+		<div class="invheader-invoicedetails">
+			<table cellspacing="0">
+				<tbody><tr>
+					<th>
+																					Invoice #
+																		</th>
+					<td>0000001</td>
+				</tr>
+				<tr>
+					<th>
+																					Invoice Date
+																		</th>
+					<td>October  9, 2012</td>
+				</tr>
+								<tr class="invheader-invoicedetails-balance">
+					<th><div>
+													Amount Due
+											</div></th>
+					<td><div>
+						€46.00  EUR
+					</div></td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>
+</div>
+<div class="invbody">
+			<table cellspacing="0" class="invbody-items">
+			<thead>
+				<tr>
+					<th class="first"><div class="item">
+						Task
+					</div></th>
+					<th><div class="description">
+						Time Entry Notes
+					</div></th>
+					<th><div class="unitcost">
+						Rate
+					</div></th>
+					<th><div class="quantity">
+						Hours
+					</div></th>
+					<th class="last"><div class="linetotal">
+						Line Total
+					</div></th>
+				</tr>
+			</thead>
+			<tbody>
+															<tr>
+							<td style="width: 120px;"><div class="item">
+								General
+							</div></td>
+							<td><div class="description">
+								23
+							</div></td>
+							<td style="width: 85px;"><div class="unitcost">
+								23.00
+							</div></td>
+							<td style="width: 80px;"><div class="quantity">
+								2
+							</div></td>
+							<td style="width: 90px;"><div class="linetotal">
+								46.00
+							</div></td>
+						</tr>
+											</tbody>
+		</table>
+	
+	
+	<table cellspacing="0" class="invbody-summary">
+		
+		
+		
+					<tbody><tr>
+				<td class="invbody-summary-clean">&nbsp;</td>
+				<th style="width: 150px;"><strong>
+					Total
+				</strong></th>
+				<td style="width: 120px;"><strong>
+					46.00
+				</strong></td>
+			</tr>
+			<tr class="invbody-summary-paid">
+				<td class="invbody-summary-clean">&nbsp;</td>
+				<th style="width: 150px;">
+					Amount Paid
+				</th>
+				<td style="width: 120px;">-0.00</td>
+			</tr>
+
+			<tr class="invbody-summary-total">
+				<td class="invbody-summary-clean">&nbsp;</td>
+				<th style="width: 150px;"><div><strong>
+					Amount Due
+				</strong></div></th>
+				<td style="width: 120px;"><div><strong>
+					€46.00  EUR
+				</strong></div></td>
+			</tr>
+			</tbody></table>
+
+	<div style="height: 1px; overflow: hidden;" class="clearb"></div>
+
+	
+	
+		<div class="invoice-brand">
+							PLÁSTICOS BALTASAR, S.A.<a href="">www.plasticosbaltasar.net</a>
+
+					</div>
+	</div>
+
+	
+
+
+							<div class="clearb"></div>
+
+				
+<div id="expense-receipts" class="no_print" style="display: none;">
+	<div class="accessory-list">
+					<h4 class="accessory-list-header rule-top">
+				Expense Receipts
+			</h4>
+			<ol class="accessory-list-items clearb"></ol>
+				<div class="clearb"></div>
+	</div>
+</div>
+
+<script id="expense-receipt-item" type="text/html">
+	&lt;li class="accessory-list-item accessory-list-item-2up"&gt;
+		&lt;div class="accessory-list-item-content"&gt;
+			&lt;div class="expense-preview" data-expenseid="&lt;%expenseid%&gt;"&gt;
+				&lt;span class="float_left accessory-list-icon paperclip"&gt;&amp;nbsp;&lt;/span&gt;
+				&lt;span class="float_right"&gt;&lt;%amount%&gt;&lt;/span&gt;
+				&lt;a target="_blank" href="/ajax/expense/receipt/?expenseid=&lt;%expenseid%&gt;"&gt;&lt;%desc%&gt;&lt;/a&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/li&gt;
+</script>
+
+<style>
+#expense-receipts {
+	margin-top:22px;
+}
+#expense-receipts .accessory-list-header {
+	padding-top: 10px;
+}
+#expense-receipts label {
+	font-weight: normal;
+}
+#expense-receipts .accessory-list-header input {
+	line-height:20px;
+}
+#expense-receipts h4 {
+	font-size: 12px;
+}
+</style>
+
+<script type="text/javascript" src="/cache/js/attachment-list.v1344369245.js"></script>
+
+				<script>
+					$(document).ready(function() {
+						var expenses = [],
+							list = new Fresh.ui.AttachmentList();
+						if (expenses.length) {
+							$.each(expenses, function(i, expense) {
+								list.addExpense(expense);
+							});
+						} else {
+							$('#expense-receipts').hide();
+						}
+					});
+				</script>
+					</div>
+
 
 <div>
     <div class="float-left">

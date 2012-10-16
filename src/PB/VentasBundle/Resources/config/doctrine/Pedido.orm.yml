@@ -31,7 +31,8 @@ PB\VentasBundle\Entity\Pedido:
             length: 255
             nullable: true
         cantidad:
-            type: integer
+            type: text
+            lenght: '50'
         mtycolor:
             type: string
             length: '50'

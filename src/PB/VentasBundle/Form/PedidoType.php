@@ -1,7 +1,8 @@
 <?php
 
 namespace PB\VentasBundle\Form;
-
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -12,12 +13,19 @@ class PedidoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
     	$hoy = new \DateTime();
-
+    	$yaml = new Parser();
+    	try {
+    		$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	 
+    	$tipos = $value['tipo_material'];
     	// add a normal text field, but add our transformer to it
     	
         $builder
         	->add('cliente', 'cliente_text', array('error_bubbling' => true))
-            ->add('id', 'number', array('read_only' => true,'error_bubbling' => true))
+            //->add('id', 'number', array('read_only' => true,'error_bubbling' => true))
             ->add('fecha', 'date', array(
             		'widget' => 'single_text',
             		//'format' => 'dd/MM/yy',
@@ -31,7 +39,7 @@ class PedidoType extends AbstractType
             ->add('subcliente')
             ->add('cantidad', 'number', array('error_bubbling' => true))
             ->add('mtycolor', 'text', array('error_bubbling' => true))
-            ->add('tipomaterial', 'number', array('error_bubbling' => true))
+            ->add('tipomaterial', 'choice', array( 'choices' => $tipos, 'empty_value' => '---','error_bubbling' => true))
             ->add('ancho', 'number', array('error_bubbling' => true))
             ->add('galga')
             ->add('plegado')
@@ -69,6 +77,6 @@ class PedidoType extends AbstractType
 
     public function getName()
     {
-        return 'pb_ventasbundle_pedidotype';
+        return 'pedido';
     }
 }

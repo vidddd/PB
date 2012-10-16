@@ -292,7 +292,7 @@ input.submit, button.submit{
 /* form invoices */
 .form-horizontal input[type="text"], .form-horizontal input[type="number"],.form-horizontal input[type="date"],
 .form-horizontal input[type="password"], .form-horizontal textarea, .form-horizontal select, .form-stacked input[type="text"], .form-stacked input[type="password"], .form-stacked textarea, .form-stacked select {
-    background-color: #FAFAFA;
+  /*  background-color: #FAFAFA; */
     border-color: #BBBBBB #DDDDDD #DDDDDD #BBBBBB;
     border-radius: 1px;
     border-style: solid;
