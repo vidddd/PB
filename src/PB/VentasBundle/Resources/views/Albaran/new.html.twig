@@ -1,0 +1,86 @@
+{% extends '::layout.html.twig' %}
+{% block title "Nuevo Cliente" %}
+
+{% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
+
+{% block content %}
+<div class="title title-spacing ventas">
+					<h2>Nuevo Albaran</h2>
+</div>  
+<form method="post" action="{{ path("albaran_new") }}" {{ form_enctype(form) }} novalidate="novalidate">
+
+    {{ form_row(form.fecha, { "label": "Fecha" }) }}
+    {{ form_row(form.fecha_entrega)    }}
+    {{ form_row(form.tipo)       }}
+
+    {% macro prototype(item) %}
+    <tr>
+        <td>
+            {{ form_widget(item.referencia, { "empty_value": "" }) }}
+            {{ form_errors(item.referencia) }}
+        </td>
+        <td>
+            {{ form_widget(item.descripcion) }}
+            {{ form_errors(item.descripcion) }}
+        </td>
+        <td>
+            <ul>
+                <li><a href="#">Add</a></li>
+                <li><a href="#">Remove</a></li>
+            </ul>
+        </td>
+    </tr>
+    {% endmacro %}
+
+    <script type="text/html">
+        {{ _self.prototype(form.lineas.get('prototype')) }} {# don't know if it is the best way to access prototype #}
+    </script>
+
+    <table>
+        <caption>{{ form_label(form.lineas) }}</caption>
+        <thead>
+            <tr>
+                <th>Pizza</th>
+                <th>Count</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, item in form.lineas %}
+                {{ _self.prototype(item) }}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {{ form_rest(form) }}{# form.items's prototype is rendered twice #}
+    {{ form_errors(form) }}
+
+    <input type="submit" />
+</form>
+
+<script>
+    /* add pizzas */
+    var add = function() {
+        var index = $('table tbody tr').length;
+        var row = $('script[type="text/html"]').text().replace(/\$\$name\$\$/g, index);
+
+        $('table tbody').append(row);
+    };
+
+    $('table tbody a').live('click', function(event) {
+        if ($(this).text() === "Add") {
+            add();
+        }
+        if ($(this).text() === "Remove") {
+            $(this).closest('tr').remove();
+        }
+        event.preventDefault();
+    });
+
+    if ($('table tbody tr').length === 0) {
+        add();
+    }
+
+</script>
+
+{%  endblock %}

@@ -1,0 +1,51 @@
+PB\VentasBundle\Entity\Comercial:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nombre:
+            type: string
+            length: 255
+        nif:
+            type: string
+            length: '50'
+            nulllable: true
+        direccion:
+            type: string
+            length: 255
+            nullable: true
+        cp:
+            type: smallint
+            nullable: true
+        localidad:
+            type: string
+            length: 255
+            nullable: true
+        telefono:
+            type: integer
+            nullable: true
+        porcentaje:
+            type: smallint
+            nullable: true
+        es_cliente:
+            type: boolean
+        observaciones:
+            type: text
+            nullable: true
+    manyToOne:
+        provincia_comercial:
+            targetEntity: PB\InicioBundle\Entity\Provincias
+            inversedBy: provincia3
+            joinColumn:
+                name: provincia_id
+                referencedColumnName: id
+    oneToMany:
+        comercial:
+            targetEntity: PB\VentasBundle\Entity\Cliente
+            mappedBy: comercial_cliente
+            unique: false
+    lifecycleCallbacks: {  }

@@ -4,13 +4,13 @@
 {% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
-
+<div class="facturas">
 <div class="title title-spacing"><h2>Nuevo Pedido Compra</h2></div>
           {% if form_errors(form) %}
           <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
           {% endif %}
 <form class="well" action="{{ path('compras_pedidocompra_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
-<div class="content-box content-box-header ui-corner-all">
+<div class="content-box content-box-header ui-corner-all ">
 	<div class="ui-state-default ui-corner-top ui-box-header"><span class="ui-icon float-left ui-icon-signal"></span>Datos de Pedido</div>
     	<div class="content-box-wrapper">
 			<div class="form-invoice">
@@ -41,7 +41,7 @@
 		        		</div>
 	     			</div>
 					<div class="control-group required">
-						{{ form_label(form.referencia, null, { 'label': 'Referencia', 'label_attr': {'class': 'control-label'} }) }}
+						{{ form_label(form.referencia, null, { 'label': 'Lugar de Entrega', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
 			    			{{ form_widget(form.referencia, { 'attr': {'class': ''}}) }}
 		        		</div>
@@ -49,15 +49,15 @@
      			</div>
       			<div class="span-16 form-horizontal label-column-small form-condensed">
 					<div class="control-group required">
-						{{ form_label(form.id, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}
+						{{ form_label(form.estado, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.id, { 'attr': {'class': 'small'}}) }}
+			    			{{ form_widget(form.estado, { 'attr': {'class': 'small'}}) }}
 		        		</div>
 	     			</div>
 					<div class="control-group required">
 						{{ form_label(form.forma_envio, null, { 'label': 'Forma Envio', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.forma_envio, { 'attr': {'class': ''}}) }}
+			    			{{ form_widget(form.forma_envio, { 'attr': {'class': 'small'}}) }}
 		        		</div>
 	     			</div>
      			</div>
@@ -75,8 +75,8 @@
 					<th style="width: 350px;">Descripcion</th>
 					<th class="ta_right" style="width: 45px;">Cantidad</th>
 					<th class="ta_right" style="width: 45px;">Precio</th>
-					<th style="width: 40px;">Descuento</th>
-					<th class="ta_right last" style="width: 45px;">Total</th>
+					<th style="width: 30px;">Dto %</th>
+					<th class="ta_right last" style="width: 60px;">Total</th>
 				</tr>
 			</thead>
 	     {% macro prototype(linea) %}
@@ -86,20 +86,20 @@
 					    <div class="delete-wrap"><a title="Borrar Linea" class="delete" href="#" onclick="return false;">&nbsp;</a></div>
 					</td>
 					<td class="editable">
-					    {{ form_widget(linea.descripcion, { 'attr': {'class': ''}}) }}
+					    {{ form_widget(linea.descripcion, { 'attr': {'class': 'idescripcion'}}) }}
 					</td>
 					<td class="editable">
-					    {{ form_widget(linea.cantidad, { 'attr': {'class': 'ta_right'}}) }}
+					    {{ form_widget(linea.cantidad, { 'attr': {'class': 'ta_right icantidad numeric'}}) }}
 					</td>
 					<td class="editable">
-					    {{ form_widget(linea.precio, { 'attr': {'class': 'ta_right'}}) }}
+					    {{ form_widget(linea.precio, { 'attr': {'class': 'ta_right iprecio numeric'}}) }}
 					</td>
 					<td class="editable">
-					    {{ form_widget(linea.descuento, { 'attr': {'class': 'ta_right'}}) }}
+					    {{ form_widget(linea.descuento, { 'attr': {'class': 'ta_right idescuento numeric'}}) }}
 					</td>
 					<td class="total">
-						<span class="ta_right">0.00</span><!-- price -->
-					 {{ form_widget(linea.total, { 'attr': {'class': 'ta_right'}}) }}
+						<span class="ta_right totallinea">0.00</span><!-- price -->
+					 {{ form_widget(linea.total, { 'attr': {'class': 'ta_right itotal'}}) }}
 					</td> 
 				</tr>
 	     {% endmacro %}
@@ -110,87 +110,48 @@
 			</tbody>
 		</table>
 	</div>
-    <script type="text/html">
-        {{ _self.prototype(form.pedidocompralineas.get('prototype')) }} {# don't know if it is the best way to access prototype #}
-    </script>
-	
+	<div class="prototipo" data-prototype="{{ _self.prototype(form.pedidocompralineas.get('prototype'))|e }}"></div>
 	<div class="totals">
-	<div class="rule top"></div>
-	
-    <div class="float_left">
-    	<div class="spreadsheet actions">
-    		<ul>
-    		<li title="" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-plusthick"></span><a id="addrow" onclick="return false;" href="#">Añadir Línea</a></li>
-    		<ul>
-    	</div>
-    	
-    	    </div>
-		
-	<div class="box">
-		<table cellspacing="0" class="table-totals">
-			<thead>
-				<tr id="subtotal-row">
-					<td style="width: 20px">&nbsp;<input type="hidden" name="subtotal" readonly="" style="width: 100%" value="0.00"></td>
-					<th style="width: 150px">Total</th>
-					<td class="last-column">€0.00</td>
-				</tr>
-
-				<tr id="discount-total-row">
-					<td style="width: 20px">&nbsp;<input type="hidden" name="discount_total" readonly="" style="width: 100%" value="0.00"></td>
-					<th style="width: 150px">Descuento</th>
-					<td class="last-column">0.00</td>
-				</tr>
-				
-				<!-- taxes go here -->
-				<tr class="divider">
-					<td><div></div></td>
-					<td><div></div></td>
-					<td><div></div></td>
-				</tr>
-			</thead>
-			<tbody>			
-				<tr id="amount-row">
-					<td style="width: 20px">&nbsp;<input type="hidden" name="amount" value="0.00"></td>
-					<th class="span-9 amount-cell"><span class="amount-total">Total</span> <span class="currency">(EUR)</span></th>
-					<td class="last-column">€0.00</td>
-				</tr>
-								<tr id="paid-row">
-					<td style="width: 20px">&nbsp;<input type="hidden" value="0.00" name="paid"></td>
-					<th>Iva</th>
-					<td class="last-column">0.00</td>
-				</tr>
-				<tr class="invoice-total-box" id="outstanding-row">
-					<td style="width: 20px">&nbsp;<input type="hidden" name="outstanding" value="0.00"></td>
-					<th>Total</th>
-					<td class="last-column">€0.00</td>
-				</tr>
-							</tbody>
-		</table>
-
+		<div class="rule top"></div>
+	    	<div class="float_left">
+	    		<div class="spreadsheet actions">
+	    			<ul>
+	    				<li title="" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-plusthick"></span><a id="addrow" onclick="return false;" href="#">Añadir Línea</a></li>
+	    			<ul>
+	    		</div>
+	    	</div>	
+			<div class="box">
+				<table cellspacing="0" class="table-totals">
+					<tbody>
+						<tr id="subtotal-row">
+							<td style="width: 20px">&nbsp;{{ form_widget(form.importe, { 'attr': {'class': 'iimporte'}}) }}</td>
+							<th style="width: 150px">Total</th>
+							<td class="last-column neto">0.00&euro;</td>
+						</tr>
+						<tr id="amount-row">
+							<td style="width: 20px" class="last">&nbsp;{{ form_widget(form.iva, { 'attr': {'class': 'iiva'}}) }}</td>
+							<th class="span-9 amount-cell"><span class="amount-total">Iva</span> <span class="currency">(21%)</span></th>
+							<td class="last-column iva">0.00&euro;</td>
+						</tr>
+						<tr class="invoice-total-box" id="outstanding-row">
+							<td style="width: 20px">&nbsp;&nbsp;{{ form_widget(form.total, { 'attr': {'class': 'itotal2'}}) }}</td>
+							<th>Total</th>
+							<td class="last-column total2">0.00&euro;</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="clearfix"></div>
+			<div class="observaciones">			
+				{{ form_label(form.observaciones) }} <div class="clearfix"></div>
+		    	{{ form_widget(form.observaciones, { 'attr': {'cols': '50', 'rows': '6'}}) }}
+			</div>
 	</div>
-
-
-	<div class="clearfix"></div>
-
-	<div class="functions form-stacked">
-				
-				
-		<span style="display:none" id="credit">
-			<span class="hl">
-				<input type="checkbox" id="apply_credit" name="apply_credit" value="1" class="checkbox" style="width:15px" disabled="disabled">
-				<label for="apply_credit" style="cursor:pointer;">Apply credit of <span id="credit_amount"></span>&nbsp;as payment</label>
-			</span>
-		</span>
-
-	</div>
-	<div class="clearb"></div>
-</div>
     <div class="clearfix"></div>
     <p>
         <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
     </p>
 {{ form_widget(form._token) }}</form>
-
     <div class="float-left volver">
         <a href="{{ path('compras_pedidocompra') }}">
           <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
@@ -202,10 +163,10 @@
     /* add pizzas */
     var add = function() {
         var index = $('table.invoice-lines tbody tr').length;
-        var row = $('script[type="text/html"]').text();
-        row.replace(/___name___/g, index);
-        alert(row);
+        var prototype = $('.prototipo').attr('data-prototype');
+        var row = prototype.replace(/__name__/g, index);
         $('table.invoice-lines tbody').append(row);
+        bind();
     };
 
     $('#addrow').live('click', function(event) {
@@ -214,7 +175,7 @@
     });
     $(".delete").live('click',function(){
         $(this).closest('tr').remove();
-        //update_total();
+        update_total();
         if ($(".delete").length < 2) $(".delete").hide();
         event.preventDefault();
       });

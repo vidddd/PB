@@ -24,7 +24,18 @@
         				<td class="label">{{ form_label(filterForm.id, 'Código Pedido') }}</td>
         				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
       				<tr>
-
+					<tr>
+	        			<td class="label">{{ form_label(filterForm.proveedor, 'Código Proveedor') }}</td>
+	        			<td class="campo">{{ form_widget(filterForm.proveedor, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_proveedor', { 'id': '' , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Proveedores"><img src="{{ asset('images/search.png') }}" /></a></td><td>{{ form_errors(filterForm.proveedor) }}</td>
+	      			<tr>
+	      	        <tr>
+	        			<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
+	        			<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
+	      			<tr>
+					<tr>
+	        			<td class="label">{{ form_label(filterForm.referencia, 'Referencia') }}</td>
+	        			<td class="campo">{{ form_widget(filterForm.referencia, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.referencia) }}</td>
+	      			<tr>
             </tbody></table>
                 <p class="botones-buscador">
                     <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
@@ -41,14 +52,10 @@
     <thead>
         <tr>
 			<th width="25">Código Pedido</th>
+			<th width="320">Proveedor</th>
             <th>Fecha</th>
-            <th>Fecha_entrega</th>
-            <th>Referencia</th>
-            <th>Forma_envio</th>
-            <th>Importe</th>
-            <th>Iva</th>
-            <th>Total</th>
-            <th>Descuento</th>
+            <th>Fecha Entrega</th>
+            <th>Lugar Entrega</th>
             <th width="70">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
         </tr>
     </thead>
@@ -56,21 +63,15 @@
     {% for entity in entities %}
         <tr>
             <td><a href="{{ path('compras_pedidocompra_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{% if entity.fechaentrega %}{{ entity.fechaentrega|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.proveedor }}</td>
+            <td>{% if entity.fecha %}{{ entity.fecha|date('d.m.Y') }}{% endif %}</td>
+            <td>{% if entity.fechaentrega %}{{ entity.fechaentrega|date('d.m.Y') }}{% endif %}</td>
             <td>{{ entity.referencia }}</td>
-            <td>{{ entity.formaenvio }}</td>
-            <td>{{ entity.importe }}</td>
-            <td>{{ entity.iva }}</td>
-            <td>{{ entity.total }}</td>
-            <td>{{ entity.descuento }}</td>
             <td>
-        <a class="btn btn-mini" href="{{ path('compras_pedidocompra_show', { 'id': entity.id }) }}">
-            {{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-        <a class="btn btn-mini" href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}">
-            {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>            </td>
+        		<a href="{{ path('compras_pedidocompra_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+        		<!-- <a href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a> -->
+          		<!-- <a href="{{ path('pedido_delete', { 'id': entity.id }) }}" title="Eliminar" class="btn_no_text btn ui-state-default ui-corner-all tooltip" onclick="return confirm('Estas seguro de borrar el cliente?')"><span class="ui-icon ui-icon-circle-close"></span></a> -->
+          </td>
         </tr>
     {% endfor %}
     </tbody>

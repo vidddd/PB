@@ -7,7 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrapView;
-
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 use PB\ComprasBundle\Entity\PedidoCompra;
 use PB\ComprasBundle\Entity\PedidoCompraLinea;
 use PB\ComprasBundle\Form\PedidoCompraType;
@@ -121,9 +122,13 @@ class PedidoCompraController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
+        $yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));} catch (ParseException $e) {printf("Unable to parse the YAML string: %s", $e->getMessage());}
         
         $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
-
+        
+        $medios = $value['medio_envio'];
+        $entity->setFormaEnvio($medios[$entity->getFormaEnvio()]);
+        
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
         }
@@ -173,69 +178,7 @@ class PedidoCompraController extends Controller
         $form->bind($request); 
 
         if ($form->isValid()) {
-        	//$request->request->get('pedidocompralineas')
-          $entity->setPedidocompralineas();
-        	
-        	/*
-        	$em = $this->getDoctrine()->getEntityManager();
-        	$task = $em->getRepository('AcmeTaskBundle:Task')->find($id);
-        	
-        	if (!$task) {
-        		throw $this->createNotFoundException('No task found for is '.$id);
-        	}
-        	
-        	// Se crea una matriz de los objetos etiqueta actuales en la base de datos
-        	foreach ($task->getTags() as $tag) $originalTags[] = $tag;
-        	
-        	$editForm = $this->createForm(new TaskType(), $task);
-        	
-        	if ('POST' === $request->getMethod()) {
-        		$editForm->bindRequest($this->getRequest());
-        	
-        		if ($editForm->isValid()) {
-        	
-        			// filtra $originalTags para que contenga las etiquetas
-        			// que ya no están presentes
-        			foreach ($task->getTags() as $tag) {
-        				foreach ($originalTags as $key => $toDel) {
-        					if ($toDel->getId() === $tag->getId()) {
-        						unset($originalTags[$key]);
-        					}
-        				}
-        			}
-        	
-        			// Elimina la relación entre la etiqueta y la Tarea
-        			foreach ($originalTags as $tag) {
-        				// Elimina la Tarea de la Etiqueta
-        				$tag->getTasks()->removeElement($task);
-        	
-        				// Si se tratara de una relación MuchosAUno, elimina la relación con esto
-        				// $tag->setTask(null);
-        	
-        				$em->persist($tag);
-        	
-        				// Si deseas eliminar la etiqueta completamente, también lo puedes hacer
-        				// $em->remove($tag);
-        			}
-        	
-        			$em->persist($task);
-        			$em->flush();
-        	
-        			// Redirige de nuevo a alguna página de edición
-        			return $this->redirect($this->generateUrl('task_edit', array('id' => $id)));
-        		}
-        	}*/
-        	
-        	/*
-        	$order = new Order();
-        	$order->setCustomer($this->customer);
-        	
-        	foreach (->items as $item) {
-        		$order->addItem($item);
-        	}        	
-        	return $order;
-        	 */
-        	
+       
         	$em->persist($entity);
 
             try {$em->flush(); } catch(Exception $e) {
@@ -243,9 +186,9 @@ class PedidoCompraController extends Controller
             }
             
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
-
-            //return $this->redirect($this->generateUrl('compras_pedidocompra'));        } else {
-            //$this->get('session')->getFlashBag()->add('error', 'flash.create.error');
+            
+            return $this->redirect($this->generateUrl('compras_pedidocompra_show', array('id' => $entity->getId())));       } else {
+            $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
         }
 
         return $this->render('PBComprasBundle:PedidoCompra:new.html.twig', array(
@@ -262,21 +205,79 @@ class PedidoCompraController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
-
+        //var_dump($entity->getPedidocompralineas());
+        
+        foreach ($entity->getPedidocompralineas() as $linea) $originalLineas[] = $linea;
+        
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
         }
-
+        /*
+        var_dump("count (before)");
+        var_dump(count($entity->getPedidocompralineas()));
+        echo "<hr />";
+        */
         $editForm = $this->createForm(new PedidoCompraType(), $entity);
+        //$editForm->setData($entity);
+        
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('PBComprasBundle:PedidoCompra:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form'   => $editForm->createView(),
+          //  'delete_form' => $deleteForm->createView(),
         ));
     }
+/*
+ *  $em = $this->getDoctrine()->getEntityManager();
+    $task = $em->getRepository('AcmeTaskBundle:Task')->find($id);
 
+    if (!$task) {
+        throw $this->createNotFoundException('No task found for is '.$id);
+    }
+
+    // Se crea una matriz de los objetos etiqueta actuales en la base de datos
+    foreach ($task->getTags() as $tag) $originalTags[] = $tag;
+
+    $editForm = $this->createForm(new TaskType(), $task);
+
+       if ('POST' === $request->getMethod()) {
+        $editForm->bindRequest($this->getRequest());
+
+        if ($editForm->isValid()) {
+
+            // filtra $originalTags para que contenga las etiquetas
+            // que ya no están presentes
+            foreach ($task->getTags() as $tag) {
+                foreach ($originalTags as $key => $toDel) {
+                    if ($toDel->getId() === $tag->getId()) {
+                        unset($originalTags[$key]);
+                    }
+                }
+            }
+
+            // Elimina la relación entre la etiqueta y la Tarea
+            foreach ($originalTags as $tag) {
+                // Elimina la Tarea de la Etiqueta
+                $tag->getTasks()->removeElement($task);
+
+                // Si se tratara de una relación MuchosAUno, elimina la relación con esto
+                // $tag->setTask(null);
+
+                $em->persist($tag);
+
+                // Si deseas eliminar la etiqueta completamente, también lo puedes hacer
+                // $em->remove($tag);
+            }
+
+            $em->persist($task);
+            $em->flush();
+
+            // Redirige de nuevo a alguna página de edición
+            return $this->redirect($this->generateUrl('task_edit', array('id' => $id)));
+        }
+    }
+ */
     /**
      * Edits an existing PedidoCompra entity.
      *
@@ -290,7 +291,7 @@ class PedidoCompraController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
         }
-
+        
         $editForm   = $this->createForm(new PedidoCompraType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
@@ -310,7 +311,7 @@ class PedidoCompraController extends Controller
 
         return $this->render('PBComprasBundle:PedidoCompra:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

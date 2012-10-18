@@ -13,12 +13,15 @@ PB\InicioBundle\Entity\Provincias:
     denprovincia:
       type: string
       length: '100'
-  manyToOne:
+  oneToMany:
     provincia:
       targetEntity: PB\ComprasBundle\Entity\Proveedor
       mappedBy: provincia_proveedor
       unique: false
     provincia:
-      targetEntity: PB\VentasBundle\Entity\cliente
+      targetEntity: PB\VentasBundle\Entity\Cliente
       mappedBy: provincia_cliente
+    provincia3:
+      targetEntity: PB\VentasBundle\Entity\Comercial
+      mappedBy: provincia_comercial
   lifecycleCallbacks: {  }

@@ -50,11 +50,6 @@ class PedidoCompra
     private $descuento;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    private $pedidoscompralinea;
-
-    /**
      * @var PB\ComprasBundle\Entity\Proveedor
      */
     private $proveedor;
@@ -237,40 +232,6 @@ class PedidoCompra
     {
         return $this->descuento;
     }
-
-    /**
-     * Add pedidoscompralinea
-     *
-     * @param PB\ComprasBundle\Entity\PedidoCompraLinea $pedidoscompralinea
-     * @return PedidoCompra
-     */
-    public function addPedidoscompralinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidoscompralinea)
-    {
-        $this->pedidoscompralinea[] = $pedidoscompralinea;
-    
-        return $this;
-    }
-
-    /**
-     * Remove pedidoscompralinea
-     *
-     * @param PB\ComprasBundle\Entity\PedidoCompraLinea $pedidoscompralinea
-     */
-    public function removePedidoscompralinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidoscompralinea)
-    {
-        $this->pedidoscompralinea->removeElement($pedidoscompralinea);
-    }
-
-    /**
-     * Get pedidoscompralinea
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getPedidoscompralinea()
-    {
-        return $this->pedidoscompralinea;
-    }
-
     /**
      * Set proveedor
      *
@@ -357,7 +318,9 @@ class PedidoCompra
      */
     public function getPedidocompralineas()
     {
-        return $this->pedidocompralineas;
+    	
+    	return $this->pedidocompralineas;
+    	//return $this->pedidocompralineas->toArray();
     }
     
     function setPedidocompralineas(ArrayCollection $lineas){
@@ -368,5 +331,62 @@ class PedidoCompra
     	
     	$this->pedidocompralineas = $lineas;
     	
+    }
+
+    /**
+     * @var string $observaciones
+     */
+    private $observaciones;
+
+
+    /**
+     * Set observaciones
+     *
+     * @param string $observaciones
+     * @return PedidoCompra
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
+    
+        return $this;
+    }
+
+    /**
+     * Get observaciones
+     *
+     * @return string 
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
+    /**
+     * @var integer $estado
+     */
+    private $estado;
+
+
+    /**
+     * Set estado
+     *
+     * @param integer $estado
+     * @return PedidoCompra
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return integer 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
 }

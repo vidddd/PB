@@ -1,0 +1,23 @@
+<script>
+   $(document).ready(function() {
+	   $(".buscadorid").change(function() {
+		   var id = $(".buscadorid").val();
+	       $.ajax({
+				url: "{{ path('get_nombre_proveedor') }}",
+				type: "post",
+				dataType: "json",
+				data: {id: id},
+				success: function(resp){
+					$('.nombre-proveedor').html(resp.nombre).show();
+				},
+				error: function(jqXHR,estado,error){
+					//alert(estado);
+					//alert(error);
+				},
+				complete: function(jqXHR,estado){},
+				timeout: 10000
+		          
+	       });//It is silly. But you should not write 'json' or any thing as the fourth parameter. It should be undefined. I'll explain it futher down
+	   });
+	});
+</script>

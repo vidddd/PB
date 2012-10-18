@@ -1,5 +1,5 @@
 {
-    "hash": "34f28618c8691d4a91bfe4dd52cb716e",
+    "hash": "09c217f069e6172a15fac37a1695d699",
     "packages": [
         {
             "name": "dino/dompdf",
@@ -1371,7 +1371,6 @@
                 "propel/propel1": "dev-master",
                 "monolog/monolog": "dev-master"
             },
-            "time": "1349963062",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1402,7 +1401,8 @@
             "homepage": "http://symfony.com",
             "keywords": [
                 "framework"
-            ]
+            ],
+            "time": "1349963062"
         },
         {
             "name": "twig/extensions",
@@ -1505,10 +1505,10 @@
     "aliases": [
 
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
-        "knplabs/knp-paginator-bundle": 20,
+        "dino/dompdf": 20,
         "jordillonch/crud-generator": 20,
-        "dino/dompdf": 20
+        "knplabs/knp-paginator-bundle": 20
     }
 }

@@ -13,6 +13,8 @@ use PB\ComprasBundle\Form\ProveedorType;
 use PB\ComprasBundle\Form\ProveedorFilterType;
 use PB\ComprasBundle\Form\ProveedorBuscadorFilterType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
  * Proveedor controller.
@@ -201,10 +203,17 @@ class ProveedorController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        /*$request = $this->getRequest();
-        var_dump($request->isXmlHttpRequest()); // is it an Ajax request?*/
+        $yaml = new Parser();
+        try {
+        	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+        } catch (ParseException $e) {
+        	printf("Unable to parse the YAML string: %s", $e->getMessage());
+        }
+         
+        $tipos = $value['tipo_proveedor'];$medios = $value['medio_envio'];
         $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
-
+		$entity->setTipoproveedor($tipos[$entity->getTipoproveedor()]);
+		$entity->setMedioEnvio($medios[$entity->getMedioenvio()]);
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Proveedor entity.');
         }

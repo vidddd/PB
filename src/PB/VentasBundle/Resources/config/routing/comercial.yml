@@ -1,0 +1,30 @@
+comercial:
+    pattern:  /
+    defaults: { _controller: "PBVentasBundle:Comercial:index" }
+
+comercial_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBVentasBundle:Comercial:show" }
+
+comercial_new:
+    pattern:  /new
+    defaults: { _controller: "PBVentasBundle:Comercial:new" }
+
+comercial_create:
+    pattern:  /create
+    defaults: { _controller: "PBVentasBundle:Comercial:create" }
+    requirements: { _method: post }
+
+comercial_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBVentasBundle:Comercial:edit" }
+
+comercial_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBVentasBundle:Comercial:update" }
+    requirements: { _method: post }
+
+comercial_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBVentasBundle:Comercial:delete" }
+    requirements: { _method: post }

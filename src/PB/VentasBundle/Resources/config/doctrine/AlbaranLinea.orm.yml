@@ -1,0 +1,29 @@
+PB\VentasBundle\Entity\AlbaranLinea:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        referencia:
+            type: string
+            length: '50'
+            nullable: true
+        descripcion:
+            type: string
+            length: 255
+            nullable: true
+        cantidad:
+            type: float
+            nullable: true
+    manyToOne:
+        albaran:
+            targetEntity: PB\VentasBundle\Entity\Albaran
+            inversedBy: lineas
+            cascade: [persist]
+            joinColumn:
+                name: albaran_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

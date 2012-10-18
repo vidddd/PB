@@ -1044,4 +1044,32 @@ class Cliente
     {
         return $this->formapago_cliente;
     }
+    /**
+     * @var PB\VentasBundle\Entity\comercial
+     */
+    private $comercial_cliente;
+
+
+    /**
+     * Set comercial_cliente
+     *
+     * @param PB\VentasBundle\Entity\comercial $comercialCliente
+     * @return Cliente
+     */
+    public function setComercialCliente(\PB\VentasBundle\Entity\comercial $comercialCliente = null)
+    {
+        $this->comercial_cliente = $comercialCliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get comercial_cliente
+     *
+     * @return PB\VentasBundle\Entity\comercial 
+     */
+    public function getComercialCliente()
+    {
+        return $this->comercial_cliente;
+    }
 }

@@ -103,7 +103,7 @@ class ClienteController extends Controller
         $translator = $this->get('translator');
         $view = new TwitterBootstrapView();
         $pagerHtml = $view->render($pagerfanta, $routeGenerator, array(
-            'proximity' => 10,
+            'proximity' => 3,
             'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
             'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
         ));

@@ -11,8 +11,8 @@
    <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
 	<div class="portlet-header ui-widget-header">Editar Proveedor</div>
 		<div class="portlet-content form-alta">
-          {% if form_errors(form) %}
-          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% if form_errors(edit_form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(edit_form) }}</div>
           {% endif %}
     <table>
    <tbody>
@@ -67,6 +67,10 @@
       <tr>
         <td>{{ form_label(edit_form.email) }}</td>
         <td>{{ form_widget(edit_form.email) }}</td><td>{{ form_errors(edit_form.email) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(edit_form.comercial_cliente, 'Comercial') }}</td>
+        <td>{{ form_widget(edit_form.comercial_cliente) }}</td><td>{{ form_errors(edit_form.comercial_cliente) }}</td>
       </tr>
       <tr>
         <td>{{ form_label(edit_form.cuenta) }}</td>

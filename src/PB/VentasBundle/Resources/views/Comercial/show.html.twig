@@ -1,0 +1,48 @@
+{# note que en este caso utilizamos el layout de ajax para así no cargar todo el contenido del layout general #}
+{# extends app.request.isXmlHttpRequest ? "::layout_ajax.html.twig" : "::layout.html.twig" #}
+{% extends "::layout_ajax.html.twig" %}
+{% block title entity.nombre %}
+
+{% block content %}
+  <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+		<div class="portlet-content show">
+		<div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+ <table>
+   <tbody>
+     <tr>
+        <td class="label">Código cliente</td><td class="campo">{{ entity.id }}</td>
+      </tr>
+       <tr>
+        <td class="label">Nombre</td><td class="campo"><b>{{ entity.nombre }}</b></td>
+      </tr>
+       <tr>
+        <td class="label">Nif</td><td class="campo">{{ entity.nif }}</td>
+      </tr>
+      <tr>
+        <td class="label">Dirección</td><td class="campo">{{ entity.direccion }}</td>
+      </tr>
+      <tr>
+        <td class="label">Código Postal</td><td class="campo">{{ entity.cp }}</td>
+      </tr>
+      <tr>
+        <td class="label">Provincia</td><td class="campo">{{ entity.provinciacomercial }}</td>
+      </tr>
+      <tr>
+        <td class="label">Localidad</td><td class="campo">{{ entity.localidad }}</td>
+      </tr>
+      <tr>
+        <td class="label">Teléfono</td><td class="campo">{{ entity.telefono }}</td>
+      </tr>
+      <tr>
+        <td class="label">Porcentaje</td><td class="campo">{{ entity.porcentaje }}%</td>
+      </tr>
+      <tr>
+        <td class="label">Es Cliente?</td><td class="campo">{{ entity.escliente ? 'Si' : 'No' }}</td>
+      </tr>
+      <tr>
+        <td class="label">Observaciones</td><td class="campo">{{ entity.observaciones|nl2br }}</td>
+      </tr>
+     </tbody>
+     </table>
+  </div></div></div>
+{% endblock %}

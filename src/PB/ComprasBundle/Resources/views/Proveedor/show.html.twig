@@ -45,7 +45,7 @@
         <td class="label">Pais</td><td class="campo">{{ entity.pais }}</td>
       </tr>
       <tr>
-        <td class="label">Tipo de Proveedor</td><td class="campo">{{ entity.tipoproveedor_show }}</td>
+        <td class="label">Tipo de Proveedor</td><td class="campo">{{ entity.tipoproveedor }}</td>
 	  </tr>
 	  <tr>
         <td class="label">Medio Envio</td><td class="campo">{{ entity.medioenvio }}</td>
@@ -118,19 +118,4 @@
 		</table>
 	</div>
 </div></div> </div>
-
-<!-- 
-    <div class="float-left volver">
-        <a class="btn" href="{{ path('proveedor') }}">
-            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-    </div>
-    <div class="float-left">
-        <form action="{{ path('proveedor_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button class="ui-state-default ui-corner-all boton-eliminar" type="submit">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-        </form>
-    </div>
--->
-
 {% endblock %}

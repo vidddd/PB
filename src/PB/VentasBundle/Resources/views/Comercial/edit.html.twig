@@ -1,0 +1,78 @@
+{% extends '::layout.html.twig' %}
+{% block title "Editar Comercial" %}
+
+{% form_theme edit_form 'PBInicioBundle:Form:fields.html.twig' %}
+
+{% block content %}
+<div class="title title-spacing ventas">
+					<h2>Editar Comercial</h2>
+</div>
+<form action="{{ path('comercial_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+   <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+	<div class="portlet-header ui-widget-header">Editar Comercial</div>
+		<div class="portlet-content form-alta">
+          {% if form_errors(edit_form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(edit_form) }}</div>
+          {% endif %}
+    <table>
+   <tbody>
+     <tr>
+        <td class="label">{{ form_label(edit_form.nombre) }}</td>
+        <td class="campo">{{ form_widget(edit_form.nombre, { 'attr': {'class': 'foo'} }) }}</td><td>{{ form_errors(edit_form.nombre) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.nif, 'NIF') }}</td>
+        <td>{{ form_widget(edit_form.nif, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(edit_form.nif) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.direccion, 'Direccion') }}</td>
+        <td>{{ form_widget(edit_form.direccion) }}</td><td>{{ form_errors(edit_form.direccion) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.cp, 'Codigo postal') }}</td>
+        <td>{{ form_widget(edit_form.cp, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(edit_form.cp) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(edit_form.localidad) }}</td>
+        <td>{{ form_widget(edit_form.localidad) }}</td><td>{{ form_errors(edit_form.localidad) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(edit_form.provincia_comercial) }}</td>
+        <td>{{ form_widget(edit_form.provincia_comercial) }}</td><td>{{ form_errors(edit_form.provincia_comercial) }}</td>
+      </tr>
+	  <tr>
+        <td>{{ form_label(edit_form.telefono) }}</td>
+        <td>{{ form_widget(edit_form.telefono, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(edit_form.telefono) }}</td>
+      </tr>
+      <tr>
+        <td>{{ form_label(edit_form.porcentaje) }}</td>
+        <td>{{ form_widget(edit_form.porcentaje, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(edit_form.porcentaje) }}</td>
+      </tr>
+     <tr>
+        <td>{{ form_label(edit_form.es_cliente) }}</td>
+        <td>{{ form_widget(edit_form.es_cliente, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(edit_form.es_cliente) }}</td>
+      </tr> 
+      <tr>
+        <td valgin="top">{{ form_label(edit_form.observaciones) }}</td>
+        <td>{{ form_widget(edit_form.observaciones, { 'attr': {'cols': '34', 'rows': '7'} }) }}</td><td>{{ form_errors(edit_form.observaciones) }}</td>
+      </tr>
+      </tbody>
+   </table>  
+    </div>
+	<div class="guardar">
+        <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
+	</div>
+</div>{{ form_widget(edit_form._token) }}
+</form>
+    <div class="float-left volver">
+        <a href="{{ path('comercial') }}">
+         <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+    <div class="float-left">
+        <form action="{{ path('comercial_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="ui-state-default ui-corner-all boton-eliminar" onclick="return confirm('Desea eliminar el item? Esta accion no se puede deshacer');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+        </form>
+    </div>
+{% endblock %}

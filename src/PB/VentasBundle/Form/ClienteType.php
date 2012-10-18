@@ -26,6 +26,9 @@ class ClienteType extends AbstractType
             ->add('provincia_cliente', 'entity', array('class' => 'PBInicioBundle:Provincias',
             								   'property' => 'denprovincia', 
             		 						   'empty_value' => '-- Elige una provincia --',))
+            ->add('comercial_cliente', 'entity', array('class' => 'PBVentasBundle:Comercial',
+            		 						   		'property' => 'nombre',
+            		 						   		'empty_value' => '-- Elige un comercial --',))
            ->add('pais')
             ->add('telefono')
             ->add('fax')

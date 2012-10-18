@@ -171,4 +171,32 @@ class Provincias
     {
         return $this->provincia2;
     }
+    /**
+     * @var PB\VentasBundle\Entity\Comercial
+     */
+    private $provincia3;
+
+
+    /**
+     * Set provincia3
+     *
+     * @param PB\VentasBundle\Entity\Comercial $provincia3
+     * @return Provincias
+     */
+    public function setProvincia3(\PB\VentasBundle\Entity\Comercial $provincia3 = null)
+    {
+        $this->provincia3 = $provincia3;
+    
+        return $this;
+    }
+
+    /**
+     * Get provincia3
+     *
+     * @return PB\VentasBundle\Entity\Comercial 
+     */
+    public function getProvincia3()
+    {
+        return $this->provincia3;
+    }
 }

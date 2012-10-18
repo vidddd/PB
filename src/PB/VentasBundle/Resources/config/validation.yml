@@ -15,6 +15,11 @@ PB\VentasBundle\Entity\Cliente:
             - NotBlank: ~
         email:
             - Email: ~
+PB\VentasBundle\Entity\Comercial:
+    properties:
+        nombre:
+            - NotBlank: ~
+            - MinLength: 3
 #        telefono:
 #            - Type:
 #                type: integer

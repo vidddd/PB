@@ -17,7 +17,7 @@ PB\ComprasBundle\Entity\PedidoCompraLinea:
       length: 255
       nullable: true
     cantidad:
-      type: decimal
+      type: float
       nullable: true
     precio:
       type: float

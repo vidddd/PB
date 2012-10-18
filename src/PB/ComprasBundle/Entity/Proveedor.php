@@ -418,21 +418,7 @@ class Proveedor
      */
     public function getTipoProveedor()
     {
-		/*
-    	$yaml = new Parser();
-		$value = array();
-		try {
-			$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
-			
-		} catch (ParseException $e) {
-			printf("Unable to parse the YAML string: %s", $e->getMessage());
-		}
-		$tipos = $value['tipo_proveedor'];
-		if(!is_null($this->tipo_proveedor))
-			return $tipos[$this->tipo_proveedor];
-		else
-			return $this->tipo_proveedor; 
-		*/	
+
     	return $this->tipo_proveedor;
     }
 
@@ -956,9 +942,4 @@ class Proveedor
         $this->pedidocompra->removeElement($pedidocompra);
     }
     
-    private $tipoproveedor_show;
-    
-    public function getTipoproveedor_show(){
-         return $this->getTipoProveedor()."Preubaaaaaaa";
-    }
 }

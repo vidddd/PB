@@ -1,0 +1,11 @@
+albaran:
+    pattern:  /
+    defaults: { _controller: "PBVentasBundle:Albaran:index" }
+
+albaran_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBVentasBundle:Albaran:show" }
+
+albaran_new:
+    pattern:  /new
+    defaults: { _controller: "PBVentasBundle:Albaran:new" }

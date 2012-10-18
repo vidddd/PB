@@ -1,0 +1,76 @@
+   {% if form_errors(form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% endif %}
+
+<form action="{{ path('compras_pedidocompra_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+<div class="content-box content-box-header ui-corner-all ">
+	<div class="ui-state-default ui-corner-top ui-box-header"><span class="ui-icon float-left ui-icon-signal"></span>Datos de Pedido</div>
+    	<div class="content-box-wrapper">
+			<div class="form-invoice">
+				<div class="span-17 form-horizontal label-column-small form-condensed">
+					<div class="control-group required">
+						{{ form_label(form.proveedor, null, { 'label': 'Proveedor', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.proveedor, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_proveedor', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Proveedores"><img src="{{ asset('images/search.png') }}" /></a>
+			    			
+		        		</div>
+	     			</div>
+	     			<div class="control-group">
+	     			      <label class="control-label">&nbsp;</label> 
+	     			      <div class="controls nombre-proveedor" style="display:none;"><h2>Nombre de proveedor</h2></div>
+	     			</div>
+     			</div>
+     			<div class="span-17 form-horizontal label-column-small form-condensed">
+	     			<div class="control-group required">
+						{{ form_label(form.fecha, null, { 'label': 'Fecha', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.fecha, { 'attr': {'class': 'date small'}}) }}
+		        		</div>
+	     			</div>
+	     			<div class="control-group required">
+						{{ form_label(form.fecha_entrega, null, { 'label': 'Fecha Entrega', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.fecha_entrega, { 'attr': {'class': 'date small'}}) }}
+		        		</div>
+	     			</div>
+					<div class="control-group required">
+						{{ form_label(form.referencia, null, { 'label': 'Referencia', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.referencia, { 'attr': {'class': ''}}) }}
+		        		</div>
+	     			</div>
+     			</div>
+      			<div class="span-16 form-horizontal label-column-small form-condensed">
+					<div class="control-group required">
+						{{ form_label(form.estado, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.estado, { 'attr': {'class': 'small'}}) }}
+		        		</div>
+	     			</div>
+					<div class="control-group required">
+						{{ form_label(form.forma_envio, null, { 'label': 'Forma Envio', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.forma_envio, { 'attr': {'class': 'small'}}) }}
+		        		</div>
+	     			</div>
+     			</div>
+ 			</div>
+ 		</div>
+ 	</div>
+	<div class="clearfix"></div>
+
+	<div class="totals">
+		<div class="rule top"></div>
+
+
+			<div class="clearfix"></div>
+			<div class="observaciones">			
+				{{ form_label(form.observaciones) }} <div class="clearfix"></div>
+		    	{{ form_widget(form.observaciones, { 'attr': {'cols': '50', 'rows': '6'}}) }}
+			</div>
+	</div>
+    <div class="clearfix"></div>
+    <p>
+        <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
+    </p>
+{{ form_widget(form._token) }}</form>

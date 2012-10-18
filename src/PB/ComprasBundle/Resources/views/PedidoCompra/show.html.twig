@@ -4,219 +4,115 @@
 
 {# block width100 "widthtotal" %}{% block displaysidebar "display:none;" #}
 {% block content %}
-
-<div class="invoice-container">
-	<div class="invheader">
-		<div class="invheader-upper">
-		<div class="invheader-address-account">
-		<div class="titulo2"><h3>PEDIDO DE COMPRA</h3></div>
-			PB<br>Spain
-					</div>
-
-		<div class="invheader-logo-container">
-			<div class="invheader-logo">
-				<img width="150" height="55" alt="" src="/images/logos/blank.gif"><br>
-				
-			</div>
+<div class="title title-spacing"><h2>Pedido Compra</h2></div>
+<div class="pedido-compra">
+	<div class="pedido-compra-header">
+		<div class="pcimagen span-8">
+		<img src="{{ asset('images/pb-compra.png') }}" />
+		</div>
+		<div class="direccion span-13">
+			<p><b>PLÁSTICOS BALTASAR, S.A.</b></p>
+			<p>C/ Las viñas, 41</P>
+			<p>45710 Madridejos (TOLEDO)</p>
+			<p>Tlf: 925 46 16 99 Fax: 925 11 20 12</p>
+			<p>plasticosbaltasar@gmail.com</p>
+		</div>
+		<div class="titular span-11">
+			<p>PEDIDO DE <br />COMPRA O SERVICIO</p>
 		</div>
 	</div>
-
-	<div class="invheader-lower">
-		<div class="invheader-address-client">
-			Cliente 1<br>Cruzada 5<br>Bahamas
-					</div>
-
-		<div class="invheader-invoicedetails">
-			<table cellspacing="0">
-				<tbody><tr>
-					<th>
-																					Invoice #
-																		</th>
-					<td>0000001</td>
-				</tr>
-				<tr>
-					<th>
-																					Invoice Date
-																		</th>
-					<td>October  9, 2012</td>
-				</tr>
-								<tr class="invheader-invoicedetails-balance">
-					<th><div>
-													Amount Due
-											</div></th>
-					<td><div>
-						€46.00  EUR
-					</div></td>
-				</tr>
-			</tbody></table>
-		</div>
-	</div>
-</div>
-<div class="invbody">
-			<table cellspacing="0" class="invbody-items">
-			<thead>
-				<tr>
-					<th class="first"><div class="item">
-						Task
-					</div></th>
-					<th><div class="description">
-						Time Entry Notes
-					</div></th>
-					<th><div class="unitcost">
-						Rate
-					</div></th>
-					<th><div class="quantity">
-						Hours
-					</div></th>
-					<th class="last"><div class="linetotal">
-						Line Total
-					</div></th>
-				</tr>
-			</thead>
-			<tbody>
-															<tr>
-							<td style="width: 120px;"><div class="item">
-								General
-							</div></td>
-							<td><div class="description">
-								23
-							</div></td>
-							<td style="width: 85px;"><div class="unitcost">
-								23.00
-							</div></td>
-							<td style="width: 80px;"><div class="quantity">
-								2
-							</div></td>
-							<td style="width: 90px;"><div class="linetotal">
-								46.00
-							</div></td>
-						</tr>
-											</tbody>
+	<div class="clearfix"></div>
+	<table id="table-cabecera">
+		<tr>
+			<td style="width:170px;" class="etiqueta bgcolor">PROVEEDOR</td>
+			<td colspan="3">{{ entity.proveedor.nombre }}</td>
+		</tr>
+		<tr>
+			<td class="etiqueta bgcolor">PERSONA DE CONTACTO</td>
+			<td style="width:45%;">{{ entity.proveedor.nombrecontacto }}</td>
+			<td style="width:80px;" class="etiqueta bgcolor">Tel / Fax</td>
+			<td> {{ entity.proveedor.telefono }}</td>
+		</tr>
+		<tr>
+			<td class="etiqueta bgcolor">DIRECCIÓN</td>
+			<td colspan="3">{{ entity.proveedor.direccion }}</td>
+		</tr> 
+		<tr>
+			<td class="etiqueta bgcolor last">PEDIDO REALIZADO POR</td>
+			<td class="last">LUIS ÁLVAREZ</td>
+			<td class="etiqueta bgcolor last">Tel / Fax</td>
+			<td class="last"></td>
+		</tr>  
+	</table>
+	<table id="cab-lineas">
+		<tr>
+			<td style="width:10%" class="bgcolor last">REF</td>
+			<td style="width:50%" class="bgcolor last">DESCRIPCION</td>
+			<td style="width:10%" class="bgcolor last">UDS</td>
+			<td style="width:10%" class="bgcolor last">PRECIO</td>
+			<td style="width:10%" class="bgcolor last">% DTO</td>
+			<td style="width:10%" class="bgcolor last">TOTAL</td>
+		</tr>
+	</table>
+	<table id="lineas">
+	{% for linea in entity.pedidocompralineas %}
+        <tr>
+            <td style="width:10%" class="ta_right">{{ linea.referencia }}</td>
+            <td style="width:50%">{{ linea.descripcion }}</td>
+            <td style="width:10%" class="ta_right">{{ linea.cantidad }}</td>
+            <td style="width:10%" class="ta_right">{{ linea.precio }}</td>
+            <td style="width:10%" class="ta_right">{{ linea.descuento }}</td>
+            <td style="width:10%" class="ta_right">{{ linea.total }}</td>
+        </tr>
+    {% endfor %}
+	</table>
+	<table id="sub-lineas">
+		<tr>
+			<td style="width:18%" class="etiqueta bgcolor">NETO</td>
+			<td style="width:18%" class="etiqueta bgcolor">DTO %</td>
+			<td style="width:22%" class="etiqueta bgcolor">BASE IMPONIBLE</td>
+			<td style="width:22%" class="etiqueta bgcolor">IVA 21%</td>
+			<td style="width:22%" class="etiqueta bgcolor">TOTAL</td>
+		</tr>
+		<tr>
+			<td class="last ta_right">{{ entity.importe }}</td>
+			<td class="last ta_right"></td>
+			<td class="last ta_right">{{ entity.importe }}</td>
+			<td class="last ta_right">{{ entity.iva }}</td>
+			<td class="last ta_right"><b>{{ entity.total }}</b></td>
+		</tr>
 		</table>
-	
-	
-	<table cellspacing="0" class="invbody-summary">
-		
-		
-		
-					<tbody><tr>
-				<td class="invbody-summary-clean">&nbsp;</td>
-				<th style="width: 150px;"><strong>
-					Total
-				</strong></th>
-				<td style="width: 120px;"><strong>
-					46.00
-				</strong></td>
+	<table id="firma">
+		<tr>
+			<td style="width:240px;" class="etiqueta bgcolor">FECHA DE ENTREGA:</td>
+			<td>{{ entity.fechaentrega|date('d / m / Y') }}
+		</tr>
+		<tr>
+			<td class="etiqueta bgcolor">LUGAR DE ENTREGA:</td>
+			<td>{{ entity.referencia }}</td>
+		</tr>
+		<tr>
+			<td class="etiqueta bgcolor">FORMA DE ENVIO</td>
+			<td class="">{{ entity.formaenvio }}</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="padding:0;">
+			<table id="dentro"><tr>
+				<td style="width:80% height:300px;"></td>
+				<td class="bgcolor"></td>
 			</tr>
-			<tr class="invbody-summary-paid">
-				<td class="invbody-summary-clean">&nbsp;</td>
-				<th style="width: 150px;">
-					Amount Paid
-				</th>
-				<td style="width: 120px;">-0.00</td>
-			</tr>
-
-			<tr class="invbody-summary-total">
-				<td class="invbody-summary-clean">&nbsp;</td>
-				<th style="width: 150px;"><div><strong>
-					Amount Due
-				</strong></div></th>
-				<td style="width: 120px;"><div><strong>
-					€46.00  EUR
-				</strong></div></td>
-			</tr>
-			</tbody></table>
-
-	<div style="height: 1px; overflow: hidden;" class="clearb"></div>
-
-	
-	
-		<div class="invoice-brand">
-							PLÁSTICOS BALTASAR, S.A.<a href="">www.plasticosbaltasar.net</a>
-
-					</div>
-	</div>
-
-	
-
-
-							<div class="clearb"></div>
-
-				
-<div id="expense-receipts" class="no_print" style="display: none;">
-	<div class="accessory-list">
-					<h4 class="accessory-list-header rule-top">
-				Expense Receipts
-			</h4>
-			<ol class="accessory-list-items clearb"></ol>
-				<div class="clearb"></div>
-	</div>
+			</table>
+			 
+		</tr>
+	</table>
 </div>
-
-<script id="expense-receipt-item" type="text/html">
-	&lt;li class="accessory-list-item accessory-list-item-2up"&gt;
-		&lt;div class="accessory-list-item-content"&gt;
-			&lt;div class="expense-preview" data-expenseid="&lt;%expenseid%&gt;"&gt;
-				&lt;span class="float_left accessory-list-icon paperclip"&gt;&amp;nbsp;&lt;/span&gt;
-				&lt;span class="float_right"&gt;&lt;%amount%&gt;&lt;/span&gt;
-				&lt;a target="_blank" href="/ajax/expense/receipt/?expenseid=&lt;%expenseid%&gt;"&gt;&lt;%desc%&gt;&lt;/a&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	&lt;/li&gt;
-</script>
-
-<style>
-#expense-receipts {
-	margin-top:22px;
-}
-#expense-receipts .accessory-list-header {
-	padding-top: 10px;
-}
-#expense-receipts label {
-	font-weight: normal;
-}
-#expense-receipts .accessory-list-header input {
-	line-height:20px;
-}
-#expense-receipts h4 {
-	font-size: 12px;
-}
-</style>
-
-<script type="text/javascript" src="/cache/js/attachment-list.v1344369245.js"></script>
-
-				<script>
-					$(document).ready(function() {
-						var expenses = [],
-							list = new Fresh.ui.AttachmentList();
-						if (expenses.length) {
-							$.each(expenses, function(i, expense) {
-								list.addExpense(expense);
-							});
-						} else {
-							$('#expense-receipts').hide();
-						}
-					});
-				</script>
-					</div>
-
-
+<div class="clearfix"></div>
 <div>
-    <div class="float-left">
-        <a class="btn" href="{{ path('compras_pedidocompra') }}">
-            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+    <div class="volver float-left">
+        <a href="{{ path('compras_pedidocompra') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
-    <div class="float-left">
-        <a class="btn btn-primary" href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}">
-            {{ 'views.recordactions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-    </div>
-    <div class="float-left">
-        <form action="{{ path('compras_pedidocompra_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button class="btn btn-danger" type="submit" onclick="return confirm('Desea eliminar al proyecto del sistema?');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-        </form>
-    </div>
+
 </div>
 {% endblock %}

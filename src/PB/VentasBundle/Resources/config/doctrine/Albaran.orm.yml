@@ -1,0 +1,24 @@
+PB\VentasBundle\Entity\Albaran:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        fecha:
+            type: date
+            nullable: true
+        fecha_entrega:
+            type: date
+            nullable: true
+        tipo:
+            type: smallint
+            nullable: true
+    oneToMany:
+        lineas:
+            targetEntity: PB\VentasBundle\Entity\AlbaranLinea
+            mappedBy: albaran
+            cascade: [ persist ]
+    lifecycleCallbacks: {  }

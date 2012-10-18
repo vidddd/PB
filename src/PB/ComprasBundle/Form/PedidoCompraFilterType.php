@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\NumberFilterType;
 
 class PedidoCompraFilterType extends AbstractType
 {
@@ -15,14 +17,14 @@ class PedidoCompraFilterType extends AbstractType
     {
         $builder
             ->add('id', 'filter_number')
-            ->add('fecha', 'filter_date_range')
-            ->add('fecha_entrega', 'filter_date_range')
-            ->add('referencia', 'filter_text')
-            ->add('forma_envio', 'filter_number_range')
-            ->add('importe', 'filter_number_range')
-            ->add('iva', 'filter_number_range')
-            ->add('total', 'filter_number_range')
-            ->add('descuento', 'filter_number_range')
+            ->add('proveedor', 'filter_number')
+            ->add('referencia', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS))
+   		    ->add('fecha', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
+		    															   'label' => 'aaaaa',
+		    											//'format' => 'dd.MM.yyyy'
+		    											),
+		    										   'right_date' => array('widget' => 'single_text')))
+           
         ;
 
         $listener = function(FormEvent $event)

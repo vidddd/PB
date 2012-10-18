@@ -1,38 +1,47 @@
 {% extends '::layout.html.twig' %}
 
 {% block title "Editar Pedido Compra" %}
-{% form_theme edit_form 'PBInicioBundle:Form:fields.html.twig' %}
+{% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
 
+<div class="facturas">
 <div class="title title-spacing"><h2>Editar Pedido Compra</h2></div>
-          {% if form_errors(edit_form) %}
-          <div class="response-msg notice iu-corner-all">{{ form_errors(edit_form) }}</div>
-          {% endif %}
-          
-{{ form_widget(edit_form.pedidocompralinea_pedidocompra) }}
-<pre>
-{# dump(edit_form) #}
-</pre>
-
-<form class="well" action="{{ path('compras_pedidocompra_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    {{ form_widget(edit_form) }}
-    <p>
-        <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-    </p>
-</form>
-
-<div>
-    <div class="float-left">
-        <a class="btn" href="{{ path('compras_pedidocompra') }}">
-            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+       
+	{% include 'PBComprasBundle:PedidoCompra:form.html.twig' with { 'form' : form } %}
+	
+    <div class="float-left volver">
+        <a href="{{ path('compras_pedidocompra') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
-    <div class="float-left">
-        <form action="{{ path('compras_pedidocompra_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button class="btn btn-danger" type="submit" onclick="return confirm('Desea eliminar al proyecto del sistema?');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-        </form>
-    </div>
+
 </div>
+<script>
+    /* add pizzas */
+    var add = function() {
+        var index = $('table.invoice-lines tbody tr').length;
+        var prototype = $('.prototipo').attr('data-prototype');
+        var row = prototype.replace(/__name__/g, index);
+        $('table.invoice-lines tbody').append(row);
+        bind();
+    };
+
+    $('#addrow').live('click', function(event) {
+            add();
+            event.preventDefault();
+    });
+    $(".delete").live('click',function(){
+        $(this).closest('tr').remove();
+        update_total();
+        if ($(".delete").length < 2) $(".delete").hide();
+        event.preventDefault();
+      });
+
+    if ($('table.invoice-lines tbody tr').length === 0) {
+        add();
+    }
+
+</script>
+		{% include 'PBComprasBundle:Proveedor:js_get_proveedor.html.twig' %} 
 {% endblock %}

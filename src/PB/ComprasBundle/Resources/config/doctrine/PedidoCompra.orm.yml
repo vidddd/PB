@@ -27,10 +27,16 @@ PB\ComprasBundle\Entity\PedidoCompra:
       type: float
       nullable: true
     iva:
-      type: smallint
+      type: float
       nullable: true
     descuento:
       type: float
+      nullable: true
+    observaciones:
+      type: text
+      nullable: true
+    estado:
+      type: smallint
       nullable: true
   manyToOne:
     proveedor:
@@ -43,6 +49,7 @@ PB\ComprasBundle\Entity\PedidoCompra:
     pedidocompralineas:
         targetEntity: PB\ComprasBundle\Entity\PedidoCompraLinea
         mappedBy: pedidocompralinea
-        cascade: [ persist ]
+        # cascade: [ persist ]
+        cascade: [ all ]
         
   lifecycleCallbacks: {  }

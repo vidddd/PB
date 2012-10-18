@@ -1,0 +1,79 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Comerciales" %}
+
+{% block content %}
+
+<div class="title title-spacing ventas">
+					<h2>Comerciales</h2>
+</div>
+    <div class="span2">
+        {% if form_errors(filterForm) %}
+        <div class="response-msg notice iu-corner-all"><span>
+            {{ form_errors(filterForm) }}</span>
+        </div>
+        {% endif %}
+        &nbsp;
+    </div>
+	<div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
+	    <div class="portlet-content">
+			<form class="well" action="{{ path('comercial') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
+				<table id="form-alta">
+	   				<tbody>		
+	         			<tr>
+	        				<td class="label">{{ form_label(filterForm.id, 'Código Comercial') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
+	      				<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(filterForm.nombre, 'Nombre') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.nombre) }}</td><td>{{ form_errors(filterForm.nombre) }}</td>
+	      				<tr>
+	            </tbody></table>
+	                <p class="botones-buscador">
+	                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
+	                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+	                </p>
+				 {{ form_widget(filterForm._token) }}</form>
+		</div><div class="clear"></div>
+	</div>
+	    
+	<div class="btn-nuevo">
+	<a class="btn ui-state-default ui-corner-all" href="{{ path('comercial_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Comercial</a></div>
+	
+
+
+<div class="clearfix"></div>
+<div class="hastable">
+    <table class="records_list">
+    <thead>
+        <tr>
+            <th width="25">Código Comercial</th>
+            <th>Nombre</th>
+            <th>Localidad</th>
+            <th>Telefono</th>
+            <th width="70">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+            <td><a rel="prettyPhoto[iframe]" href="{{ path('comercial_show', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.localidad }}</td>
+            <td>{{ entity.telefono }}</td>
+            <td>
+        		<a rel="prettyPhoto[iframe]" href="{{ path('comercial_show', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+        		<a href="{{ path('comercial_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+          		<!-- <a href="{{ path('proveedor_delete', { 'id': entity.id }) }}" title="Eliminar" class="btn_no_text btn ui-state-default ui-corner-all tooltip" onclick="return confirm('Estas seguro de borrar el cliente?')"><span class="ui-icon ui-icon-circle-close"></span></a> -->
+          </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    </div>
+
+    <div class="span4">
+    {{ pagerHtml|raw }}
+    </div>
+
+{% endblock %}

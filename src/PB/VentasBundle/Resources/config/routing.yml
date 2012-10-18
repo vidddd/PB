@@ -13,3 +13,8 @@ PBVentasBundle_pedido:
 PBVentasBundle_albaran:
         resource: "@PBVentasBundle/Resources/config/routing/albaran.yml"
         prefix:   /albaran
+        
+PBVentasBundle_comercial:
+        resource: "@PBVentasBundle/Resources/config/routing/comercial.yml"
+        prefix:   /comercial
+        

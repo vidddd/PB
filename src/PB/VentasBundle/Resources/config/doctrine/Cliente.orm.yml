@@ -155,6 +155,12 @@ PB\VentasBundle\Entity\Cliente:
       joinColumn:
         name: formapago_id
         referencedColumnName: id
+    comercial_cliente:
+      targetEntity: PB\VentasBundle\Entity\comercial
+      inversedBy: comercial
+      joinColumn:
+        name: comercial_id
+        referencedColumnName: id
 
   lifecycleCallbacks: 
     prePersist: [ setFechaAltaPre ]

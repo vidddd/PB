@@ -967,7 +967,7 @@ border-radius: 3px;
 .titulo2 h3 {
     font-size: 20px;font-weight: bold;text-transform: uppercase;
 }
-
+/** pedido ventas **/
 #pedido .toppedido{
 	border-colapse:colapse;
 	border: 1px solid #DDDDDD;
