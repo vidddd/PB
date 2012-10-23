@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+	<div id="welcome_login" title="Plásticos Baltasar, S.A.">
+		{% if error %}
+		<div class="response-msg error ui-corner-all">
+			<span>Error Login</span>
+			{{ error.message }}
+		</div>
+		{% endif %}
+
+	<form action="{{ path('login_check') }}" method="post" enctype="multipart/form-data" class="forms" name="form-login" >
+			<ul>
+				<li>
+					<label for="username" class="desc">
+
+						Usuario:
+					</label>
+					<div>
+						 <input id="username" type="text" class="field text full" name="_username" value="{{ last_username }}" />
+					</div>
+				</li>
+				<li>
+					<label for="password" class="desc">
+						Password:
+					</label>
+
+					<div>
+						 <input id="password" type="password" class="field text full" name="_password" />
+					</div>
+				</li>
+			</ul>
+		</form>
+	</div>
+{% endblock %}

@@ -1,11 +1,19 @@
 parameters:
-#    pb_ventas.example.class: PB\VentasBundle\Example
+#    pb_ventas.print_precios.class: PB\VentasBundle\DependencyInyection\Printprecios
+     ventas.id: 1
 
 services:
+    ventas.print_precios:
+        class: PB\VentasBundle\DependencyInjection\Printprecios
+        arguments:
+        #    entityManager: "@doctrine.orm.entity_manager"
+        #    id: %ventas.id%
+            em: @doctrine
+
 #    pb_ventas.example:
 #        class: %pb_ventas.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
-    pb_ventas.type.cliente_id:
+    ventas.type.cliente_id:
         class: PB\VentasBundle\Form\Type\ClienteIdType
         arguments: ["@doctrine.orm.entity_manager"]
         tags:

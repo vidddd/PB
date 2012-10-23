@@ -1,7 +1,3 @@
-$(document).ready(function() {
-  bind();
-});
-
 function bind() {
 	  $(".icantidad").blur(update_price);
 	  $(".iprecio").blur(update_price);
@@ -28,6 +24,7 @@ function update_price() {
 
 function update_total() {
 	  var total = 0;
+
 	  $('.totallinea').each(function(i){
 	    price = $(this).html();
 	    if (!isNaN(price)) total += Number(price);

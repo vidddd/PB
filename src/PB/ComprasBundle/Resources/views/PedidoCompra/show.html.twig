@@ -75,11 +75,11 @@
 			<td style="width:22%" class="etiqueta bgcolor">TOTAL</td>
 		</tr>
 		<tr>
-			<td class="last ta_right">{{ entity.importe }}</td>
+			<td class="last ta_right">{{ entity.importe }}&euro;</td>
 			<td class="last ta_right"></td>
-			<td class="last ta_right">{{ entity.importe }}</td>
+			<td class="last ta_right">{{ entity.importe }}&euro;</td>
 			<td class="last ta_right">{{ entity.iva }}</td>
-			<td class="last ta_right"><b>{{ entity.total }}</b></td>
+			<td class="last ta_right"><b>{{ entity.total }}&euro;</b></td>
 		</tr>
 		</table>
 	<table id="firma">
@@ -107,12 +107,12 @@
 	</table>
 </div>
 <div class="clearfix"></div>
-<div>
+<div><br />
     <div class="volver float-left">
-        <a href="{{ path('compras_pedidocompra') }}">
-          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-    </div>
-
+        <a href="{{ path('compras_pedidocompra') }}"> <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></div>
+    <div class="float-left volver">
+    	<a href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}">Editar</a></div>
+	<div class="float-left volver">
+        <a href="{{ path('compras_pedidocompra_print', { 'id': entity.id }) }}"> Imprimir </a> </div>
 </div>
 {% endblock %}

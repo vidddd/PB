@@ -1,21 +1,19 @@
 {% extends '::layout.html.twig' %}
 
-{% block title "Editar Pedido Compra" %}
+{% block title "Editar Tarifa Precios" %}
 {% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
+<div class="title title-spacing ventas"><h2>Editar Tarifa Precios</h2></div>
 
-<div class="facturas">
-<div class="title title-spacing"><h2>Editar Pedido Compra</h2></div>
-       
-	{% include 'PBComprasBundle:PedidoCompra:form.html.twig' with { 'form' : form } %}
-	
+	{% include 'PBVentasBundle:Precio:form.html.twig' with { 'form' : form } %}
+          	
+	<div class="clearfix"></div>
     <div class="float-left volver">
-        <a href="{{ path('compras_pedidocompra') }}">
+        <a href="{{ path('precio') }}">
           <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
+		{% include 'PBVentasBundle:Cliente:js_get_cliente.html.twig' %} 
 
-</div>
-		{% include 'PBComprasBundle:Proveedor:js_get_proveedor.html.twig' %} 
 {% endblock %}

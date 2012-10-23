@@ -1,0 +1,27 @@
+PB\InicioBundle\Entity\Usuario:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        usuario:
+            type: string
+            length: 255
+        password:
+            type: string
+            length: 255
+        nombrecompleto:
+            type: string
+            length: 255
+        direccion:
+            type: string
+            length: 255
+        telefono:
+            type: integer
+        salt:
+            type: string
+            lenght: 255
+    lifecycleCallbacks: {  }

@@ -161,6 +161,9 @@ PB\VentasBundle\Entity\Cliente:
       joinColumn:
         name: comercial_id
         referencedColumnName: id
-
+  oneToMany:
+    precio:
+        targetEntity: PB\VentasBundle\Entity\Precio
+        mappedBy: cliente
   lifecycleCallbacks: 
     prePersist: [ setFechaAltaPre ]

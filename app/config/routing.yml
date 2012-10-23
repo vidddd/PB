@@ -18,6 +18,17 @@ _welcome:
     pattern:  /
     defaults: { _controller: PBInicioBundle:Default:index }
 
+login:
+    pattern: /login
+    defaults: { _controller: PBInicioBundle:Security:login }
+ 
+login_check:
+    pattern: /login_check
+ 
+logout:
+    pattern: /logout
+
+
 
 # Internal routing configuration to handle ESI
 #_internal:

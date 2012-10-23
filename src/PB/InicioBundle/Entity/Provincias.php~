@@ -199,4 +199,27 @@ class Provincias
     {
         return $this->provincia3;
     }
+
+    /**
+     * Add provincia3
+     *
+     * @param PB\VentasBundle\Entity\Comercial $provincia3
+     * @return Provincias
+     */
+    public function addProvincia3(\PB\VentasBundle\Entity\Comercial $provincia3)
+    {
+        $this->provincia3[] = $provincia3;
+    
+        return $this;
+    }
+
+    /**
+     * Remove provincia3
+     *
+     * @param PB\VentasBundle\Entity\Comercial $provincia3
+     */
+    public function removeProvincia3(\PB\VentasBundle\Entity\Comercial $provincia3)
+    {
+        $this->provincia3->removeElement($provincia3);
+    }
 }

@@ -45,9 +45,29 @@ class PedidoCompra
     private $total;
 
     /**
+     * @var float $iva
+     */
+    private $iva;
+
+    /**
      * @var float $descuento
      */
     private $descuento;
+
+    /**
+     * @var string $observaciones
+     */
+    private $observaciones;
+
+    /**
+     * @var integer $estado
+     */
+    private $estado;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $pedidocompralineas;
 
     /**
      * @var PB\ComprasBundle\Entity\Proveedor
@@ -59,7 +79,7 @@ class PedidoCompra
      */
     public function __construct()
     {
-        $this->pedidoscompralinea = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pedidocompralineas = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -71,7 +91,11 @@ class PedidoCompra
     {
         return $this->id;
     }
-
+    public function setId($id)
+    {
+    	$this->id = $id;
+    	return $this;
+    }
     /**
      * Set fecha
      *
@@ -211,6 +235,29 @@ class PedidoCompra
     }
 
     /**
+     * Set iva
+     *
+     * @param float $iva
+     * @return PedidoCompra
+     */
+    public function setIva($iva)
+    {
+        $this->iva = $iva;
+    
+        return $this;
+    }
+
+    /**
+     * Get iva
+     *
+     * @return float 
+     */
+    public function getIva()
+    {
+        return $this->iva;
+    }
+
+    /**
      * Set descuento
      *
      * @param float $descuento
@@ -232,112 +279,6 @@ class PedidoCompra
     {
         return $this->descuento;
     }
-    /**
-     * Set proveedor
-     *
-     * @param PB\ComprasBundle\Entity\Proveedor $proveedor
-     * @return PedidoCompra
-     */
-    public function setProveedor(\PB\ComprasBundle\Entity\Proveedor $proveedor = null)
-    {
-        $this->proveedor = $proveedor;
-    
-        return $this;
-    }
-
-    /**
-     * Get proveedor
-     *
-     * @return PB\ComprasBundle\Entity\Proveedor 
-     */
-    public function getProveedor()
-    {
-        return $this->proveedor;
-    }
-    /**
-     * @var integer $iva
-     */
-    private $iva;
-
-
-    /**
-     * Set iva
-     *
-     * @param integer $iva
-     * @return PedidoCompra
-     */
-    public function setIva($iva)
-    {
-        $this->iva = $iva;
-    
-        return $this;
-    }
-
-    /**
-     * Get iva
-     *
-     * @return integer 
-     */
-    public function getIva()
-    {
-        return $this->iva;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    private $pedidocompralineas;
-
-
-    /**
-     * Add pedidocompralineas
-     *
-     * @param PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas
-     * @return PedidoCompra
-     */
-    public function addPedidocompralinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas)
-    {
-        $this->pedidocompralineas[] = $pedidocompralineas;
-        $pedidocompralineas->setPedidocompralinea($this);
-        return $this;
-    }
-
-    /**
-     * Remove pedidocompralineas
-     *
-     * @param PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas
-     */
-    public function removePedidocompralinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas)
-    {
-        $this->pedidocompralineas->removeElement($pedidocompralineas);
-    }
-
-    /**
-     * Get pedidocompralineas
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getPedidocompralineas()
-    {
-    	
-    	return $this->pedidocompralineas;
-    	//return $this->pedidocompralineas->toArray();
-    }
-    
-    function setPedidocompralineas(ArrayCollection $lineas){
-
-    	foreach ($lineas as $linea) {
-    		$linea->addPedidoCompra($this);
-    	}
-    	
-    	$this->pedidocompralineas = $lineas;
-    	
-    }
-
-    /**
-     * @var string $observaciones
-     */
-    private $observaciones;
-
 
     /**
      * Set observaciones
@@ -361,11 +302,6 @@ class PedidoCompra
     {
         return $this->observaciones;
     }
-    /**
-     * @var integer $estado
-     */
-    private $estado;
-
 
     /**
      * Set estado
@@ -388,5 +324,61 @@ class PedidoCompra
     public function getEstado()
     {
         return $this->estado;
+    }
+
+    /**
+     * Add pedidocompralineas
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas
+     * @return PedidoCompra
+     */
+    public function addPedidocompralinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas)
+    {
+        $this->pedidocompralineas[] = $pedidocompralineas;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pedidocompralineas
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas
+     */
+    public function removePedidocompralinea(\PB\ComprasBundle\Entity\PedidoCompraLinea $pedidocompralineas)
+    {
+        $this->pedidocompralineas->removeElement($pedidocompralineas);
+    }
+
+    /**
+     * Get pedidocompralineas
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPedidocompralineas()
+    {
+        return $this->pedidocompralineas;
+    }
+
+    /**
+     * Set proveedor
+     *
+     * @param PB\ComprasBundle\Entity\Proveedor $proveedor
+     * @return PedidoCompra
+     */
+    public function setProveedor(\PB\ComprasBundle\Entity\Proveedor $proveedor = null)
+    {
+        $this->proveedor = $proveedor;
+    
+        return $this;
+    }
+
+    /**
+     * Get proveedor
+     *
+     * @return PB\ComprasBundle\Entity\Proveedor 
+     */
+    public function getProveedor()
+    {
+        return $this->proveedor;
     }
 }

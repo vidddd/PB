@@ -1,0 +1,125 @@
+PB\VentasBundle\Entity\Precio:
+  type: entity
+  table: null
+  repositoryClass: PB\VentasBundle\Repository\PrecioRepository
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    fecha:
+      type: date
+    cam15:
+      type: float
+      nullable: true
+    cam30:
+      type: float
+      nullable: true
+    cam50:
+      type: float
+      nullable: true
+    cam100:
+      type: float
+      nullable: true
+    cam100mas:
+      type: float
+      nullable: true
+    asa20:
+      type: float
+      nullable: true
+    asa30:
+      type: float
+      nullable: true
+    asa35:
+      type: float
+      nullable: true
+    especiales10:
+      type: float
+      nullable: true
+    especiales15:
+      type: float
+      nullable: true
+    espemenos150s:
+      type: float
+      nullable: true
+    espemenos150i:
+      type: float
+      nullable: true
+    bobmenos150s:
+      type: float
+      nullable: true
+    bobmenos150i:
+      type: float
+      nullable: true
+    espemas150s:
+      type: float
+      nullable: true
+    espemas150i:
+      type: float
+      nullable: true
+    bobmas150s:
+      type: float
+      nullable: true
+    bobmas150i:
+      type: float
+      nullable: true
+    espemas500s:
+      type: float
+      nullable: true
+    espemas500i:
+      type: float
+      nullable: true
+    bobmas500s:
+      type: float
+      nullable: true
+    bobmas500i:
+      type: float
+      nullable: true
+    bolleria:
+      type: float
+      nullable: true
+    ppbob:
+      type: float
+      nullable: true
+    ppbolsasin:
+      type: float
+      nullable: true
+    ppbolsapeque:
+      type: float
+      nullable: true
+    ppbolsagrande:
+      type: float
+      nullable: true
+    ppmbob:
+      type: float
+      nullable: true
+    ppmbobi:
+      type: float
+      nullable: true
+    ppmsin:
+      type: float
+      nullable: true
+    ppmim:
+      type: float
+      nullable: true
+    laminaim:
+      type: float
+      nullable: true
+    laminasin:
+      type: float
+      nullable: true
+  manyToOne:
+    cliente:
+      targetEntity: PB\VentasBundle\Entity\Cliente
+      inversedBy: precio
+      joinColumn:
+        name: cliente_id
+        referencedColumnName: id
+  oneToMany:
+    precioLineas:
+        targetEntity: PB\VentasBundle\Entity\PrecioLinea
+        mappedBy: precios
+        # cascade: [ persist ]
+        cascade: [ all ]
+  lifecycleCallbacks: {  }

@@ -6,6 +6,10 @@ pedido_show:
     pattern:  /{id}/show
     defaults: { _controller: "PBVentasBundle:Pedido:show" }
 
+pedido_imprimir:
+    pattern:  /{id}/print
+    defaults: { _controller: "PBVentasBundle:Pedido:imprimir" }
+
 pedido_new:
     pattern:  /new
     defaults: { _controller: "PBVentasBundle:Pedido:new" }

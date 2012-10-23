@@ -172,13 +172,13 @@ $(document).ready(function() {
 	// Dialog auto open			
 	$('#welcome_login').dialog({
 		autoOpen: true,
-		width: 370,
-		height: 430,
+		width: 380,
+		height: 230,
 		bgiframe: true,
 		modal: true,
 		buttons: {
-			"Proceed to demo !": function() {
-				window.location = "index.php";
+			"Entrar": function() {
+				$('#form-login').submit();
 			}
 		}
 	});

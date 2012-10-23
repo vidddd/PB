@@ -1,0 +1,34 @@
+precio:
+    pattern:  /
+    defaults: { _controller: "PBVentasBundle:Precio:index" }
+
+precio_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBVentasBundle:Precio:show" }
+    
+precio_print:
+    pattern:  /{id}/print
+    defaults: { _controller: "PBVentasBundle:Precio:imprimir" }
+    
+precio_new:
+    pattern:  /new
+    defaults: { _controller: "PBVentasBundle:Precio:new" }
+
+precio_create:
+    pattern:  /create
+    defaults: { _controller: "PBVentasBundle:Precio:create" }
+    requirements: { _method: post }
+
+precio_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBVentasBundle:Precio:edit" }
+
+precio_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBVentasBundle:Precio:update" }
+    requirements: { _method: post }
+
+precio_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBVentasBundle:Precio:delete" }
+    requirements: { _method: post }

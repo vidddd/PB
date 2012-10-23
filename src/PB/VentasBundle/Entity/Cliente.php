@@ -1072,4 +1072,42 @@ class Cliente
     {
         return $this->comercial_cliente;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $precio;
+
+
+    /**
+     * Add precio
+     *
+     * @param PB\VentasBundle\Entity\Precio $precio
+     * @return Cliente
+     */
+    public function addPrecio(\PB\VentasBundle\Entity\Precio $precio)
+    {
+        $this->precio[] = $precio;
+    
+        return $this;
+    }
+
+    /**
+     * Remove precio
+     *
+     * @param PB\VentasBundle\Entity\Precio $precio
+     */
+    public function removePrecio(\PB\VentasBundle\Entity\Precio $precio)
+    {
+        $this->precio->removeElement($precio);
+    }
+
+    /**
+     * Get precio
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
 }

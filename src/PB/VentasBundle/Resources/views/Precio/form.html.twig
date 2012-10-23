@@ -1,0 +1,249 @@
+{% if form_errors(form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% endif %}
+ 	<form action="{{ entity.id  ? path('precio_update', { 'id': entity.id }) : path('precio_create') }}" method="post" {{ form_enctype(form) }} id="form-precio">
+<div id="precios">
+	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">	
+	
+			<div class="form-invoice">
+				<div class="span-17 form-horizontal label-column-small form-condensed">
+					<div class="control-group">
+						{{ form_label(form.cliente, null, { 'label': ' Cliente', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.cliente, { 'attr': {'class': 'small buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de CLIENTES"><img src="{{ asset('images/search.png') }}" /></a>
+		        		</div>
+	     			</div>
+	     			<div class="control-group">
+	     			      <label class="control-label">&nbsp;</label> 
+	     			      <div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div>
+	     			</div>
+     			</div>
+     			<div class="span-17 form-horizontal label-column-small form-condensed">
+					<div class="control-group required">
+						<label class="control-label required">Código Tarifa</label>
+						<div class="controls codigo">
+			    					{{ entity.id }}
+		        		</div>
+	     			</div>
+     			</div>
+      			<div class="span-16 form-horizontal label-column-small form-condensed">
+	     			<div class="control-group required">
+						{{ form_label(form.fecha, null, { 'label': 'Fecha', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.fecha, { 'attr': {'class': 'date small'}}) }}
+		        		</div>
+	     			</div>
+     			</div>
+ 			</div>
+	</div>
+	<div class="span-33">
+		<table border="0" align="center" class="camiseta-impresa spreadsheet">
+			  <caption class="caption">CAMISETA IMPRESA 
+			  </caption>
+			  <tbody><tr>
+			    <td width="86" class="primeralinea"><p align="center"> CANTIDAD</p></td>
+			    <td width="63" class="primeralinea"><p align="center">HASTA 15000</p></td>
+			    <td width="53" class="primeralinea"><div align="center">DE 15 A 30000</div></td>
+			    <td width="51" class="primeralinea"><div align="center">DE 30 A 50000</div></td>
+			    <td width="54" class="primeralinea"><div align="center">DE 50 A 100000</div></td>
+			    <td width="57" class="primeralinea"><div align="center">DESDE 100000</div></td>
+			  </tr>
+			  <tr>
+			    <td class="primeralinea">Precio Kg</td>
+			    <td>{{ form_widget(form.cam15, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.cam30, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.cam50, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.cam100, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.cam100mas, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			  </tr>
+			</tbody></table>
+			<table class="spreadsheet medidases"><caption class="caption">MEDIDAS ESPECIALES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BOBINAS</caption>
+			  <tbody><tr> 
+			    <td width="23%"><div align="center"></div></td>
+			    <td width="19%" class="primeralinea">Sin Impresion</td>
+			    <td width="21%" class="primeralinea">Impreso</td>
+			    <td width="19%" class="primeralinea">Sin Impresion</td>
+			    <td width="18%" class="primeralinea">Impreso</td>
+			  </tr>
+			  <tr> 
+				<td class="primeralinea">Pedido -150 Kg</td>
+			    <td>{{ form_widget(form.espemenos150s, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.espemenos150i, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.bobmenos150s, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.bobmenos150i, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			  </tr>
+			    <tr> 
+				<td class="primeralinea">Pedido +150 Kg</td>
+			    <td>{{ form_widget(form.espemas150s, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.espemas150i, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.bobmas150s, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.bobmas150i, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			  </tr>
+			    <tr> 
+				<td class="primeralinea">Pedido +500 Kg</td>
+			    <td>{{ form_widget(form.espemas500s, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.espemas500i, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.bobmas500s, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			    <td>{{ form_widget(form.bobmas500i, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			  </tr>
+			</tbody></table>
+	<div id="invoice-lines">
+    <div class="clearfix"></div>
+    	{% macro prototype(linea) %}
+			<tr class="item-row">	
+					<td class="editable">
+					    {{ form_widget(linea.cantidad, { 'attr': {'class': 'ta_right'}}) }}
+					    <div class="delete-wrap"><a title="Borrar Linea" class="delete" href="#" onclick="return false;">&nbsp;</a></div>
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.concepto, { 'attr': {'class': 'idescripcion'}}) }}
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.medida, { 'attr': {'class': 'ta_right icantidad numeric'}}) }}
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.galga, { 'attr': {'class': 'ta_right iprecio numeric'}}) }}
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.precio, { 'attr': {'class': 'ta_right idescuento numeric'}}) }}
+					</td>
+				</tr>
+	     {% endmacro %}
+	     <div class="prototipo" data-prototype="{{ _self.prototype(form.preciolineas.get('prototype'))|e }}"></div>
+	     
+		<table cellspacing="0" style="" class="invoice-lines spreadsheet" id="precioslineas">
+			<thead>
+				<tr>
+					<th style="width: 64px;">Cantidad</th>
+					<th style="width: 300px;">Concepto</th>
+					<th class="ta_right" style="width: 60px;">Medida</th>
+					<th class="ta_right" style="width: 60px;">Galga</th>
+					<th style="width: 30px;">Precio</th>
+				</tr>
+			</thead>
+			<tbody>
+			  {% for linea in form.preciolineas %}
+                {{_self.prototype(linea)}}
+  			   {% endfor %}
+			</tbody>
+		</table>
+		    	<div class="float_left"><div class="spreadsheet actions">
+		    			<ul>
+		    				<li title="" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-plusthick"></span><a id="addrow" onclick="return false;" href="#">Añadir Línea</a></li>
+		    			<ul>
+		    		</div>
+		    	</div>
+		</div>
+    </div>
+	     
+	<div class="span-17">
+		<table align="center" class="spreadsheet"><caption class="caption">ASA TROQUELADA</caption>
+		  <tbody><tr> 
+		    <td width="69%" class="primeralinea">Medidas entre 20x30 y 30x40</td>
+		    <td width="31%">{{ form_widget(form.asa20, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Medidas entre 30x40 y 35x50</td>
+		    <td>{{ form_widget(form.asa30, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Medidas superiores a 35x50</td>
+		    <td>{{ form_widget(form.asa35, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		</tbody></table>
+		<table class="spreadsheet"><caption class="caption">MEDIDAS ESPECIALES PEQUEÑAS</caption>
+		  <tbody><tr> 
+		    <td width="69%" class="primeralinea">Medida pequeña 10 y 12</td>
+		    <td width="31%">{{ form_widget(form.especiales10, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Medida pequeña 15</td>
+		    <td>{{ form_widget(form.especiales15, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		</tbody></table>
+		<table class="spreadsheet"><caption class="caption">BOLLERIA</caption>
+			  <tbody><tr> 
+			    <td width="69%" class="primeralinea"><div align="center">Precios para Bolleria o similares</div></td>
+			    <td width="31%">{{ form_widget(form.bolleria, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+			  </tr>
+			</tbody></table>
+		<table class="spreadsheet"><caption class="caption">POLIPROPILENO</caption>
+		  <tbody><tr> 
+		    <td width="69%" class="primeralinea">Bobinas</td>
+		    <td width="31%">{{ form_widget(form.ppbob, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		  <tr> 
+		    <td class="primeralinea">Bolsa sin impresión</td>
+		    <td>{{ form_widget(form.ppbolsasin, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Bolsa impresa, medida pequeña</td>
+		    <td>{{ form_widget(form.ppbolsapeque, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Bolsa impresa, medida grande</td>
+		    <td>{{ form_widget(form.ppbolsagrande, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		</tbody></table>
+		<table class="spreadsheet"><caption class="caption">POLIPROPILENO MICROPERFORADO</caption>
+		  <tbody><tr> 
+		    <td width="69%" class="primeralinea">Bobinas</td>
+		    <td>{{ form_widget(form.ppmbob, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Bobina impresa</td>
+		    <td>{{ form_widget(form.ppmbobi, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Bolsa sin impresión</td>
+		    <td>{{ form_widget(form.ppmsin, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Bolsa impresa</td>
+		    <td>{{ form_widget(form.ppmim, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		</tbody></table>
+		<table class="spreadsheet"><caption class="caption">LAMINA</caption>
+		  <tbody><tr> 
+		    <td width="69%" class="primeralinea">Lamina impresa</td>
+		    <td width="31%">{{ form_widget(form.laminaim, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Lamina sin impresión</td>
+		    <td>{{ form_widget(form.laminasin, { 'attr': {'class': 'ta_right numeric'}}) }}</td>
+		  </tr>
+		</tbody></table>
+	</div>
+	
+<div class="clearfix"></div>
+	<div class="guardar"><button type="submit" class="ui-state-default ui-corner-all">Guardar</button></div> 
+		{{ form_widget(form._token) }} 
+</form>
+</div>
+<script>
+    var add = function() {
+        // add();
+        var index = $('table.invoice-lines tbody tr').length;
+        var prototype = $('.prototipo').attr('data-prototype');     
+        var row = prototype.replace(/__name__/g, index);
+        $('#precioslineas tbody').append(row);
+        //$('#precio_precioLineas_0_concepto').val('33333');
+    };
+
+    $('#addrow').live('click', function(event) {
+    	event.preventDefault();
+           add();
+        //   event.preventDefault();
+    });
+    $(".delete").live('click',function(){
+        $(this).closest('tr').remove();
+        update_total();
+        if ($(".delete").length < 2) $(".delete").hide();
+        //event.preventDefault();
+      });
+
+    if ($('table.invoice-lines tbody tr').length === 0) {
+    	//event.preventDefault();
+       add();
+    }
+</script>

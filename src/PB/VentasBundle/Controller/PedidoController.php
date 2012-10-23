@@ -25,10 +25,7 @@ class PedidoController extends Controller
     public function indexAction()
     {
         list($filterForm, $queryBuilder) = $this->filter();
-
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
-
-    
         return $this->render('PBVentasBundle:Pedido:index.html.twig', array(
             'entities' => $entities,
             'pagerHtml' => $pagerHtml,
@@ -49,9 +46,7 @@ class PedidoController extends Controller
         $queryBuilder = $em->getRepository('PBVentasBundle:Pedido')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
     
         // Reset filter
-        if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
-            $session->remove('PedidoControllerFilter');
-        }
+        if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {$session->remove('PedidoControllerFilter');}
     
         // Filter action
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
@@ -73,7 +68,6 @@ class PedidoController extends Controller
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
-    
         return array($filterForm, $queryBuilder);
     }
 
@@ -116,18 +110,69 @@ class PedidoController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('PBVentasBundle:Pedido')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Pedido entity.');
-        }
-
+        if (!$entity) { throw $this->createNotFoundException('Unable to find Pedido entity.');}
         $deleteForm = $this->createDeleteForm($id);
+        return $this->render('PBVentasBundle:Pedido:show.html.twig', array('entity'      => $entity,'delete_form' => $deleteForm->createView(),        ));
+    }
+    
+    public function imprimirAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$entity = $em->getRepository('PBVentasBundle:Pedido')->find($id);
+    	if (!$entity) {	throw $this->createNotFoundException('No se puede encontrar el pedido.');}
+    
+    	$pdf = new \Fpdf_Fpdf;
+    	$pdf->AddPage();
+    	$pdf->Ln();$pdf->Ln();
+    	//$pdf->Image('./logo/PBbn.jpg',20,10,30);// (x,y,ancho)
+    	$pdf->Ln();
+    	$pdf->Cell(95);
+    	$pdf->Cell(80,10,"",'',0,'C');
+    	$pdf->Ln(8);
+    	
+    	$pdf->SetFillColor(255,255,255);
+    	$pdf->SetTextColor(0);
+    	$pdf->SetDrawColor(0,0,0);
+    	$pdf->SetLineWidth(.2);
+    	$pdf->SetFont('Arial','B',20);
+    	
+    	$pdf->Cell(40,65,'PEDIDO');
+    	$pdf->SetX(10);
+    	
+    	$pdf->SetFont('Arial','B',9);
+    	$pdf->Cell(95);
+    	$pdf->Cell(80,4,"",'LRT',0,'L',1);
+    	$pdf->Ln(4);
+    	
+    	$pdf->Cell(95);
+    	$pdf->Cell(80,4,'David','LR',0,'L',1);
+    	$pdf->Ln(4);
+    	
+    	$pdf->Cell(95);
+    	$pdf->Cell(80,4,'','LR',0,'L',1);
+    	$pdf->Ln(4);
+    	//Calculamos la provinci
+    	$pdf->Cell(95);
+    	$pdf->Cell(80,4,'','LR',0,'L',1);
+    	$pdf->Ln(4);
+    	
+    	$pdf->Cell(95);
+    	$pdf->Cell(80,4,"Tlfno:   " . "Fax:",'LR',0,'L',1);
+    	$pdf->Ln(4);
+    	
+    	$pdf->Cell(95);
+    	$pdf->Cell(80,4,"",'LRB',0,'L',1);
+    	$pdf->Ln(10);
+        $fichier = $pdf->Output();;
 
-        return $this->render('PBVentasBundle:Pedido:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+        $response = new Response();
+        $response->clearHttpHeaders();
+        $response->setContent(file_get_contents($fichier));
+        $response->headers->set('Content-Type', 'application/force-download');
+        $response->headers->set('Content-disposition', 'filename='. $fichier);
+ 
+        return $response;
     }
 
     /**
@@ -189,7 +234,7 @@ class PedidoController extends Controller
 
         return $this->render('PBVentasBundle:Pedido:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -227,7 +272,7 @@ class PedidoController extends Controller
 
         return $this->render('PBVentasBundle:Pedido:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

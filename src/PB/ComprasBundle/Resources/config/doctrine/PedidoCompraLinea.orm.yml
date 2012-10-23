@@ -32,7 +32,6 @@ PB\ComprasBundle\Entity\PedidoCompraLinea:
     pedidocompralinea:
       targetEntity: PB\ComprasBundle\Entity\PedidoCompra
       inversedBy: pedidocompralineas
-      cascade: [persist]
       joinColumn:
         name: pedidocompra_id
         referencedColumnName: id

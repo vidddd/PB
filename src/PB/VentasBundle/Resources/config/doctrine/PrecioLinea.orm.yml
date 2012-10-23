@@ -1,0 +1,39 @@
+PB\VentasBundle\Entity\PrecioLinea:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+          strategy: AUTO
+    codcliente:
+      type: integer
+      nullable: true
+    cantidad:
+      type: string
+      length: 255
+      nullable: true
+    concepto:
+      type: string
+      length: 255
+    medida:
+      type: string
+      length: 255
+      nullable: true
+    galga:
+      type: integer
+      nullable: true
+    precio:
+      type: float
+  manyToOne:
+    precios:
+      targetEntity: PB\VentasBundle\Entity\Precio
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        precio_id:
+          referencedColumnName: id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

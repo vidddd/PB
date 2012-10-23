@@ -2,7 +2,7 @@
           <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
           {% endif %}
 
-<form action="{{ path('compras_pedidocompra_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ entity.id  ? path('compras_pedidocompra_update', { 'id': entity.id }) : path('compras_pedidocompra_create') }}" method="post" {{ form_enctype(form) }}>
 <div class="content-box content-box-header ui-corner-all ">
 	<div class="ui-state-default ui-corner-top ui-box-header"><span class="ui-icon float-left ui-icon-signal"></span>Datos de Pedido</div>
     	<div class="content-box-wrapper">
@@ -34,7 +34,7 @@
 		        		</div>
 	     			</div>
 					<div class="control-group required">
-						{{ form_label(form.referencia, null, { 'label': 'Referencia', 'label_attr': {'class': 'control-label'} }) }}
+						{{ form_label(form.referencia, null, { 'label': 'Lugar de Entrega', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
 			    			{{ form_widget(form.referencia, { 'attr': {'class': ''}}) }}
 		        		</div>
@@ -58,11 +58,82 @@
  		</div>
  	</div>
 	<div class="clearfix"></div>
+	<div id="invoice-lines">
+      <div class="clearfix"></div>
+     {% macro prototype(linea) %}
+			<tr class="item-row">	
+					<td class="editable">
+					    {{ form_widget(linea.referencia, { 'attr': {'class': 'ta_right'}}) }}
+					    <div class="delete-wrap"><a title="Borrar Linea" class="delete" href="#" onclick="return false;">&nbsp;</a></div>
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.descripcion, { 'attr': {'class': 'idescripcion'}}) }}
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.cantidad, { 'attr': {'class': 'ta_right icantidad numeric'}}) }}
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.precio, { 'attr': {'class': 'ta_right iprecio numeric'}}) }}
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.descuento, { 'attr': {'class': 'ta_right idescuento numeric'}}) }}
+					</td>
+					<td class="total">
+						<span class="ta_right totallinea">{{ linea.total.vars.value }}</span><!-- price -->
+					 {{ form_widget(linea.total, { 'attr': {'class': 'ta_right itotal'}}) }}
+					</td> 
+				</tr>
+	     {% endmacro %}
+		<table cellspacing="0" style="" class="invoice-lines spreadsheet" id="invoice-time">
+			<thead>
+				<tr>
+					<th style="width: 64px;">Referencia</th>
+					<th style="width: 350px;">Descripcion</th>
+					<th class="ta_right" style="width: 45px;">Cantidad</th>
+					<th class="ta_right" style="width: 45px;">Precio</th>
+					<th style="width: 30px;">Dto %</th>
+					<th class="ta_right last" style="width: 60px;">Total</th>
+				</tr>
+			</thead>
 
+			<tbody>
+			  {% for linea in form.pedidocompralineas %}
+                {{_self.prototype(linea)}}
+  			   {% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="prototipo" data-prototype="{{ _self.prototype(form.pedidocompralineas.get('prototype'))|e }}"></div>
 	<div class="totals">
 		<div class="rule top"></div>
-
-
+	    	<div class="float_left">
+	    		<div class="spreadsheet actions">
+	    			<ul>
+	    				<li title="" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-plusthick"></span><a id="addrow" onclick="return false;" href="#">Añadir Línea</a></li>
+	    			<ul>
+	    		</div>
+	    	</div>	
+			<div class="box">
+				<table cellspacing="0" class="table-totals">
+					<tbody>
+						<tr id="subtotal-row">
+							<td style="width: 20px">&nbsp;{{ form_widget(form.importe, { 'attr': {'class': 'iimporte'}}) }}</td>
+							<th style="width: 150px">Total</th>
+							<td class="last-column neto">0.00&euro;</td>
+						</tr>
+						<tr id="amount-row">
+							<td style="width: 20px" class="last">&nbsp;{{ form_widget(form.iva, { 'attr': {'class': 'iiva'}}) }}</td>
+							<th class="span-9 amount-cell"><span class="amount-total">Iva</span> <span class="currency">(21%)</span></th>
+							<td class="last-column iva">0.00&euro;</td>
+						</tr>
+						<tr class="invoice-total-box" id="outstanding-row">
+							<td style="width: 20px">&nbsp;&nbsp;{{ form_widget(form.total, { 'attr': {'class': 'itotal2'}}) }}</td>
+							<th>Total</th>
+							<td class="last-column total2">0.00&euro;</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			<div class="clearfix"></div>
 			<div class="observaciones">			
 				{{ form_label(form.observaciones) }} <div class="clearfix"></div>
@@ -74,3 +145,32 @@
         <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
     </p>
 {{ form_widget(form._token) }}</form>
+<script>
+    var add = function() {
+        var index = $('table.invoice-lines tbody tr').length;
+        var prototype = $('.prototipo').attr('data-prototype');
+        var row = prototype.replace(/__name__/g, index);
+        $('table.invoice-lines tbody').append(row);
+        bind();
+    };
+
+    $('#addrow').live('click', function(event) {
+            add();
+          //  event.preventDefault();
+    });
+    $(".delete").live('click',function(){
+        $(this).closest('tr').remove();
+        update_total();
+        if ($(".delete").length < 2) $(".delete").hide();
+        //event.preventDefault();
+      });
+
+    if ($('table.invoice-lines tbody tr').length === 0) {
+        add();
+    }
+    $(document).ready(function() {
+  	  update_total();
+  	  bind();
+  	});
+
+</script>

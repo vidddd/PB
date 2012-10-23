@@ -1,0 +1,195 @@
+{% extends '::layout.html.twig' %}
+
+{% block title entity.cliente.nombre %}
+
+{% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
+{% block content %}
+<div class="title title-spacing ventas"><h2>Ver Precios</h2></div>
+<div id="precios" class="vista-precios">
+	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">	
+				<div class="span-17 form-horizontal label-column-small form-condensed">
+					<div class="control-group"><label class="control-label required">Cliente</label>
+						<div class="controls codigo"><b>{{ entity.cliente }}</b></div>
+	     			</div>
+     			</div>
+     			<div class="span-17 form-horizontal label-column-small form-condensed">
+					<div class="control-group required">
+						<label class="control-label required">Código Tarifa</label>
+						<div class="controls codigo">{{ entity.id }}</div>
+	     			</div>
+     			</div>
+      			<div class="span-16 form-horizontal label-column-small form-condensed">
+	     			<div class="control-group required"><label class="control-label required">Fecha</label>
+						<div class="controls codigo">{{ entity.fecha|date('d.m.Y') }}</div>
+	     			</div>
+     			</div>
+	</div>
+	<div class="span-33">
+		<table border="0" align="center" class="camiseta-impresa spreadsheet">
+			  <caption class="caption">CAMISETA IMPRESA 
+			  </caption>
+			  <tbody><tr>
+			    <td width="86" class="primeralinea"><p align="center"> CANTIDAD</p></td>
+			    <td width="63" class="primeralinea"><p align="center">HASTA 15000</p></td>
+			    <td width="53" class="primeralinea"><div align="center">DE 15 A 30000</div></td>
+			    <td width="51" class="primeralinea"><div align="center">DE 30 A 50000</div></td>
+			    <td width="54" class="primeralinea"><div align="center">DE 50 A 100000</div></td>
+			    <td width="57" class="primeralinea"><div align="center">DESDE 100000</div></td>
+			  </tr>
+			  <tr>
+			    <td class="primeralinea">Precio Kg</td>
+			    <td><span>{{ entity.cam15 }}</span></td>
+			    <td><span>{{ entity.cam30 }}</span></td>
+			    <td><span>{{ entity.cam50 }}</span></td>
+			    <td><span>{{ entity.cam100 }}</span></td>
+			    <td><span>{{ entity.cam100mas }}</span></td>
+			  </tr>
+			</tbody></table>
+			<table class="spreadsheet medidases"><caption class="caption">MEDIDAS ESPECIALES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BOBINAS</caption>
+			  <tbody><tr> 
+			    <td width="23%"><div align="center"></div></td>
+			    <td width="19%" class="primeralinea">Sin Impresion</td>
+			    <td width="21%" class="primeralinea">Impreso</td>
+			    <td width="19%" class="primeralinea">Sin Impresion</td>
+			    <td width="18%" class="primeralinea">Impreso</td>
+			  </tr>
+			  <tr> 
+				<td class="primeralinea">Pedido -150 Kg</td>
+			    <td><span>{{ entity.espemenos150s }}</span></td>
+			    <td><span>{{ entity.espemenos150i }}</span></td>
+			    <td><span>{{ entity.bobmenos150s }}</span></td>
+			    <td><span>{{ entity.bobmenos150i }}</span></td>
+			  </tr>
+			    <tr> 
+				<td class="primeralinea">Pedido +150 Kg</td>
+			    <td><span>{{ entity.espemas150s }}</span></td>
+			    <td><span>{{ entity.espemas150i }}</span></td>
+			    <td><span>{{ entity.bobmas150s }}</span></td>
+			    <td><span>{{ entity.bobmas150i }}</span></td>
+			  </tr>
+			    <tr> 
+				<td class="primeralinea">Pedido +500 Kg</td>
+			    <td><span>{{ entity.espemas500s }}</span></td>
+			    <td><span>{{ entity.espemas500i }}</span></td>
+			    <td><span>{{ entity.bobmas500s }}</span></td>
+			    <td><span>{{ entity.bobmas500i }}</span></td>
+			  </tr>
+			</tbody></table>
+	<div id="invoice-lines">
+		<table cellspacing="0" style="" class="invoice-lines spreadsheet" id="invoice-time"><caption class="caption">PEDIDOS ESPECIALES</caption>
+			<thead>
+				<tr>
+					<th style="width: 64px;">Cantidad</th>
+					<th style="width: 300px;">Concepto</th>
+					<th class="ta_right" style="width: 60px;">Medida</th>
+					<th class="ta_right" style="width: 60px;">Galga</th>
+					<th style="width: 30px;">Precio</th>
+				</tr>
+			</thead>
+	   
+			<tbody>
+			  {% for linea in entity.precioLineas %}
+ 			<tr class="item-row">	
+					<td class="editable"><span>{{ linea.cantidad }}</span></td>
+					<td class="editable"><span>{{ linea.concepto }}</span></td>
+					<td class="editable"><span>{{ linea.medida }}</span></td>
+					<td class="editable"><span>{{ linea.galga }}</span></td>
+					<td class="editable"><span>{{ linea.precio }}</span></td>
+				</tr>
+  			   {% endfor %}
+			</tbody>
+		</table>
+	</div>
+	</div>
+	<div class="span-17">
+		<table align="center" class="spreadsheet"><caption class="caption">ASA TROQUELADA</caption>
+		  <tbody><tr> 
+		    <td width="69%" class="primeralinea">Medidas entre 20x30 y 30x40</td>
+		    <td width="31%"><span>{{ entity.asa20 }}</span></td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Medidas entre 30x40 y 35x50</td>
+		    <td><span>{{ entity.asa30 }}</span></td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Medidas superiores a 35x50</td>
+		    <td><span>{{ entity.asa35 }}</span></td>
+		  </tr>
+		</tbody></table>
+		<table class="spreadsheet"><caption class="caption">MEDIDAS ESPECIALES PEQUEÑAS</caption>
+		  <tbody><tr> 
+		    <td width="69%" class="primeralinea">Medida pequeña 10 y 12</td>
+		    <td width="31%"><span>{{ entity.especiales10 }}</span></td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Medida pequeña 15</td>
+		    <td><span>{{ entity.especiales15 }}</span></td>
+		  </tr>
+		</tbody></table>
+		<table class="spreadsheet"><caption class="caption">BOLLERIA</caption>
+			  <tbody><tr> 
+			    <td width="69%" class="primeralinea"><div align="center">Precios para Bolleria o similares</div></td>
+			    <td width="31%"><span>{{ entity.bolleria }}</span></td>
+			  </tr>
+			</tbody></table>
+		<table class="spreadsheet"><caption class="caption">POLIPROPILENO</caption>
+		  <tbody><tr> 
+		    <td width="69%" class="primeralinea">Bobinas</td>
+		    <td width="31%"><span>{{ entity.ppbob }}</span></td>
+		  </tr>
+		  <tr> 
+		    <td class="primeralinea">Bolsa sin impresión</td>
+		    <td><span>{{ entity.ppbolsasin }}</span></td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Bolsa impresa, medida pequeña</td>
+		    <td><span>{{ entity.ppbolsapeque }}</span></td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Bolsa impresa, medida grande</td>
+		    <td><span>{{ entity.ppbolsagrande }}</span></td>
+		  </tr>
+		</tbody></table>
+		<table class="spreadsheet"><caption class="caption">POLIPROPILENO MICROPERFORADO</caption>
+		  <tbody><tr> 
+		    <td width="69%" class="primeralinea">Bobinas</td>
+		    <td><span>{{ entity.ppmbob }}</span></td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Bobina impresa</td>
+		    <td><span>{{ entity.ppmbobi }}</span></td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Bolsa sin impresión</td>
+		    <td><span>{{ entity.ppmsin }}</span></td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Bolsa impresa</td>
+		    <td><span>{{ entity.ppmim }}</span></td>
+		  </tr>
+		</tbody></table>
+		<table class="spreadsheet"><caption class="caption">LAMINA</caption>
+		  <tbody><tr> 
+		    <td width="69%" class="primeralinea">Lamina impresa</td>
+		    <td width="31%"><span>{{ entity.laminaim }}</span></td>
+		  </tr>
+		  <tr> 
+		    <td width="69%" class="primeralinea">Lamina sin impresión</td>
+		    <td><span>{{ entity.laminasin }}</span></td>
+		  </tr>
+		</tbody></table>
+	</div>
+<div class="clearfix"></div>
+</div>
+ 	<br />
+	<div class="clearfix"></div>
+    <div class="float-left volver">
+        <a href="{{ path('precio') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+    <ul class="ui-widget ui-helper-clearfix botones-abajo">
+    <li class="ui-state-default ui-corner-all" style="float:left;"><span class="ui-icon ui-icon-print"></span><a href="{{ path('precio_print', { 'id': entity.id }) }}"> Imprimir </a> </li>
+    </ul>
+ 
+{% endblock %}

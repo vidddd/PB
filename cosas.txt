@@ -43,3 +43,24 @@ Number
 Boolean:
     const VALUE_YES = 'y';
     const VALUE_NO  = 'n';
+    
+    	{% macro prototype(linea) %}
+			<tr class="item-row">	
+					<td class="editable">
+					    {{ form_widget(linea.cantidad, { 'attr': {'class': 'ta_right'}}) }}
+					    <div class="delete-wrap"><a title="Borrar Linea" class="delete" href="#" onclick="return false;">&nbsp;</a></div>
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.concepto, { 'attr': {'class': 'idescripcion'}}) }}
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.medida, { 'attr': {'class': 'ta_right icantidad numeric'}}) }}
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.galga, { 'attr': {'class': 'ta_right iprecio numeric'}}) }}
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.precio, { 'attr': {'class': 'ta_right idescuento numeric'}}) }}
+					</td>
+				</tr>
+	     {% endmacro %}

@@ -1,27 +1,22 @@
 PB\InicioBundle\Entity\Provincias:
-  type: entity
-  table: provincias
-  fields:
-    id:
-      type: integer
-      id: true
-      generator:
-        strategy: AUTO
-    codprovincia:
-      type: string
-      length: '10'
-    denprovincia:
-      type: string
-      length: '100'
-  oneToMany:
-    provincia:
-      targetEntity: PB\ComprasBundle\Entity\Proveedor
-      mappedBy: provincia_proveedor
-      unique: false
-    provincia:
-      targetEntity: PB\VentasBundle\Entity\Cliente
-      mappedBy: provincia_cliente
-    provincia3:
-      targetEntity: PB\VentasBundle\Entity\Comercial
-      mappedBy: provincia_comercial
-  lifecycleCallbacks: {  }
+    type: entity
+    table: provincias
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        codprovincia:
+            type: string
+            length: 10
+            fixed: false
+            nullable: false
+        denprovincia:
+            type: string
+            length: 100
+            fixed: false
+            nullable: false
+    lifecycleCallbacks: {  }

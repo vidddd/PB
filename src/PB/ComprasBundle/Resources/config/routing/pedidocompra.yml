@@ -6,6 +6,10 @@ compras_pedidocompra_show:
     pattern:  /{id}/show
     defaults: { _controller: "PBComprasBundle:PedidoCompra:show" }
 
+compras_pedidocompra_print:
+    pattern:  /{id}/print
+    defaults: { _controller: "PBComprasBundle:PedidoCompra:imprimir" }
+
 compras_pedidocompra_new:
     pattern:  /new
     defaults: { _controller: "PBComprasBundle:PedidoCompra:new" }

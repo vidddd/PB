@@ -11,13 +11,13 @@ class PedidoCompraLineaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
     	$builder
-            ->add('referencia', 'text', array('error_bubbling' => true))
-            ->add('descripcion', 'text', array('error_bubbling' => true))
-            ->add('cantidad', 'text', array('error_bubbling' => true))
-            ->add('precio', 'text', array('error_bubbling' => true))
-            ->add('descuento', 'number', array('error_bubbling' => true))
-            ->add('total', 'hidden', array('error_bubbling' => true))
-            ->add('pedidocompralinea', 'hidden')
+            ->add('referencia')
+            ->add('descripcion')
+            ->add('cantidad')
+            ->add('precio')
+            ->add('descuento')
+            ->add('total', 'hidden')
+            //->add('pedidocompralinea', 'hidden')
         ;
     }
 

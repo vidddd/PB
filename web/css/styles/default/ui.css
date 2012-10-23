@@ -176,21 +176,12 @@ a:hover, .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
 
 	/* Header Style */
 
-#header {
-		background:url('images/header-bg.png') repeat-x;
-}
+#header {background:url('images/header-bg.png') repeat-x;}
+#header #top-menu {	color:#646464;}
 
-#header #top-menu {
-	color:#646464;
-}
+#header #top-menu a {color:#e6e6e6;}
 
-#header #top-menu a {
-	color:#e6e6e6;
-}
-
-#header #top-menu span {
-	color:#d7d7d7;
-}
+#header #top-menu span {color:#d7d7d7;}
 
 #header #sitename a.logo {
 	color:#fff;
@@ -198,9 +189,7 @@ a:hover, .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
 	text-shadow:1px 1px 0 #000;
 }
 
-#header #top-menu a:hover, #header #sitename a.logo:hover {
-	color:#b7cbdf;
-}
+#header #top-menu a:hover, #header #sitename a.logo:hover {color:#b7cbdf;}
 
 	/* Header navigation menu */
 
@@ -426,33 +415,16 @@ div.span-1, div.span-2, div.span-3, div.span-4, div.span-5, div.span-6, div.span
 .span-31 {
     width: 620px;
 }
-.span-32 {
-    width: 640px;
-}
-.span-33 {
-    width: 660px;
-}
-.span-34 {
-    width: 680px;
-}
-.span-35 {
-    width: 700px;
-}
-.span-36 {
-    width: 720px;
-}
-.span-37 {
-    width: 740px;
-}
-.span-38 {
-    width: 760px;
-}
-.span-39 {
-    width: 780px;
-}
-.span-40 {
-    width: 800px;
-}
+.span-32 { width: 640px;}
+.span-33 { width: 660px;}
+.span-34 { width: 680px;}
+.span-35 { width: 700px;}
+.span-36 { width: 720px;}
+.span-37 { width: 740px;}
+.span-38 { width: 760px;}
+.span-39 { width: 780px;}
+.span-40 { width: 800px; }
+
 .form-horizontal .control-group:after {
     clear: both;
 }
@@ -477,6 +449,10 @@ div.span-1, div.span-2, div.span-3, div.span-4, div.span-5, div.span-6, div.span
 }
 .nombre-cliente .error-nombre, .nombre-proveedor .error-nombre{
 	color:red;
+}
+.form-horizontal .codigo{
+	font-size:14px;
+	padding:1px;
 }
 
 /* inovices pedidoscompra albaranes */
@@ -787,4 +763,56 @@ div.totals textarea:focus{
 .pedido-compra table#dentro td{
 	border-bottom: 0 none;
 	border-left: 0 none;
+}
+
+/** precios */
+#precios{
+	
+}
+#precios table{
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top:20px;
+}
+#precios caption{
+    /*background-color: #FFCCCC;*/
+    color: #af8f8f;
+    font-size: 12px;
+    font-weight: bold;
+    padding:4px;
+    text-align:center;
+}
+#precios table td{
+	border-bottom: 1px solid #E5E5E5;
+    border-right: 1px solid #CCCCCC;
+    padding: 0 6px 0 0;
+    text-align: left;
+    vertical-align: top;
+}
+#precios .primeralinea{
+    background-color: #E6E6E6;
+    border-bottom:0 none; border-right: 0 none;
+    border-left: 0 none;
+    border-top: 1px solid #CCCCCC;
+    color: #616161;
+    font-weight: bold;
+    line-height: 18px;
+    padding: 4px 5px;
+    text-align: left;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+#precios table input, #precios table input:hover {
+    border: 0 none;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0;
+    width: 100%;
+}
+#precios .camiseta-impresa, #precios .medidases, #precios .invoice-lines{
+	width:600px;
+}
+.vista-precios table td span{
+	padding: 6px;
+	float:left;
 }

@@ -40,3 +40,9 @@ PB\VentasBundle\Entity\Pedido:
             - NotBlank:  { message: "El campo Tipo Material esta vacio."}
         ancho:
             - NotBlank:  { message: "El campo Ancho esta vacio."}
+PB\VentasBundle\Entity\Precio:
+    properties:
+        fecha:
+            - NotBlank:  { message: "El campo 'Fecha' esta vacio."}
+        cliente:
+            - NotBlank:  { message: "El campo 'Cliente' esta vacio."}

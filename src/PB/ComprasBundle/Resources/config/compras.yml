@@ -6,6 +6,7 @@ tipo_proveedor:
   5: "Otros Servicios"
   
 medio_envio:
+  0: "Indefinida"
   1: "Agencia"
   2: "Transporte propio"
   3: "Internacional"

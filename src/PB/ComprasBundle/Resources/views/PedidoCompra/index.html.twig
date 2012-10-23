@@ -55,7 +55,6 @@
 			<th width="320">Proveedor</th>
             <th>Fecha</th>
             <th>Fecha Entrega</th>
-            <th>Lugar Entrega</th>
             <th width="70">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
         </tr>
     </thead>
@@ -66,10 +65,9 @@
             <td>{{ entity.proveedor }}</td>
             <td>{% if entity.fecha %}{{ entity.fecha|date('d.m.Y') }}{% endif %}</td>
             <td>{% if entity.fechaentrega %}{{ entity.fechaentrega|date('d.m.Y') }}{% endif %}</td>
-            <td>{{ entity.referencia }}</td>
             <td>
         		<a href="{{ path('compras_pedidocompra_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
-        		<!-- <a href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a> -->
+        		<a href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
           		<!-- <a href="{{ path('pedido_delete', { 'id': entity.id }) }}" title="Eliminar" class="btn_no_text btn ui-state-default ui-corner-all tooltip" onclick="return confirm('Estas seguro de borrar el cliente?')"><span class="ui-icon ui-icon-circle-close"></span></a> -->
           </td>
         </tr>
