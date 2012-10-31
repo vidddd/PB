@@ -5,114 +5,14 @@
 {# block width100 "widthtotal" %}{% block displaysidebar "display:none;" #}
 {% block content %}
 <div class="title title-spacing"><h2>Pedido Compra</h2></div>
-<div class="pedido-compra">
-	<div class="pedido-compra-header">
-		<div class="pcimagen span-8">
-		<img src="{{ asset('images/pb-compra.png') }}" />
-		</div>
-		<div class="direccion span-13">
-			<p><b>PLÁSTICOS BALTASAR, S.A.</b></p>
-			<p>C/ Las viñas, 41</P>
-			<p>45710 Madridejos (TOLEDO)</p>
-			<p>Tlf: 925 46 16 99 Fax: 925 11 20 12</p>
-			<p>plasticosbaltasar@gmail.com</p>
-		</div>
-		<div class="titular span-11">
-			<p>PEDIDO DE <br />COMPRA O SERVICIO</p>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<table id="table-cabecera">
-		<tr>
-			<td style="width:170px;" class="etiqueta bgcolor">PROVEEDOR</td>
-			<td colspan="3">{{ entity.proveedor.nombre }}</td>
-		</tr>
-		<tr>
-			<td class="etiqueta bgcolor">PERSONA DE CONTACTO</td>
-			<td style="width:45%;">{{ entity.proveedor.nombrecontacto }}</td>
-			<td style="width:80px;" class="etiqueta bgcolor">Tel / Fax</td>
-			<td> {{ entity.proveedor.telefono }}</td>
-		</tr>
-		<tr>
-			<td class="etiqueta bgcolor">DIRECCIÓN</td>
-			<td colspan="3">{{ entity.proveedor.direccion }}</td>
-		</tr> 
-		<tr>
-			<td class="etiqueta bgcolor last">PEDIDO REALIZADO POR</td>
-			<td class="last">LUIS ÁLVAREZ</td>
-			<td class="etiqueta bgcolor last">Tel / Fax</td>
-			<td class="last"></td>
-		</tr>  
-	</table>
-	<table id="cab-lineas">
-		<tr>
-			<td style="width:10%" class="bgcolor last">REF</td>
-			<td style="width:50%" class="bgcolor last">DESCRIPCION</td>
-			<td style="width:10%" class="bgcolor last">UDS</td>
-			<td style="width:10%" class="bgcolor last">PRECIO</td>
-			<td style="width:10%" class="bgcolor last">% DTO</td>
-			<td style="width:10%" class="bgcolor last">TOTAL</td>
-		</tr>
-	</table>
-	<table id="lineas">
-	{% for linea in entity.pedidocompralineas %}
-        <tr>
-            <td style="width:10%" class="ta_right">{{ linea.referencia }}</td>
-            <td style="width:50%">{{ linea.descripcion }}</td>
-            <td style="width:10%" class="ta_right">{{ linea.cantidad }}</td>
-            <td style="width:10%" class="ta_right">{{ linea.precio }}</td>
-            <td style="width:10%" class="ta_right">{{ linea.descuento }}</td>
-            <td style="width:10%" class="ta_right">{{ linea.total }}</td>
-        </tr>
-    {% endfor %}
-	</table>
-	<table id="sub-lineas">
-		<tr>
-			<td style="width:18%" class="etiqueta bgcolor">NETO</td>
-			<td style="width:18%" class="etiqueta bgcolor">DTO %</td>
-			<td style="width:22%" class="etiqueta bgcolor">BASE IMPONIBLE</td>
-			<td style="width:22%" class="etiqueta bgcolor">IVA 21%</td>
-			<td style="width:22%" class="etiqueta bgcolor">TOTAL</td>
-		</tr>
-		<tr>
-			<td class="last ta_right">{{ entity.importe }}&euro;</td>
-			<td class="last ta_right"></td>
-			<td class="last ta_right">{{ entity.importe }}&euro;</td>
-			<td class="last ta_right">{{ entity.iva }}</td>
-			<td class="last ta_right"><b>{{ entity.total }}&euro;</b></td>
-		</tr>
-		</table>
-	<table id="firma">
-		<tr>
-			<td style="width:240px;" class="etiqueta bgcolor">FECHA DE ENTREGA:</td>
-			<td>{{ entity.fechaentrega|date('d / m / Y') }}
-		</tr>
-		<tr>
-			<td class="etiqueta bgcolor">LUGAR DE ENTREGA:</td>
-			<td>{{ entity.referencia }}</td>
-		</tr>
-		<tr>
-			<td class="etiqueta bgcolor">FORMA DE ENVIO</td>
-			<td class="">{{ entity.formaenvio }}</td>
-		</tr>
-		<tr>
-			<td colspan="2" style="padding:0;">
-			<table id="dentro"><tr>
-				<td style="width:80% height:300px;"></td>
-				<td class="bgcolor"></td>
-			</tr>
-			</table>
-			 
-		</tr>
-	</table>
-</div>
+{% include 'PBComprasBundle:PedidoCompra:vista.html.twig' with { 'entity' : entity } %}
 <div class="clearfix"></div>
 <div><br />
     <div class="volver float-left">
         <a href="{{ path('compras_pedidocompra') }}"> <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></div>
-    <div class="float-left volver">
-    	<a href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}">Editar</a></div>
-	<div class="float-left volver">
-        <a href="{{ path('compras_pedidocompra_print', { 'id': entity.id }) }}"> Imprimir </a> </div>
+    <ul class="ui-widget ui-helper-clearfix botones-abajo">
+    <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('compras_pedidocompra_print', { 'id': entity.id , _format: "pdf" }) }}"><span class="ui-icon ui-icon-print"></span> Imprimir </a> </li>
+    <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
+    </ul>
 </div>
 {% endblock %}

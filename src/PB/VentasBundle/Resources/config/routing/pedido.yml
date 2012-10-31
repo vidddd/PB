@@ -6,7 +6,7 @@ pedido_show:
     pattern:  /{id}/show
     defaults: { _controller: "PBVentasBundle:Pedido:show" }
 
-pedido_imprimir:
+pedido_print:
     pattern:  /{id}/print
     defaults: { _controller: "PBVentasBundle:Pedido:imprimir" }
 

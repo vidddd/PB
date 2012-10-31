@@ -5,7 +5,11 @@ precio:
 precio_show:
     pattern:  /{id}/show
     defaults: { _controller: "PBVentasBundle:Precio:show" }
-    
+
+buscador_precio:
+    pattern:  /buscador/{id}
+    defaults: { _controller: "PBVentasBundle:Precio:buscadorPrecio" }
+
 precio_print:
     pattern:  /{id}/print
     defaults: { _controller: "PBVentasBundle:Precio:imprimir" }

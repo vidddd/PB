@@ -365,8 +365,13 @@ class ClienteController extends Controller
     	$em = $this->get('doctrine')->getEntityManager();
     	
     	$cliente = $em->getRepository('PBVentasBundle:cliente')->findOneById($id);
-        if($cliente && is_numeric($id)) {
-    		return new Response(json_encode(array('nombre' => $cliente->getNombre())));
+    	//echo $id;
+    	if($cliente) {if($cliente->getComercialCliente())
+	    		$comercial = $cliente->getComercialCliente()->getNombre();
+	        else $comercial ='';
+    	}
+        if($cliente && is_numeric($id) && $id != '') {
+    		return new Response(json_encode(array('nombre' => $cliente->getNombre(), 'comercial' => $comercial)));
         } else {
         	return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de cliente erróneo</span>')));
         }

@@ -1,6 +1,8 @@
 <?php
 
 namespace PB\ComprasBundle\Entity;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -380,5 +382,11 @@ class PedidoCompra
     public function getProveedor()
     {
         return $this->proveedor;
+    }
+    public function getEstadoText()
+    {
+        $yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+	    } catch (ParseException $e) { 	printf("Unable to parse the YAML string: %s", $e->getMessage());}
+    	return $value['estados'][$this->estado];
     }
 }

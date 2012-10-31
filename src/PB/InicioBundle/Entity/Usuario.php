@@ -4,10 +4,12 @@ namespace PB\InicioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * PB\InicioBundle\Entity\Usuario
  */
-class Usuario
+class Usuario implements UserInterface
 {
     /**
      * @var integer $id
@@ -191,5 +193,42 @@ class Usuario
     public function getSalt()
     {
         return $this->salt;
+    }
+    
+    public function __construct()
+    {
+
+    	//$this->salt = md5(uniqid(null, true));
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+    	return $this->usuario;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+    	return array('ROLE_USER');
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function equals(UserInterface $user)
+    {
+    	return $this->username === $user->getUsername();
     }
 }

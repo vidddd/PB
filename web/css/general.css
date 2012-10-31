@@ -465,7 +465,9 @@ a.btn {
 a.btn_no_text {
 	padding:10px;
 }
-
+.records_list td a.btn {
+	margin-right:10px;
+}
 a.btn span.ui-icon {
 	margin:0 5px 0 0;
 	position:absolute;
@@ -473,19 +475,14 @@ a.btn span.ui-icon {
 	top:2px;
 }
 
-#header a.btn span.ui-icon {
-	top:4px;
-}
+#header a.btn span.ui-icon {top:4px;}
 
 #page-wrapper a.btn {
-	margin:5px;
 	display:block;
 	float:left;
 }
 
 button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em .6em .3em .6em; line-height: 1.4em; width:auto; overflow:visible; }
-
-	/* Header */
 
 #header {
 	height:121px;
@@ -736,9 +733,7 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 	width:49%;
 }
 
-.portlet {
-
-}
+.portlet {}
 
 .portlet-content {
 	margin:0;
@@ -967,6 +962,13 @@ border-radius: 3px;
 .titulo2 h3 {
     font-size: 20px;font-weight: bold;text-transform: uppercase;
 }
+.botones-abajo li {
+	float:left;
+	margin-top:5px;
+	margin-left:10px;
+}
+.botones-abajo li a{ margin:0; }
+
 /** pedido ventas **/
 #pedido .toppedido{
 	border-colapse:colapse;
@@ -1011,4 +1013,17 @@ border-radius: 3px;
 	font-weight:bolder;
 	font-size:14px;
 	padding-left:12px;
-} 
+}
+
+.buscador-precios .errorprecios{
+    color: red;
+    font-size: 13px;
+    padding: 20px 10px;	
+}
+.buscador-precios a {
+	cursor:pointer;
+
+}
+.buscador-precios a:hover{
+	text-decoration:underline;
+}

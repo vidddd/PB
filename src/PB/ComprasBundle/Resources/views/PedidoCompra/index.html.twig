@@ -36,6 +36,10 @@
 	        			<td class="label">{{ form_label(filterForm.referencia, 'Referencia') }}</td>
 	        			<td class="campo">{{ form_widget(filterForm.referencia, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.referencia) }}</td>
 	      			<tr>
+	      			<tr>
+	        			<td class="label">{{ form_label(filterForm.estado, 'Estado') }}</td>
+	        			<td class="campo">{{ form_widget(filterForm.estado, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.estado) }}</td>
+	      			<tr>
             </tbody></table>
                 <p class="botones-buscador">
                     <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
@@ -52,23 +56,25 @@
     <thead>
         <tr>
 			<th width="25">Código Pedido</th>
-			<th width="320">Proveedor</th>
+			<th width="280">Proveedor</th>
             <th>Fecha</th>
             <th>Fecha Entrega</th>
-            <th width="70">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+            <th width="115">Estado</th>
+            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
         </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
-        <tr>
+        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
             <td><a href="{{ path('compras_pedidocompra_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.proveedor }}</td>
             <td>{% if entity.fecha %}{{ entity.fecha|date('d.m.Y') }}{% endif %}</td>
             <td>{% if entity.fechaentrega %}{{ entity.fechaentrega|date('d.m.Y') }}{% endif %}</td>
+            <td><span class="estadoc estado{{ entity.estado }}">{{ entity.estadoText }}</span></td>
             <td>
         		<a href="{{ path('compras_pedidocompra_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
         		<a href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
-          		<!-- <a href="{{ path('pedido_delete', { 'id': entity.id }) }}" title="Eliminar" class="btn_no_text btn ui-state-default ui-corner-all tooltip" onclick="return confirm('Estas seguro de borrar el cliente?')"><span class="ui-icon ui-icon-circle-close"></span></a> -->
+          		<a href="{{ path('compras_pedidocompra_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
           </td>
         </tr>
     {% endfor %}

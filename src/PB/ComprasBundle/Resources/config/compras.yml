@@ -10,3 +10,9 @@ medio_envio:
   1: "Agencia"
   2: "Transporte propio"
   3: "Internacional"
+
+estados:
+  1: "Enviado"
+  2: "Recibido OK"
+  3: "Recibido con Erorres"
+  4: "Rechazado"

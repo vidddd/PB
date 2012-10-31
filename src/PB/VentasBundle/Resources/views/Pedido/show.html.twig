@@ -7,7 +7,7 @@
 <div id="pedido">
 <div class="titulo2"><h3>ÓRDEN DE FABRICACIÓN</h3></div>
 	<div class="toppedido">	
-		<div class="img-pedido"><img src="{{ asset('images/PBbn.png') }}" /></div>
+		<div class="img-pedido"><img src="{{ asset('images/pb-compra.png') }}" /></div>
 	    <table class="tabla1">
 	   		<tr>
 	   			<td class="label3"><span>CLIENTE</span></td>
@@ -136,5 +136,10 @@
           <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
+        <ul class="ui-widget ui-helper-clearfix botones-abajo">
+    <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('pedido_edit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
+    <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('pedido_print', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-print"></span> Imprimir </a> </li>
+    
+    </ul>
 </div> <!-- pedido -->
 {% endblock %}

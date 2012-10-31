@@ -1,17 +1,31 @@
 {% if form_errors(form) %}
           <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
           {% endif %}
+<script>
+$(document).ready(function() { 
+    $(".buscaprecio").click(function () {
+        var cliente = $('#pedido_cliente').val();
+        if(cliente == '') {
+			alert('Debe introducir un cliente');
+         } else {
+        	 $.prettyPhoto.open('{{ path('buscador_precio', { 'id': ''}) }}/'+cliente+'?/iframe=true&width=1080&height=600','Buscador de Precios','Listado de precios de cliente');
+         }
+        return;
+    })
+});
+         </script>
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">
 		<form action="{{ entity.id  ? path('pedido_update', { 'id': entity.id }) : path('pedido_create') }}" method="post" {{ form_enctype(form) }}>
 			<div class="form-invoice">
-				<div class="span-17 form-horizontal label-column-small form-condensed">
+				<div class="span-16 form-horizontal label-column-small form-condensed">
 					<div class="control-group">
 						{{ form_label(form.cliente, null, { 'label': ' Cliente', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.cliente, { 'attr': {'class': 'small buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de CLIENTES"><img src="{{ asset('images/search.png') }}" /></a>
+			    			{{ form_widget(form.cliente, { 'attr': {'class': 'small buscadorid'}}) }}
+			    			<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de CLIENTES"><img src="{{ asset('images/search.png') }}" /></a>
 		        		</div>
 	     			</div>
-	     			<div class="control-group">
+	     			<div class="control-group-pedido">
 	     			      <label class="control-label">&nbsp;</label> 
 	     			      <div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div>
 	     			</div>
@@ -19,12 +33,12 @@
      			<div class="span-17 form-horizontal label-column-small form-condensed">
 					<div class="control-group required">
 						<label class="control-label required">Código Pedido</label>
-						<div class="controls codigo">
-			    					{{ entity.id }}
-		        		</div>
+							<div class="controls codigo">
+				    					{{ entity.id }}
+			        		</div>
 	     			</div>
      			</div>
-      			<div class="span-16 form-horizontal label-column-small form-condensed">
+      			<div class="span-18 form-horizontal label-column-small form-condensed">
 	     			<div class="control-group required">
 						{{ form_label(form.fecha, null, { 'label': 'Fecha', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
@@ -32,15 +46,31 @@
 		        		</div>
 	     			</div>
      			</div>
+     			<div class="clearfix"></div>
+     			<div class="span-16 form-horizontal label-column-small form-condensed">
+	     			<label class="control-label required">Comercial</label>
+						
+			        		<div class="controls nombre-comercial" style="display:none;">			
+		        		</div>
+	     			</div>
+
      			<div class="span-17 form-horizontal label-column-small form-condensed">
-     			</div>
-     			<div class="span-34 form-horizontal label-column-small form-condensed">
      		    	<div class="control-group required">
 						{{ form_label(form.subcliente, null, { 'label': 'Subcliente', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.subcliente, { 'attr': {'class': 'large'}}) }}
+			    			{{ form_widget(form.subcliente, { 'attr': {'class': ''}}) }}
 		        		</div>
 	     			</div>	
+     			</div>
+     			<div class="span-16 form-horizontal label-column-small form-condensed">
+	     			<div class="control-group required">
+						{{ form_label(form.precio, null, { 'label': 'Precio', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.precio, { 'attr': {'class': 'small iprecio'}}) }}
+			    			<a href="#" class="buscaprecio"><img src="{{ asset('images/search.png') }}" /></a>
+			    			<!-- <a rel="prettyPhoto[iframe]" href="{{ path('buscador_precio', { 'id': entity.id , 'iframe': 'true', 'width': 750, 'height': 600 }) }}" title="Buscador de Precios"> </a> -->
+		        		</div>
+	     			</div>
      			</div>
  			</div>
 		</div>

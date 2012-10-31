@@ -206,4 +206,26 @@ class PrecioController extends Controller
     	return $response;
 
     }
+    public function buscadorPrecioAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+  
+    	$query = $em->createQuery('SELECT p FROM PBVentasBundle:Precio p WHERE p.cliente = :cliente ORDER BY p.fecha DESC')
+    								->setParameter('cliente', $id)->setMaxResults(1);
+		try {
+		    $entity = $query->getSingleResult();
+		} catch (\Doctrine\Orm\NoResultException $e) {
+		   return $this->render('PBVentasBundle:Precio:buscador.html.twig', array(
+    			'error' => 'El cliente no tiene Tarifa de precios o el Código de cliente es erróneo',
+		   		'entity' => '',
+    		));
+		}
+    	
+    	return $this->render('PBVentasBundle:Precio:buscador.html.twig', array(
+    			'entity' => $entity,
+    			'error' => '',
+    		//	'pagerHtml' => $pagerHtml,
+    		//	'filterForm' => $filterForm->createView(),
+    	));
+    }
 }

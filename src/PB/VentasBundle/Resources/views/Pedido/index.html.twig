@@ -57,7 +57,8 @@
             <th>Cliente</th>
             <th>Fecha</th>
             <th>Subcliente</th>
-            <th width="70">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+            <th>Estado</th>
+            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
         </tr>
     </thead>
     <tbody>
@@ -67,10 +68,11 @@
             <td>{{ entity.cliente }}</td>
             <td>{{ entity.fecha|date('d.m.Y') }}</td>
             <td>{{ entity.subcliente }}</td>
+            <td>{{ entity.estado }}</td>
             <td>
         		<a href="{{ path('pedido_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
         		<a href="{{ path('pedido_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
-          		<!-- <a href="{{ path('pedido_delete', { 'id': entity.id }) }}" title="Eliminar" class="btn_no_text btn ui-state-default ui-corner-all tooltip" onclick="return confirm('Estas seguro de borrar el cliente?')"><span class="ui-icon ui-icon-circle-close"></span></a> -->
+          		<a href="{{ path('pedido_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
           </td>
         </tr>
     {% endfor %}

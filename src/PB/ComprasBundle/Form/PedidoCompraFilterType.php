@@ -10,11 +10,18 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
 use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
 use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\NumberFilterType;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 class PedidoCompraFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+    	$yaml = new Parser();
+    	try {$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));} catch (ParseException $e) {printf("Unable to parse the YAML string: %s", $e->getMessage());}
+    	
+    	$estados = $value['estados'];
+    	//$estados = $this->get('estados_pedidocompra');
         $builder
             ->add('id', 'filter_number')
             ->add('proveedor', 'filter_number')
@@ -24,6 +31,7 @@ class PedidoCompraFilterType extends AbstractType
 		    											//'format' => 'dd.MM.yyyy'
 		    											),
 		    										   'right_date' => array('widget' => 'single_text')))
+		    ->add('estado','filter_choice', array('error_bubbling' => true, 'required' => false,'choices' => $estados,'empty_value' => ''))
            
         ;
 

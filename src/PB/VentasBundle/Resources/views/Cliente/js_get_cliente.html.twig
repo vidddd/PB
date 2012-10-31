@@ -13,10 +13,11 @@
 				data: {id: id},
 				success: function(resp){
 					$('.nombre-cliente').html(resp.nombre).show();
+					$('.nombre-comercial').html(resp.comercial).show();
 				},
 				error: function(jqXHR,estado,error){
-					alert(estado);
-					alert(error);
+				//	alert(estado);
+				//	alert(error);
 				},
 				complete: function(jqXHR,estado){},
 				timeout: 10000

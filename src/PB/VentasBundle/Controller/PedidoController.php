@@ -11,6 +11,10 @@ use Pagerfanta\View\TwitterBootstrapView;
 use PB\VentasBundle\Entity\Pedido;
 use PB\VentasBundle\Form\PedidoType;
 use PB\VentasBundle\Form\PedidoFilterType;
+use PB\VentasBundle\Printer\PrintPedido;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
  * Pedido controller.
@@ -119,60 +123,31 @@ class PedidoController extends Controller
     public function imprimirAction($id)
     {
     	$em = $this->getDoctrine()->getManager();
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	
+    	/*
     	$entity = $em->getRepository('PBVentasBundle:Pedido')->find($id);
     	if (!$entity) {	throw $this->createNotFoundException('No se puede encontrar el pedido.');}
-    
-    	$pdf = new \Fpdf_Fpdf;
-    	$pdf->AddPage();
-    	$pdf->Ln();$pdf->Ln();
-    	//$pdf->Image('./logo/PBbn.jpg',20,10,30);// (x,y,ancho)
-    	$pdf->Ln();
-    	$pdf->Cell(95);
-    	$pdf->Cell(80,10,"",'',0,'C');
-    	$pdf->Ln(8);
-    	
-    	$pdf->SetFillColor(255,255,255);
-    	$pdf->SetTextColor(0);
-    	$pdf->SetDrawColor(0,0,0);
-    	$pdf->SetLineWidth(.2);
-    	$pdf->SetFont('Arial','B',20);
-    	
-    	$pdf->Cell(40,65,'PEDIDO');
-    	$pdf->SetX(10);
-    	
-    	$pdf->SetFont('Arial','B',9);
-    	$pdf->Cell(95);
-    	$pdf->Cell(80,4,"",'LRT',0,'L',1);
-    	$pdf->Ln(4);
-    	
-    	$pdf->Cell(95);
-    	$pdf->Cell(80,4,'David','LR',0,'L',1);
-    	$pdf->Ln(4);
-    	
-    	$pdf->Cell(95);
-    	$pdf->Cell(80,4,'','LR',0,'L',1);
-    	$pdf->Ln(4);
-    	//Calculamos la provinci
-    	$pdf->Cell(95);
-    	$pdf->Cell(80,4,'','LR',0,'L',1);
-    	$pdf->Ln(4);
-    	
-    	$pdf->Cell(95);
-    	$pdf->Cell(80,4,"Tlfno:   " . "Fax:",'LR',0,'L',1);
-    	$pdf->Ln(4);
-    	
-    	$pdf->Cell(95);
-    	$pdf->Cell(80,4,"",'LRB',0,'L',1);
-    	$pdf->Ln(10);
-        $fichier = $pdf->Output();;
 
-        $response = new Response();
-        $response->clearHttpHeaders();
-        $response->setContent(file_get_contents($fichier));
-        $response->headers->set('Content-Type', 'application/force-download');
-        $response->headers->set('Content-disposition', 'filename='. $fichier);
- 
-        return $response;
+    	$html = $this->renderView('PBVentasBundle:Pedido:print.html.twig', array('entity' => $entity));
+    	 
+    	$printer = new PrintPedido(); //HTML2PDF
+    	$response = new Response($printer->getPdf($html));
+    	$response->headers->set('Content-Type', 'application/pdf'); $response->headers->set('Content-Disposition', 'inline; filename="PedidoCompra.pdf"');
+    	return $response;*/
+    	
+    	$printer = $this->container->get('ventas.print_pedido');
+    	echo $fichero = $printer->printFPDF($id);
+    	die;
+    	$response = new Response();
+    	$response->clearHttpHeaders();
+    	$response->setContent(file_get_contents($fichero));
+    	$response->headers->set('Content-Type', 'application/force-download');
+    	$response->headers->set('Content-disposition', 'filename=Pedido.pdf');
+    	return $response;
     }
 
     /**

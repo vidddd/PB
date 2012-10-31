@@ -14,15 +14,20 @@ use PB\ComprasBundle\Entity\PedidoCompraLinea;
 use PB\ComprasBundle\Form\PedidoCompraType;
 use PB\ComprasBundle\Form\PedidoCompraFilterType;
 use PB\ComprasBundle\Form\PedidoCompraLineaType;
-
+use Symfony\Component\HttpFoundation\Response;
 use PB\ComprasBundle\Form\Factory\PedidoCompraFactory;
 use PB\ComprasBundle\Form\PedidoCompraFormType;
+use Ps\PdfBundle\Annotation\Pdf;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use PB\ComprasBundle\Printer\PrintPedidoCompra3;
+
 
 class PedidoCompraController extends Controller
 {
     public function indexAction()
     {
-        list($filterForm, $queryBuilder) = $this->filter();
+        
+    	list($filterForm, $queryBuilder) = $this->filter();
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
         return $this->render('PBComprasBundle:PedidoCompra:index.html.twig', array(
             'entities' => $entities,
@@ -61,7 +66,7 @@ class PedidoCompraController extends Controller
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
-    
+        //var_dump($queryBuilder->getDql());
         return array($filterForm, $queryBuilder);
     }
 
@@ -210,24 +215,16 @@ class PedidoCompraController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-    /**
-     * Deletes a PedidoCompra entity.
-     *
-     */
+    
     public function deleteAction($id)
     {
         $form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
-        $form->bind($request);
+        $request = $this->getRequest(); $form->bind($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
-
+            $em = $this->getDoctrine()->getManager(); $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
             if (!$entity) { throw $this->createNotFoundException('Unable to find PedidoCompra entity.');}
-
-            $em->remove($entity);
-            $em->flush();
+            $em->remove($entity); $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
         } else {$this->get('session')->getFlashBag()->add('error', 'flash.delete.error'); }
 
@@ -236,9 +233,34 @@ class PedidoCompraController extends Controller
 
     private function createDeleteForm($id)
     {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
+        return $this->createFormBuilder(array('id' => $id))->add('id', 'hidden')->getForm();
     }
+    
+    /**
+     * @Pdf()
+     * @Template()
+     */
+    public function imprimirAction($id)
+    {
+	   
+	    $em = $this->getDoctrine()->getManager();
+	    $yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+	    } catch (ParseException $e) { 	printf("Unable to parse the YAML string: %s", $e->getMessage());}
+	    $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
+	    $medios = $value['medio_envio'];
+	    //$entity->setFormaEnvio($medios[$entity->getFormaEnvio()]);
+	    if (!$entity) {	throw $this->createNotFoundException('Unable to find PedidoCompra entity.'); }
+	    
+	    $html = $this->renderView('PBComprasBundle:PedidoCompra:print.html.twig', array('entity' => $entity));
+	    
+	    //$printer = new PrintPedidoCompra();  //TCPDF
+	    //$printer = new PrintPedidoCompra2(); //DOMPDF
+	    $printer = new PrintPedidoCompra3(); //HTML2PDF
+	    $response = new Response($printer->getPdf($html));
+	    $response->headers->set('Content-Type', 'application/pdf'); $response->headers->set('Content-Disposition', 'inline; filename="PedidoCompra.pdf"');
+	    return $response;
+	  
+    
+    }
+   
 }

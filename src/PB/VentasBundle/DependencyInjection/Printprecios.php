@@ -20,7 +20,8 @@ class Printprecios {
 		if (!$entity) {
 			throw $this->createNotFoundException('No se puede encontrar el pedido.');
 		}
-		$pdf = new \Fpdf_Fpdf;
+
+		$pdf = new \FPDF_Fpdf;
 		$pdf->AddPage();$pdf->Ln();$pdf->Ln();
 		
 		$pdf->SetFillColor(230,230,230);$pdf->SetTextColor(0);$pdf->SetDrawColor(0,0,0);$pdf->SetLineWidth(.2);
@@ -168,7 +169,7 @@ class Printprecios {
 			$pdf->Cell(25,6,$linea->getPrecio(),1,0,'C',1);
 			$pdf->Ln(6);
 		}
-		return $pdf->Output();;
+		return $pdf->Output();
 	
 	}
 }

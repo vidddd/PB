@@ -30,8 +30,19 @@
         "symfony/monolog-bundle": "2.1.*",
         "symfony/swiftmailer-bundle": "2.1.*",
         "symfony/symfony": ">=2.0,<2.2",         
-        "twig/extensions": "1.0.*"
+        "twig/extensions": "1.0.*",
+        "psliwa/pdf-bundle": "dev-master",
+        "toooni/fpdf": "dev-master",
+        "ensepar/html2pdf": "dev-master"
     },
+    "repositories": [{
+        "type": "composer",
+        "url": "http://packages.zendframework.com/"
+    },
+    {
+        "type": "composer",
+        "url": "http://packagist.org/"
+    }],
     "scripts": {
         "post-install-cmd": [
 "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
@@ -45,5 +56,6 @@
 "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
 "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
     ]
-    }
+    
+    }    
 }

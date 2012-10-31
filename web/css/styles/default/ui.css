@@ -1,5 +1,3 @@
-	/* General styles */
-
 body {
 	background-color:#fff;
 	font-family:Arial,Verdan,Sans-Serif;
@@ -7,13 +5,11 @@ body {
 }
 
 	/* Text Shadow ( CSS3 ony ) */
-
 #navigation li a, .portlet-header, .ui-datepicker-title, .page-title h1, .ui-widget-header, .hastable thead td, .hastable thead th, #page-wrapper .other-box h3 {
 	text-shadow:0 1px 0 #fff;
 }
 
 	/* Rounded corners ( CSS3 ony ) */
-
 .ui-corner-tl {
 	-moz-border-radius-topleft:3px;
 	-webkit-border-top-left-radius:3px;
@@ -68,7 +64,6 @@ body {
 }
 
 	/* States and Images */
-
 .ui-icon { 
 	background-image:url(images/icons-blue.png);
 }
@@ -140,7 +135,7 @@ body {
 }
 
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .pagination a:hover, a.btn:hover, button.ui-state-default:hover {
-	border: 1px solid #9d9d9d;
+	/*border: 1px solid #9d9d9d;*/
 	background:#0073ea url(images/ui-bg_highlight-soft_25_0073ea_1x100.png) 50% 50% repeat-x;
 	font-weight:bold;
 	color:#333;
@@ -204,7 +199,6 @@ a:hover, .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
 	background:#fff;
 	border-left:#b2b2b2 solid 1px;
 	border-right:#b2b2b2 solid 1px;
-
 }
 
 #navigation li ul {
@@ -244,8 +238,6 @@ a:hover, .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
 	color:#515151;
 	border-top:#dadada dotted 1px;
 }
-
-	/* Dashboard buttons */
 	
 #page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li {
 	border:#fff solid 4px;
@@ -267,9 +259,6 @@ a:hover, .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
 #page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a:active {
 	border-color:#9d9d9d;
 }
-
-	/* Different title styles */
-
 #page-wrapper #main-wrapper .title, #page-wrapper #sidebar .side-menu li {
 	color:#616161;
 	border-bottom:#8f8f8f dotted 1px;
@@ -285,33 +274,11 @@ a:hover, .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
 	border-color:#d0d0d0;
 }
 
-	/* Note */
+.red {color:red;}
+#footer {border-top:#e3e3e3 solid 6px;background:#4c4c4c;color:#c1c1c1;}
+#footer #menu a {color:#fff;}
+#footer #menu a:hover {text-decoration:underline;}
 
-i.note {
-	font-weight:bold;
-	padding:15px 0 15px 25px;
-	color:#8f8f8f;
-	display:block;
-}
-
-.red {
-	color:red;
-}
-
-	/* Footer */
-
-#footer {
-	border-top:#e3e3e3 solid 6px;
-	background:#4c4c4c;
-	color:#c1c1c1;
-}
-#footer #menu a {
-	color:#fff;
-}
-
-#footer #menu a:hover {
-	text-decoration:underline;
-}
 /* span colocar formularios */
 .form-invoice{
 	margin-bottom:15px;
@@ -443,10 +410,11 @@ div.span-1, div.span-2, div.span-3, div.span-4, div.span-5, div.span-6, div.span
 .label-column-small .control-label {
     width: 90px;
 }
-.nombre-cliente, .nombre-proveedor{
+.nombre-cliente, .nombre-proveedor, .nombre-comercial{
 	color:#333;
 	font-weight:bold;
 }
+.nombre-comercial {padding-top:3px;}
 .nombre-cliente .error-nombre, .nombre-proveedor .error-nombre{
 	color:red;
 }
@@ -764,7 +732,32 @@ div.totals textarea:focus{
 	border-bottom: 0 none;
 	border-left: 0 none;
 }
-
+.estadoc {
+	border-radius: 3px 3px 3px 3px;
+    color: #333333;
+   /* font-family: Monaco,Menlo,Consolas,"Courier New",monospace;*/
+    font-size: 11px;
+    background-color: #a6a6a6;
+    border: 1px solid #a6a6a6;
+    color: #FFFFFF;
+    padding: 1px 3px;
+}
+.estado1{ /* Enviado */
+	border: 1px solid #a6a6a6;
+	background-color:#a6a6a6;
+}
+.estado2{ /* Recibido OK */
+	background-color:#5aa064;
+	border: 1px solid #5aa064;
+}
+.estado3{ /* Recibido con Errores */
+	background-color:#d18578;
+	border: 1px solid #d18578;
+}
+.estado4{ /* Rechazado */
+	background-color:#f2634b;
+	border: 1px solid #f2634b;
+}
 /** precios */
 #precios{
 	

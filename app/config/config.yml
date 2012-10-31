@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+   # - { resource: "@PBComprasBundle/Resources/config/compras.yml" }
 
 framework:
     #esi:             ~

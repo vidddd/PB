@@ -3,6 +3,8 @@
 namespace PB\VentasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
  * PB\VentasBundle\Entity\Pedido
@@ -183,13 +185,22 @@ class Pedido
      * @var float $precio
      */
     private $precio;
-
+    
     /**
      * @var string $observacionmes
      */
     private $observacionmes;
-
-
+    private $tipos;
+    
+    public function __construct(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	$this->tipos = $value['tipo_material'];
+    }
+    
+    
     /**
      * Get id
      *
@@ -406,7 +417,13 @@ class Pedido
     {
         return $this->tipomaterial;
     }
-
+	public function getTipomaterialText(){
+		$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+		} catch (ParseException $e) {
+			printf("Unable to parse the YAML string: %s", $e->getMessage());
+		}
+		return $value['tipo_material'][$this->tipomaterial];
+	}
     /**
      * Set ancho
      *

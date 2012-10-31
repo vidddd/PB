@@ -173,13 +173,15 @@ $(document).ready(function() {
 	$('#welcome_login').dialog({
 		autoOpen: true,
 		width: 380,
-		height: 230,
+		height: 330,
 		bgiframe: true,
 		modal: true,
 		buttons: {
-			"Entrar": function() {
-				$('#form-login').submit();
-			}
+		/*	"Entrar": function() {
+				//$('#dialog').submit();
+				 document.form-login.submit();
+				//$('#form-login').submit();
+			}*/
 		}
 	});
 

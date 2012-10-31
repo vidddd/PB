@@ -9,3 +9,9 @@ tipo_material:
   8: "Ap Color"
   9: "Microperforado"
   10: "Polipropileno"
+
+estados_pedidos:
+  1: "Nuevo"
+  2: "En fabrica"
+  3: "Finalizado"
+  4: "Histórico"
