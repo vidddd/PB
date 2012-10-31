@@ -1,0 +1,192 @@
+<style type="text/css">
+<!--
+/* Pedido Compra */
+.pedido-compra {
+}
+.pedido-compra .pedido-compra-header{
+	float:left;
+	margin-bottom:10px;
+}
+
+.pedido-compra .direccion{
+	vertical-align:bottom;
+	padding-top:20px;
+}
+.pedido-compra .direccion p{
+	padding: 0px 0; margin:0;
+	font-size:11px;
+}
+.pedido-compra .titular{
+	text-align:center;
+	font-size:19px;
+	margin-top:25px;
+	font-weight:bold;
+}
+.pedido-compra .titular p{
+	line-height:0.8em;
+	margin:10px;
+}
+.pedido-compra table{
+	border:2px solid #111;
+	width:100%;
+	border-colapse:colapse;
+	float:left;
+}
+.pedido-compra table td{
+	padding:9px 6px;
+	border-bottom: 1px solid #8b8b8b;
+	border-left: 1px solid #8b8b8b;
+}
+.pedido-compra table td.last{
+	border-bottom: 0 none;
+}
+.pedido-compra table td.leftp{
+	border-left: 0 none;
+}
+.pedido-compra .bgcolor{
+		background-color:#ebeded;	
+}
+.pedido-compra table td.etiqueta{
+
+}
+.pedido-compra #lineas td{
+	border: 0 none;
+	padding:4px;
+}
+.pedido-compra #sub-lineas{
+	margin-bottom: 20px;
+	font-size: 1.2em;
+}
+.pedido-compra #sub-lineas .etiqueta{
+	font-size: 0.8em;
+}
+.pedido-compra table#dentro{
+	border:0 none; margin:0; padding:0;
+}
+.pedido-compra table#dentro td{
+	border-bottom: 0 none;
+	border-left: 0 none;
+}
+.pedido-compra-header table, .pedido-compra-header table td{
+	border:0 none;
+}
+.ta_right{
+text-align:right;}
+.dato{color:#747373;}
+.total{font-size:15px;}
+-->
+</style>
+<page backtop="7mm" backbottom="7mm" backleft="20mm" backright="20mm">
+{% block content %}
+<div class="pedido-compra">
+	<div class="pedido-compra-header">
+		<table cellspacing="0">
+			<tr>
+				<td width="130"> <img src="http://localhost:8888/{{ asset('images/pb-compra.png') }}" /></td>
+				<td width="180" class="direccion">			
+					<p style="margin:0;"><b>PLÁSTICOS BALTASAR, S.A.</b></p>
+					<p>C/ Las viñas, 41</p>
+					<p>45710 Madridejos (TOLEDO)</p>
+					<p>Tlf: 925 46 16 99 Fax: 925 11 20 12</p>
+					<p>plasticosbaltasar@gmail.com</p></td>
+				<td width="250" class="titular" style="padding-top:90px;">
+					<p>PEDIDO DE</p><p>COMPRA O SERVICIO</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<table id="table-cabecera" cellspacing="0">
+		<tr>
+			<td style="width:20%" class="etiqueta bgcolor leftp">PROVEEDOR</td>
+			<td style="width:72%" colspan="3" class="dato">{{ entity.proveedor.nombre }}</td>
+		</tr>
+		<tr>
+			<td class="etiqueta bgcolor leftp">PERSONA DE CONTACTO</td>
+			<td class="dato">{{ entity.proveedor.nombrecontacto }}</td>
+			<td class="etiqueta bgcolor">Tel / Fax</td>
+			<td class="dato"> {{ entity.proveedor.telefono }}</td>
+		</tr>
+		<tr>
+			<td class="etiqueta bgcolor leftp">DIRECCIÓN</td>
+			<td colspan="3" class="dato">{{ entity.proveedor.direccion }}</td>
+		</tr> 
+		<tr>
+			<td class="etiqueta bgcolor last leftp">PEDIDO REALIZADO POR</td>
+			<td class="last dato">LUIS ÁLVAREZ</td>
+			<td class="etiqueta bgcolor last">Tel / Fax</td>
+			<td class="last dato"></td>
+		</tr>  
+	</table><br />
+	<table id="cab-lineas" cellspacing="0">
+		<tr>
+			<td style="width:10%" class="bgcolor last leftp">REF</td>
+			<td style="width:50%" class="bgcolor last">DESCRIPCION</td>
+			<td style="width:10%" class="bgcolor last">UDS</td>
+			<td style="width:10%" class="bgcolor last">PRECIO</td>
+			<td style="width:10%" class="bgcolor last">% DTO</td>
+			<td style="width:10%" class="bgcolor last">TOTAL</td>
+		</tr>
+	</table>
+	<table id="lineas" cellspacing="0" style="margin-top:3px;">
+	{% for linea in entity.pedidocompralineas %}
+        <tr>
+            <td style="width:10%;" class="ta_right">{{ linea.referencia }}</td>
+            <td style="width:50%">{{ linea.descripcion }}</td>
+            <td style="width:10%" class="ta_right">{{ linea.cantidad }}</td>
+            <td style="width:10%" class="ta_right">{{ linea.precio }}</td>
+            <td style="width:10%" class="ta_right">{{ linea.descuento }}</td>
+            <td style="width:10%" class="ta_right">{{ linea.total }}</td>
+        </tr>
+    {% endfor %}
+         <tr>
+            <td style="width:10%; height:200px;" class="ta_right"></td>
+            <td style="width:50%"></td>
+            <td style="width:10%" class="ta_right"></td>
+            <td style="width:10%" class="ta_right"></td>
+            <td style="width:10%" class="ta_right"></td>
+            <td style="width:10%" class="ta_right"></td>
+        </tr>
+	</table><br />
+	<table id="sub-lineas" cellspacing="0">
+		<tr>
+			<td style="width:18%" class="etiqueta bgcolor leftp">NETO</td>
+			<td style="width:18%" class="etiqueta bgcolor">DTO %</td>
+			<td style="width:20%" class="etiqueta bgcolor">BASE IMPONIBLE</td>
+			<td style="width:20%" class="etiqueta bgcolor">IVA 21%</td>
+			<td style="width:24%;" class="etiqueta bgcolor">TOTAL</td>
+		</tr>
+		<tr>
+			<td class="last ta_right leftp">{{ entity.importe }}€</td>
+			<td class="last ta_right"></td>
+			<td class="last ta_right">{{ entity.importe }}€</td>
+			<td class="last ta_right">{{ entity.iva }}</td>
+			<td class="last ta_right total"><b>{{ entity.total }}€</b></td>
+		</tr>
+		</table><br />
+	<table id="firma" cellspacing="0" style="width:100%;">
+		<tr>
+			<td style="width:30%;" class="etiqueta bgcolor leftp">FECHA DE ENTREGA:</td>
+			<td style="width:70%;" class="dato">{{ entity.fechaentrega|date('d / m / Y') }}</td>
+		</tr>
+		<tr>
+			<td class="etiqueta bgcolor leftp">LUGAR DE ENTREGA:</td>
+			<td class="dato">{{ entity.referencia }}</td>
+		</tr>
+		<tr>
+			<td class="etiqueta bgcolor leftp">FORMA DE ENVIO</td>
+			<td class="dato">{{ entity.formaenvio }}</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="padding:0;" class="leftp">
+			<table id="dentro"><tr>
+				<td style="width:77%; height:60px;"></td>
+				<td style="width:102px; padding:10px;" class="bgcolor"> Firma:</td>
+			</tr>
+			</table>
+			 </td>
+		</tr>
+	</table>
+</div>
+<div class="clearfix"></div>
+{% endblock %}
+</page>

@@ -1,0 +1,118 @@
+<style type="text/css">
+<!--
+/* Pedido Compra */
+.pedido {
+}
+.pedido .pedido-header{
+	float:left;
+	margin-bottom:10px;
+}
+.pedido .direccion{
+	vertical-align:bottom;
+	padding-top:20px;
+}
+.pedido .direccion p{
+	padding: 0px 0; margin:0;
+	font-size:11px;
+}
+.pedido .titular{
+	text-align:center;
+	font-size:19px;
+	margin-top:25px;
+	font-weight:bold;
+}
+.pedido .titular p{
+	line-height:0.8em;
+	margin:10px;
+}
+.pedido table{
+	border:2px solid #111;
+	width:100%;
+	border-colapse:colapse;
+	float:left;
+}
+.pedido table td{
+	padding:6px 6px;
+	border-bottom: 1px solid #8b8b8b;
+	border-left: 1px solid #8b8b8b;
+}
+.pedido table td.last{
+	border-bottom: 0 none;
+}
+.pedido table td.leftp{
+	border-left: 0 none;
+}
+.pedido .bgcolor{
+		background-color:#ebeded;	
+}
+.pedido table td.etiqueta{
+}
+.pedido-header table, .pedido-header table td{
+	border:0 none;
+}
+.ta_right{
+text-align:right;}
+.dato{color:#747373;}
+.total{font-size:15px;}
+-->
+</style>
+<page backtop="7mm" backbottom="7mm" backleft="18mm" backright="20mm">
+{% block content %}
+<div class="pedido">
+	<div class="pedido-header">
+		<table cellspacing="0">
+			<tr>
+				<td width="130"> <img src="http://localhost:8888/{{ asset('images/pb-compra.png') }}" /></td>
+				<td width="180" class="direccion">			
+					<p style="margin:0;"><b>PLÁSTICOS BALTASAR, S.A.</b></p>
+					<p>C/ Las viñas, 41</p>
+					<p>45710 Madridejos (TOLEDO)</p>
+					<p>Tlf: 925 46 16 99 Fax: 925 11 20 12</p>
+					<p>plasticosbaltasar@gmail.com</p></td>
+				<td width="250" class="titular" style="padding-top:90px;">
+					<p>ÓRDEN DE FABRICACIÓN</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<table id="cab-lineas" cellspacing="0" style="margin-top:10px;">
+		<tr>
+			<td style="width:22%" class="bgcolor leftp">COMERCIAL</td>
+			<td style="width:22%" class="bgcolor">CLIENTE</td>
+			<td style="width:22%" class="bgcolor">SUBCLIENTE</td>
+			<td style="width:10%" class="bgcolor">COD. CLIENTE</td>
+			<td style="width:10%" class="bgcolor">FECHA</td>
+			<td style="width:10%" class="bgcolor">PEDIDO</td>
+		</tr>
+		<tr>
+			<td class="last leftp"></td>
+			<td class="last">{{ entity.cliente }}</td>
+			<td class="last">{{ entity.subcliente }}</td>
+			<td class="last">{{ entity.cliente.id }}</td>
+			<td class="last">{{ entity.fecha|date('d/mY') }}</td>
+			<td class="last">{{ entity.id }}</td>
+		</tr>
+	</table>
+	<h2>EXTRUSIÓN</h2>
+	<table class="" cellspacing="0">
+		<tr>
+			<td style="width:22%" class="bgcolor leftp">CANTIDAD</td>
+			<td style="width:22%" class="bgcolor">MATERIAL</td>
+			<td style="width:22%" class="bgcolor">COLOR</td>
+			<td style="width:10%" class="bgcolor">ANCHO</td>
+			<td style="width:10%" class="bgcolor">GALGA</td>
+			<td style="width:10%" class="bgcolor">PLEGADO</td>	
+		</tr>
+		<tr>
+			<td style="width:17%" class="last leftp">{{ entity.cantidad }}</td>
+			<td style="width:17%" class="last">{{ entity.tipomaterial }}</td>
+			<td style="width:17%" class="last">{{ entity.mtycolor }}</td>
+			<td style="width:17%" class="last">{{ entity.ancho }}</td>
+			<td style="width:17%" class="last">{{ entity.galga }}</td>
+			<td style="width:17%" class="last">{{ entity.plegado }}</td>	
+		</tr>
+	</table>
+</div>
+<div class="clearfix"></div>
+{% endblock %}
+</page>

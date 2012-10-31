@@ -1,0 +1,26 @@
+{% extends '::layout_ajax.html.twig' %}
+
+{% block title "Buscador de Clientes" %}
+
+{% block content %}
+<script>
+$(document).ready(function() { 
+    $("a").click(function () {
+        $('.iprecio', window.parent.document).val(this.rel);
+        window.parent.$.prettyPhoto.close();
+        return;
+    })
+});
+</script>
+<div class="buscador-precios">
+    {% if error %}
+    	<h2 class="errorprecios" style="color:red;">{{ error }}</h2>
+    {% endif %}
+    
+	{% if entity != '' %}
+		{% include 'PBVentasBundle:Precio:vista.html.twig' with { 'entity' : entity } %}
+	{% endif %}	
+
+</div>
+
+{% endblock %}
