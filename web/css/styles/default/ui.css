@@ -326,7 +326,7 @@ div.span-1, div.span-2, div.span-3, div.span-4, div.span-5, div.span-6, div.span
     width: 240px;
 }
 .span-13 {
-    width: 260px;
+    width: 250px;
 }
 .span-14 {
     width: 280px;
@@ -653,111 +653,77 @@ div.totals textarea:focus{
 		background-color:#FFF8D5;
 }
 /* Pedido Compra */
-.pedido-compra {
-    border: 1px solid #E1E1E1;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-    clear: both;
-    padding: 54px 40px 72px;
-    position: relative;
-    z-index: 0;
+#pedido-compra-ver {
+   /* border: 1px solid #E1E1E1; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);  padding: 54px 40px 72px;   position: relative;   z-index: 0;*/
 }
-.pedido-compra .pedido-compra-header{
-	float:left;
-	margin-bottom:10px;
+#pedido-compra-ver table {
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    display: block;
+    line-height: 21.5px;
+    margin-bottom: 10px;
+    overflow: hidden;
 }
-.pedido-compra .direccion{
-	vertical-align:bottom;
-	padding-top:20px;
+#pedido-compra-ver table td {
+    border-right: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    padding: 4px 6px;
 }
-.pedido-compra .direccion p{
-	line-height: 1em;
-    padding: 2px 0;
-}
-.pedido-compra .titular{
-	text-align:center;
-	font-size:19px;
-		padding-top:40px;
-	font-weight:bold;
-}
-.pedido-compra .titular p{
-	line-height:1em;
-}
-.pedido-compra table{
-	border:2px solid #111;
-	width:100%;
-	border-colapse:colapse;
-}
-.pedido-compra table td{
-		padding:9px 6px;
-		border-bottom: 1px solid #8b8b8b;
-		border-left: 1px solid #8b8b8b;
-}
-.pedido-compra table td.last{
-	border-bottom: 0 none;
-}
-.pedido-compra .bgcolor{
-		background-color:#ebeded;	
-}
-.pedido-compra table td.etiqueta{
+
+#pedido-compra-ver table td.label3 {
+    background: none repeat scroll 0 0 #F7F7F7;
+    color: #666666;
+    font-size: 12px;
 
 }
-.pedido-compra #table-cabecera{
-	margin-bottom: 15px;
-	float:left;
+#pedido-compra-ver #tabla2 td {
+	
 }
-.pedido-compra #cab-lineas{
-	margin-bottom: 5px;
-}
-.pedido-compra #lineas{
-	margin-bottom: 10px;	
-}
-.pedido-compra #lineas{
-	/*height:300px;*/
-}
-.pedido-compra #lineas td{
-	border: 0 none;
-	padding:4px;
-}
-.pedido-compra #sub-lineas{
-	margin-bottom: 20px;
-	font-size: 1.2em;
-}
-.pedido-compra #sub-lineas .etiqueta{
-	font-size: 0.8em;
-}
-.pedido-compra table#dentro{
-	border:0 none; margin:0; padding:0;
-}
-.pedido-compra table#dentro td{
-	border-bottom: 0 none;
-	border-left: 0 none;
-}
-.estadoc {
+
+/**
+* Estados 
+**/
+#pedido-compra .estadoc, #pedido .estadoc {
 	border-radius: 3px 3px 3px 3px;
     color: #333333;
    /* font-family: Monaco,Menlo,Consolas,"Courier New",monospace;*/
     font-size: 11px;
-    background-color: #a6a6a6;
-    border: 1px solid #a6a6a6;
     color: #FFFFFF;
     padding: 1px 3px;
 }
-.estado1{ /* Enviado */
+#pedido-compra .estado1{ /* Enviado */
 	border: 1px solid #a6a6a6;
 	background-color:#a6a6a6;
 }
-.estado2{ /* Recibido OK */
+#pedido-compra .estado2{ /* Recibido OK */
 	background-color:#5aa064;
 	border: 1px solid #5aa064;
 }
-.estado3{ /* Recibido con Errores */
+#pedido-compra .estado3{ /* Recibido con Errores */
 	background-color:#d18578;
 	border: 1px solid #d18578;
 }
-.estado4{ /* Rechazado */
+#pedido-compra .estado4{ /* Rechazado */
 	background-color:#f2634b;
 	border: 1px solid #f2634b;
 }
+#pedido .estado1{ /* Nuevo */
+		border: 1px solid #a6a6a6;
+	background-color:#a6a6a6;
+}
+#pedido .estado2{ /* En Fabrica */
+	border: 1px solid #6e90c9;
+	background-color:#6e90c9;
+}
+#pedido .estado3{ /* Finalizado */
+	border: 1px solid #5aa064;
+	background-color:#5aa064;
+}
+#pedido .estado8{ /* Histórico */
+	border: 1px solid #616160;
+	background-color:#616160;
+}
+
 /** precios */
 #precios{
 	

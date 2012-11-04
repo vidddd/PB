@@ -5,7 +5,29 @@ albaran:
 albaran_show:
     pattern:  /{id}/show
     defaults: { _controller: "PBVentasBundle:Albaran:show" }
-
+    
+albaran_print:
+    pattern:  /{id}/print
+    defaults: { _controller: "PBVentasBundle:Albaran:imprimir" }
 albaran_new:
     pattern:  /new
     defaults: { _controller: "PBVentasBundle:Albaran:new" }
+
+albaran_create:
+    pattern:  /create
+    defaults: { _controller: "PBVentasBundle:Albaran:create" }
+    requirements: { _method: post }
+
+albaran_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBVentasBundle:Albaran:edit" }
+
+albaran_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBVentasBundle:Albaran:update" }
+    requirements: { _method: post }
+
+albaran_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBVentasBundle:Albaran:delete" }
+    requirements: { _method: post }

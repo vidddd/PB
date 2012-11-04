@@ -1110,4 +1110,42 @@ class Cliente
     {
         return $this->precio;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $albaran;
+
+
+    /**
+     * Add albaran
+     *
+     * @param PB\VentasBundle\Entity\Albaran $albaran
+     * @return Cliente
+     */
+    public function addAlbaran(\PB\VentasBundle\Entity\Albaran $albaran)
+    {
+        $this->albaran[] = $albaran;
+    
+        return $this;
+    }
+
+    /**
+     * Remove albaran
+     *
+     * @param PB\VentasBundle\Entity\Albaran $albaran
+     */
+    public function removeAlbaran(\PB\VentasBundle\Entity\Albaran $albaran)
+    {
+        $this->albaran->removeElement($albaran);
+    }
+
+    /**
+     * Get albaran
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAlbaran()
+    {
+        return $this->albaran;
+    }
 }

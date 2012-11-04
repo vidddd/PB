@@ -3,10 +3,8 @@
 {% block title "Pedidos" %}
 
 {% block content %}
-
-<div class="title title-spacing ventas">
-					<h2>Pedidos</h2>
-</div>        
+<div id="pedido">
+	<div class="title title-spacing ventas"><h2>Pedidos</h2></div>        
     <div class="span2">
         {% if form_errors(filterForm) %}
         <div class="response-msg notice iu-corner-all"><span>
@@ -36,51 +34,56 @@
 	        				<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
 	      				<tr>
-	            </tbody></table>
+	      				<tr>
+	        				<td class="label">{{ form_label(filterForm.estado, 'Estado') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.estado, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.estado) }}</td>
+	      				<tr>
+	            	</tbody>
+	            </table>
 	                <p class="botones-buscador">
 	                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
 	                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
 	                </p>
 				 {{ form_widget(filterForm._token) }}</form>
-		</div><div class="clear"></div>
+		</div>
 	</div>
 	    
-	<div class="btn-nuevo">
-	<a class="btn ui-state-default ui-corner-all" href="{{ path('pedido_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Pedido</a></div>
+	<div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" href="{{ path('pedido_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Pedido</a></div>
 
-<div class="clearfix"></div>
-<div class="hastable">
-    <table class="records_list">
-    <thead>
-        <tr>
-            <th width="25">Código Pedido</th>
-            <th>Cliente</th>
-            <th>Fecha</th>
-            <th>Subcliente</th>
-            <th>Estado</th>
-            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
-            <td><a href="{{ path('pedido_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.cliente }}</td>
-            <td>{{ entity.fecha|date('d.m.Y') }}</td>
-            <td>{{ entity.subcliente }}</td>
-            <td>{{ entity.estado }}</td>
-            <td>
-        		<a href="{{ path('pedido_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
-        		<a href="{{ path('pedido_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
-          		<a href="{{ path('pedido_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
-          </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+	<div class="clearfix"></div>
+	<div class="hastable">
+    	<table class="records_list">
+    		<thead>
+		        <tr>
+		            <th width="25">Código Pedido</th>
+		            <th>Cliente</th>
+		            <th>Fecha</th>
+		            <th>Subcliente</th>
+		            <th>Estado</th>
+		            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    {% for entity in entities %}
+		        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+		            <td><a href="{{ path('pedido_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+		            <td>{{ entity.cliente }}</td>
+		            <td>{{ entity.fecha|date('d.m.Y') }}</td>
+		            <td>{{ entity.subcliente }}</td>
+		            <td><span class="estadoc estado{{ entity.estado }}">{{ entity.estadoText }}</span></td>
+		            <td>
+		        		<a href="{{ path('pedido_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+		        		<a href="{{ path('pedido_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+		          		<a href="{{ path('pedido_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
+		          </td>
+		        </tr>
+		    {% endfor %}
+		    </tbody>
+		</table>
     </div>
-
+	<div class="clearfix"></div>
     <div class="span4">
     {{ pagerHtml|raw }}
     </div>
+ </div>
 {% endblock %}

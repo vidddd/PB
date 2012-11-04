@@ -127,7 +127,8 @@ text-align:right;}
 			<td style="width:10%" class="bgcolor last">TOTAL</td>
 		</tr>
 	</table>
-	<table id="lineas" cellspacing="0" style="margin-top:3px;">
+	<div style="background-color: red;">
+	<table id="lineas" cellspacing="0" style="margin-top:3px; display: table-cell; min-height: 50%;">
 	{% for linea in entity.pedidocompralineas %}
         <tr>
             <td style="width:10%;" class="ta_right">{{ linea.referencia }}</td>
@@ -138,15 +139,15 @@ text-align:right;}
             <td style="width:10%" class="ta_right">{{ linea.total }}</td>
         </tr>
     {% endfor %}
-         <tr>
+      <!--  <tr>
             <td style="width:10%; height:200px;" class="ta_right"></td>
             <td style="width:50%"></td>
             <td style="width:10%" class="ta_right"></td>
             <td style="width:10%" class="ta_right"></td>
             <td style="width:10%" class="ta_right"></td>
             <td style="width:10%" class="ta_right"></td>
-        </tr>
-	</table><br />
+        </tr> -->
+	</table></div><br />
 	<table id="sub-lineas" cellspacing="0">
 		<tr>
 			<td style="width:18%" class="etiqueta bgcolor leftp">NETO</td>

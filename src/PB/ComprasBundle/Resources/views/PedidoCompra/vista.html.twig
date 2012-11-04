@@ -1,50 +1,54 @@
-<div class="pedido-compra">
-	<div class="pedido-compra-header">
-		<div class="pcimagen span-8">
-		 <img src="{{ asset('images/pb-compra.png') }}" />
-		</div>
-		<div class="direccion span-13">
-			<p><b>PLÁSTICOS BALTASAR, S.A.</b></p>
-			<p>C/ Las viñas, 41</p>
-			<p>45710 Madridejos (TOLEDO)</p>
-			<p>Tlf: 925 46 16 99 Fax: 925 11 20 12</p>
-			<p>plasticosbaltasar@gmail.com</p>
-		</div>
-		<div class="titular span-11">
-			<p>PEDIDO DE <br />COMPRA O SERVICIO</p>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	<table id="table-cabecera">
+<div id="pedido-compra-ver">
+	<div class="span-18" style="margin-right:20px;">
+		<table id="tabla1">
 		<tr>
-			<td style="width:170px;" class="etiqueta bgcolor">PROVEEDOR</td>
-			<td colspan="3">{{ entity.proveedor.nombre }}</td>
+			<td style="width:30%;" class="label3">PROVEEDOR</td>
+			<td style="width:300px">{{ entity.proveedor.nombre }}</td>
 		</tr>
 		<tr>
-			<td class="etiqueta bgcolor">PERSONA DE CONTACTO</td>
-			<td style="width:45%;">{{ entity.proveedor.nombrecontacto }}</td>
-			<td style="width:80px;" class="etiqueta bgcolor">Tel / Fax</td>
+			<td class="label3">DIRECCIÓN</td>
+			<td colspan="3">{{ entity.proveedor.direccion }}</td>
+		</tr>
+		<tr>
+			<td class="label3">TELÉFONO</td>
 			<td> {{ entity.proveedor.telefono }}</td>
 		</tr>
 		<tr>
-			<td class="etiqueta bgcolor">DIRECCIÓN</td>
-			<td colspan="3">{{ entity.proveedor.direccion }}</td>
+			<td class="label3">LOCALIDAD</td>
+			<td>{{ entity.proveedor.localidad }}</td>
 		</tr> 
+		</table>
+	</div>
+	<div class="span-18">
+		<table id="tabla2">
 		<tr>
-			<td class="etiqueta bgcolor last">PEDIDO REALIZADO POR</td>
-			<td class="last">LUIS ÁLVAREZ</td>
-			<td class="etiqueta bgcolor last">Tel / Fax</td>
-			<td class="last"></td>
-		</tr>  
-	</table>
+			<td style="width:35%;" class="label3">Nª PEDIDO</td>
+			<td style="width:300px">{{ entity.id }}</td>
+		</tr>
+		<tr>
+			<td class="label3">FECHA</td>
+			<td colspan="3">{{ entity.fecha| date('d/mY') }}</td>
+		</tr>
+		<tr>
+			<td class="label3">FECHA ENTREGA</td>
+			<td> {{ entity.fechaentrega | date('d/mY') }}</td>
+		</tr>
+		<tr>
+			<td class="label3">FORMA ENVIO</td>
+			<td>{{ entity.formaenvio }}</td>
+		</tr> 
+		</table>
+	</div>
+	<div class="clearfix"></div>
+
 	<table id="cab-lineas">
 		<tr>
-			<td style="width:10%" class="bgcolor last">REF</td>
-			<td style="width:50%" class="bgcolor last">DESCRIPCION</td>
-			<td style="width:10%" class="bgcolor last">UDS</td>
-			<td style="width:10%" class="bgcolor last">PRECIO</td>
-			<td style="width:10%" class="bgcolor last">% DTO</td>
-			<td style="width:10%" class="bgcolor last">TOTAL</td>
+			<td style="width:10%" class="label3">REF</td>
+			<td style="width:50%" class="label3">DESCRIPCION</td>
+			<td style="width:10%" class="label3">UDS</td>
+			<td style="width:10%" class="label3">PRECIO</td>
+			<td style="width:10%" class="label3">% DTO</td>
+			<td style="width:10%" class="label3">TOTAL</td>
 		</tr>
 	</table>
 	<table id="lineas">
@@ -61,11 +65,11 @@
 	</table>
 	<table id="sub-lineas">
 		<tr>
-			<td style="width:18%" class="etiqueta bgcolor">NETO</td>
-			<td style="width:18%" class="etiqueta bgcolor">DTO %</td>
-			<td style="width:22%" class="etiqueta bgcolor">BASE IMPONIBLE</td>
-			<td style="width:22%" class="etiqueta bgcolor">IVA 21%</td>
-			<td style="width:22%" class="etiqueta bgcolor">TOTAL</td>
+			<td style="width:18%" class="label3">NETO</td>
+			<td style="width:18%" class="label3">DTO %</td>
+			<td style="width:22%" class="label3">BASE IMPONIBLE</td>
+			<td style="width:22%" class="label3">IVA 21%</td>
+			<td style="width:22%" class="label3">TOTAL</td>
 		</tr>
 		<tr>
 			<td class="last ta_right">{{ entity.importe }}€</td>

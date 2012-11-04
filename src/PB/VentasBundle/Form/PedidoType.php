@@ -21,6 +21,7 @@ class PedidoType extends AbstractType
     	}
     	 
     	$tipos = $value['tipo_material'];
+    	$estados = $value['estados_pedidos']; $cliches = $value['cliches'];
     	// add a normal text field, but add our transformer to it
     	
         $builder
@@ -32,7 +33,7 @@ class PedidoType extends AbstractType
         			'data' => $hoy
             ))
             ->add('codpedido')
-            ->add('estado')
+            ->add('estado', 'choice', array( 'choices' => $estados,'error_bubbling' => true))
             ->add('codalbaran')
             ->add('codfactura')
             ->add('fecha_entrega')
@@ -49,7 +50,7 @@ class PedidoType extends AbstractType
             ->add('tratado')
             ->add('tipotubo')
             ->add('kilosimp')
-            ->add('cliche')
+            ->add('cliche', 'choice', array( 'required' => false, 'choices' => $cliches, 'empty_value' => '---','error_bubbling' => true))
             ->add('medidaimp')
             ->add('soldadura')
             ->add('impresion')

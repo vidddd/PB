@@ -109,7 +109,7 @@ $(document).ready(function() {
 
 	// Tabs
 	$('#tabs, #tabs2, #tabs5').tabs();
-
+/*
 	// Dialog			
 	$('#dialog').dialog({
 		autoOpen: false,
@@ -168,6 +168,7 @@ $(document).ready(function() {
 			}
 		}
 	});
+*/
 
 	// Dialog auto open			
 	$('#welcome_login').dialog({
@@ -186,10 +187,11 @@ $(document).ready(function() {
 	});
 
 	// Datepicker
+	/*
 	$('#datepicker').datepicker({
 		inline: true
 	});
-	
+	*/
 	//Hover states on the static widgets
 	$('#dialog_link, ul#icons li').hover(
 		function() { $(this).addClass('ui-state-hover'); }, 
@@ -200,7 +202,7 @@ $(document).ready(function() {
 		axis: 'y',
 		connectWith: '.side-col'
 	});
-
+    /*
 	$(".portlet").addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
 		.find(".portlet-header")
 			.addClass("ui-widget-header")
@@ -214,12 +216,12 @@ $(document).ready(function() {
 	});
 
 	$(".column").disableSelection();
-
+*/
 	
 });
 
 	/* Tooltip */
-
+  /*
 	$(function() {
 		$('.tooltip').tooltip({
 			track: true,
@@ -229,7 +231,7 @@ $(document).ready(function() {
 			fade: 250
 			});
 		});
-   
+   */
     jQuery(function($){
     	$.datepicker.regional['es'] = {
     		closeText: 'Cerrar',
@@ -253,17 +255,18 @@ $(document).ready(function() {
     });
     
  	/* Check all table rows */
-	
-var checkflag = "false";
-function check(field) {
-if (checkflag == "false") {
-for (i = 0; i < field.length; i++) {
-field[i].checked = true;}
-checkflag = "true";
-return "check_all"; }
-else {
-for (i = 0; i < field.length; i++) {
-field[i].checked = false; }
-checkflag = "false";
-return "check_none"; }
-}
+			/*
+		var checkflag = "false";
+		function check(field) {
+		if (checkflag == "false") {
+		for (i = 0; i < field.length; i++) {
+		field[i].checked = true;}
+		checkflag = "true";
+		return "check_all"; }
+		else {
+		for (i = 0; i < field.length; i++) {
+		field[i].checked = false; }
+		checkflag = "false";
+		return "check_none"; }
+		}
+		*/

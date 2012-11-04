@@ -153,4 +153,322 @@ class Albaran
     {
         return $this->lineas;
     }
+    /**
+     * @var integer $codalbaran
+     */
+    private $codalbaran;
+
+    /**
+     * @var integer $iva
+     */
+    private $iva;
+
+    /**
+     * @var integer $descuento
+     */
+    private $descuento;
+
+    /**
+     * @var boolean $recargo
+     */
+    private $recargo;
+
+    /**
+     * @var integer $anyo
+     */
+    private $anyo;
+
+    /**
+     * @var float $importetotal
+     */
+    private $importetotal;
+
+    /**
+     * @var string $obervaciones
+     */
+    private $obervaciones;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $albaranlineas;
+
+    /**
+     * @var PB\VentasBundle\Entity\Cliente
+     */
+    private $cliente;
+
+
+    /**
+     * Set codalbaran
+     *
+     * @param integer $codalbaran
+     * @return Albaran
+     */
+    public function setCodalbaran($codalbaran)
+    {
+        $this->codalbaran = $codalbaran;
+    
+        return $this;
+    }
+
+    /**
+     * Get codalbaran
+     *
+     * @return integer 
+     */
+    public function getCodalbaran()
+    {
+        return $this->codalbaran;
+    }
+
+    /**
+     * Set iva
+     *
+     * @param integer $iva
+     * @return Albaran
+     */
+    public function setIva($iva)
+    {
+        $this->iva = $iva;
+    
+        return $this;
+    }
+
+    /**
+     * Get iva
+     *
+     * @return integer 
+     */
+    public function getIva()
+    {
+        return $this->iva;
+    }
+
+    /**
+     * Set descuento
+     *
+     * @param integer $descuento
+     * @return Albaran
+     */
+    public function setDescuento($descuento)
+    {
+        $this->descuento = $descuento;
+    
+        return $this;
+    }
+
+    /**
+     * Get descuento
+     *
+     * @return integer 
+     */
+    public function getDescuento()
+    {
+        return $this->descuento;
+    }
+
+    /**
+     * Set recargo
+     *
+     * @param boolean $recargo
+     * @return Albaran
+     */
+    public function setRecargo($recargo)
+    {
+        $this->recargo = $recargo;
+    
+        return $this;
+    }
+
+    /**
+     * Get recargo
+     *
+     * @return boolean 
+     */
+    public function getRecargo()
+    {
+        return $this->recargo;
+    }
+
+    /**
+     * Set anyo
+     *
+     * @param integer $anyo
+     * @return Albaran
+     */
+    public function setAnyo($anyo)
+    {
+        $this->anyo = $anyo;
+    
+        return $this;
+    }
+
+    /**
+     * Get anyo
+     *
+     * @return integer 
+     */
+    public function getAnyo()
+    {
+        return $this->anyo;
+    }
+
+    /**
+     * Set importetotal
+     *
+     * @param float $importetotal
+     * @return Albaran
+     */
+    public function setImportetotal($importetotal)
+    {
+        $this->importetotal = $importetotal;
+    
+        return $this;
+    }
+
+    /**
+     * Get importetotal
+     *
+     * @return float 
+     */
+    public function getImportetotal()
+    {
+        return $this->importetotal;
+    }
+
+    /**
+     * Set obervaciones
+     *
+     * @param string $obervaciones
+     * @return Albaran
+     */
+    public function setObervaciones($obervaciones)
+    {
+        $this->obervaciones = $obervaciones;
+    
+        return $this;
+    }
+
+    /**
+     * Get obervaciones
+     *
+     * @return string 
+     */
+    public function getObervaciones()
+    {
+        return $this->obervaciones;
+    }
+
+    /**
+     * Add albaranlineas
+     *
+     * @param PB\VentasBundle\Entity\AlbaranLinea $albaranlineas
+     * @return Albaran
+     */
+    public function addAlbaranlinea(\PB\VentasBundle\Entity\AlbaranLinea $albaranlineas)
+    {
+        $this->albaranlineas[] = $albaranlineas;
+    
+        return $this;
+    }
+
+    /**
+     * Remove albaranlineas
+     *
+     * @param PB\VentasBundle\Entity\AlbaranLinea $albaranlineas
+     */
+    public function removeAlbaranlinea(\PB\VentasBundle\Entity\AlbaranLinea $albaranlineas)
+    {
+        $this->albaranlineas->removeElement($albaranlineas);
+    }
+
+    /**
+     * Get albaranlineas
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAlbaranlineas()
+    {
+        return $this->albaranlineas;
+    }
+
+    /**
+     * Set cliente
+     *
+     * @param PB\VentasBundle\Entity\Cliente $cliente
+     * @return Albaran
+     */
+    public function setCliente(\PB\VentasBundle\Entity\Cliente $cliente = null)
+    {
+        $this->cliente = $cliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get cliente
+     *
+     * @return PB\VentasBundle\Entity\Cliente 
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+    /**
+     * @var integer $codfactura
+     */
+    private $codfactura;
+
+
+    /**
+     * Set codfactura
+     *
+     * @param integer $codfactura
+     * @return Albaran
+     */
+    public function setCodfactura($codfactura)
+    {
+        $this->codfactura = $codfactura;
+    
+        return $this;
+    }
+
+    /**
+     * Get codfactura
+     *
+     * @return integer 
+     */
+    public function getCodfactura()
+    {
+        return $this->codfactura;
+    }
+    /**
+     * @var string $observaciones
+     */
+    private $observaciones;
+
+
+    /**
+     * Set observaciones
+     *
+     * @param string $observaciones
+     * @return Albaran
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
+    
+        return $this;
+    }
+
+    /**
+     * Get observaciones
+     *
+     * @return string 
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
 }

@@ -1077,4 +1077,21 @@ class Pedido
     {
     	return $this->cliente;
     }
+    public function getEstadoText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->estado != null) return $value['estados_pedidos'][$this->estado];
+    }
+
+    public function getClicheText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if(array_key_exists((int)$this->cliche, $value['cliches'])) 
+    		return $value['cliches'][$this->cliche];
+    	else return $this->cliche;
+    }
 }

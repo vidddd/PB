@@ -1,4 +1,5 @@
 tipo_material:
+  0: ""
   1: "Bp Opaco Standar"
   2: "Bp Opaco"
   3: "Ap Trp Standar"
@@ -14,4 +15,9 @@ estados_pedidos:
   1: "Nuevo"
   2: "En fabrica"
   3: "Finalizado"
-  4: "Histórico"
+  8: "Histórico"
+  
+cliches:
+  1: "Nuevo"
+  2: "Lo Traen"
+  3: "Lo Tenemos"

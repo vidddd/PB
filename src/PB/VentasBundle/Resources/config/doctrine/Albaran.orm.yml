@@ -16,9 +16,36 @@ PB\VentasBundle\Entity\Albaran:
         tipo:
             type: smallint
             nullable: true
+        codfactura:
+            type: smallint
+            nullable: true
+        iva:
+            type: smallint
+        descuento:
+            type: smallint
+            nullable: true
+        recargo:
+            type: boolean
+            nullable: true
+        anyo:
+            type: integer
+            nullable: true
+        importetotal:
+            type: float
+            nullable: true
+        observaciones:
+            type: text
+            nullable: true
+    manyToOne:
+        cliente:
+            targetEntity: PB\VentasBundle\Entity\Cliente
+            inversedBy: albaran
+            joinColumn:
+                name: cliente_id
+                referencedColumnName: id
     oneToMany:
-        lineas:
+        albaranlineas:
             targetEntity: PB\VentasBundle\Entity\AlbaranLinea
-            mappedBy: albaran
-            cascade: [ persist ]
+            mappedBy: albaranlinea  
+            cascade: [ persist ]  
     lifecycleCallbacks: {  }

@@ -11,6 +11,23 @@ PB\VentasBundle\Entity\AlbaranLinea:
             type: string
             length: '50'
             nullable: true
+        numlinea:
+            type: integer
+            nullable: true
+        ancho:
+            type: integer
+            nullable: true
+        largo:
+            type: integer
+            nullable: true
+        galga:
+            type: integer
+            nullable: true
+        solapa:
+            type: integer
+            nullable: true
+        cantidad:
+            type: integer
         descripcion:
             type: string
             length: 255
@@ -18,10 +35,19 @@ PB\VentasBundle\Entity\AlbaranLinea:
         cantidad:
             type: float
             nullable: true
+        precio:
+            type: float
+            nullable: true
+        descuento: 
+            type: float
+            nullable: true
+        importe:
+            type: float
+            nullable: true
     manyToOne:
         albaran:
             targetEntity: PB\VentasBundle\Entity\Albaran
-            inversedBy: lineas
+            inversedBy: albaranlineas
             cascade: [persist]
             joinColumn:
                 name: albaran_id

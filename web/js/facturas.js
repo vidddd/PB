@@ -4,6 +4,12 @@ function bind() {
 	  $(".idescuento").blur(update_price);
 	}
 
+function bindAlbaran() {
+	  $(".icantidad").blur(update_price_albaran);
+	  $(".iprecio").blur(update_price_albaran);
+	}
+
+
 function update_price() {
 	  var row = $(this).parents('.item-row');
 	  
@@ -22,11 +28,25 @@ function update_price() {
 	  update_total();
 	}
 
+function update_price_albaran() {
+	  var row = $(this).parents('.item-row');
+	  if( row.find('.iprecio').val() != '' && row.find('.icantidad').val() != '' ){
+		  var price = row.find('.iprecio').val() * row.find('.icantidad').val();
+		  alert(price);
+		  price = roundNumber(price,2);
+		  if(isNaN(price)){ row.find('.totallinea').html("N/A") } else {
+			  row.find('.totallinea').html(price);
+			  row.find('.itotal').val(price)
+		  }
+		  update_total();
+	  }
+	}
 function update_total() {
 	  var total = 0;
 
 	  $('.totallinea').each(function(i){
 	    price = $(this).html();
+	    alert(price);
 	    if (!isNaN(price)) total += Number(price);
 	  });
 	  total = roundNumber(total,2);

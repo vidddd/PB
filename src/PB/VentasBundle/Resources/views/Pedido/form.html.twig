@@ -14,6 +14,7 @@ $(document).ready(function() {
     })
 });
          </script>
+<div id="pedido-form">
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">
 		<form action="{{ entity.id  ? path('pedido_update', { 'id': entity.id }) : path('pedido_create') }}" method="post" {{ form_enctype(form) }}>
 			<div class="form-invoice">
@@ -30,15 +31,23 @@ $(document).ready(function() {
 	     			      <div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div>
 	     			</div>
      			</div>
-     			<div class="span-17 form-horizontal label-column-small form-condensed">
+     			<div class="span-19 form-horizontal label-column-small form-condensed">
 					<div class="control-group required">
-						<label class="control-label required">Código Pedido</label>
+						<div style="width:150px;float:left;">   
+						   <label class="control-label required">Código Pedido</label>
 							<div class="controls codigo">
 				    					{{ entity.id }}
 			        		</div>
+			        	</div>
+			        	<div style="width:220px;float:left;">
+			        		{{ form_label(form.estado, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}
+								<div class="controls codigo">
+			    				{{ form_widget(form.estado, { 'attr': {'class': 'small'}}) }}
+			        			</div>
+			        	</div>
 	     			</div>
      			</div>
-      			<div class="span-18 form-horizontal label-column-small form-condensed">
+      			<div class="span-16 form-horizontal label-column-small form-condensed">
 	     			<div class="control-group required">
 						{{ form_label(form.fecha, null, { 'label': 'Fecha', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
@@ -223,3 +232,4 @@ $(document).ready(function() {
 	<div class="clearfix"></div>
 	<div class="guardar"><button type="submit" class="ui-state-default ui-corner-all">Guardar</button></div> 
 		{{ form_widget(form._token) }}</form>
+</div>

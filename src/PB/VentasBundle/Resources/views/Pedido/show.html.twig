@@ -2,135 +2,134 @@
 
 {% block title entity.cliente %}
 
-{% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
+{# block width100 "widthtotal" %}{% block displaysidebar "display:none;" #}
 {% block content %}
-<div id="pedido">
-<div class="titulo2"><h3>ÓRDEN DE FABRICACIÓN</h3></div>
+<div id="pedido-ver">
+	<div class="title title-spacing ventas"><h2>Pedido</h2></div>   
 	<div class="toppedido">	
-		<div class="img-pedido"><img src="{{ asset('images/pb-compra.png') }}" /></div>
 	    <table class="tabla1">
 	   		<tr>
 	   			<td class="label3"><span>CLIENTE</span></td>
 	   			<td class="dato" colspan="4" style="width:70%;"><span>{{ entity.cliente }}</span>
-	   			<td class="label3 clientep"><span>FECHA</span></td>
-	   			<td class="dato"><span>{{ entity.fecha|date('d.m.Y') }}</span>
+	   			<td class="label3 clientep"><span>COMERCIAL</span></td>
+	   			<td class="dato"><span>{{ entity.cliente.comercialcliente}}</span>
 	   		</tr>
 	   	</table>
 	   	<table class="tabla2">
 	   		<tr>
 	   			<td class="label3"><span>SUBCLIENTE</span></td>
 	   			<td class="dato" style="width:50%;"><span>{{ entity.subcliente }}</span></td>
-	   			<td class="label3"><span>COD. CLIENTE</span></td>
-	   			<td class="dato"><span>{{ entity.cliente.id }}</span>
 	   			<td class="label3"><span>PEDIDO</span></td>
 	   			<td class="dato"><span>{{ entity.id }}</span>
+	   			<td class="label3 clientep"><span>FECHA</span></td>
+	   			<td class="dato"><span>{{ entity.fecha|date('d.m.Y') }}</span>
 	   		</tr>
 	   	  </table>
 	   </div>
 
 		<div id="datos-pedido">
-			<div class="span-17 form-horizontal label-column-small form-condensed column-pedido">
-				<span>EXTRUSION</span><div class="clearfix"></div>
+			<div class="span-13 form-horizontal label-column-small form-condensed column-pedido">
+				<span class="span-13">EXTRUSION</span><div class="clearfix"></div>
 				<div class="control-group">
-						Cantidad
+						<label>Cantidad</label>
 						<div class="controls">{{ entity.cantidad }}</div></div>
 				<div class="control-group">
-						Material y Color
+						<label>Material y Color</label>
 						<div class="controls">{{ entity.mtycolor }}</div></div>
 		      	<div class="control-group">
-						Tipo Material
-						<div class="controls">{{ entity.tipomaterial }}</div></div>
+						<label>Tipo Material</label>
+						<div class="controls">{{ entity.tipomaterialText }}</div></div>
 				<div class="control-group">
-						Ancho
+						<label>Ancho</label>
 						<div class="controls">{{ entity.ancho }}</div></div>	
 		      	<div class="control-group">
-						Galga
+						<label>Galga</label>
 						<div class="controls">{{ entity.galga }}</div></div>
 		     	<div class="control-group">
-						Plegado
+						<label>Plegado</label>
 						<div class="controls">{{ entity.plegado }}</div></div>		
 		 		<div class="control-group">
-						Bobinas
+						<label>Bobinas</label>
 						<div class="controls">{{ entity.bobinas }}</div></div>
 				<div class="control-group">
-						Metros
+					<label>	Metros</label>
 						<div class="controls">{{ entity.metros }}</div></div>
 		 		<div class="control-group">
-						Peso Teorico
+					<label>	Peso Teorico</label>
 						<div class="controls">{{ entity.pesoteorico }}</div></div>
 				<div class="control-group">
-					    Tratado
+					   <label> Tratado</label>
 						<div class="controls">{{ entity.tratado }}</div></div>
 		 		<div class="control-group">
-						Tipo Tubo
+						<label>Tipo Tubo</label>
 						<div class="controls">{{ entity.tipotubo }}</div></div>
 		 		<div class="control-group">
-						Notas
+						<label>Notas</label>
 						<div class="controls">{{ entity.notasextrusion }}	
 		      	</div></div>
 			</div>
-			<div class="span-17 form-horizontal label-column-small form-condensed column-pedido">
-				<span>IMPRESIÓN</span>
+			<div class="span-13 form-horizontal label-column-small form-condensed column-pedido">
+				<span class="span-13">IMPRESIÓN</span>
 				<div class="control-group">
-						Kilos
+						<label>Kilos</label>
 						<div class="controls">{{ entity.kilosimp }}</div></div>
 				<div class="control-group">
-						Cliche
-						<div class="controls">{{ entity.cliche }}	
+						<label>Cliche</label>
+						<div class="controls">{{ entity.clicheText }}	
 		      	</div></div>
 		      	<div class="control-group">
-						Medida Imp
+						<label>Medida Imp</label>
 						<div class="controls">{{ entity.medidaimp }}</div></div>
 		      	<div class="control-group">
-						Soldadura
+						<label>Soldadura</label>
 						<div class="controls">{{ entity.soldadura }}</div></div>
 				<div class="control-group">
-						Impresión
+						<label>Impresión</label>
 						<div class="controls">{{ entity.impresion }}	
 		      	</div></div>	
 		      	<div class="control-group">
-						Colores
+						<label>Colores</label>
 						<div class="controls">{{ entity.colores }}	
 		      	</div></div>
 		 		<div class="control-group">
-						Notas
+						<label>Notas</label>
 						<div class="controls">{{ entity.notasimpresion }}	
 		      	</div></div>	
 			</div>
-			<div class="span-17 form-horizontal label-column-small form-condensed column-pedido column-pedido-last">
-				<span>CORTE</span>
+			<div class="span-13 form-horizontal label-column-small form-condensed column-pedido column-pedido-last">
+				<span class="span-13">CORTE</span>
 				<div class="control-group">
-						Máquina
+						<label>Máquina</label>
 						<div class="controls">{{ entity.maquina }}	
 		      	</div></div>	
 				<div class="control-group">
-						Cantidad
+						<label>Cantidad</label>
 						<div class="controls">{{ entity.cantidadc }}	
 		      	</div></div>
 				<div class="control-group">
-						Ancho
+						<label>Ancho</label>
 						<div class="controls">{{ entity.anchoc }}</div></div>
 				<div class="control-group">
-				        Largo
+				        <label>Largo</label>
 				    	<div class="controls">{{ entity.largoc }}</div></div>
 				<div class="control-group">
-						Solapa
+						<label>Solapa</label>
 						<div class="controls">{{ entity.solapa }}</div></div>
 				<div class="control-group">
-						Almacen
+						<label>Almacen</label>
 						<div class="controls">{{ entity.almacen }}	
 		      	</div></div>
 				<div class="control-group">
-						Operario
+						<label>Operario</label>
 						<div class="controls">{{ entity.operario }}	
 		      	</div></div>
 		 		<div class="control-group">
-						Notas
+						<label>Notas</label>
 						<div class="controls">
 			    			{{ entity.notascorte }}</div></div>
 			</div>
 	  </div><!-- datos-pedido -->
-		<div class="clearfix"></div>
+		<div class="clearfix"></div><br />
     <div class="float-left volver">
         <a href="{{ path('pedido') }}">
           <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}

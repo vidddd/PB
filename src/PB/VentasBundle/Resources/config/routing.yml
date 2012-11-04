@@ -21,3 +21,8 @@ PBVentasBundle_comercial:
 PBVentasBundle_precio:
         resource: "@PBVentasBundle/Resources/config/routing/precio.yml"
         prefix:   /precio
+
+PBVentasBundle_albaran:
+        resource: "@PBVentasBundle/Resources/config/routing/albaran.yml"
+        prefix:   /albaran
+        

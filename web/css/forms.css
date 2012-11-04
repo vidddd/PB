@@ -6,6 +6,7 @@
 }
 
 .form-container {
+	/*background:#f0f0f0!important;*/
 	background:#f8f8f8!important;
 	margin:0;
 }
@@ -44,12 +45,7 @@ form li span{
 input{
 	font-size:1.1em;
 }
-/*
-input.text, input.file, textarea.textarea, select.select{
-	color:#333;
-	margin:0;
-	padding:5px;
-}*/
+
 input, textarea{
 	border:1px solid #ccc;
     padding:6px;
@@ -143,6 +139,10 @@ textarea.large{
 	height:20em;
 }
 input[type='radio'],input[type='checkbox'] { width:auto; }
+
+#welcome_login input.text {
+	width:90%;
+}
 
 	/* Buttons */
 
@@ -321,4 +321,7 @@ input.submit, button.submit{
 }
 .form-condensed .control-group {
     margin-bottom: 12px;
+}
+.form-invoice select{
+	font-size:0.9em;
 }

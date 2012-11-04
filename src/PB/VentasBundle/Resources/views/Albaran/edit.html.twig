@@ -1,10 +1,10 @@
 {% extends '::layout.html.twig' %}
 
-{% block title "Nuevo Albaran" %}
+{% block title "Editar Albaran" %}
 {% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
-<div class="title title-spacing ventas"><h2>Nuevo Albaran</h2></div>
+<div class="title title-spacing ventas"><h2>Editar Albaran</h2></div>
 
 	{% include 'PBVentasBundle:Albaran:form.html.twig' with { 'form' : form } %}
           	
@@ -15,5 +15,7 @@
         </a>
     </div>
 		{% include 'PBVentasBundle:Cliente:js_get_cliente.html.twig' %} 
-
+<script>
+getNombrecliente();
+        	</script>
 {% endblock %}

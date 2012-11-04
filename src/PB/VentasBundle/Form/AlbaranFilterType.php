@@ -8,38 +8,30 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
-use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
-use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\NumberFilterType;
-use PB\VentasBundle\Form\DataTransformer\ClilenteToIdTransformer;
-use Symfony\Component\Yaml\Parser;
-use Symfony\Component\Yaml\Exception\ParseException;
 
-class PedidoFilterType extends AbstractType
+class AlbaranFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
     	$hoy = new \DateTime();
-    	$yaml = new Parser();
-    	try {$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
-    	} catch (ParseException $e) {
-    		printf("Unable to parse the YAML string: %s", $e->getMessage());
-    	}
-    	 
-    	$estados = $value['estados_pedidos'];
         $builder
             ->add('id', 'filter_number')
-            ->add('cliente', 'filter_number')
-            ->add('subcliente', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS))
-    		->add('estado','filter_choice', array('error_bubbling' => true, 'required' => false,'choices' => $estados,'empty_value' => ''))
-           
+            ->add('cliente', 'filter_number', array('error_bubbling' => true))
 		    ->add('fecha', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
 		    															   'label' => 'aaaaa',
 		    											//'format' => 'dd.MM.yyyy'
 		    											),
 		    										   'right_date' => array('widget' => 'single_text')
 		    									 ))
-
-         ;
+            ->add('tipo', 'filter_number_range')
+            ->add('codfactura', 'filter_number_range')
+            ->add('iva', 'filter_number_range')
+            ->add('descuento', 'filter_number_range')
+            ->add('recargo', 'filter_choice')
+            ->add('anyo', 'filter_number_range')
+            ->add('importetotal', 'filter_number_range')
+            ->add('obervaciones', 'filter_text')
+        ;
 
         $listener = function(FormEvent $event)
         {
@@ -55,13 +47,13 @@ class PedidoFilterType extends AbstractType
                 }
             }
 
-            $event->getForm()->addError(new FormError('Filtros vacios'));
+            $event->getForm()->addError(new FormError('Filter empty'));
         };
         $builder->addEventListener(FormEvents::POST_BIND, $listener);
     }
 
     public function getName()
     {
-        return 'pb_ventasbundle_pedidofiltertype';
+        return 'pb_ventasbundle_albaranfiltertype';
     }
 }
