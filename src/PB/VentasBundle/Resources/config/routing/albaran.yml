@@ -9,6 +9,11 @@ albaran_show:
 albaran_print:
     pattern:  /{id}/print
     defaults: { _controller: "PBVentasBundle:Albaran:imprimir" }
+
+albaran_prenew:
+    pattern:  /prenew
+    defaults: { _controller: "PBVentasBundle:Albaran:prenew" }
+    
 albaran_new:
     pattern:  /new
     defaults: { _controller: "PBVentasBundle:Albaran:new" }
@@ -17,6 +22,10 @@ albaran_create:
     pattern:  /create
     defaults: { _controller: "PBVentasBundle:Albaran:create" }
     requirements: { _method: post }
+
+albaran_preedit:
+    pattern:  /{id}/preedit
+    defaults: { _controller: "PBVentasBundle:Albaran:preedit" }
 
 albaran_edit:
     pattern:  /{id}/edit

@@ -222,4 +222,65 @@ class Provincias
     {
         $this->provincia3->removeElement($provincia3);
     }
+
+    /**
+     * Add provincia2
+     *
+     * @param PB\VentasBundle\Entity\Cliente $provincia2
+     * @return Provincias
+     */
+    public function addProvincia2(\PB\VentasBundle\Entity\Cliente $provincia2)
+    {
+        $this->provincia2[] = $provincia2;
+    
+        return $this;
+    }
+
+    /**
+     * Remove provincia2
+     *
+     * @param PB\VentasBundle\Entity\Cliente $provincia2
+     */
+    public function removeProvincia2(\PB\VentasBundle\Entity\Cliente $provincia2)
+    {
+        $this->provincia2->removeElement($provincia2);
+    }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $provincia4;
+
+
+    /**
+     * Add provincia4
+     *
+     * @param PB\ComprasBundle\Entity\Proveedor $provincia4
+     * @return Provincias
+     */
+    public function addProvincia4(\PB\ComprasBundle\Entity\Proveedor $provincia4)
+    {
+        $this->provincia4[] = $provincia4;
+    
+        return $this;
+    }
+
+    /**
+     * Remove provincia4
+     *
+     * @param PB\ComprasBundle\Entity\Proveedor $provincia4
+     */
+    public function removeProvincia4(\PB\ComprasBundle\Entity\Proveedor $provincia4)
+    {
+        $this->provincia4->removeElement($provincia4);
+    }
+
+    /**
+     * Get provincia4
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getProvincia4()
+    {
+        return $this->provincia4;
+    }
 }

@@ -119,6 +119,7 @@ class Albaran
     public function __construct()
     {
         $this->lineas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->albaranlineas = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -336,7 +337,10 @@ class Albaran
     {
         return $this->importetotal;
     }
-
+    public function getImportetotalf()
+    {
+    	return number_format($this->getImportetotal(),2,",",".");
+    }
     /**
      * Set obervaciones
      *
@@ -359,7 +363,7 @@ class Albaran
     {
         return $this->obervaciones;
     }
-
+    
     /**
      * Add albaranlineas
      *
@@ -471,4 +475,48 @@ class Albaran
     {
         return $this->observaciones;
     }
+    public function setAnyoPre()
+    {
+    	$this->anyo = date('Y');
+    }
+    public function getNeto(){
+    	$neto = 0;
+    	foreach ($this->albaranlineas as $key){
+    		$neto = $neto + $key->getImporte();
+    	}
+    	return $neto;
+    }
+    public function getNetof(){
+    	return number_format($this->getNeto(),2,",",".");
+    }
+    
+    public function getDescuentototal(){
+        $dto = $this->getNeto() * $this->descuento / 100;
+        return $dto;
+    }
+    public function getDescuentototalf(){
+    	return number_format($this->getDescuentototal(),2,",",".");
+    }
+    public function getBaseimponible(){
+    	return $this->getNeto() - $this->getDescuentototal();
+    }
+    public function getBaseimponiblef(){
+    	return number_format($this->getBaseimponible(),2,",",".");
+    }
+    public function getIvatotal(){
+    	$iva = $this->getBaseimponible() * $this->iva / 100;
+    	return $iva;
+    }
+    public function getIvatotalf(){
+    	return number_format($this->getIvatotal(),2,",",".");
+    }
+    public function getRecargototal(){
+    	if($this->recargo == '1')
+    	return $this->getBaseimponible() * 5.2 / 100;
+    	else return 0;
+    }
+    public function getRecargototalf(){
+    	return number_format($this->getRecargototal(),2,",",".");
+    }
+    
 }

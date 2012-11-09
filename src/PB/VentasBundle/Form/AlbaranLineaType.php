@@ -21,7 +21,6 @@ class AlbaranLineaType extends AbstractType
             ->add('precio')
             ->add('descuento')
             ->add('importe', 'hidden')
-            //->add('pedidocompralinea', 'hidden')
         ;
     }
 

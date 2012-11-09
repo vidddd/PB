@@ -1,0 +1,81 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Facturas" %}
+
+{% block content %}
+<div id="albaran"> 
+	<div class="title title-spacing ventas"><h2>Facturas</h2></div>        
+    <div class="span2">
+        {% if form_errors(filterForm) %}
+        <div class="response-msg notice iu-corner-all"><span>
+            {{ form_errors(filterForm) }}</span>
+        </div>
+        {% endif %}
+        &nbsp;
+    </div>
+	<div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
+	    <div class="portlet-content">
+			<form class="well" action="{{ path('factura') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
+				<table id="form-alta">
+	   				<tbody>		
+	         			<tr>
+	        				<td class="label">{{ form_label(filterForm.id, 'Código Pedido') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
+	      				<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(filterForm.cliente, 'Código Cliente') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.cliente, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': '' , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a></td><td>{{ form_errors(filterForm.cliente) }}</td>
+	      				<tr>
+	      	         	<tr>
+	        				<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
+	      				<tr>
+	            	</tbody>
+	            </table>
+	                <p class="botones-buscador">
+	                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
+	                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+	                </p>
+				 {{ form_widget(filterForm._token) }}</form>
+		</div>
+	</div>
+	    
+	<div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" href="{{ path('factura_prenew') }}"><span class="ui-icon ui-icon-plusthick"></span>Nueva Factura</a></div>
+
+	<div class="clearfix"></div>
+	<div class="hastable">
+    	<table class="records_list">
+    		<thead>
+		        <tr>
+		            <th width="25">Código Factura</th>
+		            <th>Cliente</th>
+		            <th>Fecha</th>
+		            <th>Fecha Cobro</th>
+		            <th>Importe</th>
+		            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    {% for entity in entities %}
+		        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+		            <td><a href="{{ path('albaran_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+		            <td>{{ entity.cliente }}</td>
+		            <td>{{ entity.fecha|date('d.m.Y') }}</td>
+		            <td>{{ entity.fecha_cobro|date('d.m.Y') }}</td>
+		            <td>{{ entity.importetotal }}
+		            <td>
+		        		<a href="{{ path('factura_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+		        		<a href="{{ path('factura_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+		          		<a href="{{ path('factura_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
+		          </td>
+		        </tr>
+		    {% endfor %}
+		    </tbody>
+		</table>
+    </div>
+	<div class="clearfix"></div>
+    <div class="span4">
+    {{ pagerHtml|raw }}
+    </div>
+ </div>
+{% endblock %}

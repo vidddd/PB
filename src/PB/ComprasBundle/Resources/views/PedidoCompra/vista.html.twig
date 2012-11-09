@@ -3,7 +3,7 @@
 		<table id="tabla1">
 		<tr>
 			<td style="width:30%;" class="label3">PROVEEDOR</td>
-			<td style="width:300px">{{ entity.proveedor.nombre }}</td>
+			<td style="width:300px"><b>{{ entity.proveedor.nombre }}</b></td>
 		</tr>
 		<tr>
 			<td class="label3">DIRECCIÓN</td>
@@ -35,40 +35,38 @@
 		</tr>
 		<tr>
 			<td class="label3">FORMA ENVIO</td>
-			<td>{{ entity.formaenvio }}</td>
+			<td>{{ entity.formaenvioText }}</td>
 		</tr> 
 		</table>
 	</div>
 	<div class="clearfix"></div>
 
-	<table id="cab-lineas">
+	<table id="cab-lineas" cellspacing="0" cellpadding="0" border="0">
 		<tr>
-			<td style="width:10%" class="label3">REF</td>
-			<td style="width:50%" class="label3">DESCRIPCION</td>
-			<td style="width:10%" class="label3">UDS</td>
-			<td style="width:10%" class="label3">PRECIO</td>
-			<td style="width:10%" class="label3">% DTO</td>
-			<td style="width:10%" class="label3">TOTAL</td>
+			<th style="width:8%;" class="label3">REF</th>
+			<th style="width:45%;" class="label3">DESCRIPCION</th>
+			<th style="width:11%;" class="label3">UDS</th>
+			<th style="width:11%;" class="label3">PRECIO</th>
+			<th style="width:11%;" class="label3">% DTO</th>
+			<th style="width:15%;" class="label3">TOTAL</th>
 		</tr>
-	</table>
-	<table id="lineas">
 	{% for linea in entity.pedidocompralineas %}
         <tr>
-            <td style="width:10%" class="ta_right">{{ linea.referencia }}</td>
-            <td style="width:50%">{{ linea.descripcion }}</td>
-            <td style="width:10%" class="ta_right">{{ linea.cantidad }}</td>
-            <td style="width:10%" class="ta_right">{{ linea.precio }}</td>
-            <td style="width:10%" class="ta_right">{{ linea.descuento }}</td>
-            <td style="width:10%" class="ta_right">{{ linea.total }}</td>
+            <td class="ta_right">{{ linea.referencia }}</td>
+            <td>{{ linea.descripcion }}</td>
+            <td class="ta_right">{{ linea.cantidad }}</td>
+            <td class="ta_right">{{ linea.precio }}</td>
+            <td class="ta_right">{{ linea.descuento }}</td>
+            <td class="ta_right">{{ linea.total }}</td>
         </tr>
     {% endfor %}
-	</table>
-	<table id="sub-lineas">
+	</table> <br />
+	<table id="totales">
 		<tr>
-			<td style="width:18%" class="label3">NETO</td>
-			<td style="width:18%" class="label3">DTO %</td>
-			<td style="width:22%" class="label3">BASE IMPONIBLE</td>
-			<td style="width:22%" class="label3">IVA 21%</td>
+			<td style="width:15%" class="label3">NETO</td>
+			<td style="width:15%" class="label3">DTO %</td>
+			<td style="width:15%" class="label3">BASE IMP.</td>
+			<td style="width:15%" class="label3">IVA 21%</td>
 			<td style="width:22%" class="label3">TOTAL</td>
 		</tr>
 		<tr>
@@ -78,28 +76,13 @@
 			<td class="last ta_right">{{ entity.iva }}</td>
 			<td class="last ta_right"><b>{{ entity.total }}€</b></td>
 		</tr>
-		</table>
-	<table id="firma">
-		<tr>
-			<td style="width:240px;" class="etiqueta bgcolor">FECHA DE ENTREGA:</td>
-			<td>{{ entity.fechaentrega|date('d / m / Y') }}</td>
-		</tr>
-		<tr>
-			<td class="etiqueta bgcolor">LUGAR DE ENTREGA:</td>
-			<td>{{ entity.referencia }}</td>
-		</tr>
-		<tr>
-			<td class="etiqueta bgcolor">FORMA DE ENVIO</td>
-			<td class="">{{ entity.formaenvio }}</td>
-		</tr>
-		<tr>
-			<td colspan="2" style="padding:0;">
-			<table id="dentro"><tr>
-				<td style="width:80% height:300px;"></td>
-				<td class="bgcolor"></td>
-			</tr>
-			</table>
-			 </td>
-		</tr>
-	</table>
+		</table><div class="clearfix"></div>
+	<table id="obs" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<th class="label3">OBSERVACIONES</th>
+    </tr>
+    <tr>
+    	<td><P>{{ entity.observaciones }}</P></td>
+    </tr>
+    </table>
 </div>

@@ -1,0 +1,7 @@
+parameters:
+#    pb_produccion.example.class: PB\ProduccionBundle\Example
+
+services:
+#    pb_produccion.example:
+#        class: %pb_produccion.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

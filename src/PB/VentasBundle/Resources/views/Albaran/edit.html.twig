@@ -6,8 +6,15 @@
 {% block content %}
 <div class="title title-spacing ventas"><h2>Editar Albaran</h2></div>
 
-	{% include 'PBVentasBundle:Albaran:form.html.twig' with { 'form' : form } %}
-          	
+	<div id="factura-form">
+		{% if formstep == 1 %}
+			{% include 'PBVentasBundle:Albaran:form1.html.twig' with { 'form' : form } %}
+		{% endif %}
+		{% if formstep == 2 %}
+			{% include 'PBVentasBundle:Albaran:form2.html.twig' with { 'form' : form } %}
+		{% endif %}
+    </div>
+    
 	<div class="clearfix"></div>
     <div class="float-left volver">
         <a href="{{ path('albaran') }}">

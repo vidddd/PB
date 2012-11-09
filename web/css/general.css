@@ -1044,3 +1044,40 @@ border-radius: 3px;
 .buscador-precios a:hover{
 	text-decoration:underline;
 }
+#factura-form .form-container{
+	width:755px;
+}
+#factura-form .form-container table td{
+	padding:2px 0;
+}
+#factura-form .form-container table td img{
+	padding:2px;
+}
+#factura-form .form-container .nombre-cliente{
+	padding:2px 2px 4px 2px;
+}
+#factura-form table#cab{
+	width:100%;
+	    border: 1px solid #DDDDDD;
+    color: #444444;
+    border-collapse:collapse;
+    font-size: 13px;
+}
+#factura-form table#cab td {
+	padding:8px 10px;
+	border: 1px solid #ccc;
+}
+#factura-form table#cab .label4{
+   background-color: #E6E6E6;
+    color: #616161;
+    font-weight: bold;
+    line-height: 18px;
+    padding: 4px 5px;
+    text-align: left;
+    width:100px;
+    font-size:12px;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+#factura-form .tabla2 td{
+	padding:2px 10px !important;
+}

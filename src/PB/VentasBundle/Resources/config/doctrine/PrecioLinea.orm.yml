@@ -31,7 +31,7 @@ PB\VentasBundle\Entity\PrecioLinea:
       targetEntity: PB\VentasBundle\Entity\Precio
       cascade: {  }
       mappedBy: null
-      inversedBy: null
+      inversedBy: precioLineas
       joinColumns:
         precio_id:
           referencedColumnName: id

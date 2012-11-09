@@ -189,7 +189,15 @@ class PedidoCompra
     {
         return $this->forma_envio;
     }
-
+    public function getFormaEnvioText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->forma_envio != null) return $value['medio_envio'][$this->forma_envio];
+    		else return $this->forma_envio;
+    }
+    
     /**
      * Set importe
      *
@@ -233,7 +241,7 @@ class PedidoCompra
      */
     public function getTotal()
     {
-        return $this->total;
+        if($this->total == '0') return ''; else return $this->total;
     }
 
     /**

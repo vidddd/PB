@@ -1,0 +1,34 @@
+factura:
+    pattern:  /
+    defaults: { _controller: "PBVentasBundle:Factura:index" }
+
+factura_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBVentasBundle:Factura:show" }
+
+factura_prenew:
+    pattern:  /prenew
+    defaults: { _controller: "PBVentasBundle:Factura:prenew" }
+
+factura_new:
+    pattern:  /new
+    defaults: { _controller: "PBVentasBundle:Factura:new" }
+
+factura_create:
+    pattern:  /create
+    defaults: { _controller: "PBVentasBundle:Factura:create" }
+    requirements: { _method: post }
+
+factura_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBVentasBundle:Factura:edit" }
+
+factura_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBVentasBundle:Factura:update" }
+    requirements: { _method: post }
+
+factura_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBVentasBundle:Factura:delete" }
+    requirements: { _method: post }

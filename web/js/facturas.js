@@ -7,6 +7,7 @@ function bind() {
 function bindAlbaran() {
 	  $(".icantidad").blur(update_price_albaran);
 	  $(".iprecio").blur(update_price_albaran);
+	  update_price_albaran();  
 	}
 
 
@@ -32,13 +33,13 @@ function update_price_albaran() {
 	  var row = $(this).parents('.item-row');
 	  if( row.find('.iprecio').val() != '' && row.find('.icantidad').val() != '' ){
 		  var price = row.find('.iprecio').val() * row.find('.icantidad').val();
-		  alert(price);
 		  price = roundNumber(price,2);
 		  if(isNaN(price)){ row.find('.totallinea').html("N/A") } else {
 			  row.find('.totallinea').html(price);
 			  row.find('.itotal').val(price)
 		  }
-		  update_total();
+
+		  update_total_albaran();
 	  }
 	}
 function update_total() {
@@ -46,7 +47,6 @@ function update_total() {
 
 	  $('.totallinea').each(function(i){
 	    price = $(this).html();
-	    alert(price);
 	    if (!isNaN(price)) total += Number(price);
 	  });
 	  total = roundNumber(total,2);
@@ -55,6 +55,52 @@ function update_total() {
 	  iva = roundNumber(iva,2);
 	  $('.iva').html(iva+"€");$('.iiva').val(iva);
 	  var total2 = Number(total) + Number(iva);total2 = roundNumber(total2,2);
+	  $('.total2').html(total2+"€");$('.itotal2').val(total2);
+	}
+
+function update_total_albaran() {
+	  var total = 0;
+	  var iva = $('#ivah').val();
+	  var descuento = $('#descuentoh').val();
+	  var recargo = $('#recargoh').val();
+
+	  $('.totallinea').each(function(i){
+	    price = $(this).html();
+	    if (!isNaN(price)) total += Number(price);
+	  });
+	  // IMPORTE NETO
+	  total = roundNumber(total,2);
+	  $('.neto').html(total+"€");
+
+      // DESCUENTO
+	  if(descuento !=  '0') {
+		  var descuentot = total * descuento / 100;
+	  } else {
+		  var descuentot = 0;
+	  }
+	  $('.descuento-label span').html(descuento);
+	  $('.descuento').html(roundNumber(descuentot,2) +"€");
+	  
+	  //BASE IMPONIBLE
+	  baseimp = roundNumber(total - descuentot,2);
+	  $('.baseimponible').html(baseimp +"€");
+	  
+	  //IVA  
+	  iva = baseimp * iva / 100;
+	  iva = roundNumber(iva,2);
+	  $('.iva').html(iva+"€");$('.iiva').val(iva);
+	  
+	  //RECARGO
+	  if(recargo == '1'){
+		  var recargot = baseimp * 5.2 / 100;
+	  } else {
+		  var recargot = 0;
+	  }
+	  recargot = roundNumber(recargot,2);
+	  $('.recargo').html(recargot +"€");
+	  
+	  //TOTAL
+	  var total2 = Number(baseimp) + Number(iva) + Number(recargot); total2 = roundNumber(total2,2);
 	  $('.total2').html(total2+"€");$('.itotal2').val(total2);
 	}
 

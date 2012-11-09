@@ -26,8 +26,6 @@ PB\VentasBundle\Entity\AlbaranLinea:
         solapa:
             type: integer
             nullable: true
-        cantidad:
-            type: integer
         descripcion:
             type: string
             length: 255

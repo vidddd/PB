@@ -1,0 +1,51 @@
+PB\VentasBundle\Entity\Factura:
+    type: entity
+    table: null
+    repositoryClass: PB\VentasBundle\Repository\FacturaRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        fecha:
+            type: date
+        fecha_cobro:
+            type: date
+            nullable: true
+        tipo:
+            type: smallint
+            nullable: true
+        iva:
+            type: smallint
+        descuento:
+            type: smallint
+            nullable: true
+        recargo:
+            type: boolean
+            nullable: true
+        anyo:
+            type: integer
+            nullable: true
+        importetotal:
+            type: float
+            nullable: true
+        estado:
+            type: smallint
+            nullable: true
+        observaciones:
+            type: text
+            nullable: true
+    manyToOne:
+        cliente:
+            targetEntity: PB\VentasBundle\Entity\Cliente
+            inversedBy: factura
+            joinColumn:
+                name: cliente_id
+                referencedColumnName: id
+    oneToMany:
+        facturalineas:
+            targetEntity: PB\VentasBundle\Entity\FacturaLinea
+            mappedBy: factura  
+            cascade: [ persist ]  
+    lifecycleCallbacks: {  }

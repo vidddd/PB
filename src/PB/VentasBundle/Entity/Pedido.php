@@ -1,10 +1,10 @@
 <?php
 
 namespace PB\VentasBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
+
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * PB\VentasBundle\Entity\Pedido

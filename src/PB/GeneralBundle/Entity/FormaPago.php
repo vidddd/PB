@@ -232,4 +232,27 @@ class FormaPago
     {
         return $this->formapagos2;
     }
+
+    /**
+     * Add formapagos2
+     *
+     * @param PB\VentasBundle\Entity\Cliente $formapagos2
+     * @return FormaPago
+     */
+    public function addFormapagos2(\PB\VentasBundle\Entity\Cliente $formapagos2)
+    {
+        $this->formapagos2[] = $formapagos2;
+    
+        return $this;
+    }
+
+    /**
+     * Remove formapagos2
+     *
+     * @param PB\VentasBundle\Entity\Cliente $formapagos2
+     */
+    public function removeFormapagos2(\PB\VentasBundle\Entity\Cliente $formapagos2)
+    {
+        $this->formapagos2->removeElement($formapagos2);
+    }
 }

@@ -371,7 +371,7 @@ class ClienteController extends Controller
 	        else $comercial ='';
     	}
         if($cliente && is_numeric($id) && $id != '') {
-    		return new Response(json_encode(array('nombre' => $cliente->getNombre(), 'comercial' => $comercial)));
+    		return new Response(json_encode(array('nombre' => $cliente->getNombre(), 'comercial' => $comercial, 'descuento' => $cliente->getDescuento(), 'recargo' => $cliente->getRecargo())));
         } else {
         	return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de cliente erróneo</span>')));
         }

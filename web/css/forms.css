@@ -325,3 +325,6 @@ input.submit, button.submit{
 .form-invoice select{
 	font-size:0.9em;
 }
+.control-group .hdescuento, .control-group .hrecargo{
+	width:50px;
+}

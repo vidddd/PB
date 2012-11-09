@@ -25,4 +25,7 @@ PBVentasBundle_precio:
 PBVentasBundle_albaran:
         resource: "@PBVentasBundle/Resources/config/routing/albaran.yml"
         prefix:   /albaran
-        
+
+PBVentasBundle_factura:
+        resource: "@PBVentasBundle/Resources/config/routing/factura.yml"
+        prefix:   /factura

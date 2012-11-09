@@ -88,8 +88,6 @@ class PrecioController extends Controller
     public function newAction()
     {
         $entity = new Precio();
-        //$entity2 = new PrecioLinea();
-        //$entity->addPrecioLinea($entity2);
         $form   = $this->createForm(new PrecioType(), $entity);
 
         return $this->render('PBVentasBundle:Precio:new.html.twig', array(

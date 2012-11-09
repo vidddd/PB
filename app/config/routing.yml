@@ -1,3 +1,7 @@
+pb_produccion:
+    resource: "@PBProduccionBundle/Resources/config/routing.yml"
+    prefix:   /
+
 pb_general:
     resource: "@PBGeneralBundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,0 +1,3 @@
+pb_produccion_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: PBProduccionBundle:Default:index }

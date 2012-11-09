@@ -15,7 +15,7 @@
     </div>
 	<div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
 	    <div class="portlet-content">
-			<form class="well" action="{{ path('pedido') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
+			<form class="well" action="{{ path('albaran') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
 				<table id="form-alta">
 	   				<tbody>		
 	         			<tr>
@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	    
-	<div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" href="{{ path('albaran_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Albaran</a></div>
+	<div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" href="{{ path('albaran_prenew') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Albaran</a></div>
 
 	<div class="clearfix"></div>
 	<div class="hastable">
@@ -60,10 +60,10 @@
 		            <td><a href="{{ path('albaran_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
 		            <td>{{ entity.cliente }}</td>
 		            <td>{{ entity.fecha|date('d.m.Y') }}</td>
-		            <td>{{ entity.importetotal }}
+		            <td>{{ entity.importetotalf }}
 		            <td>
 		        		<a href="{{ path('albaran_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
-		        		<a href="{{ path('albaran_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+		        		<a href="{{ path('albaran_preedit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
 		          		<a href="{{ path('albaran_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
 		          </td>
 		        </tr>

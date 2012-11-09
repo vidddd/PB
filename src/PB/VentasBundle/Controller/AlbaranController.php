@@ -127,19 +127,43 @@ class AlbaranController extends Controller
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
-
+    
+    public function prenewAction()
+    {
+    	$entity = new Albaran();
+    	$form   = $this->createForm(new AlbaranType(), $entity);
+    
+    	return $this->render('PBVentasBundle:Albaran:new.html.twig', array(
+    			'entity' => $entity,
+    			'formstep' => 1,
+    			'form'   => $form->createView(),
+    	));
+    }
+    
     /**
      * Displays a form to create a new Albaran entity.
      *
      */
     public function newAction()
     {
-        $entity = new Albaran();
-        $form   = $this->createForm(new AlbaranType(), $entity);
-
+        $entity  = new Albaran();
+        $request = $this->getRequest();
+        $form    = $this->createForm(new AlbaranType(), $entity);
+        $form->bind($request);
+        
+        if ($form->isValid()) {
+        	$em = $this->getDoctrine()->getManager();
+        	$em->persist($entity);
+	    	return $this->render('PBVentasBundle:Albaran:new.html.twig', array(
+	    			'entity' => $entity,
+	    			'formstep' => 2,
+	    			'form'   => $form->createView(),
+	    	));
+        }
         return $this->render('PBVentasBundle:Albaran:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+        		'entity' => $entity,
+        		'formstep' => 1,
+        		'form'   => $form->createView(),
         ));
     }
 
@@ -170,7 +194,7 @@ class AlbaranController extends Controller
         }
 
         return $this->render('PBVentasBundle:Albaran:new.html.twig', array(
-            'entity' => $entity,
+            'entity' => $entity, 'formstep' => 2,
             'form'   => $form->createView(),
         ));
     }
@@ -178,22 +202,48 @@ class AlbaranController extends Controller
      * Displays a form to edit an existing Albaran entity.
      *
      */
+    public function preeditAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$entity = $em->getRepository('PBVentasBundle:Albaran')->find($id);
+    	if (!$entity) {	throw $this->createNotFoundException('Unable to find Albaran entity.');}
+    	$editForm = $this->createForm(new AlbaranType(), $entity);
+    	$deleteForm = $this->createDeleteForm($id);
+    
+    	return $this->render('PBVentasBundle:Albaran:edit.html.twig', array(
+    			'entity'      => $entity,'formstep' => 1,
+    			'form'   => $editForm->createView(),
+    			'delete_form' => $deleteForm->createView(),
+    	));
+    }
+    
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
+        $request = $this->getRequest();
         $entity = $em->getRepository('PBVentasBundle:Albaran')->find($id);
 
-        if (!$entity) { throw $this->createNotFoundException('Unable to find Albaran entity.');}
+        if (!$entity) {   throw $this->createNotFoundException('Unable to find Albaran entity.'); }
 
-        $editForm = $this->createForm(new AlbaranType(), $entity);
+        $form   = $this->createForm(new AlbaranType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
-
+        $form->bind($request);
+        
+        if ($form->isValid()) {
+        	$em->persist($entity);
+        	return $this->render('PBVentasBundle:Albaran:edit.html.twig', array(
+        			'entity'      => $entity, 'formstep' => 2,
+        			'form'   => $form->createView(),
+        			'delete_form' => $deleteForm->createView(),
+        	));
+        }
+        
         return $this->render('PBVentasBundle:Albaran:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        			'entity'      => $entity, 'formstep' => 1,
+        			'form'   => $form->createView(),
+        			'delete_form' => $deleteForm->createView(),
+        	));
+    
     }
 
     /**
@@ -206,19 +256,28 @@ class AlbaranController extends Controller
 
         $entity = $em->getRepository('PBVentasBundle:Albaran')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Albaran entity.');
-        }
-
+        if (!$entity) {  throw $this->createNotFoundException('Unable to find Albaran entity.');}
+        
+        $beforeSaveLineas = $currentLineasIds = array();
+        foreach ($entity->getAlbaranlineas() as $linea)
+        	$beforeSaveLineas [$linea->getId()] = $linea;
+        
         $editForm   = $this->createForm(new AlbaranType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
-
         $request = $this->getRequest();
-
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+        	foreach ($entity->getAlbaranlineas() as $linea){
+        		$linea->setAlbaran($entity);
+        		if ($linea->getId()) $currentLineasIds[] = $linea->getId();
+        	}
             $em->persist($entity);
+            foreach ($beforeSaveLineas as $lineaId => $linea){
+            	if (!in_array( $lineaId, $currentLineasIds)){
+            		$em->remove($linea);
+            	}
+            }
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'Albaran: '.$id.' Actualizado');
 

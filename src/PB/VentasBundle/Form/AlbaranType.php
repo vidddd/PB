@@ -12,8 +12,11 @@ class AlbaranType extends AbstractType
     {
     	$hoy = new \DateTime();
     	$ivas = array('0' => '0', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10','11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15', '16' => '16', '17' => '17', '18' => '18', '19' => '19', '20' => '20', '21' => '21');
-        $tipos = array(1 => 'A', 2 => 'B');
+    	$descuentos = array('0' => '0', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10');
+    	$tipos = array(1 => 'A', 2 => 'B');
+    	$recargos = array(0 => 'No', 1 => 'Si');
         $builder
+            ->add('id', 'number', array('disabled' => true))
             ->add('cliente', 'cliente_text', array('error_bubbling' => true))
             ->add('fecha', 'date', array(
 							    'widget' => 'single_text',
@@ -24,12 +27,11 @@ class AlbaranType extends AbstractType
             ->add('fecha_entrega', 'date')
             ->add('tipo', 'choice', array('choices' => $tipos, 'error_bubbling' => true))
             ->add('iva' , 'choice', array('choices' => $ivas, 'data' => 21,'error_bubbling' => true))
-            ->add('descuento')
-            ->add('recargo')
-            ->add('anyo')
-            ->add('importetotal')
+            ->add('descuento', 'choice', array('choices' => $descuentos, 'error_bubbling' => true))
+            ->add('recargo', 'choice', array('choices' => $recargos, 'error_bubbling' => true))
+            //->add('anyo')
+            ->add('importetotal', 'hidden', array('error_bubbling' => true))
             ->add('observaciones')
-            ->add('cliente', 'cliente_text', array('error_bubbling' => true))->add('id', 'number', array('disabled' => true))
             ->add('albaranlineas', 'collection', array('label' => 'Lineas',
             		'type' => new AlbaranLineaType(),
             		'allow_add' => true,

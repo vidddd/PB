@@ -1,66 +1,18 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+{% extends '::layout.html.twig' %}
 
-{% block title %}
-{{ parent() }} - Albaran {{ 'views.show.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-{% endblock %}
+{% block title 'Albaran' %}
 
-{% block page %}
-
-<h1>Albaran</h1>
-
-<form class="form-horizontal">
-    <fieldset>        <div class="control-group">
-            <label class="control-label">Id</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.id }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fecha</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fecha|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fecha_entrega</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechaentrega|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Tipo</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.tipo }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Codfactura</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.codfactura }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Iva</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.iva }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Descuento</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.descuento }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Recargo</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.recargo }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Anyo</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.anyo }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Importetotal</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.importetotal }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Obervaciones</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.obervaciones }}</span>            </div>
-        </div>    </fieldset>
-</form>
-
-<div>
-    <div class="float-left">
-        <a class="btn" href="{{ path('albaran') }}">
-            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-    </div>
-    <div class="float-left">
-        <a class="btn btn-primary" href="{{ path('albaran_edit', { 'id': entity.id }) }}">
-            {{ 'views.recordactions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-    </div>
-    <div class="float-left">
-        <form action="{{ path('albaran_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button class="btn btn-danger" type="submit" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-        </form>
-    </div>
+{# block width100 "widthtotal" %}{% block displaysidebar "display:none;" #}
+{% block content %}
+<div class="title title-spacing ventas"><h2>Albaran</h2></div>
+{% include 'PBVentasBundle:Albaran:vista.html.twig' with { 'entity' : entity } %}
+<div class="clearfix"></div>
+<div><br />
+    <div class="volver float-left">
+        <a href="{{ path('albaran') }}"> <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></div>
+    <ul class="ui-widget ui-helper-clearfix botones-abajo">
+    <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('albaran_print', { 'id': entity.id , _format: "pdf" }) }}"><span class="ui-icon ui-icon-print"></span> Imprimir </a> </li>
+    <li class="ui-state-default ui-corner-all editar" style="float:left;"><a class="btn" href="{{ path('albaran_preedit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
+    </ul>
 </div>
 {% endblock %}

@@ -3,55 +3,45 @@
           {% endif %}
 
 <form action="{{ entity.id  ? path('albaran_update', { 'id': entity.id }) : path('albaran_create') }}" method="post" {{ form_enctype(form) }}>
-	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">
-			<div class="form-invoice">
-				<div class="span-17 form-horizontal label-column-small form-condensed">
-					<div class="control-group required">
-						{{ form_label(form.cliente, null, { 'label': 'Cliente', 'label_attr': {'class': 'control-label'} }) }}
-						<div class="controls">
-			    			{{ form_widget(form.cliente, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a>
-			    			
-		        		</div>
-	     			</div>
-					<div class="control-group-pedido">
-	     			      <label class="control-label">&nbsp;</label> 
-	     			      <div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div>
-	     			</div><div class="clearfix"></div>
-	     			<div class="control-group required">
-						{{ form_label(form.tipo, null, { 'label': 'Tipo', 'label_attr': {'class': 'control-label'} }) }}
-						<div class="controls">
-			    			{{ form_widget(form.tipo, { 'attr': {'class': 'small'}}) }}
-		        		</div>
-	     			</div>
-     			</div>
-     			<div class="span-17 form-horizontal label-column-small form-condensed">
-	     			<div class="control-group required">
-						{{ form_label(form.id, null, { 'label': 'Código Albarán', 'label_attr': {'class': 'control-label'} }) }}
-						<div class="controls">
-			    			{{ form_widget(form.id, { 'attr': {'class': 'small'}}) }}
-		        		</div>
-	     			</div>
-	     			<div class="control-group-pedido">
-	     			      <label class="control-label">&nbsp;</label> 
-	     			</div><div class="clearfix"></div>
-	     			<div class="control-group required">
-						{{ form_label(form.fecha, null, { 'label': 'Fecha', 'label_attr': {'class': 'control-label'} }) }}
-						<div class="controls">
-			    			{{ form_widget(form.fecha, { 'attr': {'class': 'date small'}}) }}
-		        		</div>
-	     			</div>
-     			</div>
-      			<div class="span-16 form-horizontal label-column-small form-condensed">
-					<div class="control-group required">
-						{{ form_label(form.iva, null, { 'label': 'IVA', 'label_attr': {'class': 'control-label'} }) }}
-						<div class="controls">
-			    			{{ form_widget(form.iva, { 'attr': {'class': 'small'}}) }}
-		        		</div>
-	     			</div>
-     			</div>
- 			</div>
- 	</div>
-	<div class="clearfix"></div><br />
+	<div style="display:none;">
+			{{ form_widget(form.cliente, { 'attr': {'class': ''}}) }}
+			{{ form_widget(form.fecha, { 'attr': {'class': ''}}) }}
+			{{ form_widget(form.iva, { 'attr': {'class': ''}}) }}
+			{{ form_widget(form.recargo, { 'attr': {'class': ''}}) }}
+			{{ form_widget(form.descuento, { 'attr': {'class': '' }}) }}
+			{{ form_widget(form.tipo, { 'attr': {'class': '' }}) }}
+	</div>
+<table id="cab">
+			<tr>
+				<td class="label4" style="width:100px;">Cliente</td>
+				<td>{{ entity.cliente }}</td>
+				<td class="label4" style="width:100px;">Cod Cliente</td>
+				<td>{{ entity.cliente.id }}</td>
+				<td class="label4" style="width:100px;" colspan="1">Cod Albaran</td>
+				<td colspan="3">{{ entity.id }}</td>
+			</tr>
+			<tr>
+				<td class="label4">Dirección</td>
+				<td>{{ entity.cliente.direccion }} {{ entity.cliente.cp }} {{ entity.cliente.localidad }} ({{ entity.cliente.provinciacliente }})</td>
+				<td class="label4">Forma de pago</td>
+				<td>{{ entity.cliente.formapagocliente }}
+				<td>Nif</td>
+				<td>{{ entity.cliente.nif }}</td>
+			</tr>
+		</table><br/>
+	<table id="cab" class="tabla2">
+		<tr>
+			<td class="label4">Fecha</td>
+			<td>{{ entity.fecha|date('d/m/Y') }}
+			<td class="label4">IVA</td>
+			<td>{{ entity.iva }}%<input type="hidden" name="ivah" id="ivah" value="{{ entity.iva }}" /></td>
+			<td class="label4">Descuento</td>
+			<td>{{ entity.cliente.descuento }}% <input type="hidden" name="descuentoh" id="descuentoh" value="{{ entity.cliente.descuento }}" /></td>
+			<td class="label4">Recargo</td>
+			<td>{{ entity.cliente.recargo ? 'Si' : 'No'  }}<input type="hidden" name="recargoh" id="recargoh" value="{{ entity.cliente.recargo }}" /></td>
+		</tr>
+	</table>
+ 	<div class="clearfix"></div><br /><br />
 	<div id="invoice-lines">
       <div class="clearfix"></div>
      {% macro prototype(linea) %}
@@ -76,10 +66,12 @@
 					    {{ form_widget(linea.cantidad, { 'attr': {'class': 'ta_right icantidad numeric'}}) }}
 					</td>
 					<td class="editable">
-					    {{ form_widget(linea.precio, { 'attr': {'class': 'ta_right iprecio numeric'}}) }}
+					    {{ form_widget(linea.precio, { 'attr': {'class': 'ta_right iprecio numeric', 'style': 'width:71%'}}) }}
+					    
+					    <div class="icono-poner-precio"><a class="buscaprecio" href="#"><img src="{{ asset('images/16euro.png') }}" /></a></div>
 					</td>
 					<td class="total">
-						<span class="ta_right totallinea">{{ linea.importe.vars.value }}</span><!-- price -->
+						<span class="ta_right totallinea">{{ linea.importe.vars.value }}</span>
 					 {{ form_widget(linea.importe, { 'attr': {'class': 'ta_right itotal'}}) }}
 					</td> 
 				</tr>
@@ -93,7 +85,7 @@
 					<th style="width: 30px;">Largo</th>
 					<th style="width: 30px;">Galga</th>
 					<th class="ta_right" style="width: 45px;">Cantidad</th>
-					<th class="ta_right" style="width: 45px;">Precio</th>
+					<th class="ta_right" style="width: 59px;">Precio</th>
 					<th class="ta_right last" style="width: 60px;">Total</th>
 				</tr>
 			</thead>
@@ -119,14 +111,29 @@
 				<table cellspacing="0" class="table-totals">
 					<tbody>
 						<tr id="subtotal-row">
-							<td style="width: 20px">&nbsp;{# form_widget(form.importetotal, { 'attr': {'class': 'iimporte'}}) #}</td>
-							<th style="width: 150px">Total</th>
+							<td style="width: 20px">&nbsp;</td>
+							<th style="width: 150px">Importe Neto</th>
 							<td class="last-column neto">0.00&euro;</td>
 						</tr>
 						<tr id="amount-row">
-							<td style="width: 20px" class="last">&nbsp;{{ form_widget(form.iva, { 'attr': {'class': 'iiva'}}) }}</td>
-							<th class="span-9 amount-cell"><span class="amount-total">Iva</span> <span class="currency">(21%)</span></th>
+							<td style="width: 20px" class="last">&nbsp;</td>
+							<th class="span-9 amount-cell"><span class="amount-total">Descuento</span> <span class="currency descuento-label">(<span>0</span>%)</span></th>
+							<td class="last-column descuento">0.00&euro;</td>
+						</tr>
+						<tr id="amount-row">
+							<td style="width: 20px" class="last">&nbsp;</td>
+							<th class="span-9 amount-cell"><span class="amount-total">Base Imponible</span></th>
+							<td class="last-column baseimponible">0.00&euro;</td>
+						</tr>
+						<tr id="amount-row">
+							<td style="width: 20px" class="last">&nbsp;</td>
+							<th class="span-9 amount-cell"><span class="amount-total">Iva</span> <span class="currency iva-label">(<span>21</span>%)</span></th>
 							<td class="last-column iva">0.00&euro;</td>
+						</tr>
+						<tr id="amount-row">
+							<td style="width: 20px" class="last">&nbsp;</td>
+							<th class="span-9 amount-cell"><span class="amount-total">Recargo</th>
+							<td class="last-column recargo">0.00&euro;</td>
 						</tr>
 						<tr class="invoice-total-box" id="outstanding-row">
 							<td style="width: 20px">&nbsp;&nbsp;{{ form_widget(form.importetotal, { 'attr': {'class': 'itotal2'}}) }}</td>
@@ -153,7 +160,7 @@
         var prototype = $('.prototipo').attr('data-prototype');
         var row = prototype.replace(/__name__/g, index);
         $('table.invoice-lines tbody').append(row);
-        bind();
+        bindAlbaran();
     };
 
     $('#addrow').live('click', function(event) {
@@ -162,16 +169,30 @@
     });
     $(".delete").live('click',function(){
         $(this).closest('tr').remove();
-        update_total();
+        update_total_albaran();
         if ($(".delete").length < 2) $(".delete").hide();
         //event.preventDefault();
       });
-
+    $(".buscaprecio").live('click',function(){
+        var cliente = '{{ entity.cliente.id }}';
+        if(cliente == '') {
+			alert('Debe introducir un cliente');
+         } else {
+        	 $.prettyPhoto.open('/PB2.2/web/app_dev.php/ventas/precio/buscador/'+cliente+'?/iframe=true&width=1080&height=600','Buscador de Precios','Listado de precios de cliente');
+         }
+        return;
+    });
     if ($('table.invoice-lines tbody tr').length === 0) {
         add();
     }
     $(document).ready(function() {
   	  //update_total();
+  	  // Acutalizamos los datos de DESCUENTO IVA y RECARGO, en base a los datos del paso anterior y se preparan para guardarse bbdd
+  	  $('#albaran_recargo').val($('#recargoh').val());
+  	  $('#albaran_descuento').val($('#descuentoh').val());
+  	  $('.descuento-label span').html($('#descuentoh').val());
+  	  $('.iva-label span').html($('#ivah').val()+"€");
+
   	  bindAlbaran();
   	});
 

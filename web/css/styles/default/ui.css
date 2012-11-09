@@ -517,6 +517,9 @@ input[type="text"], input[type="password"], textarea, select {
 .ta_right {
     text-align: right;
 }
+.icono-poner-precio{
+	padding-top:5px;margin:0;float:right;
+}
 .spreadsheet td.total, .spreadsheet .total:hover {
     background-color: #F0F0F0;
     padding-left: 0;
@@ -655,31 +658,54 @@ div.totals textarea:focus{
 /* Pedido Compra */
 #pedido-compra-ver {
    /* border: 1px solid #E1E1E1; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);  padding: 54px 40px 72px;   position: relative;   z-index: 0;*/
+	color:#666666;
 }
 #pedido-compra-ver table {
     border: 1px solid #DDDDDD;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    display: block;
     line-height: 21.5px;
     margin-bottom: 10px;
     overflow: hidden;
 }
-#pedido-compra-ver table td {
+#pedido-compra-ver table td, #pedido-compra-ver table th  {
     border-right: 1px solid #DDDDDD;
     border-bottom: 1px solid #DDDDDD;
     padding: 4px 6px;
 }
 
-#pedido-compra-ver table td.label3 {
+#pedido-compra-ver table .label3 {
     background: none repeat scroll 0 0 #F7F7F7;
     color: #666666;
     font-size: 12px;
 
 }
-#pedido-compra-ver #tabla2 td {
-	
+#pedido-compra-ver #cab-lineas {
+	margin:0;
+	box-shadow: none;
+	border-bottom: none;
+	width:100%;
+	margin-top:10px;
 }
+#pedido-compra-ver #cab-lineas td{
 
+	display: table-cell;
+}
+#pedido-compra-ver #totales{
+	width:70%;
+	float:right;
+}
+#pedido-compra-ver #obs{
+	width:40%;
+}
+#pedido-compra-ver #obs p{
+	font-size:13px; padding:0;
+}
+#albaran-ver #cab-lineas{
+	font-size:11px;
+}
+#albaran-ver #cab-lineas .label3{
+	font-size:11px;
+}
 /**
 * Estados 
 **/

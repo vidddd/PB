@@ -19,4 +19,16 @@ PB\InicioBundle\Entity\Provincias:
             length: 100
             fixed: false
             nullable: false
+    oneToMany:
+        provincia2:
+            targetEntity: PB\VentasBundle\Entity\Cliente
+            mappedBy: provincia_cliente
+            unique: false
+        provincia4:
+            targetEntity: PB\ComprasBundle\Entity\Proveedor
+            mappedBy: provincia_proveedor
+            unique: false
+        provincia3:
+            targetEntity: PB\VentasBundle\Entity\Comercial
+            mappedBy: provincia_comercial           
     lifecycleCallbacks: {  }

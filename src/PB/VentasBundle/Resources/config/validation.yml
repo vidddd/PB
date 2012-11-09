@@ -11,10 +11,6 @@ PB\VentasBundle\Entity\Cliente:
             - NotBlank: ~
         cp:
             - NotBlank: ~ 
-        telefono: 
-            - NotBlank: ~
-        email:
-            - Email: ~
 PB\VentasBundle\Entity\Comercial:
     properties:
         nombre:
@@ -46,3 +42,27 @@ PB\VentasBundle\Entity\Precio:
             - NotBlank:  { message: "El campo 'Fecha' esta vacio."}
         cliente:
             - NotBlank:  { message: "El campo 'Cliente' esta vacio."}
+PB\VentasBundle\Entity\Albaran:
+    properties:
+        fecha:
+            - NotBlank:  { message: "El campo 'Fecha' esta vacio."}
+        cliente:
+            - NotBlank:  { message: "El campo 'Cliente' esta vacio."}
+        iva:
+            - NotBlank:  { message: "El campo 'IVA' esta vacio."}
+PB\VentasBundle\Entity\AlbaranLinea:
+    properties:
+        descripcion:
+            - NotBlank:  { message: "El campo 'Descripcion' esta vacio."}
+PB\VentasBundle\Entity\Factura:
+    properties:
+        fecha:
+            - NotBlank:  { message: "El campo 'Fecha' esta vacio."}
+        cliente:
+            - NotBlank:  { message: "El campo 'Cliente' esta vacio."}
+        iva:
+            - NotBlank:  { message: "El campo 'IVA' esta vacio."}
+PB\VentasBundle\Entity\FacturaLinea:
+    properties:
+        descripcion:
+            - NotBlank:  { message: "El campo 'Descripcion' esta vacio."}

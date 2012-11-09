@@ -1,0 +1,95 @@
+<div id="albaran-ver">
+	<div id="pedido-compra-ver">
+	<div class="span-18" style="margin-right:20px;">
+		<table id="tabla1">
+		<tr>
+			<td style="width:30%;" class="label3">CLIENTE</td>
+			<td style="width:300px"><b>{{ entity.cliente.nombre }}</b></td>
+		</tr>
+		<tr>
+			<td class="label3">DIRECCIÓN</td>
+			<td colspan="3">{{ entity.cliente.direccion }}</td>
+		</tr>
+		<tr>
+			<td class="label3">TELÉFONO</td>
+			<td> {{ entity.cliente.telefono }}</td>
+		</tr>
+		<tr>
+			<td class="label3">LOCALIDAD</td>
+			<td>{{ entity.cliente.localidad }}</td>
+		</tr> 
+		</table>
+	</div>
+	<div class="span-18">
+		<table id="tabla2">
+		<tr>
+			<td style="width:35%;" class="label3">Nª ALBARAN</td>
+			<td style="width:300px">{{ entity.id }}</td>
+		</tr>
+		<tr>
+			<td class="label3">FECHA</td>
+			<td colspan="3">{{ entity.fecha| date('d/mY') }}</td>
+		</tr>
+		<tr>
+			<td class="label3">Cod. Cliente</td>
+			<td>{{ entity.cliente.id }}</td>
+		</tr>
+		<tr>
+			<td class="label3">Nif</td>
+			<td>{{ entity.cliente.nif }}</td>
+		</tr> 
+		</table>
+	</div>
+	<div class="clearfix"></div>
+
+	<table id="cab-lineas" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<th style="width:8%;" class="label3">REFERENCIA</th>
+			<th style="width:45%;" class="label3">DESCRIPCION</th>
+			<th style="width:11%;" class="label3">ANCHO</th>
+			<th style="width:11%;" class="label3">LARGO</th>
+			<th style="width:11%;" class="label3">GALGA</th>
+			<th style="width:11%;" class="label3">CANTIDAD</th>
+			<th style="width:11%;" class="label3">PRECIO</th>
+			<th style="width:15%;" class="label3">TOTAL</th>
+		</tr>
+	{% for linea in entity.albaranlineas %}
+        <tr>
+            <td class="ta_right">{{ linea.referencia }}</td>
+            <td>{{ linea.descripcion }}</td>
+            <td class="ta_right">{{ linea.ancho }}</td>
+            <td class="ta_right">{{ linea.largo }}</td>
+            <td class="ta_right">{{ linea.galga }}</td>
+            <td class="ta_right">{{ linea.cantidadf }}</td>
+            <td class="ta_right">{{ linea.preciof }}</td>
+            <td class="ta_right">{{ linea.importef }}</td>
+        </tr>
+    {% endfor %}
+	</table> <br />
+	<table id="totales">
+		<tr>
+			<td style="width:15%" class="label3">NETO</td>
+			<td style="width:15%" class="label3">DTO {{ entity.descuento }}%</td>
+			<td style="width:15%" class="label3">BASE IMP.</td>
+			<td style="width:15%" class="label3">IVA {{ entity.iva }}%</td>
+			<td style="width:15%" class="label3">RECARGO</td>
+			<td style="width:22%" class="label3">TOTAL</td>
+		</tr>
+		<tr>
+			<td class="last ta_right">{{ entity.netof }}€</td>
+			<td class="last ta_right">{{ entity.descuentototalf }}€</td>
+			<td class="last ta_right">{{ entity.baseimponiblef }}€</td>
+			<td class="last ta_right">{{ entity.ivatotalf }}€</td>
+			<td class="last ta_right">{{ entity.recargototalf }}€</td>
+			<td class="last ta_right"><b>{{ entity.importetotalf }}€</b></td>
+		</tr>
+		</table><div class="clearfix"></div>
+	<table id="obs" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<th class="label3">OBSERVACIONES</th>
+    </tr>
+    <tr>
+    	<td><P>{{ entity.observaciones }}</P></td>
+    </tr>
+    </table>
+</div></div>

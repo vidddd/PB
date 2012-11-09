@@ -14,10 +14,13 @@ PB\GeneralBundle\Entity\FormaPago:
         descripcion:
             type: text
             nullable: true
-    manyToOne:
+    oneToMany:
+        formapagos2:
+            targetEntity: PB\VentasBundle\Entity\Cliente
+            mappedBy: formapago_cliente
+            unique: false
         formapagos:
             targetEntity: PB\ComprasBundle\Entity\Proveedor
             mappedBy: formapago_proveedor
-            unique: false
 
 lifecycleCallbacks: {  }

@@ -104,7 +104,7 @@ PB\ComprasBundle\Entity\Proveedor:
         referencedColumnName: id
     provincia_proveedor:
       targetEntity: PB\InicioBundle\Entity\Provincias
-      inversedBy: provincia
+      inversedBy: provincia4
       joinColumn:
         name: provincia_id
         referencedColumnName: id

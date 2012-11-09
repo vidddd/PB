@@ -28,7 +28,46 @@ class AlbaranLinea
      * @var float $cantidad
      */
     private $cantidad;
-
+    /**
+     * @var integer $numlinea
+     */
+    private $numlinea;
+    
+    /**
+     * @var integer $ancho
+     */
+    private $ancho;
+    
+    /**
+     * @var integer $largo
+     */
+    private $largo;
+    
+    /**
+     * @var integer $galga
+     */
+    private $galga;
+    
+    /**
+     * @var integer $solapa
+     */
+    private $solapa;
+    
+    /**
+     * @var float $precio
+     */
+    private $precio;
+    
+    /**
+     * @var float $descuento
+     */
+    private $descuento;
+    
+    /**
+     * @var float $importe
+     */
+    private $importe;
+    
 
     /**
      * Get id
@@ -108,6 +147,11 @@ class AlbaranLinea
     {
         return $this->cantidad;
     }
+    public function getCantidadf()
+    {
+    	//return $this->cantidad;
+    	return number_format($this->cantidad,3,",",".");
+    }
     /**
      * @var PB\VentasBundle\Entity\Albaran
      */
@@ -136,46 +180,6 @@ class AlbaranLinea
     {
         return $this->albaran;
     }
-    /**
-     * @var integer $numlinea
-     */
-    private $numlinea;
-
-    /**
-     * @var integer $ancho
-     */
-    private $ancho;
-
-    /**
-     * @var integer $largo
-     */
-    private $largo;
-
-    /**
-     * @var integer $galga
-     */
-    private $galga;
-
-    /**
-     * @var integer $solapa
-     */
-    private $solapa;
-
-    /**
-     * @var float $precio
-     */
-    private $precio;
-
-    /**
-     * @var float $descuento
-     */
-    private $descuento;
-
-    /**
-     * @var float $importe
-     */
-    private $importe;
-
 
     /**
      * Set numlinea
@@ -314,7 +318,11 @@ class AlbaranLinea
     {
         return $this->precio;
     }
-
+    public function getPreciof()
+    {
+    	//return $this->precio;
+    	return number_format($this->precio,2,",",".");
+    }
     /**
      * Set descuento
      *
@@ -359,5 +367,10 @@ class AlbaranLinea
     public function getImporte()
     {
         return $this->importe;
+    }
+    public function getImportef()
+    {
+    	//return $this->importe;
+    	return number_format($this->importe,2,",",".");
     }
 }

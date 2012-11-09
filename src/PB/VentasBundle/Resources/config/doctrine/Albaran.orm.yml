@@ -1,6 +1,7 @@
 PB\VentasBundle\Entity\Albaran:
     type: entity
     table: null
+    repositoryClass: PB\VentasBundle\Repository\AlbaranRepository
     fields:
         id:
             type: integer
@@ -46,6 +47,7 @@ PB\VentasBundle\Entity\Albaran:
     oneToMany:
         albaranlineas:
             targetEntity: PB\VentasBundle\Entity\AlbaranLinea
-            mappedBy: albaranlinea  
+            mappedBy: albaran  
             cascade: [ persist ]  
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks:
+        prePersist: [ setAnyoPre ]
