@@ -9,6 +9,10 @@ precio_show:
 buscador_precio:
     pattern:  /buscador/{id}
     defaults: { _controller: "PBVentasBundle:Precio:buscadorPrecio" }
+    
+buscador_precio_albaran:
+    pattern:  /buscador_albaran/{id}/{back}
+    defaults: { _controller: "PBVentasBundle:Precio:buscadorPrecioAlbaran" }
 
 precio_print:
     pattern:  /{id}/print

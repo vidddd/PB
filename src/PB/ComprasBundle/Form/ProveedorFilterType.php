@@ -20,6 +20,7 @@ class ProveedorFilterType extends AbstractType
         $builder
             ->add('id', 'filter_number')
             ->add('nombre', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
+            ->add('nombrecomercial', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
             ->add('nif', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
             ->add('cp', 'filter_number')
             ->add('localidad', 'filter_text' ,array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))

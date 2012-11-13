@@ -5,14 +5,21 @@
 {% block content %}
 <script>
 $(document).ready(function() { 
+	// 
     $("a").click(function () {
-        $('.iprecio', window.parent.document).val(this.rel);
+    	var idprecio = $('.idprecio').html();
+    	if (idprecio){
+			$('#'+idprecio, window.parent.document).val(this.rel);
+         } else {
+        	$('.iprecio', window.parent.document).val(this.rel);
+        }
         window.parent.$.prettyPhoto.close();
         return;
     })
 });
 </script>
 <div class="buscador-precios">
+    <span class="idprecio" style="display:none;">{{ rel }}</span>
     {% if error %}
     	<h2 class="errorprecios" style="color:red;">{{ error }}</h2>
     {% endif %}

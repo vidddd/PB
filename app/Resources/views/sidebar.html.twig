@@ -5,11 +5,11 @@
 					<div class="portlet-content">
 						<div id="accordion">
 							<div>
-								<h3><a href="#">Compras</a></h3>
+								<h3><a href="{{ path('PBComprasBundle_homepage', { 'name': 'aaaa' })  }}">Compras</a></h3>
 								<div>
 									<ul class="side-menu">
-										<li><a href="index.php" title="Administration">Proveedores</a></li>
-										<li><a href="forms.php" title="Forms">Pedido Compra</a></li>
+										<li><a href="{{ path('proveedor') }}" title="Administration">Proveedores</a></li>
+										<li><a href="{{ path('compras_pedidocompra') }}" title="Forms">Pedido Compra</a></li>
 									</ul>
 								</div>
 							</div>
@@ -17,9 +17,10 @@
 								<h3><a href="#">Ventas</a></h3>
 								<div>
 									<ul class="side-menu">
-										<li><a href="index.php" title="Administration">Clientes</a></li>
-										<li><a href="forms.php" title="Forms">Pedidos</a></li>
-										<li><a href="tables.php" title="Tables">Precios</a></li>
+										<li><a href="{{ path('cliente') }}" title="Clientes">Clientes</a></li>
+										<li><a href="{{ path('pedido') }}" title="Pedidos">Pedidos</a></li>
+										<li><a href="{{ path('albaran') }}" title="Pedidos">Albaranes</a></li>
+										<li><a href="{{ path('precio') }}" title="Precios">Precios</a></li>
 									</ul>
 								</div>
 							</div>

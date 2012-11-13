@@ -7,7 +7,9 @@
 $(document).ready(function() { 
     $(".itemid").click(function () {
         $('.buscadorid', window.parent.document).val(this.rel);
+        window.parent.getNombreProveedor();
         window.parent.$.prettyPhoto.close();
+        
     })
 });
 </script>

@@ -54,6 +54,8 @@ PB\VentasBundle\Entity\AlbaranLinea:
     properties:
         descripcion:
             - NotBlank:  { message: "El campo 'Descripcion' esta vacio."}
+        cantidad:
+            - NotBlank:  { message: "El campo 'Cantidad' esta vacio."}
 PB\VentasBundle\Entity\Factura:
     properties:
         fecha:
@@ -66,3 +68,5 @@ PB\VentasBundle\Entity\FacturaLinea:
     properties:
         descripcion:
             - NotBlank:  { message: "El campo 'Descripcion' esta vacio."}
+        cantidad:
+            - NotBlank:  { message: "El campo 'Cantidad' esta vacio."}

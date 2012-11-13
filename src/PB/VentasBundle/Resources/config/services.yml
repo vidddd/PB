@@ -6,8 +6,11 @@ services:
     ventas.print_pedido:
         class: PB\VentasBundle\Printer\PrintPedidoFPDF
         arguments:
+            em: @doctrine  
+    ventas.print_albaran:
+        class: PB\VentasBundle\Printer\PrintAlbaranFPDF
+        arguments:
             em: @doctrine
-            
     ventas.print_precios:
         class: PB\VentasBundle\DependencyInjection\Printprecios
         arguments:

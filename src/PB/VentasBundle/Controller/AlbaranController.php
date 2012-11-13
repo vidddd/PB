@@ -11,6 +11,8 @@ use Pagerfanta\View\TwitterBootstrapView;
 use PB\VentasBundle\Entity\Albaran;
 use PB\VentasBundle\Form\AlbaranType;
 use PB\VentasBundle\Form\AlbaranFilterType;
+use PB\VentasBundle\Entity\Factura;
+use PB\VentasBundle\Form\FacturaType;
 
 /**
  * Albaran controller.
@@ -25,10 +27,7 @@ class AlbaranController extends Controller
     public function indexAction()
     {
         list($filterForm, $queryBuilder) = $this->filter();
-
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
-
-    
         return $this->render('PBVentasBundle:Albaran:index.html.twig', array(
             'entities' => $entities,
             'pagerHtml' => $pagerHtml,
@@ -180,9 +179,15 @@ class AlbaranController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $id = $entity->getId();
             foreach ($entity->getAlbaranLineas() as $linea)
             {
             	$linea->setAlbaran($entity);
+            	// Cambiamos a facturado los pedidos
+            	$codpedido = $linea->getCodpedido();
+            	if($codpedido) {
+            		$this->setEstadoPedido($codpedido,4);
+            	}
             }
             $em->persist($entity);
             
@@ -278,6 +283,14 @@ class AlbaranController extends Controller
             		$em->remove($linea);
             	}
             }
+            foreach ($entity->getAlbaranLineas() as $linea)
+            {
+            	$codpedido = $linea->getCodpedido();
+            	if($codpedido) {
+            		//Pone los estados de pedido a facturado
+            		$this->setEstadoPedido($codpedido,4);
+            	}
+            }
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'Albaran: '.$id.' Actualizado');
 
@@ -310,7 +323,6 @@ class AlbaranController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Albaran entity.');
             }
-
             $em->remove($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
@@ -327,5 +339,53 @@ class AlbaranController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+    public function imprimirAction($id)
+    {
+    	$printer = $this->container->get('ventas.print_albaran');
+    	$fichero = $printer->printFPDF($id);
+    	$response = new Response();
+    	$response->clearHttpHeaders();
+    	$response->setContent(file_get_contents($fichier));
+    	//$response->headers->set('Content-Type', 'application/force-download');
+    	$response->headers->set('Content-Type', 'application/pdf');
+    	$response->headers->set('Content-Disposition', 'inline; filename="Albaran.pdf"');
+    	//$response->headers->set('Content-Disposition: attachment; filename=Albaran.pdf');
+    	return $response;
+    
+    }
+    public function facturarAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$albaran = $em->getRepository('PBVentasBundle:Albaran')->find($id);
+    	
+    	if (!$albaran) {throw $this->createNotFoundException('Unable to find Albaran entity.');}
+    	
+        $factura = new Factura();
+        $factura->setCliente($albaran->getCliente());
+        $factura->setTipo($albaran->getTipo());
+        $factura->setFecha($albaran->getFecha());
+        
+        $form   = $this->createForm(new FacturaType(), $factura);
+    
+    	return $this->render('PBVentasBundle:Albaran:facturar.html.twig', array(
+    			'entity' => $factura,
+    			'form'   => $form->createView(),
+    	));
+    }
+    
+    public function setEstadoPedido($id, $estado){
+    	if (!$estado) {
+    		throw $this->createNotFoundException('Falta el estado de pedido AlbaranController->setEstadoPedido().');
+    	}
+    	if (!$id) {
+    		throw $this->createNotFoundException('Falta código de pedido AlbaranController->setEstadoPedido().');
+    	}
+    	$em = $this->get('doctrine')->getEntityManager();
+    	$entity = $em->getRepository('PBVentasBundle:Pedido')->find($id);
+    	$entity->setEstado($estado);
+    	$em->persist($entity);
+    	$em->flush();
+    	 
     }
 }

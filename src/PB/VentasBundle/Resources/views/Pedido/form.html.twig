@@ -75,7 +75,7 @@ $(document).ready(function() {
 	     			<div class="control-group required">
 						{{ form_label(form.precio, null, { 'label': 'Precio', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.precio, { 'attr': {'class': 'small iprecio'}}) }}
+			    			{{ form_widget(form.precio, { 'attr': {'class': 'small iprecio numeric'}}) }}
 			    			<a href="#" class="buscaprecio"><img src="{{ asset('images/search.png') }}" /></a>
 			    			<!-- <a rel="prettyPhoto[iframe]" href="{{ path('buscador_precio', { 'id': entity.id , 'iframe': 'true', 'width': 750, 'height': 600 }) }}" title="Buscador de Precios"> </a> -->
 		        		</div>

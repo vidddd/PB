@@ -15,6 +15,7 @@ estados_pedidos:
   1: "Nuevo"
   2: "En fabrica"
   3: "Finalizado"
+  4: "Facturado"
   8: "Histórico"
   
 cliches:

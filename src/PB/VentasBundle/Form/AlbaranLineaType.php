@@ -12,6 +12,7 @@ class AlbaranLineaType extends AbstractType
     {
     	$builder
             ->add('referencia')
+            ->add('codpedido', 'hidden')
             ->add('descripcion')
             ->add('cantidad')
             ->add('ancho')

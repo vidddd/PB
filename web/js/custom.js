@@ -221,7 +221,6 @@ $(document).ready(function() {
 });
 
 	/* Tooltip */
-  /*
 	$(function() {
 		$('.tooltip').tooltip({
 			track: true,
@@ -231,7 +230,7 @@ $(document).ready(function() {
 			fade: 250
 			});
 		});
-   */
+   
     jQuery(function($){
     	$.datepicker.regional['es'] = {
     		closeText: 'Cerrar',

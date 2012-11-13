@@ -296,7 +296,7 @@ class PrintPedidoFPDF {
 		$pdf->Cell(186,5,'','LRB',1,'L',1);     // (ancho,alto,txt,borderorbt,linea,align,fill,url)
 		$pdf->Ln();
 		*/
-		return $pdf->Output();
+		return $pdf->Output('Pedido-'.$entity->getId().'.pdf','I');
 	
 	}
 }

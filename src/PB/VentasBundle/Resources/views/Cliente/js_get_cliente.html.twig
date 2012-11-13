@@ -9,6 +9,7 @@
 	});
 	function getNombrecliente(){
 		var id = $(".buscadorid").val();
+		if(id){
 	       $.ajax({
 				url: "{{ path('get_nombre_cliente') }}",
 				type: "post",
@@ -27,8 +28,10 @@
 		          
 	       });//It is silly. But you should not write 'json' or any thing as the fourth parameter. It should be undefined. I'll explain it futher down
 		}
+		}
 	function getNombreclienteAlbaran(){
 		var id = $(".buscadorid").val();
+		if(id){
 	       $.ajax({
 				url: "{{ path('get_nombre_cliente') }}",
 				type: "post",
@@ -54,5 +57,6 @@
 				timeout: 10000
 		          
 	       });//It is silly. But you should not write 'json' or any thing as the fourth parameter. It should be undefined. I'll explain it futher down
+		}
 		}
 </script>

@@ -26,7 +26,7 @@ class AlbaranType extends AbstractType
 							))
             ->add('fecha_entrega', 'date')
             ->add('tipo', 'choice', array('choices' => $tipos, 'error_bubbling' => true))
-            ->add('iva' , 'choice', array('choices' => $ivas, 'data' => 21,'error_bubbling' => true))
+            ->add('iva' , 'choice', array('choices' => $ivas,'by_reference' => true, 'data' => 21,'error_bubbling' => true))
             ->add('descuento', 'choice', array('choices' => $descuentos, 'error_bubbling' => true))
             ->add('recargo', 'choice', array('choices' => $recargos, 'error_bubbling' => true))
             //->add('anyo')

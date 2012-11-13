@@ -32,3 +32,10 @@ pedido_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "PBVentasBundle:Pedido:delete" }
     requirements: { _method: post }
+
+get_pedido:
+    pattern:  /getpedido
+    defaults: { _controller: "PBVentasBundle:Pedido:getPedido", _format: json }
+    requirements:
+        _format: (xml|json)
+        _method:  POST

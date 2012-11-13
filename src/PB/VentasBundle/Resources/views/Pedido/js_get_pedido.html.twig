@@ -1,0 +1,41 @@
+<script>
+	$("#addpedido").live('click',function(){
+		   getPedido();
+	});
+
+	function getPedido(){
+		var id = $("#codpedido").val();
+		if(id == '' || id == null) {
+			alert('Introduce un codigo de pedido')
+		} else {
+	       $.ajax({
+				url: "{{ path('get_pedido') }}",
+				type: "post",
+				dataType: "json",
+				data: {id: id},
+				success: function(resp){
+					if(resp.referencia) {
+						var index = $('table.invoice-lines tbody tr').length;
+						add();
+						$('#albaran_albaranlineas_'+index+'_codpedido').val(resp.referencia);
+						$('#albaran_albaranlineas_'+index+'_referencia').val(resp.referencia);
+						$('#albaran_albaranlineas_'+index+'_descripcion').val(resp.descripcion);
+						$('#albaran_albaranlineas_'+index+'_ancho').val(resp.ancho);
+						$('#albaran_albaranlineas_'+index+'_largo').val(resp.largo);
+						$('#albaran_albaranlineas_'+index+'_galga').val(resp.galga);
+						$('#albaran_albaranlineas_'+index+'_precio').val(resp.precio);
+					} else {
+						$('.error-pedido').html(resp.nombre);
+					}
+				},
+				error: function(jqXHR,estado,error){
+				//	alert(estado);
+				//	alert(error);
+				},
+				complete: function(jqXHR,estado){},
+				timeout: 10000
+		          
+	       });//It is silly. But you should not write 'json' or any thing as the fourth parameter. It should be undefined. I'll explain it futher down
+		 }
+		}
+</script>

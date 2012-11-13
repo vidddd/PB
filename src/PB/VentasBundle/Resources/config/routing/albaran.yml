@@ -40,3 +40,7 @@ albaran_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "PBVentasBundle:Albaran:delete" }
     requirements: { _method: post }
+
+albaran_facturar:
+    pattern:  /{id}/facturar
+    defaults: { _controller: "PBVentasBundle:Albaran:facturar" }

@@ -257,7 +257,8 @@ class PedidoCompraController extends Controller
 	    //$printer = new PrintPedidoCompra2(); //DOMPDF
 	    $printer = new PrintPedidoCompra3(); //HTML2PDF
 	    $response = new Response($printer->getPdf($html));
-	    $response->headers->set('Content-Type', 'application/pdf'); $response->headers->set('Content-Disposition', 'inline; filename="PedidoCompra.pdf"');
+	    $response->headers->set('Content-Type', 'application/pdf'); 
+	    $response->headers->set('Content-Disposition', 'inline; filename="PedidoCompra.pdf"');
 	    return $response;
 	  
     

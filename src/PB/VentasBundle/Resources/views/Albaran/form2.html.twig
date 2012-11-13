@@ -67,12 +67,13 @@
 					</td>
 					<td class="editable">
 					    {{ form_widget(linea.precio, { 'attr': {'class': 'ta_right iprecio numeric', 'style': 'width:71%'}}) }}
-					    
-					    <div class="icono-poner-precio"><a class="buscaprecio" href="#"><img src="{{ asset('images/16euro.png') }}" /></a></div>
+					  <div class="icono-poner-precio"> <a href="#" class="buscaprecio" rel="{{ linea.precio.vars.id }}" title="Buscador de Precio"><img src="{{ asset('images/16euro.png') }}" /></a></div>
+					  	<!-- <a rel="prettyPhoto[iframe]" href="{{ path('buscador_precio_albaran', { 'id': '' , 'back': linea.precio.vars.id,  'iframe': 'true', 'width': 750, 'height': 500 }) }}" title="Buscador de Precio"><img src="{{ asset('images/16euro.png') }}" /></a></div> -->
 					</td>
 					<td class="total">
 						<span class="ta_right totallinea">{{ linea.importe.vars.value }}</span>
 					 {{ form_widget(linea.importe, { 'attr': {'class': 'ta_right itotal'}}) }}
+					 	{{ form_widget(linea.codpedido, { 'attr': {'class': 'ta_right'}}) }}
 					</td> 
 				</tr>
 	     {% endmacro %}
@@ -103,9 +104,18 @@
 	    	<div class="float_left">
 	    		<div class="spreadsheet actions">
 	    			<ul>
-	    				<li title="" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-plusthick"></span><a id="addrow" onclick="return false;" href="#">Añadir Línea</a></li>
-	    			<ul>
+	    				<li title="" style="width:100px;" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-plusthick"></span><a id="addrow" onclick="return false;" href="#">Añadir Línea</a></li>
+	    			</ul>
 	    		</div>
+	    		<div class="spreadsheet actions">
+	    		   <ul class="nuevo-pedido">
+	    			    <li><input type="text" name="codpedido" id="codpedido" class="numeric" /></li>
+	    				<li title="" class="ui-state-default ui-corner-all" style="margin-top:2px;"><span class="ui-icon ui-icon-plusthick"></span><a id="addpedido" onclick="return false;" href="#">Añadir Pedido</a></li>
+	    			</ul>
+	    		<div class="error-pedido">
+	    		</div>
+	    		</div>
+	    		
 	    	</div>	
 			<div class="box">
 				<table cellspacing="0" class="table-totals">
@@ -173,15 +183,18 @@
         if ($(".delete").length < 2) $(".delete").hide();
         //event.preventDefault();
       });
+    
     $(".buscaprecio").live('click',function(){
         var cliente = '{{ entity.cliente.id }}';
+		var rel = $(this).attr('rel');
         if(cliente == '') {
 			alert('Debe introducir un cliente');
          } else {
-        	 $.prettyPhoto.open('/PB2.2/web/app_dev.php/ventas/precio/buscador/'+cliente+'?/iframe=true&width=1080&height=600','Buscador de Precios','Listado de precios de cliente');
+        	 $.prettyPhoto.open('/PB2.2/web/app_dev.php/ventas/precio/buscador_albaran/'+cliente+'/'+rel+'?iframe=true&width=1080&height=600','Buscador de Precios','Listado de precios de cliente');
          }
         return;
     });
+    
     if ($('table.invoice-lines tbody tr').length === 0) {
         add();
     }
@@ -195,5 +208,4 @@
 
   	  bindAlbaran();
   	});
-
 </script>

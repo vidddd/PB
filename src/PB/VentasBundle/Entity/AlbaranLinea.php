@@ -373,4 +373,32 @@ class AlbaranLinea
     	//return $this->importe;
     	return number_format($this->importe,2,",",".");
     }
+    /**
+     * @var integer $codpedido
+     */
+    private $codpedido;
+
+
+    /**
+     * Set codpedido
+     *
+     * @param integer $codpedido
+     * @return AlbaranLinea
+     */
+    public function setCodpedido($codpedido)
+    {
+        $this->codpedido = $codpedido;
+    
+        return $this;
+    }
+
+    /**
+     * Get codpedido
+     *
+     * @return integer 
+     */
+    public function getCodpedido()
+    {
+        return $this->codpedido;
+    }
 }

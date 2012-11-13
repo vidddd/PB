@@ -1,4 +1,5 @@
 tipo_proveedor:
+  0: "Indefinido"
   1: "Materia Prima"
   2: "Servicios"
   3: "Materiales Auxiliares"

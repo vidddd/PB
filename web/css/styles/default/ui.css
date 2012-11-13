@@ -745,6 +745,10 @@ div.totals textarea:focus{
 	border: 1px solid #5aa064;
 	background-color:#5aa064;
 }
+#pedido .estado4{ /* Facturado */
+	border: 1px solid #e28f8f;
+	background-color:#e28f8f;
+}
 #pedido .estado8{ /* Histórico */
 	border: 1px solid #616160;
 	background-color:#616160;
@@ -800,4 +804,21 @@ div.totals textarea:focus{
 .vista-precios table td span{
 	padding: 6px;
 	float:left;
+}
+.totals .nuevo-pedido{
+	float:left;
+	margin-top:10px;
+}
+.totals .nuevo-pedido li {
+	float:left;
+	width: 110px;
+}
+.totals .nuevo-pedido input{
+	width:80px; margin:0;
+	height:15px;
+	padding:4px;
+}
+.totals .error-pedido{
+	color: red;
+	padding:8px 0;
 }

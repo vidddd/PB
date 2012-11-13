@@ -7,7 +7,7 @@ function bind() {
 function bindAlbaran() {
 	  $(".icantidad").blur(update_price_albaran);
 	  $(".iprecio").blur(update_price_albaran);
-	  update_price_albaran();  
+	  update_total_albaran();  
 	}
 
 

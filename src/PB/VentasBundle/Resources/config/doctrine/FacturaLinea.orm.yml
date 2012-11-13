@@ -14,6 +14,9 @@ PB\VentasBundle\Entity\FacturaLinea:
         numlinea:
             type: integer
             nullable: true
+        codpedido:
+            type: integer
+            nullable: true
         ancho:
             type: integer
             nullable: true

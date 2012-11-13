@@ -74,7 +74,7 @@
             <td>{{ entity.localidad }}</td>
             <td>{{ entity.telefono }}</td>
             <td>
-        		<a rel="prettyPhoto[iframe]" href="{{ path('cliente_show', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+        		<a rel="prettyPhoto[iframe]" title="Ver Ficha" href="{{ path('cliente_show', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
         		<a href="{{ path('cliente_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
           		<!-- <a href="{{ path('proveedor_delete', { 'id': entity.id }) }}" title="Eliminar" class="btn_no_text btn ui-state-default ui-corner-all tooltip" onclick="return confirm('Estas seguro de borrar el cliente?')"><span class="ui-icon ui-icon-circle-close"></span></a> -->
           </td>

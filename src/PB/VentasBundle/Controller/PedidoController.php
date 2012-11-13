@@ -287,4 +287,40 @@ class PedidoController extends Controller
             ->getForm()
         ;
     }
+    /**
+     * Return a ajax response
+     */
+    public function getPedidoAction(){
+    	$request = $this->get('request');
+    	$id=$request->request->get('id');
+    	$em = $this->get('doctrine')->getEntityManager();
+    	 
+    	$pedido = $em->getRepository('PBVentasBundle:Pedido')->findOneById($id);
+
+    	if($pedido && is_numeric($id) && $id != '') {
+    		$referencia = $pedido->getId();
+    		$descripcion = $pedido->getMtycolor().' '.$pedido->getSubcliente();
+    		$ancho = $pedido->getAnchoc();
+    		$largo = $pedido->getLargoc();
+    		$galga = $pedido->getGalga();
+    		$precio = $pedido->getPrecio();
+    		return new Response(json_encode(array('referencia' => $referencia, 'descripcion' => $descripcion, 'ancho' => $ancho, 'largo' => $largo, 'galga' => $galga, 'precio' =>$precio)));
+    	} else {
+    		return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de pedido erróneo</span>')));
+    	}
+    }
+    public function setEstadoPedido($id, $estado){
+    	if (!$estado) {
+    		throw $this->createNotFoundException('Falta el estado de pedido PedidoController->setEstadoPedido().');
+    	}
+    	if (!$id) {
+    		throw $this->createNotFoundException('Falta código de pedido PedidoController->setEstadoPedido().');
+    	}
+    	$em = $this->get('doctrine')->getEntityManager();
+    	$entity = $em->getRepository('PBVentasBundle:Pedido')->find($id);
+    	$entity->setEstado($estado);
+    	$em->persist($entity);
+    	$em->flush();
+    	
+    }
 }

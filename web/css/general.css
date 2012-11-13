@@ -461,7 +461,10 @@ a.btn {
 	padding: .4em 1em .4em 20px;
 	position:relative;
 }
-
+a.btn_text {
+	padding: .4em 1em; margin:0 !important;
+	position:relative;
+}
 a.btn_no_text {
 	padding:10px;
 }
