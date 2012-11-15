@@ -255,4 +255,42 @@ class FormaPago
     {
         $this->formapagos2->removeElement($formapagos2);
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $formapagos3;
+
+
+    /**
+     * Add formapagos3
+     *
+     * @param PB\VentasBundle\Entity\Factura $formapagos3
+     * @return FormaPago
+     */
+    public function addFormapagos3(\PB\VentasBundle\Entity\Factura $formapagos3)
+    {
+        $this->formapagos3[] = $formapagos3;
+    
+        return $this;
+    }
+
+    /**
+     * Remove formapagos3
+     *
+     * @param PB\VentasBundle\Entity\Factura $formapagos3
+     */
+    public function removeFormapagos3(\PB\VentasBundle\Entity\Factura $formapagos3)
+    {
+        $this->formapagos3->removeElement($formapagos3);
+    }
+
+    /**
+     * Get formapagos3
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFormapagos3()
+    {
+        return $this->formapagos3;
+    }
 }

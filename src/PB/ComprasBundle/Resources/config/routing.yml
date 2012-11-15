@@ -1,5 +1,5 @@
 PBComprasBundle_homepage:
-    pattern:  /compras/{name}
+    pattern:  /compras
     defaults: { _controller: PBComprasBundle:Default:index }
 
 PBComprasBundle_proveedor:

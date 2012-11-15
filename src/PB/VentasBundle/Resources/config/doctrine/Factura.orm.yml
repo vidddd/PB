@@ -43,9 +43,16 @@ PB\VentasBundle\Entity\Factura:
             joinColumn:
                 name: cliente_id
                 referencedColumnName: id
+        formapago_factura:
+            targetEntity: PB\GeneralBundle\Entity\FormaPago
+            inversedBy: formapagos3
+            joinColumn:
+                name: formapago_id
+                referencedColumnName: id
     oneToMany:
         facturalineas:
             targetEntity: PB\VentasBundle\Entity\FacturaLinea
             mappedBy: factura  
             cascade: [ persist ]  
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks:
+        prePersist: [ setAnyoPre ]

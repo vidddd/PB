@@ -10,6 +10,7 @@
 			{{ form_widget(form.recargo, { 'attr': {'class': ''}}) }}
 			{{ form_widget(form.descuento, { 'attr': {'class': '' }}) }}
 			{{ form_widget(form.tipo, { 'attr': {'class': '' }}) }}
+
 	</div>
 <table id="cab">
 			<tr>
@@ -25,7 +26,7 @@
 				<td>{{ entity.cliente.direccion }} {{ entity.cliente.cp }} {{ entity.cliente.localidad }} ({{ entity.cliente.provinciacliente }})</td>
 				<td class="label4">Forma de pago</td>
 				<td>{{ entity.cliente.formapagocliente }}
-				<td>Nif</td>
+				<td class="label4">Nif</td>
 				<td>{{ entity.cliente.nif }}</td>
 			</tr>
 		</table><br/>

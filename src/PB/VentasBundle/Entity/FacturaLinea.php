@@ -296,7 +296,11 @@ class FacturaLinea
     {
         return $this->cantidad;
     }
-
+    public function getCantidadf()
+    {
+    	//return $this->cantidad;
+    	return number_format($this->cantidad,3,",",".");
+    }
     /**
      * Set precio
      *
@@ -318,6 +322,11 @@ class FacturaLinea
     public function getPrecio()
     {
         return $this->precio;
+    }
+    public function getPreciof()
+    {
+    	//return $this->precio;
+    	return number_format($this->precio,2,",",".");
     }
 
     /**
@@ -365,7 +374,11 @@ class FacturaLinea
     {
         return $this->importe;
     }
-
+    public function getImportef()
+    {
+    	//return $this->importe;
+    	return number_format($this->importe,2,",",".");
+    }
     /**
      * Set factura
      *

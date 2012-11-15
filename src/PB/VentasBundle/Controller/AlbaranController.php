@@ -130,6 +130,8 @@ class AlbaranController extends Controller
     public function prenewAction()
     {
     	$entity = new Albaran();
+    	$hoy = new \DateTime();
+    	$entity->setFecha($hoy);
     	$form   = $this->createForm(new AlbaranType(), $entity);
     
     	return $this->render('PBVentasBundle:Albaran:new.html.twig', array(
@@ -356,22 +358,54 @@ class AlbaranController extends Controller
     }
     public function facturarAction($id)
     {
-    	$em = $this->getDoctrine()->getManager();
+    	$em = $this->getDoctrine()->getManager(); $request = $this->getRequest();
     	$albaran = $em->getRepository('PBVentasBundle:Albaran')->find($id);
     	
     	if (!$albaran) {throw $this->createNotFoundException('Unable to find Albaran entity.');}
     	
         $factura = new Factura();
+        $cliente = $albaran->getCliente();
         $factura->setCliente($albaran->getCliente());
         $factura->setTipo($albaran->getTipo());
-        $factura->setFecha($albaran->getFecha());
-        
+        $factura->setDescuento($albaran->getDescuento());
+        $factura->setRecargo($albaran->getRecargo());
+        $factura->setImportetotal($albaran->getImportetotal());
+        $hoy = new \DateTime();
+        $factura->setFecha($hoy);
+        $factura->setFechacobro($hoy); 
+        //$factura->setFecha($albaran->getFecha());
+       // $factura->setFormapagoFactura($cliente->getFormapagocliente());
+        /*
+        foreach ($albaran->getAlbaranLineas() as $linea)
+            {
+            	$factura->addAlbaranlinea($linea);
+            }
+		*/
         $form   = $this->createForm(new FacturaType(), $factura);
     
-    	return $this->render('PBVentasBundle:Albaran:facturar.html.twig', array(
-    			'entity' => $factura,
-    			'form'   => $form->createView(),
-    	));
+        if ($request->getMethod() == 'POST') {
+        	$form->bind($request);
+        	if ($form->isValid()) {
+        		
+        	      $em->persist($factura);
+        	      $em->flush();
+        	      
+        	      $albaran->setCodfactura($factura->getId());
+        	      $em->persist($albaran);
+        	      $em->flush();
+        	      
+        	      $this->get('session')->getFlashBag()->add('success', 'Nueva Factura Creada');
+	              return $this->redirect($this->generateUrl('factura_show', array('id' => $factura->getId())));
+	        } else {
+	            $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
+	        } 		
+        } 
+        
+        return $this->render('PBVentasBundle:Albaran:facturar.html.twig', array(
+        			'entity' => $factura,
+        			'id' => $albaran->getId(),
+        			'form'   => $form->createView(),
+        	));     
     }
     
     public function setEstadoPedido($id, $estado){

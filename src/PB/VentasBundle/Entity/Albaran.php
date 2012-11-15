@@ -3,6 +3,8 @@
 namespace PB\VentasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
  * PB\VentasBundle\Entity\Albaran
@@ -107,6 +109,13 @@ class Albaran
     public function getTipo()
     {
         return $this->tipo;
+    }
+    public function getTipoText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->tipo != null) return $value['tipos'][$this->tipo];
     }
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection

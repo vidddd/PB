@@ -652,8 +652,8 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 	background-image:url('../images/icons/precios.png');
 }
 
-#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.Chart_5 {
-	background-image:url('../images/icons/Chart_5.png');
+#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.facturas {
+	background-image:url('../images/icons/facturas.png');
 }
 
 #page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.Clipboard_3 {

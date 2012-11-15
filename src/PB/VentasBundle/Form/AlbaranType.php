@@ -21,7 +21,7 @@ class AlbaranType extends AbstractType
             ->add('fecha', 'date', array(
 							    'widget' => 'single_text',
 							    //'format' => 'dd.MM.yyyy',
-    							'data' => $hoy,
+    						//	'data' => $hoy,
             					'error_bubbling' => true
 							))
             ->add('fecha_entrega', 'date')

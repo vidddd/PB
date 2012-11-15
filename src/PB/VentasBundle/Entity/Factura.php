@@ -3,6 +3,8 @@
 namespace PB\VentasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
  * PB\VentasBundle\Entity\Factura
@@ -28,7 +30,12 @@ class Factura
      * @var integer $tipo
      */
     private $tipo;
-
+    /**
+     * @var PB\GeneralBundle\Entity\FormaPago
+     */
+    private $formapago_factura;
+    
+    
 
     /**
      * Get id
@@ -258,7 +265,10 @@ class Factura
     {
         return $this->importetotal;
     }
-
+    public function getImportetotalf()
+    {
+    	return number_format($this->getImportetotal(),2,",",".");
+    }
     /**
      * Set estado
      *
@@ -313,13 +323,18 @@ class Factura
      * @var PB\VentasBundle\Entity\Cliente
      */
     private $cliente;
-
+    private $ventas;
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->facturalineas = new \Doctrine\Common\Collections\ArrayCollection();
+        $yaml = new Parser(); try {	
+        	$this->ventas = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+        } catch (ParseException $e) {
+        	printf("Unable to parse the YAML string: %s", $e->getMessage());
+        }
     }
     
     /**
@@ -334,7 +349,18 @@ class Factura
     
         return $this;
     }
-
+    /**
+     * Add albaranlineas
+     *
+     * @param PB\VentasBundle\Entity\AlbaranLinea $albaranlineas
+     * @return Factura
+     */
+    public function addAlbaranlinea(\PB\VentasBundle\Entity\AlbaranLinea $facturalineas)
+    {
+    	$this->facturalineas[] = $facturalineas;
+    
+    	return $this;
+    }
     /**
      * Remove facturalineas
      *
@@ -376,5 +402,78 @@ class Factura
     public function getCliente()
     {
         return $this->cliente;
+    }
+    /**
+     * Set formapago_factura
+     *
+     * @param PB\GeneralBundle\Entity\FormaPago $formapagoFactura
+     * @return Factura
+     */
+    public function setFormapagoFactura(\PB\GeneralBundle\Entity\FormaPago $formapagoFactura = null)
+    {
+        $this->formapago_factura = $formapagoFactura;
+    
+        return $this;
+    }
+
+    /**
+     * Get formapago_factura
+     *
+     * @return PB\GeneralBundle\Entity\FormaPago 
+     */
+    public function getFormapagoFactura()
+    {
+        return $this->formapago_factura;
+    }
+    public function setAnyoPre()
+    {
+    	$this->anyo = date('Y');
+    }
+
+    public function getNeto(){
+    	$neto = 0;
+    	foreach ($this->facturalineas as $key){
+    		$neto = $neto + $key->getImporte();
+    	}
+    	return $neto;
+    }
+    public function getNetof(){
+    	return number_format($this->getNeto(),2,",",".");
+    }
+    
+    public function getDescuentototal(){
+    	$dto = $this->getNeto() * $this->descuento / 100;
+    	return $dto;
+    }
+    public function getDescuentototalf(){
+    	return number_format($this->getDescuentototal(),2,",",".");
+    }
+    public function getBaseimponible(){
+    	return $this->getNeto() - $this->getDescuentototal();
+    }
+    public function getBaseimponiblef(){
+    	return number_format($this->getBaseimponible(),2,",",".");
+    }
+    public function getIvatotal(){
+    	$iva = $this->getBaseimponible() * $this->iva / 100;
+    	return $iva;
+    }
+    public function getIvatotalf(){
+    	return number_format($this->getIvatotal(),2,",",".");
+    }
+    public function getRecargototal(){
+    	if($this->recargo == '1')
+    		return $this->getBaseimponible() * 5.2 / 100;
+    	else return 0;
+    }
+    public function getRecargototalf(){
+    	return number_format($this->getRecargototal(),2,",",".");
+    }
+    public function getEstadoText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->estado != null) return $value['estados_facturas'][$this->estado];
     }
 }

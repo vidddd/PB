@@ -10,6 +10,10 @@ factura_prenew:
     pattern:  /prenew
     defaults: { _controller: "PBVentasBundle:Factura:prenew" }
 
+factura_print:
+    pattern:  /{id}/print
+    defaults: { _controller: "PBVentasBundle:Factura:imprimir" }
+
 factura_new:
     pattern:  /new
     defaults: { _controller: "PBVentasBundle:Factura:new" }
@@ -18,6 +22,10 @@ factura_create:
     pattern:  /create
     defaults: { _controller: "PBVentasBundle:Factura:create" }
     requirements: { _method: post }
+
+factura_preedit:
+    pattern:  /{id}/preedit
+    defaults: { _controller: "PBVentasBundle:Factura:preedit" }
 
 factura_edit:
     pattern:  /{id}/edit

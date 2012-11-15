@@ -1,17 +1,17 @@
   {% if form_errors(form) %}
           <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
           {% endif %}
-<form action="{{ path('albaran_facturar', { 'id': entity.id }) }}" novalidate="novalidate" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('albaran_facturar', { 'id': id }) }}" novalidate="novalidate" method="post" {{ form_enctype(form) }}>
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
 	<div class="portlet-header ui-widget-header">DATOS DE LA FACTURA </div>
 		<div class="portlet-content">
 		    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 		<table id="form-alta">
+		<tr><td></td><td></td></tr>
 		<tr>
 			<td><label>Cliente</label></td>
-			<td>{{ entity.cliente }}</td>
+			<td><b>{{ entity.cliente }}</b></td>
 		</tr>
-
 		<tr>
 			<td></td>
 			<td><div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div></td>
@@ -29,8 +29,12 @@
 			<td>{{ form_widget(form.fecha_cobro, { 'attr': {'class': 'date small'}}) }}</td>
 		</tr>
 		<tr>
-			<td>{{ form_label(form.iva, null, { 'label': 'IVA', 'label_attr': {'class': 'control-label'} }) }}</td>
-			<td>{{ form_widget(form.iva, { 'attr': {'class': 'small hiva'}}) }}</td>
+			<td>{{ form_label(form.formapago_factura, null, { 'label': 'Forma Pago', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.formapago_factura, { 'attr': {'class': 'date small'}}) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.estado, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.estado, { 'attr': {'class': 'small hiva'}}) }}</td>
 		</tr>
 		<tr>
 			<td>{{ form_label(form.observaciones) }} <div class="clearfix"></td>
@@ -42,12 +46,11 @@
     </td>
 		</tr>
 	</table>
-	</div></div><p>
+	</div></div>
 	<div style="display:none;">
-	   <input type="hidden" name="iva-edit" id="iva-edit" value="{{ entity.iva }}" />
 	   {{  form_rest(form) }}
-	</div>
-        <button type="submit" class="ui-state-default ui-corner-all">Siguiente >></button>
-    </p></div>
+    </div>    
+        <button type="submit" class="ui-state-default ui-corner-all">Facturar</button>
+    </div>
     {{ form_widget(form._token) }}</form>
  	<div class="clearfix"></div>

@@ -7,7 +7,9 @@ function bind() {
 function bindAlbaran() {
 	  $(".icantidad").blur(update_price_albaran);
 	  $(".iprecio").blur(update_price_albaran);
-	  update_total_albaran();  
+
+	  update_total_albaran();
+
 	}
 
 
@@ -31,6 +33,7 @@ function update_price() {
 
 function update_price_albaran() {
 	  var row = $(this).parents('.item-row');
+	  var tipo = $('#albaran_tipo').val();
 	  if( row.find('.iprecio').val() != '' && row.find('.icantidad').val() != '' ){
 		  var price = row.find('.iprecio').val() * row.find('.icantidad').val();
 		  price = roundNumber(price,2);
@@ -39,7 +42,7 @@ function update_price_albaran() {
 			  row.find('.itotal').val(price)
 		  }
 
-		  update_total_albaran();
+		  update_total_albaran(tipo);
 	  }
 	}
 function update_total() {
@@ -85,22 +88,30 @@ function update_total_albaran() {
 	  baseimp = roundNumber(total - descuentot,2);
 	  $('.baseimponible').html(baseimp +"€");
 	  
-	  //IVA  
-	  iva = baseimp * iva / 100;
-	  iva = roundNumber(iva,2);
-	  $('.iva').html(iva+"€");$('.iiva').val(iva);
-	  
-	  //RECARGO
-	  if(recargo == '1'){
-		  var recargot = baseimp * 5.2 / 100;
-	  } else {
-		  var recargot = 0;
+	  //IVA 
+	  var tipo = $('#factura_tipo').val();
+	  if(!tipo){
+		  var tipo = $('#albaran_tipo').val();
 	  }
-	  recargot = roundNumber(recargot,2);
-	  $('.recargo').html(recargot +"€");
-	  
-	  //TOTAL
-	  var total2 = Number(baseimp) + Number(iva) + Number(recargot); total2 = roundNumber(total2,2);
+	  if(tipo == '1'){
+		  iva = baseimp * iva / 100;
+		  iva = roundNumber(iva,2);
+		  $('.iva').html(iva+"€");$('.iiva').val(iva);
+		  
+		  //RECARGO
+		  if(recargo == '1'){
+			  var recargot = baseimp * 5.2 / 100;
+		  } else {
+			  var recargot = 0;
+		  }
+		  recargot = roundNumber(recargot,2);
+		  $('.recargo').html(recargot +"€");
+		  //TOTAL
+		  var total2 = Number(baseimp) + Number(iva) + Number(recargot); 
+	   } else {
+		  var total2 = Number(baseimp);
+	   }
+	  total2 = roundNumber(total2,2);
 	  $('.total2').html(total2+"€");$('.itotal2').val(total2);
 	}
 

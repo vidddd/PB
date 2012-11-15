@@ -13,6 +13,7 @@ class FacturaLineaType extends AbstractType
     	$builder
             ->add('referencia')
             ->add('descripcion')
+            ->add('codpedido', 'hidden')
             ->add('cantidad')
             ->add('ancho')
             ->add('largo')

@@ -22,3 +22,13 @@ cliches:
   1: "Nuevo"
   2: "Lo Traen"
   3: "Lo Tenemos"
+
+tipos:
+  0: ""
+  1: "A"
+  2: "B"
+
+estados_facturas:
+  1: "No pagada"
+  2: "En proceso"
+  3: "Pagada"

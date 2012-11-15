@@ -22,5 +22,9 @@ PB\GeneralBundle\Entity\FormaPago:
         formapagos:
             targetEntity: PB\ComprasBundle\Entity\Proveedor
             mappedBy: formapago_proveedor
+        formapagos3:
+            targetEntity: PB\VentasBundle\Entity\Factura
+            mappedBy: formapago_factura
+            unique: false
 
 lifecycleCallbacks: {  }

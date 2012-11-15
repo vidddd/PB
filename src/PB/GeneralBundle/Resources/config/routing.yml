@@ -1,5 +1,5 @@
 pb_general_homepage:
-    pattern:  /general/{name}
+    pattern:  /general
     defaults: { _controller: PBGeneralBundle:Default:index }
 
 PBGeneralBundle_formapago:

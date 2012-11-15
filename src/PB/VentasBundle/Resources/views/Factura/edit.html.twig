@@ -1,31 +1,29 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+{% extends '::layout.html.twig' %}
 
-{% block title %}
-{{ parent() }} - Factura {{ 'views.edit.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-{% endblock %}
+{% block title "Editar Factura" %}
+{% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
+{% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
+{% block content %}
+<div class="title title-spacing ventas"><h2>Editar Factura</h2></div>
 
-{% block page %}
-
-<h1>Factura {{ 'views.edit.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
-
-<form class="well" action="{{ path('factura_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    {{ form_widget(edit_form) }}
-    <p>
-        <button type="submit" class="btn btn-success">{{ 'views.edit.editbutton'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-    </p>
-</form>
-
-<div>
-    <div class="float-left">
-        <a class="btn" href="{{ path('factura') }}">
-            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+	<div id="factura-form">
+		{% if formstep == 1 %}
+			{% include 'PBVentasBundle:Factura:form1.html.twig' with { 'form' : form } %}
+		{% endif %}
+		{% if formstep == 2 %}
+			{% include 'PBVentasBundle:Factura:form2.html.twig' with { 'form' : form } %}
+		{% endif %}
+    </div>
+    
+	<div class="clearfix"></div>
+    <div class="float-left volver">
+        <a href="{{ path('factura') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
-    <div class="float-left">
-        <form action="{{ path('factura_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button class="btn btn-danger" type="submit" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-        </form>
-    </div>
-</div>
+		{% include 'PBVentasBundle:Cliente:js_get_cliente.html.twig' %} 
+		{% include 'PBVentasBundle:Pedido:js_get_pedido.html.twig' %} 
+<script>
+getNombrecliente();
+        	</script>
 {% endblock %}

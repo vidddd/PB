@@ -19,7 +19,7 @@
 				<table id="form-alta">
 	   				<tbody>		
 	         			<tr>
-	        				<td class="label">{{ form_label(filterForm.id, 'Código Pedido') }}</td>
+	        				<td class="label">{{ form_label(filterForm.id, 'Código Albaran') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
 	      				<tr>
 	      				<tr>
@@ -29,6 +29,10 @@
 	      	         	<tr>
 	        				<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
+	      				<tr>
+	      	         	<tr>
+	        				<td class="label">{{ form_label(filterForm.tipo, 'Tipo') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.tipo, { 'Tipo': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
 	      				<tr>
 	            	</tbody>
 	            </table>
@@ -51,7 +55,8 @@
 		            <th>Cliente</th>
 		            <th>Fecha</th>
 		            <th>Importe</th>
-		            <th>Facturar</th>
+		            <th>Tipo</th>
+		            <th>Factura</th>
 		            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
 		        </tr>
 		    </thead>
@@ -62,8 +67,15 @@
 		            <td>{{ entity.cliente }}</td>
 		            <td>{{ entity.fecha|date('d.m.Y') }}</td>
 		            <td>{{ entity.importetotalf }}</td>
-		            <td><a class="btn ui-state-default ui-corner-all btn_text" rel="prettyPhoto[iframe]" href="{{ path('albaran_facturar', { 'id': entity.id , 'iframe': 'true', 'width': 800, 'height': 400 }) }}">Facturar</a></td>
-		            <td>
+		            <td>{{ entity.tipoText }}</td>
+		            <td>		
+						{% if entity.codfactura %}
+							<a href="{{ path('factura_show', { 'id': entity.codfactura }) }}">{{ entity.codfactura }}</a>
+						{% else %}
+						  <a class="btn2 btn2-mini btn2-facturar" rel="prettyPhoto[iframe]" href="{{ path('albaran_facturar', { 'id': entity.id , 'iframe': 'true', 'width': 590, 'height': 500 }) }}">Facturar</a>
+						{% endif %}
+				    </td>
+				    <td>
 		        		<a href="{{ path('albaran_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
 		        		<a href="{{ path('albaran_preedit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
 		          		<a href="{{ path('albaran_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>

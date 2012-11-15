@@ -14,6 +14,7 @@ class AlbaranFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
     	$hoy = new \DateTime();
+    	$tipos = array(1 => 'A', 2 => 'B');
         $builder
             ->add('id', 'filter_number')
             ->add('cliente', 'filter_number', array('error_bubbling' => true))
@@ -23,7 +24,9 @@ class AlbaranFilterType extends AbstractType
 		    											),
 		    										   'right_date' => array('widget' => 'single_text')
 		    									 ))
-            ->add('tipo', 'filter_number_range')
+            ->add('tipo' , 'filter_choice', array(
+					    'choices'   => $tipos,
+					))
             ->add('codfactura', 'filter_number_range')
             ->add('iva', 'filter_number_range')
             ->add('descuento', 'filter_number_range')

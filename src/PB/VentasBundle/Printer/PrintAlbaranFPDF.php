@@ -22,15 +22,24 @@ class PrintAlbaranFPDF {
 		if (!$entity) {
 			throw $this->createNotFoundException('No se puede encontrar el albaran.');
 		}
+		$tope = 35;
+		switch ($entity->getTipo()){
+			case '2':
+				$pdf = new ComunesbFPDF();
+				$tope = 45;
+			break;
+			default:
+				$pdf = new ComunesFPDF();
+		}
 
-		$pdf = new ComunesFPDF();
+		
 		$pdf->AddPage(); $pdf->Ln(3); $pdf->Cell(80,4,"",'',0,'C'); $pdf->Ln(4);
 		
 		$pdf->SetFillColor(255,255,255); $pdf->SetTextColor(0); $pdf->SetDrawColor(0,0,0);	$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',15);
 		
-		$pdf->Cell(40,65,'# ALBARÁN #');$pdf->SetX(10);	$pdf->SetFont('Arial','B',10);$pdf->Cell(95); $pdf->Cell(90,4,"",'LRT',0,'L',1); $pdf->Ln(4);
+		$pdf->Cell(40,65,utf8_decode('# ALBARÁN #'));$pdf->SetX(10);	$pdf->SetFont('Arial','B',10);$pdf->Cell(95); $pdf->Cell(90,4,"",'LRT',0,'L',1); $pdf->Ln(4);
 		
-		$pdf->Cell(95);	$pdf->Cell(90,4,$entity->getCliente()->getNombre(),'LR',0,'L',1); $pdf->Ln(4);$pdf->Cell(95);
+		$pdf->Cell(95);	$pdf->Cell(90,4,utf8_decode($entity->getCliente()->getNombre()),'LR',0,'L',1); $pdf->Ln(4);$pdf->Cell(95);
 		$pdf->Cell(90,4,utf8_decode($entity->getCliente()->getDireccion()),'LR',0,'L',1);
 		$pdf->Ln(4);
 		$pdf->Cell(95);
@@ -98,10 +107,8 @@ class PrintAlbaranFPDF {
 			$importeneto+=$linea->getImporte();
 			$contador=$contador + 1;
 		}
-		//fin de lineas de partes
-		//include("observacionesalb.php");
-		
-		while ($contador<35)
+
+		while ($contador<$tope)
 		{
 			$pdf->Cell(1);
 			$pdf->Cell(15,4,"",'LR',0,'C');
@@ -173,7 +180,7 @@ class PrintAlbaranFPDF {
 		$importetotal=sprintf("%01.2f", $total);
 		$importetotal=number_format($importetotal,2,",",".");
 		$pdf->SetFont('Arial','B',14);
-		$pdf->Cell(35,6,$importetotal . utf8_decode("€"),1,0,'R',1);
+		$pdf->Cell(35,6,$importetotal .iconv('UTF-8', 'windows-1252', "€"),1,0,'R',1);
 		$pdf->Ln(4);
 		
 		return $pdf->Output('Albaran-'.$entity->getId().'.pdf','I');
