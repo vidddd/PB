@@ -513,14 +513,18 @@ class Albaran
     	return number_format($this->getBaseimponible(),2,",",".");
     }
     public function getIvatotal(){
-    	$iva = $this->getBaseimponible() * $this->iva / 100;
-    	return $iva;
+    	if($this->tipo == '1'){
+	    	$iva = $this->getBaseimponible() * $this->iva / 100;
+	    	return $iva;
+    	} else {
+    		return 0;
+    	}
     }
     public function getIvatotalf(){
     	return number_format($this->getIvatotal(),2,",",".");
     }
     public function getRecargototal(){
-    	if($this->recargo == '1')
+    	if($this->recargo == '1' && $this->tipo == '1')
     	return $this->getBaseimponible() * 5.2 / 100;
     	else return 0;
     }

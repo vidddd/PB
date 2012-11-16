@@ -1,10 +1,10 @@
 {% extends '::layout.html.twig' %}
 
-{% block title "Albaranes" %}
+{% block title "Facturas" %}
 
 {% block content %}
 <div id="albaran"> 
-	<div class="title title-spacing ventas"><h2>Albaranes</h2></div>        
+	<div class="title title-spacing facturasb"><h2>Facturas B</h2></div>        
     <div class="span2">
         {% if form_errors(filterForm) %}
         <div class="response-msg notice iu-corner-all"><span>
@@ -15,11 +15,11 @@
     </div>
 	<div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
 	    <div class="portlet-content">
-			<form class="well" action="{{ path('albaran') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
+			<form class="well" action="{{ path('factura') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
 				<table id="form-alta">
 	   				<tbody>		
 	         			<tr>
-	        				<td class="label">{{ form_label(filterForm.id, 'Código Albaran') }}</td>
+	        				<td class="label">{{ form_label(filterForm.id, 'Código Pedido') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
 	      				<tr>
 	      				<tr>
@@ -29,10 +29,6 @@
 	      	         	<tr>
 	        				<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
-	      				<tr>
-	      	         	<tr>
-	        				<td class="label">{{ form_label(filterForm.tipo, 'Tipo') }}</td>
-	        				<td class="campo">{{ form_widget(filterForm.tipo, { 'Tipo': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
 	      				<tr>
 	            	</tbody>
 	            </table>
@@ -44,19 +40,19 @@
 		</div>
 	</div>
 	    
-	<div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" href="{{ path('albaran_prenew') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Albaran</a></div>
+	<div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" href="{{ path('facturab_prenew') }}"><span class="ui-icon ui-icon-plusthick"></span>Nueva Factura</a></div>
 
 	<div class="clearfix"></div>
 	<div class="hastable">
     	<table class="records_list">
     		<thead>
 		        <tr>
-		            <th width="25">Código Albaran</th>
+		            <th width="25">Código Factura</th>
 		            <th>Cliente</th>
 		            <th>Fecha</th>
+		            <th>Fecha Cobro</th>
 		            <th>Importe</th>
-		            <th>Tipo</th>
-		            <th>Factura</th>
+		            <th>Estado</th>
 		            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
 		        </tr>
 		    </thead>
@@ -66,21 +62,13 @@
 		            <td><a href="{{ path('albaran_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
 		            <td>{{ entity.cliente }}</td>
 		            <td>{{ entity.fecha|date('d.m.Y') }}</td>
-		            <td>{{ entity.importetotalf }}</td>
-		            <td>{{ entity.tipoText }}</td>
-		            <td>		
-						{% if entity.codfactura %}
-							<a href="{{ path('factura_show', { 'id': entity.codfactura }) }}">{{ entity.codfactura }}</a>
-						{% else %}
-						  <a class="btn2 btn2-mini btn2-facturar" rel="prettyPhoto[iframe][facturando]" href="{{ path('albaran_facturar', { 'id': entity.id , 'iframe': 'true', 'width': 580, 'height': 470 }) }}">Facturar</a>
-						{% endif %}
-				    </td>
-				    <td>
-		        		<a href="{{ path('albaran_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
-		        		{% if entity.codfactura is null %}
-		        			<a href="{{ path('albaran_preedit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
-		          		{% endif %}
-		          		<a href="{{ path('albaran_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
+		            <td>{{ entity.fechacobro|date('d.m.Y') }}</td>
+		            <td>{{ entity.importetotalf }}
+		            <td>{{ entity.estadoText }}</td>
+		            <td>
+		        		<a href="{{ path('facturab_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+		        		<a href="{{ path('facturab_preedit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+		          		<a href="{{ path('facturab_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
 		          </td>
 		        </tr>
 		    {% endfor %}

@@ -11,6 +11,14 @@ services:
         class: PB\VentasBundle\Printer\PrintAlbaranFPDF
         arguments:
             em: @doctrine
+    ventas.print_factura:
+        class: PB\VentasBundle\Printer\PrintFacturaFPDF
+        arguments:
+            em: @doctrine
+    ventas.print_facturab:
+        class: PB\VentasBundle\Printer\PrintFacturaBFPDF
+        arguments:
+            em: @doctrine
     ventas.print_precios:
         class: PB\VentasBundle\DependencyInjection\Printprecios
         arguments:

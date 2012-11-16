@@ -1,0 +1,42 @@
+facturab:
+    pattern:  /
+    defaults: { _controller: "PBVentasBundle:FacturaB:index" }
+
+facturab_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBVentasBundle:FacturaB:show" }
+
+facturab_prenew:
+    pattern:  /prenew
+    defaults: { _controller: "PBVentasBundle:FacturaB:prenew" }
+
+facturab_print:
+    pattern:  /{id}/print
+    defaults: { _controller: "PBVentasBundle:FacturaB:imprimir" }
+
+facturab_new:
+    pattern:  /new
+    defaults: { _controller: "PBVentasBundle:FacturaB:new" }
+
+facturab_create:
+    pattern:  /create
+    defaults: { _controller: "PBVentasBundle:FacturaB:create" }
+    requirements: { _method: post }
+
+facturab_preedit:
+    pattern:  /{id}/preedit
+    defaults: { _controller: "PBVentasBundle:FacturaB:preedit" }
+
+facturab_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBVentasBundle:FacturaB:edit" }
+
+facturab_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBVentasBundle:FacturaB:update" }
+    requirements: { _method: post }
+
+facturab_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBVentasBundle:FacturaB:delete" }
+    requirements: { _method: post }

@@ -70,3 +70,15 @@ PB\VentasBundle\Entity\FacturaLinea:
             - NotBlank:  { message: "El campo 'Descripcion' esta vacio."}
         cantidad:
             - NotBlank:  { message: "El campo 'Cantidad' esta vacio."}
+PB\VentasBundle\Entity\FacturaB:
+    properties:
+        fecha:
+            - NotBlank:  { message: "El campo 'Fecha' esta vacio."}
+        cliente:
+            - NotBlank:  { message: "El campo 'Cliente' esta vacio."}
+PB\VentasBundle\Entity\FacturaBLinea:
+    properties:
+        descripcion:
+            - NotBlank:  { message: "El campo 'Descripcion' esta vacio."}
+        cantidad:
+            - NotBlank:  { message: "El campo 'Cantidad' esta vacio."}

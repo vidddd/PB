@@ -8,18 +8,18 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrapView;
 
-use PB\VentasBundle\Entity\Factura;
-use PB\VentasBundle\Form\FacturaType;
-use PB\VentasBundle\Form\FacturaFilterType;
+use PB\VentasBundle\Entity\FacturaB;
+use PB\VentasBundle\Form\FacturaBType;
+use PB\VentasBundle\Form\FacturaBFilterType;
 
 /**
- * Factura controller.
+ * FacturaB controller.
  *
  */
-class FacturaController extends Controller
+class FacturaBController extends Controller
 {
     /**
-     * Lists all Factura entities.
+     * Lists all FacturaB entities.
      *
      */
     public function indexAction()
@@ -29,7 +29,7 @@ class FacturaController extends Controller
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
     
-        return $this->render('PBVentasBundle:Factura:index.html.twig', array(
+        return $this->render('PBVentasBundle:FacturaB:index.html.twig', array(
             'entities' => $entities,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
@@ -44,13 +44,13 @@ class FacturaController extends Controller
     {
         $request = $this->getRequest();
         $session = $request->getSession();
-        $filterForm = $this->createForm(new FacturaFilterType());
+        $filterForm = $this->createForm(new FacturaBFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBVentasBundle:Factura')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
+        $queryBuilder = $em->getRepository('PBVentasBundle:FacturaB')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
     
         // Reset filter
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
-            $session->remove('FacturaControllerFilter');
+            $session->remove('FacturaBControllerFilter');
         }
     
         // Filter action
@@ -63,13 +63,13 @@ class FacturaController extends Controller
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
                 // Save filter to session
                 $filterData = $filterForm->getData();
-                $session->set('FacturaControllerFilter', $filterData);
+                $session->set('FacturaBControllerFilter', $filterData);
             }
         } else {
             // Get filter from session
-            if ($session->has('FacturaControllerFilter')) {
-                $filterData = $session->get('FacturaControllerFilter');
-                $filterForm = $this->createForm(new FacturaFilterType(), $filterData);
+            if ($session->has('FacturaBControllerFilter')) {
+                $filterData = $session->get('FacturaBControllerFilter');
+                $filterForm = $this->createForm(new FacturaBFilterType(), $filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
@@ -94,7 +94,7 @@ class FacturaController extends Controller
         $me = $this;
         $routeGenerator = function($page) use ($me)
         {
-            return $me->generateUrl('factura', array('page' => $page));
+            return $me->generateUrl('facturab', array('page' => $page));
         };
     
         // Paginator - view
@@ -110,22 +110,22 @@ class FacturaController extends Controller
     }
     
     /**
-     * Finds and displays a Factura entity.
+     * Finds and displays a FacturaB entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBVentasBundle:Factura')->find($id);
+        $entity = $em->getRepository('PBVentasBundle:FacturaB')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Factura entity.');
+            throw $this->createNotFoundException('Unable to find FacturaB entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PBVentasBundle:Factura:show.html.twig', array(
+        return $this->render('PBVentasBundle:FacturaB:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
@@ -136,13 +136,13 @@ class FacturaController extends Controller
      */
     public function prenewAction()
     {
-        $entity = new Factura();
+        $entity = new FacturaB();
         $hoy = new \DateTime();
         $entity->setFecha($hoy);
         $entity->setFechacobro($hoy);
-        $form   = $this->createForm(new FacturaType(), $entity);
+        $form   = $this->createForm(new FacturaBType(), $entity);
 
-        return $this->render('PBVentasBundle:Factura:new.html.twig', array(
+        return $this->render('PBVentasBundle:FacturaB:new.html.twig', array(
             'entity' => $entity,
         	'formstep' => 1,
             'form'   => $form->createView(),
@@ -155,10 +155,10 @@ class FacturaController extends Controller
      */
     public function newAction()
     {
-        $entity  = new Factura();
+        $entity  = new FacturaB();
         $request = $this->getRequest();
 	
-        $form    = $this->createForm(new FacturaType(), $entity);
+        $form    = $this->createForm(new FacturaBType(), $entity);
         $form->bind($request);
         
         if ($form->isValid()) {
@@ -167,13 +167,13 @@ class FacturaController extends Controller
         	//$entity->setFormapagoFactura($cliente->getFormapagoCliente());
         	
         	$em->persist($entity);
-	    	return $this->render('PBVentasBundle:Factura:new.html.twig', array(
+	    	return $this->render('PBVentasBundle:FacturaB:new.html.twig', array(
 	    			'entity' => $entity,
 	    			'formstep' => 2,
 	    			'form'   => $form->createView(),
 	    	));
         }
-        return $this->render('PBVentasBundle:Factura:new.html.twig', array(
+        return $this->render('PBVentasBundle:FacturaB:new.html.twig', array(
         		'entity' => $entity,
         		'formstep' => 1,
         		'form'   => $form->createView(),
@@ -185,10 +185,10 @@ class FacturaController extends Controller
      */
     public function createAction()
     {
-        $entity  = new Factura();
+        $entity  = new FacturaB();
         $request = $this->getRequest();
 
-        $form    = $this->createForm(new FacturaType(), $entity);
+        $form    = $this->createForm(new FacturaBType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -196,7 +196,7 @@ class FacturaController extends Controller
             $id = $entity->getId();
             foreach ($entity->getFacturalineas() as $linea)
             {
-            	$linea->setFactura($entity);
+            	$linea->setFacturaB($entity);
             	// Cambiamos a facturado los pedidos
             	$codpedido = $linea->getCodpedido();
             	if($codpedido) {
@@ -208,11 +208,11 @@ class FacturaController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'Nueva Factura Creada');
 
-            return $this->redirect($this->generateUrl('factura', array('id' => $entity->getId())));        } else {
+            return $this->redirect($this->generateUrl('facturab', array('id' => $entity->getId())));        } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
         }
 
-        return $this->render('PBVentasBundle:Factura:new.html.twig', array(
+        return $this->render('PBVentasBundle:FacturaB:new.html.twig', array(
             'entity' => $entity, 'formstep' => 2,
             'form'   => $form->createView(),
         ));
@@ -221,14 +221,14 @@ class FacturaController extends Controller
     public function preeditAction($id)
     {
     	$em = $this->getDoctrine()->getManager();
-    	$entity = $em->getRepository('PBVentasBundle:Factura')->find($id);
+    	$entity = $em->getRepository('PBVentasBundle:FacturaB')->find($id);
     	if (!$entity) {
     		throw $this->createNotFoundException('Unable to find Factura entity.');
     	}
-    	$editForm = $this->createForm(new FacturaType(), $entity);
+    	$editForm = $this->createForm(new FacturaBType(), $entity);
     	$deleteForm = $this->createDeleteForm($id);
     
-    	return $this->render('PBVentasBundle:Factura:edit.html.twig', array(
+    	return $this->render('PBVentasBundle:FacturaB:edit.html.twig', array(
     			'entity'      => $entity,'formstep' => 1,
     			'form'   => $editForm->createView(),
     			'delete_form' => $deleteForm->createView(),
@@ -242,24 +242,24 @@ class FacturaController extends Controller
     {
  		$em = $this->getDoctrine()->getManager();
         $request = $this->getRequest();
-        $entity = $em->getRepository('PBVentasBundle:Factura')->find($id);
+        $entity = $em->getRepository('PBVentasBundle:FacturaB')->find($id);
 
         if (!$entity) {   throw $this->createNotFoundException('Unable to find Factura entity.'); }
 
-        $form   = $this->createForm(new FacturaType(), $entity);
+        $form   = $this->createForm(new FacturaBType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
         $form->bind($request);
         
         if ($form->isValid()) {
         	$em->persist($entity);
-        	return $this->render('PBVentasBundle:Factura:edit.html.twig', array(
+        	return $this->render('PBVentasBundle:FacturaB:edit.html.twig', array(
         			'entity'      => $entity, 'formstep' => 2,
         			'form'   => $form->createView(),
         			'delete_form' => $deleteForm->createView(),
         	));
         }
         
-        return $this->render('PBVentasBundle:Factura:edit.html.twig', array(
+        return $this->render('PBVentasBundle:FacturaB:edit.html.twig', array(
         			'entity'      => $entity, 'formstep' => 1,
         			'form'   => $form->createView(),
         			'delete_form' => $deleteForm->createView(),
@@ -274,7 +274,7 @@ class FacturaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBVentasBundle:Factura')->find($id);
+        $entity = $em->getRepository('PBVentasBundle:FacturaB')->find($id);
 
         if (!$entity) {  throw $this->createNotFoundException('Unable to find Factura entity.');}
         
@@ -282,14 +282,14 @@ class FacturaController extends Controller
         foreach ($entity->getFacturalineas() as $linea)
         	$beforeSaveLineas [$linea->getId()] = $linea;
         
-        $editForm   = $this->createForm(new FacturaType(), $entity);
+        $editForm   = $this->createForm(new FacturaBType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
         $request = $this->getRequest();
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
         	foreach ($entity->getFacturalineas() as $linea){
-        		$linea->setFactura($entity);
+        		$linea->setFacturaB($entity);
         		if ($linea->getId()) $currentLineasIds[] = $linea->getId();
         	}
             $em->persist($entity);
@@ -297,7 +297,7 @@ class FacturaController extends Controller
             	if (!in_array( $lineaId, $currentLineasIds)){
             		$em->remove($linea);
             	}
-            }
+            }/*
             foreach ($entity->getFacturalineas() as $linea)
             {
             	$codpedido = $linea->getCodpedido();
@@ -305,23 +305,23 @@ class FacturaController extends Controller
             		//Pone los estados de pedido a facturado
             		$this->setEstadoPedido($codpedido,4);
             	}
-            }
+            }*/
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'Factura: '.$id.' Actualizada');
 
-            return $this->redirect($this->generateUrl('factura_show', array('id' => $id)));
+            return $this->redirect($this->generateUrl('facturab_show', array('id' => $id)));
         } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }
 
-        return $this->render('PBVentasBundle:Factura:edit.html.twig', array(
+        return $this->render('PBVentasBundle:FacturaB:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Factura entity.
+     * Deletes a FacturaB entity.
      *
      */
     public function deleteAction($id)
@@ -333,10 +333,10 @@ class FacturaController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('PBVentasBundle:Factura')->find($id);
+            $entity = $em->getRepository('PBVentasBundle:FacturaB')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Factura entity.');
+                throw $this->createNotFoundException('Unable to find FacturaB entity.');
             }
 
             $em->remove($entity);
@@ -346,7 +346,7 @@ class FacturaController extends Controller
             $this->get('session')->getFlashBag()->add('error', 'flash.delete.error');
         }
 
-        return $this->redirect($this->generateUrl('factura'));
+        return $this->redirect($this->generateUrl('facturab'));
     }
 
     private function createDeleteForm($id)
@@ -358,7 +358,7 @@ class FacturaController extends Controller
     }
     public function imprimirAction($id)
     {
-    	$printer = $this->container->get('ventas.print_factura');
+    	$printer = $this->container->get('ventas.print_facturab');
     	$fichero = $printer->printFPDF($id);
     	$response = new Response();
     	$response->clearHttpHeaders();

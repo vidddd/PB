@@ -38,6 +38,14 @@ $(document).ready(function() {
 			<td>{{ form_widget(form.iva, { 'attr': {'class': 'small hiva'}}) }}</td>
 		</tr>
 		<tr>
+			<td>{{ form_label(form.descuento, null, { 'label': 'Descuento', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.descuento, { 'attr': {'class': 'small hdescuento'}}) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.recargo, null, { 'label': 'Recargo', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.recargo, { 'attr': {'class': 'small hrecargo'}}) }}</td>
+		</tr>
+		<tr>
 			<td>{{ form_label(form.observaciones) }} <div class="clearfix"></td>
 			<td>{{ form_widget(form.observaciones, { 'attr': {'cols': '50', 'rows': '6'}}) }}</td>
 			

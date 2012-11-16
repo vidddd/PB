@@ -2,13 +2,11 @@
           <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
           {% endif %}
 
-<form action="{{ entity.id  ? path('factura_update', { 'id': entity.id }) : path('factura_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ entity.id  ? path('facturab_update', { 'id': entity.id }) : path('facturab_create') }}" method="post" {{ form_enctype(form) }}>
 	<div style="display:none;">
 			{{ form_widget(form.cliente, { 'attr': {'class': ''}}) }}
 			{{ form_widget(form.fecha, { 'attr': {'class': ''}}) }}
 			{{ form_widget(form.fecha_cobro, { 'attr': {'class': '' }}) }}
-			{{ form_widget(form.iva, { 'attr': {'class': ''}}) }}
-			{{ form_widget(form.recargo, { 'attr': {'class': ''}}) }}
 			{{ form_widget(form.descuento, { 'attr': {'class': '' }}) }}
 			{{ form_widget(form.tipo, { 'attr': {'class': '' }}) }}
 			{{ form_widget(form.formapago_factura, { 'attr': {'class': '' }}) }}
@@ -39,11 +37,11 @@
 			<td class="label4">Fecha</td>
 			<td>{{ entity.fecha|date('d/m/Y') }}
 			<td class="label4">IVA</td>
-			<td>{{ entity.iva }}%<input type="hidden" name="ivah" id="ivah" value="{{ entity.iva }}" /></td>
+			<td>{{ entity.iva }}%<input type="hidden" name="ivah" id="ivah" value="0" /></td>
 			<td class="label4">Descuento</td>
 			<td>{{ entity.descuento }}% <input type="hidden" name="descuentoh" id="descuentoh" value="{{ entity.descuento }}" /></td>
 			<td class="label4">Recargo</td>
-			<td>{{ entity.recargo ? 'Si' : 'No'  }}<input type="hidden" name="recargoh" id="recargoh" value="{{ entity.recargo }}" /></td>
+			<td>No <input type="hidden" name="recargoh" id="recargoh" value="0" /></td>
 		</tr>
 	</table>
  	<div class="clearfix"></div><br /><br />
@@ -211,8 +209,8 @@
   	  $('#factura_descuento').val($('#descuentoh').val());*/
   	  $('.descuento-label span').html($('#descuentoh').val());
   	  $('.iva-label span').html($('#ivah').val()+"€");
-  	  $('#factura_formapago_factura').val($('#formapagoh').val());
-
+  	  $('#facturab_formapago_factura').val($('#formapagoh').val());
+     
   	  bindAlbaran();
   	});
 </script>

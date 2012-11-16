@@ -1186,4 +1186,42 @@ class Cliente
     {
         return $this->factura;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $facturaB;
+
+
+    /**
+     * Add facturaB
+     *
+     * @param PB\VentasBundle\Entity\FacturaB $facturaB
+     * @return Cliente
+     */
+    public function addFacturaB(\PB\VentasBundle\Entity\FacturaB $facturaB)
+    {
+        $this->facturaB[] = $facturaB;
+    
+        return $this;
+    }
+
+    /**
+     * Remove facturaB
+     *
+     * @param PB\VentasBundle\Entity\FacturaB $facturaB
+     */
+    public function removeFacturaB(\PB\VentasBundle\Entity\FacturaB $facturaB)
+    {
+        $this->facturaB->removeElement($facturaB);
+    }
+
+    /**
+     * Get facturaB
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFacturaB()
+    {
+        return $this->facturaB;
+    }
 }

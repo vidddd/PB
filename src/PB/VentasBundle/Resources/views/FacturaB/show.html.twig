@@ -1,0 +1,18 @@
+{% extends '::layout.html.twig' %}
+
+{% block title 'Factura B' %}
+
+{# block width100 "widthtotal" %}{% block displaysidebar "display:none;" #}
+{% block content %}
+<div class="title title-spacing facturasb"><h2>Factura</h2></div>
+{% include 'PBVentasBundle:FacturaB:vista.html.twig' with { 'entity' : entity } %}
+<div class="clearfix"></div>
+<div><br />
+    <div class="volver float-left">
+        <a href="{{ path('facturab') }}"> <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></div>
+    <ul class="ui-widget ui-helper-clearfix botones-abajo">
+    <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('facturab_print', { 'id': entity.id , _format: "pdf" }) }}"><span class="ui-icon ui-icon-print"></span> Imprimir </a> </li>
+    <li class="ui-state-default ui-corner-all editar" style="float:left;"><a class="btn" href="{{ path('facturab_preedit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
+    </ul>
+</div>
+{% endblock %}

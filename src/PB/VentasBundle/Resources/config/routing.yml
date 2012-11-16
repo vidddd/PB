@@ -29,3 +29,8 @@ PBVentasBundle_albaran:
 PBVentasBundle_factura:
         resource: "@PBVentasBundle/Resources/config/routing/factura.yml"
         prefix:   /factura
+
+PBVentasBundle_facturab:
+        resource: "@PBVentasBundle/Resources/config/routing/facturab.yml"
+        prefix:   /facturab
+        

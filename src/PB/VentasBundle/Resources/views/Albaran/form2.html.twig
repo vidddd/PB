@@ -37,9 +37,9 @@
 			<td class="label4">IVA</td>
 			<td>{{ entity.iva }}%<input type="hidden" name="ivah" id="ivah" value="{{ entity.iva }}" /></td>
 			<td class="label4">Descuento</td>
-			<td>{{ entity.cliente.descuento }}% <input type="hidden" name="descuentoh" id="descuentoh" value="{{ entity.cliente.descuento }}" /></td>
+			<td>{{ entity.descuento }}% <input type="hidden" name="descuentoh" id="descuentoh" value="{{ entity.descuento }}" /></td>
 			<td class="label4">Recargo</td>
-			<td>{{ entity.cliente.recargo ? 'Si' : 'No'  }}<input type="hidden" name="recargoh" id="recargoh" value="{{ entity.cliente.recargo }}" /></td>
+			<td>{{ entity.recargo ? 'Si' : 'No'  }}<input type="hidden" name="recargoh" id="recargoh" value="{{ entity.recargo }}" /></td>
 		</tr>
 	</table>
  	<div class="clearfix"></div><br /><br />
@@ -202,9 +202,9 @@
     $(document).ready(function() {
   	  //update_total();
   	  // Acutalizamos los datos de DESCUENTO IVA y RECARGO, en base a los datos del paso anterior y se preparan para guardarse bbdd
-  	  $('#albaran_recargo').val($('#recargoh').val());
-  	  $('#albaran_descuento').val($('#descuentoh').val());
-  	  $('.descuento-label span').html($('#descuentoh').val());
+  	  //$('#albaran_recargo').val($('#recargoh').val());
+  	  //$('#albaran_descuento').val($('#descuentoh').val());
+  	  //$('.descuento-label span').html($('#descuentoh').val());
   	  $('.iva-label span').html($('#ivah').val()+"€");
 
   	  bindAlbaran();

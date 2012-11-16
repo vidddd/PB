@@ -1,0 +1,59 @@
+PB\VentasBundle\Entity\FacturaBLinea:
+    type: entity
+    table: null
+    repositoryClass: PB\VentasBundle\Repository\FacturaBLineaRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        referencia:
+            type: string
+            length: '50'
+            nullable: true
+        numlinea:
+            type: integer
+            nullable: true
+        codpedido:
+            type: integer
+            nullable: true
+        ancho:
+            type: integer
+            nullable: true
+        largo:
+            type: integer
+            nullable: true
+        galga:
+            type: integer
+            nullable: true
+        solapa:
+            type: integer
+            nullable: true
+        descripcion:
+            type: string
+            length: 255
+            nullable: true
+        cantidad:
+            type: float
+            nullable: true
+        precio:
+            type: float
+            nullable: true
+        descuento: 
+            type: float
+            nullable: true
+        importe:
+            type: float
+            nullable: true
+    manyToOne:
+        facturaB:
+            targetEntity: PB\VentasBundle\Entity\FacturaB
+            inversedBy: facturalineas
+            cascade: [persist]
+            joinColumn:
+                name: factura_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }
+
+    lifecycleCallbacks: {  }

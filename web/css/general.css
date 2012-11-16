@@ -921,6 +921,9 @@ border-radius: 3px;
 .ventas, .ventas h2{
 	color:#EF853d !important;
 }
+.facturasb, .facturasb h2{
+	color: #43b26c !important; 
+}
 #pedido-form .column-pedido{
 	   border-left: 1px solid #DDDDDD;
 	   border-top: 1px solid #DDDDDD;

@@ -7,15 +7,25 @@ use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
- * PB\VentasBundle\Entity\Factura
+ * PB\VentasBundle\Entity\FacturaB
  */
-class Factura
+class FacturaB
 {
     /**
      * @var integer $id
      */
     private $id;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
     /**
      * @var \DateTime $fecha
      */
@@ -30,91 +40,7 @@ class Factura
      * @var integer $tipo
      */
     private $tipo;
-    /**
-     * @var PB\GeneralBundle\Entity\FormaPago
-     */
-    private $formapago_factura;
-    
-    
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set fecha
-     *
-     * @param \DateTime $fecha
-     * @return Factura
-     */
-    public function setFecha($fecha)
-    {
-        $this->fecha = $fecha;
-    
-        return $this;
-    }
-
-    /**
-     * Get fecha
-     *
-     * @return \DateTime 
-     */
-    public function getFecha()
-    {
-        return $this->fecha;
-    }
-
-    /**
-     * Set fecha_cobro
-     *
-     * @param \DateTime $fechaCobro
-     * @return Factura
-     */
-    public function setFechaCobro($fechaCobro)
-    {
-        $this->fecha_cobro = $fechaCobro;
-    
-        return $this;
-    }
-
-    /**
-     * Get fecha_cobro
-     *
-     * @return \DateTime 
-     */
-    public function getFechaCobro()
-    {
-        return $this->fecha_cobro;
-    }
-
-    /**
-     * Set tipo
-     *
-     * @param integer $tipo
-     * @return Factura
-     */
-    public function setTipo($tipo)
-    {
-        $this->tipo = $tipo;
-    
-        return $this;
-    }
-
-    /**
-     * Get tipo
-     *
-     * @return integer 
-     */
-    public function getTipo()
-    {
-        return $this->tipo;
-    }
     /**
      * @var integer $iva
      */
@@ -150,12 +76,103 @@ class Factura
      */
     private $observaciones;
 
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $facturalineas;
+
+    /**
+     * @var PB\VentasBundle\Entity\Cliente
+     */
+    private $cliente;
+
+    /**
+     * @var PB\GeneralBundle\Entity\FormaPago
+     */
+    private $formapago_factura;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->facturalineas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Set fecha
+     *
+     * @param \DateTime $fecha
+     * @return FacturaB
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+    
+        return $this;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return \DateTime 
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * Set fecha_cobro
+     *
+     * @param \DateTime $fechaCobro
+     * @return FacturaB
+     */
+    public function setFechaCobro($fechaCobro)
+    {
+        $this->fecha_cobro = $fechaCobro;
+    
+        return $this;
+    }
+
+    /**
+     * Get fecha_cobro
+     *
+     * @return \DateTime 
+     */
+    public function getFechaCobro()
+    {
+        return $this->fecha_cobro;
+    }
+
+    /**
+     * Set tipo
+     *
+     * @param integer $tipo
+     * @return FacturaB
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return integer 
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
 
     /**
      * Set iva
      *
      * @param integer $iva
-     * @return Factura
+     * @return FacturaB
      */
     public function setIva($iva)
     {
@@ -178,7 +195,7 @@ class Factura
      * Set descuento
      *
      * @param integer $descuento
-     * @return Factura
+     * @return FacturaB
      */
     public function setDescuento($descuento)
     {
@@ -201,7 +218,7 @@ class Factura
      * Set recargo
      *
      * @param boolean $recargo
-     * @return Factura
+     * @return FacturaB
      */
     public function setRecargo($recargo)
     {
@@ -224,7 +241,7 @@ class Factura
      * Set anyo
      *
      * @param integer $anyo
-     * @return Factura
+     * @return FacturaB
      */
     public function setAnyo($anyo)
     {
@@ -247,7 +264,7 @@ class Factura
      * Set importetotal
      *
      * @param float $importetotal
-     * @return Factura
+     * @return FacturaB
      */
     public function setImportetotal($importetotal)
     {
@@ -255,7 +272,10 @@ class Factura
     
         return $this;
     }
-
+    public function getImportetotalf()
+    {
+    	return number_format($this->getImportetotal(),2,",",".");
+    }
     /**
      * Get importetotal
      *
@@ -265,15 +285,12 @@ class Factura
     {
         return $this->importetotal;
     }
-    public function getImportetotalf()
-    {
-    	return number_format($this->getImportetotal(),2,",",".");
-    }
+
     /**
      * Set estado
      *
      * @param integer $estado
-     * @return Factura
+     * @return FacturaB
      */
     public function setEstado($estado)
     {
@@ -296,7 +313,7 @@ class Factura
      * Set observaciones
      *
      * @param string $observaciones
-     * @return Factura
+     * @return FacturaB
      */
     public function setObservaciones($observaciones)
     {
@@ -314,34 +331,12 @@ class Factura
     {
         return $this->observaciones;
     }
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    private $facturalineas;
 
-    /**
-     * @var PB\VentasBundle\Entity\Cliente
-     */
-    private $cliente;
-    private $ventas;
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->facturalineas = new \Doctrine\Common\Collections\ArrayCollection();
-        $yaml = new Parser(); try {	
-        	$this->ventas = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
-        } catch (ParseException $e) {
-        	printf("Unable to parse the YAML string: %s", $e->getMessage());
-        }
-    }
-    
     /**
      * Add facturalineas
      *
      * @param PB\VentasBundle\Entity\FacturaLinea $facturalineas
-     * @return Factura
+     * @return FacturaB
      */
     public function addFacturalinea(\PB\VentasBundle\Entity\FacturaLinea $facturalineas)
     {
@@ -349,18 +344,7 @@ class Factura
     
         return $this;
     }
-    /**
-     * Add albaranlineas
-     *
-     * @param PB\VentasBundle\Entity\AlbaranLinea $albaranlineas
-     * @return Factura
-     */
-    public function addAlbaranlinea(\PB\VentasBundle\Entity\AlbaranLinea $facturalineas)
-    {
-    	$this->facturalineas[] = $facturalineas;
-    
-    	return $this;
-    }
+
     /**
      * Remove facturalineas
      *
@@ -385,7 +369,7 @@ class Factura
      * Set cliente
      *
      * @param PB\VentasBundle\Entity\Cliente $cliente
-     * @return Factura
+     * @return FacturaB
      */
     public function setCliente(\PB\VentasBundle\Entity\Cliente $cliente = null)
     {
@@ -403,11 +387,12 @@ class Factura
     {
         return $this->cliente;
     }
+
     /**
      * Set formapago_factura
      *
      * @param PB\GeneralBundle\Entity\FormaPago $formapagoFactura
-     * @return Factura
+     * @return FacturaB
      */
     public function setFormapagoFactura(\PB\GeneralBundle\Entity\FormaPago $formapagoFactura = null)
     {
@@ -425,6 +410,9 @@ class Factura
     {
         return $this->formapago_factura;
     }
+    /**
+     * @ORM\PrePersist
+     */
     public function setAnyoPre()
     {
     	$this->anyo = date('Y');

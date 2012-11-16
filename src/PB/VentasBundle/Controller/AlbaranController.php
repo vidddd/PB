@@ -12,7 +12,10 @@ use PB\VentasBundle\Entity\Albaran;
 use PB\VentasBundle\Form\AlbaranType;
 use PB\VentasBundle\Form\AlbaranFilterType;
 use PB\VentasBundle\Entity\Factura;
+use PB\VentasBundle\Entity\FacturaLinea;
 use PB\VentasBundle\Form\FacturaType;
+use PB\VentasBundle\Entity\FacturaB;
+use PB\VentasBundle\Entity\FacturaBLinea;
 
 /**
  * Albaran controller.
@@ -362,8 +365,16 @@ class AlbaranController extends Controller
     	$albaran = $em->getRepository('PBVentasBundle:Albaran')->find($id);
     	
     	if (!$albaran) {throw $this->createNotFoundException('Unable to find Albaran entity.');}
-    	
-        $factura = new Factura();
+    	switch ($albaran->getTipo()){
+    		case "1":
+    			$factura = new FacturaB();
+    		break;
+    		case "2":
+    			$factura = new Factura();
+    		break;
+    		default:        $factura = new Factura();
+    	}
+ 
         $cliente = $albaran->getCliente();
         $factura->setCliente($albaran->getCliente());
         $factura->setTipo($albaran->getTipo());
@@ -373,20 +384,41 @@ class AlbaranController extends Controller
         $hoy = new \DateTime();
         $factura->setFecha($hoy);
         $factura->setFechacobro($hoy); 
-        //$factura->setFecha($albaran->getFecha());
        // $factura->setFormapagoFactura($cliente->getFormapagocliente());
-        /*
+        
         foreach ($albaran->getAlbaranLineas() as $linea)
             {
-            	$factura->addAlbaranlinea($linea);
+            	
+            	switch ($albaran->getTipo()){
+            		case "1":
+            			$flinea = new FacturaBLinea();
+            			break;
+            		case "2":
+            			$flinea = new FacturaLinea();
+            			break;
+            		default:       $flinea = new FacturaLinea();
+            	}
+            	$flinea->setFactura($factura);
+            	$flinea->setReferencia($linea->getReferencia());
+            	$flinea->setCodpedido($linea->getCodpedido());
+            	$flinea->setDescripcion($linea->getDescripcion());
+            	$flinea->setAncho($linea->getAncho());
+            	$flinea->setLargo($linea->getLargo());
+            	$flinea->setGalga($linea->getGalga());
+            	$flinea->setSolapa($linea->getSolapa());
+            	$flinea->setCantidad($linea->getCantidad());
+            	$flinea->setPrecio($linea->getPrecio());
+            	$flinea->setDescuento($linea->getDescuento());
+            	$flinea->setImporte($linea->getImporte());
+            	$factura->addFacturalinea($flinea);
             }
-		*/
+		
         $form   = $this->createForm(new FacturaType(), $factura);
     
         if ($request->getMethod() == 'POST') {
         	$form->bind($request);
         	if ($form->isValid()) {
-        		
+        		  
         	      $em->persist($factura);
         	      $em->flush();
         	      
@@ -395,8 +427,13 @@ class AlbaranController extends Controller
         	      $em->flush();
         	      
         	      $this->get('session')->getFlashBag()->add('success', 'Nueva Factura Creada');
-	              return $this->redirect($this->generateUrl('factura_show', array('id' => $factura->getId())));
-	        } else {
+	             // return $this->redirect($this->generateUrl('factura_show', array('id' => $factura->getId())));
+        	      return $this->render('PBVentasBundle:Albaran:facturar.html.twig', array(
+        	      		'entity' => $factura,
+        	      		'id' => $albaran->getId(),
+        	      		'form'   => $form->createView(),
+        	      ));
+        	} else {
 	            $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
 	        } 		
         } 

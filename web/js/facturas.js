@@ -7,9 +7,7 @@ function bind() {
 function bindAlbaran() {
 	  $(".icantidad").blur(update_price_albaran);
 	  $(".iprecio").blur(update_price_albaran);
-
 	  update_total_albaran();
-
 	}
 
 
@@ -33,7 +31,7 @@ function update_price() {
 
 function update_price_albaran() {
 	  var row = $(this).parents('.item-row');
-	  var tipo = $('#albaran_tipo').val();
+
 	  if( row.find('.iprecio').val() != '' && row.find('.icantidad').val() != '' ){
 		  var price = row.find('.iprecio').val() * row.find('.icantidad').val();
 		  price = roundNumber(price,2);
@@ -42,9 +40,24 @@ function update_price_albaran() {
 			  row.find('.itotal').val(price)
 		  }
 
-		  update_total_albaran(tipo);
+		  update_total_albaran();
 	  }
 	}
+function update_precios(id){
+	  var row = $('#'+id).parents('.item-row');
+
+	  if( row.find('.iprecio').val() != '' && row.find('.icantidad').val() != '' ){
+		  var price = row.find('.iprecio').val() * row.find('.icantidad').val();
+		  price = roundNumber(price,2);
+		  if(isNaN(price)){ row.find('.totallinea').html("N/A") } else {
+			  row.find('.totallinea').html(price);
+			  row.find('.itotal').val(price)
+		  }
+
+		  update_total_albaran();
+	  }
+}
+
 function update_total() {
 	  var total = 0;
 

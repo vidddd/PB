@@ -171,5 +171,8 @@ PB\VentasBundle\Entity\Cliente:
     factura:
         targetEntity: PB\VentasBundle\Entity\Factura
         mappedBy: cliente
+    facturaB:
+        targetEntity: PB\VentasBundle\Entity\FacturaB
+        mappedBy: cliente
   lifecycleCallbacks: 
     prePersist: [ setFechaAltaPre ]

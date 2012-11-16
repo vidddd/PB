@@ -10,9 +10,11 @@ $(document).ready(function() {
     	var idprecio = $('.idprecio').html();
     	if (idprecio){
 			$('#'+idprecio, window.parent.document).val(this.rel);
+	        window.parent.update_precios(idprecio);
          } else {
         	$('.iprecio', window.parent.document).val(this.rel);
         }
+
         window.parent.$.prettyPhoto.close();
         return;
     })
