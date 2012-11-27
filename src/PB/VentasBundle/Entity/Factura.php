@@ -455,12 +455,12 @@ class Factura
     	return number_format($this->getBaseimponible(),2,",",".");
     }
     public function getIvatotal(){
-            	if($this->tipo == '1'){
+       //  if($this->tipo == '1'){
 	    	$iva = $this->getBaseimponible() * $this->iva / 100;
 	    	return $iva;
-    	} else {
-    		return 0;
-    	}
+
+    	//	return 0;
+    	//}
     }
     public function getIvatotalf(){
     	return number_format($this->getIvaTotal(),2,",",".");

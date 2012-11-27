@@ -191,7 +191,7 @@
         if(cliente == '') {
 			alert('Debe introducir un cliente');
          } else {
-        	 $.prettyPhoto.open('/PB2.2/web/app_dev.php/ventas/precio/buscador_albaran/'+cliente+'/'+rel+'?iframe=true&width=1080&height=600','Buscador de Precios','Listado de precios de cliente');
+        	 $.prettyPhoto.open('{{ app.request.getBaseURL() }}/ventas/precio/buscador_albaran/'+cliente+'/'+rel+'?iframe=true&width=1080&height=600','Buscador de Precios','Listado de precios de cliente');
          }
         return;
     });

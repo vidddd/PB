@@ -25,6 +25,7 @@ security:
                      luis:  { password: 925461, roles: 'ROLE_USER' }
                      clara: { password: 17dic84, roles: 'ROLE_USER' }
                      paquita: { password: 15896, roles: 'ROLE_USER' }
+                     marijose: { password: 28081, roles: 'ROLE_USER' }
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/

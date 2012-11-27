@@ -1224,4 +1224,42 @@ class Cliente
     {
         return $this->facturaB;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $pedido;
+
+
+    /**
+     * Add pedido
+     *
+     * @param PB\VentasBundle\Entity\Pedido $pedido
+     * @return Cliente
+     */
+    public function addPedido(\PB\VentasBundle\Entity\Pedido $pedido)
+    {
+        $this->pedido[] = $pedido;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pedido
+     *
+     * @param PB\VentasBundle\Entity\Pedido $pedido
+     */
+    public function removePedido(\PB\VentasBundle\Entity\Pedido $pedido)
+    {
+        $this->pedido->removeElement($pedido);
+    }
+
+    /**
+     * Get pedido
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPedido()
+    {
+        return $this->pedido;
+    }
 }

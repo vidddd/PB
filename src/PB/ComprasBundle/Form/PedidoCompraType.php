@@ -21,7 +21,7 @@ class PedidoCompraType extends AbstractType
     		printf("Unable to parse the YAML string: %s", $e->getMessage());
     	}
     	 	
-    	$formas = $value['medio_envio']; $estados = $value['estados'];
+    	$formas = $value['medio_envio']; $estados = $value['estados']; $incidencias = $value['incidencias_compras'];
     	$builder
             ->add('id', 'number', array('read_only' => true, 'error_bubbling' => true))
             ->add('proveedor', 'proveedor_text', array('error_bubbling' => true))
@@ -38,6 +38,7 @@ class PedidoCompraType extends AbstractType
 							))
             ->add('referencia', 'text', array('error_bubbling' => true, 'required' => false))
             ->add('forma_envio', 'choice', array('error_bubbling' => true, 'required' => false,'choices' => $formas, 'empty_value' => '---'))
+            ->add('incidencias', 'choice', array('error_bubbling' => true, 'required' => false, 'multiple' => true, 'choices' => $incidencias, 'empty_value' => '---'))
             ->add('estado', 'choice', array('error_bubbling' => true, 'required' => false,'choices' => $estados,'preferred_choices' => array(0),))
             ->add('observaciones', 'textarea', array('error_bubbling' => true, 'required' => false))
             ->add('importe', 'hidden', array('error_bubbling' => true))

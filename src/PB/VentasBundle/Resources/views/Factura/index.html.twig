@@ -19,7 +19,7 @@
 				<table id="form-alta">
 	   				<tbody>		
 	         			<tr>
-	        				<td class="label">{{ form_label(filterForm.id, 'Código Pedido') }}</td>
+	        				<td class="label">{{ form_label(filterForm.id, 'Código Factura') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
 	      				<tr>
 	      				<tr>
@@ -30,12 +30,16 @@
 	        				<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
 	      				<tr>
+	      	         	<tr>
+	        				<td class="label">{{ form_label(filterForm.estado, 'Estado') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.estado, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
+	      				<tr>
 	            	</tbody>
 	            </table>
-	                <p class="botones-buscador">
-	                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
-	                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
-	                </p>
+                <p class="botones-buscador">
+                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>   
+                </p>
 				 {{ form_widget(filterForm._token) }}</form>
 		</div>
 	</div>
@@ -59,7 +63,7 @@
 		    <tbody>
 		    {% for entity in entities %}
 		        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
-		            <td><a href="{{ path('albaran_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+		            <td><a href="{{ path('factura_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
 		            <td>{{ entity.cliente }}</td>
 		            <td>{{ entity.fecha|date('d.m.Y') }}</td>
 		            <td>{{ entity.fechacobro|date('d.m.Y') }}</td>

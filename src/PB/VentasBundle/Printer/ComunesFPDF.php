@@ -1,7 +1,7 @@
 <?php
 namespace PB\VentasBundle\Printer;
 
-class ComunesFPDF extends \FPDF_Fpdf {
+class ComunesFPDF extends \FPDF_FPDF {
 
 		function Header()
 		{	
@@ -26,7 +26,7 @@ class ComunesFPDF extends \FPDF_Fpdf {
 			$this->Ln(5);
 			$this->SetFont('Arial','',10);
 			$this->Cell(40,10,'email: plasticosbaltasar@gmail.com');
-			$this->Image('http://localhost:8888/PB2.2/web/images/PB100.jpg',150,8,38,38);// (x,y,ancho)
+			$this->Image('../web/images/PB100.jpg',150,8,38,38);// (x,y,ancho)
 		}
 
 		function Footer()

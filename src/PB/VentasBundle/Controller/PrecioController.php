@@ -239,6 +239,7 @@ class PrecioController extends Controller
     		return $this->render('PBVentasBundle:Precio:buscador.html.twig', array(
     				'error' => 'El cliente no tiene Tarifa de precios o el Código de cliente es erróneo',
     				'entity' => '',
+    				'rel' => ''	
     		));
     	}
     	 
@@ -248,6 +249,26 @@ class PrecioController extends Controller
     			'rel'  => $back
     			//	'pagerHtml' => $pagerHtml,
     			//	'filterForm' => $filterForm->createView(),
+    	));
+    }
+    
+    public function calcularPrecioAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$pedido = $em->getRepository('PBVentasBundle:Pedido')->find($id);
+    	$cliente = $pedido->getCliente();
+
+    	$query = $em->createQuery('SELECT p FROM PBVentasBundle:Precio p WHERE p.cliente = :cliente ORDER BY p.fecha DESC')
+    	->setParameter('cliente', $cliente->getId())->setMaxResults(1);
+    	try {
+    		$entity = $query->getSingleResult();
+    	} catch (\Doctrine\Orm\NoResultException $e) {
+    		throw $this->createNotFoundException('No se ha encontrado la Tarifa.');
+    	}
+    	$em = $this->getDoctrine()->getManager();
+    	return $this->render('PBVentasBundle:Precio:calcular.html.twig', array(
+    			'entity' => $entity,
+    			'pedido' => $pedido
     	));
     }
 }

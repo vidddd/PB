@@ -237,8 +237,6 @@ class PedidoCompraController extends Controller
     }
     
     /**
-     * @Pdf()
-     * @Template()
      */
     public function imprimirAction($id)
     {

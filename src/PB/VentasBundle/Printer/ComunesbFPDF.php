@@ -1,11 +1,11 @@
 <?php
 namespace PB\VentasBundle\Printer;
 
-class ComunesbFPDF extends \FPDF_Fpdf {
+class ComunesbFPDF extends \FPDF_FPDF {
 
 		function Header()
 		{	
-			//Logo
+			    $this->Ln(30);
 
 		}
 
@@ -22,6 +22,7 @@ class ComunesbFPDF extends \FPDF_Fpdf {
 			$this->SetFont('Arial','',8);
 			//Numero de pagina
 			$this->Cell(0,10,'-- '.$this->PageNo().' --',0,0,'C');
+			
 		}
 	
 	

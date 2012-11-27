@@ -8,6 +8,13 @@ $(document).ready(function() {
 		if(iva != ''){
 			$('#albaran_iva').val(iva);
 		}
+		$("#albaran_tipo").change( function() {
+			  if($(this).val() == "2") {
+				$('#albaran_iva').val('0'); $('#albaran_recargo').val('0');    
+			   } else {
+				   $('#albaran_iva').val('21');
+			   }
+			});
 	});
 //-->
 </script>

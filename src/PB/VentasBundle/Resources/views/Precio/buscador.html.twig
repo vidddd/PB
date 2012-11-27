@@ -1,6 +1,6 @@
 {% extends '::layout_ajax.html.twig' %}
 
-{% block title "Buscador de Clientes" %}
+{% block title "Buscador de Precios" %}
 
 {% block content %}
 <script>
@@ -13,6 +13,7 @@ $(document).ready(function() {
 	        window.parent.update_precios(idprecio);
          } else {
         	$('.iprecio', window.parent.document).val(this.rel);
+			$('#preciok', window.parent.document).val(this.rel);
         }
 
         window.parent.$.prettyPhoto.close();

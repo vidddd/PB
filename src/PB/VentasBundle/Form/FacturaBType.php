@@ -17,7 +17,7 @@ class FacturaBType extends AbstractType
     	try {
     		$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
     	} catch (ParseException $e) {printf("Unable to parse the YAML string: %s", $e->getMessage());}
-    	
+    	$ivas = array('0' => '0');
     	$estados = $value['estados_facturas'];
  		$descuentos = array('0' => '0', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10');
     	$tipos = array(1 => 'A', 2 => 'B');
@@ -39,9 +39,9 @@ class FacturaBType extends AbstractType
 							))
 		    ->add('formapago_factura')
             ->add('tipo', 'hidden', array('data' => 2, 'error_bubbling' => true))
-            //->add('iva' , 'choice', array('choices' => $ivas, 'data' => 21,'error_bubbling' => true))
+            ->add('iva' , 'choice', array('choices' => $ivas, 'data' => 21,'error_bubbling' => true))
             ->add('descuento', 'choice', array('choices' => $descuentos, 'error_bubbling' => true))
-            //->add('recargo', 'choice', array('choices' => $recargos, 'error_bubbling' => true))
+            ->add('recargo', 'choice', array('choices' => $recargos, 'error_bubbling' => true))
             ->add('anyo')
             ->add('estado', 'choice', array( 'choices' => $estados,'error_bubbling' => true))
             ->add('importetotal', 'hidden', array('error_bubbling' => true))

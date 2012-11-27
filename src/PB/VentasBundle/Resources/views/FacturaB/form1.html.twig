@@ -1,7 +1,16 @@
   {% if form_errors(form) %}
           <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
           {% endif %}
+<script type="text/javascript">
+<!--
+$(document).ready(function() {
 
+		$('#facturab_iva').val('0');
+		$('#facturab_recargo').val('0');
+	
+	});
+//-->
+</script>
 <form action="{{ entity.id  ? path('facturab_edit', { 'id': entity.id }) : path('facturab_new') }}" novalidate="novalidate" method="post" {{ form_enctype(form) }}>
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
 	<div class="portlet-header ui-widget-header">DATOS LA FACTURA</div>

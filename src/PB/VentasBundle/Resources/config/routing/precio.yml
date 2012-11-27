@@ -14,6 +14,10 @@ buscador_precio_albaran:
     pattern:  /buscador_albaran/{id}/{back}
     defaults: { _controller: "PBVentasBundle:Precio:buscadorPrecioAlbaran" }
 
+calcular_precio:
+    pattern:  /cacular_precio/{id}
+    defaults: { _controller: "PBVentasBundle:Precio:calcularPrecio" }
+
 precio_print:
     pattern:  /{id}/print
     defaults: { _controller: "PBVentasBundle:Precio:imprimir" }

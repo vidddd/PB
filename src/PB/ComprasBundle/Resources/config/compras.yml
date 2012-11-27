@@ -17,3 +17,13 @@ estados:
   2: "Recibido OK"
   3: "Recibido con Erorres"
   4: "Rechazado"
+
+incidencias_compras:
+  1: "Pérdida de un Pedido imputable a incumplimiento o Fallo de Profeedor"
+  2: "Materiales no entregados"
+  3: "Materiales entregados con retraso"
+  4: "Entrega de material defectuoso o de inferior calidad"
+  5: "Criterios de Dirección"
+  6: "Rechazo de un pedido por parte del cliente debido a la calidad de los materiales utilizados"
+  7: "Repeticiones de un pedido por errores"
+  8: "Parada o avería de algún equipo de producción imputable a la mala calidad de la materia prima"

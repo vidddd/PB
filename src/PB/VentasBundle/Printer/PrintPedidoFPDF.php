@@ -23,9 +23,9 @@ class PrintPedidoFPDF {
 			throw $this->createNotFoundException('No se puede encontrar el pedido.');
 		}
 
-		$pdf = new \FPDF_Fpdf;
+		$pdf = new \FPDF_FPDF;
 		$pdf->AddPage();	$pdf->Ln();	$pdf->Ln();
-		//$pdf->Image('web/images/PBbn.jpg',20,10,30);// (x,y,ancho)
+		$pdf->Image('../web/images/PBbn.jpg',20,10,30);// (x,y,ancho)
 		$pdf->Ln();
 		$pdf->Cell(95);$pdf->Cell(80,10,"",'',0,'C');$pdf->Ln(8);
 		
@@ -76,7 +76,7 @@ class PrintPedidoFPDF {
 		$pdf->Cell(32,7,$entity->getMaquina(),'R',0,'L',1);
 		$pdf->Ln();
 		
-		$cac= number_format($entity->getCantidadc(),0,",",".");
+		$cac= number_format((integer)$entity->getCantidadc(),0,",",".");
 		$pdf->Cell(30,7,"MAT Y COLOR:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getMtycolor(),'R',0,'L',1);
 		$pdf->Cell(30,7,"CLICHE:",'L',0,'C',1);

@@ -22,7 +22,8 @@ cliches:
   1: "Nuevo"
   2: "Lo Traen"
   3: "Lo Tenemos"
-
+  4: "Lo Traeran"
+  
 tipos:
   0: ""
   1: "A"

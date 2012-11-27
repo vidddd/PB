@@ -286,8 +286,10 @@ input.submit, button.submit{
 	width:120px;
 }
 .botones-buscador{
-	padding:0 20px 35px 0;
-	
+	padding:0 20px 35px 0;	
+}
+.botones-buscador button{
+	margin-right:10px;
 }
 /* form invoices */
 .form-horizontal input[type="text"], .form-horizontal input[type="number"],.form-horizontal input[type="date"],

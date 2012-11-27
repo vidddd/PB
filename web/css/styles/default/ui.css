@@ -872,5 +872,5 @@ div.totals textarea:focus{
     color: #FFFFFF;
 }
 .facturarform .form-container {
-	width:550px !important;
+	/* width:550px !important; */
 }

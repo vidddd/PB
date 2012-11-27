@@ -32,8 +32,6 @@ PB\VentasBundle\Entity\Pedido:
             - NotBlank: { message: "El campo Cantidad esta vacio."}
         mtycolor: 
             - NotBlank: { message: "El campo Material y color esta vacio."}
-        tipomaterial:
-            - NotBlank:  { message: "El campo Tipo Material esta vacio."}
         ancho:
             - NotBlank:  { message: "El campo Ancho esta vacio."}
 PB\VentasBundle\Entity\Precio:
@@ -42,6 +40,12 @@ PB\VentasBundle\Entity\Precio:
             - NotBlank:  { message: "El campo 'Fecha' esta vacio."}
         cliente:
             - NotBlank:  { message: "El campo 'Cliente' esta vacio."}
+PB\VentasBundle\Entity\PrecioLinea:
+    properties:
+        concepto:
+            - NotBlank:  { message: "El campo 'Concepto' esta vacio."}
+        precio:
+            - NotBlank:  { message: "El campo 'precios' esta vacio."}
 PB\VentasBundle\Entity\Albaran:
     properties:
         fecha:

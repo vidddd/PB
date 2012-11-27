@@ -364,7 +364,7 @@ class ClienteController extends Controller
     	$id=$request->request->get('id');
     	$em = $this->get('doctrine')->getEntityManager();
     	
-    	$cliente = $em->getRepository('PBVentasBundle:cliente')->findOneById($id);
+    	$cliente = $em->getRepository('PBVentasBundle:Cliente')->findOneById($id);
     	//echo $id;
     	if($cliente) {if($cliente->getComercialCliente())
 	    		$comercial = $cliente->getComercialCliente()->getNombre();

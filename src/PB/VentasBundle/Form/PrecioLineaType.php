@@ -12,10 +12,10 @@ class PrecioLineaType extends AbstractType
         $builder
         	//->add('codcliente')
         	->add('cantidad', 'text', array('required' => false))
-        	->add('concepto', 'text', array('required' => false))
+        	->add('concepto', 'text', array('required' => true))
         	->add('medida', 'text', array('required' => false))
         	->add('galga', 'text', array('required' => false))
-        	->add('precio', 'text', array('required' => false));
+        	->add('precio', 'text', array('required' => true));
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {

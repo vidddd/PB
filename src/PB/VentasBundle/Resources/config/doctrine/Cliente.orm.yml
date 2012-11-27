@@ -156,7 +156,7 @@ PB\VentasBundle\Entity\Cliente:
         name: formapago_id
         referencedColumnName: id
     comercial_cliente:
-      targetEntity: PB\VentasBundle\Entity\comercial
+      targetEntity: PB\VentasBundle\Entity\Comercial
       inversedBy: comercial
       joinColumn:
         name: comercial_id
@@ -164,6 +164,9 @@ PB\VentasBundle\Entity\Cliente:
   oneToMany:
     precio:
         targetEntity: PB\VentasBundle\Entity\Precio
+        mappedBy: cliente
+    pedido:
+        targetEntity: PB\VentasBundle\Entity\Pedido
         mappedBy: cliente
     albaran:
         targetEntity: PB\VentasBundle\Entity\Albaran

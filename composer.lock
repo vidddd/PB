@@ -739,12 +739,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jordillonch/CrudGeneratorBundle",
-                "reference": "d43e68d17791daa68935f82f18936c8f0a75bc95"
+                "reference": "db28a2374311ebcf0f855f8fb6ef72f0c8e13dbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/jordillonch/CrudGeneratorBundle/zipball/d43e68d17791daa68935f82f18936c8f0a75bc95",
-                "reference": "d43e68d17791daa68935f82f18936c8f0a75bc95",
+                "url": "https://github.com/jordillonch/CrudGeneratorBundle/archive/db28a2374311ebcf0f855f8fb6ef72f0c8e13dbc.zip",
+                "reference": "db28a2374311ebcf0f855f8fb6ef72f0c8e13dbc",
                 "shasum": ""
             },
             "require": {
@@ -753,7 +753,7 @@
                 "symfony/symfony": "2.1.*",
                 "sensio/generator-bundle": "2.1.*"
             },
-            "time": "1351113288",
+            "time": "1353073778",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -837,21 +837,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpPaginatorBundle",
-                "reference": "de439d2816fe984dbe0c438fd4d0d7c67748c5ff"
+                "reference": "0d719a9bd6973bde1b10587fc2c85cf04c5e0e9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/KnpLabs/KnpPaginatorBundle/zipball/de439d2816fe984dbe0c438fd4d0d7c67748c5ff",
-                "reference": "de439d2816fe984dbe0c438fd4d0d7c67748c5ff",
+                "url": "https://github.com/KnpLabs/KnpPaginatorBundle/archive/0d719a9bd6973bde1b10587fc2c85cf04c5e0e9d.zip",
+                "reference": "0d719a9bd6973bde1b10587fc2c85cf04c5e0e9d",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "symfony/framework-bundle": "2.*,<2.2",
                 "knplabs/knp-components": ">=1.1",
-                "twig/twig": ">=1.5"
+                "twig/twig": ">=1.5",
+                "symfony/framework-bundle": "2.*,<2.3"
             },
-            "time": "1343676956",
+            "time": "1353061581",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1736,26 +1736,26 @@
         },
         {
             "name": "twig/twig",
-            "version": "dev-master",
+            "version": "v1.11.1",
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Twig.git",
-                "reference": "347bc81d6ed8e2bb793236aa9917c7e83f81c2b3"
+                "reference": "v1.11.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig/zipball/347bc81d6ed8e2bb793236aa9917c7e83f81c2b3",
-                "reference": "347bc81d6ed8e2bb793236aa9917c7e83f81c2b3",
+                "url": "https://github.com/fabpot/Twig/archive/v1.11.1.zip",
+                "reference": "v1.11.1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "1349702400",
+            "time": "2012-11-11 17:17:59",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.10-dev"
+                    "dev-master": "1.11-dev"
                 }
             },
             "installation-source": "source",
@@ -1785,17 +1785,17 @@
         },
         {
             "name": "zendframework/zendframework",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "git://github.com/zendframework/zf2.git",
-                "reference": "release-2.0.3"
+                "reference": "release-2.0.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packages.zendframework.com/releases/ZendFramework-2.0.3/ZendFramework-2.0.3.zip",
-                "reference": "release-2.0.3",
-                "shasum": "c063848cceb1e32ad57746099ec1fafa6b3efa34"
+                "url": "http://packages.zendframework.com/releases/ZendFramework-2.0.4/ZendFramework-2.0.4.zip",
+                "reference": "release-2.0.4",
+                "shasum": "bb1eaa25bca301806056198260823b9b057611b8"
             },
             "require": {
                 "php": ">=5.3.3"

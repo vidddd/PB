@@ -40,10 +40,10 @@
 	      				<tr>
 	            	</tbody>
 	            </table>
-	                <p class="botones-buscador">
-	                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
-	                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
-	                </p>
+                <p class="botones-buscador">
+                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>   
+                </p>
 				 {{ form_widget(filterForm._token) }}</form>
 		</div>
 	</div>
@@ -60,6 +60,7 @@
 		            <th>Fecha</th>
 		            <th>Subcliente</th>
 		            <th>Estado</th>
+		            <th>Precio</th>
 		            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
 		        </tr>
 		    </thead>
@@ -71,6 +72,13 @@
 		            <td>{{ entity.fecha|date('d.m.Y') }}</td>
 		            <td>{{ entity.subcliente }}</td>
 		            <td><span class="estadoc estado{{ entity.estado }}">{{ entity.estadoText }}</span></td>
+		            <td>
+		                {% if entity.precio %}
+								{{ entity.precio }}
+						{% else %}
+							<a href="{{ path('calcular_precio', { 'id': entity.id }) }}">Calcular</a>
+						{%  endif %}
+					</td>
 		            <td>
 		        		<a href="{{ path('pedido_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
 		        		<a href="{{ path('pedido_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>

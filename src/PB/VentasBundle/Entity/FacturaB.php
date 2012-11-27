@@ -335,10 +335,10 @@ class FacturaB
     /**
      * Add facturalineas
      *
-     * @param PB\VentasBundle\Entity\FacturaLinea $facturalineas
+     * @param PB\VentasBundle\Entity\FacturaBLinea $facturalineas
      * @return FacturaB
      */
-    public function addFacturalinea(\PB\VentasBundle\Entity\FacturaLinea $facturalineas)
+    public function addFacturalinea(\PB\VentasBundle\Entity\FacturaBLinea $facturalineas)
     {
         $this->facturalineas[] = $facturalineas;
     
@@ -350,7 +350,7 @@ class FacturaB
      *
      * @param PB\VentasBundle\Entity\FacturaLinea $facturalineas
      */
-    public function removeFacturalinea(\PB\VentasBundle\Entity\FacturaLinea $facturalineas)
+    public function removeFacturalinea(\PB\VentasBundle\Entity\FacturaBLinea $facturalineas)
     {
         $this->facturalineas->removeElement($facturalineas);
     }

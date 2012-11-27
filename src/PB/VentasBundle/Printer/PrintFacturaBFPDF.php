@@ -26,7 +26,7 @@ class PrintFacturaBFPDF {
 		$pdf = new ComunesbFPDF();
 		$tope = 38;
 		
-		$pdf->AddPage(); $pdf->Ln(3); $pdf->Cell(80,4,"",'',0,'C'); $pdf->Ln(30);
+		$pdf->AddPage(); $pdf->Ln(3); $pdf->Cell(80,4,"",'',0,'C'); $pdf->Ln(4);
 		
 		$pdf->SetFillColor(255,255,255); $pdf->SetTextColor(0); $pdf->SetDrawColor(0,0,0);	$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',15);
 		

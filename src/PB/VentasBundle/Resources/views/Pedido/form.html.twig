@@ -167,7 +167,7 @@ $(document).ready(function() {
 		      	<div class="control-group">
 						{{ form_label(form.soldadura, null, { 'label': 'Soldadura', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
-			    			{{ form_widget(form.soldadura, { 'attr': {'class': 'small numeric'}}) }}	
+			    			{{ form_widget(form.soldadura, { 'attr': {'class': 'small'}}) }}	
 		      	</div></div>
 				<div class="control-group">
 						{{ form_label(form.impresion, null, { 'label': 'Impresión', 'label_attr': {'class': 'control-label'} }) }}
@@ -229,7 +229,8 @@ $(document).ready(function() {
 		      	</div></div>
 			</div>
 	  </div><!-- datos-pedido -->
-	<div class="clearfix"></div>
+	<div class="clearfix"></div> <BR />
+
 	<div class="guardar"><button type="submit" class="ui-state-default ui-corner-all">Guardar</button></div> 
 		{{ form_widget(form._token) }}</form>
 </div>

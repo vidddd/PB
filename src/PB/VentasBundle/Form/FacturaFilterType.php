@@ -8,12 +8,24 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 class FacturaFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
+    	
+    	$yaml = new Parser();
+    	try {
+    		$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	 
+    	$estados = $value['estados_facturas'];
+
+    	$builder
             ->add('id', 'filter_number')
             ->add('cliente', 'filter_number', array('error_bubbling' => true))
 		    ->add('fecha', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
@@ -29,7 +41,7 @@ class FacturaFilterType extends AbstractType
             ->add('recargo', 'filter_choice')
             ->add('anyo', 'filter_number_range')
             ->add('importetotal', 'filter_number_range')
-            ->add('estado', 'filter_number_range')
+            ->add('estado', 'filter_choice', array( 'choices'   => $estados))
             ->add('observaciones', 'filter_text')
         ;
 

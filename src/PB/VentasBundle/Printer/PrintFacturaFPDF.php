@@ -190,7 +190,7 @@ class PrintFacturaFPDF {
 		
 		$pdf->SetFont('Arial','B',10);
 		$pdf->SetFillColor(255,255,255);
-		$pdf->Cell(50,12,$entity->getFecha()->format('d/m/Y'),'LRB',0,'C',1);
+		$pdf->Cell(50,12,$entity->getFechacobro()->format('d/m/Y'),'LRB',0,'C',1);
 		$pdf->Cell(50,12,$entity->getFormapagofactura(),'LRB',0,'C',1);
 		$pdf->Cell(91,12,$entity->getObservaciones(),'LRB',0,'C',1);
 		

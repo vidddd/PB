@@ -6,7 +6,7 @@
 $(document).ready(function() {
 		var iva = $('#iva-edit').val();
 		if(iva != ''){
-			$('#albaran_iva').val(iva);
+			$('#factura_iva').val(iva);
 		}
 	});
 //-->
@@ -25,10 +25,10 @@ $(document).ready(function() {
 			<td></td>
 			<td><div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div></td>
 		</tr>
-		<tr>
+	<!-- <tr>
 			<td>{{ form_label(form.tipo, null, { 'label': 'Tipo', 'label_attr': {'class': 'control-label'} }) }}</td>
 			<td>{{ form_widget(form.tipo, { 'attr': {'class': 'small'}}) }}</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td>{{ form_label(form.fecha, null, { 'label': 'Fecha', 'label_attr': {'class': 'control-label'} }) }}</td>
 			<td>{{ form_widget(form.fecha, { 'attr': {'class': 'date small'}}) }}</td>
@@ -44,6 +44,14 @@ $(document).ready(function() {
 		<tr>
 			<td>{{ form_label(form.iva, null, { 'label': 'IVA', 'label_attr': {'class': 'control-label'} }) }}</td>
 			<td>{{ form_widget(form.iva, { 'attr': {'class': 'small hiva'}}) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.descuento, null, { 'label': 'Descuento', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.descuento, { 'attr': {'class': 'small hiva'}}) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.recargo, null, { 'label': 'Recargo', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.recargo, { 'attr': {'class': 'small hrecargo'}}) }}</td>
 		</tr>
 		<tr>
 			<td>{{ form_label(form.observaciones) }} <div class="clearfix"></td>

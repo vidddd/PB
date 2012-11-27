@@ -41,10 +41,10 @@
 	        				<td class="campo">{{ form_widget(filterForm.localidad) }}</td><td>{{ form_errors(filterForm.localidad) }}</td>
 	      				<tr> 
 	            </tbody></table>
-	                <p class="botones-buscador">
-	                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>
-	                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
-	                </p>
+                <p class="botones-buscador">
+                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>   
+                </p>
 				 {{ form_widget(filterForm._token) }}</form>
 		</div><div class="clear"></div>
 	</div>

@@ -26,7 +26,7 @@ class PrintAlbaranFPDF {
 		switch ($entity->getTipo()){
 			case '2':
 				$pdf = new ComunesbFPDF();
-				$tope = 45;
+				$tope = 41;
 			break;
 			default:
 				$pdf = new ComunesFPDF();
