@@ -1094,4 +1094,41 @@ class Pedido
     		return $value['cliches'][$this->cliche];
     	else return $this->cliche;
     }
+    public function getTipotuboText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if(array_key_exists((int)$this->tipotubo, $value['tipo_tubo']))
+    		return $value['tipo_tubo'][$this->tipotubo];
+    	else return $this->tipotubo;
+    }
+    /**
+     * @var string $carpeta
+     */
+    private $carpeta;
+
+
+    /**
+     * Set carpeta
+     *
+     * @param string $carpeta
+     * @return Pedido
+     */
+    public function setCarpeta($carpeta)
+    {
+        $this->carpeta = $carpeta;
+    
+        return $this;
+    }
+
+    /**
+     * Get carpeta
+     *
+     * @return string 
+     */
+    public function getCarpeta()
+    {
+        return $this->carpeta;
+    }
 }

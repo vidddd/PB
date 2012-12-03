@@ -18,7 +18,8 @@ PB\VentasBundle\Entity\AlbaranLinea:
             type: integer
             nullable: true
         ancho:
-            type: integer
+            type: string
+            length: '50'
             nullable: true
         largo:
             type: integer

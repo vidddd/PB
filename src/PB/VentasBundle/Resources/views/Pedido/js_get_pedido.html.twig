@@ -2,7 +2,13 @@
 	$("#addpedido").live('click',function(){
 		   getPedido();
 	});
-
+	$("#clientepedido").live('click',function(){
+        var cliente = '{{ entity.cliente.id }}';
+		var rel = $(this).attr('rel');
+        $.prettyPhoto.open('{{ app.request.getBaseURL() }}/ventas/pedido/pedidos_cliente/'+cliente+'?iframe=true&width=800&height=600','Buscador de Pedidos Cliente','Listado de pedidos de cliente');
+        
+        return;
+	});
 	function getPedido(){
 		var id = $("#codpedido").val();
 		if(id == '' || id == null) {

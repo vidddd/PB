@@ -62,7 +62,7 @@
 						<div class="controls">{{ entity.tratado }}</div></div>
 		 		<div class="control-group">
 						<label>Tipo Tubo</label>
-						<div class="controls">{{ entity.tipotubo }}</div></div>
+						<div class="controls">{{ entity.tipotuboText }}</div></div>
 		 		<div class="control-group">
 						<label>Notas</label>
 						<div class="controls">{{ entity.notasextrusion }}	
@@ -76,6 +76,10 @@
 				<div class="control-group">
 						<label>Cliche</label>
 						<div class="controls">{{ entity.clicheText }}	
+		      	</div></div>
+				<div class="control-group">
+						<label>Carpeta</label>
+						<div class="controls">{{ entity.carpeta }}	
 		      	</div></div>
 		      	<div class="control-group">
 						<label>Medida Imp</label>
@@ -136,8 +140,9 @@
         </a>
     </div>
         <ul class="ui-widget ui-helper-clearfix botones-abajo">
-    <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('pedido_edit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
+    <li class="ui-state-default ui-corner-all editar" style="float:left;"><a class="btn" href="{{ path('pedido_edit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
     <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('pedido_print', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-print"></span> Imprimir </a> </li>
+    <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('calcular_precio', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-cart"></span> Calcular Precio </a> </li>
     
     </ul>
 </div> <!-- pedido -->

@@ -38,6 +38,9 @@ PB\ComprasBundle\Entity\PedidoCompra:
     estado:
       type: smallint
       nullable: true
+    incidencias:
+      type: integer
+      nullable: true
   manyToOne:
     proveedor:
       targetEntity: PB\ComprasBundle\Entity\Proveedor

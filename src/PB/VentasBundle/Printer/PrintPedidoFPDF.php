@@ -87,8 +87,8 @@ class PrintPedidoFPDF {
 		
 		$pdf->Cell(30,7,"T. MATERIAL:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getTipomaterialText(),'R',0,'L',1);
-		$pdf->Cell(30,7,"MEDIDA:",'L',0,'C',1);
-		$pdf->Cell(32,7,$entity->getMedidaimp(),'R',0,'L',1);
+		$pdf->Cell(30,7,"CARPETA:",'L',0,'C',1);
+		$pdf->Cell(32,7,$entity->getCarpeta(),'R',0,'L',1);
 		$pdf->Cell(30,7,"ANCHO:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getAnchoc(),'R',0,'L',1);
 		$pdf->Ln();
@@ -96,31 +96,35 @@ class PrintPedidoFPDF {
 		
 		$pdf->Cell(30,7,"ANCHO:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getAncho(),'R',0,'L',1);
-		$pdf->Cell(30,7,"SOLDADURA:",'L',0,'C',1);
-		$pdf->Cell(32,7,$entity->getSoldadura(),'R',0,'L',1);
+		$pdf->Cell(30,7,"MEDIDA:",'L',0,'C',1);
+		$pdf->Cell(32,7,$entity->getMedidaimp(),'R',0,'L',1);
 		$pdf->Cell(30,7,"LARGO:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getLargoc(),'R',0,'L',1);
 		$pdf->Ln();
 		
 		$pdf->Cell(30,7,"GALGA:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getGalga(),'R',0,'L',1);
-		$pdf->Cell(30,7,"IMPRESION:",'L',0,'C',1);
-		$pdf->Cell(32,7,$entity->getImpresion(),'R',0,'L',1);
+		$pdf->Cell(30,7,"SOLDADURA:",'L',0,'C',1);
+		$pdf->Cell(32,7,$entity->getSoldadura(),'R',0,'L',1);
+
 		$pdf->Cell(30,7,"SOLAPA:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getSolapa(),'R',0,'L',1);
 		$pdf->Ln();
 		
 		$pdf->Cell(30,7,"PLEGADO:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getPlegado(),'R',0,'L',1);
-		$pdf->Cell(30,7,"COLORES:",'L',0,'C',1);
-		$pdf->Cell(32,7,"",'R',0,'L',1);
+		$pdf->Cell(30,7,"IMPRESION:",'L',0,'C',1);
+		$pdf->Cell(32,7,$entity->getImpresion(),'R',0,'L',1);
+
 		$pdf->Cell(30,7,"ALMACEN:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getAlmacen(),'R',0,'L',1);
 		$pdf->Ln();
 		
 		$pdf->Cell(30,7,"BOBINAS:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getBobinas(),'R',0,'L',1);
-		$pdf->Cell(62,7,$entity->getColores(),'R',0,'L',0);
+		$pdf->Cell(30,7,"COLORES:",'L',0,'C',1);
+		$pdf->Cell(32,7,"",'R',0,'L',1);
+
 		$pdf->Cell(30,7,"OPERARIO:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getOperario(),'R',0,'L',1);
 		$pdf->Ln();
@@ -136,8 +140,7 @@ class PrintPedidoFPDF {
 		
 		$pdf->Cell(30,7,"METROS:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getMetros(),'R',0,'L',1);
-		$pdf->Cell(30,7,"",'L',0,'C',1);
-		$pdf->Cell(32,7,"",'R',0,'L',1);
+		$pdf->Cell(62,7,$entity->getColores(),'R',0,'L',0);
 		$pdf->Cell(30,7,"",'L',0,'C',1);
 		$pdf->Cell(32,7,"",'R',0,'L',1);
 		$pdf->Ln();
@@ -152,7 +155,7 @@ class PrintPedidoFPDF {
 		
 		
 		$pdf->Cell(30,7,"TIPOTUBO:",'L',0,'C',1);
-		$pdf->Cell(32,7,$entity->getTipotubo(),'R',0,'L',1);
+		$pdf->Cell(32,7,$entity->getTipotuboText(),'R',0,'L',1);
 		$pdf->Cell(30,7,"",'L',0,'C',1);
 		$pdf->Cell(32,7,"",'R',0,'L',1);
 		$pdf->Cell(30,7,"",'L',0,'C',1);
@@ -220,7 +223,7 @@ class PrintPedidoFPDF {
 		$pdf->Ln();
 		
 		$pdf->SetFont('Arial','B',10);
-		$pdf->Cell(186,10," * Es OBLIGATORIO rellenar por el operario en cada proceso de fabricaciÛn");
+		$pdf->Cell(186,10,utf8_decode(" * Es OBLIGATORIO rellenar por el operario en cada proceso de fabricación"));
 		// $pdf->SetY(-25);
 		
 		

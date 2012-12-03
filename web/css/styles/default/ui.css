@@ -137,7 +137,6 @@ body {
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .pagination a:hover, a.btn:hover, button.ui-state-default:hover {
 	/*border: 1px solid #9d9d9d;*/
 	background:#0073ea url(images/ui-bg_highlight-soft_25_0073ea_1x100.png) 50% 50% repeat-x;
-	font-weight:bold;
 	color:#333;
 	outline:none;
 }
@@ -259,7 +258,7 @@ a:hover, .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
 #page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a:active {
 	border-color:#9d9d9d;
 }
-#page-wrapper #main-wrapper .title, #page-wrapper #sidebar .side-menu li {
+#page-wrapper #main-wrapper .title, #lightbox-wrapper .title, #page-wrapper #sidebar .side-menu li {
 	color:#616161;
 	border-bottom:#8f8f8f dotted 1px;
 	

@@ -134,8 +134,11 @@ class PedidoCompraController extends Controller
         	{
         		$linea->setPedidocompralinea($entity);
         	}
+        	
         	$em->persist($entity);
-            try {$em->flush(); } catch(Exception $e) {die('ERROR: '.$e->getMessage());}
+        	//echo "2222"; die;
+        	$em->flush();
+            //try {$em->flush(); } catch(Exception $e) {die('ERROR: '.$e->getMessage());}
             
             $this->get('session')->getFlashBag()->add('success', 'Nuevo Pedido de compra creado');
             
@@ -242,14 +245,13 @@ class PedidoCompraController extends Controller
     {
 	   
 	    $em = $this->getDoctrine()->getManager();
-	    $yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
-	    } catch (ParseException $e) { 	printf("Unable to parse the YAML string: %s", $e->getMessage());}
+
 	    $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
-	    $medios = $value['medio_envio'];
-	    //$entity->setFormaEnvio($medios[$entity->getFormaEnvio()]);
+
 	    if (!$entity) {	throw $this->createNotFoundException('Unable to find PedidoCompra entity.'); }
-	    
-	    $html = $this->renderView('PBComprasBundle:PedidoCompra:print.html.twig', array('entity' => $entity));
+	    $request = $this->getRequest();
+	    $url = $this->container->getParameter('url');
+	    $html = $this->renderView('PBComprasBundle:PedidoCompra:print.html.twig', array('entity' => $entity, 'url' => $url ));
 	    
 	    //$printer = new PrintPedidoCompra();  //TCPDF
 	    //$printer = new PrintPedidoCompra2(); //DOMPDF

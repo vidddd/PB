@@ -50,33 +50,46 @@ class AlbaranController extends Controller
         $filterForm = $this->createForm(new AlbaranFilterType());
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('PBVentasBundle:Albaran')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
-    
-        // Reset filter
+        
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
-            $session->remove('AlbaranControllerFilter');
+        	$session->remove('AlbaranControllerFilter');
         }
-    
-        // Filter action
+        
+    	$fil = $request->get('albaranfilter'); 
+    	$filses = $session->get('AlbaranControllerFilter');
+    	// Si hay session
+
+    	if($filses || $request->get('filter_action') == 'filter'){
+    		($request->get('filter_action') == 'filter') ? $factu = $fil['facturados'] : $factu = $filses['facturados']; ;
+	        if ($request->getMethod() == 'POST' && $fil['facturados']){
+	        	$factu = $fil['facturados'];
+	        }
+	        switch ($factu){
+	        	case 1:
+	        		$queryBuilder->andWhere("e.codfactura != ''");
+	        		break;
+	        	case 2:
+	        		$queryBuilder->andWhere("e.codfactura = ''");
+	        		$queryBuilder->orWhere("e.codfactura is NULL");
+	        		break;
+	        }
+    	}
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
-            // Bind values from the request
             $filterForm->bind($request);
 
             if ($filterForm->isValid()) {
-                // Build the query from the given form object
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
-                // Save filter to session
                 $filterData = $filterForm->getData();
                 $session->set('AlbaranControllerFilter', $filterData);
             }
         } else {
-            // Get filter from session
             if ($session->has('AlbaranControllerFilter')) {
                 $filterData = $session->get('AlbaranControllerFilter');
                 $filterForm = $this->createForm(new AlbaranFilterType(), $filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
-    
+        //var_dump($queryBuilder->getDql());
         return array($filterForm, $queryBuilder);
     }
 

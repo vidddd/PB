@@ -70,6 +70,10 @@ PB\VentasBundle\Entity\Pedido:
             type: string
             length: '50'
             nullable: true
+        carpeta:
+            type: string
+            length: '50'
+            nullable: true
         medidaimp:
             type: string
             length: '50'

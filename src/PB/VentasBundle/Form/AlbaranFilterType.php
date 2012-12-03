@@ -15,6 +15,7 @@ class AlbaranFilterType extends AbstractType
     {
     	$hoy = new \DateTime();
     	$tipos = array(1 => 'A', 2 => 'B');
+    	$factus = array('' => 'Todos',1=> 'Facturados', 2=> 'Sin Facturar');
         $builder
             ->add('id', 'filter_number')
             ->add('cliente', 'filter_number', array('error_bubbling' => true))
@@ -34,6 +35,12 @@ class AlbaranFilterType extends AbstractType
             ->add('anyo', 'filter_number_range')
             ->add('importetotal', 'filter_number_range')
             ->add('obervaciones', 'filter_text')
+            ->add('facturados', 'choice', array(
+					    'choices'   => $factus,
+            		'expanded' => true,
+            		'multiple' => false,
+            		'empty_value' => false
+					))
         ;
 
         $listener = function(FormEvent $event)
@@ -57,6 +64,6 @@ class AlbaranFilterType extends AbstractType
 
     public function getName()
     {
-        return 'pb_ventasbundle_albaranfiltertype';
+        return 'albaranfilter';
     }
 }

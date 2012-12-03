@@ -397,4 +397,32 @@ class PedidoCompra
 	    } catch (ParseException $e) { 	printf("Unable to parse the YAML string: %s", $e->getMessage());}
     	return $value['estados'][$this->estado];
     }
+    /**
+     * @var string $incidencias
+     */
+    private $incidencias;
+
+
+    /**
+     * Set incidencias
+     *
+     * @param string $incidencias
+     * @return PedidoCompra
+     */
+    public function setIncidencias($incidencias)
+    {
+        $this->incidencias = $incidencias;
+    
+        return $this;
+    }
+
+    /**
+     * Get incidencias
+     *
+     * @return string 
+     */
+    public function getIncidencias()
+    {
+        return $this->incidencias;
+    }
 }

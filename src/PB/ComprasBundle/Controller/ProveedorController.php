@@ -372,7 +372,7 @@ class ProveedorController extends Controller
     	$id=$request->request->get('id');
     	$em = $this->get('doctrine')->getEntityManager();
     	 
-    	$cliente = $em->getRepository('PBComprasBundle:proveedor')->findOneById($id);
+    	$cliente = $em->getRepository('PBComprasBundle:Proveedor')->findOneById($id);
     	if($cliente && is_numeric($id)) {
     		return new Response(json_encode(array('nombre' => $cliente->getNombre())));
     	} else {

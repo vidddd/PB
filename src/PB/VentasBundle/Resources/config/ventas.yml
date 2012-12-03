@@ -33,3 +33,8 @@ estados_facturas:
   1: "No pagada"
   2: "En proceso"
   3: "Pagada"
+ 
+tipo_tubo:
+  1: "Tubo"
+  2: "Semitubo"
+  3: "Lamina"

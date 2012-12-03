@@ -1,5 +1,5 @@
 formapago:
-    pattern:  /general
+    pattern:  /
     defaults: { _controller: "PBGeneralBundle:FormaPago:index" }
 
 formapago_show:

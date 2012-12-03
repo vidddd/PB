@@ -54,7 +54,7 @@ class PrintFacturaFPDF {
 		
 		$pdf->SetFillColor(200,200,200); $pdf->SetTextColor(0);	$pdf->SetDrawColor(0,0,0);	$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);
 		
-		$pdf->Cell(80);	$pdf->Cell(30,4,"NIF",1,0,'C',1);	$pdf->Cell(30,4,"Cod. Clien",1,0,'C',1);	$pdf->Cell(30,4,"Fecha",1,0,'C',1);	$pdf->Cell(20,4,utf8_decode("N Alb."),1,0,'C',1);$pdf->Ln(4);
+		$pdf->Cell(80);	$pdf->Cell(30,4,"NIF",1,0,'C',1);	$pdf->Cell(30,4,"Cod. Clien",1,0,'C',1);	$pdf->Cell(30,4,"Fecha",1,0,'C',1);	$pdf->Cell(20,4,utf8_decode("N Fact."),1,0,'C',1);$pdf->Ln(4);
 
 		$pdf->Cell(80);	$pdf->SetFillColor(255,255,255);$pdf->SetTextColor(0);$pdf->SetDrawColor(0,0,0);$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);
 		

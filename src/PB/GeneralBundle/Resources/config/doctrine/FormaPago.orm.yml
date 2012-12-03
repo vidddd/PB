@@ -11,6 +11,9 @@ PB\GeneralBundle\Entity\FormaPago:
         nombre:
             type: string
             length: '100'
+        dias:
+            type: integer
+            nullable: true
         descripcion:
             type: text
             nullable: true

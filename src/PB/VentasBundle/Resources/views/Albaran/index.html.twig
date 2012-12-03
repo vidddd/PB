@@ -34,6 +34,11 @@
 	        				<td class="label">{{ form_label(filterForm.tipo, 'Tipo') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.tipo, { 'Tipo': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
 	      				<tr>
+	      				<tr><td class="label"></td><td></td></tr>
+	      				<tr>
+	      					<td class="label"></td>
+	      					<td>{{ form_widget(filterForm.facturados, { 'Tipo': {'class': ''}}) }}</td>
+	      				</tr>
 	            	</tbody>
 	            </table>
                 <p class="botones-buscador">

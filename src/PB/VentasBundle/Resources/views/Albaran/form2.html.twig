@@ -55,7 +55,7 @@
 					    {{ form_widget(linea.descripcion, { 'attr': {'class': 'idescripcion'}}) }}
 					</td>
 					<td class="editable">
-					    {{ form_widget(linea.ancho, { 'attr': {'class': 'ta_right iancho numeric'}}) }}
+					    {{ form_widget(linea.ancho, { 'attr': {'class': 'ta_right iancho'}}) }}
 					</td>
 					<td class="editable">
 					    {{ form_widget(linea.largo, { 'attr': {'class': 'ta_right ilargo numeric'}}) }}
@@ -73,7 +73,7 @@
 					</td>
 					<td class="total">
 						<span class="ta_right totallinea">{{ linea.importe.vars.value }}</span>
-					 {{ form_widget(linea.importe, { 'attr': {'class': 'ta_right itotal'}}) }}
+						{{ form_widget(linea.importe, { 'attr': {'class': 'ta_right itotal'}}) }}
 					 	{{ form_widget(linea.codpedido, { 'attr': {'class': 'ta_right'}}) }}
 					</td> 
 				</tr>
@@ -116,7 +116,11 @@
 	    		<div class="error-pedido">
 	    		</div>
 	    		</div>
-	    		
+	    		<div class="spreadsheet actions">
+	    		   <ul>
+	    				<li title="" style="width:115px;" class="ui-state-default ui-corner-all" style="margin-top:2px;"><span class="ui-icon ui-icon-newwin"></span><a id="clientepedido" onclick="return false;" href="#">Pedidos Cliente</a></li>
+	    			</ul>
+	    		</div>
 	    	</div>	
 			<div class="box">
 				<table cellspacing="0" class="table-totals">

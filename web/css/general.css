@@ -1,4 +1,4 @@
-	/* Layout helpers */
+/* Layout helpers */
 
 .ui-helper-hidden {
 	display:none;
@@ -458,7 +458,7 @@ ul#icons span.ui-icon {
 	/* Buttons, submit inputs */
 
 a.btn {
-	padding: .4em 1em .4em 20px;
+	padding: .5em 1em .4em 20px;
 	position:relative;
 }
 a.btn_text {
@@ -690,16 +690,16 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 
 	/* Different title styles */
 
-#page-wrapper #main-wrapper .title {
+#page-wrapper #main-wrapper .title, #lightbox-wrapper .title {
 	padding:0 15px 10px;
 	margin:0 0 15px;
 }
 
-#page-wrapper #main-wrapper .title-spacing {
+#page-wrapper #main-wrapper .title-spacing, #lightbox-wrapper .title-spacing{
 	margin-top:25px;
 }
 
-#page-wrapper #main-wrapper .title h2, #page-wrapper #main-wrapper .title h1{
+#page-wrapper #main-wrapper .title h2, #lightbox-wrapper .title h2, #page-wrapper #main-wrapper .title h1{
 	font-weight:bold;
 	font-size:1.4em;
 	padding:0 0 5px;
@@ -711,14 +711,10 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 	padding:0 0 5px;
 }
 
-	/* Main content grid */
-
 .column {
 		width:33%;
 		float:left;
 }
-
-	/* Two columns */
 
 .two-column .column, .two-column .column-fixed {
 	width:50%;
@@ -890,10 +886,11 @@ border-radius: 3px;
 }
 .ui-box-header, .ui-state-hover, .ui-box-header .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .pagination a:hover, a.btn:hover, button.ui-state-default:hover, #dashboard-buttons ul li:hover {
     background: url("images/ui-bg_highlight-soft_25_0073ea_1x100.png") repeat-x scroll 50% 50% #F6F6F6;
-    border: 1px solid #9D9D9D;
+  /*  border: 1px solid #9D9D9D;*/
     color: #333333;
     font-weight: bold;
     outline: medium none;
+        text-shadow: 0 1px 0 #FFFFFF;
 }
 
 .ui-box-header {
@@ -1101,6 +1098,17 @@ border-radius: 3px;
 .calcular-precios a {
 	font-size:13px;
 }
+.calcular-precios .botonesca{
+	float:right;
+	margin-left: 15px;
+}
+.calcular-precios .botonesca a {
+	margin-left:15px;
+	font-size: 12px;
+	}
+.calcular-precios .botonesca a:hover {
+	text-decoration:none !important;
+	}
 .calcular-precio-form{
 	width: 400px;
 	margin-top:15px;
@@ -1128,4 +1136,23 @@ border-radius: 3px;
 .calcular-precio-form input {
 	margin:5px 0 !important;
 	float:left;
+}
+.preciomi{
+	font-size: 14px; font-weoght:bold;
+	  color: #0073EA;
+}
+#albaranfilter_facturados{
+	float:left;
+	width:340px;
+	display:block;
+}
+#albaranfilter_facturados input{
+
+	width: 17px;
+	float:left;
+}
+#albaranfilter_facturados label {
+	float:left;
+		clear: none !important;
+			margin-right: 19px;
 }

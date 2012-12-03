@@ -19,7 +19,7 @@ estados:
   4: "Rechazado"
 
 incidencias_compras:
-  1: "Pérdida de un Pedido imputable a incumplimiento o Fallo de Profeedor"
+  1: "Pérdida de un Pedido imputable a incumplimiento o Fallo de Proveedor"
   2: "Materiales no entregados"
   3: "Materiales entregados con retraso"
   4: "Entrega de material defectuoso o de inferior calidad"

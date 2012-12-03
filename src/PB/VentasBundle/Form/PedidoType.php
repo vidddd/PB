@@ -21,7 +21,7 @@ class PedidoType extends AbstractType
     	}
     	 
     	$tipos = $value['tipo_material'];
-    	$estados = $value['estados_pedidos']; $cliches = $value['cliches'];
+    	$estados = $value['estados_pedidos']; $cliches = $value['cliches']; $tubos = $value['tipo_tubo'];
     	// add a normal text field, but add our transformer to it
     	
         $builder
@@ -40,7 +40,7 @@ class PedidoType extends AbstractType
             ->add('subcliente')
             ->add('cantidad', 'number', array('error_bubbling' => true))
             ->add('mtycolor', 'text', array('error_bubbling' => true))
-            ->add('tipomaterial', 'choice', array( 'choices' => $tipos, 'empty_value' => '---','error_bubbling' => true))
+            ->add('tipomaterial', 'choice', array( 'choices' => $tipos,'error_bubbling' => true))
             ->add('ancho', 'number', array('error_bubbling' => true))
             ->add('galga')
             ->add('plegado')
@@ -48,10 +48,10 @@ class PedidoType extends AbstractType
             ->add('metros')
             ->add('pesoteorico')
             ->add('tratado')
-            ->add('tipotubo')
+            ->add('tipotubo', 'choice', array( 'choices' => $tubos,'empty_value' => '','error_bubbling' => true))
             ->add('kilosimp')
-            ->add('cliche', 'choice', array( 'required' => false, 'choices' => $cliches, 'empty_value' => '---','error_bubbling' => true))
-            ->add('medidaimp')
+            ->add('cliche', 'choice', array( 'required' => false, 'choices' => $cliches, 'empty_value' => '','error_bubbling' => true))
+            ->add('medidaimp')->add('carpeta')
             ->add('soldadura')
             ->add('impresion')
             ->add('colores')

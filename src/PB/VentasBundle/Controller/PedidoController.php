@@ -84,6 +84,7 @@ class PedidoController extends Controller
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
+        $pagerfanta->setMaxPerPage(20);
         $currentPage = $this->getRequest()->get('page', 1);
         $pagerfanta->setCurrentPage($currentPage);
         $entities = $pagerfanta->getCurrentPageResults();
@@ -309,6 +310,27 @@ class PedidoController extends Controller
     		return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de pedido erróneo</span>')));
     	}
     }
+    public function buscadorPedidosClienteAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$request = $this->get('request');
+    	$query = $em->createQuery('SELECT p FROM PBVentasBundle:Pedido p WHERE p.cliente = :cliente AND p.estado != :esta ORDER BY p.fecha DESC')
+    	->setParameter('cliente', $id)->setParameter('esta', '8')->setMaxResults(10);
+    	try {
+    		$entity = $query->getResult();
+    	} catch (\Doctrine\Orm\NoResultException $e) {
+    		return $this->render('PBVentasBundle:Pedido:pedidos_cliente.html.twig', array(
+    				'error' => 'El cliente no tiene Tarifa de precios o el Código de cliente es erróneo',
+    				'entity' => ''
+    		));
+    	}
+    
+    	return $this->render('PBVentasBundle:Pedido:pedidos_cliente.html.twig', array(
+    			'entity' => $entity,
+    			'error' => '',
+    	));
+    }
+    
     public function setEstadoPedido($id, $estado){
     	if (!$estado) {
     		throw $this->createNotFoundException('Falta el estado de pedido PedidoController->setEstadoPedido().');

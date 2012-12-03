@@ -35,6 +35,7 @@ class PrecioController extends Controller
         $session = $request->getSession();
         $filterForm = $this->createForm(new PrecioFilterType());
         $em = $this->getDoctrine()->getManager();
+        
         $queryBuilder = $em->getRepository('PBVentasBundle:Precio')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {$session->remove('PrecioControllerFilter');}
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
@@ -257,18 +258,34 @@ class PrecioController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$pedido = $em->getRepository('PBVentasBundle:Pedido')->find($id);
     	$cliente = $pedido->getCliente();
+    	$request = $this->get('request');
+    	
+    	if ($request->getMethod() == 'POST'){
+    		if($request->get('preciomillar')) {
+    			$precio = $request->get('preciomillar');
+    		} else {
+    			$precio = $request->get('preciokg');
+    		}
+    		$pedido->setPrecio($precio);
+    		$em->persist($pedido); 		$em->flush();
+    		$this->get('session')->getFlashBag()->add('success', 'Precio de Pedido Actualizado');
+    		
+    		//return $this->redirect($this->generateUrl('pedido_show', array('id' => $id)));
+    		return $this->redirect($this->generateUrl('pedido'));
+    	} else {
 
-    	$query = $em->createQuery('SELECT p FROM PBVentasBundle:Precio p WHERE p.cliente = :cliente ORDER BY p.fecha DESC')
-    	->setParameter('cliente', $cliente->getId())->setMaxResults(1);
-    	try {
-    		$entity = $query->getSingleResult();
-    	} catch (\Doctrine\Orm\NoResultException $e) {
-    		throw $this->createNotFoundException('No se ha encontrado la Tarifa.');
+	    	$query = $em->createQuery('SELECT p FROM PBVentasBundle:Precio p WHERE p.cliente = :cliente ORDER BY p.fecha DESC')
+	    	->setParameter('cliente', $cliente->getId())->setMaxResults(1);
+	    	try {
+	    		$entity = $query->getSingleResult();
+	    	} catch (\Doctrine\Orm\NoResultException $e) {
+	    		throw $this->createNotFoundException('No se ha encontrado la Tarifa.');
+	    	}
+	    	$em = $this->getDoctrine()->getManager();
+	    	return $this->render('PBVentasBundle:Precio:calcular.html.twig', array(
+	    			'entity' => $entity,
+	    			'pedido' => $pedido
+	    	));
     	}
-    	$em = $this->getDoctrine()->getManager();
-    	return $this->render('PBVentasBundle:Precio:calcular.html.twig', array(
-    			'entity' => $entity,
-    			'pedido' => $pedido
-    	));
     }
 }

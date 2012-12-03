@@ -19,6 +19,10 @@
         <td class="campo">{{ form_widget(edit_form.nombre, { 'attr': {'class': 'foo'} }) }}</td><td>{{ form_errors(edit_form.nombre) }}</td>
       </tr>
       <tr>
+        <td class="label">{{ form_label(edit_form.dias, 'Dias de Pago') }}</td>
+        <td class="campo">{{ form_widget(edit_form.dias, { 'attr': {'class': 'foo'} }) }}</td><td>{{ form_errors(edit_form.dias) }}</td>
+      </tr>
+      <tr>
         <td>{{ form_label(edit_form.descripcion, 'Descripcion') }}</td>
         <td>{{ form_widget(edit_form.descripcion, { 'attr': {'cols': '40', 'rows': '10'}}) }}</td><td>{{ form_errors(edit_form.descripcion) }}</td>
       </tr>

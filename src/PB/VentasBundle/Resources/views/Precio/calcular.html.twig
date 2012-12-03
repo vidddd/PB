@@ -4,11 +4,30 @@
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
 <script>
-$(document).ready(function() { 
-    $("a").click(function () {
-		$('#preciok').val(this.rel);
-    })
-});
+$(".precioa").live('click',function(event){
+	$('#preciok').val(this.rel); $('#preciokg').val(this.rel);
+    event.preventDefault();
+  });
+  
+$("#calcular").live('click',function(event){
+	var preciom = 0;
+	if($('#preciok').val() == ''){
+		alert('Debe introducir un precio Kg'); return;
+		}
+	var ancho = $('#anchop').val();
+	var largo = $('#largop').val();
+	var galga = $('#galgap').val();
+	var precio = $('#preciok').val();
+
+	preciom = ancho * largo * galga * 0.000047 * precio;
+	preciom = roundNumber(preciom,2);
+	$('.preciomi').html(preciom);
+	$('#preciomillar').val(preciom);
+	$('#preciokg').val(precio);
+    event.preventDefault();
+    
+  });
+
 </script>
 <div class="title title-spacing ventas"><h2>Calcular Precio</h2></div>
 <div class="buscador-precios">
@@ -45,11 +64,11 @@ $(document).ready(function() {
 			  </tr>
 			  <tr>
 			    <td class="primeralinea">Precio Kg</td>
-			    <td><span><a rel="{{ entity.cam15 }}" href="">{{ entity.cam15 }}</a></span></td>
-			    <td><span><a rel="{{ entity.cam30 }}" href="#">{{ entity.cam30 }}</a></span></td>
-			    <td><span><a rel="{{ entity.cam50 }}" href="#">{{ entity.cam50 }}</a></span></td>
-			    <td><span><a rel="{{ entity.cam100 }}" href="#">{{ entity.cam100 }}</a></span></td>
-			    <td><span><a rel="{{ entity.cam100mas }}" href="#">{{ entity.cam100mas }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.cam15 }}" href="">{{ entity.cam15 }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.cam30 }}" href="#">{{ entity.cam30 }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.cam50 }}" href="#">{{ entity.cam50 }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.cam100 }}" href="#">{{ entity.cam100 }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.cam100mas }}" href="#">{{ entity.cam100mas }}</a></span></td>
 			  </tr>
 			</tbody></table>
 			<div class="adicio">
@@ -70,24 +89,24 @@ $(document).ready(function() {
 			  </tr>
 			  <tr> 
 				<td class="primeralinea">Pedido -150 Kg</td>
-			    <td><span><a rel="{{ entity.espemenos150s }}" href="#">{{ entity.espemenos150s }}</a></span></td>
-			    <td><span><a rel="{{ entity.espemenos150i }}" href="#">{{ entity.espemenos150i }}</a></span></td>
-			    <td><span><a rel="{{ entity.bobmenos150s }}" href="#">{{ entity.bobmenos150s }}</a></span></td>
-			    <td><span><a rel="{{ entity.bobmenos150i }}" href="#">{{ entity.bobmenos150i }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.espemenos150s }}" href="#">{{ entity.espemenos150s }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.espemenos150i }}" href="#">{{ entity.espemenos150i }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.bobmenos150s }}" href="#">{{ entity.bobmenos150s }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.bobmenos150i }}" href="#">{{ entity.bobmenos150i }}</a></span></td>
 			  </tr>
 			    <tr> 
 				<td class="primeralinea">Pedido +150 Kg</td>
-			    <td><span><a rel="{{ entity.espemas150s }}" href="#">{{ entity.espemas150s }}</a></span></td>
-			    <td><span><a rel="{{ entity.espemas150i }}" href="#">{{ entity.espemas150i }}</a></span></td>
-			    <td><span><a rel="{{ entity.bobmas150s }}" href="#">{{ entity.bobmas150s }}</a></span></td>
-			    <td><span><a rel="{{ entity.bobmas150i }}" href="#">{{ entity.bobmas150i }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.espemas150s }}" href="#">{{ entity.espemas150s }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.espemas150i }}" href="#">{{ entity.espemas150i }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.bobmas150s }}" href="#">{{ entity.bobmas150s }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.bobmas150i }}" href="#">{{ entity.bobmas150i }}</a></span></td>
 			  </tr>
 			    <tr> 
 				<td class="primeralinea">Pedido +500 Kg</td>
-			    <td><span><a rel="{{ entity.espemas500s }}" href="#">{{ entity.espemas500s }}</a></span></td>
-			    <td><span><a rel="{{ entity.espemas500i }}" href="#">{{ entity.espemas500i }}</a></span></td>
-			    <td><span><a rel="{{ entity.bobmas500s }}" href="#">{{ entity.bobmas500s }}</a></span></td>
-			    <td><span><a rel="{{ entity.bobmas500i }}" href="#">{{ entity.bobmas500i }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.espemas500s }}" href="#">{{ entity.espemas500s }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.espemas500i }}" href="#">{{ entity.espemas500i }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.bobmas500s }}" href="#">{{ entity.bobmas500s }}</a></span></td>
+			    <td><span><a class="precioa" rel="{{ entity.bobmas500i }}" href="#">{{ entity.bobmas500i }}</a></span></td>
 			  </tr>
 			</tbody></table>
 	<div id="invoice-lines">
@@ -109,7 +128,7 @@ $(document).ready(function() {
 					<td class="editable"><span>{{ linea.concepto }}</span></td>
 					<td class="editable"><span>{{ linea.medida }}</span></td>
 					<td class="editable"><span>{{ linea.galga }}</span></td>
-					<td class="editable"><span><a rel="{{ linea.precio }}" href="#">{{ linea.precio }}</a></span></td>
+					<td class="editable"><span><a class="precioa" rel="{{ linea.precio }}" href="#">{{ linea.precio }}</a></span></td>
 				</tr>
   			   {% endfor %}
 			</tbody>
@@ -126,7 +145,7 @@ $(document).ready(function() {
 						<td class="primer"><label>Largo</label></td><td><input type="text" class="small numeric" id="largop" name="largop" value="{{ pedido.largoc }}"/></td>
 					</tr>
 					<tr>	
-						<td class="primer"><label>Galga</label></td><td><input type="text" class="small numeric" id="galgap" name="anchop" value="{{ pedido.galga }}" /></td>
+						<td class="primer"><label>Galga</label></td><td><input type="text" class="small numeric" id="galgap" name="galgap" value="{{ pedido.galga }}" /></td>
 					</tr>
 					<tr>
 						<td class="primer"><label>Peso específico</label></td><td>0.0047</td>
@@ -135,14 +154,14 @@ $(document).ready(function() {
 						<td class="primer"><label>Precio Kg</label></td><td><input type="text" class="small numeric" id="preciok" name="preciok" /><a href="#" class="buscaprecio"></td>
 					</tr>
 					<tr>
-						<td class="primer"><label>Resultado</label></td><td></td>
+						<td class="primer"><label>Precio Millar</label></td><td style="height:30px;"><span class="preciomi"></span></td>
 					</tr>
 					<tr>
-						<td colspan="2"><button class="ui-state-default ui-corner-all">Calcular</button></td>
+						<td colspan="2">
+						<a class="btn ui-state-default ui-corner-all" href="#" id="calcular" style="float:right;">Calcular</a></td>
 					</tr>
 					<tr>
-						<td><a class="btn" href="">Guardar Precio Millar</a></td>
-						<td><a class="btn2" href="#">Guardar Precio Kg</a></td>
+
 					</tr>											
 				</table>
 		<div class="clearfix"></div>
@@ -153,81 +172,92 @@ $(document).ready(function() {
 		<table align="center" class="spreadsheet"><caption class="caption">ASA TROQUELADA</caption>
 		  <tbody><tr> 
 		    <td width="69%" class="primeralinea">Medidas entre 20x30 y 30x40</td>
-		    <td width="31%"><span><a rel="{{ entity.asa20 }}" href="#">{{ entity.asa20 }}</a></span></td>
+		    <td width="31%"><span><a class="precioa" rel="{{ entity.asa20 }}" href="#">{{ entity.asa20 }}</a></span></td>
 		  </tr>
 		  <tr> 
 		    <td width="69%" class="primeralinea">Medidas entre 30x40 y 35x50</td>
-		    <td><span><a rel="{{ entity.asa30 }}" href="#">{{ entity.asa30 }}</a></span></td>
+		    <td><span><a class="precioa" rel="{{ entity.asa30 }}" href="#">{{ entity.asa30 }}</a></span></td>
 		  </tr>
 		  <tr> 
 		    <td width="69%" class="primeralinea">Medidas superiores a 35x50</td>
-		    <td><span><a rel="{{ entity.asa35 }}" href="#">{{ entity.asa35 }}</a></span></td>
+		    <td><span><a class="precioa" rel="{{ entity.asa35 }}" href="#">{{ entity.asa35 }}</a></span></td>
 		  </tr>
 		</tbody></table>
 		<table class="spreadsheet"><caption class="caption">MEDIDAS ESPECIALES PEQUEÑAS</caption>
 		  <tbody><tr> 
 		    <td width="69%" class="primeralinea">Medida pequeña 10 y 12</td>
-		    <td width="31%"><span><a rel="{{ entity.especiales10 }}" href="#">{{ entity.especiales10 }}</a></span></td>
+		    <td width="31%"><span><a class="precioa" rel="{{ entity.especiales10 }}" href="#">{{ entity.especiales10 }}</a></span></td>
 		  </tr>
 		  <tr> 
 		    <td width="69%" class="primeralinea">Medida pequeña 15</td>
-		    <td><span><a rel="{{ entity.especiales15 }}" href="#">{{ entity.especiales15 }}</a></span></td>
+		    <td><span><a class="precioa" rel="{{ entity.especiales15 }}" href="#">{{ entity.especiales15 }}</a></span></td>
 		  </tr>
 		</tbody></table>
 		<table class="spreadsheet"><caption class="caption">BOLLERIA</caption>
 			  <tbody><tr> 
 			    <td width="69%" class="primeralinea"><div align="center">Precios para Bolleria o similares</div></td>
-			    <td width="31%"><span><a rel="{{ entity.bolleria }}" href="#">{{ entity.bolleria }}</a></span></td>
+			    <td width="31%"><span><a class="precioa" rel="{{ entity.bolleria }}" href="#">{{ entity.bolleria }}</a></span></td>
 			  </tr>
 			</tbody></table>
 		<table class="spreadsheet"><caption class="caption">POLIPROPILENO</caption>
 		  <tbody><tr> 
 		    <td width="69%" class="primeralinea">Bobinas</td>
-		    <td width="31%"><span><a rel="{{ entity.ppbob }}" href="#">{{ entity.ppbob }}</a></span></td>
+		    <td width="31%"><span><a class="precioa" rel="{{ entity.ppbob }}" href="#">{{ entity.ppbob }}</a></span></td>
 		  </tr>
 		  <tr> 
 		    <td class="primeralinea">Bolsa sin impresión</td>
-		    <td><span><a rel="{{ entity.ppbolsasin }}" href="#">{{ entity.ppbolsasin }}</a></span></td>
+		    <td><span><a class="precioa" rel="{{ entity.ppbolsasin }}" href="#">{{ entity.ppbolsasin }}</a></span></td>
 		  </tr>
 		  <tr> 
 		    <td width="69%" class="primeralinea">Bolsa impresa, medida pequeña</td>
-		    <td><span><a rel="{{ entity.ppbolsapeque }}" href="#">{{ entity.ppbolsapeque }}</a></span></td>
+		    <td><span><a class="precioa" rel="{{ entity.ppbolsapeque }}" href="#">{{ entity.ppbolsapeque }}</a></span></td>
 		  </tr>
 		  <tr> 
 		    <td width="69%" class="primeralinea">Bolsa impresa, medida grande</td>
-		    <td><span><a rel="{{ entity.ppbolsagrande }}" href="#">{{ entity.ppbolsagrande }}</a></span></td>
+		    <td><span><a class="precioa" rel="{{ entity.ppbolsagrande }}" href="#">{{ entity.ppbolsagrande }}</a></span></td>
 		  </tr>
 		</tbody></table>
 		<table class="spreadsheet"><caption class="caption">POLIPROPILENO MICROPERFORADO</caption>
 		  <tbody><tr> 
 		    <td width="69%" class="primeralinea">Bobinas</td>
-		    <td><span><a rel="{{ entity.ppmbob }}" href="#">{{ entity.ppmbob }}</a></span></td>
+		    <td><span><a class="precioa" rel="{{ entity.ppmbob }}" href="#">{{ entity.ppmbob }}</a></span></td>
 		  </tr>
 		  <tr> 
 		    <td width="69%" class="primeralinea">Bobina impresa</td>
-		    <td><span><a rel="{{ entity.ppmbobi }}" href="#">{{ entity.ppmbobi }}</a></span></td>
+		    <td><span><a class="precioa" rel="{{ entity.ppmbobi }}" href="#">{{ entity.ppmbobi }}</a></span></td>
 		  </tr>
 		  <tr> 
 		    <td width="69%" class="primeralinea">Bolsa sin impresión</td>
-		    <td><span><a rel="{{ entity.ppmsin }}" href="#">{{ entity.ppmsin }}</a></span></td>
+		    <td><span><a class="precioa" rel="{{ entity.ppmsin }}" href="#">{{ entity.ppmsin }}</a></span></td>
 		  </tr>
 		  <tr> 
 		    <td width="69%" class="primeralinea">Bolsa impresa</td>
-		    <td><span><a rel="{{ entity.ppmim }}" href="#">{{ entity.ppmim }}</a></span></td>
+		    <td><span><a class="precioa" rel="{{ entity.ppmim }}" href="#">{{ entity.ppmim }}</a></span></td>
 		  </tr>
 		</tbody></table>
 		<table class="spreadsheet"><caption class="caption">LAMINA</caption>
 		  <tbody><tr> 
 		    <td width="69%" class="primeralinea">Lamina impresa</td>
-		    <td width="31%"><span><a rel="{{ entity.laminaim }}" href="#">{{ entity.laminaim }}</a></span></td>
+		    <td width="31%"><span><a class="precioa" rel="{{ entity.laminaim }}" href="#">{{ entity.laminaim }}</a></span></td>
 		  </tr>
 		  <tr> 
 		    <td width="69%" class="primeralinea">Lamina sin impresión</td>
-		    <td><span><a rel="{{ entity.laminasin }}" href="#">{{ entity.laminasin }}</a></span></td>
+		    <td><span><a class="precioa" rel="{{ entity.laminasin }}" href="#">{{ entity.laminasin }}</a></span></td>
 		  </tr>
 		</tbody></table>
 	</div>
+
 <div class="clearfix"></div>
+	<div class="botonesca">
+	<form action="{{ path('calcular_precio', { 'id': pedido.id }) }}" novalidate="novalidate" method="post" class="botonesca">
+		<button class="ui-state-default ui-corner-all">Guardar Precio Millar</button>
+		<input type="hidden" id="preciomillar" name="preciomillar" value="" />
+	</form>
+	<form action="{{ path('calcular_precio', { 'id': pedido.id }) }}" novalidate="novalidate" method="post" class="botonesca">
+		<button class="ui-state-default ui-corner-all">Guardar Precio Kg</button>
+		<input type="hidden" id="preciokg" name="preciokg" value="" />
+	</form>
+	</div>
 </div>
 </div>
     <div class="float-left volver">

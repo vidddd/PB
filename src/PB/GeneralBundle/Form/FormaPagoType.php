@@ -12,7 +12,7 @@ class FormaPagoType extends AbstractType
     {
         $builder
             ->add('nombre' , 'text', array('required' => true))
-            ->add('descripcion')
+            ->add('descripcion')->add('dias')
           //  ->add('formapagos')
         ;
     }

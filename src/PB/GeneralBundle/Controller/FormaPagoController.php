@@ -86,6 +86,7 @@ class FormaPagoController extends Controller
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
+        $pagerfanta->setMaxPerPage(100);
         $currentPage = $this->getRequest()->get('page', 1);
         $pagerfanta->setCurrentPage($currentPage);
         $entities = $pagerfanta->getCurrentPageResults();

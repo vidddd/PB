@@ -331,4 +331,32 @@ class FormaPago
     {
         return $this->formapagos4;
     }
+    /**
+     * @var integer $dias
+     */
+    private $dias;
+
+
+    /**
+     * Set dias
+     *
+     * @param integer $dias
+     * @return FormaPago
+     */
+    public function setDias($dias)
+    {
+        $this->dias = $dias;
+    
+        return $this;
+    }
+
+    /**
+     * Get dias
+     *
+     * @return integer 
+     */
+    public function getDias()
+    {
+        return $this->dias;
+    }
 }

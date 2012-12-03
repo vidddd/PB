@@ -1,0 +1,51 @@
+{% extends '::layout_ajax.html.twig' %}
+
+{% block title "Buscador de Pedidos Cliente" %}
+
+{% block content %}
+<script>
+$(document).ready(function() { 
+    $("a").click(function () {
+    	var pedidoid = this.rel;
+    	$('#codpedido', window.parent.document).val(pedidoid);
+	    window.parent.getPedido();
+        window.parent.$.prettyPhoto.close();
+        return;
+    })
+});
+</script>
+<div id="pedido">
+<div id="lightbox-wrapper" style="width:750px;">
+	<div class="buscador-pedidos-cliente">
+	<div class="title title-spacing ventas"><h2>Pedidos de Cliente</h2></div> 
+	    {% if error %}
+	    	<h2 class="errorprecios" style="color:red;">{{ error }}</h2>
+	    {% endif %}
+	    
+	<div class="hastable">
+	    <table class="records_list">
+	    <thead>
+	        <tr>
+	            <th width="25">Código Pedido</th>
+	            <th>Subcliente</th>
+	            <th>Fecha</th>
+	            <th>Cliente</th>
+	            <th>Estado</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    {% for linea in entity %}
+	        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+	            <td><a class="pedidoid" rel="{{ linea.id }}" href="#">{{ linea.id }}</a></td>
+	            <td>{{ linea.subcliente }}</td>
+	            <td>{{ linea.fecha|date('d.m.Y') }}</td>
+	            <td>{{ linea.cliente }}   </td>
+	        	<td><span class="estadoc estado{{ linea.estado }}">{{ linea.estadoText }}</span></td>
+	         </tr>
+	    {% endfor %}
+	    </tbody>
+	</table>
+	    </div>
+	</div>
+</div></div>
+{% endblock %}

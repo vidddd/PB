@@ -38,6 +38,10 @@ $(document).ready(function() {
 			<td>{{ form_widget(form.fecha_cobro, { 'attr': {'class': 'date small'}}) }}</td>
 		</tr>
 		<tr>
+			<td>{{ form_label(form.formapago_factura, null, { 'label': 'Forma de Pago', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.formapago_factura, { 'attr': {'class': 'small hiva'}}) }}</td>
+		</tr>
+		<tr>
 			<td>{{ form_label(form.estado, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}</td>
 			<td>{{ form_widget(form.estado, { 'attr': {'class': 'small hiva'}}) }}</td>
 		</tr>
