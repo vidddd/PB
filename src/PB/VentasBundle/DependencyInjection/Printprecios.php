@@ -21,7 +21,7 @@ class Printprecios {
 			throw $this->createNotFoundException('No se puede encontrar el pedido.');
 		}
 
-		$pdf = new \FPDF_Fpdf;
+		$pdf = new \FPDF_FPDF;
 		$pdf->AddPage();$pdf->Ln();$pdf->Ln();
 		
 		$pdf->SetFillColor(230,230,230);$pdf->SetTextColor(0);$pdf->SetDrawColor(0,0,0);$pdf->SetLineWidth(.2);

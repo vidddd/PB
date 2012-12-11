@@ -1,0 +1,98 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Buscador de Precios en facturas" %}
+
+{% block content %}
+<div class="title title-spacing ventas">
+					<h2>Precios en Facturas</h2>
+</div>        
+    <div class="span2">
+        {% if form_errors(busForm) %}
+        <div class="response-msg notice iu-corner-all"><span>
+            {{ form_errors(busForm) }}</span>
+        </div>
+        {% endif %}
+        &nbsp;
+    </div>
+	<div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
+	    <div class="portlet-content">
+			<form action="{{ path('precio_buscador_facturas') }}" method="post" {{ form_enctype(busForm) }} novalidate="novalidate">
+				<table id="form-alta">
+	   				<tbody>		
+	                    <tr>
+	        				<td class="label">{{ form_label(busForm.cliente, 'Código Cliente') }}</td>
+	        				<td class="campo">{{ form_widget(busForm.cliente, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': '' , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a></td><td>{{ form_errors(busForm.cliente) }}</td>
+	      				<tr>
+	         			<tr>
+	        				<td class="label">{{ form_label(busForm.codfactura, 'Código Factura') }}</td>
+	        				<td class="campo">{{ form_widget(busForm.codfactura, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(busForm.codfactura) }}</td>
+	      				<tr>
+	     	         	<tr>
+	        				<td class="label">{{ form_label(busForm.codpedido, 'Código Pedido') }}</td>
+	        				<td class="campo">{{ form_widget(busForm.codpedido, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(busForm.codpedido) }}</td>
+	      				<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(busForm.concepto, 'Concepto') }}</td>
+	        				<td class="campo">{{ form_widget(busForm.concepto, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(busForm.concepto) }}</td>
+	      				<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(busForm.ancho, 'Ancho') }}</td>
+	        				<td class="campo">{{ form_widget(busForm.ancho, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(busForm.ancho) }}</td>
+	      				<tr>
+	            </tbody></table>
+                <p class="botones-buscador">
+                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>   
+                </p>
+				 {{ form_widget(busForm._token) }}</form>
+		</div><div class="clear"></div>
+	</div>
+
+<div class="clearfix"></div>
+<div class="hastable">
+    <table class="records_list">
+    <thead>
+        <tr>
+            <th width="25">Código Pedido</th>
+            <th>Cliente</th>
+            <th>Concepto</th>
+            <th>Ancho</th>
+            <th>Largo</th>
+            <th>Galga</th>
+            <th>Precio</th>
+            <th>Cod. Factura</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for linea in entities %}
+        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+            <td>{{ linea.referencia }}</td>
+            <td>{{ linea.factura.cliente }}</td>
+            <td><b>{{ linea.descripcion }}</b></td>
+            <td>{{ linea.ancho }}</td>
+            <td>{{ linea.largo }}</td>
+            <td>{{ linea.galga }}</td>
+            <td><span class="buscador-facturas-precio"><b>{{ linea.precio }}</b></span></td>
+            <td><a rel="prettyPhoto[iframe]" href="{{ path('factura_show_lightbox', { 'id': linea.factura.id , 'iframe': 'true', 'width': 760, 'height': 600 }) }}" title="">{{ linea.factura.id }}</a></td>
+            <td>{{ linea.factura.fecha|date('d.m.Y') }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    </div>
+
+    <div class="span4">
+    {{ pagerHtml|raw }}
+    <form id="form1" name="form1" method="post" action="{{ path('precio_buscador_facturas') }}"> 
+    <div class="dataTables_length"><label>Mostrar 
+    	<select name="cuantos" id="cuantos" onchange="this.form.submit()" size="1">   		
+        {% for item in cuantos %}
+                <option value="{{ item }}" {% if item == entradas %} selected="selected" {% endif %}>{{ item }}</option>
+        {% endfor %}
+        </ul>
+    	</select></label>
+    </div>
+    </form>
+    </div>
+{% endblock %}

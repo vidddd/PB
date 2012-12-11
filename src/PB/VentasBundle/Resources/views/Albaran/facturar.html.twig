@@ -1,6 +1,6 @@
 {% extends '::layout.html.twig' %}
 
-{% block title "" %}
+{% block title "Facturar Albaran" %}
 {% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
 
 {% block content %}
@@ -8,4 +8,5 @@
 			{% include 'PBVentasBundle:Albaran:form-facturar.html.twig' with { 'form' : form } %}
     </div>
 	<div class="clearfix"></div>
+	{% include 'PBVentasBundle:Cliente:js_get_cliente.html.twig' %}
 {% endblock %}

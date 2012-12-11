@@ -27,7 +27,7 @@ $(document).ready(function() {
 		slideshow: 5000, /* false OR interval time in ms */
 		autoplay_slideshow: false, /* true/false */
 		opacity: 0.50, /* Value between 0 and 1 */
-		show_title: true, /* true/false */
+		show_title: false, /* true/false */
 		allow_resize: true, /* Resize the photos bigger than viewport. true/false */
 		default_width: 500,
 		default_height: 344,
@@ -36,7 +36,7 @@ $(document).ready(function() {
 		horizontal_padding: 20, /* The padding on each side of the picture */
 		hideflash: false, /* Hides all the flash object on a page, set to TRUE if flash appears over prettyPhoto */
 		wmode: 'opaque', /* Set the flash wmode attribute */
-		autoplay: true, /* Automatically start videos: True/False */
+		autoplay: false, /* Automatically start videos: True/False */
 		modal: false, /* If set to true, only the close button will close the window */
 		deeplinking: true, /* Allow prettyPhoto to update the url to enable deeplinking. */
 		overlay_gallery: true, /* If set to true, a gallery will overlay the fullscreen image on mouse over */
@@ -269,3 +269,50 @@ $(document).ready(function() {
 		return "check_none"; }
 		}
 		*/
+    function stringToDate(dateString)
+    {
+        try
+        {
+            var matches = dateString.match(/([0-9]{4})\-([0-9]{2})\-([0-9]{2})/);
+            if(isValidDate(matches[1], matches[2], matches[3]) === false)
+            {
+                return false;
+            }
+
+            return new Date(matches[1], parseInt(matches[2], 10)-1, parseInt(matches[3], 10));
+        }
+        catch(e)
+        {
+            return false;
+        }
+    }
+
+    /**
+     * Return whether the supplied date components form the expected date
+     * @param {String} year
+     * @param {String} month
+     * @param {String} day
+     * @returns {Boolean} True if the date components match the date values in Date object
+     */
+    function isValidDate(year, month, day)
+    {
+        var dt = new Date(parseInt(year, 10), parseInt(month, 10)-1, parseInt(day, 10));
+        if(dt.getDate() != parseInt(day, 10) || dt.getMonth() != (parseInt(month, 10)-1) || dt.getFullYear() != parseInt(year, 10))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+
+    function dateToYYYYMMDD(dateObj)
+    {
+        var mm = dateObj.getMonth() + 1;
+        mm = (mm < 10) ? '0' + mm : mm;
+        var dd = dateObj.getDate();
+        dd = (dd < 10) ? '0' + dd : dd;
+        var yyyy = dateObj.getFullYear();
+        var date = yyyy + '-' + mm + '-' + dd;
+        return date;
+    }

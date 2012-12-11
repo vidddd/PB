@@ -116,9 +116,7 @@ class FacturaController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('PBVentasBundle:Factura')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Factura entity.');
         }
@@ -129,7 +127,22 @@ class FacturaController extends Controller
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
-
+    
+    public function showLightboxAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	$entity = $em->getRepository('PBVentasBundle:Factura')->find($id);
+    	if (!$entity) {
+    		throw $this->createNotFoundException('Unable to find Factura entity.');
+    	}
+    
+    	$deleteForm = $this->createDeleteForm($id);
+    
+    	return $this->render('PBVentasBundle:Factura:show-lightbox.html.twig', array(
+    			'entity'      => $entity,
+    			'delete_form' => $deleteForm->createView(),        ));
+    }
     /**
      * Displays a form to create a new Factura entity.
      *

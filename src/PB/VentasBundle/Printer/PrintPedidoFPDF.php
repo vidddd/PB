@@ -31,7 +31,9 @@ class PrintPedidoFPDF {
 		
 		$pdf->SetFillColor(255,255,255);$pdf->SetTextColor(0);$pdf->SetDrawColor(0,0,0);$pdf->SetLineWidth(.2);$pdf->SetFont('Arial','B',20);
 		
-		$pdf->Cell(40,65,'PEDIDO');	$pdf->SetX(10); $pdf->SetFont('Arial','B',9); $pdf->Cell(95); $pdf->Cell(80,4,"",'LRT',0,'L',1); $pdf->Ln(4); $pdf->Cell(95);
+		//$pdf->Cell(20,65,'PEDIDO');	
+		$pdf->SetX(10); 
+		$pdf->SetFont('Arial','B',9); $pdf->Cell(95); $pdf->Cell(80,4,"",'LRT',0,'L',1); $pdf->Ln(4); $pdf->Cell(95);
 		$pdf->Cell(80,4,utf8_decode($entity->getCliente()->getNombre()),'LR',0,'L',1);$pdf->Ln(4);$pdf->Cell(95);
 		$pdf->Cell(80,4,utf8_decode($entity->getCliente()->getDireccion()),'LR',0,'L',1);
 		$pdf->Ln(4);
@@ -39,18 +41,21 @@ class PrintPedidoFPDF {
 		$pdf->Cell(95);
 		$pdf->Cell(80,4,utf8_decode($entity->getCliente()->getCp()) . "  " . utf8_decode($entity->getCliente()->getLocalidad()) . "  (" . utf8_decode($entity->getCliente()->getProvinciaCliente()) . ")",'LR',0,'L',1);		$pdf->Ln(4);$pdf->Cell(95);
 		$pdf->Cell(80,4,"Tlfno: " . $entity->getCliente()->getTelefono() . "  " . "Fax: " . utf8_decode($entity->getCliente()->getFax()),'LR',0,'L',1);
-		$pdf->Ln(4);
+		$pdf->Ln(4);$pdf->Cell(95); $pdf->Cell(80,4,"",'LRB',0,'L',1); 
 		
-		$pdf->Cell(95); $pdf->Cell(80,4,"",'LRB',0,'L',1); $pdf->Ln(10); $pdf->SetFillColor(200,200,200); $pdf->SetTextColor(0); $pdf->SetDrawColor(0,0,0); $pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10); 	$pdf->SetY(50);	$pdf->Cell(30);
+		$pdf->Ln(10); $pdf->SetFillColor(200,200,200); $pdf->SetTextColor(0); $pdf->SetDrawColor(0,0,0); $pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10); 	
+		$pdf->SetY(50);	$pdf->Cell(1);
 		$pdf->Cell(55,4,"SUBCLIENTE",1,0,'C',1);
+		$pdf->Cell(30,4,"COMERCIAL",1,0,'C',1);
 		$pdf->Cell(30,4,"NIF",1,0,'C',1);
 		$pdf->Cell(25,4,"Cod. Clien",1,0,'C',1);
 		$pdf->Cell(30,4,"Fecha",1,0,'C',1);
 		$pdf->Cell(20,4,utf8_decode("Nº Ped."),1,0,'C',1);		$pdf->Ln(4);
 		
-		$pdf->Cell(30);	$pdf->SetFillColor(250,250,250);$pdf->SetTextColor(0);$pdf->SetDrawColor(0,0,0);$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(1);	$pdf->SetFillColor(250,250,250);$pdf->SetTextColor(0);$pdf->SetDrawColor(0,0,0);$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);
 		
 		$pdf->Cell(55,8,utf8_decode($entity->getSubcliente()),1,0,'C',1);
+		$pdf->Cell(30,8,$entity->getCliente()->getComercialcliente(),1,0,'C',1);
 		$pdf->Cell(30,8,$entity->getCliente()->getNif(),1,0,'C',1);
 		$pdf->Cell(25,8,$entity->getCliente()->getId(),1,0,'C',1);
 		$pdf->Cell(30,8,$entity->getfecha()->format('d/m/Y'),1,0,'C',1);
@@ -80,7 +85,7 @@ class PrintPedidoFPDF {
 		$pdf->Cell(30,7,"MAT Y COLOR:",'L',0,'C',1);
 		$pdf->Cell(32,7,$entity->getMtycolor(),'R',0,'L',1);
 		$pdf->Cell(30,7,"CLICHE:",'L',0,'C',1);
-		$pdf->Cell(32,7,$entity->getCliche(),'R',0,'L',1);
+		$pdf->Cell(32,7,$entity->getClicheText(),'R',0,'L',1);
 		$pdf->Cell(30,7,"CANTIDAD:",'L',0,'C',1);
 		$pdf->Cell(32,7,$cac,'R',0,'L',1);
 		$pdf->Ln();

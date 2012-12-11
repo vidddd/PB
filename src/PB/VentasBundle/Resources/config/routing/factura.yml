@@ -6,6 +6,10 @@ factura_show:
     pattern:  /{id}/show
     defaults: { _controller: "PBVentasBundle:Factura:show" }
 
+factura_show_lightbox:
+    pattern:  /{id}/showlightbox
+    defaults: { _controller: "PBVentasBundle:Factura:showLightbox" }
+
 factura_prenew:
     pattern:  /prenew
     defaults: { _controller: "PBVentasBundle:Factura:prenew" }

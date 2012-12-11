@@ -6,6 +6,14 @@
 	   $(".buscadorclienteAlbaran").change(function() {
 		   getNombreclienteAlbaran();
 		    });
+	   $(".buscadorclienteFactura").change(function() {
+		   getNombreclienteFactura();
+
+		    });
+	   $(".buscadorclienteFacturab").change(function() {
+		   getNombreclienteFacturab();
+
+		    });
 	});
 	function getNombrecliente(){
 		var id = $(".buscadorid").val();
@@ -28,7 +36,80 @@
 		          
 	       });//It is silly. But you should not write 'json' or any thing as the fourth parameter. It should be undefined. I'll explain it futher down
 		}
+	}
+
+	function getNombreclienteFactura(){
+		var id = $(".buscadorid").val();
+		if(id){
+	       $.ajax({
+				url: "{{ path('get_nombre_cliente') }}",
+				type: "post",
+				dataType: "json",
+				data: {id: id},
+				success: function(resp){
+					$('.nombre-cliente').html(resp.nombre).show();
+					$('#factura_formapago_factura').val(resp.fp);
+					if (resp.dias != null) {
+						var fechacobro = $('#factura_fecha_cobro').val();
+						var d = stringToDate(fechacobro);
+					    d.setDate(d.getDate()+resp.dias);
+					    $('#factura_fecha_cobro').val(dateToYYYYMMDD(d))
+						$('.diascobro').html('<p>+'+resp.dias+' Dias').show();
+						}
+					if(resp.descuento != null) 
+						{	
+						$('.hdescuento').val(resp.descuento);
+						}
+					if(resp.recargo){
+						$('.hrecargo').val('1');
+					} else { $('.hrecargo').val('0'); }
+				},
+				error: function(jqXHR,estado,error){
+				//	alert(estado);
+				//	alert(error);
+				},
+				complete: function(jqXHR,estado){},
+				timeout: 10000
+		          
+	       });//It is silly. But you should not write 'json' or any thing as the fourth parameter. It should be undefined. I'll explain it futher down
 		}
+	}
+	function getNombreclienteFacturab(){
+		var id = $(".buscadorid").val();
+		if(id){
+	       $.ajax({
+				url: "{{ path('get_nombre_cliente') }}",
+				type: "post",
+				dataType: "json",
+				data: {id: id},
+				success: function(resp){
+					$('.nombre-cliente').html(resp.nombre).show();
+					$('#facturab_formapago_factura').val(resp.fp);
+					if (resp.dias != null) {
+						var fechacobro = $('#facturab_fecha_cobro').val();
+						var d = stringToDate(fechacobro);
+					    d.setDate(d.getDate()+resp.dias);
+					    $('#facturab_fecha_cobro').val(dateToYYYYMMDD(d))
+						$('.diascobro').html('<p>+'+resp.dias+' Dias').show();
+						}
+					if(resp.descuento != null) 
+						{	
+						$('.hdescuento').val(resp.descuento);
+						}
+					if(resp.recargo){
+						$('.hrecargo').val('1');
+					} else { $('.hrecargo').val('0'); }
+				},
+				error: function(jqXHR,estado,error){
+				//	alert(estado);
+				//	alert(error);
+				},
+				complete: function(jqXHR,estado){},
+				timeout: 10000
+		          
+	       });//It is silly. But you should not write 'json' or any thing as the fourth parameter. It should be undefined. I'll explain it futher down
+		}
+	}
 	function getNombreclienteAlbaran(){
 		var id = $(".buscadorid").val();
 		if(id){
@@ -46,8 +127,7 @@
 						}
 					if(resp.recargo){
 						$('.hrecargo').val('1');
-						} else { $('.hrecargo').val('0');
-							}
+					} else { $('.hrecargo').val('0'); }
 				},
 				error: function(jqXHR,estado,error){
 				//	alert(estado);

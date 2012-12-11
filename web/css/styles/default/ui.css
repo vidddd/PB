@@ -658,6 +658,7 @@ div.totals textarea:focus{
 #pedido-compra-ver {
    /* border: 1px solid #E1E1E1; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);  padding: 54px 40px 72px;   position: relative;   z-index: 0;*/
 	color:#666666;
+	font-size: 13px;
 }
 #pedido-compra-ver table {
     border: 1px solid #DDDDDD;
@@ -667,7 +668,7 @@ div.totals textarea:focus{
     overflow: hidden;
 }
 #pedido-compra-ver table td, #pedido-compra-ver table th  {
-    border-right: 1px solid #DDDDDD;
+   /* border-right: 1px solid #DDDDDD;*/
     border-bottom: 1px solid #DDDDDD;
     padding: 4px 6px;
 }
@@ -694,13 +695,13 @@ div.totals textarea:focus{
 	float:right;
 }
 #pedido-compra-ver #obs{
-	width:40%;
+	width:60%;
 }
 #pedido-compra-ver #obs p{
 	font-size:13px; padding:0;
 }
 #albaran-ver #cab-lineas{
-	font-size:11px;
+	font-size:12px;
 }
 #albaran-ver #cab-lineas .label3{
 	font-size:11px;

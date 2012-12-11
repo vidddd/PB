@@ -44,3 +44,8 @@ precio_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "PBVentasBundle:Precio:delete" }
     requirements: { _method: post }
+
+precio_buscador_facturas:
+    pattern:  /buscadorfacturas
+    defaults: { _controller: "PBVentasBundle:Precio:buscadorFacturas" }
+

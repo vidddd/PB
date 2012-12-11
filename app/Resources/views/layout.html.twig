@@ -11,12 +11,12 @@
 		</div>
 		<ul id="navigation" class="sf-navbar">
 			<li><a href="{{ path('PBInicioBundle_homepage') }}">Inicio</a></li>
-			<li><a href="{{ path('pb_general_homepage', { 'name': 'aaaa' })  }}">General</a>
+			<li><a href="{{ path('pb_general_homepage')  }}">General</a>
 				<ul>
 					<li><a href="{{ path('formapago') }}">Formas de Pago</a></li>
 				</ul> 
 			</li>
-			<li><a href="{{ path('PBComprasBundle_homepage', { 'name': 'aaaa' })  }}">Compras</a>
+			<li><a href="{{ path('PBComprasBundle_homepage')  }}">Compras</a>
 				<ul>
 					<li><a href="{{ path('proveedor') }}">Proveedores</a></li>
 					<li><a href="{{ path('compras_pedidocompra') }}">Pedido Compra</a>
@@ -26,7 +26,7 @@
 					</li> 
 				</ul>
 			</li>
-			<li><a href="{{ path('PBVentasBundle_homepage', { 'name': 'aaaa' }) }}">Ventas</a>
+			<li><a href="{{ path('PBVentasBundle_homepage') }}">Ventas</a>
 				<ul>
 					<li><a href="{{ path('comercial') }}">Comerciales</a></li>
 					<li><a href="{{ path('cliente') }}">Clientes</a></li>
@@ -39,11 +39,17 @@
 						<ul>
 								<li><a href="{{ path('albaran_prenew') }}">Nuevo Albaran</a></li>	
 						</ul>
+					</li>
 	    			<li><a href="{{ path('factura') }}">Facturas</a>
 						<ul>
 								<li><a href="{{ path('factura_prenew') }}">Nueva Factura</a></li>	
-								<li><a href="{{ path('facturab') }}">Facturas B</a></li>	
+								<li><a href="{{ path('facturab') }}">Facturas B</a>
+									<ul>
+										<li><a href="{{ path('facturab_prenew') }}">Nueva Factura</a></li>
+									</ul>
+								</li>				
 						</ul>
+					</li>
 					<li><a href="{{ path('precio') }}">Precios</a>
 				</ul>
 			</li>

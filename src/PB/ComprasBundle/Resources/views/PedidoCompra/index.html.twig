@@ -84,6 +84,16 @@
 
     <div class="span4">
     {{ pagerHtml|raw }}
+    <form id="form1" name="form1" method="post" action="{{ path('compras_pedidocompra') }}"> 
+    <div class="dataTables_length"><label>Mostrar 
+    	<select name="cuantos" id="cuantos" onchange="this.form.submit()" size="1">   		
+        {% for item in cuantos %}
+                <option value="{{ item }}" {% if item == entradas %} selected="selected" {% endif %}>{{ item }}</option>
+        {% endfor %}
+        </ul>
+    	</select></label>
+    </div>
+    </form>
     </div>
 </div>
 {% endblock %}

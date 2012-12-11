@@ -19,7 +19,7 @@ function update_price() {
 		  var dto = price * row.find('.idescuento').val() / 100;
 		  price = price - dto; 
 	  } else {
-		  var price = row.find('.iprecio').val() * row.find('.icantidad').val();
+		  var price = row.find('.iprecio').val() * row.find('.icantidad').val(); 
 	  }
 	  price = roundNumber(price,2);
 	  if(isNaN(price)){ row.find('.totallinea').html("N/A") } else {
@@ -131,6 +131,9 @@ function update_total_albaran() {
 
 //from http://www.mediacollege.com/internet/javascript/number/round.html
 function roundNumber(number,decimals) {
+    var amt = parseFloat(number);
+    return amt.toFixed(2);
+	/*
   var newString;// The new rounded number
   decimals = Number(decimals);
   if (decimals < 1) {
@@ -171,4 +174,5 @@ function roundNumber(number,decimals) {
   for(var i=0;i<decimals-decs;i++) newString += "0";
   //var newNumber = Number(newString);// make it a number if you like
   return newString; // Output the result to the form field (change for your purposes)
+  */
 }

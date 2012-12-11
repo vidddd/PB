@@ -27,6 +27,7 @@ class AppKernel extends Kernel
         	new JordiLlonch\Bundle\CrudGeneratorBundle\JordiLlonchCrudGeneratorBundle(),
             new PB\GeneralBundle\PBGeneralBundle(),
             new PB\ProduccionBundle\PBProduccionBundle(),
+            new PB\ContabilidadBundle\PBContabilidadBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -27,9 +27,16 @@ class PrintFacturaFPDF {
 			case '2':
 				$pdf = new ComunesbFPDF();
 				$tope = 45;
+				$fact = "FACTURA PROFORMA"; die;
+			break;
+			case '1':
+				$fact = "# FACTURA #";
+				$pdf = new ComunesFPDF();
 			break;
 			default:
 				$pdf = new ComunesFPDF();
+				$fact = "# FACTURA #";
+				
 		}
 
 		
@@ -37,7 +44,7 @@ class PrintFacturaFPDF {
 		
 		$pdf->SetFillColor(255,255,255); $pdf->SetTextColor(0); $pdf->SetDrawColor(0,0,0);	$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',15);
 		
-		$pdf->Cell(40,65,utf8_decode('# FACTURA #'));$pdf->SetX(10);	$pdf->SetFont('Arial','B',10);$pdf->Cell(90); $pdf->Cell(100,4,"",'LRT',0,'L',1); $pdf->Ln(4);
+		$pdf->Cell(40,65,utf8_decode($fact));$pdf->SetX(10);	$pdf->SetFont('Arial','B',10);$pdf->Cell(90); $pdf->Cell(100,4,"",'LRT',0,'L',1); $pdf->Ln(4);
 		
 		$pdf->Cell(90);	$pdf->Cell(100,4,utf8_decode($entity->getCliente()->getNombre()),'LR',0,'L',1); $pdf->Ln(4);$pdf->Cell(90);
 		$pdf->Cell(100,4,utf8_decode($entity->getCliente()->getDireccion()),'LR',0,'L',1);

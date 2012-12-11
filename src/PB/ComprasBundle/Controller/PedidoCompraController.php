@@ -29,8 +29,12 @@ class PedidoCompraController extends Controller
         
     	list($filterForm, $queryBuilder) = $this->filter();
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
+        $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');
+        $cuantos = $this->getRequest()->get('cuantos');
+        ($cuantos)? $entradas = $cuantos : $entradas = 10;
+        
         return $this->render('PBComprasBundle:PedidoCompra:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $entities, 'cuantos' => $cuantosarr, 'entradas' => $entradas,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
         ));
@@ -76,9 +80,13 @@ class PedidoCompraController extends Controller
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $currentPage = $this->getRequest()->get('page', 1);
+        $cuantos = $this->getRequest()->get('cuantos');
+        if($cuantos) {
+        	$pagerfanta->setMaxPerPage($cuantos);
+        } else { $pagerfanta->setMaxPerPage(10); }
+        
         $pagerfanta->setCurrentPage($currentPage);
         $entities = $pagerfanta->getCurrentPageResults();
-        // Paginator - route generator
         $me = $this;
         $routeGenerator = function($page) use ($me)
         {

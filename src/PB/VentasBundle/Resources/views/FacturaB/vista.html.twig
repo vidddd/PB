@@ -44,13 +44,13 @@
 
 	<table id="cab-lineas" cellspacing="0" cellpadding="0" border="0">
 		<tr>
-			<th style="width:8%;" class="label3">REFERENCIA</th>
+			<th style="width:6%;" class="label3">REFERENCIA</th>
 			<th style="width:45%;" class="label3">DESCRIPCION</th>
-			<th style="width:11%;" class="label3">ANCHO</th>
-			<th style="width:11%;" class="label3">LARGO</th>
-			<th style="width:11%;" class="label3">GALGA</th>
-			<th style="width:11%;" class="label3">CANTIDAD</th>
-			<th style="width:11%;" class="label3">PRECIO</th>
+			<th style="width:8%;" class="label3">ANCHO</th>
+			<th style="width:8%;" class="label3">LARGO</th>
+			<th style="width:8%;" class="label3">GALGA</th>
+			<th style="width:8%;" class="label3">CANTIDAD</th>
+			<th style="width:8%;" class="label3">PRECIO</th>
 			<th style="width:15%;" class="label3">TOTAL</th>
 		</tr>
 	{% for linea in entity.facturalineas %}
@@ -86,9 +86,14 @@
 		</table><div class="clearfix"></div>
 	<table id="obs" cellspacing="0" cellpadding="0" border="0">
 	<tr>
+		<th style="width:100px;" class="label3">FORMA PAGO</th>
+		<th style="width:90px;" class="label3">FECHA COBRO</th>
 		<th class="label3">OBSERVACIONES</th>
     </tr>
     <tr>
+        <td>{{ entity.formapagofactura }}</td>
+        <td>{{ entity.fechacobro| date('d/m/Y') }}</td>
+
     	<td><P>{{ entity.observaciones }}</P></td>
     </tr>
     </table>

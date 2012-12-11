@@ -370,8 +370,10 @@ class ClienteController extends Controller
 	    		$comercial = $cliente->getComercialCliente()->getNombre();
 	        else $comercial ='';
     	}
+    	$fp = $cliente->getFormapagoCliente()->getId();
+    	$dias = $cliente->getFormapagoCliente()->getDias();
         if($cliente && is_numeric($id) && $id != '') {
-    		return new Response(json_encode(array('nombre' => $cliente->getNombre(), 'comercial' => $comercial, 'descuento' => $cliente->getDescuento(), 'recargo' => $cliente->getRecargo())));
+    		return new Response(json_encode(array('nombre' => $cliente->getNombre(), 'comercial' => $comercial, 'descuento' => $cliente->getDescuento(), 'recargo' => $cliente->getRecargo(), 'fp' => $fp, 'dias' => $dias)));
         } else {
         	return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de cliente erróneo</span>')));
         }

@@ -57,7 +57,7 @@ class AlbaranFilterType extends AbstractType
                 }
             }
 
-            $event->getForm()->addError(new FormError('Filter empty'));
+            $event->getForm()->addError(new FormError('Filtros vacios'));
         };
         $builder->addEventListener(FormEvents::POST_BIND, $listener);
     }

@@ -1,10 +1,14 @@
+pb_contabilidad:
+    resource: "@PBContabilidadBundle/Resources/config/routing.yml"
+    prefix:   /contabilidad
+
 pb_produccion:
     resource: "@PBProduccionBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /produccion
 
 pb_general:
     resource: "@PBGeneralBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /general
 
 PBVentasBundle:
     resource: "@PBVentasBundle/Resources/config/routing.yml"

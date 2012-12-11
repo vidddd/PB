@@ -460,7 +460,7 @@ class AlbaranController extends Controller
         
         return $this->render('PBVentasBundle:Albaran:facturar.html.twig', array(
         			'entity' => $factura,
-        			'id' => $albaran->getId(),
+        			'id' => $albaran->getId(), 'tipo' => $albaran->getTipo(),
         			'form'   => $form->createView(),
         	));     
     }

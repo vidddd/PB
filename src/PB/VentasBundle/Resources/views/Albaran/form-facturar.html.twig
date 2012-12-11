@@ -1,21 +1,31 @@
   {% if form_errors(form) %}
           <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
           {% endif %}
+<script type="text/javascript">
+<!--
+$(document).ready(function() {
+		var tipo = $('.tipo').val();
+		if(tipo == '1'){
+		   getNombreclienteFactura();
+		}
+		if(tipo == '2'){
+			getNombreclienteFacturab();
+		}
+	});
+//-->
+</script>
 <form action="{{ path('albaran_facturar', { 'id': id }) }}" novalidate="novalidate" method="post" {{ form_enctype(form) }}>
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
 	<div class="portlet-header ui-widget-header">DATOS DE LA FACTURA </div>
 		<div class="portlet-content">
 		    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 		<table id="form-alta">
-		<tr><td></td><td></td></tr>
+		<tr><td></td><td><input type="hidden" value="{{ tipo }}" name="tipo" class="tipo"></td></tr>
 		<tr>
 			<td><label>Cliente</label></td>
-			<td><b>{{ entity.cliente }}</b></td>
+			<td><b>{{ entity.cliente }}</b><input type="hidden" value="{{ entity.cliente.id }}" name="buscadorid" class="buscadorid"></td>
 		</tr>
-		<tr>
-			<td></td>
-			<td><div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div></td>
-		</tr>
+		<tr><td></td><td></td></tr>
 		<!-- <tr>
 			<td>{{ form_label(form.tipo, null, { 'label': 'Tipo', 'label_attr': {'class': 'control-label'} }) }}</td>
 			<td>{{ form_widget(form.tipo, { 'attr': {'class': 'small'}}) }}</td>
@@ -25,12 +35,12 @@
 			<td>{{ form_widget(form.fecha, { 'attr': {'class': 'date small'}}) }}</td>
 		</tr>
 		<tr>
-			<td>{{ form_label(form.fecha_cobro, null, { 'label': 'Fecha Cobro', 'label_attr': {'class': 'control-label'} }) }}</td>
-			<td>{{ form_widget(form.fecha_cobro, { 'attr': {'class': 'date small'}}) }}</td>
+			<td>{{ form_label(form.fecha_cobro, null, { 'label': 'Fecha Cobro', 'label_attr': {'class': 'control-label', 'style': 'float:left; margin-bottom: 15px;'} }) }}</td>
+			<td>{{ form_widget(form.fecha_cobro, { 'attr': {'class': 'date small', 'style': 'float:left;'}}) }}<span class="diascobro" style="display:none;"></span></td>
 		</tr>
 		<tr>
 			<td>{{ form_label(form.formapago_factura, null, { 'label': 'Forma Pago', 'label_attr': {'class': 'control-label'} }) }}</td>
-			<td>{{ form_widget(form.formapago_factura, { 'attr': {'class': 'date small'}}) }}</td>
+			<td>{{ form_widget(form.formapago_factura, { 'attr': {'class': 'date '}}) }}</td>
 		</tr>
 		<tr>
 			<td>{{ form_label(form.estado, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}</td>

@@ -315,7 +315,7 @@ class PedidoController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$request = $this->get('request');
     	$query = $em->createQuery('SELECT p FROM PBVentasBundle:Pedido p WHERE p.cliente = :cliente AND p.estado != :esta ORDER BY p.fecha DESC')
-    	->setParameter('cliente', $id)->setParameter('esta', '8')->setMaxResults(10);
+    	->setParameter('cliente', $id)->setParameter('esta', '8');
     	try {
     		$entity = $query->getResult();
     	} catch (\Doctrine\Orm\NoResultException $e) {

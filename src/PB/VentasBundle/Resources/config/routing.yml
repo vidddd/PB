@@ -1,5 +1,5 @@
 PBVentasBundle_homepage:
-    pattern:  /ventas
+    pattern:  /
     defaults: { _controller: PBVentasBundle:Default:index }
     
 PBVentasBundle_cliente:

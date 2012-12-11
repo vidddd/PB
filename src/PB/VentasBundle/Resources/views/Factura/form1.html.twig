@@ -19,7 +19,7 @@ $(document).ready(function() {
 		<table id="form-alta">
 		<tr>
 			<td>{{ form_label(form.cliente, null, { 'label': 'Cliente', 'label_attr': {'class': 'control-label'} }) }}</td>
-			<td>{{ form_widget(form.cliente, { 'attr': {'class': 'small numeric buscadorid buscadorclienteAlbaran'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a></td>
+			<td>{{ form_widget(form.cliente, { 'attr': {'class': 'small numeric buscadorid buscadorclienteFactura'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -34,12 +34,12 @@ $(document).ready(function() {
 			<td>{{ form_widget(form.fecha, { 'attr': {'class': 'date small'}}) }}</td>
 		</tr>
 	<tr>
-			<td>{{ form_label(form.fecha_cobro, null, { 'label': 'Fecha Cobro', 'label_attr': {'class': 'control-label'} }) }}</td>
-			<td>{{ form_widget(form.fecha_cobro, { 'attr': {'class': 'date small'}}) }}</td>
+			<td>{{ form_label(form.fecha_cobro, null, { 'label': 'Fecha Cobro', 'label_attr': {'class': 'control-label', 'style': 'float:left; margin-bottom: 15px;'} }) }}</td>
+			<td>{{ form_widget(form.fecha_cobro, { 'attr': {'class': 'date small', 'style': 'float:left;'}}) }}<span class="diascobro" style="display:none;"></span></td>
 		</tr>
 		<tr>
 			<td>{{ form_label(form.formapago_factura, null, { 'label': 'Forma de Pago', 'label_attr': {'class': 'control-label'} }) }}</td>
-			<td>{{ form_widget(form.formapago_factura, { 'attr': {'class': 'small hiva'}}) }}</td>
+			<td>{{ form_widget(form.formapago_factura, { 'attr': {'class': 'hformapago'}}) }}</td>
 		</tr>
 		<tr>
 			<td>{{ form_label(form.estado, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}</td>
@@ -51,7 +51,7 @@ $(document).ready(function() {
 		</tr>
 		<tr>
 			<td>{{ form_label(form.descuento, null, { 'label': 'Descuento', 'label_attr': {'class': 'control-label'} }) }}</td>
-			<td>{{ form_widget(form.descuento, { 'attr': {'class': 'small hiva'}}) }}</td>
+			<td>{{ form_widget(form.descuento, { 'attr': {'class': 'small hdescuento'}}) }}</td>
 		</tr>
 		<tr>
 			<td>{{ form_label(form.recargo, null, { 'label': 'Recargo', 'label_attr': {'class': 'control-label'} }) }}</td>

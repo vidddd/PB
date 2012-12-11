@@ -1156,3 +1156,31 @@ border-radius: 3px;
 		clear: none !important;
 			margin-right: 19px;
 }
+.diascobro{
+	float:left; margin-left: 15px; font-size:13px;
+}
+#form-alta input {
+	/*float:left;*/
+}
+.buscador-facturas-precio {
+	color: #a33333;
+}
+.dataTables_length {
+	float:right;
+
+}
+.dataTables_length label{
+		color: #616161;
+	font-size:13px;
+}
+.dataTables_length select{
+	width:80px;
+	    -moz-box-sizing: border-box;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C1C1C1;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 0px 0 #E2E2E2 inset, 1px 1px 1px rgba(0, 0, 0, 0.15);
+    color: #333333;
+    height: 27px;
+    padding: 4px 6px 4px;
+}
