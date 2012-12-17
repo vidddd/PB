@@ -35,4 +35,5 @@ PB\ComprasBundle\Entity\PedidoCompraLinea:
       joinColumn:
         name: pedidocompra_id
         referencedColumnName: id
+        onDelete: CASCADE
 lifecycleCallbacks: {  }

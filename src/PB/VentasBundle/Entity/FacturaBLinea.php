@@ -401,4 +401,32 @@ class FacturaBLinea
     {
         return $this->facturaB;
     }
+    /**
+     * @var PB\VentasBundle\Entity\FacturaB
+     */
+    private $factura;
+
+
+    /**
+     * Set factura
+     *
+     * @param PB\VentasBundle\Entity\FacturaB $factura
+     * @return FacturaBLinea
+     */
+    public function setFactura(\PB\VentasBundle\Entity\FacturaB $factura = null)
+    {
+        $this->factura = $factura;
+    
+        return $this;
+    }
+
+    /**
+     * Get factura
+     *
+     * @return PB\VentasBundle\Entity\FacturaB 
+     */
+    public function getFactura()
+    {
+        return $this->factura;
+    }
 }

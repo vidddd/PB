@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * PB\ComprasBundle\Entity\Proveedor
@@ -421,7 +422,14 @@ class Proveedor
 
     	return $this->tipo_proveedor;
     }
-
+    public function getTipoProveedorText()
+    {
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	return $value['tipo_proveedor'][$this->tipo_proveedor];
+    }
     /**
      * Set es_cliente
      *

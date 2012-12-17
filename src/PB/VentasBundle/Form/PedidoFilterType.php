@@ -28,7 +28,7 @@ class PedidoFilterType extends AbstractType
     	$estados = $value['estados_pedidos'];
         $builder
             ->add('id', 'filter_number')
-            ->add('cliente', 'filter_number')
+            ->add('cliente', 'filter_number')->add('anchoc', 'filter_number')
             ->add('subcliente', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS))
     		->add('estado','filter_choice', array('error_bubbling' => true, 'required' => false,'choices' => $estados,'empty_value' => ''))
            

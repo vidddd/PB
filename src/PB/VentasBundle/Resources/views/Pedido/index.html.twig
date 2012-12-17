@@ -30,6 +30,10 @@
 	        				<td class="label">{{ form_label(filterForm.subcliente, 'Subcliente') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.subcliente) }}</td><td>{{ form_errors(filterForm.subcliente) }}</td>
 	      				<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(filterForm.anchoc, 'Ancho') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.anchoc, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.anchoc) }}</td>
+	      				<tr>
 	      	         	<tr>
 	        				<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
@@ -59,6 +63,8 @@
 		            <th>Cliente</th>
 		            <th>Fecha</th>
 		            <th>Subcliente</th>
+		            <th>Ancho</th>
+		            <th>Largo</th>
 		            <th>Estado</th>
 		            <th>Precio</th>
 		            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
@@ -71,6 +77,8 @@
 		            <td>{{ entity.cliente }}</td>
 		            <td>{{ entity.fecha|date('d.m.Y') }}</td>
 		            <td>{{ entity.subcliente }}</td>
+		            <td>{{ entity.anchoc }}</td>
+		            <td>{{ entity.largoc }}</td>
 		            <td><span class="estadoc estado{{ entity.estado }}">{{ entity.estadoText }}</span></td>
 		            <td>
 		                {% if entity.precio %}
@@ -92,6 +100,16 @@
 	<div class="clearfix"></div>
     <div class="span4">
     {{ pagerHtml|raw }}
+      <form id="form1" name="form1" method="post" action="{{ path('pedido') }}"> 
+    <div class="dataTables_length"><label>Mostrar 
+    	<select name="cuantos" id="cuantos" onchange="this.form.submit()" size="1">   		
+        {% for item in cuantos %}
+                <option value="{{ item }}" {% if item == entradas %} selected="selected" {% endif %}>{{ item }}</option>
+        {% endfor %}
+        </ul>
+    	</select></label>
+    </div>
+    </form>
     </div>
  </div>
 {% endblock %}

@@ -13,10 +13,12 @@
          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
+    <!-- 
     <div class="float-left">
         <form action="{{ path('cliente_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
             <button class="ui-state-default ui-corner-all boton-eliminar" onclick="return confirm('Desea eliminar el item? Esta accion no se puede deshacer');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
         </form>
     </div>
+    -->
 {% endblock %}

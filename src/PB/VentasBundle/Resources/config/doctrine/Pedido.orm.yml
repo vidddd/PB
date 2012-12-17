@@ -39,7 +39,8 @@ PB\VentasBundle\Entity\Pedido:
         tipomaterial:
             type: smallint
         ancho:
-            type: smallint
+            type: string
+            length: '50'
         galga:
             type: smallint
             nullable: true
@@ -99,7 +100,8 @@ PB\VentasBundle\Entity\Pedido:
             length: '50'
             nullable: true
         anchoc:
-            type: smallint
+            type: string
+            length: '50'
             nullable: true
         largoc:
             type: smallint

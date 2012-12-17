@@ -54,13 +54,14 @@
     <thead>
         <tr>
             <th width="25">Código Pedido</th>
+            <th>Cod. Factura</th>
             <th>Cliente</th>
             <th>Concepto</th>
             <th>Ancho</th>
             <th>Largo</th>
             <th>Galga</th>
             <th>Precio</th>
-            <th>Cod. Factura</th>
+
             <th>Fecha</th>
         </tr>
     </thead>
@@ -68,14 +69,14 @@
       {% for linea in entities %}
         <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
             <td>{{ linea.referencia }}</td>
+            <td><a rel="prettyPhoto[iframe]" href="{{ path('factura_show_lightbox', { 'id': linea.factura.id , 'iframe': 'true', 'width': 760, 'height': 600 }) }}" title="">{{ linea.factura.id }}</a></td>
             <td>{{ linea.factura.cliente }}</td>
             <td><b>{{ linea.descripcion }}</b></td>
             <td>{{ linea.ancho }}</td>
             <td>{{ linea.largo }}</td>
             <td>{{ linea.galga }}</td>
             <td><span class="buscador-facturas-precio"><b>{{ linea.precio }}</b></span></td>
-            <td><a rel="prettyPhoto[iframe]" href="{{ path('factura_show_lightbox', { 'id': linea.factura.id , 'iframe': 'true', 'width': 760, 'height': 600 }) }}" title="">{{ linea.factura.id }}</a></td>
-            <td>{{ linea.factura.fecha|date('d.m.Y') }}</td>
+           <td>{{ linea.factura.fecha|date('d.m.Y') }}</td>
         </tr>
     {% endfor %}
     </tbody>

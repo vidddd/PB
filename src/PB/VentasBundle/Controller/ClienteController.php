@@ -26,13 +26,24 @@ class ClienteController extends Controller
      */
     public function indexAction()
     {
+    	$request = $this->getRequest();$session = $request->getSession();
     	
     	list($filterForm, $queryBuilder) = $this->filter();
+    	if($this->getRequest()->get('cuantos')) {
+    		$cuantos = $this->getRequest()->get('cuantos');
+    	} else if ($session->get('ClienteCompraCuantos')){
+    		$cuantos = $session->get('ClienteCompraCuantos');
+    	} else { $cuantos = 10;
+    	}
+    	
+        list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
         
-        list($entities, $pagerHtml) = $this->paginator($queryBuilder);
-		
+        $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');  
+        if($cuantos) $session->set('ClienteCompraCuantos', $cuantos);
+        ($cuantos)? $entradas = $cuantos : $entradas = 10;
+        
         return $this->render('PBVentasBundle:Cliente:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $entities, 'cuantos' => $cuantosarr, 'entradas' => $entradas,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
         ));
@@ -83,12 +94,13 @@ class ClienteController extends Controller
     * Get results from paginator and get paginator view.
     *
     */
-    protected function paginator($queryBuilder)
+    protected function paginator($queryBuilder, $cuantos)
     {
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $currentPage = $this->getRequest()->get('page', 1);
+        $pagerfanta->setMaxPerPage($cuantos);
         $pagerfanta->setCurrentPage($currentPage);
         $entities = $pagerfanta->getCurrentPageResults();
     

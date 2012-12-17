@@ -51,6 +51,5 @@ PB\ComprasBundle\Entity\PedidoCompra:
   oneToMany:
     pedidocompralineas:
         targetEntity: PB\ComprasBundle\Entity\PedidoCompraLinea
-        mappedBy: pedidocompralinea  
-        cascade: [ persist ]      
+        mappedBy: pedidocompralinea   
   lifecycleCallbacks: {  }

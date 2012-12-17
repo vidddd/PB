@@ -20,11 +20,22 @@ class PrecioController extends Controller
 {
     public function indexAction()
     {
-        list($filterForm, $queryBuilder) = $this->filter();
-        list($entities, $pagerHtml) = $this->paginator($queryBuilder);
-        $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');
-        $cuantos = $this->getRequest()->get('cuantos');
+ 	$request = $this->getRequest();$session = $request->getSession();
+    	
+    	list($filterForm, $queryBuilder) = $this->filter();
+    	if($this->getRequest()->get('cuantos')) {
+    		$cuantos = $this->getRequest()->get('cuantos');
+    	} else if ($session->get('PrecioCompraCuantos')){
+    		$cuantos = $session->get('PrecioCompraCuantos');
+    	} else { $cuantos = 10;
+    	}
+    	
+        list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
+        
+        $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');  
+        if($cuantos) $session->set('PrecioCompraCuantos', $cuantos);
         ($cuantos)? $entradas = $cuantos : $entradas = 10;
+        
         return $this->render('PBVentasBundle:Precio:index.html.twig', array(
             'entities' => $entities,  'cuantos' => $cuantosarr, 'entradas' => $entradas,
             'pagerHtml' => $pagerHtml,
@@ -57,18 +68,14 @@ class PrecioController extends Controller
         } return array($filterForm, $queryBuilder);
     }
     
-    protected function paginator($queryBuilder)
+    protected function paginator($queryBuilder, $cuantos)
     {
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $currentPage = $this->getRequest()->get('page', 1);
-        $cuantos = $this->getRequest()->get('cuantos');
-        if($cuantos) {
-        	$pagerfanta->setMaxPerPage($cuantos);
-        } else {
-        	$pagerfanta->setMaxPerPage(10);
-        }
+        $pagerfanta->setMaxPerPage($cuantos);
+        
         $pagerfanta->setCurrentPage($currentPage);
         
         $entities = $pagerfanta->getCurrentPageResults();
@@ -385,5 +392,103 @@ class PrecioController extends Controller
     		$qb->setParameter('anchoi', $filterData['ancho']);
     	}
     	return $qb;	
+    }
+    /**
+     * Facturas B
+     */
+    public function buscadorFacturasbAction()
+    {
+    	$request = $this->getRequest();
+    	$session = $request->getSession();
+    	$busForm = $this->createForm(new BuscadorPreciosFacturaType());
+    	$em = $this->getDoctrine()->getManager();
+    	$queryBuilder = $this->getQueryFacturasB();
+    	if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
+    		$session->remove('BuscadorPrecioFacturaControllerFilter');
+    	}
+    	if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
+    		$busForm->bind($request);
+    		if ($busForm->isValid()) {
+    			$filterData = $busForm->getData();
+    			$queryBuilder = $this->getQueryFacturasB($filterData);
+    			$session->set('BuscadorPrecioFacturaControllerFilter', $filterData);
+    		}
+    	} else {
+    		if ($session->has('BuscadorPrecioFacturaControllerFilter')) {
+    			$filterData = $session->get('BuscadorPrecioFacturaControllerFilter');
+    			$busForm = $this->createForm(new BuscadorPreciosFacturaType(), $filterData);
+    			$queryBuilder = $this->getQueryFacturasB($filterData);
+    		}
+    	}
+    	$cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');
+    	$cuantos = $this->getRequest()->get('cuantos');
+    	($cuantos)? $entradas = $cuantos : $entradas = 10;
+    
+    	//var_dump($queryBuilder->getDql());
+    	list($entities, $pagerHtml) = $this->paginatorBuscadorFacturasB($queryBuilder);
+    	return $this->render('PBVentasBundle:Precio:buscadorFacturasB.html.twig', array(
+    			'entities' => $entities, 'cuantos' => $cuantosarr, 'entradas' => $entradas,
+    			'pagerHtml' => $pagerHtml,
+    			'busForm' => $busForm->createView(),
+    	));
+    }
+    /**
+     * Facturas B
+     * @param unknown_type $queryBuilder
+     */
+    protected function paginatorBuscadorFacturasB($queryBuilder)
+    {
+    	// Paginator
+    	$adapter = new DoctrineORMAdapter($queryBuilder);
+    	$pagerfanta = new Pagerfanta($adapter);
+    	$currentPage = $this->getRequest()->get('page', 1);
+    	$cuantos = $this->getRequest()->get('cuantos');
+    	if($cuantos) {
+    		$pagerfanta->setMaxPerPage($cuantos);
+    	} else { $pagerfanta->setMaxPerPage(10);
+    	}
+    	$pagerfanta->setCurrentPage($currentPage);
+    
+    	$entities = $pagerfanta->getCurrentPageResults();
+    	$me = $this;
+    	$routeGenerator = function($page) use ($me)
+    	{
+    		return $me->generateUrl('precio_buscador_facturasb', array('page' => $page));
+    	};
+    	$translator = $this->get('translator');
+    	$view = new TwitterBootstrapView();
+    	$pagerHtml = $view->render($pagerfanta, $routeGenerator, array(
+    			'proximity' => 3,
+    			'prev_message' => $translator->trans('views.index.pagprev', array(), 'JordiLlonchCrudGeneratorBundle'),
+    			'next_message' => $translator->trans('views.index.pagnext', array(), 'JordiLlonchCrudGeneratorBundle'),
+    	));
+    	return array($entities, $pagerHtml);
+    }
+    
+    function getQueryFacturasB($filterData = null){
+    	$em = $this->getDoctrine()->getManager();
+    	$qb = $em->getRepository('PBVentasBundle:FacturaBLinea')->createQueryBuilder('fl')->innerJoin('fl.facturaB', 'f')->orderBy('f.id', 'DESC');
+    
+    	if (!empty($filterData['cliente'])) {
+    		$qb->where('f.cliente = :clientei'); // we don't want to include the category we're deleting
+    		$qb->setParameter('clientei', $filterData['cliente']);
+    	}
+    	if (!empty($filterData['codfactura'])) {
+    		$qb->andwhere('f.id = :codfacturai'); // we don't want to include the category we're deleting
+    		$qb->setParameter('codfacturai', $filterData['codfactura']);
+    	}
+    	if (!empty($filterData['codpedido'])) {
+    		$qb->andwhere('fl.referencia LIKE :referenciai'); // we don't want to include the category we're deleting
+    		$qb->setParameter('referenciai', '%'.$filterData['codpedido'].'%');
+    	}
+    	if (!empty($filterData['concepto'])) {
+    		$qb->andwhere('fl.descripcion LIKE :conceptoi'); // we don't want to include the category we're deleting
+    		$qb->setParameter('conceptoi', '%'.$filterData['concepto'].'%');
+    	}
+    	if (!empty($filterData['ancho'])) {
+    		$qb->andwhere('fl.ancho = :anchoi'); // we don't want to include the category we're deleting
+    		$qb->setParameter('anchoi', $filterData['ancho']);
+    	}
+    	return $qb;
     }
 }

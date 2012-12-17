@@ -28,6 +28,10 @@
 	        			<td class="label">{{ form_label(filterForm.proveedor, 'Código Proveedor') }}</td>
 	        			<td class="campo">{{ form_widget(filterForm.proveedor, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_proveedor', { 'id': '' , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Proveedores"><img src="{{ asset('images/search.png') }}" /></a></td><td>{{ form_errors(filterForm.proveedor) }}</td>
 	      			<tr>
+	      			<tr>
+	        			<td class="label">{{ form_label(filterForm.proveedor, 'Tipo Proveedor') }}</td>
+	        			<td class="campo">{{ form_widget(filterForm.tipo_proveedor, { 'attr': {'class': ''}}) }}</td><td></td>
+	      			<tr>
 	      	        <tr>
 	        			<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
 	        			<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
@@ -36,6 +40,7 @@
 	        			<td class="label">{{ form_label(filterForm.referencia, 'Referencia') }}</td>
 	        			<td class="campo">{{ form_widget(filterForm.referencia, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.referencia) }}</td>
 	      			<tr>
+
 	      			<tr>
 	        			<td class="label">{{ form_label(filterForm.estado, 'Estado') }}</td>
 	        			<td class="campo">{{ form_widget(filterForm.estado, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.estado) }}</td>
@@ -57,8 +62,9 @@
         <tr>
 			<th width="25">Código Pedido</th>
 			<th width="280">Proveedor</th>
+			<th>Tipo Proveedor</th>
             <th>Fecha</th>
-            <th>Fecha Entrega</th>
+          <!--   <th>Fecha Entrega</th> -->
             <th width="115">Estado</th>
             <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
         </tr>
@@ -68,8 +74,9 @@
         <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
             <td><a href="{{ path('compras_pedidocompra_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.proveedor }}</td>
+            <td>{{ entity.proveedor.tipoproveedorText }}</td>
             <td>{% if entity.fecha %}{{ entity.fecha|date('d.m.Y') }}{% endif %}</td>
-            <td>{% if entity.fechaentrega %}{{ entity.fechaentrega|date('d.m.Y') }}{% endif %}</td>
+         <!--  <td>{% if entity.fechaentrega %}{{ entity.fechaentrega|date('d.m.Y') }}{% endif %}</td> -->
             <td><span class="estadoc estado{{ entity.estado }}">{{ entity.estadoText }}</span></td>
             <td>
         		<a href="{{ path('compras_pedidocompra_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>

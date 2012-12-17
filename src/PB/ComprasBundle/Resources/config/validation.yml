@@ -1,4 +1,8 @@
 PB\ComprasBundle\Entity\Proveedor:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+            fields: email
+            message: Existe otro proveedor con ese email
     properties:
         nombre:
             - NotBlank: ~
@@ -15,6 +19,10 @@ PB\ComprasBundle\Entity\Proveedor:
                 message: El codigo postal no es un número.
         localidad:
             - NotBlank: ~
+        email:
+            - Email:
+                message: El Email "{{ value }}" no es válido.
+                
 PB\ComprasBundle\Entity\PedidoCompra:
     properties:
         fecha:

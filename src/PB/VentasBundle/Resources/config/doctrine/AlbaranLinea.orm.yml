@@ -54,4 +54,5 @@ PB\VentasBundle\Entity\AlbaranLinea:
             joinColumn:
                 name: albaran_id
                 referencedColumnName: id
+                onDelete: CASCADE
     lifecycleCallbacks: {  }

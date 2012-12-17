@@ -1,19 +1,27 @@
 tipo_proveedor:
-  0: "Indefinido"
+  0: ""
   1: "Materia Prima"
+  6: "Polipropileno"
+  7: "Tintas y Disolventes"
+  8: "Cliches"
+  10: "Canutos"
+  11: "Precinto"
+  12: "Retractil"
   2: "Servicios"
   3: "Materiales Auxiliares"
   4: "Reparación y Conservación"
+  9: "Material de Oficina"
   5: "Otros Servicios"
   
 medio_envio:
-  0: "Indefinida"
+  0: ""
   1: "Agencia"
   2: "Transporte propio"
   3: "Internacional"
 
 estados:
   1: "Enviado"
+  5: "En Proceso"
   2: "Recibido OK"
   3: "Recibido con Erorres"
   4: "Rechazado"

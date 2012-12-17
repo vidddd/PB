@@ -11,6 +11,9 @@ PB\VentasBundle\Entity\Cliente:
             - NotBlank: ~
         cp:
             - NotBlank: ~ 
+        email:
+            - Email:
+                message: El Email "{{ value }}" no es válido.
 PB\VentasBundle\Entity\Comercial:
     properties:
         nombre:

@@ -69,7 +69,7 @@
             <th>Nombre</th>
             <th>Nombre Comercial</th>
             <th>Localidad</th>
-            <th>Telefono</th>
+            <th>Tipo Proveedor</th>
             <th width="70">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
         </tr>
     </thead>
@@ -81,7 +81,7 @@
             <td>{{ entity.nombre }}</td>
             <td>{{ entity.nombrecomercial }}</td>
             <td>{{ entity.localidad }}</td>
-            <td>{{ entity.telefono }}</td>
+            <td>{{ entity.tipoproveedorText }}</td>
             <td>
                 <a rel="prettyPhoto[iframe]" title="Ver Ficha" href="{{ path('proveedor_show', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
         		<a href="{{ path('proveedor_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>

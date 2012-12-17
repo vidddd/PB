@@ -26,13 +26,21 @@ class PedidoCompraController extends Controller
 {
     public function indexAction()
     {
-        
+    	$request = $this->getRequest();$session = $request->getSession();
+    	
+    	if($this->getRequest()->get('cuantos')) {
+    		$cuantos = $this->getRequest()->get('cuantos');
+    	} else if ($session->get('PedidoCompraCuantos')){
+    		$cuantos = $session->get('PedidoCompraCuantos');
+    	} else { $cuantos = 10; }
+    	 
     	list($filterForm, $queryBuilder) = $this->filter();
-        list($entities, $pagerHtml) = $this->paginator($queryBuilder);
-        $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');
-        $cuantos = $this->getRequest()->get('cuantos');
-        ($cuantos)? $entradas = $cuantos : $entradas = 10;
+        list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
         
+        $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');  
+        if($cuantos) $session->set('PedidoCompraCuantos', $cuantos);
+        ($cuantos)? $entradas = $cuantos : $entradas = 10;
+
         return $this->render('PBComprasBundle:PedidoCompra:index.html.twig', array(
             'entities' => $entities, 'cuantos' => $cuantosarr, 'entradas' => $entradas,
             'pagerHtml' => $pagerHtml,
@@ -46,45 +54,39 @@ class PedidoCompraController extends Controller
         $session = $request->getSession();
         $filterForm = $this->createForm(new PedidoCompraFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBComprasBundle:PedidoCompra')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
-    
-        // Reset filter
+        //INNER JOIN CON PROVEEDORES PARA FILTRAR POR EL TIPO 
+        $queryBuilder = $em->getRepository('PBComprasBundle:PedidoCompra')
+        					->createQueryBuilder('e')
+        					->innerJoin('e.proveedor', 'p')->orderBy('e.id', 'DESC')
+        					->select('DISTINCT e, p');
+   
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {$session->remove('PedidoCompraControllerFilter');}
-        // Filter action
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
-            // Bind values from the request
             $filterForm->bind($request);
 
             if ($filterForm->isValid()) {
-                // Build the query from the given form object
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
-                // Save filter to session
                 $filterData = $filterForm->getData();
                 $session->set('PedidoCompraControllerFilter', $filterData);
             }
         } else {
-            // Get filter from session
             if ($session->has('PedidoCompraControllerFilter')) {
                 $filterData = $session->get('PedidoCompraControllerFilter');
                 $filterForm = $this->createForm(new PedidoCompraFilterType(), $filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
-        //var_dump($queryBuilder->getDql());
+       // var_dump($queryBuilder->getDql());
         return array($filterForm, $queryBuilder);
     }
 
-    protected function paginator($queryBuilder)
+    protected function paginator($queryBuilder, $cuantos)
     {
-        // Paginator
+        $request = $this->getRequest(); $session = $request->getSession();
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $currentPage = $this->getRequest()->get('page', 1);
-        $cuantos = $this->getRequest()->get('cuantos');
-        if($cuantos) {
-        	$pagerfanta->setMaxPerPage($cuantos);
-        } else { $pagerfanta->setMaxPerPage(10); }
-        
+        $pagerfanta->setMaxPerPage($cuantos);
         $pagerfanta->setCurrentPage($currentPage);
         $entities = $pagerfanta->getCurrentPageResults();
         $me = $this;
@@ -144,10 +146,7 @@ class PedidoCompraController extends Controller
         	}
         	
         	$em->persist($entity);
-        	//echo "2222"; die;
         	$em->flush();
-            //try {$em->flush(); } catch(Exception $e) {die('ERROR: '.$e->getMessage());}
-            
             $this->get('session')->getFlashBag()->add('success', 'Nuevo Pedido de compra creado');
             
             return $this->redirect($this->generateUrl('compras_pedidocompra_show', array('id' => $entity->getId())));       } else {
@@ -235,8 +234,9 @@ class PedidoCompraController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager(); $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
             if (!$entity) { throw $this->createNotFoundException('Unable to find PedidoCompra entity.');}
+ 
             $em->remove($entity); $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
+            $this->get('session')->getFlashBag()->add('success', 'Pedido de Compra eliminado');
         } else {$this->get('session')->getFlashBag()->add('error', 'flash.delete.error'); }
 
         return $this->redirect($this->generateUrl('compras_pedidocompra'));

@@ -49,3 +49,6 @@ precio_buscador_facturas:
     pattern:  /buscadorfacturas
     defaults: { _controller: "PBVentasBundle:Precio:buscadorFacturas" }
 
+precio_buscador_facturasb:
+    pattern:  /buscadorfacturasb
+    defaults: { _controller: "PBVentasBundle:Precio:buscadorFacturasb" }

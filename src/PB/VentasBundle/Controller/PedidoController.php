@@ -28,10 +28,25 @@ class PedidoController extends Controller
      */
     public function indexAction()
     {
-        list($filterForm, $queryBuilder) = $this->filter();
-        list($entities, $pagerHtml) = $this->paginator($queryBuilder);
+    	$request = $this->getRequest();$session = $request->getSession();
+    	
+    	list($filterForm, $queryBuilder) = $this->filter();
+    	if($this->getRequest()->get('cuantos')) {
+    		$cuantos = $this->getRequest()->get('cuantos');
+    	} else if ($session->get('PedidoCompraCuantos')){
+    		$cuantos = $session->get('PedidoCompraCuantos');
+    	} else { $cuantos = 10;
+    	}
+    	
+        list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
+        
+        $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');
+        if($cuantos) $session->set('PedidoCompraCuantos', $cuantos);
+        ($cuantos)? $entradas = $cuantos : $entradas = 10;
+        
+        
         return $this->render('PBVentasBundle:Pedido:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $entities, 'cuantos' => $cuantosarr, 'entradas' => $entradas,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
         ));
@@ -79,13 +94,14 @@ class PedidoController extends Controller
     * Get results from paginator and get paginator view.
     *
     */
-    protected function paginator($queryBuilder)
+    protected function paginator($queryBuilder, $cuantos)
     {
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $pagerfanta->setMaxPerPage(20);
         $currentPage = $this->getRequest()->get('page', 1);
+        $pagerfanta->setMaxPerPage($cuantos);
         $pagerfanta->setCurrentPage($currentPage);
         $entities = $pagerfanta->getCurrentPageResults();
     

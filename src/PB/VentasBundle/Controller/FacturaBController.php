@@ -24,13 +24,24 @@ class FacturaBController extends Controller
      */
     public function indexAction()
     {
-        list($filterForm, $queryBuilder) = $this->filter();
-
-        list($entities, $pagerHtml) = $this->paginator($queryBuilder);
-
-    
+ 	    $request = $this->getRequest();$session = $request->getSession();
+    	
+    	list($filterForm, $queryBuilder) = $this->filter();
+    	if($this->getRequest()->get('cuantos')) {
+    		$cuantos = $this->getRequest()->get('cuantos');
+    	} else if ($session->get('FacturaBCompraCuantos')){
+    		$cuantos = $session->get('FacturaBCompraCuantos');
+    	} else { $cuantos = 10;
+    	}
+    	
+        list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
+        
+        $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');  
+        if($cuantos) $session->set('FacturaBCompraCuantos', $cuantos);
+        ($cuantos)? $entradas = $cuantos : $entradas = 10;
+        
         return $this->render('PBVentasBundle:FacturaB:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $entities, 'cuantos' => $cuantosarr, 'entradas' => $entradas,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
         ));
@@ -81,12 +92,14 @@ class FacturaBController extends Controller
     * Get results from paginator and get paginator view.
     *
     */
-    protected function paginator($queryBuilder)
+    protected function paginator($queryBuilder, $cuantos)
     {
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $currentPage = $this->getRequest()->get('page', 1);
+        $pagerfanta->setMaxPerPage($cuantos);
+        
         $pagerfanta->setCurrentPage($currentPage);
         $entities = $pagerfanta->getCurrentPageResults();
     
@@ -129,7 +142,22 @@ class FacturaBController extends Controller
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
-
+    
+    public function showLightboxAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	$entity = $em->getRepository('PBVentasBundle:FacturaB')->find($id);
+    	if (!$entity) {
+    		throw $this->createNotFoundException('Unable to find Factura entity.');
+    	}
+    
+    	$deleteForm = $this->createDeleteForm($id);
+    
+    	return $this->render('PBVentasBundle:FacturaB:show-lightbox.html.twig', array(
+    			'entity'      => $entity,
+    			'delete_form' => $deleteForm->createView(),        ));
+    }
     /**
      * Displays a form to create a new Factura entity.
      *

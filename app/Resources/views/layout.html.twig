@@ -21,8 +21,9 @@
 					<li><a href="{{ path('proveedor') }}">Proveedores</a></li>
 					<li><a href="{{ path('compras_pedidocompra') }}">Pedido Compra</a>
 					<ul>
-								<li><a href="{{ path('compras_pedidocompra_new') }}">Nuevo Pedido Compra</a></li>
-						</ul>
+						<li><a href="{{ path('compras_pedidocompra_new') }}">Nuevo Pedido Compra</a></li>
+						
+					</ul>
 					</li> 
 				</ul>
 			</li>
@@ -51,6 +52,11 @@
 						</ul>
 					</li>
 					<li><a href="{{ path('precio') }}">Precios</a>
+					   <ul>
+							<li><a href="{{ path('precio_buscador_facturas') }}">Precios en Facturas</a></li>		
+							<li><a href="{{ path('precio_buscador_facturasb') }}">Precios en Facturas B</a></li>								
+						</ul>
+					</li>
 				</ul>
 			</li>
 			<li><a href="{{ path('pb_produccion_homepage') }}">Producci&oacute;n</a>

@@ -45,6 +45,7 @@ PB\ComprasBundle\Entity\Proveedor:
     email:
       type: string
       length: 255
+      unique: true
       nullable: true
     web:
       type: string
