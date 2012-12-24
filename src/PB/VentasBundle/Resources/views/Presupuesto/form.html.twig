@@ -1,0 +1,62 @@
+{% if form_errors(form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% endif %}
+<script>
+$(document).ready(function() { 
+    $(".buscaprecio").click(function () {
+        var cliente = $('#pedido_cliente').val();
+        if(cliente == '') {
+			alert('Debe introducir un cliente');
+         } else {
+        	 $.prettyPhoto.open('{{ path('buscador_precio', { 'id': ''}) }}/'+cliente+'?/iframe=true&width=1080&height=600','Buscador de Precios','Listado de precios de cliente');
+         }
+        return;
+    })
+});
+         </script>
+<div id="pedido-form">
+<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">
+		<form action="{{ entity.id  ? path('presupuesto_update', { 'id': entity.id }) : path('presupuesto_create') }}" method="post" {{ form_enctype(form) }}>
+			<div class="form-invoice">
+				<div class="span-16 form-horizontal label-column-small form-condensed">
+					<div class="control-group">
+						{{ form_label(form.cliente, null, { 'label': ' Cliente', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.cliente, { 'attr': {'class': 'small buscadorid'}}) }}
+			    			<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de CLIENTES"><img src="{{ asset('images/search.png') }}" /></a>
+		        		</div>
+	     			</div>
+	     			<div class="control-group-pedido">
+	     			      <label class="control-label">&nbsp;</label> 
+	     			      <div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div>
+	     			</div>
+     			</div>
+     			<div class="span-19 form-horizontal label-column-small form-condensed">
+					<div class="control-group required">
+						<div style="width:150px;float:left;">   
+						   <label class="control-label required">Código Presupuesto</label>
+							<div class="controls codigo">
+				    					{{ entity.id }}
+			        		</div>
+			        	</div>
+	     			</div>
+     			</div>
+      			<div class="span-16 form-horizontal label-column-small form-condensed">
+	     			<div class="control-group required">
+						{{ form_label(form.fecha, null, { 'label': 'Fecha', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.fecha, { 'attr': {'class': 'date small'}}) }}
+		        		</div>
+	     			</div>
+     			</div>
+     			<div class="clearfix"></div>
+ 			</div>
+		</div>
+		<div id="datos-presu">
+		
+	  </div><!-- datos-presu -->
+	<div class="clearfix"></div> <BR />
+
+	<div class="guardar"><button type="submit" class="ui-state-default ui-corner-all">Guardar</button></div> 
+		{{ form_widget(form._token) }}</form>
+</div>

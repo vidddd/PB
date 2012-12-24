@@ -62,6 +62,6 @@ class PedidoFilterType extends AbstractType
 
     public function getName()
     {
-        return 'pb_ventasbundle_pedidofiltertype';
+        return 'pedidofiltertype';
     }
 }

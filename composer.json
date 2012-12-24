@@ -33,7 +33,8 @@
         "twig/extensions": "1.0.*",
         "psliwa/pdf-bundle": "dev-master",
         "toooni/fpdf": "dev-master",
-        "ensepar/html2pdf": "dev-master"
+        "ensepar/html2pdf": "dev-master",
+        "liuggio/ExcelBundle": "dev-master"
     },
     "repositories": [{
         "type": "composer",

@@ -30,8 +30,9 @@ class PedidoCompraFilterType extends AbstractType
             ->add('proveedor', 'filter_number')
             ->add('tipo_proveedor', 'filter_choice', array('error_bubbling' => true, 'required' => false,'choices' => $tipos,'empty_value' => '',
             		'apply_filter' => function (QueryBuilder $filterBuilder, Expr $expr, $field, array $values) {
-                 			$filterBuilder->andwhere('p.tipo_proveedor = :tipo'); 
+                 		if($values['value']){	$filterBuilder->andwhere('p.tipo_proveedor = :tipo'); 
                  			$filterBuilder->setParameter('tipo', $values['value']);
+                 		}
             		}))
             ->add('referencia', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS))
    		    ->add('fecha', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
@@ -64,6 +65,6 @@ class PedidoCompraFilterType extends AbstractType
 
     public function getName()
     {
-        return 'pb_comprasbundle_pedidocomprafiltertype';
+        return 'pedidocomprafiltertype';
     }
 }

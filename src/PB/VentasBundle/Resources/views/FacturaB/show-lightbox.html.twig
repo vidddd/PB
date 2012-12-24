@@ -1,0 +1,12 @@
+{% extends '::layout_ajax.html.twig' %}
+
+{% block title 'Factura' %}
+
+{# block width100 "widthtotal" %}{% block displaysidebar "display:none;" #}
+{% block content %}
+<div id="lightbox-wrapper">
+<div class="title title-spacing ventas facturasb"><h2>Factura B</h2></div>
+{% include 'PBVentasBundle:FacturaB:vista.html.twig' with { 'entity' : entity } %}
+<div class="clearfix"></div>
+</div>
+{% endblock %}

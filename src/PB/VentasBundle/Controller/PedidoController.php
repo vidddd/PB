@@ -33,15 +33,15 @@ class PedidoController extends Controller
     	list($filterForm, $queryBuilder) = $this->filter();
     	if($this->getRequest()->get('cuantos')) {
     		$cuantos = $this->getRequest()->get('cuantos');
-    	} else if ($session->get('PedidoCompraCuantos')){
-    		$cuantos = $session->get('PedidoCompraCuantos');
+    	} else if ($session->get('PedidoCuantos')){
+    		$cuantos = $session->get('PedidoCuantos');
     	} else { $cuantos = 10;
     	}
     	
         list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
         
         $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');
-        if($cuantos) $session->set('PedidoCompraCuantos', $cuantos);
+        if($cuantos) $session->set('PedidoCuantos', $cuantos);
         ($cuantos)? $entradas = $cuantos : $entradas = 10;
         
         
