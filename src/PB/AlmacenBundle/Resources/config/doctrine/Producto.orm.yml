@@ -1,0 +1,40 @@
+PB\AlmacenBundle\Entity\Producto:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nombre:
+            type: string
+            length: 255
+        vendido:
+            type: boolean
+            nullable: true
+        comprado:
+            type: boolean
+            nullable: true
+        tipoproducto:
+            type: smallint
+            nullable: true
+        metodo_suministro:
+            type: smallint
+            nullable: true
+        preciocompra:
+            type: string
+            length: 255
+            nullable: true
+        precioventa:
+            type: string
+            nullable: true
+            length: 255
+        referencia:
+            type: string
+            length: 255
+            nullable: true
+        descripcion:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

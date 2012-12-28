@@ -916,13 +916,16 @@ border-radius: 3px;
 	line-height:1.3em;
 }
 .ventas, .ventas h2{
-	color:#EF853d !important;
+	color:#EF853d !important; /* naranja */
 }
 .facturasb, .facturasb h2{
-	color: #43b26c !important; 
+	color: #43b26c !important; /* verde */
 }
 .produccion, .produccion h2{
 	color: #94559f !important;
+}
+.almacen, .almacen h2{
+	color: #777 !important; /* morado */
 }
 #pedido-form .column-pedido{
 	   border-left: 1px solid #DDDDDD;
@@ -1171,6 +1174,9 @@ border-radius: 3px;
 .dataTables_length {
 	float:right;
 
+}
+.dowimgs{
+	float:right; margin-right:4px;
 }
 .dataTables_length label{
 		color: #616161;

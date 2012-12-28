@@ -1,0 +1,7 @@
+parameters:
+#    pb_almacen.example.class: PB\AlmacenBundle\Example
+
+services:
+#    pb_almacen.example:
+#        class: %pb_almacen.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

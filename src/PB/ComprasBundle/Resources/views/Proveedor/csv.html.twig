@@ -1,0 +1,4 @@
+"Código Proveedor","Nombre","Nif","Dirección","Código Postal","Localidad"
+{% for proveedor in data %}
+"{{ proveedor.id }}","{{ proveedor.nombre }}","{{ proveedor.nif }}","{{ proveedor.direccion }}","{{ proveedor.cp }}","{{ proveedor.localidad }}"
+{% endfor %}

@@ -39,3 +39,7 @@ proveedor_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "PBComprasBundle:Proveedor:delete" }
     requirements: { _method: post }
+
+proveedor_csv:
+    pattern:  /csv
+    defaults: { _controller: "PBComprasBundle:Proveedor:csv" }

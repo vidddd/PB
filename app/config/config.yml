@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+   # - { resource: @PBAlmacenBundle/Resources/config/almacen.yml }
    # - { resource: "@PBComprasBundle/Resources/config/compras.yml" }
 
 framework:
@@ -65,3 +66,5 @@ swiftmailer:
 
 parameters:
     url: http://localhost:8888
+
+pb_almacen:

@@ -1,6 +1,57 @@
 {
-    "hash": "42b6b437fe06782813813b3192916edf",
+    "hash": "10e516b4cfb9deb031a9e13a665ebcce",
     "packages": [
+        {
+            "name": "CodePlex/PHPExcel",
+            "version": "1.7.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/markushausammann/PHPExcel",
+                "reference": "1.7.8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/markushausammann/PHPExcel/archive/1.7.8.zip",
+                "reference": "1.7.8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0",
+                "ext-xml": "*"
+            },
+            "time": "2012-11-21 10:55:52",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "PHPExcel": ""
+                }
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Maarten Balliauw",
+                    "homepage": "http://blog.maartenballiauw.be"
+                },
+                {
+                    "name": "Mark Baker"
+                },
+                {
+                    "name": "Erit Tilt"
+                }
+            ],
+            "description": "PHPExcel - OpenXML - Create Excel2007 documents in PHP - Spreadsheet engine",
+            "homepage": "http://phpexcel.codeplex.com",
+            "keywords": [
+                "php",
+                "excel",
+                "spreadsheet",
+                "OpenXML"
+            ]
+        },
         {
             "name": "dino/dompdf",
             "version": "dev-master",
@@ -18,7 +69,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "1341280694",
+            "time": "2012-07-03 01:58:14",
             "bin": [
                 "bin/dompdf.php"
             ],
@@ -69,7 +120,7 @@
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "1348120518",
+            "time": "2012-09-20 05:55:18",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -138,7 +189,7 @@
                 "php": ">=5.3.2",
                 "doctrine/common": "2.3.*"
             },
-            "time": "1349518912",
+            "time": "2012-10-06 10:21:52",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -212,7 +263,7 @@
             "suggest": {
                 "doctrine/orm": "The Doctrine ORM integration is optional in the bundle."
             },
-            "time": "1349890948",
+            "time": "2012-10-10 17:42:28",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -274,7 +325,7 @@
             "suggest": {
                 "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
             },
-            "time": "1349472005",
+            "time": "2012-10-05 21:20:05",
             "bin": [
                 "bin/doctrine",
                 "bin/doctrine.php"
@@ -339,7 +390,7 @@
                 "php": ">=5.2",
                 "ensepar/tcpdf": "5.0.002"
             },
-            "time": "1349811926",
+            "time": "2012-10-09 19:45:26",
             "type": "library",
             "extra": {
                 "branch-alias": [
@@ -432,16 +483,16 @@
         },
         {
             "name": "imagine/Imagine",
-            "version": "v0.3.0",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/avalanche123/Imagine",
-                "reference": "v0.3.0"
+                "reference": "v0.4.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/avalanche123/Imagine/zipball/v0.3.0",
-                "reference": "v0.3.0",
+                "url": "https://github.com/avalanche123/Imagine/archive/v0.4.1.zip",
+                "reference": "v0.4.1",
                 "shasum": ""
             },
             "require": {
@@ -450,7 +501,7 @@
             "require-dev": {
                 "sami/sami": "dev-master"
             },
-            "time": "2012-07-28 17:35:18",
+            "time": "2012-12-13 18:31:18",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -458,6 +509,7 @@
                     "Imagine": "lib/"
                 }
             },
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -475,6 +527,55 @@
                 "image processing",
                 "drawing",
                 "graphics"
+            ]
+        },
+        {
+            "name": "irongit/symfony2-stream-response",
+            "version": "dev-master",
+            "target-dir": "n3b/Bundle/Util/HttpFoundation/StreamResponse",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/toretto460/Symfony2-StreamResponse",
+                "reference": "3e5082e7beec9c9130e30e49bad44e1e99ab33b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/toretto460/Symfony2-StreamResponse/archive/3e5082e7beec9c9130e30e49bad44e1e99ab33b1.zip",
+                "reference": "3e5082e7beec9c9130e30e49bad44e1e99ab33b1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "time": "2012-08-07 09:27:11",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "n3b\\Bundle\\Util\\HttpFoundation\\StreamResponse": ""
+                }
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "n3b",
+                    "email": "mail@n3b.ru",
+                    "homepage": "http://n3b.ru/"
+                },
+                {
+                    "name": "Simone Di Maulo",
+                    "homepage": "https://github.com/toretto460"
+                }
+            ],
+            "description": "Symfony2 StreamResponse Bundle",
+            "homepage": "https://github.com/toretto460/Symfony2-StreamResponse",
+            "keywords": [
+                "file",
+                "stream",
+                "StreamResponse"
             ]
         },
         {
@@ -597,7 +698,7 @@
                 "doctrine/doctrine-bundle": "*",
                 "doctrine/orm": "*"
             },
-            "time": "1348217792",
+            "time": "2012-09-21 08:56:32",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -703,7 +804,7 @@
                 "symfony/form": "*",
                 "symfony/validator": "*"
             },
-            "time": "1346947943",
+            "time": "2012-09-06 16:12:23",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -739,12 +840,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jordillonch/CrudGeneratorBundle",
-                "reference": "db28a2374311ebcf0f855f8fb6ef72f0c8e13dbc"
+                "reference": "0dab87aa15932e30285f7035a7ee3558672cd468"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/jordillonch/CrudGeneratorBundle/archive/db28a2374311ebcf0f855f8fb6ef72f0c8e13dbc.zip",
-                "reference": "db28a2374311ebcf0f855f8fb6ef72f0c8e13dbc",
+                "url": "https://github.com/jordillonch/CrudGeneratorBundle/archive/0dab87aa15932e30285f7035a7ee3558672cd468.zip",
+                "reference": "0dab87aa15932e30285f7035a7ee3558672cd468",
                 "shasum": ""
             },
             "require": {
@@ -753,7 +854,7 @@
                 "symfony/symfony": "2.1.*",
                 "sensio/generator-bundle": "2.1.*"
             },
-            "time": "1353073778",
+            "time": "2012-12-10 14:18:50",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -766,6 +867,7 @@
                     "JordiLlonch\\Bundle\\CrudGeneratorBundle": ""
                 }
             },
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -799,7 +901,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "1339767068",
+            "time": "2012-06-15 13:31:08",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -851,7 +953,7 @@
                 "twig/twig": ">=1.5",
                 "symfony/framework-bundle": "2.*,<2.3"
             },
-            "time": "1353061581",
+            "time": "2012-11-16 10:26:21",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -916,7 +1018,7 @@
                 "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
                 "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin"
             },
-            "time": "1349004759",
+            "time": "2012-09-30 11:32:39",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -971,7 +1073,7 @@
                 "doctrine/orm": "*",
                 "symfony/form": "2.1.*"
             },
-            "time": "1349442298",
+            "time": "2012-10-05 13:04:58",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1003,6 +1105,59 @@
             ]
         },
         {
+            "name": "liuggio/ExcelBundle",
+            "version": "dev-master",
+            "target-dir": "Liuggio/ExcelBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liuggio/ExcelBundle",
+                "reference": "a848c56c1356354d56cc568ecf7b279ddbe1a0aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/liuggio/ExcelBundle/archive/a848c56c1356354d56cc568ecf7b279ddbe1a0aa.zip",
+                "reference": "a848c56c1356354d56cc568ecf7b279ddbe1a0aa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "2.*",
+                "irongit/symfony2-stream-response": "dev-master",
+                "codeplex/phpexcel": "1.7.8"
+            },
+            "time": "2012-12-03 17:18:08",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Liuggio\\ExcelBundle": ""
+                }
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Giulio De Donato",
+                    "email": "liuggio@gmail.com",
+                    "homepage": "https://github.com/liuggio"
+                },
+                {
+                    "name": "ExcelBundle Contributors",
+                    "homepage": "https://github.com/liuggio/ExcelBundle#contributors"
+                }
+            ],
+            "description": "This is a Symfony2 Bundle helps you to read and write Excel files (including pdf, xlsx, odt), thanks to the PHPExcel library",
+            "homepage": "http://www.welcometothebundle.com",
+            "keywords": [
+                "Symfony2",
+                "excel",
+                "xls",
+                "bundle"
+            ]
+        },
+        {
             "name": "monolog/monolog",
             "version": "dev-master",
             "source": {
@@ -1027,7 +1182,7 @@
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server"
             },
-            "time": "1347983448",
+            "time": "2012-09-18 15:50:48",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1080,7 +1235,7 @@
                 "doctrine/mongodb-odm": "2.*",
                 "solarium/solarium": "2.*"
             },
-            "time": "1345672591",
+            "time": "2012-08-22 21:56:31",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1105,6 +1260,42 @@
             ]
         },
         {
+            "name": "phpexcel/phpexcel",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ddeboer/phpexcel",
+                "reference": "v1.7.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/ddeboer/phpexcel/archive/v1.7.7.zip",
+                "reference": "v1.7.7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">5.2.0"
+            },
+            "time": "2012-09-04 18:29:37",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "PHPExcel": "Classes"
+                }
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "GNU"
+            ],
+            "description": "PHPExcel - OpenXML - Create Excel2007 documents in PHP - Spreadsheet engine",
+            "homepage": "http://phpexcel.codeplex.com",
+            "keywords": [
+                "excel",
+                "xls"
+            ]
+        },
+        {
             "name": "psliwa/pdf-bundle",
             "version": "dev-master",
             "target-dir": "Ps/PdfBundle",
@@ -1125,7 +1316,7 @@
                 "sensio/framework-extra-bundle": ">=2.0",
                 "psliwa/php-pdf": ">=1.1.5"
             },
-            "time": "1348425698",
+            "time": "2012-09-23 18:41:38",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1212,7 +1403,7 @@
             "require": {
                 "symfony/framework-bundle": "2.1.*"
             },
-            "time": "1347340208",
+            "time": "2012-09-11 05:10:08",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1259,7 +1450,7 @@
                 "symfony/framework-bundle": "2.1.*",
                 "doctrine/common": ">=2.1,<2.4-dev"
             },
-            "time": "1349786071",
+            "time": "2012-10-09 12:34:31",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1311,7 +1502,7 @@
                 "doctrine/orm": ">=2.1,<2.4-dev",
                 "twig/twig": ">=1.8,<2.0-dev"
             },
-            "time": "1348030981",
+            "time": "2012-09-19 05:03:01",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1352,7 +1543,7 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "1349196829",
+            "time": "2012-10-02 16:53:49",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1416,7 +1607,7 @@
             "suggest": {
                 "symfony/twig-bundle": ">=2.1.0,<2.3-dev"
             },
-            "time": "1349897943",
+            "time": "2012-10-10 19:39:03",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1473,7 +1664,7 @@
                 "symfony/yaml": ">=2.1.0,<2.3-dev",
                 "symfony/config": ">=2.1.0,<2.3-dev"
             },
-            "time": "1348137624",
+            "time": "2012-09-20 10:40:24",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1528,7 +1719,7 @@
                 "symfony/config": ">=2.1.0,<2.3-dev",
                 "symfony/yaml": ">=2.1.0,<2.3-dev"
             },
-            "time": "1348137776",
+            "time": "2012-09-20 10:42:56",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1648,7 +1839,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "1349963062"
+            "time": "2012-10-11 13:44:22"
         },
         {
             "name": "toooni/fpdf",
@@ -1667,7 +1858,7 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "1350408929",
+            "time": "2012-10-16 17:35:29",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1704,7 +1895,7 @@
             "require": {
                 "twig/twig": "1.*"
             },
-            "time": "1349889206",
+            "time": "2012-10-10 17:13:26",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1785,17 +1976,17 @@
         },
         {
             "name": "zendframework/zendframework",
-            "version": "2.0.4",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "git://github.com/zendframework/zf2.git",
-                "reference": "release-2.0.4"
+                "reference": "release-2.0.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packages.zendframework.com/releases/ZendFramework-2.0.4/ZendFramework-2.0.4.zip",
-                "reference": "release-2.0.4",
-                "shasum": "bb1eaa25bca301806056198260823b9b057611b8"
+                "url": "http://packages.zendframework.com/releases/ZendFramework-2.0.6/ZendFramework-2.0.6.zip",
+                "reference": "release-2.0.6",
+                "shasum": "6305fcb1ea7b76a7c1ebbb55c6a2f34504027826"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -1936,6 +2127,9 @@
         "knplabs/knp-paginator-bundle": 20,
         "psliwa/pdf-bundle": 20,
         "toooni/fpdf": 20,
-        "ensepar/html2pdf": 20
+        "ensepar/html2pdf": 20,
+        "phpexcel/phpexcel": 20,
+        "irongit/symfony2-stream-response": 20,
+        "liuggio/excelbundle": 20
     }
 }

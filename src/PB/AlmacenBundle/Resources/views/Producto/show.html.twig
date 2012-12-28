@@ -1,0 +1,38 @@
+{# note que en este caso utilizamos el layout de ajax para así no cargar todo el contenido del layout general #}
+{# extends app.request.isXmlHttpRequest ? "::layout_ajax.html.twig" : "::layout.html.twig" #}
+{% extends "::layout_ajax.html.twig" %}
+{% block title "Producto" %}
+
+{% block content %}
+<div id="ver-producto"><div id="lightbox-wrapper">
+<div class="title title-spacing almacen"><h2>Producto</h2></div>
+<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+		<div class="portlet-content show">
+
+    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+		
+    <div id="tabs-1">
+     <table style="width:600px;" celspacing="0">
+     	<tr>
+     		<td class="labelpro">Nombre</td><td><b>{{ entity.nombre }}</b></td><td class="labelpro">Código de Producto</td><td>{{ entity.id }}</td>
+     	</tr>
+     	<tr>
+     		<td class="labelpro">Tipo de Producto</td><td>{{ entity.tipoproductoText }}</td><td class="labelpro">Puede ser Vendido</td><td>{{ entity.vendido ? 'Si' : 'No' }}</td>
+     	</tr>
+     	<tr>	
+     		<td class="labelpro">Referencia</td><td>{{ entity.referencia }}</td><td class="labelpro">Puede ser Comprado</td><td>{{ entity.comprado ? 'Si' : 'No' }}</td>
+     	</tr>
+     	<tr>	
+     		<td class="labelpro">Método de Suministro</td><td>{{ entity.metodosuministro }}</td><td></td><td></td>
+     	</tr>
+     	<tr>	
+     		<td class="labelpro">Precio de Compra</td><td>{{ entity.preciocompra }}</td><td class="labelpro">Precio de Venta</td><td>{{ entity.precioventa }}</td>
+     	</tr>
+     	<tr>	
+     		<td class="labelpro">Descripción</td><td colspan="3">{{ entity.descripcion|nl2br }}</td><td></td><td></td>
+     	</tr>
+     </table>
+    </div>
+	
+	</div></div> </div></div></div>
+{% endblock %}

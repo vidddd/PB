@@ -1,0 +1,31 @@
+producto:
+    pattern:  /
+    defaults: { _controller: "PBAlmacenBundle:Producto:index" }
+
+producto_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBAlmacenBundle:producto:show" }
+
+producto_new:
+    pattern:  /new
+    defaults: { _controller: "PBAlmacenBundle:producto:new" }
+
+producto_create:
+    pattern:  /create
+    defaults: { _controller: "PBAlmacenBundle:producto:create" }
+    requirements: { _method: post }
+
+producto_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBAlmacenBundle:producto:edit" }
+
+producto_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBAlmacenBundle:producto:update" }
+    requirements: { _method: post }
+
+producto_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBAlmacenBundle:producto:delete" }
+    requirements: { _method: post }
+    

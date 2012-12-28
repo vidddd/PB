@@ -95,6 +95,7 @@
 
     <div class="span4">
     {{ pagerHtml|raw }}
+   
      <form id="form1" name="form1" method="post" action="{{ path('proveedor') }}"> 
     <div class="dataTables_length"><label>Mostrar 
     	<select name="cuantos" id="cuantos" onchange="this.form.submit()" size="1">   		
@@ -105,6 +106,7 @@
     	</select></label>
     </div>
     </form>
+     <div class="dowimgs"><a href="{{ path('proveedor_csv') }}"><img src="{{ asset('images/excel.png') }}"/></a></div>
     </div>
 
 {% endblock %}

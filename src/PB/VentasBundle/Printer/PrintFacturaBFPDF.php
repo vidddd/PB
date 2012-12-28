@@ -30,7 +30,7 @@ class PrintFacturaBFPDF {
 		
 		$pdf->SetFillColor(255,255,255); $pdf->SetTextColor(0); $pdf->SetDrawColor(0,0,0);	$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',15);
 		
-		$pdf->Cell(40,65,utf8_decode('# FACTURA #'));$pdf->SetX(10);	$pdf->SetFont('Arial','B',10);$pdf->Cell(90); $pdf->Cell(100,4,"",'LRT',0,'L',1); $pdf->Ln(4);
+		$pdf->Cell(40,65,utf8_decode('# FACTURA PROFORMA #'));$pdf->SetX(10);	$pdf->SetFont('Arial','B',10);$pdf->Cell(90); $pdf->Cell(100,4,"",'LRT',0,'L',1); $pdf->Ln(4);
 		
 		$pdf->Cell(90);	$pdf->Cell(100,4,utf8_decode($entity->getCliente()->getNombre()),'LR',0,'L',1); $pdf->Ln(4);$pdf->Cell(90);
 		$pdf->Cell(100,4,utf8_decode($entity->getCliente()->getDireccion()),'LR',0,'L',1);
@@ -47,7 +47,7 @@ class PrintFacturaBFPDF {
 		
 		$pdf->SetFillColor(200,200,200); $pdf->SetTextColor(0);	$pdf->SetDrawColor(0,0,0);	$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);
 		
-		$pdf->Cell(80);	$pdf->Cell(30,4,"NIF",1,0,'C',1);	$pdf->Cell(30,4,"Cod. Clien",1,0,'C',1);	$pdf->Cell(30,4,"Fecha",1,0,'C',1);	$pdf->Cell(20,4,utf8_decode("N Alb."),1,0,'C',1);$pdf->Ln(4);
+		$pdf->Cell(80);	$pdf->Cell(30,4,"NIF",1,0,'C',1);	$pdf->Cell(30,4,"Cod. Clien",1,0,'C',1);	$pdf->Cell(30,4,"Fecha",1,0,'C',1);	$pdf->Cell(20,4,utf8_decode("N Factura."),1,0,'C',1);$pdf->Ln(4);
 
 		$pdf->Cell(80);	$pdf->SetFillColor(255,255,255);$pdf->SetTextColor(0);$pdf->SetDrawColor(0,0,0);$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);
 		

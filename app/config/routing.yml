@@ -1,3 +1,7 @@
+pb_almacen:
+    resource: "@PBAlmacenBundle/Resources/config/routing.yml"
+    prefix:   /almacen
+
 pb_contabilidad:
     resource: "@PBContabilidadBundle/Resources/config/routing.yml"
     prefix:   /contabilidad

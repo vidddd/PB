@@ -152,7 +152,7 @@ class ProveedorController extends Controller
     
     	// Reset filter
     	if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
-    		$session->remove('ProveedorControllerFilterBuscador');
+    		$session->remove('ProveedorControllerFilter');
     	}
     
     	// Filter action
@@ -161,17 +161,14 @@ class ProveedorController extends Controller
     		$filterForm->bind($request);
     		 
     		if ($filterForm->isValid()) {
-    			// Build the query from the given form object
     			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
-    			// Save filter to session
     			$filterData = $filterForm->getData();
-    
     			$session->set('ProveedorControllerFilter', $filterData);
     		}
     	} else {
-    		// Get filter from session
-    		if ($session->has('ProveedorControllerFilterBuscador')) {
-    			$filterData = $session->get('ProveedorControllerFilterBuscador');
+
+    		if ($session->has('ProveedorControllerFilter')) {
+    			$filterData = $session->get('ProveedorControllerFilter');
     			$filterForm = $this->createForm(new ProveedorBuscadorFilterType(), $filterData);
     			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
     		}
@@ -389,5 +386,26 @@ class ProveedorController extends Controller
     	} else {
     		return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de proveedor erróneo</span>')));
     	}
+    }
+    
+    public function csvAction(){
+    	$request = $this->getRequest();$session = $request->getSession();
+    	$em = $this->get('doctrine')->getEntityManager();
+    	$query = $em->getRepository('PBComprasBundle:Proveedor')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
+    	
+    	if ($session->has('ProveedorControllerFilter')) {
+    		$filterData = $session->get('ProveedorControllerFilter');
+    		//print_r($filterData); die;
+    		$filterForm = $this->createForm(new ProveedorBuscadorFilterType(), $filterData);
+    		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $query);
+    	}
+    	
+    	$data = $query->getQuery()->getResult(); 
+    	$filename = "Proveedores.csv";
+    	
+    	$response = $this->render('PBComprasBundle:Proveedor:csv.html.twig', array('data' => $data));
+    	$response->headers->set('Content-Type', 'text/csv');	
+    	$response->headers->set('Content-Disposition', 'attachment; filename='.$filename);
+    	return $response;
     }
 }

@@ -1,0 +1,7 @@
+pb_almacen_homepage:
+    pattern:  /
+    defaults: { _controller: PBAlmacenBundle:Default:index }
+
+PBComprasBundle_producto:
+    resource: "@PBAlmacenBundle/Resources/config/routing/producto.yml"
+    prefix:   /producto

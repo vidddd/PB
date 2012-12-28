@@ -1,0 +1,4 @@
+tipo_producto:
+  1: "Almacenable"
+  2: "Consumible"
+  3: "Servicio"

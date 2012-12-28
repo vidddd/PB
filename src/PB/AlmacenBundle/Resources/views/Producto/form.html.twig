@@ -1,0 +1,56 @@
+<form action="{{ entity.id  ? path('producto_update', { 'id': entity.id }) : path('producto_create') }}" method="post">
+<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container form-producto">
+	<div class="portlet-header ui-widget-header">Nuevo Producto</div>
+		<div class="portlet-content form-alta">
+          {% if form_errors(form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% endif %}
+		<div class="span-30 form-horizontal">
+		  <div class="control-group">
+			{{ form_label(form.nombre, null, { 'label': 'Nombre', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.nombre, { 'attr': {'cols': '50', 'rows': '6'}}) }}</div>
+		</div></div>
+		<div class="span-18 form-horizontal">
+		  <div class="control-group">
+			 	{{ form_label(form.tipoproducto, null, { 'label': 'Tipo de Producto', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.tipoproducto, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.metodo_suministro, null, { 'label': 'Metodo de Suministro', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.metodo_suministro, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.referencia, null, { 'label': 'Referencia', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.referencia, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		</div>
+		<div class="span-18 form-horizontal">
+		  <div class="control-group">
+			 	{{ form_label(form.comprado, null, { 'label': 'Puede ser Comprado', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.comprado, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.vendido, null, { 'label': 'Puede ser Vendido', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.vendido, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.precioventa, null, { 'label': 'Precio de Venta', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.precioventa, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  		  <div class="control-group">
+			 	{{ form_label(form.preciocompra, null, { 'label': 'Precio de Compra', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.preciocompra, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		</div>
+		<div class="span-30 form-horizontal">
+		  <div class="control-group">
+			{{ form_label(form.vendido, null, { 'label': 'Descripcion', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.descripcion, { 'attr': {'cols': '50', 'rows': '6'}}) }}</div>
+		</div></div>
+	<div class="clearfix"></div>
+	<div class="guardar">
+	
+	        <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
+	</div> 
+</div></div>{{ form_widget(form._token) }}
+</form>

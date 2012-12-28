@@ -1,0 +1,18 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Nuevo Producto" %}
+{% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
+{% block content %}
+<div id="producto">
+<div class="title title-spacing almacen">
+					<h2>Nuevo Producto</h2>
+</div>
+
+          	{% include 'PBAlmacenBundle:Producto:form.html.twig' with { 'form' : form } %}
+    <div class="float-left volver">
+        <a href="{{ path('producto') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+</div>
+{% endblock %}

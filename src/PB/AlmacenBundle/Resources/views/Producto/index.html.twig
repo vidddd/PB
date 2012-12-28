@@ -1,0 +1,50 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Productos" %}
+
+{% block content %}
+
+<div class="title title-spacing almacen">
+					<h2>Productos</h2>
+</div>
+
+<div class="clearfix"></div>
+<div class="btn-nuevo">
+<a class="btn ui-state-default ui-corner-all" href="{{ path('producto_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Producto</a></div>
+
+
+<div class="hastable">
+    <table class="records_list">
+    <thead>
+        <tr>
+            <th width="25">Código Producto</th>
+            <th>Nombre</th>
+            <th>Tipo Producto</th>
+            <th>Precio Compra</th>
+            <th>Precio Venta</th>
+            <th width="70">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+        	<!-- <a rel="prettyPhoto[ajax]" href="xhr_response.html?ajax=true&amp;width=400&amp;height=160">Sample AJAX</a> -->
+            <td><a rel="prettyPhoto[iframe]" href="{{ path('producto_show', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.tipoproductoText }}</td>
+            <td>{{ entity.preciocompra }}</td>
+            <td>{{ entity.precioventa }}</td>
+            <td>
+                <a rel="prettyPhoto[iframe]" title="Ver Ficha" href="{{ path('producto_show', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+        		<a href="{{ path('producto_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+          		<!-- <a href="{{ path('producto_delete', { 'id': entity.id }) }}" title="Eliminar" class="btn_no_text btn ui-state-default ui-corner-all tooltip" onclick="return confirm('Estas seguro de borrar el cliente?')"><span class="ui-icon ui-icon-circle-close"></span></a> -->
+          </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    </div>
+    <div class="span4">
+    {{ pagerHtml|raw }}
+ </div>
+{% endblock %}
