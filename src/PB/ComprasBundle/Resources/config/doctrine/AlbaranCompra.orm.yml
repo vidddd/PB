@@ -1,0 +1,59 @@
+PB\ComprasBundle\Entity\AlbaranCompra:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    fecha:
+      type: date
+    fecha_recepcion:
+      type: date
+      nullable: true
+    referencia:
+      type: string
+      length: '100'
+      nullable: true
+    forma_envio:
+      type: integer
+      nullable: true
+    importe:
+      type: float
+      nullable: true
+    total:
+      type: float
+      nullable: true
+    iva:
+      type: float
+      nullable: true
+    descuento:
+      type: float
+      nullable: true
+    observaciones:
+      type: text
+      nullable: true
+    estado:
+      type: smallint
+      nullable: true
+  manyToOne:
+    proveedor:
+      targetEntity: PB\ComprasBundle\Entity\Proveedor
+      inversedBy: albarancompra
+      joinColumn:
+        name: proveedor_id
+        referencedColumnName: id
+  oneToOne:
+    albarancompra_pedido:
+      targetEntity: PB\ComprasBundle\Entity\PedidoCompra
+      inversedBy: albarancompra
+      joinColumn:
+        name: pedidocompra_id
+        referencedColumnName: id
+  oneToMany:
+    albarancompralineas:
+      targetEntity: PB\ComprasBundle\Entity\AlbaranCompraLinea
+      mappedBy: albarancompralinea   
+      cascade: [ persist ]
+  lifecycleCallbacks: {  }

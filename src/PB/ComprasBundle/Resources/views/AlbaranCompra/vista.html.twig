@@ -1,0 +1,88 @@
+<div id="pedido-compra-ver">
+	<div class="span-18" style="margin-right:20px;">
+		<table id="tabla1">
+		<tr>
+			<td style="width:30%;" class="label3">PROVEEDOR</td>
+			<td style="width:300px"><b>{{ entity.proveedor.nombre }}</b></td>
+		</tr>
+		<tr>
+			<td class="label3">DIRECCIÓN</td>
+			<td colspan="3">{{ entity.proveedor.direccion }}</td>
+		</tr>
+		<tr>
+			<td class="label3">TELÉFONO</td>
+			<td> {{ entity.proveedor.telefono }}</td>
+		</tr>
+		<tr>
+			<td class="label3">LOCALIDAD</td>
+			<td>{{ entity.proveedor.localidad }}</td>
+		</tr> 
+		</table>
+	</div>
+	<div class="span-18">
+		<table id="tabla2">
+		<tr>
+			<td style="width:35%;" class="label3">Nª ALBARAN</td>
+			<td style="width:300px">{{ entity.id }}</td>
+		</tr>
+		<tr>
+			<td class="label3">FECHA</td>
+			<td colspan="3">{{ entity.fecha| date('d/m/Y') }}</td>
+		</tr>
+		<tr>
+			<td class="label3">FECHA ENTREGA</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="label3">FORMA ENVIO</td>
+			<td></td>
+		</tr> 
+		</table>
+	</div>
+	<div class="clearfix"></div>
+
+	<table id="cab-lineas" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<th style="width:8%;" class="label3">REF</th>
+			<th style="width:45%;" class="label3">DESCRIPCION</th>
+			<th style="width:11%;" class="label3">UDS</th>
+			<th style="width:11%;" class="label3">PRECIO</th>
+			<th style="width:11%;" class="label3">% DTO</th>
+			<th style="width:15%;" class="label3">TOTAL</th>
+		</tr>
+	{% for linea in entity.albarancompralineas %}
+        <tr>
+            <td class="ta_right">{{ linea.referencia }}</td>
+            <td>{{ linea.descripcion }}</td>
+            <td class="ta_right">{{ linea.cantidad }}</td>
+            <td class="ta_right">{{ linea.precio }}</td>
+            <td class="ta_right">{{ linea.descuento }}</td>
+            <td class="ta_right">{{ linea.total }}</td>
+        </tr>
+    {% endfor %}
+	</table> <br />
+	<table id="totales">
+		<tr>
+			<td style="width:15%" class="label3">NETO</td>
+			<td style="width:15%" class="label3">DTO %</td>
+			<td style="width:15%" class="label3">BASE IMP.</td>
+			<td style="width:15%" class="label3">IVA 21%</td>
+			<td style="width:22%" class="label3">TOTAL</td>
+		</tr>
+		<tr>
+			<td class="last ta_right">{{ entity.importe }}€</td>
+			<td class="last ta_right"></td>
+			<td class="last ta_right">{{ entity.importe }}€</td>
+			<td class="last ta_right">{{ entity.iva }}</td>
+			<td class="last ta_right"><b>{{ entity.total }}€</b></td>
+		</tr>
+		</table><div class="clearfix"></div>
+	<table id="obs" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<th class="label3">OBSERVACIONES</th>
+    </tr>
+    <tr>
+    	<td><P>{{ entity.observaciones }}</P></td>
+    </tr>
+    </table>
+</div>

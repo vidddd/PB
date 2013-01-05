@@ -60,27 +60,21 @@ class ProveedorController extends Controller
         $filterForm = $this->createForm(new ProveedorFilterType());
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->getRepository('PBComprasBundle:Proveedor')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
-    
-        // Reset filter
+
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
             $session->remove('ProveedorControllerFilter');
         }
-    
-        // Filter action
+
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
-            // Bind values from the request
+
             $filterForm->bind($request);
-           
             if ($filterForm->isValid()) {
-                // Build the query from the given form object
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
-                // Save filter to session
                 $filterData = $filterForm->getData();
-                
+             
                 $session->set('ProveedorControllerFilter', $filterData);
             }
         } else {
-            // Get filter from session
             if ($session->has('ProveedorControllerFilter')) {
                 $filterData = $session->get('ProveedorControllerFilter');
                 $filterForm = $this->createForm(new ProveedorFilterType(), $filterData);
@@ -149,16 +143,13 @@ class ProveedorController extends Controller
     	$filterForm = $this->createForm(new ProveedorBuscadorFilterType());
     	$em = $this->getDoctrine()->getManager();
     	$queryBuilder = $em->getRepository('PBComprasBundle:Proveedor')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
-    
-    	// Reset filter
+
     	if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
     		$session->remove('ProveedorControllerFilter');
     	}
-    
-    	// Filter action
+
     	if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
-    		// Bind values from the request
-    		$filterForm->bind($request);
+       		$filterForm->bind($request);
     		 
     		if ($filterForm->isValid()) {
     			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
@@ -185,7 +176,6 @@ class ProveedorController extends Controller
     	$pagerfanta->setCurrentPage($currentPage);
     	$entities = $pagerfanta->getCurrentPageResults();
     
-    	// Paginator - route generator
     	$me = $this;
     	$routeGenerator = function($page) use ($me)
     	{
@@ -393,11 +383,17 @@ class ProveedorController extends Controller
     	$em = $this->get('doctrine')->getEntityManager();
     	$query = $em->getRepository('PBComprasBundle:Proveedor')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
     	
+    	if ($session->get('ProveedorCuantos')){
+    		$cuantos = $session->get('ProveedorCuantos');
+    	} else { $cuantos = 10; }
+    	$query->setMaxResults($cuantos);
+    	
     	if ($session->has('ProveedorControllerFilter')) {
     		$filterData = $session->get('ProveedorControllerFilter');
-    		//print_r($filterData); die;
+    		
     		$filterForm = $this->createForm(new ProveedorBuscadorFilterType(), $filterData);
     		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $query);
+    		print_r($query->getDql()); die; 
     	}
     	
     	$data = $query->getQuery()->getResult(); 

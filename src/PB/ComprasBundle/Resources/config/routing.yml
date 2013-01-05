@@ -9,3 +9,7 @@ PBComprasBundle_proveedor:
 PBComprasBundle_compras_pedidocompra:
     resource: "@PBComprasBundle/Resources/config/routing/pedidocompra.yml"
     prefix:   /pedidocompra
+
+PBComprasBundle_albarancompra:
+    resource: "@PBComprasBundle/Resources/config/routing/albarancompra.yml"
+    prefix:   /albarancompra

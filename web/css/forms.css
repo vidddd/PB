@@ -1,4 +1,4 @@
-
+	
 	/* General */
 
 .column-fixed .form-container {
@@ -311,6 +311,15 @@ input.submit, button.submit{
 	color:#666;
 }
 .form-horizontal .control-group {
+    margin-bottom: 18px;
+    padding-top: 4px;
+}
+#datos-pedido .control-group{
+	margin-bottom:22px;
+	min-height: 6px;
+	clear:both;
+}
+.form-producto .control-group {
     margin-bottom: 18px;
     padding-top: 4px;
 }

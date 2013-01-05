@@ -17,9 +17,11 @@ use PB\ComprasBundle\Form\PedidoCompraLineaType;
 use Symfony\Component\HttpFoundation\Response;
 use PB\ComprasBundle\Form\Factory\PedidoCompraFactory;
 use PB\ComprasBundle\Form\PedidoCompraFormType;
-use Ps\PdfBundle\Annotation\Pdf;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use PB\ComprasBundle\Printer\PrintPedidoCompra3;
+use PB\ComprasBundle\Entity\AlbaranCompra;
+use PB\ComprasBundle\Entity\AlbaranCompraLinea;
+
 
 
 class PedidoCompraController extends Controller
@@ -117,9 +119,30 @@ class PedidoCompraController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PBComprasBundle:PedidoCompra:show.html.twig', array(            'entity'      => $entity,  'delete_form' => $deleteForm->createView(),        ));
+        return $this->render('PBComprasBundle:PedidoCompra:show.html.twig', array( 'entity'      => $entity,  'delete_form' => $deleteForm->createView(),        ));
     }
+    
+    public function showLightboxAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	$entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
+    	$medios = $value['medio_envio'];
 
+    	//$entity->setFormaEnvio($medios[$entity->getFormaEnvio()]);
+    
+    	if (!$entity) {
+    		throw $this->createNotFoundException('Unable to find PedidoCompra entity.');
+    	}
+    
+    	$deleteForm = $this->createDeleteForm($id);
+    
+    	return $this->render('PBComprasBundle:PedidoCompra:show_lightbox.html.twig', array( 'entity'      => $entity,  'delete_form' => $deleteForm->createView(),        ));
+    }
+    
     public function newAction()
     {
     	//$em = $this->getDoctrine()->getEntityManager();
@@ -144,10 +167,37 @@ class PedidoCompraController extends Controller
         	{
         		$linea->setPedidocompralinea($entity);
         	}
+        	// CREANDO ALBARAN DE COMPRA
+        	$albaran = new AlbaranCompra();
+        	$albaran->setProveedor($entity->getProveedor());
+        	$albaran->setReferencia($entity->getReferencia());
+        	$albaran->setImporte($entity->getImporte());
+        	$albaran->setTotal($entity->getTotal());
+        	$albaran->setIva($entity->getIva());
+        	$albaran->setDescuento($entity->getDescuento());
+        	$albaran->setObservaciones($entity->getObservaciones());
+        	$albaran->setEstado($entity->getEstado());
+        	$albaran->setFecha(new \DateTime());
+        	$albaran->setAlbarancompraPedido($entity);
         	
-        	$em->persist($entity);
+        	foreach ($entity->getPedidocompralineas() as $linea)
+        	{
+        		$alinea = new AlbaranCompraLinea();
+        		 //$flinea->setFactura($factura);	
+        		$alinea->setAlbarancompralinea($albaran);
+        		$alinea->setReferencia($linea->getReferencia());
+        		$alinea->setDescripcion($linea->getDescripcion());
+        		$alinea->setCantidad($linea->getCantidad());
+        		$alinea->setPrecio($linea->getPrecio());
+        		$alinea->setDescuento($linea->getDescuento());
+        		$alinea->setTotal($linea->getTotal());
+        		$albaran->addAlbarancompralinea($alinea);
+        	}
+        	
+        	$em->persist($entity); $em->persist($albaran); 
         	$em->flush();
             $this->get('session')->getFlashBag()->add('success', 'Nuevo Pedido de compra creado');
+            $this->get('session')->getFlashBag()->add('success', 'Nuevo Albaran de compra creado');
             
             return $this->redirect($this->generateUrl('compras_pedidocompra_show', array('id' => $entity->getId())));       } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.create.error');

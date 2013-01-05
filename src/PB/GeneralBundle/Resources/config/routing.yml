@@ -5,4 +5,7 @@ pb_general_homepage:
 PBGeneralBundle_formapago:
     resource: "@PBGeneralBundle/Resources/config/routing/formapago.yml"
     prefix:   /formapago
-    
+
+pb_general_backup:
+    pattern:  /backup
+    defaults: { _controller: PBGeneralBundle:Backup:index }    

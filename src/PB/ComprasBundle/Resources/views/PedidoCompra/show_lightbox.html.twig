@@ -1,0 +1,11 @@
+{% extends '::layout_ajax.html.twig' %}
+
+{% block title 'Pedido compra' %}
+
+{# block width100 "widthtotal" %}{% block displaysidebar "display:none;" #}
+{% block content %}
+<div id="lightbox-wrapper"><div class="title title-spacing compras"><h2>Pedido Compra</h2></div>
+{% include 'PBComprasBundle:PedidoCompra:vista.html.twig' with { 'entity' : entity } %}
+<div class="clearfix"></div></div>
+
+{% endblock %}

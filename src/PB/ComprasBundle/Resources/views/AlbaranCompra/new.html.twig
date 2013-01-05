@@ -1,0 +1,19 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Nuevo Albaran Compra" %}
+{% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
+{% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
+{% block content %}
+<div class="facturas">
+<div class="title title-spacing"><h2>Nuevo Albaran Compra</h2></div>
+          	{% include 'PBComprasBundle:AlbaranCompra:form.html.twig' with { 'form' : form } %}
+        
+    <div class="float-left volver">
+        <a href="{{ path('albarancompra') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+
+</div>
+		{% include 'PBComprasBundle:Proveedor:js_get_proveedor.html.twig' %} 
+{% endblock %}

@@ -950,4 +950,42 @@ class Proveedor
         $this->pedidocompra->removeElement($pedidocompra);
     }
     
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $albarancompra;
+
+
+    /**
+     * Add albarancompra
+     *
+     * @param PB\ComprasBundle\Entity\AlbaranCompra $albarancompra
+     * @return Proveedor
+     */
+    public function addAlbarancompra(\PB\ComprasBundle\Entity\AlbaranCompra $albarancompra)
+    {
+        $this->albarancompra[] = $albarancompra;
+    
+        return $this;
+    }
+
+    /**
+     * Remove albarancompra
+     *
+     * @param PB\ComprasBundle\Entity\AlbaranCompra $albarancompra
+     */
+    public function removeAlbarancompra(\PB\ComprasBundle\Entity\AlbaranCompra $albarancompra)
+    {
+        $this->albarancompra->removeElement($albarancompra);
+    }
+
+    /**
+     * Get albarancompra
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAlbarancompra()
+    {
+        return $this->albarancompra;
+    }
 }

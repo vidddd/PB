@@ -425,4 +425,65 @@ class PedidoCompra
     {
         return $this->incidencias;
     }
+    /**
+     * @var PB\ComprasBundle\Entity\AlbaranCompra
+     */
+    private $albarancompra_pedido;
+
+
+    /**
+     * Set albarancompra_pedido
+     *
+     * @param PB\ComprasBundle\Entity\AlbaranCompra $albarancompraPedido
+     * @return PedidoCompra
+     */
+    public function setAlbarancompraPedido(\PB\ComprasBundle\Entity\AlbaranCompra $albarancompraPedido = null)
+    {
+        $this->albarancompra_pedido = $albarancompraPedido;
+    
+        return $this;
+    }
+
+    /**
+     * Get albarancompra_pedido
+     *
+     * @return PB\ComprasBundle\Entity\AlbaranCompra 
+     */
+    public function getAlbarancompraPedido()
+    {
+        return $this->albarancompra_pedido;
+    }
+    /**
+     * @var PB\ComprasBundle\Entity\AlbaranCompra
+     */
+    private $albarancompra;
+
+
+    /**
+     * Set albarancompra
+     *
+     * @param PB\ComprasBundle\Entity\AlbaranCompra $albarancompra
+     * @return PedidoCompra
+     */
+    public function setAlbarancompra(\PB\ComprasBundle\Entity\AlbaranCompra $albarancompra = null)
+    {
+        $this->albarancompra = $albarancompra;
+    
+        return $this;
+    }
+
+    /**
+     * Get albarancompra
+     *
+     * @return PB\ComprasBundle\Entity\AlbaranCompra 
+     */
+    public function getAlbarancompra()
+    {
+        return $this->albarancompra;
+    }
+    public function __toString()
+    {
+    	$id = $this->id;
+    	return (string)$id;
+    }
 }

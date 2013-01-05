@@ -113,5 +113,8 @@ PB\ComprasBundle\Entity\Proveedor:
     pedidocompra:
         targetEntity: PB\ComprasBundle\Entity\PedidoCompra
         mappedBy: proveedor
+    albarancompra:
+        targetEntity: PB\ComprasBundle\Entity\AlbaranCompra
+        mappedBy: proveedor
   lifecycleCallbacks: 
     prePersist: [ setFechaAltaPre ]

@@ -1,0 +1,24 @@
+{% extends '::layout.html.twig' %}
+
+{% block title 'Albaran compra' %}
+
+{# block width100 "widthtotal" %}{% block displaysidebar "display:none;" #}
+{% block content %}
+<div class="title title-spacing compras"><h2>Albaran Compra</h2></div>
+{% include 'PBComprasBundle:AlbaranCompra:vista.html.twig' with { 'entity' : entity } %}
+<div class="clearfix"></div>
+<div><br />
+    <div class="volver float-left">
+        <a href="{{ path('albarancompra') }}"> <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></div>
+    <ul class="ui-widget ui-helper-clearfix botones-abajo">
+    <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('albarancompra_edit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
+    
+    <div class="float-left eliminar-show">
+        <form action="{{ path('albarancompra_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="ui-state-default ui-corner-all boton-eliminar" onclick="return confirm('Desea eliminar el item? Esta accion no se puede deshacer');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+        </form>
+    </div>
+    </ul>
+</div>
+{% endblock %}

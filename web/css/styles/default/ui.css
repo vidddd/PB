@@ -129,7 +129,7 @@ body {
 	outline:none;
 }
 
-#page-wrapper #main-wrapper #main-content .page-title h1 b, .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited, #page-wrapper #main-wrapper .title h2, #page-wrapper #main-wrapper .title h3, a {
+#page-wrapper #main-wrapper #main-content .page-title h1 b, .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited, #page-wrapper #main-wrapper .title h2, #lightbox-wrapper .title h2, #page-wrapper #main-wrapper .title h3, a {
 	color:#0073ea;
 	text-decoration:none;outline:none;
 }

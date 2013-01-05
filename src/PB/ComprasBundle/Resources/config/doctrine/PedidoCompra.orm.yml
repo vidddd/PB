@@ -50,7 +50,12 @@ PB\ComprasBundle\Entity\PedidoCompra:
         referencedColumnName: id
   oneToMany:
     pedidocompralineas:
-        targetEntity: PB\ComprasBundle\Entity\PedidoCompraLinea
-        mappedBy: pedidocompralinea   
-        cascade: [ persist ]  
+      targetEntity: PB\ComprasBundle\Entity\PedidoCompraLinea
+      mappedBy: pedidocompralinea   
+      cascade: [ persist ]
+  oneToOne:
+    albarancompra:
+      targetEntity: PB\ComprasBundle\Entity\AlbaranCompra
+      mappedBy: albarancompra_pedido
+      
   lifecycleCallbacks: {  }

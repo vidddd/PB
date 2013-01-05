@@ -1,0 +1,38 @@
+PB\ComprasBundle\Entity\AlbaranCompraLinea:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    referencia:
+      type: string
+      length: 255
+      nullable: true
+    descripcion:
+      type: string
+      length: 255
+      nullable: true
+    cantidad:
+      type: float
+      nullable: true
+    precio:
+      type: float
+      nullable: true
+    descuento:
+      type: float
+      nullable: true
+    total:
+      type: float
+      nullable: true
+  manyToOne:
+    albarancompralinea:
+      targetEntity: PB\ComprasBundle\Entity\AlbaranCompra
+      inversedBy: albarancompralineas
+      joinColumn:
+        name: albarancompra_id
+        referencedColumnName: id
+        onDelete: CASCADE
+  lifecycleCallbacks: {  }

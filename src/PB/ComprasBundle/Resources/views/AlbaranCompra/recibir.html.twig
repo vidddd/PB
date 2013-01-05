@@ -1,0 +1,59 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Recibir Albaran Compra" %}
+{% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
+{% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
+{% block content %}
+
+<div class="facturas">
+<div class="title title-spacing"><h2>Recibir Albaran Compra</h2></div>
+<div class="content-box content-box-header ui-corner-all ">
+	<div class="ui-state-default ui-corner-top ui-box-header"><span class="ui-icon float-left ui-icon-signal"></span>Datos de Albaran Compra</div>
+    	<div class="content-box-wrapper">
+			<div class="form-invoice">
+				<div class="span-17 form-horizontal label-column-small form-condensed">
+					<div class="control-group required">
+						<label class="control-label">Proveedor</label>
+						<div class="controls">
+			    			<b>{{ entity.proveedor }}</b>
+		        		</div>
+	     			</div>
+     			</div>
+     			<div class="span-17 form-horizontal label-column-small form-condensed">
+	     			<div class="control-group required">
+						<label class="control-label">Fecha</label>
+						<div class="controls">
+			    			{{ entity.fecha|date('d.m.Y') }}
+		        		</div>
+	     			</div>
+					<div class="control-group required">
+						{{ form_label(form.fecha_recepcion, null, { 'label': 'Fecha Recepción', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.fecha_recepcion, { 'attr': {'class': 'date small'}}) }}
+		        		</div>
+	     			</div>
+     			</div>
+      			<div class="span-16 form-horizontal label-column-small form-condensed">
+					<div class="control-group required">
+						{{ form_label(form.estado, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}
+						<div class="controls">
+			    			{{ form_widget(form.estado, { 'attr': {'class': 'small'}}) }}
+		        		</div>
+	     			</div>
+     			</div>
+ 			</div>
+ 		</div>
+ 	</div>
+	<div class="clearfix"></div>       
+    <div class="float-left volver">
+        <a href="{{ path('albarancompra') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+
+</div>
+		{% include 'PBComprasBundle:Proveedor:js_get_proveedor.html.twig' %} 
+<script>
+getNombreProveedor();
+        	</script>
+{% endblock %}

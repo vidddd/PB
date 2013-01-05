@@ -1,0 +1,104 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Albaranes Compra" %}
+{% block content %}
+<div id="pedido-compra">
+<div class="title title-spacing">
+					<h2>Albaranes Compra</h2>
+</div>
+    <div class="span2">
+        {% if form_errors(filterForm) %}
+        <div class="response-msg notice iu-corner-all"><span>
+            {{ form_errors(filterForm) }}</span>
+        </div>
+        {% endif %}
+        &nbsp;
+    </div>
+        <div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
+    <div class="portlet-content">
+            <form class="well" action="{{ path('albarancompra') }}" method="post" {{ form_enctype(filterForm) }}>
+	<table id="form-alta">
+   				<tbody>		
+         			<tr>
+        				<td class="label">{{ form_label(filterForm.id, 'Código Albaran') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
+      				<tr>
+					<tr>
+	        			<td class="label">{{ form_label(filterForm.proveedor, 'Código Proveedor') }}</td>
+	        			<td class="campo">{{ form_widget(filterForm.proveedor, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_proveedor', { 'id': '' , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Proveedores"><img src="{{ asset('images/search.png') }}" /></a></td><td>{{ form_errors(filterForm.proveedor) }}</td>
+	      			<tr>
+	      			<tr>
+	        			<td class="label">{{ form_label(filterForm.proveedor, 'Tipo Proveedor') }}</td>
+	        			<td class="campo">{{ form_widget(filterForm.tipo_proveedor, { 'attr': {'class': ''}}) }}</td><td></td>
+	      			<tr>
+	      	        <tr>
+	        			<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
+	        			<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
+	      			<tr>
+					<tr>
+	        			<td class="label">{{ form_label(filterForm.referencia, 'Referencia') }}</td>
+	        			<td class="campo">{{ form_widget(filterForm.referencia, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.referencia) }}</td>
+	      			<tr>
+
+	      			<tr>
+	        			<td class="label">{{ form_label(filterForm.estado, 'Estado') }}</td>
+	        			<td class="campo">{{ form_widget(filterForm.estado, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.estado) }}</td>
+	      			<tr>
+            </tbody></table>
+                <p class="botones-buscador">
+                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>   
+                </p>
+			 {{ form_widget(filterForm._token) }}</form>
+	</div><div class="clear"></div>
+</div>
+<div class="btn-nuevo">
+<a class="btn ui-state-default ui-corner-all" href="{{ path('albarancompra_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Albaran Compra</a></div>
+<div class="clearfix"></div>
+<div class="hastable">
+    <table class="records_list">
+    <thead>
+        <tr>
+			<th width="25">Código Albaran</th>
+			<th width="280">Proveedor</th>
+			<th>Pedido de Compra</th>
+            <th>Fecha</th>
+            <th width="25">Recibir</th>
+            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+            <td><a href="{{ path('albarancompra_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.proveedor }}</td>
+            <td><a rel="prettyPhoto[iframe]" href="{{ path('compras_pedidocompra_show_lightbox', { 'id': entity.albarancomprapedido.id , 'iframe': 'true', 'width': 780, 'height': 500 }) }}">{{ entity.albarancomprapedido }}</a></td>
+            <td>{% if entity.fecha %}{{ entity.fecha|date('d.m.Y') }}{% endif %}</td>
+            <td>		
+			<a href="{{ path('albarancompra_recibir', { 'id': entity.id }) }}" class="btn2 btn2-mini btn2-facturar">Recibir</a>
+										    </td>
+            <td>
+        		<a href="{{ path('albarancompra_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+        		<a href="{{ path('albarancompra_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+          </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    </div>
+
+    <div class="span4">
+    {{ pagerHtml|raw }}
+    <form id="form1" name="form1" method="post" action="{{ path('albarancompra') }}"> 
+    <div class="dataTables_length"><label>Mostrar 
+    	<select name="cuantos" id="cuantos" onchange="this.form.submit()" size="1">   		
+        {% for item in cuantos %}
+                <option value="{{ item }}" {% if item == entradas %} selected="selected" {% endif %}>{{ item }}</option>
+        {% endfor %}
+        </ul>
+    	</select></label>
+    </div>
+    </form>
+    </div>
+</div>
+{% endblock %}

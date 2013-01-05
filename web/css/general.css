@@ -915,6 +915,9 @@ border-radius: 3px;
 	color:#555;
 	line-height:1.3em;
 }
+.compras, .compras h2{
+	color:#0073ea !important;
+}
 .ventas, .ventas h2{
 	color:#EF853d !important; /* naranja */
 }
@@ -926,6 +929,9 @@ border-radius: 3px;
 }
 .almacen, .almacen h2{
 	color: #777 !important; /* morado */
+}
+.general, .general h2{
+	color: #974848 !important;
 }
 #pedido-form .column-pedido{
 	   border-left: 1px solid #DDDDDD;

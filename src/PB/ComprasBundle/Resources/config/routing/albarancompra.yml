@@ -1,0 +1,34 @@
+albarancompra:
+    pattern:  /
+    defaults: { _controller: "PBComprasBundle:AlbaranCompra:index" }
+
+albarancompra_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBComprasBundle:AlbaranCompra:show" }
+
+albarancompra_new:
+    pattern:  /new
+    defaults: { _controller: "PBComprasBundle:AlbaranCompra:new" }
+
+albarancompra_create:
+    pattern:  /create
+    defaults: { _controller: "PBComprasBundle:AlbaranCompra:create" }
+    requirements: { _method: post }
+
+albarancompra_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBComprasBundle:AlbaranCompra:edit" }
+
+albarancompra_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBComprasBundle:AlbaranCompra:update" }
+    requirements: { _method: post }
+
+albarancompra_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBComprasBundle:AlbaranCompra:delete" }
+    requirements: { _method: post }
+
+albarancompra_recibir:
+    pattern:  /{id}/recibir
+    defaults: { _controller: "PBComprasBundle:AlbaranCompra:recibir" }

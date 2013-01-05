@@ -1,5 +1,5 @@
 {
-    "hash": "10e516b4cfb9deb031a9e13a665ebcce",
+    "hash": "84582020c9fb5b728541d3fc84ec435d",
     "packages": [
         {
             "name": "CodePlex/PHPExcel",
@@ -69,7 +69,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-07-03 01:58:14",
+            "time": "2012-07-02 18:58:14",
             "bin": [
                 "bin/dompdf.php"
             ],
@@ -189,7 +189,7 @@
                 "php": ">=5.3.2",
                 "doctrine/common": "2.3.*"
             },
-            "time": "2012-10-06 10:21:52",
+            "time": "2012-10-06 03:21:52",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -263,7 +263,7 @@
             "suggest": {
                 "doctrine/orm": "The Doctrine ORM integration is optional in the bundle."
             },
-            "time": "2012-10-10 17:42:28",
+            "time": "2012-10-10 10:42:28",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -325,7 +325,7 @@
             "suggest": {
                 "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
             },
-            "time": "2012-10-05 21:20:05",
+            "time": "2012-10-05 14:20:05",
             "bin": [
                 "bin/doctrine",
                 "bin/doctrine.php"
@@ -390,7 +390,7 @@
                 "php": ">=5.2",
                 "ensepar/tcpdf": "5.0.002"
             },
-            "time": "2012-10-09 19:45:26",
+            "time": "2012-10-09 12:45:26",
             "type": "library",
             "extra": {
                 "branch-alias": [
@@ -1073,7 +1073,7 @@
                 "doctrine/orm": "*",
                 "symfony/form": "2.1.*"
             },
-            "time": "2012-10-05 13:04:58",
+            "time": "2012-10-05 06:04:58",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1316,7 +1316,7 @@
                 "sensio/framework-extra-bundle": ">=2.0",
                 "psliwa/php-pdf": ">=1.1.5"
             },
-            "time": "2012-09-23 18:41:38",
+            "time": "2012-09-23 11:41:38",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1450,7 +1450,7 @@
                 "symfony/framework-bundle": "2.1.*",
                 "doctrine/common": ">=2.1,<2.4-dev"
             },
-            "time": "2012-10-09 12:34:31",
+            "time": "2012-10-09 05:34:31",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1543,7 +1543,7 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2012-10-02 16:53:49",
+            "time": "2012-10-02 09:53:49",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1607,7 +1607,7 @@
             "suggest": {
                 "symfony/twig-bundle": ">=2.1.0,<2.3-dev"
             },
-            "time": "2012-10-10 19:39:03",
+            "time": "2012-10-10 12:39:03",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1838,8 +1838,7 @@
             "homepage": "http://symfony.com",
             "keywords": [
                 "framework"
-            ],
-            "time": "2012-10-11 13:44:22"
+            ]
         },
         {
             "name": "toooni/fpdf",
@@ -1858,7 +1857,7 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2012-10-16 17:35:29",
+            "time": "2012-10-16 10:35:29",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1895,7 +1894,7 @@
             "require": {
                 "twig/twig": "1.*"
             },
-            "time": "2012-10-10 17:13:26",
+            "time": "2012-10-10 10:13:26",
             "type": "library",
             "extra": {
                 "branch-alias": {
