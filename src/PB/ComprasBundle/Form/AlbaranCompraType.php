@@ -33,8 +33,6 @@ class AlbaranCompraType extends AbstractType
 							))
 			->add('fecha_recepcion', 'date', array(
 									'widget' => 'single_text',
-									//'format' => 'dd.MM.yyyy',
-									'data' => $hoy,
 									'error_bubbling' => true
 							))
             ->add('referencia', 'text', array('error_bubbling' => true, 'required' => false))

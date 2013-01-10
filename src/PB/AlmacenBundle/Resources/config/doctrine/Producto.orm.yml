@@ -37,4 +37,8 @@ PB\AlmacenBundle\Entity\Producto:
         descripcion:
             type: text
             nullable: true
+    oneToMany:
+        almacen:
+            targetEntity: PB\AlmacenBundle\Entity\Almacen
+            mappedBy: producto
     lifecycleCallbacks: {  }

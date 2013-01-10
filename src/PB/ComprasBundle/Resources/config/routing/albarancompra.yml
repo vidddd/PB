@@ -32,3 +32,7 @@ albarancompra_delete:
 albarancompra_recibir:
     pattern:  /{id}/recibir
     defaults: { _controller: "PBComprasBundle:AlbaranCompra:recibir" }
+
+albarancompra_procesar:
+    pattern:  /{id}/procesar
+    defaults: { _controller: "PBComprasBundle:AlbaranCompra:procesar" }

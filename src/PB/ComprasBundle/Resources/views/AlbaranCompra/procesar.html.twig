@@ -1,0 +1,77 @@
+{% extends '::layout_ajax.html.twig' %}
+
+{% block title "Procesar Albaran Compra" %}
+{% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
+{% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
+{% block content %}
+<script>
+var reload = '22';
+if (reload != ''){
+	//window.parent.location.reload();
+	//window.parent.$.prettyPhoto.close();
+}
+</script>
+<div id="lightbox-wrapper">
+<div class="albarancompra">
+	<div class="title title-spacing"><h2>Recibir Matereiales</h2></div>
+	<form action="{{ path('albarancompra_procesar', { 'id': id }) }}" method="post">
+	<div class="portlet-content form-alta">
+          {% if form_errors(form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% endif %}
+		<div class="span-19 form-horizontal">
+		  <div class="control-group">
+			{{ form_label(form.referencia, null, { 'label': 'Referencia', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.referencia, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.descripcion, null, { '': 'Descripcion', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.descripcion, { 'attr': {'class': 'medium'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.producto, null, { 'label': 'Producto', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.producto, { 'attr': {'class': ''}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.ancho, null, { 'label': 'Ancho', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.ancho, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.largo, null, { 'label': 'Largo', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.largo, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.galga, null, { 'label': 'Galga / Espesor', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.galga, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		</div>
+		<div class="span-18 form-horizontal">
+		  <div class="control-group">
+			 	{{ form_label(form.cantidad, null, { 'label': 'Cantidad', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.cantidad, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  		  <div class="control-group">
+			 	{{ form_label(form.paquete, null, { 'label': 'Paquete', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.paquete, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.serie, null, { 'label': 'Serie / Lote', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.serie, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.fecha_entrada, null, { 'label': 'Fecha Entrada', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.fecha_entrada, { 'attr': {'class': 'small date'}}) }}</div>
+		  </div>		  
+		</div>
+		
+		<div class="span-30 form-horizontal">
+
+		</div>
+	<div class="clearfix"></div>
+	<div class="guardar">
+	        <button type="submit"  class="ui-state-default ui-corner-all">Guardar en Almacen</button>
+	</div> 
+</div>{{ form_widget(form._token) }}
+</form>
+</div></div>
+{% endblock %}

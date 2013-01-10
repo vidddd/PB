@@ -335,6 +335,7 @@ div.span-1, div.span-2, div.span-3, div.span-4, div.span-5, div.span-6, div.span
     width: 100px;
     font-size:13px;
 }
+.controls span { font-size: 13px; padding: 5px;}
 .label-column-small .control-label {
     width: 90px;
 }
@@ -360,6 +361,7 @@ table.spreadsheet {
     border-left: 1px solid #CCCCCC;
     border-spacing: 0;
     width: 100%;
+    font-family: Verdana;
 }
 
 table.spreadsheet td {
@@ -373,6 +375,7 @@ table.spreadsheet td:hover { background-color:#F9F9F9; }
 table.spreadsheet thead th.first-column, table.spreadsheet td.action-buttons {
     border: 0 none; padding: 0; width: 0;
 }
+table.spreadsheet td span{ float:left; padding:6px;}
 table.spreadsheet th {
 	background-color: #E6E6E6;
     text-shadow: 0 1px 0 #FFFFFF;
@@ -797,5 +800,8 @@ div.totals textarea:focus{
 #ver-producto .labelpro{
 	color:#666;
 	width:140px;
-	font-size:13	px !important;
+	font-size:13px !important;
 }
+
+/* albaran compra */
+.albarancompra 

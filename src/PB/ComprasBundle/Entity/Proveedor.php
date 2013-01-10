@@ -988,4 +988,60 @@ class Proveedor
     {
         return $this->albarancompra;
     }
+    /**
+     * @var \DateTime $fecha_evaluacion
+     */
+    private $fecha_evaluacion;
+
+    /**
+     * @var integer $tipo_evaluacion
+     */
+    private $tipo_evaluacion;
+
+
+    /**
+     * Set fecha_evaluacion
+     *
+     * @param \DateTime $fechaEvaluacion
+     * @return Proveedor
+     */
+    public function setFechaEvaluacion($fechaEvaluacion)
+    {
+        $this->fecha_evaluacion = $fechaEvaluacion;
+    
+        return $this;
+    }
+
+    /**
+     * Get fecha_evaluacion
+     *
+     * @return \DateTime 
+     */
+    public function getFechaEvaluacion()
+    {
+        return $this->fecha_evaluacion;
+    }
+
+    /**
+     * Set tipo_evaluacion
+     *
+     * @param integer $tipoEvaluacion
+     * @return Proveedor
+     */
+    public function setTipoEvaluacion($tipoEvaluacion)
+    {
+        $this->tipo_evaluacion = $tipoEvaluacion;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipo_evaluacion
+     *
+     * @return integer 
+     */
+    public function getTipoEvaluacion()
+    {
+        return $this->tipo_evaluacion;
+    }
 }

@@ -185,7 +185,20 @@ $(document).ready(function() {
 			}*/
 		}
 	});
-
+	$("a.iframe").fancybox({
+		'hideOnContentClick': false,
+		'width': 800,
+		'height': 450,
+		'transitionIn': 'elastic',
+		'modal': false,
+		'onClosed': function() {
+		      alert('aaaaa');
+		                 }
+	});
+	
+	function cierraiframe(){
+		alert('2222');
+	}
 	// Datepicker
 	/*
 	$('#datepicker').datepicker({

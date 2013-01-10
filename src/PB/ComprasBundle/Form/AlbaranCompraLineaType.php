@@ -11,11 +11,12 @@ class AlbaranCompraLineaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
     	$builder
+    	    ->add('id')
             ->add('referencia')
             ->add('descripcion')
             ->add('cantidad')
             ->add('precio')
-            ->add('descuento')
+            ->add('descuento')->add('estado')
             ->add('total', 'hidden')
             
             //->add('pedidocompralinea', 'hidden')

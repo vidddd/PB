@@ -1,0 +1,47 @@
+PB\AlmacenBundle\Entity\Almacen:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        referencia:
+            type: string
+            length: 255
+            nullable: true
+        descripcion:
+            type: string
+            length: 255
+            nullable: true
+        cantidad:
+            type: float
+            length: 255
+        paquete:
+            type: string
+            length: 255
+            nullable: true
+        serie:
+            type: string
+            length: 255
+        fecha_entrada:
+            type: date
+            nullable: true
+        ancho:
+            type: integer
+            nullable: true
+        largo: 
+            type: integer
+            nullable: true
+        galga: 
+            type: integer
+            nullable: true
+    manyToOne:
+        producto:
+            targetEntity: PB\AlmacenBundle\Entity\Producto
+            inversedBy: alma cen
+            joinColumn:
+              name: producto_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

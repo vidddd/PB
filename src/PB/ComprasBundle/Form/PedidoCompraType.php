@@ -39,7 +39,7 @@ class PedidoCompraType extends AbstractType
             ->add('referencia', 'text', array('error_bubbling' => true, 'required' => false))
             ->add('forma_envio', 'choice', array('error_bubbling' => true, 'required' => false,'choices' => $formas, 'empty_value' => '---'))
             ->add('incidencias', 'choice', array('error_bubbling' => true, 'required' => false, 'multiple' => false, 'choices' => $incidencias, 'empty_value' => '---'))
-            ->add('estado', 'choice', array('error_bubbling' => true, 'required' => true,'choices' => $estados, 'data' => 1))
+            ->add('estado', 'choice', array('error_bubbling' => true, 'required' => true,'choices' => $estados))
             ->add('observaciones', 'textarea', array('error_bubbling' => true, 'required' => false))
             ->add('importe', 'hidden', array('error_bubbling' => true))
             ->add('iva', 'hidden', array('error_bubbling' => true))

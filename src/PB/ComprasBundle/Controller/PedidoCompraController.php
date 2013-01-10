@@ -191,6 +191,7 @@ class PedidoCompraController extends Controller
         		$alinea->setPrecio($linea->getPrecio());
         		$alinea->setDescuento($linea->getDescuento());
         		$alinea->setTotal($linea->getTotal());
+        		$alinea->setEstado(1);
         		$albaran->addAlbarancompralinea($alinea);
         	}
         	
@@ -255,7 +256,6 @@ class PedidoCompraController extends Controller
         		$linea->setPedidocompralinea($entity);
         		if ($linea->getId()) $currentLineasIds[] = $linea->getId();
         	}
-        	
             $em->persist($entity);
             
             foreach ($beforeSaveLineas as $lineaId => $linea){
@@ -263,7 +263,6 @@ class PedidoCompraController extends Controller
             	$em->remove($linea);  
             	}
             }
-
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 

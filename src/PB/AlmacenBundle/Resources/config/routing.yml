@@ -5,3 +5,8 @@ pb_almacen_homepage:
 PBComprasBundle_producto:
     resource: "@PBAlmacenBundle/Resources/config/routing/producto.yml"
     prefix:   /producto
+
+PBAlmacenBundle_almacen:
+    resource: "@PBAlmacenBundle/Resources/config/routing/almacen.yml"
+    prefix:   /almacen
+

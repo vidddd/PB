@@ -24,34 +24,12 @@ class AlbaranCompraLinea
     {
         return $this->id;
     }
-    /**
-     * @var string $lifecycleCallbacks
-     */
-    private $lifecycleCallbacks;
-
-
-    /**
-     * Set lifecycleCallbacks
-     *
-     * @param string $lifecycleCallbacks
-     * @return AlbaranCompraLinea
-     */
-    public function setLifecycleCallbacks($lifecycleCallbacks)
+    public function setId($id)
     {
-        $this->lifecycleCallbacks = $lifecycleCallbacks;
-    
-        return $this;
+    	$this->id = $id;
+    	return $this;
     }
-
-    /**
-     * Get lifecycleCallbacks
-     *
-     * @return string 
-     */
-    public function getLifecycleCallbacks()
-    {
-        return $this->lifecycleCallbacks;
-    }
+  
     /**
      * @var PB\ComprasBundle\Entity\AlbaranCompra
      */
@@ -247,5 +225,33 @@ class AlbaranCompraLinea
     public function getTotal()
     {
         return $this->total;
+    }
+    /**
+     * @var integer $estado
+     */
+    private $estado;
+
+
+    /**
+     * Set estado
+     *
+     * @param integer $estado
+     * @return AlbaranCompraLinea
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return integer 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
 }

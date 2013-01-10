@@ -7,10 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrapView;
-
 use PB\ComprasBundle\Entity\AlbaranCompra;
 use PB\ComprasBundle\Form\AlbaranCompraType;
 use PB\ComprasBundle\Form\AlbaranCompraFilterType;
+use PB\AlmacenBundle\Entity\Almacen;
+use PB\AlmacenBundle\Form\AlmacenType;
 
 /**
  * AlbaranCompra controller.
@@ -219,16 +220,27 @@ class AlbaranCompraController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find AlbaranCompra entity.');
         }
+        $beforeSaveLineas = $currentLineasIds = array();
+        foreach ($entity->getAlbarancompralineas() as $linea)
+        	$beforeSaveLineas [$linea->getId()] = $linea;
+        
 
         $editForm   = $this->createForm(new AlbaranCompraType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
-
         $request = $this->getRequest();
-
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+        	foreach ($entity->getAlbarancompralineas() as $linea){
+        		$linea->setAlbarancompralinea($entity);
+        		if ($linea->getId()) $currentLineasIds[] = $linea->getId();
+        	}
             $em->persist($entity);
+            foreach ($beforeSaveLineas as $lineaId => $linea){
+            	if (!in_array( $lineaId, $currentLineasIds)){
+            		$em->remove($linea);
+            	}
+            }
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
@@ -279,35 +291,60 @@ class AlbaranCompraController extends Controller
             ->getForm()
         ;
     }
-    public function recibirAction($id)
+public function recibirAction($id)
     {
     	$em = $this->getDoctrine()->getManager(); $request = $this->getRequest();
     	$albaran = $em->getRepository('PBComprasBundle:AlbaranCompra')->find($id);
     	 
     	if (!$albaran) { throw $this->createNotFoundException('Unable to find Albaran entity.'); }
     	$form   = $this->createForm(new AlbaranCompraType(), $albaran);
-    	/*
+    	
     	if ($request->getMethod() == 'POST') {
     		$form->bind($request);
     		if ($form->isValid()) {
-    
-    			$em->persist($factura);
-    			$em->flush();
-    			 
-    			$albaran->setCodfactura($factura->getId());
-    			$em->persist($albaran);
-    			$em->flush();
-    			 
-    			$this->get('session')->getFlashBag()->add('success', 'Nueva Factura Creada');
+    			$em->persist($albaran);	$em->flush();
+    		
+    			$this->get('session')->getFlashBag()->add('success', 'Albaran Recibido');
     			//return $this->redirect($this->generateUrl('factura_show', array('id' => $factura->getId())));
-    			return $this->redirect($this->generateUrl('albaran'));
+    			return $this->redirect($this->generateUrl('albarancompra'));
     		} else {
     			$this->get('session')->getFlashBag()->add('error', 'flash.update.error');
     		}
-    	}*/
+    	}
     
     	return $this->render('PBComprasBundle:AlbaranCompra:recibir.html.twig', array(
     			'entity' => $albaran,'id' => $albaran->getId(), 'form'   => $form->createView(),
+    	));
+    }
+    public function procesarAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager(); $request = $this->getRequest();
+    	$linea = $em->getRepository('PBComprasBundle:AlbaranCompraLinea')->find($id);
+    	if (!$linea) { throw $this->createNotFoundException('Unable to find Albaran Linea entity.'); }
+    	
+    	$almacen = new Almacen();
+    	$almacen->setCantidad($linea->getCantidad());
+        $almacen->setDescripcion($linea->getDescripcion());
+        $almacen->setCantidad($linea->getCantidad());
+        $almacen->setReferencia($linea->getReferencia());
+    	$form   = $this->createForm(new AlmacenType(), $almacen);
+    	
+    	if ($request->getMethod() == 'POST') {
+    		$form->bind($request);
+    		if ($form->isValid()) {
+    			$em->persist($almacen);	
+    			$linea->setEstado(2); $em->persist($linea);
+    			$em->flush();
+    			$this->get('session')->getFlashBag()->add('success', 'Guardado en Almacen');
+    			//return $this->redirect($this->generateUrl('factura_show', array('id' => $factura->getId())));
+    			//return $this->redirect($this->generateUrl('albarancompra'));
+    		} else {
+    			$this->get('session')->getFlashBag()->add('error', 'flash.update.error');
+    		}
+    	}
+    	return $this->render('PBComprasBundle:AlbaranCompra:procesar.html.twig', array(
+    			'entity' => $almacen, 'id' => $id,
+    			'form'   => $form->createView(),
     	));
     }
 }

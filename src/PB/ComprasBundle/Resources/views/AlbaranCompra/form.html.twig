@@ -13,6 +13,10 @@
 						<div class="controls">
 			    			<b>{{ entity.proveedor }}</b>
 		        		</div>
+		        		<div style="display:none;">
+			    			{{ form_widget(form.proveedor, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_proveedor', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Proveedores"><img src="{{ asset('images/search.png') }}" /></a>
+			    			
+		        		</div>
 	     			</div>
      			</div>
      			<div class="span-17 form-horizontal label-column-small form-condensed">
@@ -125,6 +129,7 @@
 
 	</div>
     <div class="clearfix"></div>
+    <div style="display:none;">{{ form_rest(form) }}</div>
     <p>
         <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
     </p>

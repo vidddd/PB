@@ -12,6 +12,7 @@
 		    <li class="ui-state-default ui-corner-top"><a href="#tabs-2">Datos de contacto</a></li>
 			<li class="ui-state-default ui-corner-top"><a href="#tabs-3">Contabilidad</a></li>
 			<li class="ui-state-default ui-corner-top"><a href="#tabs-4">Observaciones</a></li>
+			<li class="ui-state-default ui-corner-top"><a href="#tabs-5">Evaluación Inicial</a></li>
 		</ul>
     <div id="tabs-1">
     <table>
@@ -136,6 +137,18 @@
 			   <tr> <td class="label">{{ form_label(form.observaciones) }}</td>
 		           <td class="campo">{{ form_widget(form.observaciones, { 'attr': {'cols': '40', 'rows': '12'}}) }}</td><td> {{ form_errors(form.observaciones) }}
 		            </td></tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="tabs-5">
+		<table>
+			<tbody>
+			   <tr> <td class="label">{{ form_label(form.fecha_evaluacion) }}</td>
+		           <td class="campo">{{ form_widget(form.fecha_evaluacion, { 'attr': {'class': 'date small'}}) }}</td><td> {{ form_errors(form.fecha_evaluacion) }} </td>
+		       </tr>
+		       <tr> <td class="label">{{ form_label(form.tipo_evaluacion) }}</td>
+		           <td class="campo">{{ form_widget(form.tipo_evaluacion, { 'attr': {'class': ''}}) }}</td><td> {{ form_errors(form.fecha_evaluacion) }} </td>
+		       </tr>
 			</tbody>
 		</table>
 	</div></div>

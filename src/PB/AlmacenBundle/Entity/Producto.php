@@ -285,4 +285,138 @@ class Producto
     {
         return $this->descripcion;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $almacen;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->almacen = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add almacen
+     *
+     * @param PB\AlmacenBundle\Entity\Almacen $almacen
+     * @return Producto
+     */
+    public function addAlmacen(\PB\AlmacenBundle\Entity\Almacen $almacen)
+    {
+        $this->almacen[] = $almacen;
+    
+        return $this;
+    }
+
+    /**
+     * Remove almacen
+     *
+     * @param PB\AlmacenBundle\Entity\Almacen $almacen
+     */
+    public function removeAlmacen(\PB\AlmacenBundle\Entity\Almacen $almacen)
+    {
+        $this->almacen->removeElement($almacen);
+    }
+
+    /**
+     * Get almacen
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAlmacen()
+    {
+        return $this->almacen;
+    }
+    /**
+     * @var integer $ancho
+     */
+    private $ancho;
+
+    /**
+     * @var integer $largo
+     */
+    private $largo;
+
+    /**
+     * @var integer $galga
+     */
+    private $galga;
+
+
+    /**
+     * Set ancho
+     *
+     * @param integer $ancho
+     * @return Producto
+     */
+    public function setAncho($ancho)
+    {
+        $this->ancho = $ancho;
+    
+        return $this;
+    }
+
+    /**
+     * Get ancho
+     *
+     * @return integer 
+     */
+    public function getAncho()
+    {
+        return $this->ancho;
+    }
+
+    /**
+     * Set largo
+     *
+     * @param integer $largo
+     * @return Producto
+     */
+    public function setLargo($largo)
+    {
+        $this->largo = $largo;
+    
+        return $this;
+    }
+
+    /**
+     * Get largo
+     *
+     * @return integer 
+     */
+    public function getLargo()
+    {
+        return $this->largo;
+    }
+
+    /**
+     * Set galga
+     *
+     * @param integer $galga
+     * @return Producto
+     */
+    public function setGalga($galga)
+    {
+        $this->galga = $galga;
+    
+        return $this;
+    }
+
+    /**
+     * Get galga
+     *
+     * @return integer 
+     */
+    public function getGalga()
+    {
+        return $this->galga;
+    }
+    public function __toString()
+    {
+    	$id = $this->nombre;
+    	return (string)$id;
+    }
 }

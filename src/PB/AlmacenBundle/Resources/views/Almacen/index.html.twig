@@ -1,0 +1,51 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Productos" %}
+
+{% block content %}
+
+<div class="title title-spacing almacen">
+					<h2>Almacen</h2>
+</div>
+
+<div class="clearfix"></div>
+<div class="btn-nuevo">
+<a class="btn ui-state-default ui-corner-all" href="{{ path('almacen_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Elemento de Almacen</a></div>
+
+
+<div class="hastable">
+    <table class="records_list">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Descripcion</th>
+            <th>Cantidad</th>
+            <th>Serie / Lote</th>
+            <th>Ancho</th>
+            <th>Galga</th>
+            <th width="70">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.producto }}</td>
+            <td>{{ entity.descripcion }}</td>
+            <td>{{ entity.cantidad }}</td>
+            <td>{{ entity.serie }}</td>
+            <td>{{ entity.ancho }}</td>
+            <td>{{ entity.galga }}</td>
+           <td>
+                <a rel="prettyPhoto[iframe]" title="Ver Ficha" href="{{ path('almacen_show', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+        		<a href="{{ path('almacen_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+          		<!-- <a href="{{ path('producto_delete', { 'id': entity.id }) }}" title="Eliminar" class="btn_no_text btn ui-state-default ui-corner-all tooltip" onclick="return confirm('Estas seguro de borrar el cliente?')"><span class="ui-icon ui-icon-circle-close"></span></a> -->
+          </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    </div>
+    <div class="span4">
+    {{ pagerHtml|raw }}
+ </div>
+{% endblock %}

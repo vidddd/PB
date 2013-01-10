@@ -1,0 +1,30 @@
+almacen:
+    pattern:  /
+    defaults: { _controller: "PBAlmacenBundle:Almacen:index" }
+
+almacen_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBAlmacenBundle:Almacen:show" }
+
+almacen_new:
+    pattern:  /new
+    defaults: { _controller: "PBAlmacenBundle:Almacen:new" }
+
+almacen_create:
+    pattern:  /create
+    defaults: { _controller: "PBAlmacenBundle:Almacen:create" }
+    requirements: { _method: post }
+
+almacen_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBAlmacenBundle:Almacen:edit" }
+
+almacen_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBAlmacenBundle:Almacen:update" }
+    requirements: { _method: post }
+
+almacen_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBAlmacenBundle:Almacen:delete" }
+    requirements: { _method: post }

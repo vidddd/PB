@@ -26,6 +26,12 @@ estados:
   3: "Recibido con Erorres"
   4: "Rechazado"
 
+tipo_evaluacion:
+  1: "Histórico"
+  2: "A Prueba"
+  3: "Certificado"
+  4: "Por exclusividad"
+
 incidencias_compras:
   1: "Pérdida de un Pedido imputable a incumplimiento o Fallo de Proveedor"
   2: "Materiales no entregados"

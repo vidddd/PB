@@ -4,9 +4,30 @@
 {% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
+<script>
+$(document).ready(function() {
 
-<div class="facturas">
+
+	$("a#single_image").fancybox();
+	
+	/* Using custom settings */
+
+
+	/* Apply fancybox to multiple items */
+	
+	$("a.group").fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200, 
+		'overlayShow'	:	false
+	});
+	
+});
+</script>
+<div class="albarancompra">
 <div class="title title-spacing"><h2>Recibir Albaran Compra</h2></div>
+<form action="{{ path('albarancompra_recibir', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
 <div class="content-box content-box-header ui-corner-all ">
 	<div class="ui-state-default ui-corner-top ui-box-header"><span class="ui-icon float-left ui-icon-signal"></span>Datos de Albaran Compra</div>
     	<div class="content-box-wrapper">
@@ -15,7 +36,7 @@
 					<div class="control-group required">
 						<label class="control-label">Proveedor</label>
 						<div class="controls">
-			    			<b>{{ entity.proveedor }}</b>
+			    			<span><b>{{ entity.proveedor }}</b></span>
 		        		</div>
 	     			</div>
      			</div>
@@ -23,7 +44,7 @@
 	     			<div class="control-group required">
 						<label class="control-label">Fecha</label>
 						<div class="controls">
-			    			{{ entity.fecha|date('d.m.Y') }}
+			    			<span> {{ entity.fecha|date('d.m.Y') }} </span>
 		        		</div>
 	     			</div>
 					<div class="control-group required">
@@ -44,16 +65,53 @@
  			</div>
  		</div>
  	</div>
-	<div class="clearfix"></div>       
+	<div class="clearfix"></div>
+	<div id="invoice-lines">
+      <div class="clearfix"></div>
+     {% macro prototype(linea) %}
+			<tr class="item-row">	
+					<td class="editable">
+					    {{ form_widget(linea.referencia, { 'attr': {'class': 'ta_right'}}) }}
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.descripcion, { 'attr': {'class': 'idescripcion'}}) }}
+					</td>
+					<td class="editable">
+					    {{ form_widget(linea.cantidad, { 'attr': {'class': 'ta_right icantidad numeric'}}) }}
+					</td>
+					<td class="editable"><span>{{ linea.estado.vars.value }}</span> </td>
+					<td class="editable"><span>
+					 <!-- <a rel="prettyPhoto[iframe]" href="{{ path('albarancompra_procesar', { 'id': linea.id.vars.value , 'iframe': 'true', 'width': 800, 'height': 410 }) }}">Procesar <img src="{{ asset('images/received.png') }}" alt="Procesar MAteriales" /></a> -->
+					 <a class="iframe" href="{{ path('albarancompra_procesar', { 'id': linea.id.vars.value }) }}">Procesar <img src="{{ asset('images/received.png') }}" alt="Procesar MAteriales" /></a>
+					 
+					 </span></td>
+				</tr>
+	     {% endmacro %}
+		<table cellspacing="0" style="" class="invoice-lines spreadsheet" id="invoice-time">
+			<thead>
+				<tr>
+					<th style="width: 64px;">Referencia</th>
+					<th style="width: 350px;">Descripcion</th>
+					<th class="ta_right" style="width: 45px;">Cantidad</th>
+					<th style="width: 45px;"><span>Estado</span></th>
+					<th style="width: 55px;"><span>Procesar</span>  </th>
+				</tr>
+			</thead>
+
+			<tbody>
+			  {% for linea in form.albarancompralineas %}
+                {{_self.prototype(linea)}}
+  			   {% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<p>
+        <button type="submit" class="ui-state-default ui-corner-all">Guardar</button>
+    </p>    <div style="display:none;">{{ form_rest(form) }}</div>{{ form_widget(form._token) }}</form>
     <div class="float-left volver">
         <a href="{{ path('albarancompra') }}">
           <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
-
 </div>
-		{% include 'PBComprasBundle:Proveedor:js_get_proveedor.html.twig' %} 
-<script>
-getNombreProveedor();
-        	</script>
 {% endblock %}
