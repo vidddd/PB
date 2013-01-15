@@ -318,32 +318,95 @@ public function recibirAction($id)
     }
     public function procesarAction($id)
     {
+    	// recibimos el id de la linea albarancompra
     	$em = $this->getDoctrine()->getManager(); $request = $this->getRequest();
     	$linea = $em->getRepository('PBComprasBundle:AlbaranCompraLinea')->find($id);
     	if (!$linea) { throw $this->createNotFoundException('Unable to find Albaran Linea entity.'); }
     	
-    	$almacen = new Almacen();
+    	$almacen = new Almacen(); $reload = '';
     	$almacen->setCantidad($linea->getCantidad());
         $almacen->setDescripcion($linea->getDescripcion());
         $almacen->setCantidad($linea->getCantidad());
         $almacen->setReferencia($linea->getReferencia());
+        $almacen->setAlbarancompralinea($linea);
     	$form   = $this->createForm(new AlmacenType(), $almacen);
     	
-    	if ($request->getMethod() == 'POST') {
+    	if ($request->getMethod() == 'POST' && $form->getName() == 'almacen') {
     		$form->bind($request);
     		if ($form->isValid()) {
     			$em->persist($almacen);	
-    			$linea->setEstado(2); $em->persist($linea);
+    			$em->persist($linea);
     			$em->flush();
-    			$this->get('session')->getFlashBag()->add('success', 'Guardado en Almacen');
-    			//return $this->redirect($this->generateUrl('factura_show', array('id' => $factura->getId())));
-    			//return $this->redirect($this->generateUrl('albarancompra'));
+    			$this->get('session')->getFlashBag()->add('success', 'Guardado en Almacen');// $reload = 'ok';
     		} else {
     			$this->get('session')->getFlashBag()->add('error', 'flash.update.error');
     		}
     	}
+    	$query = $em->createQuery('SELECT p FROM PBAlmacenBundle:Almacen p WHERE p.albarancompralinea = :id ORDER BY p.id DESC')->setParameter('id', $id);
+    	$almacenes = $query->getResult();
     	return $this->render('PBComprasBundle:AlbaranCompra:procesar.html.twig', array(
-    			'entity' => $almacen, 'id' => $id,
+    			'entity' => $almacen, 'id' => $id, 'reload' => $reload, 'almacenes' => $almacenes,
+    			'form'   => $form->createView(),
+    	));
+    }
+    public function procesarEstadoAction($id)
+    {
+    	// recibimos el id de la linea albarancompra
+    	$em = $this->getDoctrine()->getManager(); $request = $this->getRequest();
+    	$linea = $em->getRepository('PBComprasBundle:AlbaranCompraLinea')->find($id);
+    	if (!$linea) {
+    		throw $this->createNotFoundException('Unable to find Albaran Linea entity.');
+    	}
+    	
+    	$almacen = new Almacen(); $reload = '';
+    	$almacen->setCantidad($linea->getCantidad());
+    	$almacen->setDescripcion($linea->getDescripcion());
+    	$almacen->setCantidad($linea->getCantidad());
+    	$almacen->setReferencia($linea->getReferencia());
+    	$almacen->setAlbarancompralinea($linea);
+    	$form   = $this->createForm(new AlmacenType(), $almacen);
+    	if ($request->getMethod() == 'POST') {
+			
+			$linea->setEstado($this->getRequest()->get('estado')); $em->persist($linea);
+    		$em->flush();
+    		//$this->get('session')->getFlashBag()->add('success', 'Guardado en Almacen');
+    		$reload = 'ok';
+    
+    	}
+    	$query = $em->createQuery('SELECT p FROM PBAlmacenBundle:Almacen p WHERE p.albarancompralinea = :id ORDER BY p.id DESC')->setParameter('id', $id);
+    	$almacenes = $query->getResult();
+    	return $this->render('PBComprasBundle:AlbaranCompra:procesar.html.twig', array(
+    			'entity' => $almacen, 'id' => $id, 'reload' => $reload, 'almacenes' => $almacenes,
+    			'form'   => $form->createView(),
+    	));
+    }
+    
+ public function eliminarAlmacenAction($id)
+    {
+    	// recibimos el id de la linea albarancompra
+    	$em = $this->getDoctrine()->getManager(); $request = $this->getRequest();
+    	$linea = $em->getRepository('PBComprasBundle:AlbaranCompraLinea')->find($id);
+    	if (!$linea) { throw $this->createNotFoundException('Unable to find Albaran Linea entity.'); }
+    	
+    	$almacen = new Almacen(); $reload = '';
+    	$almacen->setCantidad($linea->getCantidad());
+        $almacen->setDescripcion($linea->getDescripcion());
+        $almacen->setCantidad($linea->getCantidad());
+        $almacen->setReferencia($linea->getReferencia());
+        $almacen->setAlbarancompralinea($linea);
+    	$form   = $this->createForm(new AlmacenType(), $almacen);
+				
+		$entity = $em->getRepository('PBAlmacenBundle:Almacen')->find($this->getRequest()->get('aid'));
+		if (!$entity) {
+			throw $this->createNotFoundException('Unable to find Albaran Entity.');
+		}
+			$em->remove($entity);
+			$em->flush();
+		
+    	$query = $em->createQuery('SELECT p FROM PBAlmacenBundle:Almacen p WHERE p.albarancompralinea = :id ORDER BY p.id DESC')->setParameter('id', $id);
+    	$almacenes = $query->getResult();
+    	return $this->render('PBComprasBundle:AlbaranCompra:procesar.html.twig', array(
+    			'entity' => $almacen, 'id' => $id, 'reload' => $reload, 'almacenes' => $almacenes,
     			'form'   => $form->createView(),
     	));
     }

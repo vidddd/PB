@@ -24,13 +24,21 @@ class AlmacenController extends Controller
      */
     public function indexAction()
     {
+        $request = $this->getRequest();$session = $request->getSession();
+        
+    	if($this->getRequest()->get('cuantos')) { $cuantos = $this->getRequest()->get('cuantos');
+    	} else if ($session->get('AlamcenCuantos')){
+    		$cuantos = $session->get('AlmacenCuantos');
+    	} else { $cuantos = 10; }
+    	
         list($filterForm, $queryBuilder) = $this->filter();
+        list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
 
-        list($entities, $pagerHtml) = $this->paginator($queryBuilder);
-
-    
+        $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');
+        if($cuantos) $session->set('ProveedorCuantos', $cuantos);
+        ($cuantos)? $entradas = $cuantos : $entradas = 10;
         return $this->render('PBAlmacenBundle:Almacen:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $entities,'cuantos' => $cuantosarr, 'entradas' => $entradas,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
         ));
@@ -46,20 +54,16 @@ class AlmacenController extends Controller
         $session = $request->getSession();
         $filterForm = $this->createForm(new AlmacenFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBAlmacenBundle:Almacen')->createQueryBuilder('e');
-    
-        // Reset filter
+        $queryBuilder = $em->getRepository('PBAlmacenBundle:Almacen')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
+
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
             $session->remove('AlmacenControllerFilter');
         }
-    
-        // Filter action
+
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'filter') {
-            // Bind values from the request
             $filterForm->bind($request);
 
             if ($filterForm->isValid()) {
-                // Build the query from the given form object
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
                 // Save filter to session
                 $filterData = $filterForm->getData();
@@ -81,13 +85,14 @@ class AlmacenController extends Controller
     * Get results from paginator and get paginator view.
     *
     */
-    protected function paginator($queryBuilder)
+    protected function paginator($queryBuilder, $cuantos)
     {
         // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $currentPage = $this->getRequest()->get('page', 1);
         $pagerfanta->setCurrentPage($currentPage);
+        $pagerfanta->setMaxPerPage($cuantos);
         $entities = $pagerfanta->getCurrentPageResults();
     
         // Paginator - route generator
@@ -162,7 +167,7 @@ class AlmacenController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
-            return $this->redirect($this->generateUrl('almacen_show', array('id' => $entity->getId())));        } else {
+            return $this->redirect($this->generateUrl('almacen'));        } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
         }
 
@@ -190,7 +195,7 @@ class AlmacenController extends Controller
 
         return $this->render('PBAlmacenBundle:Almacen:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -228,7 +233,7 @@ class AlmacenController extends Controller
 
         return $this->render('PBAlmacenBundle:Almacen:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

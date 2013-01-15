@@ -65,42 +65,42 @@ body {
 
 	/* States and Images */
 .ui-icon { 
-	background-image:url(images/icons-blue.png);
+	background-image:url(../images/icons-blue.png);
 }
 
 .ui-widget-content .ui-icon {
-	background-image: url(images/icons-blue.png);
+	background-image: url(../images/icons-blue.png);
 }
 
 .ui-widget-header .ui-icon {
-	background-image: url(images/icons-lgray.png);
+	background-image: url(../images/icons-lgray.png);
 }
 
 .ui-state-default .ui-icon {
-	background-image:url(images/icons-lgray.png);
+	background-image:url(../images/icons-lgray.png);
 }
 
 .ui-state-hover .ui-icon {
-	background-image: url(images/icons-gray.png);
+	background-image: url(../images/icons-gray.png);
 }
 
 .ui-state-focus .ui-icon {
-	background-image: url(images/icons-blue.png);
+	background-image: url(../images/icons-blue.png);
 }
 
 .ui-state-active .ui-icon {
-	background-image:url(images/icons-blue.png);
+	background-image:url(../images/icons-blue.png);
 }
 
 .ui-state-highlight .ui-icon {
-	background-image:url(images/icons-blue.png);
+	background-image:url(../images/icons-blue.png);
 }
 
 	/* Component containers */
 
 .ui-widget-content {
 	border: 1px solid #ddd;
-	background: #fff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
+	background: #fff url(../images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
 	color:#444;
 }
 
@@ -110,7 +110,7 @@ body {
 
 .ui-widget-header {
 	border:1px solid #ddd;
-	background:#ddd url(images/ui-bg_highlight-soft_50_dddddd_1x100.png) 50% 50% repeat-x;
+	background:#ddd url(../images/ui-bg_highlight-soft_50_dddddd_1x100.png) 50% 50% repeat-x;
 	color:#444;
 	text-transform:uppercase;
 }
@@ -123,7 +123,7 @@ body {
 
 .ui-state-default, .ui-widget-content .ui-state-default, .pagination a {
 	border:1px solid #ddd;
-	background:#f6f6f6 url(images/ui-bg_highlight-soft_100_f6f6f6_1x100.png) 50% 50% repeat-x;
+	background:#f6f6f6 url(../images/ui-bg_highlight-soft_100_f6f6f6_1x100.png) 50% 50% repeat-x;
 	font-weight:bold;
 	color:#0073ea;
 	outline:none;
@@ -136,7 +136,7 @@ body {
 
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .pagination a:hover, a.btn:hover, button.ui-state-default:hover {
 	/*border: 1px solid #9d9d9d;*/
-	background:#0073ea url(images/ui-bg_highlight-soft_25_0073ea_1x100.png) 50% 50% repeat-x;
+	background:#0073ea url(../images/ui-bg_highlight-soft_25_0073ea_1x100.png) 50% 50% repeat-x;
 	color:#333;
 	outline:none;
 }
@@ -148,16 +148,12 @@ body {
 
 .ui-state-active, .ui-widget-content .ui-state-active {
 	border:1px solid #ddd!important;
-	background: #fff url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;
-	font-weight:bold;
-	color:#333;
-	outline:none;
+	background: #fff url(../images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;
+	font-weight:bold; color:#333;	outline:none;
 }
 
 a:hover, .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
-	color:#333;
-	outline:none;
-	text-decoration:none;
+	color:#333; 	outline:none;	text-decoration:none;
 }
 
 #main-content .page-title, .form-bg, #page-wrapper #sidebar .side-menu li a:hover { /* add to any div to change background color */
@@ -166,7 +162,7 @@ a:hover, .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
 
 .linetop {	border-top:#c7c7c7 solid 1px; }
 
-#header {background:url('images/header-bg.png') repeat-x;}
+#header {background:url('../images/header-bg.png') repeat-x;}
 #header #top-menu {	color:#646464;}
 
 #header #top-menu a {color:#e6e6e6;}
@@ -175,7 +171,7 @@ a:hover, .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited
 
 #header #sitename a.logo {
 	color:#fff;
-	background:url('../../../images/logo-pb.png') no-repeat;
+	background:url('../images/logo-pb.png') no-repeat;
 	text-shadow:1px 1px 0 #000;
 }
 
@@ -371,11 +367,14 @@ table.spreadsheet td {
     text-align: left;
     vertical-align: top;
 }
+table.spreadsheet td.sininput span{
+	padding:7px 3px; float:left;
+}
 table.spreadsheet td:hover { background-color:#F9F9F9; }
 table.spreadsheet thead th.first-column, table.spreadsheet td.action-buttons {
     border: 0 none; padding: 0; width: 0;
 }
-table.spreadsheet td span{ float:left; padding:6px;}
+/*table.spreadsheet td span{ float:left; padding:6px;} */
 table.spreadsheet th {
 	background-color: #E6E6E6;
     text-shadow: 0 1px 0 #FFFFFF;
@@ -495,7 +494,7 @@ table.spreadsheet input:focus, table.spreadsheet textarea:focus{
     position: relative;
 }
 .delete {
-    background-image: url(../../../images/delete.gif);background-repeat:no-repeat;
+    background-image: url(../images/delete.gif);background-repeat:no-repeat;
     cursor: pointer;
     color: #000000;
     display:none;
@@ -793,6 +792,9 @@ div.totals textarea:focus{
 .form-producto .control-group label{
 	width:140px;
 }
+.form-almacen .control-group label{
+	width:100px;
+}
 #ver-producto table td {
 	padding:8px 2px;
 	font-size: 14px;
@@ -804,4 +806,20 @@ div.totals textarea:focus{
 }
 
 /* albaran compra */
-.albarancompra 
+.procesar-materiales{
+	width: 780px;
+}
+.procesar-materiales .records_list {
+	width: 720px;
+	margin: 25px auto;
+}
+.procesar-materiales .form-horizontal .control-group {
+    margin-bottom: 8px;
+    padding-top: 2px;
+}
+.procesar-materiales .guardar button{
+	margin-left:10px;
+}
+.recibir-materiales .sininput{
+	font-size: 11px;
+}

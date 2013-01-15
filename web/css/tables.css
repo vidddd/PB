@@ -21,7 +21,10 @@
 	line-height:1.2em;
 	vertical-align:middle;
 }
-
+.hastable thead th {
+	border-top:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
 .hastable thead td, .hastable thead th {
 	font-weight:bold;
 	padding:10px 6px;

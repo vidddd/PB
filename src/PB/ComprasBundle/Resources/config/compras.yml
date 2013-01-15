@@ -26,6 +26,12 @@ estados:
   3: "Recibido con Erorres"
   4: "Rechazado"
 
+estados_albarancompralinea:
+  1: "Disponible"
+  2: "Procesado Parcial"
+  3: "Procesado"
+  4: "Cancelado"
+
 tipo_evaluacion:
   1: "Histórico"
   2: "A Prueba"

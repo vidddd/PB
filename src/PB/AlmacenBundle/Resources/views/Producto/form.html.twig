@@ -1,6 +1,6 @@
 <form action="{{ entity.id  ? path('producto_update', { 'id': entity.id }) : path('producto_create') }}" method="post">
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container form-producto">
-	<div class="portlet-header ui-widget-header">Nuevo Producto</div>
+	<div class="portlet-header ui-widget-header">Datos de Producto</div>
 		<div class="portlet-content form-alta">
           {% if form_errors(form) %}
           <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>

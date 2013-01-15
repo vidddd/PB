@@ -185,20 +185,7 @@ $(document).ready(function() {
 			}*/
 		}
 	});
-	$("a.iframe").fancybox({
-		'hideOnContentClick': false,
-		'width': 800,
-		'height': 450,
-		'transitionIn': 'elastic',
-		'modal': false,
-		'onClosed': function() {
-		      alert('aaaaa');
-		                 }
-	});
-	
-	function cierraiframe(){
-		alert('2222');
-	}
+
 	// Datepicker
 	/*
 	$('#datepicker').datepicker({
@@ -210,12 +197,8 @@ $(document).ready(function() {
 		function() { $(this).addClass('ui-state-hover'); }, 
 		function() { $(this).removeClass('ui-state-hover'); }
 	);
-	//Sidebar only sortable boxes
-	$(".side-col").sortable({
-		axis: 'y',
-		connectWith: '.side-col'
-	});
-    /*
+
+    
 	$(".portlet").addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
 		.find(".portlet-header")
 			.addClass("ui-widget-header")
@@ -229,7 +212,6 @@ $(document).ready(function() {
 	});
 
 	$(".column").disableSelection();
-*/
 	
 });
 

@@ -28,7 +28,6 @@ class ProveedorFilterType extends AbstractType
 
         $listener = function(FormEvent $event)
         {
-            // Is data empty?
             foreach ($event->getData() as $data) {
                 if(is_array($data)) {
                     foreach ($data as $subData) {
@@ -47,6 +46,6 @@ class ProveedorFilterType extends AbstractType
 
     public function getName()
     {
-        return 'pb_comprasbundle_proveedorfiltertype';
+        return 'proveedorfilter';
     }
 }

@@ -37,4 +37,8 @@ PB\ComprasBundle\Entity\AlbaranCompraLinea:
         name: albarancompra_id
         referencedColumnName: id
         onDelete: CASCADE
+  oneToMany:
+    almacen:
+      targetEntity: PB\AlmacenBundle\Entity\Almacen
+      mappedBy: albarancompralinea
   lifecycleCallbacks: {  }

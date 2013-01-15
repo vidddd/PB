@@ -36,3 +36,11 @@ albarancompra_recibir:
 albarancompra_procesar:
     pattern:  /{id}/procesar
     defaults: { _controller: "PBComprasBundle:AlbaranCompra:procesar" }
+
+albarancompra_procesar_estado:
+    pattern:  /{id}/procesarEstado
+    defaults: { _controller: "PBComprasBundle:AlbaranCompra:procesarEstado" }
+
+albarancompra_eliminar_almacen:
+    pattern:  /{id}/eliminarAlmacen
+    defaults: { _controller: "PBComprasBundle:AlbaranCompra:eliminarAlmacen" }

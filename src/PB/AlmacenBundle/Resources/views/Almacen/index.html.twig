@@ -1,14 +1,53 @@
 {% extends '::layout.html.twig' %}
 
-{% block title "Productos" %}
+{% block title "Almacen" %}
 
 {% block content %}
 
 <div class="title title-spacing almacen">
 					<h2>Almacen</h2>
 </div>
-
-<div class="clearfix"></div>
+<div class="span2">
+        {% if form_errors(filterForm) %} <div class="response-msg notice iu-corner-all"><span> {{ form_errors(filterForm) }}</span> </div> {% endif %}
+        &nbsp;
+    </div>
+    <div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
+    <div class="portlet-content">
+		<form class="well" action="{{ path('almacen') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
+			<table id="form-alta">
+   				<tbody>		
+         			<tr>
+        				<td class="label">{{ form_label(filterForm.producto, 'Producto') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.producto, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.producto) }}</td>
+      				<tr>
+      				<tr>
+        				<td class="label">{{ form_label(filterForm.descripcion, 'Descripcion') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.descripcion) }}</td><td>{{ form_errors(filterForm.descripcion) }}</td>
+      				<tr>
+      				<tr>
+        				<td class="label">{{ form_label(filterForm.serie, 'Serie / Lote') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.serie, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.serie) }}</td>
+      				<tr>
+      				<tr>
+        				<td class="label">{{ form_label(filterForm.fecha_entrada, 'Fecha Entrada') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.fecha_entrada, { 'attr': {'class': 'small date'}}) }}</td><td>{{ form_errors(filterForm.fecha_entrada) }}</td>
+      				<tr>
+      	         	<tr>
+        				<td class="label">{{ form_label(filterForm.ancho, 'Ancho') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.ancho, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.ancho) }}</td>
+      				<tr>
+               		<tr>
+        				<td class="label">{{ form_label(filterForm.galga, 'Galga') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.galga, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(filterForm.galga) }}</td>
+      				<tr> 
+            </tbody></table>
+                <p class="botones-buscador">
+                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>   
+                </p>
+                <input type="hidden" name="buscar" value="1" />
+			 {{ form_widget(filterForm._token) }}</form>
+	</div><div class="clear"></div></div><br/>
 <div class="btn-nuevo">
 <a class="btn ui-state-default ui-corner-all" href="{{ path('almacen_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Elemento de Almacen</a></div>
 
@@ -47,5 +86,15 @@
     </div>
     <div class="span4">
     {{ pagerHtml|raw }}
+     <form id="form1" name="form1" method="post" action="{{ path('almacen') }}"> 
+    <div class="dataTables_length"><label>Mostrar 
+    	<select name="cuantos" id="cuantos" onchange="this.form.submit()" size="1">   		
+        {% for item in cuantos %}
+                <option value="{{ item }}" {% if item == entradas %} selected="selected" {% endif %}>{{ item }}</option>
+        {% endfor %}
+        </ul>
+    	</select></label>
+    </div>
+    </form>
  </div>
 {% endblock %}

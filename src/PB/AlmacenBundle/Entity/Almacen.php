@@ -304,4 +304,32 @@ class Almacen
     {
         return $this->galga;
     }
+    /**
+     * @var PB\ComprasBundle\Entity\AlbaranCompraLinea
+     */
+    private $albarancompralinea;
+
+
+    /**
+     * Set albarancompralinea
+     *
+     * @param PB\ComprasBundle\Entity\AlbaranCompraLinea $albarancompralinea
+     * @return Almacen
+     */
+    public function setAlbarancompralinea(\PB\ComprasBundle\Entity\AlbaranCompraLinea $albarancompralinea = null)
+    {
+        $this->albarancompralinea = $albarancompralinea;
+    
+        return $this;
+    }
+
+    /**
+     * Get albarancompralinea
+     *
+     * @return PB\ComprasBundle\Entity\AlbaranCompraLinea 
+     */
+    public function getAlbarancompralinea()
+    {
+        return $this->albarancompralinea;
+    }
 }

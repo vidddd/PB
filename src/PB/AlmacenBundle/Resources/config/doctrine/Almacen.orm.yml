@@ -40,8 +40,14 @@ PB\AlmacenBundle\Entity\Almacen:
     manyToOne:
         producto:
             targetEntity: PB\AlmacenBundle\Entity\Producto
-            inversedBy: alma cen
+            inversedBy: almacen
             joinColumn:
               name: producto_id
+              referencedColumnName: id
+        albarancompralinea:
+            targetEntity: PB\ComprasBundle\Entity\AlbaranCompraLinea
+            inversedBy: almacen
+            joinColumn:
+              name: albarancompralinea_id
               referencedColumnName: id
     lifecycleCallbacks: {  }

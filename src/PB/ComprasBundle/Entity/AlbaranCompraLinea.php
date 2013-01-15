@@ -3,6 +3,10 @@
 namespace PB\ComprasBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * PB\ComprasBundle\Entity\AlbaranCompraLinea
@@ -227,7 +231,7 @@ class AlbaranCompraLinea
         return $this->total;
     }
     /**
-     * @var integer $estado
+     * @var integer $
      */
     private $estado;
 
@@ -253,5 +257,59 @@ class AlbaranCompraLinea
     public function getEstado()
     {
         return $this->estado;
+    }
+    
+    public function getEstadoText()
+    {
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	return $value['estados_albarancompralinea'][$this->estado];
+    }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $almacen;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->almacen = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add almacen
+     *
+     * @param PB\AlmacenBundle\Entity\Almacen $almacen
+     * @return AlbaranCompraLinea
+     */
+    public function addAlmacen(\PB\AlmacenBundle\Entity\Almacen $almacen)
+    {
+        $this->almacen[] = $almacen;
+    
+        return $this;
+    }
+
+    /**
+     * Remove almacen
+     *
+     * @param PB\AlmacenBundle\Entity\Almacen $almacen
+     */
+    public function removeAlmacen(\PB\AlmacenBundle\Entity\Almacen $almacen)
+    {
+        $this->almacen->removeElement($almacen);
+    }
+
+    /**
+     * Get almacen
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAlmacen()
+    {
+        return $this->almacen;
     }
 }

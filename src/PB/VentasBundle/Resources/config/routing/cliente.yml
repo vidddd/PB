@@ -39,3 +39,7 @@ cliente_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "PBVentasBundle:Cliente:delete" }
     requirements: { _method: post }
+
+cliente_csv:
+    pattern:  /csv
+    defaults: { _controller: "PBComprasBundle:Cliente:csv" }

@@ -394,6 +394,7 @@ class ProveedorController extends Controller
     		$filterForm = $this->createForm(new ProveedorBuscadorFilterType(), $filterData);
     		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $query);
     		print_r($query->getDql()); die; 
+    		//print_r($filterData);
     	}
     	
     	$data = $query->getQuery()->getResult(); 

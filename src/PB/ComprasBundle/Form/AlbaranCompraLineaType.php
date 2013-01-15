@@ -16,7 +16,7 @@ class AlbaranCompraLineaType extends AbstractType
             ->add('descripcion')
             ->add('cantidad')
             ->add('precio')
-            ->add('descuento')->add('estado')
+            ->add('descuento')->add('estado')->add('estadoText')
             ->add('total', 'hidden')
             
             //->add('pedidocompralinea', 'hidden')

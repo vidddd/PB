@@ -6,26 +6,21 @@
 {% block content %}
 <script>
 $(document).ready(function() {
-
-
-	$("a#single_image").fancybox();
-	
-	/* Using custom settings */
-
-
-	/* Apply fancybox to multiple items */
-	
-	$("a.group").fancybox({
-		'transitionIn'	:	'elastic',
-		'transitionOut'	:	'elastic',
-		'speedIn'		:	600, 
-		'speedOut'		:	200, 
-		'overlayShow'	:	false
-	});
-	
+     // http://fancybox.net/api
+		$("a.iframe").fancybox({
+			'hideOnContentClick': false,
+			'width': 800,
+			'height': 450,
+			'transitionIn': 'elastic',
+			'modal': false,
+			'onClosed': function() {
+				window.location.reload();
+			                 }
+		});
 });
+
 </script>
-<div class="albarancompra">
+<div class="albarancompra recibir-materiales">
 <div class="title title-spacing"><h2>Recibir Albaran Compra</h2></div>
 <form action="{{ path('albarancompra_recibir', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
 <div class="content-box content-box-header ui-corner-all ">
@@ -79,10 +74,10 @@ $(document).ready(function() {
 					<td class="editable">
 					    {{ form_widget(linea.cantidad, { 'attr': {'class': 'ta_right icantidad numeric'}}) }}
 					</td>
-					<td class="editable"><span>{{ linea.estado.vars.value }}</span> </td>
-					<td class="editable"><span>
-					 <!-- <a rel="prettyPhoto[iframe]" href="{{ path('albarancompra_procesar', { 'id': linea.id.vars.value , 'iframe': 'true', 'width': 800, 'height': 410 }) }}">Procesar <img src="{{ asset('images/received.png') }}" alt="Procesar MAteriales" /></a> -->
-					 <a class="iframe" href="{{ path('albarancompra_procesar', { 'id': linea.id.vars.value }) }}">Procesar <img src="{{ asset('images/received.png') }}" alt="Procesar MAteriales" /></a>
+					<td class="editable sininput"><span>{{ linea.estadoText.vars.value }}</span> </td>
+					<td class="editable sininput"><span>
+					 <!-- <a rel="prettyPhoto[iframe]" href="{{ path('albarancompra_procesar', { 'id': linea.id.vars.value , 'iframe': 'true', 'width': 800, 'height': 510 }) }}">Procesar <img src="{{ asset('images/received.png') }}" alt="Procesar MAteriales" /></a> -->
+					 <a class="iframe" href="{{ path('albarancompra_procesar', { 'id': linea.id.vars.value }) }}"><img src="{{ asset('images/received.png') }}" alt="Procesar MAteriales" /></a>
 					 
 					 </span></td>
 				</tr>
@@ -93,8 +88,8 @@ $(document).ready(function() {
 					<th style="width: 64px;">Referencia</th>
 					<th style="width: 350px;">Descripcion</th>
 					<th class="ta_right" style="width: 45px;">Cantidad</th>
-					<th style="width: 45px;"><span>Estado</span></th>
-					<th style="width: 55px;"><span>Procesar</span>  </th>
+					<th style="width: 65px;"><span>Estado</span></th>
+					<th style="width: 45px;"><span>Procesar</span>  </th>
 				</tr>
 			</thead>
 
