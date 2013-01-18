@@ -3,7 +3,6 @@
 namespace PB\VentasBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrapView;
@@ -11,11 +10,10 @@ use Pagerfanta\View\TwitterBootstrapView;
 use PB\VentasBundle\Entity\Presupuesto;
 use PB\VentasBundle\Form\PresupuestoType;
 use PB\VentasBundle\Form\PresupuestoFilterType;
+use PB\VentasBundle\Printer\PrintPresupuesto;
+use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Presupuesto controller.
- *
- */
+
 class PresupuestoController extends Controller
 {
     /**
@@ -142,18 +140,39 @@ class PresupuestoController extends Controller
             'delete_form' => $deleteForm->createView(),        ));
     }
 
-    /**
-     * Displays a form to create a new Presupuesto entity.
-     *
-     */
+    public function prenewAction()
+    {
+    	$entity = new Presupuesto();
+    	$hoy = new \DateTime();
+    	$entity->setFecha($hoy);
+    	$form   = $this->createForm(new PresupuestoType(), $entity);
+    
+    	return $this->render('PBVentasBundle:Presupuesto:new.html.twig', array(
+    			'entity' => $entity,
+    			'formstep' => 1,
+    			'form'   => $form->createView(),
+    	));
+    }
     public function newAction()
     {
-        $entity = new Presupuesto();
-        $form   = $this->createForm(new PresupuestoType(), $entity);
-
+        $entity  = new Presupuesto();
+        $request = $this->getRequest();
+        $form    = $this->createForm(new PresupuestoType(), $entity);
+        $form->bind($request);
+        
+        if ($form->isValid()) {
+        	$em = $this->getDoctrine()->getManager();
+        	$em->persist($entity);
+	    	return $this->render('PBVentasBundle:Presupuesto:new.html.twig', array(
+	    			'entity' => $entity,
+	    			'formstep' => 2,
+	    			'form'   => $form->createView(),
+	    	));
+        }
         return $this->render('PBVentasBundle:Presupuesto:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+        		'entity' => $entity,
+        		'formstep' => 1,
+        		'form'   => $form->createView(),
         ));
     }
 
@@ -170,41 +189,62 @@ class PresupuestoController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            foreach ($entity->getPresupuestolineas() as $linea)
+            {
+            	$linea->setPresupuesto($entity);
+            }
             $em->persist($entity);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
+            $this->get('session')->getFlashBag()->add('success', 'Nuevo Presupuesto Creado');
 
             return $this->redirect($this->generateUrl('presupuesto_show', array('id' => $entity->getId())));        } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
         }
 
         return $this->render('PBVentasBundle:Presupuesto:new.html.twig', array(
-            'entity' => $entity,
+            'entity' => $entity, 'formstep' => 2,
             'form'   => $form->createView(),
         ));
     }
-    /**
-     * Displays a form to edit an existing Presupuesto entity.
-     *
-     */
+    public function preeditAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$entity = $em->getRepository('PBVentasBundle:Presupuesto')->find($id);
+    	if (!$entity) {	throw $this->createNotFoundException('Unable to find Presupuesto entity.');}
+    	$editForm = $this->createForm(new PresupuestoType(), $entity);
+    	$deleteForm = $this->createDeleteForm($id);
+    
+    	return $this->render('PBVentasBundle:Presupuesto:edit.html.twig', array(
+    			'entity'      => $entity,'formstep' => 1,
+    			'form'   => $editForm->createView(),
+    			'delete_form' => $deleteForm->createView(),
+    	));
+    }
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
+        $request = $this->getRequest();
         $entity = $em->getRepository('PBVentasBundle:Presupuesto')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Presupuesto entity.');
-        }
+        if (!$entity) {   throw $this->createNotFoundException('Unable to find Presupuesto entity.'); }
 
-        $editForm = $this->createForm(new PresupuestoType(), $entity);
+        $form   = $this->createForm(new PresupuestoType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
-
+        $form->bind($request);
+        
+        if ($form->isValid()) {
+        	$em->persist($entity);
+        	return $this->render('PBVentasBundle:Presupuesto:edit.html.twig', array(
+        			'entity'      => $entity, 'formstep' => 2,
+        			'form'   => $form->createView(),
+        			'delete_form' => $deleteForm->createView(),
+        	));
+        }
         return $this->render('PBVentasBundle:Presupuesto:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        			'entity'      => $entity, 'formstep' => 1,
+        			'form'   => $form->createView(),
+        			'delete_form' => $deleteForm->createView(),
+        	));
     }
 
     /**
@@ -216,11 +256,12 @@ class PresupuestoController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PBVentasBundle:Presupuesto')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Presupuesto entity.');
-        }
-
+        if (!$entity) {  throw $this->createNotFoundException('Unable to find Presupuesto entity.'); }
+        
+        $beforeSaveLineas = $currentLineasIds = array();
+        foreach ($entity->getPresupuestolineas() as $linea)
+        	$beforeSaveLineas [$linea->getId()] = $linea;
+        
         $editForm   = $this->createForm(new PresupuestoType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
@@ -229,18 +270,27 @@ class PresupuestoController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+        	foreach ($entity->getPresupuestolineas() as $linea){
+        		$linea->setPresupuesto($entity);
+        		if ($linea->getId()) $currentLineasIds[] = $linea->getId();
+        	}
             $em->persist($entity);
+            foreach ($beforeSaveLineas as $lineaId => $linea){
+            	if (!in_array( $lineaId, $currentLineasIds)){
+            		$em->remove($linea);
+            	}
+            }
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
+            $this->get('session')->getFlashBag()->add('success', 'Presupuesto: '.$id.' Actualizado');
 
-            return $this->redirect($this->generateUrl('presupuesto_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('presupuesto'));
         } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }
 
         return $this->render('PBVentasBundle:Presupuesto:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity'      => $entity,  'formstep' => 2,
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -279,5 +329,27 @@ class PresupuestoController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+    
+    public function imprimirAction($id)
+    {
+    
+    	$em = $this->getDoctrine()->getManager();
+    
+    	$entity = $em->getRepository('PBVentasBundle:Presupuesto')->find($id);
+    
+    	if (!$entity) { throw $this->createNotFoundException('Unable to find Presupuesto entity.'); }
+    	$request = $this->getRequest();
+    	$url = $this->container->getParameter('url');
+    	$html = $this->renderView('PBVentasBundle:Presupuesto:print.html.twig', array('entity' => $entity, 'url'  => $url));
+    	
+    	$printer = new PrintPresupuesto(); //HTML2PDF
+    	$response = new Response($printer->getPdf($html));
+    	
+    	$response->headers->set('Content-Type', 'application/pdf');
+    	$response->headers->set('Content-Disposition', 'inline; filename="Presupuesto.pdf"');
+    	return $response;
+    	 
+    
     }
 }

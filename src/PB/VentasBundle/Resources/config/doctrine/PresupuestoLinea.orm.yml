@@ -1,0 +1,43 @@
+PB\VentasBundle\Entity\PresupuestoLinea:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        referencia:
+            type: string
+            length: '50'
+            nullable: true
+        medida:
+            type: string
+            length: '50'
+            nullable: true
+        galga:
+            type: integer
+            nullable: true
+        descripcion:
+            type: string
+            length: 255
+            nullable: true
+        cantidad:
+            type: float
+            nullable: true
+        precio:
+            type: float
+            nullable: true
+        importe:
+            type: float
+            nullable: true
+    manyToOne:
+        presupuesto:
+            targetEntity: PB\VentasBundle\Entity\Presupuesto
+            inversedBy: presupuestolineas
+            cascade: [persist]
+            joinColumn:
+                name: presupuesto_id
+                referencedColumnName: id
+                onDelete: CASCADE
+    lifecycleCallbacks: {  }

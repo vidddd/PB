@@ -1,0 +1,58 @@
+  {% if form_errors(form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% endif %}
+<script type="text/javascript">
+<!--
+$(document).ready(function() {
+		var iva = $('#iva-edit').val();
+		if(iva != ''){
+			$('#presupuesto_iva').val(iva);
+		}
+	});
+//-->
+</script>
+<form action="{{ entity.id  ? path('presupuesto_edit', { 'id': entity.id }) : path('presupuesto_new') }}" method="post" {{ form_enctype(form) }}>
+<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+	<div class="portlet-header ui-widget-header">DATOS DEL PRESUPUESTO</div>
+		<div class="portlet-content">
+		    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+		<table id="form-alta">
+		<tr>
+			<td>{{ form_label(form.cliente, null, { 'label': 'Cliente', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.cliente, { 'attr': {'class': 'small numeric buscadorid buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div></td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.fecha, null, { 'label': 'Fecha', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.fecha, { 'attr': {'class': 'date small'}}) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.iva, null, { 'label': 'IVA', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.iva, { 'attr': {'class': 'small hiva'}}) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.descuento, null, { 'label': 'Descuento', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.descuento, { 'attr': {'class': 'small hdescuento'}}) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(form.observaciones) }} <div class="clearfix"></td>
+			<td>{{ form_widget(form.observaciones, { 'attr': {'cols': '50', 'rows': '6'}}) }}</td>
+			
+		</tr>
+		<tr>
+			<td></td><td>
+    </td>
+		</tr>
+	</table>
+	</div></div><p>
+	<div style="display:none;">
+	   <input type="hidden" name="iva-edit" id="iva-edit" value="{{ entity.iva }}" />
+	   {{  form_rest(form) }}
+	</div>
+        <button type="submit" class="ui-state-default ui-corner-all">Siguiente >></button>
+    </p></div>
+    {{ form_widget(form._token) }}</form>
+ 	<div class="clearfix"></div>

@@ -382,7 +382,7 @@ table.spreadsheet th {
     border-left: 0 none;
     border-top: 1px solid #CCCCCC;
     color: #616161;
-    font-weight: bold;
+    font-weight: bold; font-size: 11px;
     line-height: 18px;
     padding: 4px 5px;
     text-align: left;
@@ -442,7 +442,7 @@ input[type="text"], input[type="password"], textarea, select {
     text-align: right;
 }
 .spreadsheet td.total span{
-	margin-top:7px; float:right;
+	margin-top:7px; float:right; font-size: 12px;
 }
 table.spreadsheet input:focus, table.spreadsheet textarea:focus{
 	background-color:#FFF8D5;

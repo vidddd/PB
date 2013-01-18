@@ -1,0 +1,24 @@
+{% extends '::layout.html.twig' %}
+
+{% block title entity.cliente.nombre %}
+
+{% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
+{% block content %}
+<div class="title title-spacing ventas"><h2>Tarifa Mayorista</h2></div>
+
+	{% include 'PBVentasBundle:Precio:vista.html.twig' with { 'entity' : entity } %}
+
+ 	<br />
+	<div class="clearfix"></div>
+    <div class="float-left volver">
+        <a href="{{ path('precio') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+        </a>
+    </div>
+    <ul class="ui-widget ui-helper-clearfix botones-abajo">
+      <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('precio_edit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
+   
+    <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('precio_print', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-print"></span> Imprimir </a> </li>
+   </ul>
+ 
+{% endblock %}

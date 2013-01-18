@@ -835,8 +835,11 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 /* nuevos */
 .btn-nuevo{
 	float:right;
-	clear:both;
 	margin-bottom:10px;
+}
+.btn-nuevo-left{
+	float:left;
+	margin-right: 10px; margin-bottom:10px;
 }
 .container-sin-header{
 	padding-top:10px;
@@ -1081,6 +1084,10 @@ border-radius: 3px;
 #factura-form table#cab td {
 	padding:8px 10px;
 	border: 1px solid #ccc;
+}
+#factura-form table#cab td input {
+	margin:0;
+	padding: 3px; font-size: 1em;
 }
 #factura-form table#cab .label4{
    background-color: #E6E6E6;

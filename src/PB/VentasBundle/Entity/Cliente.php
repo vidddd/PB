@@ -1262,4 +1262,42 @@ class Cliente
     {
         return $this->pedido;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $presupuesto;
+
+
+    /**
+     * Add presupuesto
+     *
+     * @param PB\VentasBundle\Entity\Presupuesto $presupuesto
+     * @return Cliente
+     */
+    public function addPresupuesto(\PB\VentasBundle\Entity\Presupuesto $presupuesto)
+    {
+        $this->presupuesto[] = $presupuesto;
+    
+        return $this;
+    }
+
+    /**
+     * Remove presupuesto
+     *
+     * @param PB\VentasBundle\Entity\Presupuesto $presupuesto
+     */
+    public function removePresupuesto(\PB\VentasBundle\Entity\Presupuesto $presupuesto)
+    {
+        $this->presupuesto->removeElement($presupuesto);
+    }
+
+    /**
+     * Get presupuesto
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPresupuesto()
+    {
+        return $this->presupuesto;
+    }
 }

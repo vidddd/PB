@@ -79,7 +79,6 @@ function update_total_albaran() {
 	  var iva = $('#ivah').val();
 	  var descuento = $('#descuentoh').val();
 	  var recargo = $('#recargoh').val();
-
 	  $('.totallinea').each(function(i){
 	    price = $(this).html();
 	    if (!isNaN(price)) total += Number(price);

@@ -1,0 +1,100 @@
+PB\VentasBundle\Entity\Presupuesto:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        estado:
+            type: smallint
+            nullable: true
+        codpresupuesto:
+            type: string
+            length: '50'
+            nullable: true
+        fecha:
+            type: date
+        cantidad:
+            type: text
+            lenght: '50'
+        material:
+            type: smallint
+        color:
+            type: string
+            length: 255
+            nullable: true
+        tipotupo:
+            type: smallint
+            nullable: true
+        tipobolsa:
+            type: smallint
+            nullable: true
+        bobinas:
+            type: smallint
+            nullable: true
+        mbobinas:
+            type: smallint
+            nullable: true
+        kgbobinas:
+            type: smallint
+            nullable: true           
+        ancho:
+            type: string
+            length: '50'
+            nullable: true
+        ancho:
+            type: string
+            length: '50'
+            nullable: true
+        largo:
+            type: smallint
+            nullable: true
+        galga:
+            type: smallint
+            nullable: true
+        plegado:
+            type: smallint
+            nullable: true
+        precio:
+            type: float
+            nullable: true
+        impresion1:
+            type: string
+            length: '150'
+            nullable: true
+        impresion2:
+            type: string
+            length: '150'
+            nullable: true
+        impresioncolor1:
+            type: string
+            length: '150'
+            nullable: true
+        impresioncolor2:
+            type: string
+            length: '150'
+            nullable: true
+        cliche:
+            type: smallint
+            nullable: true
+        preciocliche:
+            type: float
+            nullable: true
+        paquetes:
+            type: string
+            length: '150'
+            nullable: true
+        sacos:
+            type: string
+            length: '150'
+            nullable: true
+        palets:
+            type: string
+            length: '150'
+            nullable: true
+        observaciones:
+            type: text
+            nullable: true           
+    lifecycleCallbacks: {  }

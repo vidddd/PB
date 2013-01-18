@@ -6,6 +6,10 @@ presupuesto_show:
     pattern:  /{id}/show
     defaults: { _controller: "PBVentasBundle:Presupuesto:show" }
 
+presupuesto_prenew:
+    pattern:  /prenew
+    defaults: { _controller: "PBVentasBundle:Presupuesto:prenew" }
+
 presupuesto_new:
     pattern:  /new
     defaults: { _controller: "PBVentasBundle:Presupuesto:new" }
@@ -14,6 +18,10 @@ presupuesto_create:
     pattern:  /create
     defaults: { _controller: "PBVentasBundle:Presupuesto:create" }
     requirements: { _method: post }
+
+presupuesto_preedit:
+    pattern:  /{id}/preedit
+    defaults: { _controller: "PBVentasBundle:Presupuesto:preedit" }
 
 presupuesto_edit:
     pattern:  /{id}/edit
@@ -28,3 +36,7 @@ presupuesto_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "PBVentasBundle:Presupuesto:delete" }
     requirements: { _method: post }
+
+presupuesto_print:
+    pattern:  /{id}/print
+    defaults: { _controller: "PBVentasBundle:Presupuesto:imprimir" }

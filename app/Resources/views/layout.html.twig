@@ -33,7 +33,11 @@
 				<ul>
 					<li><a href="{{ path('comercial') }}">Comerciales</a></li>
 					<li><a href="{{ path('cliente') }}">Clientes</a></li>
-					<li><a href="{{ path('presupuesto') }}">Presupuestos</a></li>
+					<li><a href="{{ path('presupuesto') }}">Presupuestos</a>
+					  <ul>
+						<li><a href="{{ path('presupuesto_prenew') }}">Nuevo Presupuesto</a></li>
+					  </ul>
+					</li>
 					<li><a href="{{ path('pedido') }}">Pedidos</a>
 						<ul>
 								<li><a href="{{ path('pedido_new') }}">Nuevo Pedido</a></li>
@@ -57,7 +61,9 @@
 					<li><a href="{{ path('precio') }}">Precios</a>
 					   <ul>
 							<li><a href="{{ path('precio_buscador_facturas') }}">Precios en Facturas</a></li>		
-							<li><a href="{{ path('precio_buscador_facturasb') }}">Precios en Facturas B</a></li>								
+							<li><a href="{{ path('precio_buscador_facturasb') }}">Precios en Facturas B</a></li>
+							<li><a href="{{ path('precio_minorista') }}">Tarifa Minoristas</a>	
+							<li><a href="{{ path('precio_mayorista') }}">Tarifa Mayoritas</a>							
 						</ul>
 					</li>
 				</ul>

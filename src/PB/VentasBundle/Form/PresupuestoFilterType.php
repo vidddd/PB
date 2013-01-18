@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\NumberFilterType;
 
 class PresupuestoFilterType extends AbstractType
 {
@@ -16,34 +18,13 @@ class PresupuestoFilterType extends AbstractType
         $builder
             ->add('id', 'filter_number')
             ->add('cliente', 'filter_number')->add('anchoc', 'filter_number')
-            ->add('estado', 'filter_number_range')
 			->add('fecha', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
 		    															   'label' => 'aaaaa',
 		    											//'format' => 'dd.MM.yyyy'
 		    											),
 		    										   'right_date' => array('widget' => 'single_text')
 		    									 ))
-            ->add('cantidad', 'filter_text')
-            ->add('material', 'filter_number_range')
-            ->add('color', 'filter_text')
-            ->add('tipotupo', 'filter_number_range')
-            ->add('tipobolsa', 'filter_number_range')
-            ->add('bobinas', 'filter_number_range')
-            ->add('mbobinas', 'filter_number_range')
-            ->add('kgbobinas', 'filter_number_range')
-            ->add('ancho', 'filter_text')
-            ->add('galga', 'filter_number_range')
-            ->add('plegado', 'filter_number_range')
-            ->add('precio', 'filter_number_range')
-            ->add('impresion1', 'filter_text')
-            ->add('impresion2', 'filter_text')
-            ->add('impresioncolor1', 'filter_text')
-            ->add('impresioncolor2', 'filter_text')
-            ->add('cliche', 'filter_number_range')
-            ->add('preciocliche', 'filter_number_range')
-            ->add('paquetes', 'filter_text')
-            ->add('sacos', 'filter_text')
-            ->add('palets', 'filter_text')
+            ->add('nombre', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS))
             ->add('observaciones', 'filter_text')
         ;
 
@@ -61,13 +42,13 @@ class PresupuestoFilterType extends AbstractType
                 }
             }
 
-            $event->getForm()->addError(new FormError('Filter empty'));
+            $event->getForm()->addError(new FormError('Filtros Vacios'));
         };
         $builder->addEventListener(FormEvents::POST_BIND, $listener);
     }
 
     public function getName()
     {
-        return 'pb_ventasbundle_presupuestofiltertype';
+        return 'presupuestofilter';
     }
 }

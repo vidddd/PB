@@ -3,8 +3,9 @@
           {% endif %}
  	<form action="{{ entity.id  ? path('precio_update', { 'id': entity.id }) : path('precio_create') }}" method="post" {{ form_enctype(form) }} id="form-precio">
 <div id="precios">
+   {% if tarifa == false %}
+   
 	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">	
-	
 			<div class="form-invoice">
 				<div class="span-17 form-horizontal label-column-small form-condensed">
 					<div class="control-group">
@@ -36,6 +37,24 @@
      			</div>
  			</div>
 	</div>
+	{% else %}
+	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">	
+				<div class="span-17 form-horizontal label-column-small form-condensed">
+					<div class="control-group"><label class="control-label required">Cliente</label>
+						<div class="controls codigo"><b>PLÁSTICOS BALTASAR, S.A.</b></div>
+	     			</div>
+     			</div>
+     			<div class="span-17 form-horizontal label-column-small form-condensed">
+					<div class="control-group required">
+						<label class="control-label required">Tarifa</label>
+						<div class="controls codigo"><b>{{ entity.id }}</b></div>
+	     			</div>
+     			</div>
+      			<div class="span-16 form-horizontal label-column-small form-condensed">
+     			</div>
+	</div>
+	<div style="display:none;">	{{ form_widget(form.fecha, { 'attr': {'class': 'date small'}}) }}	{{ form_widget(form.cliente, { 'attr': {'class': 'small buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de CLIENTES"><img src="{{ asset('images/search.png') }}" /></a></div>
+	{% endif %}
 	<div class="span-33">
 		<table border="0" align="center" class="camiseta-impresa spreadsheet">
 			  <caption class="caption">CAMISETA IMPRESA 

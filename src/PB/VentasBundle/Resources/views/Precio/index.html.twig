@@ -40,9 +40,15 @@
 				 {{ form_widget(filterForm._token) }}</form>
 		</div><div class="clear"></div>
 	</div>
+	<div class="btn-nuevo-left">
+			<a class="btn ui-state-default ui-corner-all" href="{{ path('precio_minorista') }}"><span class="ui-icon ui-icon-person"></span>Tarifa Minorista</a>
+	</div>
+	<div class="btn-nuevo-left">
+			<a class="btn ui-state-default ui-corner-all" href="{{ path('precio_mayorista') }}"><span class="ui-icon ui-icon-calculator"></span>Tarifa Mayorista</a>
+	</div>
 	<div class="btn-nuevo">
-	<a class="btn ui-state-default ui-corner-all" href="{{ path('precio_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nueva Tarifa</a></div>
-	
+		<a class="btn ui-state-default ui-corner-all" href="{{ path('precio_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nueva Tarifa</a>
+	</div>	
 <div class="clearfix"></div>
 <div class="hastable">
     <table class="records_list">

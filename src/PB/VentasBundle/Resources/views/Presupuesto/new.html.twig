@@ -5,15 +5,20 @@
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
 <div class="title title-spacing ventas"><h2>Nuevo Presupuesto</h2></div>
-
-	{% include 'PBVentasBundle:Presupuesto:form.html.twig' with { 'form' : form } %}
-          	
+	<div id="factura-form">
+		{% if formstep == 1 %}
+			{% include 'PBVentasBundle:Presupuesto:form1.html.twig' with { 'form' : form } %}
+		{% endif %}
+		{% if formstep == 2 %}
+			{% include 'PBVentasBundle:Presupuesto:form2.html.twig' with { 'form' : form } %}
+		{% endif %}
+    </div>
 	<div class="clearfix"></div>
     <div class="float-left volver">
         <a href="{{ path('presupuesto') }}">
           <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
-		{% include 'PBVentasBundle:Cliente:js_get_cliente.html.twig' %} 
+		     {% include 'PBVentasBundle:Cliente:js_get_cliente.html.twig' %} 
 
 {% endblock %}

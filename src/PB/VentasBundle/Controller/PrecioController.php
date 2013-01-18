@@ -144,10 +144,14 @@ class PrecioController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('PBVentasBundle:Precio')->find($id);
+        // Las tarifas 1 y 2 son especiales
+        if ($id == '1' || $id == '2') {
+        	$tarifa = true;
+        } else { $tarifa = false; }
         if (!$entity) {throw $this->createNotFoundException('No se ha encontrado la Tarifa.');}
         $editForm = $this->createForm(new PrecioType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
-        return $this->render('PBVentasBundle:Precio:edit.html.twig', array('entity' => $entity, 'form'   => $editForm->createView(), 'delete_form' => $deleteForm->createView(), ));
+        return $this->render('PBVentasBundle:Precio:edit.html.twig', array('entity' => $entity, 'tarifa' => $tarifa, 'form'   => $editForm->createView(), 'delete_form' => $deleteForm->createView(), ));
     }
 
     public function updateAction($id)
@@ -155,7 +159,11 @@ class PrecioController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('PBVentasBundle:Precio')->find($id);
-
+        // Las tarifas 1 y 2 son especiales
+        if ($id == '1' || $id == '2') {
+        	$tarifa = true;
+        } else { $tarifa = false;
+        }
         if (!$entity) { throw $this->createNotFoundException('No se ha encontrado la Tarifa.');}
 
         $beforeSaveLineas = $currentLineasIds = array();
@@ -186,7 +194,7 @@ class PrecioController extends Controller
             return $this->redirect($this->generateUrl('precio_show', array('id' => $id)));
         } else { $this->get('session')->getFlashBag()->add('error', 'flash.update.error');}
 
-        return $this->render('PBVentasBundle:Precio:edit.html.twig', array('entity'      => $entity,'form'   => $editForm->createView(),'delete_form' => $deleteForm->createView(),));
+        return $this->render('PBVentasBundle:Precio:edit.html.twig', array('entity'      => $entity,'tarifa' => $tarifa, 'form'   => $editForm->createView(),'delete_form' => $deleteForm->createView(),));
     }
 
     public function deleteAction($id)
@@ -491,4 +499,23 @@ class PrecioController extends Controller
     	}
     	return $qb;
     }
+    public function minoristaAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('PBVentasBundle:Precio')->find(1);
+        if (!$entity) {throw $this->createNotFoundException('Unable to find Precio entity.');}
+        $deleteForm = $this->createDeleteForm(1);
+        return $this->render('PBVentasBundle:Tarifas:minorista.html.twig', array( 'entity'      => $entity, 'delete_form' => $deleteForm->createView(),        ));
+   
+    }
+    public function mayoristaAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$entity = $em->getRepository('PBVentasBundle:Precio')->find(2);
+    	if (!$entity) { throw $this->createNotFoundException('Unable to find Precio entity.'); }
+    	$deleteForm = $this->createDeleteForm(2);
+    	return $this->render('PBVentasBundle:Tarifas:mayorista.html.twig', array( 'entity' => $entity, 'delete_form' => $deleteForm->createView(),        ));
+    	 
+    }
+    
 }

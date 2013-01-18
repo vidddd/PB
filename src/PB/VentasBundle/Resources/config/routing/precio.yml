@@ -52,3 +52,11 @@ precio_buscador_facturas:
 precio_buscador_facturasb:
     pattern:  /buscadorfacturasb
     defaults: { _controller: "PBVentasBundle:Precio:buscadorFacturasb" }
+    
+precio_minorista:
+    pattern:  /minorista
+    defaults: { _controller: "PBVentasBundle:Precio:minorista" }
+    
+precio_mayorista:
+    pattern:  /mayorista
+    defaults: { _controller: "PBVentasBundle:Precio:mayorista" }

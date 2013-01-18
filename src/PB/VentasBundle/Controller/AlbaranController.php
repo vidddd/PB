@@ -283,7 +283,6 @@ class AlbaranController extends Controller
         			'form'   => $form->createView(),
         			'delete_form' => $deleteForm->createView(),
         	));
-    
     }
 
     /**
@@ -335,8 +334,8 @@ class AlbaranController extends Controller
         }
 
         return $this->render('PBVentasBundle:Albaran:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity'      => $entity,  'formstep' => 2,
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

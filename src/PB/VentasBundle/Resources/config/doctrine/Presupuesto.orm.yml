@@ -7,94 +7,38 @@ PB\VentasBundle\Entity\Presupuesto:
             id: true
             generator:
                 strategy: AUTO
-        estado:
-            type: smallint
-            nullable: true
-        codpresupuesto:
-            type: string
-            length: '50'
-            nullable: true
         fecha:
             type: date
-        cantidad:
-            type: text
-            lenght: '50'
-        material:
-            type: smallint
-        color:
-            type: string
-            length: 255
             nullable: true
-        tipotupo:
+        coutaiva:
             type: smallint
             nullable: true
-        tipobolsa:
+        iva:
             type: smallint
-            nullable: true
-        bobinas:
-            type: smallint
-            nullable: true
-        mbobinas:
-            type: smallint
-            nullable: true
-        kgbobinas:
-            type: smallint
-            nullable: true           
-        ancho:
+        nombre:
             type: string
             length: '50'
             nullable: true
-        ancho:
-            type: string
-            length: '50'
-            nullable: true
-        largo:
+        descuento:
             type: smallint
             nullable: true
-        galga:
-            type: smallint
-            nullable: true
-        plegado:
-            type: smallint
-            nullable: true
-        precio:
+        importetotal:
             type: float
-            nullable: true
-        impresion1:
-            type: string
-            length: '150'
-            nullable: true
-        impresion2:
-            type: string
-            length: '150'
-            nullable: true
-        impresioncolor1:
-            type: string
-            length: '150'
-            nullable: true
-        impresioncolor2:
-            type: string
-            length: '150'
-            nullable: true
-        cliche:
-            type: smallint
-            nullable: true
-        preciocliche:
-            type: float
-            nullable: true
-        paquetes:
-            type: string
-            length: '150'
-            nullable: true
-        sacos:
-            type: string
-            length: '150'
-            nullable: true
-        palets:
-            type: string
-            length: '150'
             nullable: true
         observaciones:
             type: text
-            nullable: true           
-    lifecycleCallbacks: {  }
+            nullable: true
+    manyToOne:
+        cliente:
+            targetEntity: PB\VentasBundle\Entity\Cliente
+            inversedBy: presupuesto
+            joinColumn:
+                name: cliente_id
+                referencedColumnName: id
+    oneToMany:
+        presupuestolineas:
+            targetEntity: PB\VentasBundle\Entity\PresupuestoLinea
+            mappedBy: presupuesto 
+            cascade: [ persist ]  
+    lifecycleCallbacks:
+        prePersist: [  ]

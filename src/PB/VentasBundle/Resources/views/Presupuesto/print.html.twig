@@ -1,0 +1,52 @@
+<style type="text/css">
+<!--
+.presupuesto {
+ border: 1px solid blue;
+ fon-size: 12px;
+ font-family: Arial,sans-serif;
+}
+.presupuesto .presupuesto-header{
+	margin-bottom:20px;
+}
+.bordeverde{border: 1px solid #97A59A;} .bgverde{ background-color:#97A59A;}
+.presupuesto-datos{margin-bottom: 20px:}
+.presupuesto-datos .clientetit{ font-size: 11px; padding: 5px 10px; width: 100px;}
+.presupuesto-datos .cliente{
+   padding:10px;
+   width:250px;
+   float:right;
+}
+.presupuesto-datos .cliente p {
+	margin:2px 0;
+}
+.presupuesto-datos .datos{
+	width: 320px; float:right; clear:none;
+}
+.presupuesto-datos .datos p { font-size: 11px; 	margin:2px 0;}
+
+.clear{ clear: both; }
+.ta_right{ text-align:right;}
+.dato{ color:#747373;}
+.total{ font-size:15px;}
+-->
+</style>
+<page backtop="8mm" backbottom="8mm" backleft="10mm" backright="10mm">
+{% block content %}
+<div class="presupuesto">
+	<div class="presupuesto-header">
+	  <img src="{{ url }}{{ asset('images/LOGO380.png') }}" />
+	</div>
+	<div class="presupuesto-datos">
+		<div class="clientetit">CLIENTE</div>
+		<div class="cliente bordeverde bgverde">
+			<p>{{ entity.cliente.nombre }}</p><p>{{ entity.cliente.direccion }}</p><p>{{ entity.cliente.cp }} {{ entity.cliente.localidad }} ({{ entity.cliente.provinciacliente }})</p><p>Tfn:{{ entity.cliente.telefono }} Fax:{{ entity.cliente.fax }}</p>
+		</div>
+		<div class="datos bordeverde">
+			<div class="datos1">
+				<p>NOM. PEDIDO</p><p>COD. CLIENTE</p><p>Nº PRESUPUESTO</p><p>FECHA</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+</page>
