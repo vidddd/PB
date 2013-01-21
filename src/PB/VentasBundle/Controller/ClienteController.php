@@ -31,15 +31,15 @@ class ClienteController extends Controller
     	list($filterForm, $queryBuilder) = $this->filter();
     	if($this->getRequest()->get('cuantos')) {
     		$cuantos = $this->getRequest()->get('cuantos');
-    	} else if ($session->get('ClienteCompraCuantos')){
-    		$cuantos = $session->get('ClienteCompraCuantos');
+    	} else if ($session->get('ClienteCuantos')){
+    		$cuantos = $session->get('ClienteCuantos');
     	} else { $cuantos = 10;
     	}
     	
         list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
         
         $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');  
-        if($cuantos) $session->set('ClienteCompraCuantos', $cuantos);
+        if($cuantos) $session->set('ClienteCuantos', $cuantos);
         ($cuantos)? $entradas = $cuantos : $entradas = 10;
         
         return $this->render('PBVentasBundle:Cliente:index.html.twig', array(
@@ -389,5 +389,34 @@ class ClienteController extends Controller
         } else {
         	return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de cliente erróneo</span>')));
         }
+    }
+    public function csvAction(){
+    	$request = $this->getRequest();$session = $request->getSession();
+    	$em = $this->get('doctrine')->getEntityManager();
+    	$query = $em->getRepository('PBVentasBundle:Cliente')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
+    	 
+    	if ($session->get('ClienteCuantos')){
+    		$cuantos = $session->get('ClienteCuantos');
+    	} else { $cuantos = 10;
+    	}
+    	$query->setMaxResults($cuantos);
+    	 
+    	if ($session->has('ClienteControllerFilter')) {
+    		$filterData = $session->get('ClienteControllerFilter');
+    
+    		$filterForm = $this->createForm(new ClienteBuscadorFilterType(), $filterData);
+    		//print_r($filterData);
+    		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $query);
+    		//print_r($query->getDql()); die;
+    		//print_r($filterData);
+    	}
+    	 
+    	$data = $query->getQuery()->getResult();
+    	$filename = "Clientes.csv";
+    	 
+    	$response = $this->render('PBComprasBundle:Proveedor:csv.html.twig', array('data' => $data));
+    	$response->headers->set('Content-Type', 'text/csv');
+    	$response->headers->set('Content-Disposition', 'attachment; filename='.$filename);
+    	return $response;
     }
 }

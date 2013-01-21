@@ -1,52 +1,158 @@
 <style type="text/css">
 <!--
+/**
+ * #42929d Verde mar
+ * #97afa0 Verde Apagado
+ * #788884 Verde lineas
+ */
 .presupuesto {
- border: 1px solid blue;
+ /*border: 1px solid blue;*/
  fon-size: 12px;
+ color: #555555;
  font-family: Arial,sans-serif;
 }
+table { }
 .presupuesto .presupuesto-header{
 	margin-bottom:20px;
 }
-.bordeverde{border: 1px solid #97A59A;} .bgverde{ background-color:#97A59A;}
-.presupuesto-datos{margin-bottom: 20px:}
-.presupuesto-datos .clientetit{ font-size: 11px; padding: 5px 10px; width: 100px;}
+.verde{ color:#97afa0; } .bgverde{ background-color:#97afa0;}
+.bordeverde{border: 1px solid #788884;} .bordeverderight{ border-right:1px solid #788884;}
+.bordeverdebottom { border-bottom: 1px solid #788884;} .bordeverdeleft { border-left: 1px solid #788884; }
+.presupuesto-datos{ }
+.presupuesto-datos .clientetit{ font-size: 11px; padding: 5px 10px; width: 100px; height: 10px;}
 .presupuesto-datos .cliente{
-   padding:10px;
-   width:250px;
-   float:right;
+   padding:6px 10px;
+   width:240px;
+   height: 65px;
 }
 .presupuesto-datos .cliente p {
 	margin:2px 0;
 }
 .presupuesto-datos .datos{
-	width: 320px; float:right; clear:none;
+    height: 80px;   
+    margin: 22px 0 0 76px;
+	width: 320px; 
+	border: 2px solid #788884;
 }
-.presupuesto-datos .datos p { font-size: 11px; 	margin:2px 0;}
+.presupuesto-datos .datos td {padding:10px;  }
+.presupuesto-datos .datos p { font-size: 12px; 	margin:2px 0;}
 
+#cab-lineas{ margin-top:8px; border-collapse: collapse;}
+#cab-lineas td  { font-size: 12px; padding: 8px;}
+#subcab-lineas td { font-size: 12px; padding: 5px;}
+#subcab-lineas{ border-collapse: collapse; margin-bottom: 13px;}
+#observaciones  { widht: 100%; height: 150px;}
+#observaciones p { font-size: 11px; margin: 11px;}
+.etiqueta { font-size: 11px; padding: 5px;}
 .clear{ clear: both; }
 .ta_right{ text-align:right;}
 .dato{ color:#747373;}
-.total{ font-size:15px;}
+.total{ font-size:14px;}
 -->
 </style>
-<page backtop="8mm" backbottom="8mm" backleft="10mm" backright="10mm">
+<page backtop="8mm" backbottom="8mm" backleft="11mm" backright="11mm">
 {% block content %}
 <div class="presupuesto">
 	<div class="presupuesto-header">
 	  <img src="{{ url }}{{ asset('images/LOGO380.png') }}" />
 	</div>
-	<div class="presupuesto-datos">
-		<div class="clientetit">CLIENTE</div>
-		<div class="cliente bordeverde bgverde">
-			<p>{{ entity.cliente.nombre }}</p><p>{{ entity.cliente.direccion }}</p><p>{{ entity.cliente.cp }} {{ entity.cliente.localidad }} ({{ entity.cliente.provinciacliente }})</p><p>Tfn:{{ entity.cliente.telefono }} Fax:{{ entity.cliente.fax }}</p>
-		</div>
-		<div class="datos bordeverde">
-			<div class="datos1">
-				<p>NOM. PEDIDO</p><p>COD. CLIENTE</p><p>Nº PRESUPUESTO</p><p>FECHA</p>
-			</div>
-		</div>
-	</div>
+	<table class="presupuesto-datos" cellspacing="0" style="width: %;">
+        <tr>
+            <td style="width: 40%;">
+            	<div class="clientetit">CLIENTE</div>
+				<div class="cliente bordeverde bgverde">
+					<p>{{ entity.cliente.nombre }}</p><p>{{ entity.cliente.direccion }}</p><p>{{ entity.cliente.cp }} {{ entity.cliente.localidad }} ({{ entity.cliente.provinciacliente }})</p><p>Tfn:{{ entity.cliente.telefono }} Fax:{{ entity.cliente.fax }}</p>
+				</div>
+            </td>
+            <td style="width: 60%;">
+                <table class="datos bordeverde" cellspacing="0" style=";">
+        			<tr>
+            			<td style="width: 40%;" class="bordeverderight">
+							<p class="verde">NOM. PEDIDO</p><p class="verde">COD. CLIENTE</p><p class="verde">Nº PRESUP.</p class="verde"><p class="verde">FECHA</p>
+						</td>
+						<td style="width: 60%;">
+							<p>{{ entity.nombre }}</p><p>{{ entity.cliente.id }}</p><p>{{ entity.id }}</p><p>{{ entity.fecha|date('d/m/Y') }}</p>
+						</td>
+					</tr>
+				</table>
+            </td>
+        </tr>
+    </table> <div class="clear"></div>
+    <table id="cab-lineas" cellspacing="0">
+		<tr>
+			<td style="width:11%" class="bgverde bordeverde etiqueta">REF</td>
+			<td style="width:33%" class="bgverde bordeverde etiqueta">DESCRIPCION</td>
+			<td style="width:11%" class="bgverde bordeverde etiqueta">MEDIDA</td>
+			<td style="width:11%" class="bgverde bordeverde etiqueta">GALGA</td>
+			<td style="width:11%" class="bgverde bordeverde etiqueta">CANTIDAD</td>
+			<td style="width:11%" class="bgverde bordeverde etiqueta">PRECIO</td>
+			<td style="width:12%" class="bgverde bordeverde etiqueta">IMPORTE</td>
+		</tr>
+	</table>
+	<table id="lineas" cellspacing="0" style="min-height:0px;">
+	<tr>
+            <td style="width:11%;" class="bordeverderight bordeverdeleft"></td>
+            <td style="width:33%" class="bordeverderight"></td>
+            <td style="width:11%" class="bordeverderight"></td>
+            <td style="width:11%" class="bordeverderight"></td>
+            <td style="width:11%" class="bordeverderight"></td>
+            <td style="width:11%" class="bordeverderight"></td>
+            <td style="width:12%" class="bordeverderight"></td>
+        </tr>
+	{% for linea in entity.presupuestolineas %}
+        <tr>
+            <td style="width:11%;" class="ta_right bordeverderight bordeverdeleft">{{ linea.referencia }}</td>
+            <td style="width:33%" class="bordeverderight">{{ linea.descripcion }}</td>
+            <td style="width:11%" class="ta_right bordeverderight">{{ linea.medida }}</td>
+            <td style="width:11%" class="ta_right bordeverderight">{{ linea.galga }}</td>
+            <td style="width:11%" class="ta_right bordeverderight">{{ linea.cantidad }}</td>
+            <td style="width:11%" class="ta_right bordeverderight">{{ linea.preciof }}</td>
+            <td style="width:12%" class="ta_right bordeverderight">{{ linea.importef }}</td>
+        </tr>
+    {% endfor %}
+    {% for i in 0..limit %}
+		<tr>
+            <td style="width:11%;" class="ta_right bordeverderight bordeverdeleft">&nbsp;</td>
+            <td style="width:33%" class="bordeverderight"></td>
+            <td style="width:11%" class="ta_right bordeverderight"></td>
+            <td style="width:11%" class="ta_right bordeverderight"></td>
+            <td style="width:11%" class="ta_right bordeverderight"></td>
+            <td style="width:11%" class="ta_right bordeverderight"></td>
+            <td style="width:12%" class="ta_right bordeverderight"></td>
+        </tr>
+	{% endfor %}
+         <tr>
+            <td style="width:11%;" class="bordeverdebottom bordeverdeleft bordeverderight"></td>
+            <td style="width:33%" class="bordeverdebottom bordeverderight"></td>
+            <td style="width:11%" class="bordeverdebottom bordeverderight"></td>
+            <td style="width:11%" class="bordeverdebottom bordeverderight"></td>
+            <td style="width:11%" class="bordeverdebottom bordeverderight"></td>
+            <td style="width:11%" class="bordeverdebottom bordeverderight"></td>
+            <td style="width:12%" class="bordeverdebottom bordeverderight"></td>
+        </tr>
+	</table><br />
+	 <table id="subcab-lineas" cellspacing="0">
+		<tr>
+			<td style="width:17%" class="bgverde bordeverde etiqueta">NETO</td>
+			<td style="width:17%" class="bgverde bordeverde etiqueta">DTO ({{ entity.descuento }}%)</td>
+			<td style="width:17%" class="bgverde bordeverde etiqueta">BASE IMP.</td>
+			<td style="width:16%" class="bgverde bordeverde etiqueta">COUTA IVA</td>
+			<td style="width:16%" class="bgverde bordeverde etiqueta">IVA</td>
+			<td style="width:17%" class="bgverde bordeverde etiqueta">TOTAL</td>
+		</tr>
+		<tr>
+			<td style="width:17%" class="bordeverde">{{ entity.netof }}€</td>
+			<td style="width:17%" class="bordeverde">{{ entity.descuentototalf }}€</td>
+			<td style="width:17%" class="bordeverde">{{ entity.baseimponiblef }}€</td>
+			<td style="width:16%" class="bordeverde">{{ entity.iva }}</td>
+			<td style="width:16%" class="bordeverde">{{ entity.ivatotalf }}€</td>
+			<td style="width:17%" class="bordeverde total"><b>{{ entity.importetotalf }}€</b></td>
+		</tr>
+	</table><div class="clear"></div>
+	<div id="observaciones" class="bordeverde" style="height: 130px;"> <p>OBSERVACIONES: </p>
+	<p style="font-size: 12px;">{{ entity.observaciones }}</p>
+	</div>	
+	<p style="font-size: 11px;"> - Este presupuesto tiene validez de dos meses a partir de la fecha.</p>
 </div>
 {% endblock %}
 </page>

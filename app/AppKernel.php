@@ -28,7 +28,7 @@ class AppKernel extends Kernel
             new PB\GeneralBundle\PBGeneralBundle(),
             new PB\ProduccionBundle\PBProduccionBundle(),
             new PB\ContabilidadBundle\PBContabilidadBundle(),
-        		new Liuggio\ExcelBundle\LiuggioExcelBundle(),
+        	//	new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new PB\AlmacenBundle\PBAlmacenBundle(),
         );
 

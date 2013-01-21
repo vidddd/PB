@@ -1,0 +1,4 @@
+"Código cliente","Nombre","Nif","Dirección","Código Postal","Localidad"
+{% for cliente in data %}
+"{{ cliente.id }}","{{ cliente.nombre }}","{{ cliente.nif }}","{{ cliente.direccion }}","{{ cliente.cp }}","{{ cliente.localidad }}"
+{% endfor %}

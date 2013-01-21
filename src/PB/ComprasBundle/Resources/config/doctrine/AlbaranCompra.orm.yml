@@ -51,6 +51,7 @@ PB\ComprasBundle\Entity\AlbaranCompra:
       joinColumn:
         name: pedidocompra_id
         referencedColumnName: id
+        onDelete: CASCADE
   oneToMany:
     albarancompralineas:
       targetEntity: PB\ComprasBundle\Entity\AlbaranCompraLinea

@@ -69,7 +69,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-07-02 18:58:14",
+            "time": "2012-07-03 01:58:14",
             "bin": [
                 "bin/dompdf.php"
             ],
@@ -189,7 +189,7 @@
                 "php": ">=5.3.2",
                 "doctrine/common": "2.3.*"
             },
-            "time": "2012-10-06 03:21:52",
+            "time": "2012-10-06 10:21:52",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -263,7 +263,7 @@
             "suggest": {
                 "doctrine/orm": "The Doctrine ORM integration is optional in the bundle."
             },
-            "time": "2012-10-10 10:42:28",
+            "time": "2012-10-10 17:42:28",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -325,7 +325,7 @@
             "suggest": {
                 "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
             },
-            "time": "2012-10-05 14:20:05",
+            "time": "2012-10-05 21:20:05",
             "bin": [
                 "bin/doctrine",
                 "bin/doctrine.php"
@@ -390,7 +390,7 @@
                 "php": ">=5.2",
                 "ensepar/tcpdf": "5.0.002"
             },
-            "time": "2012-10-09 12:45:26",
+            "time": "2012-10-09 19:45:26",
             "type": "library",
             "extra": {
                 "branch-alias": [
@@ -840,12 +840,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jordillonch/CrudGeneratorBundle",
-                "reference": "0dab87aa15932e30285f7035a7ee3558672cd468"
+                "reference": "a73ecf777dd9be9c3a62fcb5f0012486d7e0f4d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/jordillonch/CrudGeneratorBundle/archive/0dab87aa15932e30285f7035a7ee3558672cd468.zip",
-                "reference": "0dab87aa15932e30285f7035a7ee3558672cd468",
+                "url": "https://github.com/jordillonch/CrudGeneratorBundle/archive/a73ecf777dd9be9c3a62fcb5f0012486d7e0f4d4.zip",
+                "reference": "a73ecf777dd9be9c3a62fcb5f0012486d7e0f4d4",
                 "shasum": ""
             },
             "require": {
@@ -854,7 +854,7 @@
                 "symfony/symfony": "2.1.*",
                 "sensio/generator-bundle": "2.1.*"
             },
-            "time": "2012-12-10 14:18:50",
+            "time": "2013-01-18 21:58:12",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -886,29 +886,35 @@
         },
         {
             "name": "knplabs/knp-components",
-            "version": "dev-master",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/knp-components",
-                "reference": "99ea408dc2a7c3616e688ffe67e3248ece69ff0e"
+                "reference": "1.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/KnpLabs/knp-components/zipball/99ea408dc2a7c3616e688ffe67e3248ece69ff0e",
-                "reference": "99ea408dc2a7c3616e688ffe67e3248ece69ff0e",
+                "url": "https://github.com/KnpLabs/knp-components/archive/1.1.2.zip",
+                "reference": "1.1.2",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.3.2"
             },
-            "time": "2012-06-15 13:31:08",
+            "time": "2012-11-16 09:22:14",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Knp\\Component": "src/"
                 }
             },
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -939,28 +945,34 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpPaginatorBundle",
-                "reference": "0d719a9bd6973bde1b10587fc2c85cf04c5e0e9d"
+                "reference": "v2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/KnpLabs/KnpPaginatorBundle/archive/0d719a9bd6973bde1b10587fc2c85cf04c5e0e9d.zip",
-                "reference": "0d719a9bd6973bde1b10587fc2c85cf04c5e0e9d",
+                "url": "https://github.com/KnpLabs/KnpPaginatorBundle/archive/v2.3.zip",
+                "reference": "v2.3",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2",
-                "knplabs/knp-components": ">=1.1",
-                "twig/twig": ">=1.5",
-                "symfony/framework-bundle": "2.*,<2.3"
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": ">=2.0,<3.0",
+                "knplabs/knp-components": ">=1.1,<2.0",
+                "twig/twig": ">=1.5,<2.0"
             },
-            "time": "2012-11-16 10:26:21",
+            "time": "2013-01-18 17:41:27",
             "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3.x-dev"
+                }
+            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Knp\\Bundle\\PaginatorBundle": ""
                 }
             },
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1073,7 +1085,7 @@
                 "doctrine/orm": "*",
                 "symfony/form": "2.1.*"
             },
-            "time": "2012-10-05 06:04:58",
+            "time": "2012-10-05 13:04:58",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1111,12 +1123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liuggio/ExcelBundle",
-                "reference": "a848c56c1356354d56cc568ecf7b279ddbe1a0aa"
+                "reference": "v1.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/liuggio/ExcelBundle/archive/a848c56c1356354d56cc568ecf7b279ddbe1a0aa.zip",
-                "reference": "a848c56c1356354d56cc568ecf7b279ddbe1a0aa",
+                "url": "https://github.com/liuggio/ExcelBundle/archive/v1.0.2.zip",
+                "reference": "v1.0.2",
                 "shasum": ""
             },
             "require": {
@@ -1316,7 +1328,7 @@
                 "sensio/framework-extra-bundle": ">=2.0",
                 "psliwa/php-pdf": ">=1.1.5"
             },
-            "time": "2012-09-23 11:41:38",
+            "time": "2012-09-23 18:41:38",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1450,7 +1462,7 @@
                 "symfony/framework-bundle": "2.1.*",
                 "doctrine/common": ">=2.1,<2.4-dev"
             },
-            "time": "2012-10-09 05:34:31",
+            "time": "2012-10-09 12:34:31",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1543,7 +1555,7 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2012-10-02 09:53:49",
+            "time": "2012-10-02 16:53:49",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1607,7 +1619,7 @@
             "suggest": {
                 "symfony/twig-bundle": ">=2.1.0,<2.3-dev"
             },
-            "time": "2012-10-10 12:39:03",
+            "time": "2012-10-10 19:39:03",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1838,7 +1850,8 @@
             "homepage": "http://symfony.com",
             "keywords": [
                 "framework"
-            ]
+            ],
+            "time": "2012-10-11 13:44:22"
         },
         {
             "name": "toooni/fpdf",
@@ -1857,7 +1870,7 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2012-10-16 10:35:29",
+            "time": "2012-10-16 17:35:29",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1894,7 +1907,7 @@
             "require": {
                 "twig/twig": "1.*"
             },
-            "time": "2012-10-10 10:13:26",
+            "time": "2012-10-10 17:13:26",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1926,26 +1939,26 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.11.1",
+            "version": "v1.12.1",
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Twig.git",
-                "reference": "v1.11.1"
+                "reference": "v1.12.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig/archive/v1.11.1.zip",
-                "reference": "v1.11.1",
+                "url": "https://github.com/fabpot/Twig/archive/v1.12.1.zip",
+                "reference": "v1.12.1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2012-11-11 17:17:59",
+            "time": "2013-01-15 20:03:52",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "installation-source": "source",
@@ -1954,6 +1967,7 @@
                     "Twig_": "lib/"
                 }
             },
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3"
             ],

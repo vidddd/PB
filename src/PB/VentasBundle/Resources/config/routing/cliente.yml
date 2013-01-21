@@ -42,4 +42,4 @@ cliente_delete:
 
 cliente_csv:
     pattern:  /csv
-    defaults: { _controller: "PBComprasBundle:Cliente:csv" }
+    defaults: { _controller: "PBVentasBundle:Cliente:csv" }

@@ -58,12 +58,13 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mailer_transport%
-    host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
-    spool:     { type: memory }
-
+    transport: gmail
+#    host:      smtp.gmail.com
+    username:  davidalvarezcalvo
+    password:  460598
+#   spool:     { type: memory }
+    delivery_address:  david@deejay.es
+    
 parameters:
     url: http://localhost:8888
 

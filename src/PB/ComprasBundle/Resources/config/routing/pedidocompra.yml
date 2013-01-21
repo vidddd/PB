@@ -36,3 +36,7 @@ compras_pedidocompra_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "PBComprasBundle:PedidoCompra:delete" }
     requirements: { _method: post }
+
+compras_pedidocompra_mail:
+    pattern:  /{id}/mail
+    defaults: { _controller: "PBComprasBundle:PedidoCompra:mail" }

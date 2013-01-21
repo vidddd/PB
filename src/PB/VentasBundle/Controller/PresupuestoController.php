@@ -55,7 +55,7 @@ class PresupuestoController extends Controller
         $session = $request->getSession();
         $filterForm = $this->createForm(new PresupuestoFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBVentasBundle:Presupuesto')->createQueryBuilder('e');
+        $queryBuilder = $em->getRepository('PBVentasBundle:Presupuesto')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
     
         // Reset filter
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
@@ -341,7 +341,10 @@ class PresupuestoController extends Controller
     	if (!$entity) { throw $this->createNotFoundException('Unable to find Presupuesto entity.'); }
     	$request = $this->getRequest();
     	$url = $this->container->getParameter('url');
-    	$html = $this->renderView('PBVentasBundle:Presupuesto:print.html.twig', array('entity' => $entity, 'url'  => $url));
+    	$limit = 28;
+    	$lineas = $entity->getPresupuestolineas(); $numl = count($lineas);
+    	if ( $limit > $numl ) $lin = $limit-$numl; else $lin = $limit;
+    	$html = $this->renderView('PBVentasBundle:Presupuesto:print.html.twig', array('entity' => $entity, 'url'  => $url, 'limit' => $lin));
     	
     	$printer = new PrintPresupuesto(); //HTML2PDF
     	$response = new Response($printer->getPdf($html));

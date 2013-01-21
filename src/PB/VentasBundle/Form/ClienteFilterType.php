@@ -18,8 +18,8 @@ class ClienteFilterType extends AbstractType
             ->add('id', 'filter_number')
             ->add('codcliente', 'filter_number')
             ->add('nombre', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
-            ->add('nif')
-            ->add('localidad', 'filter_text')
+            ->add('nif','filter_text', array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS ))
+            ->add('localidad', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
             ->add('cp', 'filter_text')
 
         ;

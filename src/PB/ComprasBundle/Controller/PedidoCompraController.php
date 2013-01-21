@@ -299,10 +299,8 @@ class PedidoCompraController extends Controller
     /**
      */
     public function imprimirAction($id)
-    {
-	   
+    {	   
 	    $em = $this->getDoctrine()->getManager();
-
 	    $entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
 
 	    if (!$entity) {	throw $this->createNotFoundException('Unable to find PedidoCompra entity.'); }
@@ -310,8 +308,6 @@ class PedidoCompraController extends Controller
 	    $url = $this->container->getParameter('url');
 	    $html = $this->renderView('PBComprasBundle:PedidoCompra:print.html.twig', array('entity' => $entity, 'url' => $url ));
 	    
-	    //$printer = new PrintPedidoCompra();  //TCPDF
-	    //$printer = new PrintPedidoCompra2(); //DOMPDF
 	    $printer = new PrintPedidoCompra3(); //HTML2PDF
 	    $response = new Response($printer->getPdf($html));
 	    $response->headers->set('Content-Type', 'application/pdf'); 
@@ -319,6 +315,25 @@ class PedidoCompraController extends Controller
 	    return $response;
 	  
     
+    }
+    public function mailAction($id){
+    	
+    	$em = $this->getDoctrine()->getManager();
+    	$entity = $em->getRepository('PBComprasBundle:PedidoCompra')->find($id);
+    	if (!$entity) {throw $this->createNotFoundException('Unable to find PedidoCompra entity.');}
+    	
+    	/*$message = \Swift_Message::newInstance()
+    	->setSubject('Hello Email')
+    	->setFrom('plasticosbaltasar@gmail.com')
+    	->setTo('davidalvarezcalvo@gmail.com')
+    	->setBody('Hola....')
+    	;
+    	$this->get('mailer')->send($message);*/
+    	
+    	return $this->render('PBComprasBundle:PedidoCompra:mail.html.twig', array(
+    			//'entity'      => $entity,
+    			//'form'   => $editForm->createView(),
+    	));
     }
    
 }
