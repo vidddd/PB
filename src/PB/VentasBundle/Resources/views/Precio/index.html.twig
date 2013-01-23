@@ -57,6 +57,7 @@
             <th width="25">Código Tarifa</th>
             <th>Cliente</th>
             <th>Fecha</th>
+            <th width="30">Incrementar Decrementar</th>
             <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
         </tr>
     </thead>
@@ -66,6 +67,7 @@
             <td><a href="{{ path('precio_show', { 'id': linea.id }) }}">{{ linea.id }}</a></td>
             <td>{{ linea.cliente }}</td>
             <td>{{ linea.fecha|date('d.m.Y') }}</td>
+            <td><a class="btn2 btn2-mini btn2-facturar" href="{{ path('precio_incrementar', { 'id': linea.id }) }}">Incrementar</a></td>		
             <td>
         		<a href="{{ path('precio_show', { 'id': linea.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
         		<a href="{{ path('precio_edit', { 'id': linea.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>

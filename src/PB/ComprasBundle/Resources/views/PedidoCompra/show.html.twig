@@ -7,29 +7,14 @@
 <div class="title title-spacing"><h2>Pedido Compra</h2></div>
 {% include 'PBComprasBundle:PedidoCompra:vista.html.twig' with { 'entity' : entity } %}
 <div class="clearfix"></div>
-<script>
-$(document).ready(function() {
-     // http://fancybox.net/api
-		$("A.iframe").fancybox({
-			'hideOnContentClick': false,
-			'width': 600,
-			'height': 450,
-			'transitionIn': 'elastic',
-			'modal': false,
-			'onClosed': function() {
-				//window.location.reload();
-			                 }
-		});
-});
 
-</script>
 <div><br />
     <div class="volver float-left">
         <a href="{{ path('compras_pedidocompra') }}"> <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</a></div>
     <ul class="ui-widget ui-helper-clearfix botones-abajo">
     <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('compras_pedidocompra_print', { 'id': entity.id , _format: "pdf" }) }}"><span class="ui-icon ui-icon-print"></span> Imprimir </a> </li>
     <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('compras_pedidocompra_edit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
-    <li class="ui-state-default ui-corner-all MAIL" style="float:left;"><a class="btn iframe" href="{{ path('compras_pedidocompra_mail', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-mail-closed"></span> Enviar por e-mail </a> </li>
+    <li class="ui-state-default ui-corner-all MAIL" style="float:left;"><a class="btn iframe-mail" href="{{ path('compras_pedidocompra_mail', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-mail-closed"></span> Enviar por e-mail </a> </li>
     
     <div class="float-left eliminar-show">
         <form action="{{ path('compras_pedidocompra_delete', { 'id': entity.id }) }}" method="post">

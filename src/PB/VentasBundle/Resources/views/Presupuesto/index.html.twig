@@ -55,7 +55,7 @@
 		            <th>Cliente</th>
 		            <th>Fecha</th>
 		            <th>Subcliente / Nombre</th>
-		            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+		            <th width="132">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
 		        </tr>
 		    </thead>
 		    <tbody>
@@ -69,6 +69,7 @@
 		        		<a href="{{ path('presupuesto_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
 		        		<a href="{{ path('presupuesto_preedit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
 		          		<a href="{{ path('presupuesto_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
+		          	    <a href="{{ path('presupuesto_mail', { 'id': entity.id }) }}" title="Mail" class="btn_no_text btn ui-state-default ui-corner-all tooltip iframe-mail"><span class="ui-icon ui-icon-mail-closed"></span></a>
 		          </td>
 		        </tr>
 		    {% endfor %}

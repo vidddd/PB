@@ -21,6 +21,7 @@ $(document).ready(function() {
 	function(){
 		$(this).removeClass('sfHover2');
 	});
+	
     //prettyPhoto
 	$("a[rel^='prettyPhoto']").prettyPhoto({
 		animation_speed: 'fast', /* fast/slow/normal */
@@ -211,7 +212,19 @@ $(document).ready(function() {
 		$(this).parents(".portlet:first").find(".portlet-content").slideToggle();
 	});
 
-	$(".column").disableSelection();
+	//$(".column").disableSelection();
+    // http://fancybox.net/api
+	$("a.iframe-mail").fancybox({
+		'hideOnContentClick': false,
+		'width': 550,
+		'height': 600,
+		'transitionIn': 'elastic',
+		'modal': false,
+		'onClosed': function() {
+			//window.location.reload();
+		                 }
+	});
+
 	
 });
 

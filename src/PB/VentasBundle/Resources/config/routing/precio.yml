@@ -60,3 +60,11 @@ precio_minorista:
 precio_mayorista:
     pattern:  /mayorista
     defaults: { _controller: "PBVentasBundle:Precio:mayorista" }
+
+buscador_precio_presupuesto:
+    pattern:  /buscador_presupuesto/{id}/{back}
+    defaults: { _controller: "PBVentasBundle:Precio:buscadorPrecioPresupuesto" }
+    
+precio_incrementar:
+    pattern:  /incrementar/{id}
+    defaults: { _controller: "PBVentasBundle:Precio:incrementar" }

@@ -1,0 +1,49 @@
+{% extends '::layout_ajax.html.twig' %}
+
+{% block title "Buscador de Precios" %}
+
+{% block content %}
+<script>
+$(document).ready(function() { 
+	// 
+    $(".tabin a").click(function () {
+    	var idprecio = $('.idprecio').html();
+        
+    	if (idprecio){
+			$('#'+idprecio, window.parent.document).val(this.rel);
+	        window.parent.update_precios(idprecio);
+         } else {
+        	$('.iprecio', window.parent.document).val(this.rel);
+			$('#preciok', window.parent.document).val(this.rel);
+        }
+
+        window.parent.$.prettyPhoto.close();
+        return;
+    })
+});
+</script>
+<div class="buscador-precios">
+    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+		<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+			<li class="ui-state-default ui-corner-top"><a href="#tabs-1">Precios de Cliente</a></li>
+		    <li class="ui-state-default ui-corner-top"><a href="#tabs-2">Tarifa Minorista</a></li>
+			<li class="ui-state-default ui-corner-top"><a href="#tabs-3">Tarifa Mayorista</a></li>
+		</ul>
+    <div id="tabs-1" class="tabin">
+    <span class="idprecio" style="display:none;">{{ rel }}</span>
+    {% if error %}
+    	<h2 class="errorprecios" style="color:red;">{{ error }}</h2>
+    {% endif %}
+	{% if entity != '' %}
+		{% include 'PBVentasBundle:Precio:vista.html.twig' with { 'entity' : entity } %}
+	{% endif %}	
+	</div>
+	<div id="tabs-2" class="tabin">
+		{% include 'PBVentasBundle:Precio:vista.html.twig' with { 'entity' : minorista } %}
+	</div>
+	<div id="tabs-3" class="tabin">
+		{% include 'PBVentasBundle:Precio:vista.html.twig' with { 'entity' : mayorista } %}
+	</div>
+</div>
+</div>
+{% endblock %}

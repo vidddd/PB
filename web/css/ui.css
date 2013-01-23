@@ -104,10 +104,6 @@ body {
 	color:#444;
 }
 
-.ui-widget-content a {
-	color: #444;
-}
-
 .ui-widget-header {
 	border:1px solid #ddd;
 	background:#ddd url(../images/ui-bg_highlight-soft_50_dddddd_1x100.png) 50% 50% repeat-x;

@@ -136,14 +136,16 @@ text-align:right;}
             <td style="width:10%" class="ta_right">{{ linea.total }}</td>
         </tr>
     {% endfor %}
-      <tr>
-            <td style="width:10%; height:50%;" class="ta_right"></td>
-            <td style="width:50%"></td>
+    {% for i in 0..limit %}
+    <tr>
+            <td style="width:10%;" class="ta_right"></td>
+            <td style="width:50%">&nbsp;</td>
             <td style="width:10%" class="ta_right"></td>
             <td style="width:10%" class="ta_right"></td>
             <td style="width:10%" class="ta_right"></td>
             <td style="width:10%" class="ta_right"></td>
         </tr>
+	{%  endfor %}
 	</table></div><br />
 	<table id="sub-lineas" cellspacing="0">
 		<tr>

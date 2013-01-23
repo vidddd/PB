@@ -656,8 +656,8 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 	background-image:url('../images/icons/facturas.png');
 }
 
-#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.Clipboard_3 {
-	background-image:url('../images/icons/Clipboard_3.png');
+#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.presupuestos {
+	background-image:url('../images/icons/presupuesto.png');
 }
 
 #page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.Chart_4 {
@@ -1269,4 +1269,8 @@ border-radius: 3px;
     border: 1px solid #CCCCCC;
     padding: 8px 10px;
     font-size: 13px;
+}
+.lightbox-mail {
+	width: 450px; float:left;
+	clear:both;
 }

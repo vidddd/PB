@@ -23,12 +23,9 @@ class PrecioController extends Controller
  	$request = $this->getRequest();$session = $request->getSession();
     	
     	list($filterForm, $queryBuilder) = $this->filter();
-    	if($this->getRequest()->get('cuantos')) {
-    		$cuantos = $this->getRequest()->get('cuantos');
-    	} else if ($session->get('PrecioCompraCuantos')){
-    		$cuantos = $session->get('PrecioCompraCuantos');
-    	} else { $cuantos = 10;
-    	}
+    	if($this->getRequest()->get('cuantos')) { $cuantos = $this->getRequest()->get('cuantos');
+    	} else if ($session->get('PrecioCompraCuantos')){ 		$cuantos = $session->get('PrecioCompraCuantos');
+    	} else { $cuantos = 10;  	}
     	
         list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
         
@@ -70,17 +67,13 @@ class PrecioController extends Controller
     
     protected function paginator($queryBuilder, $cuantos)
     {
-        // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $currentPage = $this->getRequest()->get('page', 1);
-        $pagerfanta->setMaxPerPage($cuantos);
-        
-        $pagerfanta->setCurrentPage($currentPage);
+        $pagerfanta->setMaxPerPage($cuantos);    $pagerfanta->setCurrentPage($currentPage);
         
         $entities = $pagerfanta->getCurrentPageResults();
-        $me = $this;
-        $routeGenerator = function($page) use ($me)
+        $me = $this;  $routeGenerator = function($page) use ($me)
         {
             return $me->generateUrl('precio', array('page' => $page));
         };
@@ -107,11 +100,7 @@ class PrecioController extends Controller
     {
         $entity = new Precio();
         $form   = $this->createForm(new PrecioType(), $entity);
-
-        return $this->render('PBVentasBundle:Precio:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        return $this->render('PBVentasBundle:Precio:new.html.twig', array( 'entity' => $entity, 'form'   => $form->createView(),));
     }
 
     public function createAction()
@@ -124,11 +113,8 @@ class PrecioController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
             foreach ($entity->getPrecioLineas() as $linea)
-            {
-            	$linea->setPrecios($entity);
-            }
+            {    	$linea->setPrecios($entity); }
             $em->persist($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'Nueva Tarifa Creada');
@@ -263,18 +249,11 @@ class PrecioController extends Controller
     		$entity = $query->getSingleResult();
     	} catch (\Doctrine\Orm\NoResultException $e) {
     		return $this->render('PBVentasBundle:Precio:buscador.html.twig', array(
-    				'error' => 'El cliente no tiene Tarifa de precios o el Código de cliente es erróneo',
-    				'entity' => '',
-    				'rel' => ''	
+    				'error' => 'El cliente no tiene Tarifa de precios o el Código de cliente es erróneo', 'entity' => '', 'rel' => ''	
     		));
     	}
-    	 
     	return $this->render('PBVentasBundle:Precio:buscador.html.twig', array(
-    			'entity' => $entity,
-    			'error' => '',
-    			'rel'  => $back
-    			//	'pagerHtml' => $pagerHtml,
-    			//	'filterForm' => $filterForm->createView(),
+    			'entity' => $entity, 'error' => '', 'rel'  => $back
     	));
     }
     
@@ -308,8 +287,7 @@ class PrecioController extends Controller
 	    	}
 	    	$em = $this->getDoctrine()->getManager();
 	    	return $this->render('PBVentasBundle:Precio:calcular.html.twig', array(
-	    			'entity' => $entity,
-	    			'pedido' => $pedido
+	    			'entity' => $entity, 'pedido' => $pedido
 	    	));
     	}
     }
@@ -352,7 +330,6 @@ class PrecioController extends Controller
     
     protected function paginatorBuscadorFacturas($queryBuilder)
     {
-    	// Paginator
     	$adapter = new DoctrineORMAdapter($queryBuilder);
     	$pagerfanta = new Pagerfanta($adapter);
     	$currentPage = $this->getRequest()->get('page', 1);
@@ -517,5 +494,42 @@ class PrecioController extends Controller
     	return $this->render('PBVentasBundle:Tarifas:mayorista.html.twig', array( 'entity' => $entity, 'delete_form' => $deleteForm->createView(),        ));
     	 
     }
+    public function buscadorPrecioPresupuestoAction($id, $back)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$request = $this->get('request');
+    	$rel = $request->query->get('rel');
+    	$query = $em->createQuery('SELECT p FROM PBVentasBundle:Precio p WHERE p.cliente = :cliente ORDER BY p.fecha DESC')
+    	->setParameter('cliente', $id)->setMaxResults(1);
+    	$mayorista = $em->getRepository('PBVentasBundle:Precio')->find(2);
+    	if (!$mayorista) {	throw $this->createNotFoundException('Unable to find Tarifa Mayorista entity.');}
+    	$minorista = $em->getRepository('PBVentasBundle:Precio')->find(1);
+    	if (!$minorista) { throw $this->createNotFoundException('Unable to find Tarifa Minorista entity.');}
+    	 
+    	try {
+    		$entity = $query->getSingleResult();
+    	} catch (\Doctrine\Orm\NoResultException $e) {
+    		return $this->render('PBVentasBundle:Precio:buscadorPresupuestos.html.twig', array(
+    				'error' => 'El cliente no tiene Tarifa de precios o el Código de cliente es erróneo',
+    				'entity' => '', 'minorista' => $minorista, 'mayorista' => $mayorista,
+    				'rel' => ''
+    		));
+    	}
     
+    	return $this->render('PBVentasBundle:Precio:buscadorPresupuestos.html.twig', array(
+    			'entity' => $entity, 'minorista' => $minorista, 'mayorista' => $mayorista,
+    			'error' => '',
+    			'rel'  => $back
+    			//	'pagerHtml' => $pagerHtml,
+    			//	'filterForm' => $filterForm->createView(),
+    	));
+    } 
+    public function incrementarAction($id){
+    	$em = $this->getDoctrine()->getManager();
+    	$pedido = $em->getRepository('PBVentasBundle:Pedido')->find($id);
+    
+    	return $this->render('PBVentasBundle:Precio:incrementar.html.twig', array(
+    			//'entities' => $entities, 'busForm' => $busForm->createView(),
+    	));
+    }   
 }

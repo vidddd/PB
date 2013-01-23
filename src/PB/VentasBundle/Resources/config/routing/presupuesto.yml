@@ -40,3 +40,7 @@ presupuesto_delete:
 presupuesto_print:
     pattern:  /{id}/print
     defaults: { _controller: "PBVentasBundle:Presupuesto:imprimir" }
+    
+presupuesto_mail:
+    pattern:  /{id}/mail
+    defaults: { _controller: "PBVentasBundle:Presupuesto:mail" }

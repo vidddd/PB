@@ -15,9 +15,11 @@ table { }
 .presupuesto .presupuesto-header{
 	margin-bottom:20px;
 }
-.verde{ color:#97afa0; } .bgverde{ background-color:#97afa0;}
-.bordeverde{border: 1px solid #788884;} .bordeverderight{ border-right:1px solid #788884;}
-.bordeverdebottom { border-bottom: 1px solid #788884;} .bordeverdeleft { border-left: 1px solid #788884; }
+.presupuesto-header .img-left{ float:left; }
+.presupuesto-header .img-right { float:right; }
+.verde{ color:#b0ccc5; } .bgverde{ background-color:#b0ccc5;}
+.bordeverde{border: 1px solid #869a90;} .bordeverderight{ border-right:1px solid #869a90;}
+.bordeverdebottom { border-bottom: 1px solid #869a90;} .bordeverdeleft { border-left: 1px solid #869a90; }
 .presupuesto-datos{ }
 .presupuesto-datos .clientetit{ font-size: 11px; padding: 5px 10px; width: 100px; height: 10px;}
 .presupuesto-datos .cliente{
@@ -32,7 +34,7 @@ table { }
     height: 80px;   
     margin: 22px 0 0 76px;
 	width: 320px; 
-	border: 2px solid #788884;
+	border: 2px solid #869a90;
 }
 .presupuesto-datos .datos td {padding:10px;  }
 .presupuesto-datos .datos p { font-size: 12px; 	margin:2px 0;}
@@ -54,7 +56,12 @@ table { }
 {% block content %}
 <div class="presupuesto">
 	<div class="presupuesto-header">
-	  <img src="{{ url }}{{ asset('images/LOGO380.png') }}" />
+	  <table>
+	  	<tr>
+	  		<td style="width:500px;"><img src="{{ url }}{{ asset('images/logo400.png') }}" /></td>
+	  		<td><img src="{{ url }}{{ asset('images/hoja-presupuesto.png') }}" /></td>
+	  	</tr>
+	  </table>
 	</div>
 	<table class="presupuesto-datos" cellspacing="0" style="width: %;">
         <tr>

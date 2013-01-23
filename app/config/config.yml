@@ -60,11 +60,12 @@ doctrine:
 swiftmailer:
     transport: gmail
 #    host:      smtp.gmail.com
-    username:  davidalvarezcalvo
-    password:  460598
+    username:  plasticosbaltasar
+    password:  925461699
 #   spool:     { type: memory }
-    delivery_address:  david@deejay.es
-    
+#   delivery_address:  david@deejay.es
+    disable_delivery: false   
+
 parameters:
     url: http://localhost:8888
 

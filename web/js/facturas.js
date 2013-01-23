@@ -32,7 +32,7 @@ function update_price() {
 function update_price_albaran() {
 	  var row = $(this).parents('.item-row');
 
-	  if( row.find('.iprecio').val() != '' && row.find('.icantidad').val() != '' ){
+	 if( row.find('.iprecio').val() != '' ){
 		  var price = row.find('.iprecio').val() * row.find('.icantidad').val();
 		  price = roundNumber(price,2);
 		  if(isNaN(price)){ row.find('.totallinea').html("N/A") } else {

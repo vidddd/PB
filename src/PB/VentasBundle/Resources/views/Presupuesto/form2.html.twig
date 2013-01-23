@@ -69,7 +69,6 @@
 					<td class="editable">
 					    {{ form_widget(linea.precio, { 'attr': {'class': 'ta_right iprecio numeric', 'style': 'width:71%'}}) }}
 					  <div class="icono-poner-precio"> <a href="#" class="buscaprecio" rel="{{ linea.precio.vars.id }}" title="Buscador de Precio"><img src="{{ asset('images/16euro.png') }}" /></a></div>
-					  	<!-- <a rel="prettyPhoto[iframe]" href="{{ path('buscador_precio_albaran', { 'id': '' , 'back': linea.precio.vars.id,  'iframe': 'true', 'width': 750, 'height': 500 }) }}" title="Buscador de Precio"><img src="{{ asset('images/16euro.png') }}" /></a></div> -->
 					</td>
 					<td class="total">
 						<span class="ta_right totallinea">{{ linea.importe.vars.value }}</span>
@@ -175,7 +174,7 @@
         if(cliente == '') {
 			alert('Debe introducir un cliente');
          } else {
-        	 $.prettyPhoto.open('{{ app.request.getBaseURL() }}/ventas/precio/buscador_albaran/'+cliente+'/'+rel+'?iframe=true&width=1080&height=600','Buscador de Precios','Listado de precios de cliente');
+        	 $.prettyPhoto.open('{{ app.request.getBaseURL() }}/ventas/precio/buscador_presupuesto/'+cliente+'/'+rel+'?iframe=true&width=1080&height=600','Buscador de Precios','Listado de precios de cliente');
          }
         return;
     });
