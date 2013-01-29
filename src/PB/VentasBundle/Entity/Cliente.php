@@ -1300,4 +1300,42 @@ class Cliente
     {
         return $this->presupuesto;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $orden;
+
+
+    /**
+     * Add orden
+     *
+     * @param PB\ProduccionBundle\Entity\Orden $orden
+     * @return Cliente
+     */
+    public function addOrden(\PB\ProduccionBundle\Entity\Orden $orden)
+    {
+        $this->orden[] = $orden;
+    
+        return $this;
+    }
+
+    /**
+     * Remove orden
+     *
+     * @param PB\ProduccionBundle\Entity\Orden $orden
+     */
+    public function removeOrden(\PB\ProduccionBundle\Entity\Orden $orden)
+    {
+        $this->orden->removeElement($orden);
+    }
+
+    /**
+     * Get orden
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOrden()
+    {
+        return $this->orden;
+    }
 }

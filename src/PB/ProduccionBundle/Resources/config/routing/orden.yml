@@ -1,0 +1,30 @@
+orden:
+    pattern:  /
+    defaults: { _controller: "PBProduccionBundle:Orden:index" }
+
+orden_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBProduccionBundle:Orden:show" }
+
+orden_new:
+    pattern:  /new
+    defaults: { _controller: "PBProduccionBundle:Orden:new" }
+
+orden_create:
+    pattern:  /create
+    defaults: { _controller: "PBProduccionBundle:Orden:create" }
+    requirements: { _method: post }
+
+orden_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBProduccionBundle:Orden:edit" }
+
+orden_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBProduccionBundle:Orden:update" }
+    requirements: { _method: post }
+
+orden_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBProduccionBundle:Orden:delete" }
+    requirements: { _method: post }

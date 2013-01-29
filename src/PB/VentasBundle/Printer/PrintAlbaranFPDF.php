@@ -18,6 +18,22 @@ class PrintAlbaranFPDF {
 		
 	public function printFPDF($id)
 	{
+		$pdf = $this->PDFmain($id);
+
+		$pdf = $this->buildPdf($id ,$pdf);
+		
+		return $pdf->Output('Albaran-'.$id.'.pdf','I');
+	
+	}
+	public function getPdf($id){
+		$pdf = $this->PDFmain($id);
+		
+		$pdf = $this->buildPdf($id ,$pdf);
+		
+		return $pdf->Output('Albaran-'.$id.'.pdf','S');
+	}
+	
+	private function PDFmain($id){
 		$entity = $this->em->getRepository('PBVentasBundle:Albaran')->find($id);
 		if (!$entity) {
 			throw $this->createNotFoundException('No se puede encontrar el albaran.');
@@ -27,12 +43,19 @@ class PrintAlbaranFPDF {
 			case '2':
 				$pdf = new ComunesbFPDF();
 				$tope = 41;
-			break;
+				break;
 			default:
 				$pdf = new ComunesFPDF();
 		}
-
-		
+		return $pdf;	
+	}
+	
+	private function buildPdf($id, &$pdf){
+		$entity = $this->em->getRepository('PBVentasBundle:Albaran')->find($id);
+		if (!$entity) {
+			throw $this->createNotFoundException('No se puede encontrar el albaran.');
+		}
+		$tope = 35;
 		$pdf->AddPage(); $pdf->Ln(3); $pdf->Cell(80,4,"",'',0,'C'); $pdf->Ln(4);
 		
 		$pdf->SetFillColor(255,255,255); $pdf->SetTextColor(0); $pdf->SetDrawColor(0,0,0);	$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',15);
@@ -55,14 +78,14 @@ class PrintAlbaranFPDF {
 		$pdf->SetFillColor(200,200,200); $pdf->SetTextColor(0);	$pdf->SetDrawColor(0,0,0);	$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);
 		
 		$pdf->Cell(80);	$pdf->Cell(30,4,"NIF",1,0,'C',1);	$pdf->Cell(30,4,"Cod. Clien",1,0,'C',1);	$pdf->Cell(30,4,"Fecha",1,0,'C',1);	$pdf->Cell(20,4,utf8_decode("N Alb."),1,0,'C',1);$pdf->Ln(4);
-
+		
 		$pdf->Cell(80);	$pdf->SetFillColor(255,255,255);$pdf->SetTextColor(0);$pdf->SetDrawColor(0,0,0);$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);
 		
 		$pdf->Cell(30,4,utf8_decode($entity->getCliente()->getNif()),1,0,'C',1);
 		$pdf->Cell(30,4,utf8_decode($entity->getCliente()->getId()),1,0,'C',1);
 		$pdf->Cell(30,4,utf8_encode($entity->getFecha()->format('d/m/Y')),1,0,'C',1);
 		$pdf->Cell(20,4,$entity->getId(),1,0,'C',1);
-	
+		
 		//ahora mostramos las lineas del albaran
 		$pdf->Ln(10);$pdf->Cell(1);	$pdf->SetFillColor(200,200,200);$pdf->SetTextColor(0);	$pdf->SetDrawColor(0,0,0);	$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);	$pdf->Cell(15,4,"Codigo",1,0,'C',1);
 		$pdf->Cell(65,4,"Concepto",1,0,'C',1);
@@ -107,7 +130,7 @@ class PrintAlbaranFPDF {
 			$importeneto+=$linea->getImporte();
 			$contador=$contador + 1;
 		}
-
+		
 		while ($contador<$tope)
 		{
 			$pdf->Cell(1);
@@ -182,8 +205,6 @@ class PrintAlbaranFPDF {
 		$pdf->SetFont('Arial','B',14);
 		$pdf->Cell(35,6,$importetotal .iconv('UTF-8', 'windows-1252', "€"),1,0,'R',1);
 		$pdf->Ln(4);
-		
-		return $pdf->Output('Albaran-'.$entity->getId().'.pdf','I');
-	
+		return $pdf;
 	}
 }

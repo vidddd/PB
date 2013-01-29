@@ -180,5 +180,8 @@ PB\VentasBundle\Entity\Cliente:
     presupuesto:
         targetEntity: PB\VentasBundle\Entity\Presupuesto
         mappedBy: cliente
+    orden:
+        targetEntity: PB\ProduccionBundle\Entity\Orden
+        mappedBy: cliente
   lifecycleCallbacks: 
     prePersist: [ setFechaAltaPre ]

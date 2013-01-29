@@ -18,6 +18,17 @@ class PrintFacturaFPDF {
 		
 	public function printFPDF($id)
 	{
+		$pdf = $this->PDFmain($id);
+		return $pdf->Output('Factura-'.$id.'.pdf','I');
+	
+	}
+	public function getPdf($id){
+		$pdf = $this->PDFmain($id);
+	
+		return $pdf->Output('Albaran-'.$id.'.pdf','S');
+	}
+	
+	private function PDFmain($id){
 		$entity = $this->em->getRepository('PBVentasBundle:Factura')->find($id);
 		if (!$entity) {
 			throw $this->createNotFoundException('No se puede encontrar la factura.');
@@ -28,17 +39,17 @@ class PrintFacturaFPDF {
 				$pdf = new ComunesbFPDF();
 				$tope = 45;
 				$fact = "FACTURA PROFORMA"; die;
-			break;
+				break;
 			case '1':
 				$fact = "# FACTURA #";
 				$pdf = new ComunesFPDF();
-			break;
+				break;
 			default:
 				$pdf = new ComunesFPDF();
 				$fact = "# FACTURA #";
-				
+		
 		}
-
+		
 		
 		$pdf->AddPage(); $pdf->Ln(3); $pdf->Cell(80,4,"",'',0,'C'); $pdf->Ln(1);
 		
@@ -62,14 +73,14 @@ class PrintFacturaFPDF {
 		$pdf->SetFillColor(200,200,200); $pdf->SetTextColor(0);	$pdf->SetDrawColor(0,0,0);	$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);
 		
 		$pdf->Cell(80);	$pdf->Cell(30,4,"NIF",1,0,'C',1);	$pdf->Cell(30,4,"Cod. Clien",1,0,'C',1);	$pdf->Cell(30,4,"Fecha",1,0,'C',1);	$pdf->Cell(20,4,utf8_decode("N Fact."),1,0,'C',1);$pdf->Ln(4);
-
+		
 		$pdf->Cell(80);	$pdf->SetFillColor(255,255,255);$pdf->SetTextColor(0);$pdf->SetDrawColor(0,0,0);$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);
 		
 		$pdf->Cell(30,4,utf8_decode($entity->getCliente()->getNif()),1,0,'C',1);
 		$pdf->Cell(30,4,utf8_decode($entity->getCliente()->getId()),1,0,'C',1);
 		$pdf->Cell(30,4,utf8_encode($entity->getFecha()->format('d/m/Y')),1,0,'C',1);
 		$pdf->Cell(20,4,$entity->getId(),1,0,'C',1);
-	
+		
 		//ahora mostramos las lineas del albaran
 		$pdf->Ln(10);$pdf->Cell(1);	$pdf->SetFillColor(200,200,200);$pdf->SetTextColor(0);	$pdf->SetDrawColor(0,0,0);	$pdf->SetLineWidth(.2);	$pdf->SetFont('Arial','B',10);	$pdf->Cell(15,4,"Codigo",1,0,'C',1);
 		$pdf->Cell(65,4,"Concepto",1,0,'C',1);
@@ -114,7 +125,7 @@ class PrintFacturaFPDF {
 			$importeneto+=$linea->getImporte();
 			$contador=$contador + 1;
 		}
-
+		
 		while ($contador<$tope)
 		{
 			$pdf->Cell(1);
@@ -200,8 +211,6 @@ class PrintFacturaFPDF {
 		$pdf->Cell(50,12,$entity->getFechacobro()->format('d/m/Y'),'LRB',0,'C',1);
 		$pdf->Cell(50,12,$entity->getFormapagofactura(),'LRB',0,'C',1);
 		$pdf->Cell(91,12,$entity->getObservaciones(),'LRB',0,'C',1);
-		
-		return $pdf->Output('Factura-'.$entity->getId().'.pdf','I');
-	
+		return $pdf;		
 	}
 }

@@ -7,7 +7,44 @@
 </script>
 <div class="title title-spacing ventas"><h2>Incrementar Precio</h2></div>
 <div class="incrementar-precios">
-
+<form action="{{ path('precio_incrementar', { 'id': precio.id } ) }}" method="post" {{ form_enctype(form) }} id="form-incrementar">
+<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container"><div class="portlet-header ui-widget-header">Formulario incremento precios</div>
+		<div class="portlet-content form-alta">
+		<table style="">
+			<tr>
+				<td style="width:150px;"><label>Cliente</label></td><td style="width:500px;"><p><b>{{ precio.cliente }}</b></p></td><td style=""></td>
+			</tr>
+			<tr>
+		        <td>{{ form_label(form.incremento, 'Incrementar') }}</td>
+		        <td>{{ form_widget(form.incremento) }}</td><td>{{ form_errors(form.incremento) }}</td>
+		    </tr>
+		    <tr>
+		        <td>{{ form_label(form.porcentaje, 'Porcentaje') }}</td>
+		        <td>{{ form_widget(form.porcentaje) }}%</td><td>{{ form_errors(form.porcentaje) }}</td>
+		    </tr>
+		    <tr>
+		        <td>{{ form_label(form.ficha, 'Crear nueva ficha?') }}</td>
+		        <td>{{ form_widget(form.ficha) }}<p style="font-size: 10px;">Seleccionado se creará una ficha copiando los precios de la ficha actual con la fecha de hoy, sino modifiracará los precios de la ficha actual</p></td><td></td>
+		    </tr>
+		    </table>
+		        <p class="botones-buscador">
+                    <button type="submit" name="incrementar_action" value="incrementar" class="ui-state-default ui-corner-all">Incrementar / Decrementar</button>
+                 </p>
+		</div>
 </div>
+</div><br />
+	{% include 'PBVentasBundle:Precio:vista.html.twig' with { 'entity' : precio } %}
+	<br />
+	<div style="display:block">
+	
+{{ form_errors(formprecio) }} 
+
+{{ form_rest(formprecio) }}
+	</div>
+		        <p class="botones-buscador">
+                    <button type="submit" name="guardar_action" value="guardar" class="ui-state-default ui-corner-all">Guardar !!</button>
+                 </p>
     <div class="float-left volver"> <a href="{{ path('precio') }}"> <<  Cancelar </a></div>
+{{ form_widget(form._token) }} 
+</form> 
 {% endblock %}

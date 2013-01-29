@@ -44,3 +44,7 @@ factura_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "PBVentasBundle:Factura:delete" }
     requirements: { _method: post }
+
+factura_mail:
+    pattern:  /{id}/mail
+    defaults: { _controller: "PBVentasBundle:Factura:mail" }

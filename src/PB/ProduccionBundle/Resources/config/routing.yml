@@ -1,3 +1,11 @@
 pb_produccion_homepage:
     pattern:  /
     defaults: { _controller: PBProduccionBundle:Default:index }
+
+produccion_maquinaria:
+    pattern:  /maquinaria
+    defaults: { _controller: PBProduccionBundle:Default:maquinaria }
+
+PBProduccionBundle_orden:
+    resource: "@PBProduccionBundle/Resources/config/routing/orden.yml"
+    prefix:   /orden

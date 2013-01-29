@@ -1010,4 +1010,91 @@ class Precio
     {
         if($this->bobmas500s == '0') return ''; else return $this->bobmas500s;
     }
+    
+    public function setPorcentaje($por){
+    	$porcen = $por / 100;
+    	
+    	$this->cam15 = number_format($this->cam15 + $this->cam15 * $porcen,2,".",".");
+    	$this->cam30 = number_format($this->cam30 + $this->cam30 * $porcen,2,".",".");
+    	$this->cam50 = number_format($this->cam50 + $this->cam50 * $porcen,2,".",".");
+    	$this->cam100 = number_format($this->cam100 + $this->cam100 * $porcen,2,".",".");
+    	$this->cam100mas = number_format($this->cam100mas + $this->cam100mas * $porcen,2,".",".");
+    	$this->asa20 = number_format($this->asa20 + $this->asa20 * $porcen,2,".",".");
+    	$this->asa30 = number_format($this->asa30 + $this->asa30 * $porcen,2,".",".");
+    	$this->asa35 = number_format($this->asa35 + $this->asa35 * $porcen,2,".",".");
+    	$this->especiales10 = number_format($this->especiales10 + $this->especiales10 * $porcen,2,".",".");
+    	$this->especiales15 = number_format($this->especiales15 + $this->especiales15 * $porcen,2,".",".");
+    	$this->espemenos150s = number_format($this->espemenos150s + $this->espemenos150s * $porcen,2,".",".");
+    	$this->espemenos150i = number_format($this->espemenos150i + $this->espemenos150i * $porcen,2,".",".");
+    	$this->bobmenos150s = number_format($this->bobmenos150s + $this->bobmenos150s * $porcen,2,".",".");
+    	$this->bobmenos150i = number_format($this->bobmenos150i + $this->bobmenos150i * $porcen,2,".",".");
+    	$this->espemas150s = number_format($this->espemas150s + $this->espemas150s * $porcen,2,".",".");
+    	$this->espemas150i = number_format($this->espemas150i + $this->espemas150i * $porcen,2,".",".");
+    	$this->bobmas150s = number_format($this->bobmas150s + $this->bobmas150s * $porcen,2,".",".");
+    	$this->bobmas150i = number_format($this->bobmas150i + $this->bobmas150i * $porcen,2,".",".");
+    	$this->espemas500s = number_format($this->espemas500s + $this->espemas500s * $porcen,2,".",".");
+    	$this->espemas500i = number_format($this->espemas500i + $this->espemas500i * $porcen,2,".",".");
+    	$this->bobmas500s = number_format($this->bobmas500s + $this->bobmas500s * $porcen,2,".",".");
+    	$this->bobmas500i = number_format($this->bobmas500i + $this->bobmas500i * $porcen,2,".",".");
+    	$this->bolleria = number_format($this->bolleria + $this->bolleria * $porcen,2,".",".");
+    	$this->ppbob = number_format($this->ppbob + $this->ppbob * $porcen,2,".",".");
+    	$this->ppbolsasin = number_format($this->ppbolsasin + $this->ppbolsasin * $porcen,2,".",".");
+    	$this->ppbolsapeque = number_format($this->ppbolsapeque + $this->ppbolsapeque * $porcen,2,".",".");
+    	$this->ppbolsagrande = number_format($this->ppbolsagrande + $this->ppbolsagrande * $porcen,2,".",".");
+    	$this->ppmbobi = number_format($this->ppmbobi + $this->ppmbobi * $porcen,2,".",".");
+    	$this->ppmbob = number_format($this->ppmbob + $this->ppmbob * $porcen,2,".",".");
+    	$this->ppmim = number_format($this->ppmim + $this->ppmim * $porcen,2,".",".");
+    	$this->ppmsin = number_format($this->ppmsin + $this->ppmsin * $porcen,2,".",".");
+    	$this->laminaim = number_format($this->laminaim + $this->laminaim * $porcen,2,".",".");
+    	$this->laminasin = number_format($this->laminasin + $this->laminasin * $porcen,2,".",".");
+    		
+    	foreach($this->precioLineas as $key){
+    		$precio = $key->getPrecio();
+    		$key->setPrecio(number_format($precio + $precio * $porcen,2,".","."));
+    	}
+    	
+     }
+     
+     public function setPorcentajemenos($por){
+     	$porcen = $por / 100;
+     	 
+     	$this->cam15 = number_format($this->cam15 - $this->cam15 * $porcen,2,".",".");
+     	$this->cam30 = number_format($this->cam30 - $this->cam30 * $porcen,2,".",".");
+     	$this->cam50 = number_format($this->cam50 - $this->cam50 * $porcen,2,".",".");
+     	$this->cam100 = number_format($this->cam100 - $this->cam100 * $porcen,2,".",".");
+     	$this->cam100mas = number_format($this->cam100mas - $this->cam100mas * $porcen,2,".",".");
+     	$this->asa20 = number_format($this->asa20 - $this->asa20 * $porcen,2,".",".");
+     	$this->asa30 = number_format($this->asa30 - $this->asa30 * $porcen,2,".",".");
+     	$this->asa35 = number_format($this->asa35 - $this->asa35 * $porcen,2,".",".");
+     	$this->especiales10 = number_format($this->especiales10 - $this->especiales10 * $porcen,2,".",".");
+     	$this->especiales15 = number_format($this->especiales15 - $this->especiales15 * $porcen,2,".",".");
+     	$this->espemenos150s = number_format($this->espemenos150s - $this->espemenos150s * $porcen,2,".",".");
+     	$this->espemenos150i = number_format($this->espemenos150i - $this->espemenos150i * $porcen,2,".",".");
+     	$this->bobmenos150s = number_format($this->bobmenos150s - $this->bobmenos150s * $porcen,2,".",".");
+     	$this->bobmenos150i = number_format($this->bobmenos150i - $this->bobmenos150i * $porcen,2,".",".");
+     	$this->espemas150s = number_format($this->espemas150s - $this->espemas150s * $porcen,2,".",".");
+     	$this->espemas150i = number_format($this->espemas150i - $this->espemas150i * $porcen,2,".",".");
+     	$this->bobmas150s = number_format($this->bobmas150s - $this->bobmas150s * $porcen,2,".",".");
+     	$this->bobmas150i = number_format($this->bobmas150i - $this->bobmas150i * $porcen,2,".",".");
+     	$this->espemas500s = number_format($this->espemas500s - $this->espemas500s * $porcen,2,".",".");
+     	$this->espemas500i = number_format($this->espemas500i - $this->espemas500i * $porcen,2,".",".");
+     	$this->bobmas500s = number_format($this->bobmas500s - $this->bobmas500s * $porcen,2,".",".");
+     	$this->bobmas500i = number_format($this->bobmas500i - $this->bobmas500i * $porcen,2,".",".");
+     	$this->bolleria = number_format($this->bolleria - $this->bolleria * $porcen,2,".",".");
+     	$this->ppbob = number_format($this->ppbob - $this->ppbob * $porcen,2,".",".");
+     	$this->ppbolsasin = number_format($this->ppbolsasin - $this->ppbolsasin * $porcen,2,".",".");
+     	$this->ppbolsapeque = number_format($this->ppbolsapeque - $this->ppbolsapeque * $porcen,2,".",".");
+     	$this->ppbolsagrande = number_format($this->ppbolsagrande - $this->ppbolsagrande * $porcen,2,".",".");
+     	$this->ppmbobi = number_format($this->ppmbobi - $this->ppmbobi * $porcen,2,".",".");
+     	$this->ppmbob = number_format($this->ppmbob - $this->ppmbob * $porcen,2,".",".");
+     	$this->ppmim = number_format($this->ppmim - $this->ppmim * $porcen,2,".",".");
+     	$this->ppmsin = number_format($this->ppmsin - $this->ppmsin * $porcen,2,".",".");
+     	$this->laminaim = number_format($this->laminaim - $this->laminaim * $porcen,2,".",".");
+     	$this->laminasin = number_format($this->laminasin - $this->laminasin * $porcen,2,".",".");
+     	
+     	foreach($this->precioLineas as $key){
+     		$precio = $key->getPrecio();
+     		$key->setPrecio(number_format($precio - $precio * $porcen,2,".","."));
+     	}
+     }
 }

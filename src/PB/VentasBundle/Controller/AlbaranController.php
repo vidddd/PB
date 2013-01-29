@@ -380,7 +380,7 @@ class AlbaranController extends Controller
     	$fichero = $printer->printFPDF($id);
     	$response = new Response();
     	$response->clearHttpHeaders();
-    	$response->setContent(file_get_contents($fichier));
+    	$response->setContent(file_get_contents($fichero));
     	//$response->headers->set('Content-Type', 'application/force-download');
     	$response->headers->set('Content-Type', 'application/pdf');
     	$response->headers->set('Content-Disposition', 'inline; filename="Albaran.pdf"');
@@ -491,7 +491,46 @@ class AlbaranController extends Controller
     	$entity = $em->getRepository('PBVentasBundle:Pedido')->find($id);
     	$entity->setEstado($estado);
     	$em->persist($entity);
-    	$em->flush();
-    	 
+    	$em->flush();	 
     }
+    
+    public function mailAction($id){
+    
+    	$em = $this->getDoctrine()->getManager();$request = $this->getRequest();
+    	$entity = $em->getRepository('PBVentasBundle:Albaran')->find($id);
+    	if (!$entity) {	throw $this->createNotFoundException('Unable to find Presupuesto entity.'); }
+    
+    	$defaultData = array( 'email' => $entity->getCliente()->getEmail() , 'subject' => 'Albaran PB', 'message' => '');
+    	$form = $this->createFormBuilder($defaultData)
+    	->add('email', 'email')
+    	->add('subject', 'text')
+    	->add('body', 'textarea')
+    	->getForm();
+    
+    	$printer = $this->container->get('ventas.print_albaran');
+    	$fichero = $printer->getPdf($id);
+    	//$pdf = base64_encode(file_get_contents($fichero));
+    	$attachment = \Swift_Attachment::newInstance($fichero, 'Albaran.pdf', 'application/pdf');
+    
+    	if($request->getMethod() == 'POST') {
+    		$form->bindRequest($request);
+    		$data = $form->getData();
+    		$message = \Swift_Message::newInstance()
+    		->setSubject($data['subject'])
+    		->setFrom(array('plasticosbaltasar@gmail.com' => 'Plásticos Baltasar'))
+    		->setTo($data['email'])
+    		->setBody($data['body'])
+    		->attach($attachment)
+    			;
+    		 
+    		$this->get('mailer')->send($message);
+    		$this->get('session')->getFlashBag()->add('success', 'Albaran enviado a: '. $data['email'].'');
+    		return $this->redirect($this->generateUrl('albaran'));
+    	}
+    
+    	return $this->render('PBVentasBundle:Albaran:mail.html.twig', array(
+    			'entity'      => $entity,	'form'   => $form->createView(),
+    	));
+    }
+
 }

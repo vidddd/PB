@@ -1,0 +1,184 @@
+PB\ProduccionBundle\Entity\Orden:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    subcliente:
+      type: string
+      length: 255
+    fecha:
+      type: date
+    estado:
+      type: smallint
+    cantidad:
+      type: string
+      length: 55
+    cantidaduni:
+      type: smallint
+    espesor:
+      type: string
+      lenght: 55
+    espesoruni:
+      type: smallint
+    tipomaterial:
+      type: smallint
+    producto:
+      type: smallint
+    extrusion:
+      type: boolean
+      nullable: true
+    color:
+      type: string
+      lenght: 55
+      nullable: true
+    ancho:
+      type: float
+      nullable: true
+    largo:
+      type: float
+      nullable: true
+    galga:
+      type: float
+      nullable: true
+    plegado:
+      type: float
+      nullable: true
+    bobinas:
+      type: float
+      nullable: true
+    pesoteorico:
+      type: float
+      nullable: true
+    tratado:
+      type: smallint
+      nullable: true
+    tipotubo:
+      type: smallint
+      nullable: true
+    notasextrusion:
+      type: text
+      nullable: true
+    maquina_extrusion:
+      type: smallint
+      nullable: true
+    fecha_extrusion:
+      type: date
+      nullable: true
+    operario_extrusion:
+      type: string
+      lenght: 55
+      nullable: true
+    kgfinal:
+      type: float
+      nullable: true
+    tiempo_extrusion:
+      type: time
+      nullable: true
+    impresion:
+      type: boolean
+      nullable: true
+    medidaimp:
+      type: string
+      lenght: 55
+      nullable: true
+    anverso:
+      type: string
+      lenght: 255
+      nullable: true
+    reverso:
+      type: string
+      lenght: 255
+      nullable: true
+    coloresa:
+      type: string
+      lenght: 255
+      nullable: true
+    coloresr:
+      type: string
+      lenght: 255
+      nullable: true
+    cliche:
+      type: smallint
+      nullable: true
+    carpeta:
+      type: string
+      lenght: 55
+      nullable: true
+    soldadura:
+      type: smallint
+      nullable: true
+    notasimpresion:
+      type: text
+      nullable: true
+    maquina_impresion:
+      type: smallint
+      nullable: true
+    fecha_impresion:
+      type: date
+      nullable: true
+    operario_impresion:
+      type: string
+      lenght: 55
+      nullable: true
+    tiempo_impresion:
+      type: string
+      lenght: 55
+    corte:
+      type: boolean
+      nullable: true
+    cantidad:
+      type: string
+      lenght: 55
+      nullable: true
+    ancho:
+      type: string
+      lenght: 55
+      nullable: true
+    largo:
+      type: string
+      lenght: 55
+      nullable: true
+    solapa:
+      type: integer
+      nullable: true
+    paquete:
+      type: string
+      lenght: 55
+      nullable: true
+    saco:
+      type: string
+      lenght: 55
+      nullable: true
+    palets:
+      type: string
+      lenght: 55
+      nullable: true
+    notas_corte:
+      type: text
+      nullable: true
+    maquina_corte:
+      type: smallint
+      nullable: true
+    fecha_corte:
+      type: date
+      nullable: true
+    tiempo_corte:
+      type: string
+      lenght: 55
+      nullable: true
+    operario_corte:
+      type: string
+      lenght: 55
+      nullable: true        
+  manyToOne:
+    cliente:
+      targetEntity: PB\VentasBundle\Entity\Cliente
+      inversedBy: orden
+      joinColumn:
+        name: cliente_id
+        referencedColumnName: id    
+  lifecycleCallbacks: {  }

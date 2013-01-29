@@ -1,21 +1,21 @@
 {% extends '::layout_ajax.html.twig' %}
 
-{% block title 'Presupuesto' %}
+{% block title 'Albaran' %}
 
 {# block width100 "widthtotal" %}{% block displaysidebar "display:none;" #}
 {% block content %}
 {% if form_errors(form) %}  <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div> {% endif %}
-<form class="well" action="{{ path('presupuesto_mail', { 'id': entity.id })  }}" method="post">
+<form class="well" action="{{ path('albaran_mail', { 'id': entity.id })  }}" method="post">
 <div id="lightbox-wrapper">
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
-	<div class="portlet-header ui-widget-header">Enviar Presupuesto por correo electrónico</div>
+	<div class="portlet-header ui-widget-header">Enviar Albaran por correo electrónico</div>
 		<div class="portlet-content form-alta">
 		   <table>
 		   <tbody>
 		     <tr>
 		        <td class="label" style="width:150px;"><label>Nombre Cliente</label></td>
 		        <td class="campo"><p><b>{{ entity.cliente }}</b></p></td><td></td>
-		      </tr>
+		      </tr> 
 		      <tr>
 		        <td>{{ form_label(form.email, 'Email') }}</td>
 		        <td>{{ form_widget(form.email) }}</td><td>{{ form_errors(form.email) }}</td>
@@ -29,7 +29,7 @@
 		        <td class="campo">{{ form_widget(form.body, { 'attr': {'cols': '34', 'rows': '7'}}) }}</td><td> {{ form_errors(form.body) }}
 		        </td></tr>
 		       <tr>
-		       <td colspan="3"><p>El Presupuesto será enviado en un pdf adjunto al mail</p></td>
+		       <td colspan="3"><p>El Albaran será enviado en un pdf adjunto al mail</p></td>
 		       </tr>
 		      </tbody>
 		    </table>

@@ -10,4 +10,8 @@ class DefaultController extends Controller
     {
         return $this->render('PBProduccionBundle:Default:index.html.twig');
     }
+    public function maquinariaAction()
+    {
+    	return $this->render('PBProduccionBundle:Default:maquinaria.html.twig');
+    }
 }

@@ -409,4 +409,43 @@ class FacturaController extends Controller
     	$em->flush();
     
     }
+    public function mailAction($id){
+    
+    	$em = $this->getDoctrine()->getManager();$request = $this->getRequest();
+    	$entity = $em->getRepository('PBVentasBundle:Factura')->find($id);
+    	if (!$entity) {	throw $this->createNotFoundException('Unable to find Factura entity.');}
+    
+    	$defaultData = array( 'email' => $entity->getCliente()->getEmail() , 'subject' => 'Factura PB', 'message' => '');
+    	$form = $this->createFormBuilder($defaultData)
+    	->add('email', 'email')
+    	->add('subject', 'text')
+    	->add('body', 'textarea')
+    	->getForm();
+    
+    	$printer = $this->container->get('ventas.print_factura');
+    	$fichero = $printer->getPdf($id);
+    	//$pdf = base64_encode(file_get_contents($fichero));
+    	$attachment = \Swift_Attachment::newInstance($fichero, 'Factura.pdf', 'application/pdf');
+    
+    	if($request->getMethod() == 'POST') {
+    		$form->bindRequest($request);
+    		$data = $form->getData();
+    		$message = \Swift_Message::newInstance()
+    		->setSubject($data['subject'])
+    		->setFrom(array('plasticosbaltasar@gmail.com' => 'Plásticos Baltasar'))
+    		->setTo($data['email'])
+    		->setBody($data['body'])
+    		->attach($attachment)
+    		;
+    		 
+    		$this->get('mailer')->send($message);
+    		$this->get('session')->getFlashBag()->add('success', 'Factura enviado a: '. $data['email'].'');
+    		return $this->redirect($this->generateUrl('factura'));
+    	}
+    
+    	return $this->render('PBVentasBundle:Factura:mail.html.twig', array(
+    			'entity'      => $entity,	'form'   => $form->createView(),
+    	));
+    }
+    
 }

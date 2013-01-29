@@ -819,3 +819,9 @@ div.totals textarea:focus{
 .recibir-materiales .sininput{
 	font-size: 11px;
 }
+
+/** ORDEN de Fabricacion */
+.orden{font-size: 12px;}
+.orden input {margin:0;}
+.tabla4 th { font-weight: bold; padding-left: 5px;}
+.tabla4 td { padding:0px !important; }

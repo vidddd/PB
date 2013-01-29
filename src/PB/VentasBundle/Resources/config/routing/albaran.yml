@@ -44,3 +44,7 @@ albaran_delete:
 albaran_facturar:
     pattern:  /{id}/facturar
     defaults: { _controller: "PBVentasBundle:Albaran:facturar" }
+
+albaran_mail:
+    pattern:  /{id}/mail
+    defaults: { _controller: "PBVentasBundle:Albaran:mail" }

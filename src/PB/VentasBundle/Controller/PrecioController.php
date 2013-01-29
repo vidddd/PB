@@ -89,7 +89,7 @@ class PrecioController extends Controller
     
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager(); $tarfia = false;
         $entity = $em->getRepository('PBVentasBundle:Precio')->find($id);
         if (!$entity) {throw $this->createNotFoundException('Unable to find Precio entity.');}
         $deleteForm = $this->createDeleteForm($id);
@@ -98,9 +98,9 @@ class PrecioController extends Controller
 
     public function newAction()
     {
-        $entity = new Precio();
+        $entity = new Precio(); $tarifa = false;
         $form   = $this->createForm(new PrecioType(), $entity);
-        return $this->render('PBVentasBundle:Precio:new.html.twig', array( 'entity' => $entity, 'form'   => $form->createView(),));
+        return $this->render('PBVentasBundle:Precio:new.html.twig', array( 'entity' => $entity, 'tarifa'=> $tarifa, 'form'   => $form->createView(),));
     }
 
     public function createAction()
@@ -109,7 +109,7 @@ class PrecioController extends Controller
         $request = $this->getRequest();
         $form    = $this->createForm(new PrecioType(), $entity);
 
-        $form->bind($request);
+        $form->bind($request); $tarifa = false;
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -123,7 +123,7 @@ class PrecioController extends Controller
             $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
         }
 
-        return $this->render('PBVentasBundle:Precio:new.html.twig', array('entity' => $entity,'form'   => $form->createView(),));
+        return $this->render('PBVentasBundle:Precio:new.html.twig', array('entity' => $entity,'tarifa' => $tarifa, 'form'   => $form->createView(),));
     }
 
     public function editAction($id)
@@ -135,7 +135,7 @@ class PrecioController extends Controller
         	$tarifa = true;
         } else { $tarifa = false; }
         if (!$entity) {throw $this->createNotFoundException('No se ha encontrado la Tarifa.');}
-        $editForm = $this->createForm(new PrecioType(), $entity);
+        $editForm   = $this->createForm(new PrecioType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
         return $this->render('PBVentasBundle:Precio:edit.html.twig', array('entity' => $entity, 'tarifa' => $tarifa, 'form'   => $editForm->createView(), 'delete_form' => $deleteForm->createView(), ));
     }
@@ -180,7 +180,7 @@ class PrecioController extends Controller
             return $this->redirect($this->generateUrl('precio_show', array('id' => $id)));
         } else { $this->get('session')->getFlashBag()->add('error', 'flash.update.error');}
 
-        return $this->render('PBVentasBundle:Precio:edit.html.twig', array('entity'      => $entity,'tarifa' => $tarifa, 'form'   => $editForm->createView(),'delete_form' => $deleteForm->createView(),));
+        return $this->render('PBVentasBundle:Precio:edit.html.twig', array('entity' => $entity,'tarifa' => $tarifa, 'form'   => $editForm->createView(),'delete_form' => $deleteForm->createView(),));
     }
 
     public function deleteAction($id)
@@ -525,11 +525,57 @@ class PrecioController extends Controller
     	));
     } 
     public function incrementarAction($id){
-    	$em = $this->getDoctrine()->getManager();
-    	$pedido = $em->getRepository('PBVentasBundle:Pedido')->find($id);
-    
-    	return $this->render('PBVentasBundle:Precio:incrementar.html.twig', array(
-    			//'entities' => $entities, 'busForm' => $busForm->createView(),
-    	));
+    	$em = $this->getDoctrine()->getManager(); $request = $this->getRequest();
+    	$precio = $em->getRepository('PBVentasBundle:Precio')->find($id);
+    	$form = $this->getFormIncrementar();
+    	$formprecio = $this->createForm(new PrecioType(), $precio);
+    	$form->bind($request); 
+    	//$formprecio->bind($request);
+    	
+    	if ($form->isValid()) {
+    		$data = $form->getData(); $incremento = $data['incremento']; $porcentaje = $data['porcentaje']; $ficha = $data['ficha'];
+    		switch ($incremento) {
+    			case 1:
+    				$precio->setPorcentaje($porcentaje);
+    			break;	
+    			case 2:
+    				$precio->setPorcentajemenos($porcentaje);
+    			break;
+    		}
+    		$formprecio->bind($request);
+    		return $this->render('PBVentasBundle:Precio:incrementar.html.twig', array(
+    				'precio' => $precio,
+    				'form' => $form->createView(), 'formprecio' => $formprecio->createView(),
+    		));
+    	} 
+    	if ($request->getMethod() == 'POST' && $request->get('guardar_action') == 'guardar') {
+    		$form->bind($request);
+    		if ($busForm->isValid()) {
+    			
+    		}
+    	}
+    		return $this->render('PBVentasBundle:Precio:incrementar.html.twig', array(
+    				'precio' => $precio,
+    				'form' => $form->createView(), 'formprecio' => $formprecio->createView(),
+
+    		));
     }   
+    private function getFormIncrementar(){
+    	$defaultData = array( 'incremento' => '' , 'porcentaje' => '', 'nuevo' => '');
+    	$form = $this->createFormBuilder($defaultData)
+    	->add('incremento', 'choice', array(
+    						'choices' => array( '1' => 'Incrementar', '2' => 'Decrementar' ),
+  						    'required'    => true, 'expanded' => true,
+    						'empty_data'  => null))
+    	->add('porcentaje', 'choice', array(
+    						'choices' => array( '0' => '0', '1' => '1','2' => '2','3' => '3','4' => '4','5' => '5','6' => '6','7' => '7','8' => '8','9' => '9', '10' => '10'),
+  						    'required'    => true, 'expanded' => false,
+    					    'empty_data'  => null))
+       		 ->add('ficha', 'checkbox', array(
+    			'label'     => 'Show this entry publicly?',
+    				'required'  => false,
+			))	
+    	->getForm('');
+    	return $form;
+    }
 }
