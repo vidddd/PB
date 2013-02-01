@@ -10,6 +10,7 @@ PB\ProduccionBundle\Entity\Orden:
     subcliente:
       type: string
       length: 255
+      nullable: true
     fecha:
       type: date
     estado:
@@ -24,6 +25,7 @@ PB\ProduccionBundle\Entity\Orden:
       lenght: 55
     espesoruni:
       type: smallint
+      nullable: true
     tipomaterial:
       type: smallint
     producto:
@@ -36,9 +38,6 @@ PB\ProduccionBundle\Entity\Orden:
       lenght: 55
       nullable: true
     ancho:
-      type: float
-      nullable: true
-    largo:
       type: float
       nullable: true
     galga:
@@ -77,6 +76,9 @@ PB\ProduccionBundle\Entity\Orden:
       nullable: true
     tiempo_extrusion:
       type: time
+      nullable: true
+    kilosimp:
+      type: float
       nullable: true
     impresion:
       type: boolean
@@ -127,18 +129,19 @@ PB\ProduccionBundle\Entity\Orden:
     tiempo_impresion:
       type: string
       lenght: 55
+      nullable: true
     corte:
       type: boolean
       nullable: true
-    cantidad:
+    cantidadc:
       type: string
       lenght: 55
       nullable: true
-    ancho:
+    anchoc:
       type: string
       lenght: 55
       nullable: true
-    largo:
+    largoc:
       type: string
       lenght: 55
       nullable: true
@@ -157,7 +160,7 @@ PB\ProduccionBundle\Entity\Orden:
       type: string
       lenght: 55
       nullable: true
-    notas_corte:
+    notascorte:
       type: text
       nullable: true
     maquina_corte:

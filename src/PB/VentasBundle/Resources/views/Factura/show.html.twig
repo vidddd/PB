@@ -13,6 +13,8 @@
     <ul class="ui-widget ui-helper-clearfix botones-abajo">
     <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('factura_print', { 'id': entity.id , _format: "pdf" }) }}"><span class="ui-icon ui-icon-print"></span> Imprimir </a> </li>
     <li class="ui-state-default ui-corner-all editar" style="float:left;"><a class="btn" href="{{ path('factura_preedit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
+    <li class="ui-state-default ui-corner-all MAIL" style="float:left;"><a class="btn iframe-mail" href="{{ path('factura_mail', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-mail-closed"></span> Enviar por e-mail </a> </li>
+    
     </ul>
 </div>
 {% endblock %}

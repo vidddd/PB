@@ -1,12 +1,13 @@
 <?php
 
 namespace PB\VentasBundle\Form;
-use Symfony\Component\Yaml\Parser;
-use Symfony\Component\Yaml\Exception\ParseException;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use PB\VentasBundle\Form\DataTransformer\ClilenteToIdTransformer;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 class PedidoType extends AbstractType
 {

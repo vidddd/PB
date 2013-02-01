@@ -1,183 +1,21 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+{% extends '::layout.html.twig' %}
 
-{% block title %}
-{{ parent() }} - Orden {{ 'views.show.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-{% endblock %}
+{% block title "Orden de Fabricación" %}
 
-{% block page %}
-
-<h1>Orden</h1>
-
-<form class="form-horizontal">
-    <fieldset>        <div class="control-group">
-            <label class="control-label">Id</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.id }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Subcliente</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.subcliente }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fecha</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fecha|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Estado</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.estado }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Cantidad</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.cantidad }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Cantidaduni</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.cantidaduni }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Espesor</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.espesor }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Espesoruni</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.espesoruni }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Tipomaterial</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.tipomaterial }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Producto</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.producto }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Extrusion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.extrusion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Color</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.color }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Ancho</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.ancho }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Largo</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.largo }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Galga</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.galga }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Plegado</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.plegado }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Bobinas</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.bobinas }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Pesoteorico</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.pesoteorico }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Tratado</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.tratado }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Tipotubo</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.tipotubo }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Notasextrusion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.notasextrusion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Maquina_extrusion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.maquinaextrusion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fecha_extrusion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechaextrusion|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Operario_extrusion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.operarioextrusion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Kgfinal</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.kgfinal }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Tiempo_extrusion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.tiempoextrusion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Impresion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.impresion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Medidaimp</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.medidaimp }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Anverso</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.anverso }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Reverso</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.reverso }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Coloresa</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.coloresa }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Coloresr</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.coloresr }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Cliche</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.cliche }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Carpeta</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.carpeta }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Soldadura</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.soldadura }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Notasimpresion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.notasimpresion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Maquina_impresion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.maquinaimpresion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fecha_impresion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechaimpresion|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Operario_impresion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.operarioimpresion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Tiempo_impresion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.tiempoimpresion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Corte</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.corte }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Solapa</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.solapa }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Paquete</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.paquete }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Saco</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.saco }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Palets</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.palets }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Notas_corte</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.notascorte }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Maquina_corte</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.maquinacorte }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fecha_corte</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechacorte|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Tiempo_corte</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.tiempocorte }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Operario_corte</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.operariocorte }}</span>            </div>
-        </div>    </fieldset>
-</form>
-
-<div>
-    <div class="float-left">
-        <a class="btn" href="{{ path('orden') }}">
-            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
+{% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
+{% block content %}
+<div class="title title-spacing almacen"><h2>Orden de Fabricación</h2></div>
+	{% include 'PBProduccionBundle:Orden:vista.html.twig' with { 'entity' : entity } %}
+ 	<br />
+	<div class="clearfix"></div>
+    <div class="float-left volver">
+        <a href="{{ path('orden') }}">
+          <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
-    <div class="float-left">
-        <a class="btn btn-primary" href="{{ path('orden_edit', { 'id': entity.id }) }}">
-            {{ 'views.recordactions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-    </div>
-    <div class="float-left">
-        <form action="{{ path('orden_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button class="btn btn-danger" type="submit" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-        </form>
-    </div>
-</div>
+    <ul class="ui-widget ui-helper-clearfix botones-abajo">
+      <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('orden_edit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
+    <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('orden_print', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-print"></span> Imprimir </a> </li>
+   </ul>
+ 
 {% endblock %}

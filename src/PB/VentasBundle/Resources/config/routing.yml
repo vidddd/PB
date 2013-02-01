@@ -37,3 +37,8 @@ PBVentasBundle_facturab:
 PBVentasBundle_presupuesto:
         resource: "@PBVentasBundle/Resources/config/routing/presupuesto.yml"
         prefix:   /presupuesto
+
+PBVentasBundle_pedidocliente:
+        resource: "@PBVentasBundle/Resources/config/routing/pedidocliente.yml"
+        prefix:   /pedidocliente
+        

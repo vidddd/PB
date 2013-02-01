@@ -28,3 +28,7 @@ orden_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "PBProduccionBundle:Orden:delete" }
     requirements: { _method: post }
+
+orden_print:
+    pattern:  /{id}/print
+    defaults: { _controller: "PBProduccionBundle:Orden:imprimir" }

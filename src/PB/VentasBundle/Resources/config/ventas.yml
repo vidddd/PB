@@ -10,6 +10,7 @@ tipo_material:
   8: "Ap Color"
   9: "Microperforado"
   10: "Polipropileno"
+  11: "Papel"
 
 estados_pedidos:
   1: "Nuevo"
@@ -38,3 +39,24 @@ tipo_tubo:
   1: "Tubo"
   2: "Semitubo"
   3: "Lamina"
+
+estados_orden:
+  1: "Nuevo"
+  2: "Activo"
+  3: "Finalizado"
+
+producto:
+  1: "Bolsas"
+  2: "Bobinas"
+
+tratado:
+  1: "Sin Tratar"
+  2: "1 Cara"
+  3: "2 Cara"
+
+soldadura:
+  1: "Camiseta"
+  2: "Perlada"
+  3: "Saco"
+  4: "Fondo"
+  5: "Basura"

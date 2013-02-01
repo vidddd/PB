@@ -821,7 +821,28 @@ div.totals textarea:focus{
 }
 
 /** ORDEN de Fabricacion */
+.orden .ui-widget-content { background-color: #E6E6E6 !important; border: 1px solid #CCC; }
+.orden .ui-widget-content label{ font-weight:bold; color: #616161; text-shadow: 0 1px 0 #FFFFFF; }
 .orden{font-size: 12px;}
 .orden input {margin:0;}
-.tabla4 th { font-weight: bold; padding-left: 5px;}
-.tabla4 td { padding:0px !important; }
+.tabla4 { height: 80px;}
+.tabla4 th { font-weight: bold; padding-left: 5px; padding:0; vertical-align: middle;}
+.tabla4 td { padding:0 12px !important; vertical-align: middle; }
+.tabla4 label, .tabla4  input[type="radio"]{ margin-left: 9px; display: inline !important;}
+
+table.tabla5 { width: 100%; border-collapse: collapse; margin-bottom: 20px;}
+.tabla5 th{background-color: #F8F8F8;
+    border: 1px solid #CCCCCC;
+    color: #666;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 7px 9px;
+    text-align: left;
+    text-shadow: 0 1px 0 #FFFFFF;}
+.tabla5  td {
+    border: 1px solid #CCCCCC;
+    font-size: 13px;
+    padding: 8px 10px; }
+.tabla5-form td{
+	padding: 1px 2px !important; margin:0 !important";
+}

@@ -1,0 +1,85 @@
+PB\VentasBundle\Entity\PedidoCliente:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    fecha:
+      type: date
+    subcliente:
+      type: string
+      length: 255
+    estado:
+      type: smallint
+    cantidad:
+      type: string
+      length: 55
+    ancho:
+      type: float
+      nullable: true
+    largo:
+      type: float
+      nullable: true
+    galga:
+      type: float
+      nullable: true
+    plegado:
+      type: integer
+      nullable: true
+    precio:
+      type: float
+      nullable: true
+    preciocliche:
+      type: float
+      nullable: true
+    material:
+      type: smallint
+      nullable: true
+    color:
+      type: text
+      lenght: 55
+      nullable: true
+    tipotubo:
+      type: smallint
+      nullable: true
+    tipobolsa:
+      type: smallint
+      nullable: true
+    bobinasnumero:
+      type: integer
+      nullable: true
+    bobinasmetros:
+      type: integer
+      nullable: true
+    bobinaskg:
+      type: integer
+      nullable: true
+    impresion1:
+      type: text
+      lenght: 255
+    impresion2:
+      type: text
+      lenght: 255
+    color1:
+      type: text
+      lenght: 255
+    color2:
+      type: text
+      lenght: 255
+    cliche:
+      type: smallint
+      nullable: true
+    observaciones:
+      type: text
+      nullable: true
+  manyToOne:
+    cliente:
+      targetEntity: PB\VentasBundle\Entity\Cliente
+      inversedBy: pedidocliente
+      joinColumn:
+        name: cliente_id
+        referencedColumnName: id
+  lifecycleCallbacks: {  }

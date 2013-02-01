@@ -1,0 +1,30 @@
+pedidocliente:
+    pattern:  /
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:index" }
+
+pedidocliente_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:show" }
+
+pedidocliente_new:
+    pattern:  /new
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:new" }
+
+pedidocliente_create:
+    pattern:  /create
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:create" }
+    requirements: { _method: post }
+
+pedidocliente_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:edit" }
+
+pedidocliente_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:update" }
+    requirements: { _method: post }
+
+pedidocliente_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:delete" }
+    requirements: { _method: post }

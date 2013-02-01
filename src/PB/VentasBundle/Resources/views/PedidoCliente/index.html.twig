@@ -1,10 +1,10 @@
 {% extends '::layout.html.twig' %}
 
-{% block title "Presupuestos" %}
+{% block title "Pedidos" %}
 
 {% block content %}
 <div id="presupuesto">
-	<div class="title title-spacing ventas"><h2>Presupuestos</h2></div>        
+	<div class="title title-spacing ventas"><h2>Pedidos Cliente</h2></div>        
     <div class="span2">
         {% if form_errors(filterForm) %}
         <div class="response-msg notice iu-corner-all"><span>
@@ -19,7 +19,7 @@
 				<table id="form-alta">
 	   				<tbody>		
 	         			<tr>
-	        				<td class="label">{{ form_label(filterForm.id, 'Código Presupuesto') }}</td>
+	        				<td class="label">{{ form_label(filterForm.id, 'Código Pedido') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
 	      				<tr>
 	      				<tr>
@@ -31,8 +31,8 @@
 	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
 	      				<tr>
 	      				<tr>
-	        				<td class="label">{{ form_label(filterForm.nombre, 'Nombre') }}</td>
-	        				<td class="campo">{{ form_widget(filterForm.nombre, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.nombre) }}</td>
+	        				<td class="label">{{ form_label(filterForm.subcliente, 'Subcliente') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.subcliente, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.subcliente) }}</td>
 	      				<tr>
 	            	</tbody>
 	            </table>
@@ -44,32 +44,40 @@
 		</div>
 	</div>
 	    
-	<div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" href="{{ path('presupuesto_prenew') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Presupuesto</a></div>
+	<div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" href="{{ path('pedidocliente_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Pedido</a></div>
 
 	<div class="clearfix"></div>
 	<div class="hastable">
     	<table class="records_list">
     		<thead>
 		        <tr>
-		            <th width="25">Código Presupuesto</th>
+		            <th width="25">Código Pedido</th>
 		            <th>Cliente</th>
 		            <th>Fecha</th>
-		            <th>Subcliente / Nombre</th>
+		            <th>Subcliente</th>
+		            <th>Ancho</th>
+		            <th>Largo</th>
+		            <th>Galga</th>
+		            <th> Precio </th>
 		            <th width="132">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
 		        </tr>
 		    </thead>
 		    <tbody>
 		    {% for entity in entities %}
 		        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
-		            <td><a href="{{ path('presupuesto_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+		            <td><a href="{{ path('pedidocliente_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
 		            <td>{{ entity.cliente }}</td>
 		            <td>{{ entity.fecha|date('d.m.Y') }}</td>
-		            <td>{{ entity.nombre }}</td>
+		            <td>{{ entity.subcliente }}</td>
+		            <td>{{ entity.ancho }}</td>
+		            <td>{{ entity.largo }}</td>
+		            <td>{{ entity.galga }}</td>
+		            <td>{{ entity.precio }}</td>
 		            <td>
-		        		<a href="{{ path('presupuesto_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
-		        		<a href="{{ path('presupuesto_preedit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
-		          		<a href="{{ path('presupuesto_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
-		          	    <a href="{{ path('presupuesto_mail', { 'id': entity.id }) }}" title="Enviar por email" class="btn_no_text btn ui-state-default ui-corner-all tooltip iframe-mail"><span class="ui-icon ui-icon-mail-closed"></span></a>
+		        		<a href="{{ path('pedidocliente_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+		        		<a href="{{ path('pedidocliente_preedit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+		          		<a href="{{ path('pedidocliente_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
+		          	    <a href="{{ path('pedidocliente_mail', { 'id': entity.id }) }}" title="Enviar por email" class="btn_no_text btn ui-state-default ui-corner-all tooltip iframe-mail"><span class="ui-icon ui-icon-mail-closed"></span></a>
 		          </td>
 		        </tr>
 		    {% endfor %}
@@ -79,9 +87,9 @@
 	<div class="clearfix"></div>
     <div class="span4">
     {{ pagerHtml|raw }}
-      <form id="form1" name="form1" method="post" action="{{ path('presupuesto') }}"> 
+      <form id="form1" name="form1" method="post" action="{{ path('pedidocliente') }}"> 
     <div class="dataTables_length"><label>Mostrar 
-    	<select name="cuantos" id="cuantos" onchange="this.form.submit()" size="1">   		
+    	<select name="cuantos"�id="cuantos" onchange="this.form.submit()" size="1">   		
         {% for item in cuantos %}
                 <option value="{{ item }}" {% if item == entradas %} selected="selected" {% endif %}>{{ item }}</option>
         {% endfor %}

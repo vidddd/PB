@@ -13,12 +13,12 @@ PB\VentasBundle\Entity\Cliente:
       nullable: true
     nombre:
       type: string
-      length: 50
+      length: 255
       fixed: false
       nullable: false
     nombrecomercial:
       type: string
-      length: 50
+      length: 255
       fixed: false
       nullable: true
     nif:
@@ -31,12 +31,12 @@ PB\VentasBundle\Entity\Cliente:
       nullable: false
     direccion:
       type: string
-      length: 50
+      length: 255
       fixed: false
       nullable: false
     localidad:
       type: string
-      length: 50
+      length: 255
       fixed: false
       nullable: false
     cp:
@@ -66,12 +66,12 @@ PB\VentasBundle\Entity\Cliente:
       nullable: true
     web:
       type: string
-      length: 50
+      length: 255
       fixed: false
       nullable: true
     email:
       type: string
-      length: 40
+      length: 255
       fixed: false
       nullable: true
     cuenta:
@@ -182,6 +182,9 @@ PB\VentasBundle\Entity\Cliente:
         mappedBy: cliente
     orden:
         targetEntity: PB\ProduccionBundle\Entity\Orden
+        mappedBy: cliente
+    pedidocliente:
+        targetEntity: PB\VentasBundle\Entity\PedidoCliente
         mappedBy: cliente
   lifecycleCallbacks: 
     prePersist: [ setFechaAltaPre ]

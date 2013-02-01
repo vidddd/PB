@@ -1338,4 +1338,42 @@ class Cliente
     {
         return $this->orden;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $pedidocliente;
+
+
+    /**
+     * Add pedidocliente
+     *
+     * @param PB\VentasBundle\Entity\PedidoCliente $pedidocliente
+     * @return Cliente
+     */
+    public function addPedidocliente(\PB\VentasBundle\Entity\PedidoCliente $pedidocliente)
+    {
+        $this->pedidocliente[] = $pedidocliente;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pedidocliente
+     *
+     * @param PB\VentasBundle\Entity\PedidoCliente $pedidocliente
+     */
+    public function removePedidocliente(\PB\VentasBundle\Entity\PedidoCliente $pedidocliente)
+    {
+        $this->pedidocliente->removeElement($pedidocliente);
+    }
+
+    /**
+     * Get pedidocliente
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getPedidocliente()
+    {
+        return $this->pedidocliente;
+    }
 }

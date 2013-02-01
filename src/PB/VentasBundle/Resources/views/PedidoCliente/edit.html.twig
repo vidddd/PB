@@ -1,19 +1,24 @@
 {% extends '::layout.html.twig' %}
 
-{% block title "Nueva Orden de Fabricación" %}
+{% block title "Editar Pedido" %}
 {% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
-<div class="title title-spacing produccion"><h2>Nueva Orden de Fabricación</h2></div>
+<div class="title title-spacing ventas"><h2>Editar Pedido Cliente</h2></div>
 
-	{% include 'PBProduccionBundle:Orden:form.html.twig' with { 'form' : form } %}
-          	
+	<div id="factura-form">
+			{% include 'PBVentasBundle:PedidoCliente:form.html.twig' with { 'form' : form } %}
+		    </div>
+    
 	<div class="clearfix"></div>
     <div class="float-left volver">
-        <a href="{{ path('orden') }}">
+        <a href="{{ path('pedidocliente') }}">
           <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
 		{% include 'PBVentasBundle:Cliente:js_get_cliente.html.twig' %} 
 
+<script>
+getNombrecliente();
+        	</script>
 {% endblock %}

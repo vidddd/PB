@@ -3,6 +3,8 @@
 namespace PB\ProduccionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
  * PB\ProduccionBundle\Entity\Orden
@@ -70,14 +72,9 @@ class Orden
     private $color;
 
     /**
-     * @var string $ancho
+     * @var float $ancho
      */
     private $ancho;
-
-    /**
-     * @var string $largo
-     */
-    private $largo;
 
     /**
      * @var float $galga
@@ -138,6 +135,11 @@ class Orden
      * @var \DateTime $tiempo_extrusion
      */
     private $tiempo_extrusion;
+
+    /**
+     * @var float $kilosimp
+     */
+    private $kilosimp;
 
     /**
      * @var boolean $impresion
@@ -215,6 +217,21 @@ class Orden
     private $corte;
 
     /**
+     * @var string $cantidadc
+     */
+    private $cantidadc;
+
+    /**
+     * @var string $anchoc
+     */
+    private $anchoc;
+
+    /**
+     * @var string $largoc
+     */
+    private $largoc;
+
+    /**
      * @var integer $solapa
      */
     private $solapa;
@@ -235,9 +252,9 @@ class Orden
     private $palets;
 
     /**
-     * @var string $notas_corte
+     * @var string $notascorte
      */
-    private $notas_corte;
+    private $notascorte;
 
     /**
      * @var integer $maquina_corte
@@ -258,6 +275,11 @@ class Orden
      * @var string $operario_corte
      */
     private $operario_corte;
+
+    /**
+     * @var PB\VentasBundle\Entity\Cliente
+     */
+    private $cliente;
 
 
     /**
@@ -526,7 +548,7 @@ class Orden
     /**
      * Set ancho
      *
-     * @param string $ancho
+     * @param float $ancho
      * @return Orden
      */
     public function setAncho($ancho)
@@ -539,34 +561,11 @@ class Orden
     /**
      * Get ancho
      *
-     * @return string 
+     * @return float 
      */
     public function getAncho()
     {
         return $this->ancho;
-    }
-
-    /**
-     * Set largo
-     *
-     * @param string $largo
-     * @return Orden
-     */
-    public function setLargo($largo)
-    {
-        $this->largo = $largo;
-    
-        return $this;
-    }
-
-    /**
-     * Get largo
-     *
-     * @return string 
-     */
-    public function getLargo()
-    {
-        return $this->largo;
     }
 
     /**
@@ -843,6 +842,29 @@ class Orden
     public function getTiempoExtrusion()
     {
         return $this->tiempo_extrusion;
+    }
+
+    /**
+     * Set kilosimp
+     *
+     * @param float $kilosimp
+     * @return Orden
+     */
+    public function setKilosimp($kilosimp)
+    {
+        $this->kilosimp = $kilosimp;
+    
+        return $this;
+    }
+
+    /**
+     * Get kilosimp
+     *
+     * @return float 
+     */
+    public function getKilosimp()
+    {
+        return $this->kilosimp;
     }
 
     /**
@@ -1191,6 +1213,75 @@ class Orden
     }
 
     /**
+     * Set cantidadc
+     *
+     * @param string $cantidadc
+     * @return Orden
+     */
+    public function setCantidadc($cantidadc)
+    {
+        $this->cantidadc = $cantidadc;
+    
+        return $this;
+    }
+
+    /**
+     * Get cantidadc
+     *
+     * @return string 
+     */
+    public function getCantidadc()
+    {
+        return $this->cantidadc;
+    }
+
+    /**
+     * Set anchoc
+     *
+     * @param string $anchoc
+     * @return Orden
+     */
+    public function setAnchoc($anchoc)
+    {
+        $this->anchoc = $anchoc;
+    
+        return $this;
+    }
+
+    /**
+     * Get anchoc
+     *
+     * @return string 
+     */
+    public function getAnchoc()
+    {
+        return $this->anchoc;
+    }
+
+    /**
+     * Set largoc
+     *
+     * @param string $largoc
+     * @return Orden
+     */
+    public function setLargoc($largoc)
+    {
+        $this->largoc = $largoc;
+    
+        return $this;
+    }
+
+    /**
+     * Get largoc
+     *
+     * @return string 
+     */
+    public function getLargoc()
+    {
+        return $this->largoc;
+    }
+
+    /**
      * Set solapa
      *
      * @param integer $solapa
@@ -1283,26 +1374,26 @@ class Orden
     }
 
     /**
-     * Set notas_corte
+     * Set notascorte
      *
-     * @param string $notasCorte
+     * @param string $notascorte
      * @return Orden
      */
-    public function setNotasCorte($notasCorte)
+    public function setNotascorte($notascorte)
     {
-        $this->notas_corte = $notasCorte;
+        $this->notascorte = $notascorte;
     
         return $this;
     }
 
     /**
-     * Get notas_corte
+     * Get notascorte
      *
      * @return string 
      */
-    public function getNotasCorte()
+    public function getNotascorte()
     {
-        return $this->notas_corte;
+        return $this->notascorte;
     }
 
     /**
@@ -1396,11 +1487,6 @@ class Orden
     {
         return $this->operario_corte;
     }
-    /**
-     * @var PB\VentasBundle\Entity\Cliente
-     */
-    private $cliente;
-
 
     /**
      * Set cliente
@@ -1423,5 +1509,13 @@ class Orden
     public function getCliente()
     {
         return $this->cliente;
+    }
+    
+    public function getEstadoText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->estado != null) return $value['estados_orden'][$this->estado];
     }
 }
