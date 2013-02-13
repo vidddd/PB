@@ -21,9 +21,10 @@ estados_pedidos:
   
 cliches:
   1: "Nuevo"
-  2: "Lo Traen"
-  3: "Lo Tenemos"
-  4: "Lo Traeran"
+  2: "Enviado"
+  3: "Repetición"
+  4: "Se enviará"
+  5: "Rectificación"
   
 tipos:
   0: ""
@@ -57,6 +58,13 @@ tratado:
 soldadura:
   1: "Camiseta"
   2: "Perlada"
-  3: "Saco"
-  4: "Fondo"
-  5: "Basura"
+  3: "Caja"
+  4: "Saco"
+  5: "Fondo"
+  6: "Basura"
+  10: "Sin Soldadura"
+
+asas:
+  1: "Sin Asa"
+  2: "Asa Riñon"
+  3: "Asa Rígida"

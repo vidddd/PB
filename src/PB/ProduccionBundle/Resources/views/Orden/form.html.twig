@@ -36,6 +36,7 @@
      			</div>	
  			</div>
 		</div>
+		
 	<div class="span-25">
 		<table cellspacing="0" cellpadding="0" class="tabla4">
            	  <tbody><tr>
@@ -60,205 +61,232 @@
                	             
            </tbody>
          </table>
-    </div>
-    <div class="clearfix"></div><br />
-   	  <div class="contenttitle2"><h3>Extrusión</h3> {{ form_widget(form.extrusion) }}</div><div class="clearfix"></div>
-		<div class="span-25">
-		<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
-			 <tr>
-				<th style="width:120px;"><b>Color</b></th>
-				<td>{{ form_widget(form.color, { 'attr': {'class': 'small'}}) }}</td>
-			  </tr>
-			  <tr>
-		        <th><b>Ancho</b></th>
-		        <td>{{ form_widget(form.ancho, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-			<tr>
-		        <th><b>Galga</b></th>
-		        <td>{{ form_widget(form.galga, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Plegado</b></th>
-		        <td>{{ form_widget(form.plegado, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Bobinas</b></th>
-		        <td>{{ form_widget(form.bobinas, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Peso Teórico</b></th>
-		        <td>{{ form_widget(form.pesoteorico, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Tipo Tubo</b></th>
-		        <td>{{ form_widget(form.tipotubo, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Tratado</b></th>
-		        <td>{{ form_widget(form.tratado, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th>Observaciones</th>
-		        <td>{{ form_widget(form.notasextrusion, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		</table>
-	 </div>
-	 <div class="span-25">
-		<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
-			 <tr>
-				<th style="width:120px;"><b>Fecha Producción</b></th>
-				<td>{{ form_widget(form.fecha_extrusion, { 'attr': {'class': 'small date'}}) }}</td>
-			  </tr>
-			  <tr>
-		        <th><b>Operario</b></th>
-		        <td>{{ form_widget(form.operario_extrusion, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-			<tr>
-		        <th><b>Tiempo</b></th>
-		        <td>{{ form_widget(form.tiempo_extrusion, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Maquina</b></th>
-		        <td>{{ form_widget(form.maquina_extrusion, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Materia Prima</b></th>
-		        <td></td>
-		      </tr>
-		</table>
-	 </div>
-	<div class="clearfix"></div><br />
-   	  <div class="contenttitle2"><h3>Impresion</h3>{{ form_widget(form.impresion) }}</div><div class="clearfix"></div>
-		<div class="span-25">
-		<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
-			 <tr>
-				<th style="width:120px;"><b>Medida </b></th>
-				<td>{{ form_widget(form.medidaimp, { 'attr': {'class': 'small'}}) }}</td>
-			  </tr>
-			  <tr>
-		        <th><b>Kilos</b></th>
-		        <td>{{ form_widget(form.kilosimp, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-			  <tr>
-		        <th><b>Anverso</b></th>
-		        <td>{{ form_widget(form.anverso, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-			<tr>
-		        <th><b>Reverso</b></th>
-		        <td>{{ form_widget(form.reverso, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Colores Anversor</b></th>
-		        <td>{{ form_widget(form.coloresa, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Colores Reverso</b></th>
-		        <td>{{ form_widget(form.coloresr, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Cliche</b></th>
-		        <td>{{ form_widget(form.cliche, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Carpeta</b></th>
-		        <td>{{ form_widget(form.carpeta, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Soldadura</b></th>
-		        <td>{{ form_widget(form.soldadura, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th>Observaciones</th>
-		        <td>{{ form_widget(form.notasimpresion, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		</table>
-	 </div>
-	 <div class="span-25">
-		<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
-			 <tr>
-				<th style="width:120px;"><b>Fecha Impresión</b></th>
-				<td>{{ form_widget(form.fecha_impresion, { 'attr': {'class': 'small date'}}) }}</td>
-			  </tr>
-			  <tr>
-		        <th><b>Operario</b></th>
-		        <td>{{ form_widget(form.operario_impresion, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-			<tr>
-		        <th><b>Tiempo</b></th>
-		        <td>{{ form_widget(form.tiempo_impresion, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Maquina</b></th>
-		        <td>{{ form_widget(form.maquina_impresion, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Materia Prima</b></th>
-		        <td></td>
-		      </tr>
-		</table>
-	 </div>
-	 <div class="clearfix"></div><br />
-   	  <div class="contenttitle2"><h3>Corte</h3> {{ form_widget(form.corte) }}</div><div class="clearfix"></div>
-		<div class="span-25">
-		<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
-			 <tr>
-				<th style="width:120px;"><b>Cantidad</b></th>
-				<td>{{ form_widget(form.cantidadc, { 'attr': {'class': 'small'}}) }}</td>
-			  </tr>
-			  <tr>
-		        <th><b>Ancho</b></th>
-		        <td>{{ form_widget(form.anchoc, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-			<tr>
-		        <th><b>Largo</b></th>
-		        <td>{{ form_widget(form.largoc, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Solapa</b></th>
-		        <td>{{ form_widget(form.solapa, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Paquete</b></th>
-		        <td>{{ form_widget(form.paquete, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Saco</b></th>
-		        <td>{{ form_widget(form.saco, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Palet</b></th>
-		        <td>{{ form_widget(form.palets, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th>Observaciones</th>
-		        <td>{{ form_widget(form.notascorte, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		</table>
-	 </div>
-	 <div class="span-25">
-		<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
-			 <tr>
-				<th style="width:120px;"><b>Fecha Producción</b></th>
-				<td>{{ form_widget(form.fecha_corte, { 'attr': {'class': 'small date'}}) }}</td>
-			  </tr>
-			  <tr>
-		        <th><b>Operario</b></th>
-		        <td>{{ form_widget(form.operario_corte, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-			<tr>
-		        <th><b>Tiempo</b></th>
-		        <td>{{ form_widget(form.tiempo_corte, { 'attr': {'class': 'small numeric'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Maquina</b></th>
-		        <td>{{ form_widget(form.maquina_corte, { 'attr': {'class': 'small'}}) }}</td>
-		      </tr>
-		      <tr>
-		        <th><b>Materia Prima</b></th>
-		        <td></td>
-		      </tr>
-		</table>
-	 </div>
+    </div><div class="clearfix"></div> <br />
+    <div class="widget-box collapsible">
+        <div class="widget-title" id="collapse1" style="cursor:pointer">
+    		<span class="icon"><i class="icon-circle-arrow-right"></i></span>
+            	<h5>EXTRUSION</h5>{{ form_widget(form.extrusion) }}
+        </div>
+        <div id="collapseOne" class="in collapse">
+        	<div class="widget-content">
+				<div class="span-24">
+						<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
+							 <tr>
+								<th style="width:120px;"><b>Color</b></th>
+								<td>{{ form_widget(form.color, { 'attr': {'class': 'small'}}) }}</td>
+							  </tr>
+							  <tr>
+						        <th><b>Ancho</b></th>
+						        <td>{{ form_widget(form.ancho, { 'attr': {'class': 'small numeric'}}) }}</td>
+						      </tr>
+							<tr>
+						        <th><b>Galga</b></th>
+						        <td>{{ form_widget(form.galga, { 'attr': {'class': 'small numeric'}}) }}</td>
+						      </tr>
+						      <tr>
+						        <th><b>Plegado</b></th>
+						        <td>{{ form_widget(form.plegado, { 'attr': {'class': 'small numeric'}}) }}</td>
+						      </tr>
+						      <tr>
+						        <th><b>Bobinas</b></th>
+						        <td>{{ form_widget(form.bobinas, { 'attr': {'class': 'small numeric'}}) }}</td>
+						      </tr>
+						      <tr>
+						        <th><b>Peso Teórico</b></th>
+						        <td>{{ form_widget(form.pesoteorico, { 'attr': {'class': 'small'}}) }}</td>
+						      </tr>
+						      <tr>
+						        <th><b>Tipo Tubo</b></th>
+						        <td>{{ form_widget(form.tipotubo, { 'attr': {'class': 'small'}}) }}</td>
+						      </tr>
+						      <tr>
+						        <th><b>Tratado</b></th>
+						        <td>{{ form_widget(form.tratado, { 'attr': {'class': 'small'}}) }}</td>
+						      </tr>
+						      <tr>
+						        <th>Observaciones</th>
+						        <td>{{ form_widget(form.notasextrusion, { 'attr': {'class': 'small'}}) }}</td>
+						      </tr>
+						</table>
+					 </div>
+					 <div class="span-24">
+						<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
+							 <tr>
+								<th style="width:120px;"><b>Fecha Producción</b></th>
+								<td>{{ form_widget(form.fecha_extrusion, { 'attr': {'class': 'small date'}}) }}</td>
+							  </tr>
+							  <tr>
+						        <th><b>Operario</b></th>
+						        <td>{{ form_widget(form.operario_extrusion, { 'attr': {'class': 'small'}}) }}</td>
+						      </tr>
+							<tr>
+						        <th><b>Tiempo</b></th>
+						        <td>{{ form_widget(form.tiempo_extrusion, { 'attr': {'class': 'small numeric'}}) }}</td>
+						      </tr>
+						      <tr>
+						        <th><b>Maquina</b></th>
+						        <td>{{ form_widget(form.maquina_extrusion, { 'attr': {'class': 'small'}}) }}</td>
+						      </tr>
+						      <tr>
+						        <th><b>Materia Prima</b></th>
+						        <td></td>
+						      </tr>
+						</table>
+					 </div>
+					<div class="clearfix"></div><br />
+            </div>
+        </div>
+        <div class="widget-title">
+             <a href="#collapse2" class="in collapse" id="collapse2">
+    		<span class="icon"><i class="icon-circle-arrow-right"></i></span>
+              <h5>IMPRESION</h5>
+                                </a>{{ form_widget(form.impresion) }}
+                            </div>
+        <div id="collapseTwo" class="in collapse">
+            <div class="widget-content">
+					<div class="span-24">
+							<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
+								 <tr>
+									<th style="width:120px;"><b>Medida </b></th>
+									<td>{{ form_widget(form.medidaimp, { 'attr': {'class': 'small'}}) }}</td>
+								  </tr>
+								  <tr>
+							        <th><b>Kilos</b></th>
+							        <td>{{ form_widget(form.kilosimp, { 'attr': {'class': 'small numeric'}}) }}</td>
+							      </tr>
+								  <tr>
+							        <th><b>Anverso</b></th>
+							        <td>{{ form_widget(form.anverso, { 'attr': {'class': 'small numeric'}}) }}</td>
+							      </tr>
+								<tr>
+							        <th><b>Reverso</b></th>
+							        <td>{{ form_widget(form.reverso, { 'attr': {'class': 'small numeric'}}) }}</td>
+							      </tr>
+							      <tr>
+							        <th><b>Colores Anversor</b></th>
+							        <td>{{ form_widget(form.coloresa, { 'attr': {'class': 'small numeric'}}) }}</td>
+							      </tr>
+							      <tr>
+							        <th><b>Colores Reverso</b></th>
+							        <td>{{ form_widget(form.coloresr, { 'attr': {'class': 'small numeric'}}) }}</td>
+							      </tr>
+							      <tr>
+							        <th><b>Cliche</b></th>
+							        <td>{{ form_widget(form.cliche, { 'attr': {'class': 'small'}}) }}</td>
+							      </tr>
+							      <tr>
+							        <th><b>Carpeta</b></th>
+							        <td>{{ form_widget(form.carpeta, { 'attr': {'class': 'small'}}) }}</td>
+							      </tr>
+							      <tr>
+							        <th><b>Soldadura</b></th>
+							        <td>{{ form_widget(form.soldadura, { 'attr': {'class': 'small'}}) }}</td>
+							      </tr>
+							      <tr>
+							        <th>Observaciones</th>
+							        <td>{{ form_widget(form.notasimpresion, { 'attr': {'class': 'small'}}) }}</td>
+							      </tr>
+							</table>
+						 </div>
+						 <div class="span-24">
+							<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
+								 <tr>
+									<th style="width:120px;"><b>Fecha Impresión</b></th>
+									<td>{{ form_widget(form.fecha_impresion, { 'attr': {'class': 'small date'}}) }}</td>
+								  </tr>
+								  <tr>
+							        <th><b>Operario</b></th>
+							        <td>{{ form_widget(form.operario_impresion, { 'attr': {'class': 'small'}}) }}</td>
+							      </tr>
+								<tr>
+							        <th><b>Tiempo</b></th>
+							        <td>{{ form_widget(form.tiempo_impresion, { 'attr': {'class': 'small numeric'}}) }}</td>
+							      </tr>
+							      <tr>
+							        <th><b>Maquina</b></th>
+							        <td>{{ form_widget(form.maquina_impresion, { 'attr': {'class': 'small'}}) }}</td>
+							      </tr>
+							      <tr>
+							        <th><b>Materia Prima</b></th>
+							        <td></td>
+							      </tr>
+							</table>
+						 </div>
+						 <div class="clearfix"></div><br />
+   			   </div>
+         </div>
+         <div class="widget-title">
+              <a href="#collapseThree">
+    				<span class="icon"><i class="icon-circle-arrow-right"></i></span>
+                                    <h5>CORTE</h5>
+                                </a>{{ form_widget(form.corte) }}
+          </div>
+          <div id="collapseThree" class="in collapse">
+             <div class="widget-content">
+			      <div class="span-24">
+					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
+						 <tr>
+							<th style="width:120px;"><b>Cantidad</b></th>
+							<td>{{ form_widget(form.cantidadc, { 'attr': {'class': 'small'}}) }}</td>
+						  </tr>
+						  <tr>
+					        <th><b>Ancho</b></th>
+					        <td>{{ form_widget(form.anchoc, { 'attr': {'class': 'small numeric'}}) }}</td>
+					      </tr>
+						<tr>
+					        <th><b>Largo</b></th>
+					        <td>{{ form_widget(form.largoc, { 'attr': {'class': 'small numeric'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Solapa</b></th>
+					        <td>{{ form_widget(form.solapa, { 'attr': {'class': 'small numeric'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Paquete</b></th>
+					        <td>{{ form_widget(form.paquete, { 'attr': {'class': 'small numeric'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Saco</b></th>
+					        <td>{{ form_widget(form.saco, { 'attr': {'class': 'small'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Palet</b></th>
+					        <td>{{ form_widget(form.palets, { 'attr': {'class': 'small'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th>Observaciones</th>
+					        <td>{{ form_widget(form.notascorte, { 'attr': {'class': 'small'}}) }}</td>
+					      </tr>
+					</table>
+				 </div>
+				 <div class="span-24">
+					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
+						 <tr>
+							<th style="width:120px;"><b>Fecha Producción</b></th>
+							<td>{{ form_widget(form.fecha_corte, { 'attr': {'class': 'small date'}}) }}</td>
+						  </tr>
+						  <tr>
+					        <th><b>Operario</b></th>
+					        <td>{{ form_widget(form.operario_corte, { 'attr': {'class': 'small'}}) }}</td>
+					      </tr>
+						<tr>
+					        <th><b>Tiempo</b></th>
+					        <td>{{ form_widget(form.tiempo_corte, { 'attr': {'class': 'small numeric'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Maquina</b></th>
+					        <td>{{ form_widget(form.maquina_corte, { 'attr': {'class': 'small'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Materia Prima</b></th>
+					        <td></td>
+					      </tr>
+					</table>
+				 </div>
+          </div>
+           </div>
+		</div>
+    
 	</div>
 		<div class="clearfix"></div> <BR />
 	<div class="guardar"><button type="submit" class="ui-state-default ui-corner-all">Guardar</button></div> 

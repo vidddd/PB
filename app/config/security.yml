@@ -5,7 +5,7 @@ jms_security_extra:
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-     #   PB\InicioBundle\Entity\Usuario: plaintext
+        PB\InicioBundle\Entity\Usuario: plaintext
             #algorithm: sha512
             #encode-as-base64: true
             #iterations: 10
@@ -17,6 +17,7 @@ security:
     providers:
          user_db:
             entity: { class: PB\InicioBundle\Entity\Usuario, property: usuario }
+ 
          in_memory:
              memory:
                  users:

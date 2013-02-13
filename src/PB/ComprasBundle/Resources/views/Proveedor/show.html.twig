@@ -13,6 +13,7 @@
 		    <li class="ui-state-default ui-corner-top"><a href="#tabs-2">Datos de contacto</a></li>
 			<li class="ui-state-default ui-corner-top"><a href="#tabs-3">Contabilidad</a></li>
 			<li class="ui-state-default ui-corner-top"><a href="#tabs-4">Observaciones</a></li>
+			<li class="ui-state-default ui-corner-top"><a href="#tabs-5">Evaluación</a></li>
 		</ul>
     <div id="tabs-1">
     <table>
@@ -45,10 +46,10 @@
         <td class="label">Pais</td><td class="campo">{{ entity.pais }}</td>
       </tr>
       <tr>
-        <td class="label">Tipo de Proveedor</td><td class="campo">{{ entity.tipoproveedor }}</td>
+        <td class="label">Tipo de Proveedor</td><td class="campo">{{ entity.tipoproveedorText }}</td>
 	  </tr>
 	  <tr>
-        <td class="label">Medio Envio</td><td class="campo">{{ entity.medioenvio }}</td>
+        <td class="label">Medio Envio</td><td class="campo">{{ entity.medioenvioText }}</td>
 	  </tr>
     </tbody>
    </table>  
@@ -117,5 +118,33 @@
 			</tbody>
 		</table>
 	</div>
-</div></div> </div>
+	<div id="tabs-5">
+	  <h4>EVALUACIÓN INICIAL</h4>
+		<table>
+			<tbody>
+			   <tr> <td class="label">Fecha Evaluación</td><td class="campo">{{ entity.fechaevaluacion|date('d.m.Y') }}</td>
+		       </tr>
+		       <tr> <td class="label">Tipo Evaluación</td><td class="campo">{{ entity.tipoevaluacionText }}</td>
+		       </tr>
+			</tbody>
+		</table>
+	 <h4>EVALUACIÓN CONTÍNUA</h4>
+		<table>
+			<tbody>
+			   <tr> <td class="label">Aprobado</td><td class="campo">{{ entity.aprovado ? 'Si' : 'No' }}</td>
+		       </tr>
+			   <tr> <td class="label">Fecha Última Evaluación</td><td class="campo">{{ entity.fechaevaluacion2|date('d.m.Y') }}</td>
+		       </tr>
+		       <tr><td class="label">Incidencias</td><td class="campo">
+		       <table>
+		       <tr><th>Pedido de Compra</th><th>Observaciones</th></tr>
+		               {% for inci in incidencias %}
+                <tr><td><a href="{{ path('compras_pedidocompra_show', { 'id': inci.id }) }}">{{ inci.id }}</a></td><td> {{ inci.observaciones }} </td></tr>
+        {% endfor %}</table>
+		       </td>
+		       </tr>
+			</tbody>
+		</table>
+	</div>
+	</div></div> </div>
 {% endblock %}

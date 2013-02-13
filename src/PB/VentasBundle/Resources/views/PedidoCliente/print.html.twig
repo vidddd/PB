@@ -1,0 +1,152 @@
+<style type="text/css">
+<!--
+/**
+ * #42929d Verde mar
+ * #97afa0 Verde Apagado
+ * #788884 Verde lineas
+ */
+.presupuesto {
+ /*border: 1px solid blue;*/
+ fon-size: 12px;
+ color: #555555;
+ font-family: Arial,sans-serif;
+}
+table { }
+.presupuesto .presupuesto-header{
+	margin-bottom:20px;
+}
+.presupuesto-header .img-left{ float:left; }
+.presupuesto-header .img-right { float:right; }
+.verde{ color:#b0ccc5; } .bgverde{ background-color:#b0ccc5;}
+.bordeverde{border: 1px solid #869a90;} .bordeverderight{ border-right:1px solid #869a90;}
+.bordeverdebottom { border-bottom: 1px solid #869a90;} .bordeverdeleft { border-left: 1px solid #869a90; }
+.presupuesto-datos{ }
+.presupuesto-datos .clientetit{ font-size: 11px; padding: 5px 10px; width: 100px; height: 10px;}
+.presupuesto-datos .cliente{
+   padding:6px 10px;
+   width:240px;
+   height: 65px;
+}
+.presupuesto-datos .cliente p {
+	margin:2px 0;
+}
+.presupuesto-datos .datos{   
+    margin: 22px 0 0 76px;
+	width: 320px; 
+	border: 2px solid #869a90;
+}
+.presupuesto-datos .datos td {padding:10px;  }
+.presupuesto-datos .datos p { font-size: 12px; 	margin:2px 0;}
+
+.tabla5{ margin-top:8px; border-collapse: collapse;}
+.tabla5 td  { font-size: 12px; padding: 8px;}
+#observaciones  { widht: 100%; height: 150px;}
+#observaciones p { font-size: 11px; margin: 11px;}
+.etiqueta { font-size: 11px; padding: 5px;}
+.clear{ clear: both; }
+.ta_right{ text-align:right;}
+.dato{ color:#747373;}
+.total{ font-size:14px;}
+-->
+</style>
+<page backtop="8mm" backbottom="8mm" backleft="11mm" backright="11mm">
+{% block content %}
+<div class="presupuesto">
+	<div class="presupuesto-header">
+	  <table>
+	  	<tr>
+	  		<td style="width:500px;"><img src="{{ url }}{{ asset('images/logo400.png') }}" /></td>
+	  		<td><img src="{{ url }}{{ asset('images/hoja-pedido.png') }}" /></td>
+	  	</tr>
+	  </table>
+	</div>
+	<table class="presupuesto-datos" cellspacing="0" style="width: %;">
+        <tr>
+            <td style="width: 40%;">
+            	<div class="clientetit">CLIENTE</div>
+				<div class="cliente bordeverde bgverde">
+					<p>{{ entity.cliente.nombre }}</p><p>{{ entity.cliente.direccion }}</p><p>{{ entity.cliente.cp }} {{ entity.cliente.localidad }} ({{ entity.cliente.provinciacliente }})</p><!-- <p>Tfn:{{ entity.cliente.telefono }} Fax:{{ entity.cliente.fax }}</p>-->
+				</div>
+            </td>
+            <td style="width: 60%;">
+                <table class="datos bordeverde" cellspacing="0" style=";">
+        			<tr>
+            			<td style="width: 40%;" class="bordeverderight">
+							<p class="verde">SUBCLIENTE</p><p class="verde">COD. CLIENTE</p><p class="verde">Nº PEDIDO.</p class="verde"><p class="verde">FECHA</p>
+						</td>
+						<td style="width: 60%;">
+							<p>{{ entity.subcliente }}&nbsp;</p><p>{{ entity.cliente.id }}&nbsp;</p><p>{{ entity.id }}&nbsp;</p><p>{{ entity.fecha|date('d/m/Y') }}&nbsp;</p>
+						</td>
+					</tr>
+				</table>
+            </td>
+        </tr>
+    </table> <div class="clear"></div>
+    <table class="tabla5" cellspacing="0">
+		<tr>
+			<td style="width:22%" class="bgverde bordeverde etiqueta">CANTIDAD</td>
+			<td style="width:13%" class="bgverde bordeverde etiqueta">ANCHO</td>
+			<td style="width:13%" class="bgverde bordeverde etiqueta">LARGO</td>
+			<td style="width:13%" class="bgverde bordeverde etiqueta">GALGA</td>
+			<td style="width:13%" class="bgverde bordeverde etiqueta">PLEGADO</td>
+			<td style="width:13%" class="bgverde bordeverde etiqueta">SOLAPA</td>
+			<td style="width:13%" class="bgverde bordeverde etiqueta">PRECIO</td>
+		</tr>
+		<tr>
+			<td class="bordeverde">{{ entity.cantidad }} {{ entity.cantidaduniText }}</td>
+			<td class="bordeverde">{{ entity.ancho }}</td>
+			<td class="bordeverde">{{ entity.largo }}</td>
+			<td class="bordeverde">{{ entity.galga }}</td>
+			<td class="bordeverde">{{ entity.plegado }}</td>
+			<td class="bordeverde">{{ entity.solapa }}</td>
+			<td class="bordeverde">{{ entity.precio }}</td>
+		</tr>
+	</table><br />
+	    <table class="tabla5" cellspacing="0" style="border-collapse: collapse;">
+		<tr>
+            <td rowspan="2" class="bgverde bordeverde etiqueta" style="width:13%">MATERIAL</td>
+            <td rowspan="2" class="bgverde bordeverde etiqueta" style="width:13%">COLOR</td>
+            <td rowspan="2" class="bgverde bordeverde etiqueta" style="width:13%">TUBO</td>
+            <td rowspan="2" class="bgverde bordeverde etiqueta" style="width:13%">BOLSA</td>
+            <td rowspan="2" class="bgverde bordeverde etiqueta" style="width:13%">ASA</td>
+            <td colspan="3" class="bgverde bordeverde etiqueta" style="width:35%">BOBINAS</td>
+            </tr>
+            <tr>
+              	  <td class="bgverde bordeverde etiqueta">Nº Bobinas</td><td class="bgverde bordeverde etiqueta">Metros Bobina</td><td class="bgverde bordeverde etiqueta">Kg. Bobina</td>
+             </tr>
+		<tr>
+			<td class="bordeverde">{{ entity.materialText }}</td>
+			<td class="bordeverde">{{ entity.color }}</td>
+			<td class="bordeverde">{{ entity.tipotuboText }}</td>
+			<td class="bordeverde">{{ entity.tipobolsaText }}</td>
+			<td class="bordeverde">{{ entity.asaText }}</td>
+			<td class="bordeverde">{{ entity.bobinasnumero }}</td>
+			<td class="bordeverde">{{ entity.bobinasmetros }}</td>
+			<td class="bordeverde">{{ entity.bobinaskg }}</td>
+		</tr>
+	</table><br />
+	<table class="tabla5" cellspacing="0" cellpadding="0">
+           	  <tbody>
+           	      <tr>
+           	      	<td colspan="2" class="bgverde bordeverde etiqueta" style="width:40%">IMPRESION</td>
+           	      	<td colspan="2" class="bgverde bordeverde etiqueta" style="width:40%">IMPRESION</td>
+           	      	<td rowspan="2" class="bgverde bordeverde etiqueta" style="width:20%">CLICHE</td>
+           	      </tr>
+           	      <tr>
+                   	  <td class="bgverde bordeverde etiqueta">Anverso</td><td class="bgverde bordeverde etiqueta">Reverso</td><td class="bgverde bordeverde etiqueta">Anverso</td><td class="bgverde bordeverde etiqueta">Reverso</td>
+                  </tr>
+               	  <tr>
+               	  	  <td class="bordeverde">{{ entity.impresion1 }}</td>
+               	  	  <td class="bordeverde">{{ entity.impresion2 }}</td>
+               	  	  <td class="bordeverde">{{ entity.color1 }}</td>
+               	  	  <td class="bordeverde">{{ entity.color2 }}</td>
+               	  	  <td class="bordeverde">{{ entity.clicheText }}</td>
+               	  </tr>         
+           </tbody>
+         </table> <br />
+	<div id="observaciones" class="bordeverde" style="height: 130px;"> <p>OBSERVACIONES: </p>
+	<p style="font-size: 12px;">{{ entity.observaciones }}</p>
+	</div>	
+</div>
+{% endblock %}
+</page>

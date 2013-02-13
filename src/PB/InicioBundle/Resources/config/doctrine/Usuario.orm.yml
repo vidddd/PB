@@ -24,4 +24,9 @@ PB\InicioBundle\Entity\Usuario:
         salt:
             type: string
             lenght: 255
+    manyToMany:
+        roles:
+            targetEntity: PB\InicioBundle\Entity\Rol
+            mappedBy: usuarios
+            cascade: [persist]
     lifecycleCallbacks: {  }

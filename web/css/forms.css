@@ -114,7 +114,8 @@ input.other{
 input.small, select.small{
 	width:100px;
 }
-
+input.small2, select.small2{width:120px;}
+input.small3, select.small3{width:160px;}
 input.medium, select.medium{
 	width:250px;
 }

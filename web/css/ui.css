@@ -821,18 +821,19 @@ div.totals textarea:focus{
 }
 
 /** ORDEN de Fabricacion */
-.orden .ui-widget-content { background-color: #E6E6E6 !important; border: 1px solid #CCC; }
-.orden .ui-widget-content label{ font-weight:bold; color: #616161; text-shadow: 0 1px 0 #FFFFFF; }
+.orden .ui-widget-content { background-color: #EFEFEF !important;
+border: 1px solid #CDCDCD; }
+.orden .ui-widget-content label{ font-weight:bold; color: #666; text-shadow: 0 1px 0 #FFFFFF; }
 .orden{font-size: 12px;}
 .orden input {margin:0;}
 .tabla4 { height: 80px;}
 .tabla4 th { font-weight: bold; padding-left: 5px; padding:0; vertical-align: middle;}
 .tabla4 td { padding:0 12px !important; vertical-align: middle; }
-.tabla4 label, .tabla4  input[type="radio"]{ margin-left: 9px; display: inline !important;}
+.tabla4 label, .tabla4  input[type="radio"]{ margin-left: 9px; display: inline !important;color: #666; text-shadow: 0 1px 0 #FFFFFF;}
 
 table.tabla5 { width: 100%; border-collapse: collapse; margin-bottom: 20px;}
-.tabla5 th{background-color: #F8F8F8;
-    border: 1px solid #CCCCCC;
+.tabla5 th{background-color: #EFEFEF;
+    border: 1px solid #CDCDCD;
     color: #666;
     font-size: 13px;
     line-height: 18px;
@@ -844,5 +845,79 @@ table.tabla5 { width: 100%; border-collapse: collapse; margin-bottom: 20px;}
     font-size: 13px;
     padding: 8px 10px; }
 .tabla5-form td{
-	padding: 1px 2px !important; margin:0 !important";
+	padding: 1px 2px !important; margin:0 !important;;
+}
+.tabla5 label, .tabla5 input[type="radio"] {
+    display: inline !important;
+    margin-left: 4px;
+}
+.ui-widget h4 {
+	color: #0045AA;
+	font-size: 14px; font-weight: bold;
+	margin: 15px 0;
+	border-bottom: 1px dotted #676789;
+}
+.widget-box {
+    /*background: none repeat scroll 0 0 #F9F9F9;*/
+    border-left: 1px solid #CDCDCD;
+    border-right: 1px solid #CDCDCD;
+    border-top: 1px solid #CDCDCD;
+    clear: both;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    position: relative;
+}
+.widget-title {
+    background-color: #EFEFEF;
+    border-bottom: 1px solid #CDCDCD;
+    height: 36px;
+}
+
+.collapse {
+    height: 0;
+    overflow: hidden;
+    position: relative;
+    transition: height 0.35s ease 0s;
+}
+
+.collapse.in {
+    height: auto;
+}
+.widget-title span.icon {
+    border-right: 1px solid #CDCDCD;
+    float: left;
+    opacity: 0.7;
+    padding: 9px 10px 7px 11px;
+}
+.widget-title h5 {
+    color: #666666;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 12px;
+    margin: 0;
+    padding: 12px;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.widget-box.collapsible .collapse.in .widget-content {
+    border-bottom: 1px solid #CDCDCD;
+}
+.widget-content {
+    border-bottom: 1px solid #CDCDCD;
+    padding: 12px 15px;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    background-image: url("../images/glyphicons-halflings.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: 14px;
+}
+.icon-circle-arrow-right {
+    background-position: -240px -144px;
 }

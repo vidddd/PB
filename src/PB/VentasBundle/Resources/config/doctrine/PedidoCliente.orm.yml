@@ -12,11 +12,15 @@ PB\VentasBundle\Entity\PedidoCliente:
     subcliente:
       type: string
       length: 255
+      nullable: true
     estado:
       type: smallint
     cantidad:
       type: string
       length: 55
+    cantidaduni:
+      type: smallint
+      nullable: true
     ancho:
       type: float
       nullable: true
@@ -29,6 +33,9 @@ PB\VentasBundle\Entity\PedidoCliente:
     plegado:
       type: integer
       nullable: true
+    solapa:
+      type: integer
+      nullable: true
     precio:
       type: float
       nullable: true
@@ -39,13 +46,16 @@ PB\VentasBundle\Entity\PedidoCliente:
       type: smallint
       nullable: true
     color:
-      type: text
+      type: string
       lenght: 55
       nullable: true
     tipotubo:
       type: smallint
       nullable: true
     tipobolsa:
+      type: smallint
+      nullable: true
+    asa:
       type: smallint
       nullable: true
     bobinasnumero:
@@ -58,17 +68,21 @@ PB\VentasBundle\Entity\PedidoCliente:
       type: integer
       nullable: true
     impresion1:
-      type: text
+      type: string
       lenght: 255
+      nullable: true
     impresion2:
-      type: text
+      type: string
       lenght: 255
+      nullable: true
     color1:
-      type: text
+      type: string
       lenght: 255
+      nullable: true
     color2:
-      type: text
+      type: string
       lenght: 255
+      nullable: true
     cliche:
       type: smallint
       nullable: true

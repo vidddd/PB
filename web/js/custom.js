@@ -224,8 +224,16 @@ $(document).ready(function() {
 			//window.location.reload();
 		                 }
 	});
-
-	
+	$('#collapse1').click(function() {
+		$('#collapseOne').toggle('fast', function() {
+		});
+		//$('#collapseOne').slideToggle();
+	});
+	$('#collapse2').click(function() {
+		/*$('#collapseOne').toggle('fast', function() {
+		});*/
+		$('#collapseTwo').slideToggle();
+	});
 });
 
 	/* Tooltip */

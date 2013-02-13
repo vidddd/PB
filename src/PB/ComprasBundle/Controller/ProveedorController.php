@@ -201,25 +201,18 @@ class ProveedorController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $yaml = new Parser();
-        try {
-        	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
-        } catch (ParseException $e) {
-        	printf("Unable to parse the YAML string: %s", $e->getMessage());
-        }
-         
-        $tipos = $value['tipo_proveedor'];$medios = $value['medio_envio'];
+        // Sacamos los pedido de compra con errores
+        $qb = $em->getRepository('PBComprasBundle:PedidoCompra')->createQueryBuilder('p')->orderBy('p.id', 'DESC');
+        $qb->andwhere('p.estado = :estadoi');  	$qb->setParameter('estadoi', 3);
+        $qb->andwhere('p.proveedor = :proveedori');   $qb->setParameter('proveedori', $id);
+        $incidencias = $qb->getQuery()->getResult();
+    	
         $entity = $em->getRepository('PBComprasBundle:Proveedor')->find($id);
-		$entity->setTipoproveedor($tipos[$entity->getTipoproveedor()]);
-		$entity->setMedioEnvio($medios[$entity->getMedioenvio()]);
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Proveedor entity.');
-        }
-
+        
+		if (!$entity) {   throw $this->createNotFoundException('Unable to find Proveedor entity.'); }
         $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('PBComprasBundle:Proveedor:show.html.twig', array(
-            'entity'      => $entity,
+            'entity'      => $entity, 'incidencias' => $incidencias,
             'delete_form' => $deleteForm->createView(),        ));
     }
 

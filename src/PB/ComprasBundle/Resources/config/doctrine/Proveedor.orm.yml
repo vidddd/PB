@@ -102,6 +102,12 @@ PB\ComprasBundle\Entity\Proveedor:
     tipo_evaluacion:
       type: smallint
       nullable: true
+    aprovado:
+      type: boolean
+      nullable: true
+    fecha_evaluacion2:
+      type: date
+      nullable: true
   manyToOne:
     formapago_proveedor:
       targetEntity: PB\GeneralBundle\Entity\FormaPago

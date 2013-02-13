@@ -45,3 +45,4 @@ Boolean:
     const VALUE_NO  = 'n';
     
 UPDATE Albaran SET recargo = '1' WHERE recargo2 = true
+UPDATE `proveedores` SET `aprovado` = '1' WHERE `proveedores`.`id` =306;

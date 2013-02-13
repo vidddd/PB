@@ -509,7 +509,14 @@ class Proveedor
     {
         return $this->medio_envio;
     }
-
+    public function getMedioenvioText()
+    {
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->medio_envio != null) return $value['medio_envio'][$this->medio_envio];
+    }
     /**
      * Set paga_iva
      *
@@ -1043,5 +1050,69 @@ class Proveedor
     public function getTipoEvaluacion()
     {
         return $this->tipo_evaluacion;
+    }
+    public function getTipoevaluacionText()
+    {
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->tipo_evaluacion != null) return $value['tipo_evaluacion'][$this->tipo_evaluacion];
+    }
+    /**
+     * @var integer $aprovado
+     */
+    private $aprovado;
+
+    /**
+     * @var \DateTime $fecha_evaluacion2
+     */
+    private $fecha_evaluacion2;
+
+
+    /**
+     * Set aprovado
+     *
+     * @param integer $aprovado
+     * @return Proveedor
+     */
+    public function setAprovado($aprovado)
+    {
+        $this->aprovado = $aprovado;
+    
+        return $this;
+    }
+
+    /**
+     * Get aprovado
+     *
+     * @return integer 
+     */
+    public function getAprovado()
+    {
+        return $this->aprovado;
+    }
+
+    /**
+     * Set fecha_evaluacion2
+     *
+     * @param \DateTime $fechaEvaluacion2
+     * @return Proveedor
+     */
+    public function setFechaEvaluacion2($fechaEvaluacion2)
+    {
+        $this->fecha_evaluacion2 = $fechaEvaluacion2;
+    
+        return $this;
+    }
+
+    /**
+     * Get fecha_evaluacion2
+     *
+     * @return \DateTime 
+     */
+    public function getFechaEvaluacion2()
+    {
+        return $this->fecha_evaluacion2;
     }
 }

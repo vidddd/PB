@@ -28,3 +28,7 @@ pedidocliente_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "PBVentasBundle:PedidoCliente:delete" }
     requirements: { _method: post }
+    
+pedidocliente_print:
+    pattern:  /{id}/print
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:print" }

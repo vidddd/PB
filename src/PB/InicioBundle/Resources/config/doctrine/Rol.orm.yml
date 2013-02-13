@@ -1,0 +1,21 @@
+PB\InicioBundle\Entity\Rol:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    nombre:
+      type: string
+      length: 255
+  manyToMany:
+    usuarios:
+      targetEntity: PB\InicioBundle\Entity\Usuario
+      cascade: [persist]
+      inversedBy: roles
+      joinColumn:
+        name: usuario_id
+        referencedColumnName: id
+  lifecycleCallbacks: {  }

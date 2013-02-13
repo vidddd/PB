@@ -68,3 +68,7 @@ buscador_precio_presupuesto:
 precio_incrementar:
     pattern:  /incrementar/{id}
     defaults: { _controller: "PBVentasBundle:Precio:incrementar" }
+
+precio_incrementar_guardar:
+    pattern:  /incrementarguardar/{id}
+    defaults: { _controller: "PBVentasBundle:Precio:incrementarguardar" }

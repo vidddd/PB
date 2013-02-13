@@ -1,7 +1,8 @@
 <?php
 
 namespace PB\VentasBundle\Entity;
-
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -697,4 +698,133 @@ class PedidoCliente
     {
         return $this->cliente;
     }
+    /**
+     * @var integer $cantidaduni
+     */
+    private $cantidaduni;
+
+
+    /**
+     * Set cantidaduni
+     *
+     * @param integer $cantidaduni
+     * @return PedidoCliente
+     */
+    public function setCantidaduni($cantidaduni)
+    {
+        $this->cantidaduni = $cantidaduni;
+    
+        return $this;
+    }
+
+    /**
+     * Get cantidaduni
+     *
+     * @return integer 
+     */
+    public function getCantidaduni()
+    {
+        return $this->cantidaduni;
+    }
+    /**
+     * @var integer $solapa
+     */
+    private $solapa;
+
+
+    /**
+     * Set solapa
+     *
+     * @param integer $solapa
+     * @return PedidoCliente
+     */
+    public function setSolapa($solapa)
+    {
+        $this->solapa = $solapa;
+    
+        return $this;
+    }
+
+    /**
+     * Get solapa
+     *
+     * @return integer 
+     */
+    public function getSolapa()
+    {
+        return $this->solapa;
+    }
+    /**
+     * @var integer $asa
+     */
+    private $asa;
+    
+    
+    /**
+     * Set asa
+     *
+     * @param integer $asa
+     * @return PedidoCliente
+     */
+    public function setAsa($asa)
+    {
+    	$this->asa = $asa;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get asa
+     *
+     * @return integer
+     */
+    public function getAsa()
+    {
+    	return $this->asa;
+    }
+    public function getMaterialText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) { printf("Unable to parse the YAML string: %s", $e->getMessage()); }
+    	if($this->material != null) return $value['tipo_material'][$this->material];
+    }
+    public function getTipotuboText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->tipotubo != null)  return $value['tipo_tubo'][$this->tipotubo];
+    }
+    public function getTipoBolsaText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->tipobolsa != null) return $value['soldadura'][$this->tipobolsa];
+    }
+    public function getClicheText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->cliche != null) return $value['cliches'][$this->cliche];
+    }
+    public function getCantidaduniText(){
+    	$unis = array('1' => 'Bolsas', '2' => 'Kg', '3' => 'Metros');
+    	if($this->cantidaduni != null)  return $unis[$this->cantidaduni];
+    }
+    public function getEstadoText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->estado != null) return $value['estados_pedidos'][$this->estado];
+    }
+    public function getAsaText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->asa != null) return $value['asas'][$this->asa];
+    }
+    
 }

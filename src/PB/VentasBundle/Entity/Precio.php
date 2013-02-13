@@ -120,6 +120,11 @@ class Precio
     private $espemas500i;
 
     /**
+     * @var float $bobmas500s
+     */
+    private $bobmas500s;
+
+    /**
      * @var float $bobmas500i
      */
     private $bobmas500i;
@@ -180,11 +185,23 @@ class Precio
     private $laminasin;
 
     /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $precioLineas;
+
+    /**
      * @var PB\VentasBundle\Entity\Cliente
      */
     private $cliente;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->precioLineas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -238,7 +255,7 @@ class Precio
      */
     public function getCam15()
     {
-        if($this->cam15 == '0') return ''; else return $this->cam15;
+        return $this->cam15;
     }
 
     /**
@@ -261,7 +278,7 @@ class Precio
      */
     public function getCam30()
     {
-        if($this->cam30 == '0') return ''; else return $this->cam30;
+        return $this->cam30;
     }
 
     /**
@@ -284,7 +301,7 @@ class Precio
      */
     public function getCam50()
     {
-        if($this->cam50 == '0') return ''; else return $this->cam50;
+        return $this->cam50;
     }
 
     /**
@@ -307,7 +324,7 @@ class Precio
      */
     public function getCam100()
     {
-        if($this->cam100 == '0') return ''; else return $this->cam100;
+        return $this->cam100;
     }
 
     /**
@@ -330,7 +347,7 @@ class Precio
      */
     public function getCam100mas()
     {
-        if($this->cam100mas == '0') return ''; else return $this->cam100mas;
+        return $this->cam100mas;
     }
 
     /**
@@ -353,7 +370,7 @@ class Precio
      */
     public function getAsa20()
     {
-        if($this->asa20 == '0') return ''; else return $this->asa20;
+        return $this->asa20;
     }
 
     /**
@@ -376,7 +393,7 @@ class Precio
      */
     public function getAsa30()
     {
-        if($this->asa30 == '0') return ''; else return $this->asa30;
+        return $this->asa30;
     }
 
     /**
@@ -399,7 +416,7 @@ class Precio
      */
     public function getAsa35()
     {
-    	if($this->asa35 == '0') return ''; else return $this->asa35;
+        return $this->asa35;
     }
 
     /**
@@ -411,6 +428,7 @@ class Precio
     public function setEspeciales10($especiales10)
     {
         $this->especiales10 = $especiales10;
+    
         return $this;
     }
 
@@ -421,7 +439,7 @@ class Precio
      */
     public function getEspeciales10()
     {
-    	if($this->especiales10 == '0') return ''; else return $this->especiales10;
+        return $this->especiales10;
     }
 
     /**
@@ -444,7 +462,7 @@ class Precio
      */
     public function getEspeciales15()
     {
-        if($this->especiales15 == '0') return ''; else return $this->especiales15;
+        return $this->especiales15;
     }
 
     /**
@@ -467,7 +485,7 @@ class Precio
      */
     public function getEspemenos150s()
     {
-        if($this->espemenos150s == '0') return ''; else return $this->espemenos150s;
+        return $this->espemenos150s;
     }
 
     /**
@@ -479,6 +497,7 @@ class Precio
     public function setEspemenos150i($espemenos150i)
     {
         $this->espemenos150i = $espemenos150i;
+    
         return $this;
     }
 
@@ -489,7 +508,7 @@ class Precio
      */
     public function getEspemenos150i()
     {
-        if($this->espemenos150i == '0') return ''; else return $this->espemenos150i;
+        return $this->espemenos150i;
     }
 
     /**
@@ -501,6 +520,7 @@ class Precio
     public function setBobmenos150s($bobmenos150s)
     {
         $this->bobmenos150s = $bobmenos150s;
+    
         return $this;
     }
 
@@ -511,7 +531,7 @@ class Precio
      */
     public function getBobmenos150s()
     {
-        if($this->bobmenos150s == '0') return ''; else return $this->bobmenos150s;
+        return $this->bobmenos150s;
     }
 
     /**
@@ -523,6 +543,7 @@ class Precio
     public function setBobmenos150i($bobmenos150i)
     {
         $this->bobmenos150i = $bobmenos150i;
+    
         return $this;
     }
 
@@ -533,7 +554,7 @@ class Precio
      */
     public function getBobmenos150i()
     {
-    	if($this->bobmenos150i == '0') return ''; else return $this->bobmenos150i;
+        return $this->bobmenos150i;
     }
 
     /**
@@ -545,6 +566,7 @@ class Precio
     public function setEspemas150s($espemas150s)
     {
         $this->espemas150s = $espemas150s;
+    
         return $this;
     }
 
@@ -555,7 +577,7 @@ class Precio
      */
     public function getEspemas150s()
     {
-        if($this->espemas150s == '0') return ''; else return $this->espemas150s;
+        return $this->espemas150s;
     }
 
     /**
@@ -567,6 +589,7 @@ class Precio
     public function setEspemas150i($espemas150i)
     {
         $this->espemas150i = $espemas150i;
+    
         return $this;
     }
 
@@ -577,7 +600,7 @@ class Precio
      */
     public function getEspemas150i()
     {
-        if($this->espemas150i == '0') return ''; else return $this->espemas150i;
+        return $this->espemas150i;
     }
 
     /**
@@ -589,6 +612,7 @@ class Precio
     public function setBobmas150s($bobmas150s)
     {
         $this->bobmas150s = $bobmas150s;
+    
         return $this;
     }
 
@@ -599,7 +623,7 @@ class Precio
      */
     public function getBobmas150s()
     {
-    	if($this->bobmas150s == '0') return ''; else return $this->bobmas150s;
+        return $this->bobmas150s;
     }
 
     /**
@@ -611,6 +635,7 @@ class Precio
     public function setBobmas150i($bobmas150i)
     {
         $this->bobmas150i = $bobmas150i;
+    
         return $this;
     }
 
@@ -621,7 +646,7 @@ class Precio
      */
     public function getBobmas150i()
     {
-        if($this->bobmas150i == '0') return ''; else return $this->bobmas150i;
+        return $this->bobmas150i;
     }
 
     /**
@@ -633,6 +658,7 @@ class Precio
     public function setEspemas500s($espemas500s)
     {
         $this->espemas500s = $espemas500s;
+    
         return $this;
     }
 
@@ -643,7 +669,7 @@ class Precio
      */
     public function getEspemas500s()
     {
-        if($this->espemas500s == '0') return ''; else return $this->espemas500s;
+        return $this->espemas500s;
     }
 
     /**
@@ -655,6 +681,7 @@ class Precio
     public function setEspemas500i($espemas500i)
     {
         $this->espemas500i = $espemas500i;
+    
         return $this;
     }
 
@@ -665,7 +692,30 @@ class Precio
      */
     public function getEspemas500i()
     {
-        if($this->espemas500i == '0') return ''; else return $this->espemas500i;
+        return $this->espemas500i;
+    }
+
+    /**
+     * Set bobmas500s
+     *
+     * @param float $bobmas500s
+     * @return Precio
+     */
+    public function setBobmas500s($bobmas500s)
+    {
+        $this->bobmas500s = $bobmas500s;
+    
+        return $this;
+    }
+
+    /**
+     * Get bobmas500s
+     *
+     * @return float 
+     */
+    public function getBobmas500s()
+    {
+        return $this->bobmas500s;
     }
 
     /**
@@ -676,7 +726,9 @@ class Precio
      */
     public function setBobmas500i($bobmas500i)
     {
-        $this->bobmas500i = $bobmas500i;return $this;
+        $this->bobmas500i = $bobmas500i;
+    
+        return $this;
     }
 
     /**
@@ -686,7 +738,7 @@ class Precio
      */
     public function getBobmas500i()
     {
-        if($this->bobmas500i == '0') return ''; else return $this->bobmas500i;
+        return $this->bobmas500i;
     }
 
     /**
@@ -697,7 +749,9 @@ class Precio
      */
     public function setBolleria($bolleria)
     {
-        $this->bolleria = $bolleria;  return $this;
+        $this->bolleria = $bolleria;
+    
+        return $this;
     }
 
     /**
@@ -707,7 +761,7 @@ class Precio
      */
     public function getBolleria()
     {
-        if($this->bolleria == '0') return ''; else return $this->bolleria;
+        return $this->bolleria;
     }
 
     /**
@@ -718,7 +772,9 @@ class Precio
      */
     public function setPpbob($ppbob)
     {
-        $this->ppbob = $ppbob;  return $this;
+        $this->ppbob = $ppbob;
+    
+        return $this;
     }
 
     /**
@@ -728,7 +784,7 @@ class Precio
      */
     public function getPpbob()
     {
-		if($this->ppbob == '0') return ''; else return $this->ppbob;
+        return $this->ppbob;
     }
 
     /**
@@ -739,7 +795,9 @@ class Precio
      */
     public function setPpbolsasin($ppbolsasin)
     {
-        $this->ppbolsasin = $ppbolsasin; return $this;
+        $this->ppbolsasin = $ppbolsasin;
+    
+        return $this;
     }
 
     /**
@@ -749,7 +807,7 @@ class Precio
      */
     public function getPpbolsasin()
     {
-        if($this->ppbolsasin == '0') return ''; else return $this->ppbolsasin;
+        return $this->ppbolsasin;
     }
 
     /**
@@ -760,7 +818,9 @@ class Precio
      */
     public function setPpbolsapeque($ppbolsapeque)
     {
-        $this->ppbolsapeque = $ppbolsapeque; return $this;
+        $this->ppbolsapeque = $ppbolsapeque;
+    
+        return $this;
     }
 
     /**
@@ -770,7 +830,7 @@ class Precio
      */
     public function getPpbolsapeque()
     {
-        if($this->ppbolsapeque == '0') return ''; else return $this->ppbolsapeque;
+        return $this->ppbolsapeque;
     }
 
     /**
@@ -781,7 +841,9 @@ class Precio
      */
     public function setPpbolsagrande($ppbolsagrande)
     {
-        $this->ppbolsagrande = $ppbolsagrande; return $this;
+        $this->ppbolsagrande = $ppbolsagrande;
+    
+        return $this;
     }
 
     /**
@@ -791,7 +853,7 @@ class Precio
      */
     public function getPpbolsagrande()
     {
-        if($this->ppbolsagrande == '0') return ''; else return $this->ppbolsagrande;
+        return $this->ppbolsagrande;
     }
 
     /**
@@ -802,7 +864,9 @@ class Precio
      */
     public function setPpmbob($ppmbob)
     {
-        $this->ppmbob = $ppmbob; return $this;
+        $this->ppmbob = $ppmbob;
+    
+        return $this;
     }
 
     /**
@@ -812,7 +876,7 @@ class Precio
      */
     public function getPpmbob()
     {
-        if($this->ppmbob == '0') return ''; else return $this->ppmbob;
+        return $this->ppmbob;
     }
 
     /**
@@ -823,7 +887,9 @@ class Precio
      */
     public function setPpmbobi($ppmbobi)
     {
-        $this->ppmbobi = $ppmbobi;return $this;
+        $this->ppmbobi = $ppmbobi;
+    
+        return $this;
     }
 
     /**
@@ -833,7 +899,7 @@ class Precio
      */
     public function getPpmbobi()
     {
-        if($this->ppmbobi== '0') return ''; else return $this->ppmbobi;
+        return $this->ppmbobi;
     }
 
     /**
@@ -844,7 +910,9 @@ class Precio
      */
     public function setPpmsin($ppmsin)
     {
-        $this->ppmsin = $ppmsin; return $this;
+        $this->ppmsin = $ppmsin;
+    
+        return $this;
     }
 
     /**
@@ -854,7 +922,7 @@ class Precio
      */
     public function getPpmsin()
     {
-        if($this->ppmsin == '0') return ''; else return $this->ppmsin;
+        return $this->ppmsin;
     }
 
     /**
@@ -865,7 +933,9 @@ class Precio
      */
     public function setPpmim($ppmim)
     {
-        $this->ppmim = $ppmim;return $this;
+        $this->ppmim = $ppmim;
+    
+        return $this;
     }
 
     /**
@@ -875,7 +945,7 @@ class Precio
      */
     public function getPpmim()
     {
-        if($this->ppmim == '0') return ''; else return $this->ppmim;
+        return $this->ppmim;
     }
 
     /**
@@ -886,7 +956,9 @@ class Precio
      */
     public function setLaminaim($laminaim)
     {
-        $this->laminaim = $laminaim; return $this;
+        $this->laminaim = $laminaim;
+    
+        return $this;
     }
 
     /**
@@ -895,8 +967,8 @@ class Precio
      * @return float 
      */
     public function getLaminaim()
-    {       
-       if($this->laminaim == '0') return ''; else return $this->laminaim;
+    {
+        return $this->laminaim;
     }
 
     /**
@@ -907,7 +979,9 @@ class Precio
      */
     public function setLaminasin($laminasin)
     {
-        $this->laminasin = $laminasin; return $this;
+        $this->laminasin = $laminasin;
+    
+        return $this;
     }
 
     /**
@@ -917,37 +991,7 @@ class Precio
      */
     public function getLaminasin()
     {
-        if($this->laminasin == '0') return ''; else return $this->laminasin;
-    }
-
-    /**
-     * Set cliente
-     *
-     * @param PB\VentasBundle\Entity\Cliente $cliente
-     * @return Precio
-     */
-    public function setCliente(\PB\VentasBundle\Entity\Cliente $cliente = null)
-    {
-        $this->cliente = $cliente;return $this;
-    }
-
-    /**
-     * Get cliente
-     *
-     * @return PB\VentasBundle\Entity\Cliente 
-     */
-    public function getCliente()
-    {
-        return $this->cliente;
-    }
-    /**
-     * @ORM\OneToMany(targetEntity="NewsLink", mappedBy="news", cascade={"all"})
-     */
-    protected $precioLineas;
-    
-    function __construct()
-    {
-    	$this->precioLineas = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->laminasin;
     }
 
     /**
@@ -982,38 +1026,34 @@ class Precio
     {
         return $this->precioLineas;
     }
-    /**
-     * @var float $bobmas500s
-     */
-    private $bobmas500s;
-
 
     /**
-     * Set bobmas500s
+     * Set cliente
      *
-     * @param float $bobmas500s
+     * @param PB\VentasBundle\Entity\Cliente $cliente
      * @return Precio
      */
-    public function setBobmas500s($bobmas500s)
+    public function setCliente(\PB\VentasBundle\Entity\Cliente $cliente = null)
     {
-        $this->bobmas500s = $bobmas500s;
+        $this->cliente = $cliente;
     
         return $this;
     }
 
     /**
-     * Get bobmas500s
+     * Get cliente
      *
-     * @return float 
+     * @return PB\VentasBundle\Entity\Cliente 
      */
-    public function getBobmas500s()
+    public function getCliente()
     {
-        if($this->bobmas500s == '0') return ''; else return $this->bobmas500s;
+        return $this->cliente;
     }
     
     public function setPorcentaje($por){
+  
     	$porcen = $por / 100;
-    	
+    	 
     	$this->cam15 = number_format($this->cam15 + $this->cam15 * $porcen,2,".",".");
     	$this->cam30 = number_format($this->cam30 + $this->cam30 * $porcen,2,".",".");
     	$this->cam50 = number_format($this->cam50 + $this->cam50 * $porcen,2,".",".");
@@ -1047,54 +1087,53 @@ class Precio
     	$this->ppmsin = number_format($this->ppmsin + $this->ppmsin * $porcen,2,".",".");
     	$this->laminaim = number_format($this->laminaim + $this->laminaim * $porcen,2,".",".");
     	$this->laminasin = number_format($this->laminasin + $this->laminasin * $porcen,2,".",".");
-    		
+    
     	foreach($this->precioLineas as $key){
     		$precio = $key->getPrecio();
     		$key->setPrecio(number_format($precio + $precio * $porcen,2,".","."));
     	}
-    	
-     }
+    	 
+    }
      
-     public function setPorcentajemenos($por){
-     	$porcen = $por / 100;
-     	 
-     	$this->cam15 = number_format($this->cam15 - $this->cam15 * $porcen,2,".",".");
-     	$this->cam30 = number_format($this->cam30 - $this->cam30 * $porcen,2,".",".");
-     	$this->cam50 = number_format($this->cam50 - $this->cam50 * $porcen,2,".",".");
-     	$this->cam100 = number_format($this->cam100 - $this->cam100 * $porcen,2,".",".");
-     	$this->cam100mas = number_format($this->cam100mas - $this->cam100mas * $porcen,2,".",".");
-     	$this->asa20 = number_format($this->asa20 - $this->asa20 * $porcen,2,".",".");
-     	$this->asa30 = number_format($this->asa30 - $this->asa30 * $porcen,2,".",".");
-     	$this->asa35 = number_format($this->asa35 - $this->asa35 * $porcen,2,".",".");
-     	$this->especiales10 = number_format($this->especiales10 - $this->especiales10 * $porcen,2,".",".");
-     	$this->especiales15 = number_format($this->especiales15 - $this->especiales15 * $porcen,2,".",".");
-     	$this->espemenos150s = number_format($this->espemenos150s - $this->espemenos150s * $porcen,2,".",".");
-     	$this->espemenos150i = number_format($this->espemenos150i - $this->espemenos150i * $porcen,2,".",".");
-     	$this->bobmenos150s = number_format($this->bobmenos150s - $this->bobmenos150s * $porcen,2,".",".");
-     	$this->bobmenos150i = number_format($this->bobmenos150i - $this->bobmenos150i * $porcen,2,".",".");
-     	$this->espemas150s = number_format($this->espemas150s - $this->espemas150s * $porcen,2,".",".");
-     	$this->espemas150i = number_format($this->espemas150i - $this->espemas150i * $porcen,2,".",".");
-     	$this->bobmas150s = number_format($this->bobmas150s - $this->bobmas150s * $porcen,2,".",".");
-     	$this->bobmas150i = number_format($this->bobmas150i - $this->bobmas150i * $porcen,2,".",".");
-     	$this->espemas500s = number_format($this->espemas500s - $this->espemas500s * $porcen,2,".",".");
-     	$this->espemas500i = number_format($this->espemas500i - $this->espemas500i * $porcen,2,".",".");
-     	$this->bobmas500s = number_format($this->bobmas500s - $this->bobmas500s * $porcen,2,".",".");
-     	$this->bobmas500i = number_format($this->bobmas500i - $this->bobmas500i * $porcen,2,".",".");
-     	$this->bolleria = number_format($this->bolleria - $this->bolleria * $porcen,2,".",".");
-     	$this->ppbob = number_format($this->ppbob - $this->ppbob * $porcen,2,".",".");
-     	$this->ppbolsasin = number_format($this->ppbolsasin - $this->ppbolsasin * $porcen,2,".",".");
-     	$this->ppbolsapeque = number_format($this->ppbolsapeque - $this->ppbolsapeque * $porcen,2,".",".");
-     	$this->ppbolsagrande = number_format($this->ppbolsagrande - $this->ppbolsagrande * $porcen,2,".",".");
-     	$this->ppmbobi = number_format($this->ppmbobi - $this->ppmbobi * $porcen,2,".",".");
-     	$this->ppmbob = number_format($this->ppmbob - $this->ppmbob * $porcen,2,".",".");
-     	$this->ppmim = number_format($this->ppmim - $this->ppmim * $porcen,2,".",".");
-     	$this->ppmsin = number_format($this->ppmsin - $this->ppmsin * $porcen,2,".",".");
-     	$this->laminaim = number_format($this->laminaim - $this->laminaim * $porcen,2,".",".");
-     	$this->laminasin = number_format($this->laminasin - $this->laminasin * $porcen,2,".",".");
-     	
-     	foreach($this->precioLineas as $key){
-     		$precio = $key->getPrecio();
-     		$key->setPrecio(number_format($precio - $precio * $porcen,2,".","."));
-     	}
-     }
+    public function setPorcentajemenos($por){
+    	$porcen = $por / 100;
+    	$this->cam15 = number_format($this->cam15 - $this->cam15 * $porcen,2,".",".");
+    	$this->cam30 = number_format($this->cam30 - $this->cam30 * $porcen,2,".",".");
+    	$this->cam50 = number_format($this->cam50 - $this->cam50 * $porcen,2,".",".");
+    	$this->cam100 = number_format($this->cam100 - $this->cam100 * $porcen,2,".",".");
+    	$this->cam100mas = number_format($this->cam100mas - $this->cam100mas * $porcen,2,".",".");
+    	$this->asa20 = number_format($this->asa20 - $this->asa20 * $porcen,2,".",".");
+    	$this->asa30 = number_format($this->asa30 - $this->asa30 * $porcen,2,".",".");
+    	$this->asa35 = number_format($this->asa35 - $this->asa35 * $porcen,2,".",".");
+    	$this->especiales10 = number_format($this->especiales10 - $this->especiales10 * $porcen,2,".",".");
+    	$this->especiales15 = number_format($this->especiales15 - $this->especiales15 * $porcen,2,".",".");
+    	$this->espemenos150s = number_format($this->espemenos150s - $this->espemenos150s * $porcen,2,".",".");
+    	$this->espemenos150i = number_format($this->espemenos150i - $this->espemenos150i * $porcen,2,".",".");
+    	$this->bobmenos150s = number_format($this->bobmenos150s - $this->bobmenos150s * $porcen,2,".",".");
+    	$this->bobmenos150i = number_format($this->bobmenos150i - $this->bobmenos150i * $porcen,2,".",".");
+    	$this->espemas150s = number_format($this->espemas150s - $this->espemas150s * $porcen,2,".",".");
+    	$this->espemas150i = number_format($this->espemas150i - $this->espemas150i * $porcen,2,".",".");
+    	$this->bobmas150s = number_format($this->bobmas150s - $this->bobmas150s * $porcen,2,".",".");
+    	$this->bobmas150i = number_format($this->bobmas150i - $this->bobmas150i * $porcen,2,".",".");
+    	$this->espemas500s = number_format($this->espemas500s - $this->espemas500s * $porcen,2,".",".");
+    	$this->espemas500i = number_format($this->espemas500i - $this->espemas500i * $porcen,2,".",".");
+    	$this->bobmas500s = number_format($this->bobmas500s - $this->bobmas500s * $porcen,2,".",".");
+    	$this->bobmas500i = number_format($this->bobmas500i - $this->bobmas500i * $porcen,2,".",".");
+    	$this->bolleria = number_format($this->bolleria - $this->bolleria * $porcen,2,".",".");
+    	$this->ppbob = number_format($this->ppbob - $this->ppbob * $porcen,2,".",".");
+    	$this->ppbolsasin = number_format($this->ppbolsasin - $this->ppbolsasin * $porcen,2,".",".");
+    	$this->ppbolsapeque = number_format($this->ppbolsapeque - $this->ppbolsapeque * $porcen,2,".",".");
+    	$this->ppbolsagrande = number_format($this->ppbolsagrande - $this->ppbolsagrande * $porcen,2,".",".");
+    	$this->ppmbobi = number_format($this->ppmbobi - $this->ppmbobi * $porcen,2,".",".");
+    	$this->ppmbob = number_format($this->ppmbob - $this->ppmbob * $porcen,2,".",".");
+    	$this->ppmim = number_format($this->ppmim - $this->ppmim * $porcen,2,".",".");
+    	$this->ppmsin = number_format($this->ppmsin - $this->ppmsin * $porcen,2,".",".");
+    	$this->laminaim = number_format($this->laminaim - $this->laminaim * $porcen,2,".",".");
+    	$this->laminasin = number_format($this->laminasin - $this->laminasin * $porcen,2,".",".");
+    
+    	foreach($this->precioLineas as $key){
+    		$precio = $key->getPrecio();
+    		$key->setPrecio(number_format($precio - $precio * $porcen,2,".","."));
+    	}
+    }
 }

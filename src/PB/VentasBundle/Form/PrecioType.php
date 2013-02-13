@@ -62,6 +62,17 @@ class PrecioType extends AbstractType
             ->add('ppmim', 'text', array('required' => false))
             ->add('laminaim', 'text', array('required' => false))
             ->add('laminasin', 'text', array('required' => false))
+            ->add('incremento', 'choice', array(
+            		'choices' => array( '1' => 'Incrementar', '2' => 'Decrementar' ),
+            		'required'    => false, 'expanded' => true,
+            		'empty_data'  => null,'mapped' => false))
+            ->add('porcentaje', 'choice', array(
+            		'choices' => array( '0' => '0', '1' => '1','2' => '2','3' => '3','4' => '4','5' => '5','6' => '6','7' => '7','8' => '8','9' => '9', '10' => '10'),
+            		'required'    => false, 'expanded' => false,'mapped' => false,
+            		'empty_data'  => null))
+            ->add('ficha', 'checkbox', array(
+            		'label'     => 'Show this entry publicly?',
+            		'required'  => false,'mapped' => false))
         ;
     }
 

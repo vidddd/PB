@@ -1,0 +1,30 @@
+PB\ProduccionBundle\Entity\Maquina:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    codigo:
+      type: string
+      length: '55'
+    nombre:
+      type: string
+      length: 255
+    tipo:
+      type: smallint
+    capacidad_ciclo:
+      type: integer
+      nullable: true
+    tiempo_ciclo:
+      type: integer
+      nullable: true
+    tiempo_antes:
+      type: time
+      nullable: true
+    tiempo_despues:
+      type: time
+      nullable: true
+    lifecycleCallbacks: {  }

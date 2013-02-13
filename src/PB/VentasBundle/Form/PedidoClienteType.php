@@ -19,7 +19,7 @@ class PedidoClienteType extends AbstractType
     		$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
     	} catch (ParseException $e) { printf("Unable to parse the YAML string: %s", $e->getMessage()); }
     	$tipos = $value['tipo_material'];
-    	$estados = $value['estados_pedidos']; $cliches = $value['cliches']; $tubos = $value['tipo_tubo'];
+    	$estados = $value['estados_pedidos']; $cliches = $value['cliches']; $tubos = $value['tipo_tubo']; $bolsas = $value['soldadura']; $asas = $value['asas'];
     	
         $builder
             ->add('cliente', 'cliente_text', array('error_bubbling' => true))
@@ -31,24 +31,29 @@ class PedidoClienteType extends AbstractType
             ->add('subcliente')
             ->add('estado', 'choice', array( 'choices' => $estados,'error_bubbling' => true))
             ->add('cantidad')
-            ->add('ancho')
+            ->add('cantidaduni', 'choice', array(
+            		'choices'   => array('1'   => 'Bolsas','2' => 'Kg', '3' => 'Metros',
+            		), 'multiple'  => false, 'expanded' => true, 'required' => false))
+            ->add('ancho', 'text', array('required' => true))
             ->add('largo')
-            ->add('galga')
+            ->add('galga', 'text', array('required' => true))
             ->add('plegado')
+            ->add('solapa')
             ->add('precio')
             ->add('preciocliche')
-            ->add('material')
+            ->add('material', 'choice', array( 'choices' => $tipos,'error_bubbling' => true, 'required' => true))
             ->add('color')
-            ->add('tipotubo')
-            ->add('tipobolsa')
+            ->add('tipotubo', 'choice', array( 'choices' => $tubos,'error_bubbling' => true,'empty_value' => '', 'required' => false))
+            ->add('tipobolsa', 'choice', array( 'choices' => $bolsas,'error_bubbling' => true,'empty_value' => '', 'required' => false))
+            ->add('asa', 'choice', array( 'choices' => $asas,'error_bubbling' => true,'empty_value' => '', 'required' => false))
             ->add('bobinasnumero')
             ->add('bobinasmetros')
             ->add('bobinaskg')
-            ->add('impresion1')
-            ->add('impresion2')
-            ->add('color1')
-            ->add('color2')
-            ->add('cliche')
+            ->add('impresion1', 'text', array('required' => false))
+            ->add('impresion2', 'text', array('required' => false))
+            ->add('color1', 'text', array('required' => false))
+            ->add('color2', 'text', array('required' => false))
+            ->add('cliche', 'choice', array( 'choices' => $cliches,'error_bubbling' => true,'empty_value' => '', 'required' => false))
             ->add('observaciones')
         ;
     }

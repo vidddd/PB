@@ -1,0 +1,79 @@
+	<div class="toppedido">	
+	    <table class="tabla1">
+	   		<tr>
+	   			<td class="label3"><span>CLIENTE</span></td>
+	   			<td class="dato" colspan="4" style="width:70%;"><span>{{ entity.cliente }}</span>
+	   			<td class="label3 clientep"><span>COMERCIAL</span></td>
+	   			<td class="dato"><span>{{ entity.cliente.comercialcliente}}</span>
+	   		</tr>
+	   	</table>
+	   	<table class="tabla2">
+	   		<tr>
+	   			<td class="label3"><span>SUBCLIENTE</span></td>
+	   			<td class="dato" style="width:50%;"><span>{{ entity.subcliente }}</span></td>
+	   			<td class="label3"><span>PEDIDO</span></td>
+	   			<td class="dato"><span>{{ entity.id }}</span>
+	   			<td class="label3 clientep"><span>FECHA</span></td>
+	   			<td class="dato"><span>{{ entity.fecha|date('d.m.Y') }}</span>
+	   		</tr>
+	   	  </table>
+	   </div>
+
+		<div id="datos-pedido">
+		<table cellspacing="0" cellpadding="0" class="tabla5">
+           	  <tbody><tr>
+                   	  <th>Cantidad</th><th>Ancho</th><th>Largo</th><th>Galga</th><th>Plegado</th><th>Solapa</th>
+                  </tr>
+               	  <tr>
+               	  	  <td>{{ entity.cantidad }} {{ entity.cantidaduniText }}</td>
+               	  	  <td>{{ entity.ancho }}</td>
+               	  	  <td>{{ entity.largo }}</td>
+               	  	  <td>{{ entity.galga }}</td>
+               	  	  <td>{{ entity.plegado }}</td>
+               	  	  <td>{{ entity.solapa }}</td>
+               	  </tr>         
+           </tbody>
+         </table>
+         <table cellspacing="0" cellpadding="0" class="tabla5">
+           	  <tbody><tr>
+                   	  <th rowspan="2">Material</th><th rowspan="2">Color</th><th rowspan="2">Tubo</th><th rowspan="2">Bolsa</th><th rowspan="2">Asa</th><th colspan="3">Bobinas</th>
+                  </tr>
+               	  <tr>
+               	  	  <th>Nº Bobinas</th><th>Metros Bobina</th><th>Kg. Bobina</th>
+               	  </tr>
+               	  <tr>
+               	  	  <td>{{ entity.materialText }}</td>
+               	  	  <td>{{ entity.color }}</td>
+               	  	  <td>{{ entity.tipotuboText }}</td>
+               	  	  <td>{{ entity.tipobolsaText }}</td>
+               	  	  <td>{{ entity.asaText }}</td>
+               	  	  <td>{{ entity.bobinasnumero }}</td>
+               	  	  <td>{{ entity.bobinasmetros }}</td>
+               	  	  <td>{{ entity.bobinaskg }}</td>
+               	  </tr>         
+           </tbody>
+         <table cellspacing="0" cellpadding="0" class="tabla5">
+           	  <tbody>
+           	      <tr>
+           	      	<th colspan="2">Impresión</th><th colspan="2">Colores</th><th rowspan="2">Cliche</th>
+           	      </tr>
+           	      <tr>
+                   	  <th>Anverso</th><th>Reverso</th><th>Anverso</th><th>Reverso</th>
+                  </tr>
+               	  <tr>
+               	  	  <td>{{ entity.impresion1 }}</td>
+               	  	  <td>{{ entity.impresion2 }}</td>
+               	  	  <td>{{ entity.color1 }}</td>
+               	  	  <td>{{ entity.color2 }}</td>
+               	  	  <td>{{ entity.clicheText }}</td>
+               	  </tr>         
+           </tbody>
+         </table>
+         <table cellspacing="0" cellpadding="0" class="tabla5">
+           	  <tbody>
+           	      <tr>
+           	      	<th style="width:40px;">Observaciones</th><td><p>{{ entity.observaciones|nl2br }}<p></td>
+           	      </tr>   
+           </tbody>
+         </table>	
+	  </div><!-- datos-pedido -->

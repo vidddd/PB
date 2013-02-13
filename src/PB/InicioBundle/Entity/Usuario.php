@@ -4,12 +4,10 @@ namespace PB\InicioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * PB\InicioBundle\Entity\Usuario
  */
-class Usuario implements UserInterface
+class Usuario
 {
     /**
      * @var integer $id
@@ -41,7 +39,24 @@ class Usuario implements UserInterface
      */
     private $telefono;
 
+    /**
+     * @var string $salt
+     */
+    private $salt;
 
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $roles;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -166,11 +181,6 @@ class Usuario implements UserInterface
     {
         return $this->telefono;
     }
-    /**
-     * @var string $salt
-     */
-    private $salt;
-
 
     /**
      * Set salt
@@ -194,41 +204,37 @@ class Usuario implements UserInterface
     {
         return $this->salt;
     }
-    
-    public function __construct()
-    {
 
-    	//$this->salt = md5(uniqid(null, true));
-    }
-    
     /**
-     * @inheritDoc
+     * Add roles
+     *
+     * @param PB\InicioBundle\Entity\Rol $roles
+     * @return Usuario
      */
-    public function getUsername()
+    public function addRole(\PB\InicioBundle\Entity\Rol $roles)
     {
-    	return $this->usuario;
-    }
+        $this->roles[] = $roles;
     
+        return $this;
+    }
+
     /**
-     * @inheritDoc
+     * Remove roles
+     *
+     * @param PB\InicioBundle\Entity\Rol $roles
+     */
+    public function removeRole(\PB\InicioBundle\Entity\Rol $roles)
+    {
+        $this->roles->removeElement($roles);
+    }
+
+    /**
+     * Get roles
+     *
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getRoles()
     {
-    	return array('ROLE_USER');
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function eraseCredentials()
-    {
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function equals(UserInterface $user)
-    {
-    	return $this->username === $user->getUsername();
+        return $this->roles;
     }
 }

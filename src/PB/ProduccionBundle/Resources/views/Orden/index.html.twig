@@ -16,9 +16,9 @@
 	<div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
 	    <div class="portlet-content">
             <form class="well" action="{{ path('orden') }}" method="post" {{ form_enctype(filterForm) }}>
-<table id="form-alta">
-	   				<tbody>		
-	         			<tr>
+			<table id="form-alta">
+	   				<tbody> 
+	   				   <tr>
 	        				<td class="label">{{ form_label(filterForm.id, 'Código Orden Fabricacion') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
 	      				<tr>
@@ -39,7 +39,7 @@
 	        				<td class="campo">{{ form_widget(filterForm.estado, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.estado) }}</td>
 	      				<tr>
 	            	</tbody>
-	            </table>
+	          </table>
                 <p class="botones-buscador">
                     <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
                     <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>   

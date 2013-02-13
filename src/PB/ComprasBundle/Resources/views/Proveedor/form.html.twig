@@ -12,7 +12,7 @@
 		    <li class="ui-state-default ui-corner-top"><a href="#tabs-2">Datos de contacto</a></li>
 			<li class="ui-state-default ui-corner-top"><a href="#tabs-3">Contabilidad</a></li>
 			<li class="ui-state-default ui-corner-top"><a href="#tabs-4">Observaciones</a></li>
-			<li class="ui-state-default ui-corner-top"><a href="#tabs-5">Evaluación Inicial</a></li>
+			<li class="ui-state-default ui-corner-top"><a href="#tabs-5">Evaluación</a></li>
 		</ul>
     <div id="tabs-1">
     <table>
@@ -141,8 +141,10 @@
 		</table>
 	</div>
 	<div id="tabs-5">
+		<h4>EVALUACIÓN INICIAL</h4>
 		<table>
 			<tbody>
+				
 			   <tr> <td class="label">{{ form_label(form.fecha_evaluacion) }}</td>
 		           <td class="campo">{{ form_widget(form.fecha_evaluacion, { 'attr': {'class': 'date small'}}) }}</td><td> {{ form_errors(form.fecha_evaluacion) }} </td>
 		       </tr>
@@ -150,6 +152,23 @@
 		           <td class="campo">{{ form_widget(form.tipo_evaluacion, { 'attr': {'class': ''}}) }}</td><td> {{ form_errors(form.fecha_evaluacion) }} </td>
 		       </tr>
 			</tbody>
+		</table>
+		<h4>EVALUACIÓN CONTÍNUA</h4>
+		<table>
+			<tbody>
+
+		       <tr> <td class="label" style="width:230px;">{{ form_label(form.aprovado) }}</td>
+		           <td class="campo">{{ form_widget(form.aprovado, { 'attr': {'class': ''}}) }}</td><td> {{ form_errors(form.aprovado) }} </td>
+		       </tr>
+				
+			   <tr> <td class="label">{{ form_label(form.fecha_evaluacion2, 'Fecha última evaluación') }}</td>
+		           <td class="campo">{{ form_widget(form.fecha_evaluacion2, { 'attr': {'class': 'date small'}}) }}</td><td> {{ form_errors(form.fecha_evaluacion2) }} </td>
+		       </tr>
+		     <!--  <tr>
+		       		<td class="label"><label>Pedidos de Compra con incidencias</label></td>
+		       		<td class="campo"></td>
+		       </tr> -->
+		       </tbody>
 		</table>
 	</div></div>
 	<div class="guardar">

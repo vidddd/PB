@@ -59,6 +59,12 @@ class ProveedorType extends AbstractType
             		'error_bubbling' => true,
             		'required' => false
             ))
+            ->add('fecha_evaluacion2', 'date', array(
+            		'widget' => 'single_text',
+            		'error_bubbling' => true,
+            		'required' => false
+            ))
+            ->add('aprovado')
             ->add('tipo_evaluacion', 'choice', array( 'choices' => $tipose))
         ;
     }

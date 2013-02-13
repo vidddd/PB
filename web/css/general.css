@@ -1256,9 +1256,9 @@ border-radius: 3px;
     border-collapse:collapse;
 }
 .vista3 table th {
-    background-color: #E6E6E6;
+    background-color: #EFEFEF;
     border: 1px solid #CCCCCC;
-    color: #616161;
+    color: #666;
     font-size: 12px; font-weight: bold;
     line-height: 18px;
     padding: 4px 5px;
@@ -1274,11 +1274,11 @@ border-radius: 3px;
 	width: 450px; float:left;
 	clear:both;
 }
-#form_incremento { height: 20px; }
+#precio_incremento { height: 20px; display:inline; }
 .incrementar-precios select { height: 20px;}
-.incrementar-precios #form_incremento label{ float: left; width: 100px; clear: none !important; font-size: 13px; }
-.incrementar-precios #form_incremento input { float:left; width: 25px;}
-#form_porcentaje { width: 90px;}
+.incrementar-precios #precio_incremento label{ float: left; width: 100px; clear: none !important; font-size: 13px; }
+.incrementar-precios #precio_incremento input { float:left; width: 25px;}
+#precio_porcentaje { width: 90px;}
 .incrementar-precios .portlet-content table { width: 850px !important;}
 .incrementar-precios #form_ficha {float:left; margin: 5px 20px 0 0;}
 .incrementar-precios .botones-buscador{ margin-right: 80px;}
