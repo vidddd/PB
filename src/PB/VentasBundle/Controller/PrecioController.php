@@ -98,6 +98,7 @@ class PrecioController extends Controller
 
     public function newAction()
     {
+    	$entity = new Precio();
          $tarifa = false;
         $form   = $this->createForm(new PrecioType(), $entity);
         return $this->render('PBVentasBundle:Precio:new.html.twig', array( 'entity' => $entity, 'tarifa'=> $tarifa, 'form'   => $form->createView(),));
@@ -533,32 +534,26 @@ class PrecioController extends Controller
     	$form   = $this->createForm(new PrecioType(), $entity);
     	$request = $this->getRequest();
 
-    	return $this->render('PBVentasBundle:Precio:incrementar.html.twig', array('precio' => $entity,'tarifa' => false, 'form'   => $form->createView()));
+    	return $this->render('PBVentasBundle:Precio:incrementar.html.twig', array('precio' => $entity,'tarifa' => false, 'id' => $id, 'form'   => $form->createView()));
     }
     
     public function incrementarguardarAction($id){
     	$em = $this->getDoctrine()->getManager(); $tarifa = false;
     	$entity = $em->getRepository('PBVentasBundle:Precio')->find($id);
-    	if (!$entity) {
-    		throw $this->createNotFoundException('No se ha encontrado la Tarifa.');
-    	}
+    	if (!$entity) { throw $this->createNotFoundException('No se ha encontrado la Tarifa.'); }
     	
     	$form   = $this->createForm(new PrecioType(), $entity);
     	$request = $this->getRequest();
     	$form->bind($request);
-    	
-    	//$form->setData($modelData)
-    	
+
     	if ($form->isValid() && $request->get('incrementar_action') == 'incrementar') {
     		$incremento = $form['incremento']->getData();
     		$porcentaje = $form['porcentaje']->getData();
     		$ficha = $form['ficha']->getData();
 			if($ficha) { // Se crea una tarifa nueva copiando los datos 
 				$B = clone $entity;
-				$B = new Precio();
-				
-				$B->fromArray($entity->toArray(false));
-				//$B->setId(null);
+				//$B = new Precio();
+				$B->setId(null);
 				switch ($incremento) {
 					case 1:
 						$B->setPorcentaje($porcentaje);
@@ -567,12 +562,11 @@ class PrecioController extends Controller
 						$B->setPorcentajemenos($porcentaje);
 						break;
 				}
-				$em->persist($B);
 				
-				$preciot = new PrecioType();
+				$em->persist($B);
+				$entity = $B;
 				$form   = $this->createForm(new PrecioType(), $B);
 			} else {
-				
 	    		switch ($incremento) {
 	    			case 1:
 	    				$entity->setPorcentaje($porcentaje);
@@ -582,21 +576,36 @@ class PrecioController extends Controller
 	    				break;
 	    		}
 	    		$em->persist($entity);
-	    		
-	    		$preciot = new PrecioType();
 	    		$form   = $this->createForm(new PrecioType(), $entity);
 			}
 
     	}
     	if ($request->getMethod() == 'POST' && $request->get('guardar_action') == 'guardar') {
+    		foreach ($entity->getPreciolineas() as $linea){
+    			//echo $linea->getPrecio(); die;
+    			//$linea->setPrecios($entity);
+    			$entity->addPrecioLinea($linea);
+    		}
+    		 
+    		if($form['id']->getData() == ''){
+				$B = clone $entity;
+				foreach ($entity->getPreciolineas() as $linea){
+					$B->addPrecioLinea($linea);
+				}
+				$B->setId(null);
+				$em->persist($B);
+				$em->flush($B);
+				$id = $B->getId(); 
 
-    		$em->flush();
-    		$this->get('session')->getFlashBag()->add('success', 'Tarifa de Precios Actualizada');
-    		
+				$this->get('session')->getFlashBag()->add('success', 'Creando nueva Tarifa de precios....');
+			} else {
+				$em->persist($entity);
+    			$em->flush($entity);
+			}
+    		$this->get('session')->getFlashBag()->add('success', 'Tarifa de Precios Actualizada');	
     		return $this->redirect($this->generateUrl('precio_show', array('id' => $id)));
     	}
-    	 
-    	return $this->render('PBVentasBundle:Precio:incrementar.html.twig', array('precio' => $entity,'tarifa' => $tarifa, 'form'   => $form->createView()));
+    	return $this->render('PBVentasBundle:Precio:incrementar.html.twig', array('precio' => $entity,'id' => $id, 'tarifa' => $tarifa, 'form'   => $form->createView()));
     	
     }
       /*

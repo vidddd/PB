@@ -211,7 +211,11 @@ class Precio
     {
         return $this->id;
     }
-
+    public function setId($id)
+    {
+    	$this->id = $id;
+    	return $this;
+    }
     /**
      * Set fecha
      *
@@ -1134,6 +1138,7 @@ class Precio
     	foreach($this->precioLineas as $key){
     		$precio = $key->getPrecio();
     		$key->setPrecio(number_format($precio - $precio * $porcen,2,".","."));
+    		echo $key->getPrecio();
     	}
     }
 }

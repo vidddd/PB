@@ -96,13 +96,13 @@ class OrdenFilterType extends AbstractType
                 }
             }
 
-            $event->getForm()->addError(new FormError('Filter empty'));
+            $event->getForm()->addError(new FormError('Filtros Vacios'));
         };
         $builder->addEventListener(FormEvents::POST_BIND, $listener);
     }
 
     public function getName()
     {
-        return 'pb_produccionbundle_ordenfiltertype';
+        return 'ordenfilter';
     }
 }

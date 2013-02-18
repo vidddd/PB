@@ -7,7 +7,7 @@
 </script>
 <div class="title title-spacing ventas"><h2>Incrementar Precio</h2></div>
 <div class="incrementar-precios">
-<form action="{{ path('precio_incrementar_guardar', { 'id': precio.id } ) }}" method="post" {{ form_enctype(form) }} id="form-incrementar">
+<form action="{{ path('precio_incrementar_guardar', { 'id': id } ) }}" method="post" {{ form_enctype(form) }} id="form-incrementar">
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container"><div class="portlet-header ui-widget-header">Formulario incremento precios</div>
 		<div class="portlet-content form-alta">
 		<table style="">
@@ -35,7 +35,7 @@
 </div><br />
 	{% include 'PBVentasBundle:Precio:vista.html.twig' with { 'entity' : precio } %}
 	<br />
-	<div style="display:block">
+	<div style="display:">
 	
 {{ form_errors(form) }} 
 

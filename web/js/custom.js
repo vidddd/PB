@@ -224,15 +224,29 @@ $(document).ready(function() {
 			//window.location.reload();
 		                 }
 	});
-	$('#collapse1').click(function() {
-		$('#collapseOne').toggle('fast', function() {
-		});
-		//$('#collapseOne').slideToggle();
+	$("#collapse1").click(function(event) {
+		event.preventDefault();
+		$("#collapseOne").slideToggle();
+		$('#orden_extrusion').attr('checked', 'checked');
 	});
-	$('#collapse2').click(function() {
-		/*$('#collapseOne').toggle('fast', function() {
-		});*/
-		$('#collapseTwo').slideToggle();
+	$("#collapse2").click(function(event) {
+		event.preventDefault();
+		$("#collapseTwo").slideToggle();
+		$('#orden_impresion').attr('checked', 'checked');
+	});
+	$("#collapse3").click(function(event) {
+		event.preventDefault();
+		$("#collapseThree").slideToggle();
+		$('#orden_corte').attr('checked', 'checked');
+	});
+	$('#orden_extrusion').click(function () {
+		$("#collapseOne").slideToggle();
+	});
+	$('#orden_impresion').click(function () {
+		$("#collapseTwo").slideToggle();
+	});
+	$('#orden_corte').click(function () {
+		$("#collapseThree").slideToggle();
 	});
 });
 

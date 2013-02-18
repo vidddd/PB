@@ -1513,9 +1513,42 @@ class Orden
     
     public function getEstadoText(){
     	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml'));
+    	} catch (ParseException $e) { printf("Unable to parse the YAML string: %s", $e->getMessage()); }
+    	if($this->estado != null) return $value['estados_orden'][$this->estado];
+    }
+    public function getCantidaduniText(){
+    	$ar = array('1'   => 'Bolsas','2' => 'Kg', '3' => 'Metros');
+    	if($this->cantidaduni != null) return $ar[$this->cantidaduni];
+    }
+    public function getEspesoruniText(){
+    	$ar = array('1'   => 'Galgas','2' => 'Micras');
+    	if($this->espesoruni != null) return $ar[$this->espesoruni];
+    }
+    public function getTipotuboText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml'));
+    	} catch (ParseException $e) { printf("Unable to parse the YAML string: %s", $e->getMessage()); }
+    	if($this->tipotubo != null) return $value['tipo_tubo'][$this->tipotubo];
+    }
+    public function getTipomaterialText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {		printf("Unable to parse the YAML string: %s", $e->getMessage());}
+    	if($this->tipomaterial != null) return $value['tipo_material'][$this->tipomaterial];
+    }
+    public function getProductoText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {	printf("Unable to parse the YAML string: %s", $e->getMessage()); }
+    	if($this->producto != null) return $value['producto'][$this->producto];
+    }
+    public function getTratadoText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml'));
+    	} catch (ParseException $e) { printf("Unable to parse the YAML string: %s", $e->getMessage()); }
+    	if($this->tratado != null) return $value['tratado'][$this->tratado];
+    }
+    public function getClicheText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml'));
     	} catch (ParseException $e) {
     		printf("Unable to parse the YAML string: %s", $e->getMessage());
     	}
-    	if($this->estado != null) return $value['estados_orden'][$this->estado];
+    	if($this->cliche != null) return $value['cliches'][$this->cliche];
     }
 }

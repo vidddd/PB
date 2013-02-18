@@ -1,7 +1,7 @@
 <div class="vista3 orden">
-<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">
+	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">
 		<form action="{{ entity.id  ? path('orden_update', { 'id': entity.id }) : path('orden_create') }}" method="post" {{ form_enctype(form) }}>
-			<div class="form-invoice">
+		<div class="form-invoice">
 				<div class="span-16 form-horizontal label-column-small form-condensed">
 					<div class="control-group">
 						{{ form_label(form.cliente, null, { 'label': ' Cliente', 'label_attr': {'class': 'control-label'} }) }}
@@ -34,12 +34,12 @@
 						<div class="controls">{{ form_widget(form.subcliente, { 'attr': {'class': ''}}) }}</div>
 	     			</div>	
      			</div>	
- 			</div>
-		</div>
+ 		</div>
+	</div>
 		
 	<div class="span-25">
 		<table cellspacing="0" cellpadding="0" class="tabla4">
-           	  <tbody><tr>
+        	<tbody><tr>
                    	  <th width="20%">{{ form_label(form.cantidad, 'Cantidad') }}</th>
                       <td width="80%"><div class="span-7">{{ form_widget(form.cantidad, { 'attr': {'class': 'small numeric'}}) }}</div><div class=""> {{ form_widget(form.cantidaduni, { 'attr': {'class': ''}}) }}</div></td>
                   </tr>
@@ -62,12 +62,13 @@
            </tbody>
          </table>
     </div><div class="clearfix"></div> <br />
+    <!-- EXTRUSION -->
     <div class="widget-box collapsible">
-        <div class="widget-title" id="collapse1" style="cursor:pointer">
-    		<span class="icon"><i class="icon-circle-arrow-right"></i></span>
-            	<h5>EXTRUSION</h5>{{ form_widget(form.extrusion) }}
+        <div class="widget-title" style="cursor:pointer">
+    		<span id="collapse1"><span class="icon"><i class="icon-circle-arrow-right"></i></span>
+            	<h5>EXTRUSION</h5></span>{{ form_widget(form.extrusion) }}
         </div>
-        <div id="collapseOne" class="in collapse">
+        <div id="collapseOne" style="display:none;" class="in collapse">
         	<div class="widget-content">
 				<div class="span-24">
 						<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
@@ -132,17 +133,14 @@
 						        <td></td>
 						      </tr>
 						</table>
-					 </div>
-					<div class="clearfix"></div><br />
+					 </div>	<div class="clearfix"></div><br />
             </div>
         </div>
-        <div class="widget-title">
-             <a href="#collapse2" class="in collapse" id="collapse2">
-    		<span class="icon"><i class="icon-circle-arrow-right"></i></span>
-              <h5>IMPRESION</h5>
-                                </a>{{ form_widget(form.impresion) }}
-                            </div>
-        <div id="collapseTwo" class="in collapse">
+        <div class="widget-title" style="cursor:pointer;">
+            <span  id="collapse2"><span class="icon"><i class="icon-circle-arrow-right"></i></span>
+              <h5>IMPRESION</h5></span>{{ form_widget(form.impresion) }}
+        </div>
+        <div id="collapseTwo" class="in collapse" style="display:none;">
             <div class="widget-content">
 					<div class="span-24">
 							<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
@@ -211,19 +209,16 @@
 							        <td></td>
 							      </tr>
 							</table>
-						 </div>
-						 <div class="clearfix"></div><br />
+					 </div><div class="clearfix"></div><br />
    			   </div>
-         </div>
-         <div class="widget-title">
-              <a href="#collapseThree">
-    				<span class="icon"><i class="icon-circle-arrow-right"></i></span>
-                                    <h5>CORTE</h5>
-                                </a>{{ form_widget(form.corte) }}
-          </div>
-          <div id="collapseThree" class="in collapse">
-             <div class="widget-content">
-			      <div class="span-24">
+         </div>     <!-- collapseTwo -->     
+         <div class="widget-title" style="cursor:pointer;">
+            <span id="collapse3"><span class="icon"><i class="icon-circle-arrow-right"></i></span>
+              <h5>CORTE</h5></span>{{ form_widget(form.corte) }}
+        </div>
+         <div id="collapseThree" class="in collapse" style="display:none;">
+            <div class="widget-content">
+ 				<div class="span-24">
 					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 						 <tr>
 							<th style="width:120px;"><b>Cantidad</b></th>
@@ -282,12 +277,11 @@
 					        <td></td>
 					      </tr>
 					</table>
-				 </div>
-          </div>
-           </div>
-		</div>
-    
+				 </div><div class="clearfix"></div><br />
+   			   </div>
+         </div>  <!-- collapseThree -->       
 	</div>
+</div>
 		<div class="clearfix"></div> <BR />
 	<div class="guardar"><button type="submit" class="ui-state-default ui-corner-all">Guardar</button></div> 
 		{{ form_widget(form._token) }}</form>

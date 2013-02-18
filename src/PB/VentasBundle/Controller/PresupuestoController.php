@@ -387,7 +387,7 @@ class PresupuestoController extends Controller
     	
     	$request = $this->getRequest();
     	$url = $this->container->getParameter('url');
-    	$limit = 28;
+    	$limit = 25;
     	$lineas = $entity->getPresupuestolineas(); $numl = count($lineas);
     	if ( $limit > $numl ) $lin = $limit-$numl; else $lin = $limit;
     	$html = $this->renderView('PBVentasBundle:Presupuesto:print.html.twig', array('entity' => $entity, 'url'  => $url, 'limit' => $lin));

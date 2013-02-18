@@ -56,7 +56,7 @@ class OrdenController extends Controller
         $session = $request->getSession();
         $filterForm = $this->createForm(new OrdenFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBProduccionBundle:Orden')->createQueryBuilder('e');
+        $queryBuilder = $em->getRepository('PBProduccionBundle:Orden')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
     
         // Reset filter
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
@@ -229,7 +229,7 @@ class OrdenController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
-            return $this->redirect($this->generateUrl('orden_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('orden_show', array('id' => $id)));
         } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }

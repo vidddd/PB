@@ -18,7 +18,7 @@ ________________________
 http://themeforest.net/item/slate-admin/full_screen_preview/133854
 http://themeforest.net/item/adminique-admin-template/full_screen_preview/155706
 http://themeforest.net/item/mustache-admin/full_screen_preview/1614352
-http://preview.walkingpixels.com/wuxia
+http://themeforest.net/item/maruti-admin/full_screen_preview/3957580
 
 FILTERS
 ___________________________
@@ -46,3 +46,65 @@ Boolean:
     
 UPDATE Albaran SET recargo = '1' WHERE recargo2 = true
 UPDATE `proveedores` SET `aprovado` = '1' WHERE `proveedores`.`id` =306;
+
+
+  <div class="span-24">
+					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
+						 <tr>
+							<th style="width:120px;"><b>Cantidad</b></th>
+							<td>{{ form_widget(form.cantidadc, { 'attr': {'class': 'small'}}) }}</td>
+						  </tr>
+						  <tr>
+					        <th><b>Ancho</b></th>
+					        <td>{{ form_widget(form.anchoc, { 'attr': {'class': 'small numeric'}}) }}</td>
+					      </tr>
+						<tr>
+					        <th><b>Largo</b></th>
+					        <td>{{ form_widget(form.largoc, { 'attr': {'class': 'small numeric'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Solapa</b></th>
+					        <td>{{ form_widget(form.solapa, { 'attr': {'class': 'small numeric'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Paquete</b></th>
+					        <td>{{ form_widget(form.paquete, { 'attr': {'class': 'small numeric'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Saco</b></th>
+					        <td>{{ form_widget(form.saco, { 'attr': {'class': 'small'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Palet</b></th>
+					        <td>{{ form_widget(form.palets, { 'attr': {'class': 'small'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th>Observaciones</th>
+					        <td>{{ form_widget(form.notascorte, { 'attr': {'class': 'small'}}) }}</td>
+					      </tr>
+					</table>
+				 </div>
+				 <div class="span-24">
+					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
+						 <tr>
+							<th style="width:120px;"><b>Fecha Producción</b></th>
+							<td>{{ form_widget(form.fecha_corte, { 'attr': {'class': 'small date'}}) }}</td>
+						  </tr>
+						  <tr>
+					        <th><b>Operario</b></th>
+					        <td>{{ form_widget(form.operario_corte, { 'attr': {'class': 'small'}}) }}</td>
+					      </tr>
+						<tr>
+					        <th><b>Tiempo</b></th>
+					        <td>{{ form_widget(form.tiempo_corte, { 'attr': {'class': 'small numeric'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Maquina</b></th>
+					        <td>{{ form_widget(form.maquina_corte, { 'attr': {'class': 'small'}}) }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Materia Prima</b></th>
+					        <td></td>
+					      </tr>
+					</table>
+				 </div>

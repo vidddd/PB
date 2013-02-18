@@ -100,6 +100,6 @@ class OrdenType extends AbstractType
 
     public function getName()
     {
-        return 'pb_produccionbundle_ordentype';
+        return 'orden';
     }
 }

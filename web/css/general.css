@@ -1282,4 +1282,6 @@ border-radius: 3px;
 .incrementar-precios .portlet-content table { width: 850px !important;}
 .incrementar-precios #form_ficha {float:left; margin: 5px 20px 0 0;}
 .incrementar-precios .botones-buscador{ margin-right: 80px;}
-
+.widget-title input[type="checkbox"] {
+   margin-top:10px;
+}

@@ -11,7 +11,7 @@ class PrecioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
     	$hoy = new \DateTime();
-        $builder
+        $builder->add('id', 'number', array('required' => false))
         	->add('cliente', 'cliente_text', array('error_bubbling' => true))
             ->add('fecha', 'date', array(
             		'widget' => 'single_text',
