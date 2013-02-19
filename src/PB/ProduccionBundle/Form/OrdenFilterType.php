@@ -24,7 +24,7 @@ class OrdenFilterType extends AbstractType
     	} catch (ParseException $e) {
     		printf("Unable to parse the YAML string: %s", $e->getMessage());
     	}
-    	$estados = $value['estados_pedidos'];
+    	$estados = $value['estados_ordenes'];
         $builder
             ->add('id', 'filter_number')
             ->add('cliente', 'filter_number')
@@ -40,7 +40,7 @@ class OrdenFilterType extends AbstractType
             ->add('espesoruni', 'filter_number_range')
             ->add('tipomaterial', 'filter_number_range')
             ->add('producto', 'filter_number_range')
-            ->add('extrusion', 'filter_choice')
+            ->add('extrusion', 'filter_checkbox')
             ->add('color', 'filter_text')
             ->add('ancho', 'filter_text')
             ->add('largo', 'filter_text')
@@ -56,7 +56,7 @@ class OrdenFilterType extends AbstractType
             ->add('operario_extrusion', 'filter_text')
             ->add('kgfinal', 'filter_number_range')
             ->add('tiempo_extrusion', 'filter_text')
-            ->add('impresion', 'filter_choice')
+            ->add('impresion', 'filter_checkbox')
             ->add('medidaimp', 'filter_text')
             ->add('anverso', 'filter_text')
             ->add('reverso', 'filter_text')
@@ -70,7 +70,7 @@ class OrdenFilterType extends AbstractType
             ->add('fecha_impresion', 'filter_date_range')
             ->add('operario_impresion', 'filter_text')
             ->add('tiempo_impresion', 'filter_text')
-            ->add('corte', 'filter_choice')
+            ->add('corte', 'filter_checkbox')
             ->add('solapa', 'filter_number_range')
             ->add('paquete', 'filter_text')
             ->add('saco', 'filter_text')

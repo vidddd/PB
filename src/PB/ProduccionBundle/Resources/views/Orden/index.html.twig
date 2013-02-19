@@ -19,7 +19,7 @@
 			<table id="form-alta">
 	   				<tbody> 
 	   				   <tr>
-	        				<td class="label">{{ form_label(filterForm.id, 'Código Orden Fabricacion') }}</td>
+	        				<td class="label">{{ form_label(filterForm.id, 'Código Orden') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
 	      				<tr>
 	      				<tr>
@@ -37,6 +37,12 @@
 	      				<tr>
 	        				<td class="label">{{ form_label(filterForm.estado, 'Estado') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.estado, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.estado) }}</td>
+	        			<tr>
+	       				<tr>
+	        				<td class="label"><label>Fase de Fabricación</label></td>
+	        				<td class="campo"><div class="fases-fabricacion">{{ form_label(filterForm.extrusion, 'Extrusion') }}{{ form_widget(filterForm.extrusion, { 'attr': {'class': ''}}) }}
+	        								  {{ form_label(filterForm.impresion, 'Impresión') }}{{ form_widget(filterForm.impresion, { 'attr': {'class': ''}}) }}
+	        								  {{ form_label(filterForm.corte, 'Corte') }}{{ form_widget(filterForm.corte, { 'attr': {'class': ''}}) }}</div></td><td>{{ form_errors(filterForm.estado) }}</td>
 	      				<tr>
 	            	</tbody>
 	          </table>

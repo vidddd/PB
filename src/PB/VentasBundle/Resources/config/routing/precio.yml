@@ -17,6 +17,10 @@ buscador_precio_albaran:
 calcular_precio:
     pattern:  /cacular_precio/{id}
     defaults: { _controller: "PBVentasBundle:Precio:calcularPrecio" }
+ 
+calcular_precio_pedidocliente:
+    pattern:  /cacular_precio_pedidocliente/{id}
+    defaults: { _controller: "PBVentasBundle:Precio:calcularPrecioPedidoCliente" }
 
 precio_print:
     pattern:  /{id}/print

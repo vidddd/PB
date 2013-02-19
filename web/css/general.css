@@ -1285,3 +1285,4 @@ border-radius: 3px;
 .widget-title input[type="checkbox"] {
    margin-top:10px;
 }
+.fases-fabricacion label, .fases-fabricacion input { display: inline; margin:5px;}

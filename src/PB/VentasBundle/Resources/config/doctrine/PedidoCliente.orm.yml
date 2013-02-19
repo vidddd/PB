@@ -59,13 +59,13 @@ PB\VentasBundle\Entity\PedidoCliente:
       type: smallint
       nullable: true
     bobinasnumero:
-      type: integer
+      type: float
       nullable: true
     bobinasmetros:
-      type: integer
+      type: float
       nullable: true
     bobinaskg:
-      type: integer
+      type: float
       nullable: true
     impresion1:
       type: string
@@ -95,5 +95,12 @@ PB\VentasBundle\Entity\PedidoCliente:
       inversedBy: pedidocliente
       joinColumn:
         name: cliente_id
+        referencedColumnName: id
+    orden:
+      targetEntity: PB\ProduccionBundle\Entity\Orden
+      cascade: {  }
+      inversedBy: pedidocliente
+      joinColumn:
+        name: orden_id
         referencedColumnName: id
   lifecycleCallbacks: {  }

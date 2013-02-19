@@ -183,5 +183,10 @@ PB\ProduccionBundle\Entity\Orden:
       inversedBy: orden
       joinColumn:
         name: cliente_id
-        referencedColumnName: id    
+        referencedColumnName: id
+  oneToMany:
+    pedidocliente:
+      targetEntity: PB\VentasBundle\Entity\Pedidocliente
+      cascade: {  }
+      mappedBy: orden
   lifecycleCallbacks: {  }

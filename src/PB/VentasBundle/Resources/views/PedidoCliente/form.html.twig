@@ -16,8 +16,7 @@ $(document).ready(function() {
          </script>
 <div id="pedido-form">
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">
-		<form action="{{ entity.id  ? path('pedidocliente_update', { 'id': entity.id }) : path('pedidocliente_create') }}" method="post" {{ form_enctype(form) }}>
-			<div class="form-invoice">
+		<div class="form-invoice">
 				<div class="span-16 form-horizontal label-column-small form-condensed">
 					<div class="control-group">
 						{{ form_label(form.cliente, null, { 'label': ' Cliente', 'label_attr': {'class': 'control-label'} }) }}
@@ -143,5 +142,5 @@ $(document).ready(function() {
 	<div class="clearfix"></div> <BR />
 
 	<div class="guardar"><button type="submit" class="ui-state-default ui-corner-all">Guardar</button></div> 
-		{{ form_widget(form._token) }}</form>
+
 </div>

@@ -145,10 +145,10 @@ $("#calcular").live('click',function(event){
 			<div class="portlet-content form-horizontal">
 				<table>
 					<tr>
-						<td class="primer"><label>Ancho</label></td><td><input type="text" class="small numeric" id="anchop" name="anchop" value="{{ pedido.anchoc }}" /></td>
+						<td class="primer"><label>Ancho</label></td><td><input type="text" class="small numeric" id="anchop" name="anchop" value="{{ pedido.ancho }}" /></td>
 					</tr>
 					<tr>
-						<td class="primer"><label>Largo</label></td><td><input type="text" class="small numeric" id="largop" name="largop" value="{{ pedido.largoc }}"/></td>
+						<td class="primer"><label>Largo</label></td><td><input type="text" class="small numeric" id="largop" name="largop" value="{{ pedido.largo }}"/></td>
 					</tr>
 					<tr>	
 						<td class="primer"><label>Galga</label></td><td><input type="text" class="small numeric" id="galgap" name="galgap" value="{{ pedido.galga }}" /></td>
@@ -255,11 +255,11 @@ $("#calcular").live('click',function(event){
 
 <div class="clearfix"></div>
 	<div class="botonesca">
-	<form action="{{ path('calcular_precio', { 'id': pedido.id }) }}" novalidate="novalidate" method="post" class="botonesca">
+	<form action="{{ path('calcular_precio_pedidocliente', { 'id': pedido.id }) }}" novalidate="novalidate" method="post" class="botonesca">
 		<button class="ui-state-default ui-corner-all">Guardar Precio Millar</button>
 		<input type="hidden" id="preciomillar" name="preciomillar" value="" />
 	</form>
-	<form action="{{ path('calcular_precio', { 'id': pedido.id }) }}" novalidate="novalidate" method="post" class="botonesca">
+	<form action="{{ path('calcular_precio_pedidocliente', { 'id': pedido.id }) }}" novalidate="novalidate" method="post" class="botonesca">
 		<button class="ui-state-default ui-corner-all">Guardar Precio Kg</button>
 		<input type="hidden" id="preciokg" name="preciokg" value="" />
 	</form>

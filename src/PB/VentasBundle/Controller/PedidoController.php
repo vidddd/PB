@@ -144,18 +144,7 @@ class PedidoController extends Controller
     	} catch (ParseException $e) {
     		printf("Unable to parse the YAML string: %s", $e->getMessage());
     	}
-    	
-    	/*
-    	$entity = $em->getRepository('PBVentasBundle:Pedido')->find($id);
-    	if (!$entity) {	throw $this->createNotFoundException('No se puede encontrar el pedido.');}
 
-    	$html = $this->renderView('PBVentasBundle:Pedido:print.html.twig', array('entity' => $entity));
-    	 
-    	$printer = new PrintPedido(); //HTML2PDF
-    	$response = new Response($printer->getPdf($html));
-    	$response->headers->set('Content-Type', 'application/pdf'); $response->headers->set('Content-Disposition', 'inline; filename="PedidoCompra.pdf"');
-    	return $response;*/
-    	
     	$printer = $this->container->get('ventas.print_pedido');
     	echo $fichero = $printer->printFPDF($id);
     	die;

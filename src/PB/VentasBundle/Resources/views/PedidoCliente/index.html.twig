@@ -1,7 +1,7 @@
 {% extends '::layout.html.twig' %}
 
 {% block title "Pedidos" %}
-
+{% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
 <div id="presupuesto">
 	<div class="title title-spacing ventas"><h2>Pedidos Cliente</h2></div>        
@@ -58,8 +58,9 @@
 		            <th>Ancho</th>
 		            <th>Largo</th>
 		            <th>Estado</th>
+		            <th>Orden <br />Fabricación</th>
 		            <th> Precio </th>
-		            <th width="132">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+		            <th width="164">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
 		        </tr>
 		    </thead>
 		    <tbody>
@@ -72,12 +73,20 @@
 		            <td>{{ entity.ancho }}</td>
 		            <td>{{ entity.largo }}</td>
 		            <td>{{ entity.estadoText }}</td>
-		            <td>{{ entity.precio }}</td>
+		            <td>{% if entity.orden %}
+						{% else %}
+							<a class="btn2 btn2-mini btn2-fabricar" href="{{ path('pedidocliente_fabricar', { 'id': entity.id }) }}">Fabricar</a>
+						{% endif %}</td>
+		            <td>{% if entity.precio %}		{{ entity.precio }}
+						{% else %}
+							<a href="{{ path('calcular_precio_pedidocliente', { 'id': entity.id }) }}">Calcular</a>
+						{%  endif %}</td>
 		            <td>
 		        		<a href="{{ path('pedidocliente_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
 		        		<a href="{{ path('pedidocliente_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
 		          		<a href="{{ path('pedidocliente_print', { 'id': entity.id }) }}" title="Imprimir" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-print"></span></a>
-		          	    <a href="{# path('pedidocliente_mail', { 'id': entity.id }) #}" title="Enviar por email" class="btn_no_text btn ui-state-default ui-corner-all tooltip iframe-mail"><span class="ui-icon ui-icon-mail-closed"></span></a>
+		          	    <a href="{{ path('pedidocliente_duplicar', { 'id': entity.id }) }}" title="Duplicar - Crea uno nuevo copiando los datos y con la fecha actual" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-copy"></span></a>
+		          	    <a href="{{ path('pedidocliente_mail', { 'id': entity.id }) }}" title="Enviar por email" class="btn_no_text btn ui-state-default ui-corner-all tooltip iframe-mail"><span class="ui-icon ui-icon-mail-closed"></span></a>
 		          </td>
 		        </tr>
 		    {% endfor %}

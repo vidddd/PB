@@ -378,7 +378,7 @@ table.spreadsheet th {
     border-left: 0 none;
     border-top: 1px solid #CCCCCC;
     color: #616161;
-    font-weight: bold; font-size: 11px;
+	    font-weight: bold; font-size: 11px;
     line-height: 18px;
     padding: 4px 5px;
     text-align: left;
@@ -764,7 +764,7 @@ div.totals textarea:focus{
 }
 .btn2-mini{
 	border-radiux: 3px;
-	font-size: 10.5px;
+	font-size: 11.5px;
 	padding: 1px 6px;
 }
 .btn2-facturar.active {
@@ -778,8 +778,17 @@ div.totals textarea:focus{
     color: #FFFFFF;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-.btn2-facturar:hover, .btn2-facturar:active, .btn2-facturar.active, .btn2-facturar.disabled, .btn2-facturar[disabled] {
-    background-color: #2F96B4;
+.btn2-fabricar {
+    background-color: #94559F;
+    background-image: linear-gradient(to bottom, #d179e0, #94559F);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.btn2-facturar:hover, .btn2-facturar:active, .btn2-facturar.active, .btn2-facturar.disabled, .btn2-facturar[disabled],
+.btn2-fabricar:hover, .btn2-fabricar:active, .btn2-fabricar.active, .btn2-fabricar.disabled, .btn2-fabricar[disabled] {
+	background-color: #2F96B4;
     color: #FFFFFF;
 }
 .facturarform .form-container {

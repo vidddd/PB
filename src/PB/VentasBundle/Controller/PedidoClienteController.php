@@ -288,16 +288,14 @@ class PedidoClienteController extends Controller
     	$response->headers->set('Content-Disposition', 'inline; filename="PedidoCliente.pdf"');
     	return $response;
     }
-    /*
+    
     public function mailAction($id){
     
     	$em = $this->getDoctrine()->getManager();$request = $this->getRequest();
-    	$entity = $em->getRepository('PBVentasBundle:Presupuesto')->find($id);
-    	if (!$entity) {
-    		throw $this->createNotFoundException('Unable to find Presupuesto entity.');
-    	}
+    	$entity = $em->getRepository('PBVentasBundle:PedidoCliente')->find($id);
+    	if (!$entity) {		throw $this->createNotFoundException('Unable to find PedidoCliente entity.'); }
     
-    	$defaultData = array( 'email' => $entity->getCliente()->getEmail() , 'subject' => 'Presupuesto', 'message' => '');
+    	$defaultData = array( 'email' => $entity->getCliente()->getEmail() , 'subject' => 'Pedido', 'message' => '');
     	$form = $this->createFormBuilder($defaultData)
     	->add('email', 'email')
     	->add('subject', 'text')
@@ -305,9 +303,9 @@ class PedidoClienteController extends Controller
     	->getForm();
     
     	$html = $this->getHtmlpdf($id);
-    	$printer = new PrintPresupuesto(); //HTML2PDF
+    	$printer = new PrintPedidoCliente(); //HTML2PDF
     	$pdf = $printer->getPdf($html);
-    	$attachment = \Swift_Attachment::newInstance($pdf, 'Presupuesto.pdf', 'application/pdf');
+    	$attachment = \Swift_Attachment::newInstance($pdf, 'Pedido.pdf', 'application/pdf');
     
     	if($request->getMethod() == 'POST') {
     		$form->bindRequest($request);
@@ -320,14 +318,14 @@ class PedidoClienteController extends Controller
     		->attach($attachment)	;
     		 
     		$this->get('mailer')->send($message);
-    		$this->get('session')->getFlashBag()->add('success', 'Presupuesto enviado a: '. $data['email'].'');
-    		return $this->redirect($this->generateUrl('presupuesto'));
+    		$this->get('session')->getFlashBag()->add('success', 'Pedido enviado a: '. $data['email'].'');
+    		return $this->redirect($this->generateUrl('pedidocliente'));
     	}
     
-    	return $this->render('PBVentasBundle:Presupuesto:mail.html.twig', array(
+    	return $this->render('PBVentasBundle:PedidoCliente:mail.html.twig', array(
     			'entity'      => $entity,	'form'   => $form->createView(),
     	));
-    }*/
+    }
     
     private function getHtmlpdf($id) {
     	$em = $this->getDoctrine()->getManager();
@@ -340,6 +338,50 @@ class PedidoClienteController extends Controller
     	$html = $this->renderView('PBVentasBundle:PedidoCliente:print.html.twig', array('entity' => $entity,'url'  => $url));
     	 
     	return $html;
+    }
+    
+    public function duplicarAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$entity = $em->getRepository('PBVentasBundle:PedidoCliente')->find($id);
+    	if (!$entity) {	throw $this->createNotFoundException('Unable to find PedidoCliente entity.');}
+    	$editForm = $this->createForm(new PedidoClienteType(), $entity);
+    	return $this->render('PBVentasBundle:PedidoCliente:duplicar.html.twig', array(
+    			'entity'      => $entity, 'id' => $id,
+    			'form'   => $editForm->createView(),
+    	));
+    	
+    }
+    
+    public function duplicarGuardarAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$entity = $em->getRepository('PBVentasBundle:PedidoCliente')->find($id);
+    	if (!$entity) {	throw $this->createNotFoundException('Unable to find PedidoCliente entity.');}
+    	$B = clone $entity;
+    	$B->setId(null);
+    	$hoy = new \DateTime();
+    	$editForm   = $this->createForm(new PedidoClienteType(), $B);$deleteForm = $this->createDeleteForm($id); $request = $this->getRequest();
+    
+    	$editForm->bind($request);
+   
+    	if ($editForm->isValid()) {
+    		//$B->setFecha($hoy); 
+    		$B->setEstado(1);
+    		$em->persist($B); $em->flush($B);
+    		$id = $B->getId();
+    		$this->get('session')->getFlashBag()->add('success', 'Pedido Duplicado correctamente');
+    
+    		return $this->redirect($this->generateUrl('pedidocliente_show', array('id' => $id)));
+    	} else {
+    		$this->get('session')->getFlashBag()->add('error', 'flash.update.error');
+    	}
+    
+    	return $this->render('PBVentasBundle:PedidoCliente:duplicar.html.twig', array(
+    			'entity'      => $entity, 'id' => $id,
+    			'form'   => $editForm->createView(),
+    			'delete_form' => $deleteForm->createView(),
+    	));
     }
     
 }

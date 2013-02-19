@@ -1551,4 +1551,62 @@ class Orden
     	}
     	if($this->cliche != null) return $value['cliches'][$this->cliche];
     }
+    /**
+     * @var PB\VentasBundle\Entity\PedidoCliente
+     */
+    private $pedidocliente;
+
+
+    /**
+     * Set pedidocliente
+     *
+     * @param PB\VentasBundle\Entity\PedidoCliente $pedidocliente
+     * @return Orden
+     */
+    public function setPedidocliente(\PB\VentasBundle\Entity\PedidoCliente $pedidocliente = null)
+    {
+        $this->pedidocliente = $pedidocliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get pedidocliente
+     *
+     * @return PB\VentasBundle\Entity\PedidoCliente 
+     */
+    public function getPedidocliente()
+    {
+        return $this->pedidocliente;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pedidocliente = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add pedidocliente
+     *
+     * @param PB\VentasBundle\Entity\Pedidocliente $pedidocliente
+     * @return Orden
+     */
+    public function addPedidocliente(\PB\VentasBundle\Entity\Pedidocliente $pedidocliente)
+    {
+        $this->pedidocliente[] = $pedidocliente;
+    
+        return $this;
+    }
+
+    /**
+     * Remove pedidocliente
+     *
+     * @param PB\VentasBundle\Entity\Pedidocliente $pedidocliente
+     */
+    public function removePedidocliente(\PB\VentasBundle\Entity\Pedidocliente $pedidocliente)
+    {
+        $this->pedidocliente->removeElement($pedidocliente);
+    }
 }

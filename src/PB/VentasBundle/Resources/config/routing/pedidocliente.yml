@@ -32,3 +32,20 @@ pedidocliente_delete:
 pedidocliente_print:
     pattern:  /{id}/print
     defaults: { _controller: "PBVentasBundle:PedidoCliente:print" }
+
+pedidocliente_mail:
+    pattern:  /{id}/mail
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:mail" }
+    
+pedidocliente_duplicar:
+    pattern:  /{id}/duplicar
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:duplicar" }
+
+pedidocliente_duplicar_guardar:
+    pattern:  /{id}/duplicarguardar
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:duplicarGuardar" }
+    requirements: { _method: post }
+
+pedidocliente_fabricar:
+    pattern:  /{id}/fabricar
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:fabricar" }

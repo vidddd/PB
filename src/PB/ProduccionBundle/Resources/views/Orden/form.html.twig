@@ -68,7 +68,7 @@
     		<span id="collapse1"><span class="icon"><i class="icon-circle-arrow-right"></i></span>
             	<h5>EXTRUSION</h5></span>{{ form_widget(form.extrusion) }}
         </div>
-        <div id="collapseOne" style="display:none;" class="in collapse">
+        <div id="collapseOne" {% if entity.extrusion == 1 %}style="display:block;"{% else %}style="display:none;"{% endif %} class="in collapse">
         	<div class="widget-content">
 				<div class="span-24">
 						<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
@@ -140,7 +140,7 @@
             <span  id="collapse2"><span class="icon"><i class="icon-circle-arrow-right"></i></span>
               <h5>IMPRESION</h5></span>{{ form_widget(form.impresion) }}
         </div>
-        <div id="collapseTwo" class="in collapse" style="display:none;">
+        <div id="collapseTwo" class="in collapse" {% if entity.impresion == 1 %}style="display:block;"{% else %}style="display:none;"{% endif %}>
             <div class="widget-content">
 					<div class="span-24">
 							<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
@@ -216,7 +216,7 @@
             <span id="collapse3"><span class="icon"><i class="icon-circle-arrow-right"></i></span>
               <h5>CORTE</h5></span>{{ form_widget(form.corte) }}
         </div>
-         <div id="collapseThree" class="in collapse" style="display:none;">
+         <div id="collapseThree" class="in collapse" {% if entity.corte == 1 %}style="display:block;"{% else %}style="display:none;"{% endif %}>
             <div class="widget-content">
  				<div class="span-24">
 					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">

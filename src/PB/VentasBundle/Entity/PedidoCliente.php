@@ -40,7 +40,11 @@ class PedidoCliente
     {
         return $this->id;
     }
-
+    public function setId($id)
+    {
+    	$this->id = $id;
+    	return $this;
+    }
     /**
      * Set fecha
      *
@@ -827,4 +831,32 @@ class PedidoCliente
     	if($this->asa != null) return $value['asas'][$this->asa];
     }
     
+    /**
+     * @var PB\ProduccionBundle\Entity\Orden
+     */
+    private $orden;
+
+
+    /**
+     * Set orden
+     *
+     * @param PB\ProduccionBundle\Entity\Orden $orden
+     * @return PedidoCliente
+     */
+    public function setOrden(\PB\ProduccionBundle\Entity\Orden $orden = null)
+    {
+        $this->orden = $orden;
+    
+        return $this;
+    }
+
+    /**
+     * Get orden
+     *
+     * @return PB\ProduccionBundle\Entity\Orden 
+     */
+    public function getOrden()
+    {
+        return $this->orden;
+    }
 }

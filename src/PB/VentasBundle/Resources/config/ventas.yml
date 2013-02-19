@@ -10,7 +10,7 @@ tipo_material:
   8: "Ap Color"
   9: "Microperforado"
   10: "Polipropileno"
-  11: "Papel"
+  11: "Papel Celulosa"
 
 estados_pedidos:
   1: "Nuevo"
@@ -68,3 +68,10 @@ asas:
   1: "Sin Asa"
   2: "Asa Riñon"
   3: "Asa Rígida"
+
+estados_ordenes:
+  1: "Nuevo"
+  2: "En fabrica"
+  3: "Finalizado"
+  4: "Facturado"
+  8: "Histórico"
