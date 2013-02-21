@@ -1,11 +1,11 @@
 {% extends '::layout.html.twig' %}
 
-{% block title "Nueva Orden de Fabricación" %}
+{% block title "Orden de Fabricacion" %}
 {% form_theme form 'PBInicioBundle:Form:fields.html.twig' %}
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
-<div class="title title-spacing produccion"><h2>Nueva Orden de Fabricación</h2></div>
-	<form action="{{ entity.id  ? path('orden_update', { 'id': entity.id }) : path('orden_create') }}" method="post" {{ form_enctype(form) }}>
+<div class="title title-spacing produccion"><h2>Fabricar Pedido -> OF</h2></div>
+	<form action="{{ path('pedidocliente_fabricar_guardar', { 'id': id }) }}" method="post" {{ form_enctype(form) }}>
 	{% include 'PBProduccionBundle:Orden:form.html.twig' with { 'form' : form } %}
     <div style="display:none;">
 				{{ form_errors(form) }} 
@@ -14,10 +14,10 @@
 	{{ form_widget(form._token) }}</form>
 	<div class="clearfix"></div>
     <div class="float-left volver">
-        <a href="{{ path('orden') }}">
+        <a href="{{ path('pedidocliente') }}">
           <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
         </a>
     </div>
 		{% include 'PBVentasBundle:Cliente:js_get_cliente.html.twig' %} 
-
+	<script>getNombrecliente();</script>
 {% endblock %}

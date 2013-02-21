@@ -6,7 +6,13 @@
 {% block content %}
 
 <div class="title title-spacing produccion"><h2>Editar Orden de Producción</h2></div>
-        	{% include 'PBProduccionBundle:Orden:form.html.twig' with { 'form' : form } %}
+	<form action="{{ entity.id  ? path('orden_update', { 'id': entity.id }) : path('orden_create') }}" method="post" {{ form_enctype(form) }}>
+	{% include 'PBProduccionBundle:Orden:form.html.twig' with { 'form' : form } %}
+    <div style="display:none;">
+				{{ form_errors(form) }} 
+				{{ form_rest(form) }}
+			</div>
+	{{ form_widget(form._token) }}</form>
 	<div class="clearfix"></div>
     <div class="float-left volver">
         <a href="{{ path('orden') }}">

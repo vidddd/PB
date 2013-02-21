@@ -317,8 +317,10 @@ class PrecioController extends Controller
     		->setParameter('cliente', $cliente->getId())->setMaxResults(1);
     		try {
     			$entity = $query->getSingleResult();
-    		} catch (\Doctrine\Orm\NoResultException $e) {	throw $this->createNotFoundException('No se ha encontrado la Tarifa.');}
-    		$em = $this->getDoctrine()->getManager();
+    		} catch (\Doctrine\Orm\NoResultException $e) {	
+    			throw $this->createNotFoundException('No se ha encontrado la Tarifa.');
+    		
+    		}
     		return $this->render('PBVentasBundle:Precio:calcularPedidoCliente.html.twig', array(
     				'entity' => $entity, 'pedido' => $pedido
     		));

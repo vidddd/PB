@@ -1,6 +1,5 @@
 <div class="vista3 orden">
 	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">
-		<form action="{{ entity.id  ? path('orden_update', { 'id': entity.id }) : path('orden_create') }}" method="post" {{ form_enctype(form) }}>
 		<div class="form-invoice">
 				<div class="span-16 form-horizontal label-column-small form-condensed">
 					<div class="control-group">
@@ -284,20 +283,3 @@
 </div>
 		<div class="clearfix"></div> <BR />
 	<div class="guardar"><button type="submit" class="ui-state-default ui-corner-all">Guardar</button></div> 
-		{{ form_widget(form._token) }}</form>
-	<!--
-		<div id="accordion">
-					<div>
-						<h3><a href="#">EXTRUSION</a></h3>
-						<div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
-					</div>
-					<div>
-						<h3><a href="#">IMPRESION</a></h3>
-						<div>Phasellus mattis tincidunt nibh.</div>
-					</div>
-					<div>
-						<h3><a href="#">CORTE</a></h3>
-						<div>Nam dui erat, auctor a, dignissim quis.</div>
-					</div>
-				</div>
-	  -->

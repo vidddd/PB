@@ -49,3 +49,8 @@ pedidocliente_duplicar_guardar:
 pedidocliente_fabricar:
     pattern:  /{id}/fabricar
     defaults: { _controller: "PBVentasBundle:PedidoCliente:fabricar" }
+
+pedidocliente_fabricar_guardar:
+    pattern:  /{id}/fabricarguardar
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:fabricarGuardar" }
+    requirements: { _method: post }

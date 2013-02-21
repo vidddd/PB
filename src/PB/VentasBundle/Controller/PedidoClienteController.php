@@ -13,6 +13,8 @@ use PB\VentasBundle\Form\PedidoClienteType;
 use PB\VentasBundle\Form\PedidoClienteFilterType;
 use PB\VentasBundle\Printer\PrintPedidoCliente;
 use Symfony\Component\HttpFoundation\Response;
+use PB\ProduccionBundle\Entity\Orden;
+use PB\ProduccionBundle\Form\OrdenType;
 
 /**
  * PedidoCliente controller.
@@ -127,24 +129,14 @@ class PedidoClienteController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('PBVentasBundle:PedidoCliente')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find PedidoCliente entity.');
-        }
-
+        if (!$entity) {       throw $this->createNotFoundException('Unable to find PedidoCliente entity.');}
         $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('PBVentasBundle:PedidoCliente:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
-    /**
-     * Displays a form to create a new PedidoCliente entity.
-     *
-     */
     public function newAction()
     {
         $entity = new PedidoCliente();
@@ -182,10 +174,7 @@ class PedidoClienteController extends Controller
             'form'   => $form->createView(),
         ));
     }
-    /**
-     * Displays a form to edit an existing PedidoCliente entity.
-     *
-     */
+
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -206,10 +195,6 @@ class PedidoClienteController extends Controller
         ));
     }
 
-    /**
-     * Edits an existing PedidoCliente entity.
-     *
-     */
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -241,32 +226,21 @@ class PedidoClienteController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-    /**
-     * Deletes a PedidoCliente entity.
-     *
-     */
     public function deleteAction($id)
     {
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
-
         $form->bind($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('PBVentasBundle:PedidoCliente')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find PedidoCliente entity.');
-            }
-
+            if (!$entity) {             throw $this->createNotFoundException('Unable to find PedidoCliente entity.'); }
             $em->remove($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.delete.success');
         } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.delete.error');
         }
-
         return $this->redirect($this->generateUrl('pedidocliente'));
     }
 
@@ -384,4 +358,51 @@ class PedidoClienteController extends Controller
     	));
     }
     
+    public function fabricarAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager(); $request = $this->getRequest();
+    	$pedido = $em->getRepository('PBVentasBundle:PedidoCliente')->find($id);
+    	if (!$pedido) {	throw $this->createNotFoundException('Unable to find PedidoCliente entity.');}
+    
+        $orden = new Orden();
+        $orden->setPedidocliente($pedido);
+        $orden->setCliente($pedido->getCliente());$orden->setSubcliente($pedido->getSubcliente());
+        $orden->setCantidad($pedido->getCantidad()); $orden->setCantidaduni($pedido->getCantidaduni());
+        $orden->setEspesor($pedido->getGalga());
+        $orden->setTipomaterial($pedido->getMaterial());
+        $form   = $this->createForm(new OrdenType(), $orden);
+              
+        return $this->render('PBVentasBundle:PedidoCliente:fabricarPedido.html.twig', array(
+            'entity' => $orden, 'id' => $id,
+            'form'   => $form->createView(),
+        ));
+
+    }
+
+    public function fabricarGuardarAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager(); $request = $this->getRequest();
+    	$pedido = $em->getRepository('PBVentasBundle:PedidoCliente')->find($id);
+    	if (!$pedido) {	throw $this->createNotFoundException('Unable to find PedidoCliente entity.');}
+        $orden = new Orden();
+        $form   = $this->createForm(new OrdenType(), $orden);
+     
+        	$form->bind($request);
+	        if ($form->isValid()) {
+	        	$em->persist($orden);
+	        	$pedido->setOrden($orden); $em->persist($pedido);
+	        	$em->flush();
+	        	$this->get('session')->getFlashBag()->add('success', 'Nueva Orden de Fabricación Creada');
+	        
+	        	return $this->redirect($this->generateUrl('orden_show', array('id' => $orden->getId())));
+	        } else {
+	        	$this->get('session')->getFlashBag()->add('error', 'flash.create.error');
+	        }
+              
+        return $this->render('PBVentasBundle:PedidoCliente:fabricarPedido.html.twig', array(
+            'entity' => $orden, 'id' => $id,
+            'form'   => $form->createView(),
+        ));
+    	
+    }
 }

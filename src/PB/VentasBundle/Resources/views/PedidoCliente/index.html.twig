@@ -74,6 +74,7 @@
 		            <td>{{ entity.largo }}</td>
 		            <td>{{ entity.estadoText }}</td>
 		            <td>{% if entity.orden %}
+		            		{{ entity.orden.id }}
 						{% else %}
 							<a class="btn2 btn2-mini btn2-fabricar" href="{{ path('pedidocliente_fabricar', { 'id': entity.id }) }}">Fabricar</a>
 						{% endif %}</td>
