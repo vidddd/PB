@@ -22,13 +22,14 @@
 		<div id="datos-pedido">
 		<table cellspacing="0" cellpadding="0" class="tabla5">
            	  <tbody><tr>
-                   	  <th>Cantidad</th><th>Ancho</th><th>Largo</th><th>Galga</th><th>Plegado</th><th>Solapa</th>
+                   	  <th>Cantidad</th><th>Producto</th><th>Ancho</th><th>Largo</th><th>Galga</th><th>Plegado</th><th>Solapa</th>
                   </tr>
                	  <tr>
                	  	  <td>{{ entity.cantidad }} {{ entity.cantidaduniText }}</td>
+               	  	  <td>{{ entity.productoText }}</td>
                	  	  <td>{{ entity.ancho }}</td>
                	  	  <td>{{ entity.largo }}</td>
-               	  	  <td>{{ entity.galga }}</td>
+               	  	  <td>{{ entity.galga }} {{ entity.galgauniText }}</td>
                	  	  <td>{{ entity.plegado }}</td>
                	  	  <td>{{ entity.solapa }}</td>
                	  </tr>         

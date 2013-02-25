@@ -148,6 +148,12 @@ PB\ProduccionBundle\Entity\Orden:
     solapa:
       type: integer
       nullable: true
+    tipobolsa:
+      type: smallint
+      nullable: true
+    asa:
+      type: smallint
+      nullable: true
     paquete:
       type: string
       lenght: 55
@@ -176,7 +182,39 @@ PB\ProduccionBundle\Entity\Orden:
     operario_corte:
       type: string
       lenght: 55
-      nullable: true        
+      nullable: true
+    rebobinado:
+      type: boolean
+      nullable: true
+    bobinasr:
+      type: float
+      nullable: true
+    metrosr:
+      type: float
+      nullable: true
+    kgr:
+      type: float
+      nullable: true
+    totalrebobinado:
+      type: float
+      nullable: true
+    notasrebobinado:
+      type: text
+      nullable: true   
+    maquina_rebobinado:
+      type: smallint
+      nullable: true
+    fecha_rebobinado:
+      type: date
+      nullable: true
+    tiempo_rebobinado:
+      type: string
+      lenght: 55
+      nullable: true
+    operario_rebobinado:
+      type: string
+      lenght: 55
+      nullable: true  
   manyToOne:
     cliente:
       targetEntity: PB\VentasBundle\Entity\Cliente

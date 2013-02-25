@@ -46,7 +46,7 @@
                	             
            </tbody>
          </table>
-    </div><div class="clearfix"></div> <br />
+    </div><div class="clearfix"></div>
 <!-- EXTRUSION -->
     <div class="widget-box collapsible">
         <div class="widget-title" id="collapse1" style="cursor:pointer">
@@ -55,7 +55,7 @@
         </div>
         <div id="collapseOne" {% if entity.extrusion == 1 %}style="display:block;"{% else %}style="display:none;"{% endif %} class="in collapse">
         	<div class="widget-content">
-				<div class="span-24">
+				<div class="span-23">
 						<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 							 <tr>
 								<th style="width:120px;"><b>Color</b></th>
@@ -95,11 +95,11 @@
 						      </tr>
 						</table>
 					 </div>
-					 <div class="span-24">
+					 <div class="span-23">
 						<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 							 <tr>
-								<th style="width:120px;"><b>Fecha Producción</b></th>
-								<td>{{ entity.fechaextrusion|date('d.m.Y') }}</td>
+								<th style="width:120px;"><b>Fecha Extrusión</b></th>
+								<td>{{ entity.fechaextrusion is empty ? "" : entity.fechaextrusion|date("d.m.Y") }}</td>
 							  </tr>
 							  <tr>
 						        <th><b>Operario</b></th>
@@ -107,7 +107,7 @@
 						      </tr>
 							<tr>
 						        <th><b>Tiempo</b></th>
-						        <td>{{  entity.tiempoextrusion|date('H:i') }}</td>
+						        <td>{{  entity.tiempoextrusion is empty ? "" : entity.tiempoextrusion|date('H:i') }}</td>
 						      </tr>
 						      <tr>
 						        <th><b>Maquina</b></th>
@@ -127,7 +127,7 @@
         </div>
         <div id="collapseTwo" class="in collapse" {% if entity.impresion == 1 %}style="display:block;"{% else %}style="display:none;"{% endif %}>
             <div class="widget-content">
-					<div class="span-24">
+					<div class="span-23">
 							<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 								 <tr>
 									<th style="width:120px;"><b>Medida </b></th>
@@ -171,11 +171,11 @@
 							      </tr>
 							</table>
 						 </div>
-						 <div class="span-24">
+						 <div class="span-23">
 							<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 								 <tr>
 									<th style="width:120px;"><b>Fecha Impresión</b></th>
-									<td>{{ entity.fechaimpresion|date('d.m.Y') }}</td>
+									<td>{{ entity.fechaimpresion is empty ? "" : entity.fechaimpresion|date("d.m.Y") }}</td>
 								  </tr>
 								  <tr>
 							        <th><b>Operario</b></th>
@@ -183,7 +183,7 @@
 							      </tr>
 								<tr>
 							        <th><b>Tiempo</b></th>
-							        <td>{{ entity.tiempoimpresion|date('H:i')  }}</td>
+							        <td>{{ entity.tiempoimpresion is empty ? "" : entity.tiempoimpresion|date('H:i')  }}</td>
 							      </tr>
 							      <tr>
 							        <th><b>Maquina</b></th>
@@ -203,7 +203,7 @@
         </div>
          <div id="collapseThree" class="in collapse" {% if entity.corte == 1 %}style="display:block;"{% else %}style="display:none;"{% endif %}>
             <div class="widget-content">
- 				<div class="span-24">
+ 				<div class="span-23">
 					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 						 <tr>
 							<th style="width:120px;"><b>Cantidad</b></th>
@@ -220,6 +220,14 @@
 					      <tr>
 					        <th><b>Solapa</b></th>
 					        <td>{{ entity.solapa  }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Bolsa</b></th>
+					        <td>{{ entity.tipobolsaText  }}</td>
+					      </tr>
+					    <tr>
+					        <th><b>Asa</b></th>
+					        <td>{{ entity.asaText  }}</td>
 					      </tr>
 					      <tr>
 					        <th><b>Paquete</b></th>
@@ -239,11 +247,11 @@
 					      </tr>
 					</table>
 				 </div>
-				 <div class="span-24">
+				 <div class="span-23">
 					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 						 <tr>
 							<th style="width:120px;"><b>Fecha Producción</b></th>
-							<td>{{ entity.fechacorte|date('d.m.Y') }}</td>
+							<td>{{ entity.fechacorte is empty ? "" : entity.fechacorte|date("d.m.Y") }}</td>
 						  </tr>
 						  <tr>
 					        <th><b>Operario</b></th>
@@ -251,7 +259,7 @@
 					      </tr>
 						<tr>
 					        <th><b>Tiempo</b></th>
-					        <td>{{ entity.tiempocorte|date('H:i') }}</td>
+					        <td>{{ entity.tiempocorte is empty ? "" : entity.tiempocorte|date('H:i') }}</td>
 					      </tr>
 					      <tr>
 					        <th><b>Maquina</b></th>
@@ -264,6 +272,62 @@
 					</table>
 				 </div><div class="clearfix"></div><br />
    			   </div>
+         </div>  <!-- collapseFOUR -->    
+         <div class="widget-title" id="collapse4" style="cursor:pointer;">
+            <span class="icon"><i class="icon-circle-arrow-right"></i></span>
+              <h5>REBOBINADO</h5>
+        </div>
+         <div id="collapseFour" class="in collapse" {% if entity.rebobinado == 1 %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+            <div class="widget-content">
+ 				<div class="span-23">
+					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
+						 <tr>
+							<th style="width:120px;"><b>Bobinas</b></th>
+							<td>{{ entity.bobinasr }}</td>
+						  </tr>
+						  <tr>
+					        <th><b>Metros Bobina</b></th>
+					        <td>{{ entity.metrosr  }}</td>
+					      </tr>
+						<tr>
+					        <th><b>Kg Bobina</b></th>
+					        <td>{{ entity.kgr  }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Total</b></th>
+					        <td>{{ entity.totalrebobinado  }}</td>
+					      </tr>
+					       <tr>
+					        <th>Observaciones</th>
+					        <td>{{ entity.notasrebobinado|nl2br }}</td>
+					      </tr>
+					</table>
+				 </div>
+				 <div class="span-23">
+					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
+						 <tr>
+							<th style="width:120px;"><b>Fecha Producción</b></th>
+							<td>{{ entity.fecharebobinado is empty ? "" : entity.fecharebobinado|date("d.m.Y") }}</td>
+						  </tr>
+						  <tr>
+					        <th><b>Operario</b></th>
+					        <td>{{ entity.operariorebobinado }}</td>
+					      </tr>
+						<tr>
+					        <th><b>Tiempo</b></th>
+					        <td>{{ entity.tiemporebobinado is empty ? "" : entity.tiemporebobinado|date('H:i') }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Maquina</b></th>
+					        <td>{{ entity.maquinarebobinado }}</td>
+					      </tr>
+					      <tr>
+					        <th><b>Materia Prima</b></th>
+					        <td></td>
+					      </tr>
+					</table>
+				 </div><div class="clearfix"></div><br />
+   			   </div>
          </div>  <!-- collapseThree -->    
-         </div>  
+      </div>  
 </div>

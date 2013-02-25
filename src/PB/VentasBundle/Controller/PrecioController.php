@@ -264,7 +264,17 @@ class PrecioController extends Controller
     	$pedido = $em->getRepository('PBVentasBundle:Pedido')->find($id);
     	$cliente = $pedido->getCliente();
     	$request = $this->get('request');
-    	
+    	$rel = $request->query->get('rel');
+    	$query = $em->createQuery('SELECT p FROM PBVentasBundle:Precio p WHERE p.cliente = :cliente ORDER BY p.fecha DESC')->setParameter('cliente', $id)->setMaxResults(1);
+    	$mayorista = $em->getRepository('PBVentasBundle:Precio')->find(2);
+    	if (!$mayorista) {
+    		throw $this->createNotFoundException('Unable to find Tarifa Mayorista entity.');
+    	}
+    	$minorista = $em->getRepository('PBVentasBundle:Precio')->find(1);
+    	if (!$minorista) {
+    		throw $this->createNotFoundException('Unable to find Tarifa Minorista entity.');
+    	}
+
     	if ($request->getMethod() == 'POST'){
     		if($request->get('preciomillar')) {
     			$precio = $request->get('preciomillar');
@@ -277,19 +287,20 @@ class PrecioController extends Controller
     		
     		return $this->redirect($this->generateUrl('pedido'));
     	} else {
-
-	    	$query = $em->createQuery('SELECT p FROM PBVentasBundle:Precio p WHERE p.cliente = :cliente ORDER BY p.fecha DESC')
-	    	->setParameter('cliente', $cliente->getId())->setMaxResults(1);
-	    	try {
-	    		$entity = $query->getSingleResult();
-	    	} catch (\Doctrine\Orm\NoResultException $e) {
-		    	return $this->render('PBVentasBundle:Precio:calcular.html.twig', array(
-		    			'error' => 'El cliente no tiene Tarifa de precios o el Código de cliente es erróneo', 'entity' => $entity, 'pedido' => $pedido
-		    	));
-	    	}
-	    	return $this->render('PBVentasBundle:Precio:calcular.html.twig', array(
-	    			'error' => '', 'entity' => $entity, 'pedido' => $pedido
-	    	));
+    		global $entity;
+    		$query = $em->createQuery('SELECT p FROM PBVentasBundle:Precio p WHERE p.cliente = :cliente ORDER BY p.fecha DESC')
+    		->setParameter('cliente', $cliente->getId())->setMaxResults(1);
+    		try {
+    			$entity = $query->getSingleResult();
+    		} catch (\Doctrine\Orm\NoResultException $e) {
+    			return $this->render('PBVentasBundle:Precio:calcular.html.twig', array(
+    					'entity' => $entity, 'pedido' => $pedido, 'error' => 'El cliente no tiene tarifa de precios' ,'minorista' => $minorista, 'mayorista' => $mayorista
+    			));
+    			 
+    		}
+    		return $this->render('PBVentasBundle:Precio:calcular.html.twig', array(
+    				'entity' => $entity, 'pedido' => $pedido, 'error' => '', 'minorista' => $minorista, 'mayorista' => $mayorista
+    		));
     	}
     }
     public function calcularPrecioPedidoClienteAction($id)

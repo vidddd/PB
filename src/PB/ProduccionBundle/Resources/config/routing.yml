@@ -9,3 +9,8 @@ produccion_maquinaria:
 PBProduccionBundle_orden:
     resource: "@PBProduccionBundle/Resources/config/routing/orden.yml"
     prefix:   /orden
+
+PBProduccionBundle_maquina:
+    resource: "@PBProduccionBundle/Resources/config/routing/maquina.yml"
+    prefix:   /maquina
+

@@ -8,9 +8,12 @@ tipo_material:
   6: "Bp Trp"
   7: "Bp Color"
   8: "Ap Color"
-  9: "Microperforado"
-  10: "Polipropileno"
-  11: "Papel Celulosa"
+  9: "Polipropileno"
+  15: "Polipropileno BIO"
+  10: "PP Microperforado"
+  11: "Ap Trp Microperforado"
+  12: "Ap Opaco Microperforado"
+  13: "Papel Celulosa"
 
 estados_pedidos:
   1: "Nuevo"
@@ -22,8 +25,8 @@ estados_pedidos:
 cliches:
   1: "Nuevo"
   2: "Enviado"
-  3: "Repetición"
-  4: "Se enviará"
+  3: "Lo Tenemos"
+  4: "Se enviarán"
   5: "Rectificación"
   
 tipos:

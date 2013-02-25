@@ -239,6 +239,11 @@ $(document).ready(function() {
 		$("#collapseThree").slideToggle();
 		$('#orden_corte').attr('checked', 'checked');
 	});
+	$("#collapse4").click(function(event) {
+		event.preventDefault();
+		$("#collapseFour").slideToggle();
+		$('#orden_rebobinado').attr('checked', 'checked');
+	});
 	$('#orden_extrusion').click(function () {
 		$("#collapseOne").slideToggle();
 	});
@@ -247,6 +252,9 @@ $(document).ready(function() {
 	});
 	$('#orden_corte').click(function () {
 		$("#collapseThree").slideToggle();
+	});
+	$('#orden_rebobinado').click(function () {
+		$("#collapseFour").slideToggle();
 	});
 });
 

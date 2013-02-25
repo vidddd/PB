@@ -31,4 +31,4 @@ orden_delete:
 
 orden_print:
     pattern:  /{id}/print
-    defaults: { _controller: "PBProduccionBundle:Orden:imprimir" }
+    defaults: { _controller: "PBProduccionBundle:Orden:print" }

@@ -29,6 +29,7 @@ PB\ComprasBundle\Entity\AlbaranCompraLinea:
       nullable: true
     estado:
       type: smallint
+      nullable: true
   manyToOne:
     albarancompralinea:
       targetEntity: PB\ComprasBundle\Entity\AlbaranCompra

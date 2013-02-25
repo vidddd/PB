@@ -84,13 +84,14 @@ $(document).ready(function() {
       <div id="datos-pedido">
 		<table cellspacing="0" cellpadding="0" class="tabla5 tabla5-form">
            	  <tbody><tr>
-                   	  <th>Cantidad</th><th>Ancho</th><th>Largo</th><th>Galga</th><th>Plegado</th><th>Solapa</th>
+                   	  <th>Cantidad</th><th>Producto</th><th>Ancho</th><th>Largo</th><th>Galga</th><th>Plegado</th><th>Solapa</th>
                   </tr>
                	  <tr>
                	  	  <td>{{ form_widget(form.cantidad, { 'attr': {'class': 'small2'}}) }} {{ form_widget(form.cantidaduni) }}</td>
+               	  	  <td>{{ form_widget(form.producto, { 'attr': {'class': 'small'}}) }}</td>
                	  	  <td>{{ form_widget(form.ancho, { 'attr': {'class': 'small2'}}) }}</td>
                	  	  <td>{{ form_widget(form.largo, { 'attr': {'class': 'small2'}}) }}</td>
-               	  	  <td>{{ form_widget(form.galga, { 'attr': {'class': 'small2'}}) }}</td>
+               	  	  <td>{{ form_widget(form.galga, { 'attr': {'class': 'small2'}}) }}{{ form_widget(form.galgauni) }}</td>
                	  	  <td>{{ form_widget(form.plegado, { 'attr': {'class': 'small2'}}) }}</td>
                	  	  <td>{{ form_widget(form.solapa, { 'attr': {'class': 'small2'}}) }}</td>
                	  </tr>         

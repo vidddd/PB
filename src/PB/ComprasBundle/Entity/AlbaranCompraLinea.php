@@ -265,7 +265,7 @@ class AlbaranCompraLinea
     	} catch (ParseException $e) {
     		printf("Unable to parse the YAML string: %s", $e->getMessage());
     	}
-    	return $value['estados_albarancompralinea'][$this->estado];
+    	if ($this->estado) return $value['estados_albarancompralinea'][$this->estado];
     }
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection

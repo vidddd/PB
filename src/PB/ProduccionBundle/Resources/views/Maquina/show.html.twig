@@ -1,0 +1,41 @@
+{# note que en este caso utilizamos el layout de ajax para así no cargar todo el contenido del layout general #}
+{# extends app.request.isXmlHttpRequest ? "::layout_ajax.html.twig" : "::layout.html.twig" #}
+{% extends "::layout_ajax.html.twig" %}
+{% block title "Maquina" %}
+
+{% block content %}
+<div id="ver-maquina"><div id="lightbox-wrapper">
+<div class="title title-spacing produccion"><h2>Maquina</h2></div>
+<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+		<div class="portlet-content show">
+
+    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+		
+    <div id="tabs-1">
+     <table style="width:600px;" celspacing="0" class="maquina-detalle">
+     	<tr>
+     		<td class="labelpro" style="width:200px;">Código máquina</td><td><b>{{ entity.codigo }}</b></td><td class="labelpro">Tipo Maquina</td><td>{{ entity.tipo }}</td>
+     	</tr>
+     	<tr>
+     		<td class="labelpro">Nombre</td><td>{{ entity.nombre }}</td><td class="labelpro"></td><td></td>
+     	</tr>
+     	<tr>	
+     		<td class="labelpro">Capacidad Ciclo</td><td>{{ entity.capacidadciclo }}</td><td class="labelpro"></td><td></td>
+     	</tr>
+     	<tr>	
+     		<td class="labelpro">Tiempo ciclo</td><td>{{ entity.tiempociclo }}</td><td></td><td></td>
+     	</tr>
+     	<tr>	
+     		<td class="labelpro">Tiempo Antes de empezar un trabajo</td><td>{{ entity.tiempoantes }}</td><td class="labelpro"></td><td></td>
+     	</tr>
+     	<tr>	
+     		<td class="labelpro">Tiempo Despues de finalizar un trabajo</td><td>{{ entity.tiempodespues }}</td><td class="labelpro"></td><td></td>
+     	</tr>
+     	<tr>	
+     		<td class="labelpro">Observaciones</td><td colspan="3">{{ entity.observaciones|nl2br }}</td><td></td><td></td>
+     	</tr>
+     </table>
+    </div>
+	
+	</div></div> </div></div></div>
+{% endblock %}

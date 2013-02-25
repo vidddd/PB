@@ -816,6 +816,10 @@ class PedidoCliente
     	$unis = array('1' => 'Bolsas', '2' => 'Kg', '3' => 'Metros');
     	if($this->cantidaduni != null)  return $unis[$this->cantidaduni];
     }
+    public function getGalgauniText(){
+    	$unis = array('1' => 'Galgas', '2' => 'Micras');
+    	if($this->galgauni != null)  return $unis[$this->galgauni];
+    }
     public function getEstadoText(){
     	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
     	} catch (ParseException $e) {
@@ -830,7 +834,13 @@ class PedidoCliente
     	}
     	if($this->asa != null) return $value['asas'][$this->asa];
     }
-    
+    public function getProductoText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->producto != null) return $value['producto'][$this->producto];
+    }    
     /**
      * @var PB\ProduccionBundle\Entity\Orden
      */
@@ -858,5 +868,61 @@ class PedidoCliente
     public function getOrden()
     {
         return $this->orden;
+    }
+    /**
+     * @var integer $galgauni
+     */
+    private $galgauni;
+
+
+    /**
+     * Set galgauni
+     *
+     * @param integer $galgauni
+     * @return PedidoCliente
+     */
+    public function setGalgauni($galgauni)
+    {
+        $this->galgauni = $galgauni;
+    
+        return $this;
+    }
+
+    /**
+     * Get galgauni
+     *
+     * @return integer 
+     */
+    public function getGalgauni()
+    {
+        return $this->galgauni;
+    }
+    /**
+     * @var integer $producto
+     */
+    private $producto;
+
+
+    /**
+     * Set producto
+     *
+     * @param integer $producto
+     * @return PedidoCliente
+     */
+    public function setProducto($producto)
+    {
+        $this->producto = $producto;
+    
+        return $this;
+    }
+
+    /**
+     * Get producto
+     *
+     * @return integer 
+     */
+    public function getProducto()
+    {
+        return $this->producto;
     }
 }

@@ -20,7 +20,7 @@ class OrdenType extends AbstractType
     	} catch (ParseException $e) {
     		printf("Unable to parse the YAML string: %s", $e->getMessage());
     	}
-    	$tipos = $value['tipo_material'];$estados = $value['estados_orden']; $productos = $value['producto']; $tratados = $value['tratado']; $tubos = $value['tipo_tubo']; $cliches = $value['cliches'];
+    	$tipos = $value['tipo_material'];$estados = $value['estados_orden']; $bolsas = $value['soldadura']; $asas = $value['asas']; $productos = $value['producto']; $tratados = $value['tratado']; $tubos = $value['tipo_tubo']; $cliches = $value['cliches'];
         $builder
             ->add('cliente', 'cliente_text', array('error_bubbling' => true))
             ->add('subcliente')
@@ -77,6 +77,8 @@ class OrdenType extends AbstractType
             ->add('anchoc')
             ->add('largoc')
             ->add('solapa')
+            ->add('tipobolsa', 'choice', array( 'choices' => $bolsas,'error_bubbling' => true,'empty_value' => '', 'required' => false))
+            ->add('asa', 'choice', array( 'choices' => $asas,'error_bubbling' => true,'empty_value' => '', 'required' => false))
             ->add('paquete')
             ->add('saco')
             ->add('palets')
@@ -88,6 +90,15 @@ class OrdenType extends AbstractType
     				'widget' => 'text', 'required' => false
             		))
             ->add('operario_corte')
+            ->add('rebobinado')->add('kgr')->add('bobinasr')->add('metrosr')->add('totalrebobinado')
+            ->add('notasrebobinado')
+            ->add('maquina_rebobinado')
+            ->add('fecha_rebobinado', 'date', array('widget' => 'single_text', 'required' => false ))
+            ->add('tiempo_rebobinado', 'time', array(
+            		'input'  => 'string',
+            		'widget' => 'text', 'required' => false
+            ))
+            ->add('operario_rebobinado')
         ;
     }
 

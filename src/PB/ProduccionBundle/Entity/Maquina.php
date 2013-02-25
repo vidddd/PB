@@ -248,4 +248,32 @@ class Maquina
     {
         return $this->lifecycleCallbacks;
     }
+    /**
+     * @var string $observaciones
+     */
+    private $observaciones;
+
+
+    /**
+     * Set observaciones
+     *
+     * @param string $observaciones
+     * @return Maquina
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
+    
+        return $this;
+    }
+
+    /**
+     * Get observaciones
+     *
+     * @return string 
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
 }

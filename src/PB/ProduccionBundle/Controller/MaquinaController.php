@@ -8,41 +8,29 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrapView;
 
-use PB\ProduccionBundle\Entity\Orden;
-use PB\ProduccionBundle\Form\OrdenType;
-use PB\ProduccionBundle\Form\OrdenFilterType;
-use PB\ProduccionBundle\Printer\PrintOrden;
-use Symfony\Component\HttpFoundation\Response;
+use PB\ProduccionBundle\Entity\Maquina;
+use PB\ProduccionBundle\Form\MaquinaType;
+use PB\ProduccionBundle\Form\MaquinaFilterType;
 
 /**
- * Orden controller.
+ * Maquina controller.
  *
  */
-class OrdenController extends Controller
+class MaquinaController extends Controller
 {
     /**
-     * Lists all Orden entities.
+     * Lists all Maquina entities.
      *
      */
     public function indexAction()
     {
-    	$request = $this->getRequest();$session = $request->getSession();
-    	
-    	list($filterForm, $queryBuilder) = $this->filter();
-    	if($this->getRequest()->get('cuantos')) {
-    		$cuantos = $this->getRequest()->get('cuantos');
-    	} else if ($session->get('OrdenCuantos')){
-    		$cuantos = $session->get('OrdenCuantos');
-    	} else { $cuantos = 10; }
-    	
-        list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
-        
-        $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');
-        if($cuantos) $session->set('PedidoCuantos', $cuantos);
-        ($cuantos)? $entradas = $cuantos : $entradas = 10;
+        list($filterForm, $queryBuilder) = $this->filter();
+
+        list($entities, $pagerHtml) = $this->paginator($queryBuilder);
+
     
-        return $this->render('PBProduccionBundle:Orden:index.html.twig', array(
-            'entities' => $entities, 'cuantos' => $cuantosarr, 'entradas' => $entradas,
+        return $this->render('PBProduccionBundle:Maquina:index.html.twig', array(
+            'entities' => $entities,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
         ));
@@ -56,13 +44,13 @@ class OrdenController extends Controller
     {
         $request = $this->getRequest();
         $session = $request->getSession();
-        $filterForm = $this->createForm(new OrdenFilterType());
+        $filterForm = $this->createForm(new MaquinaFilterType());
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('PBProduccionBundle:Orden')->createQueryBuilder('e')->orderBy('e.id', 'DESC');
+        $queryBuilder = $em->getRepository('PBProduccionBundle:Maquina')->createQueryBuilder('e');
     
         // Reset filter
         if ($request->getMethod() == 'POST' && $request->get('filter_action') == 'reset') {
-            $session->remove('OrdenControllerFilter');
+            $session->remove('MaquinaControllerFilter');
         }
     
         // Filter action
@@ -75,13 +63,13 @@ class OrdenController extends Controller
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
                 // Save filter to session
                 $filterData = $filterForm->getData();
-                $session->set('OrdenControllerFilter', $filterData);
+                $session->set('MaquinaControllerFilter', $filterData);
             }
         } else {
             // Get filter from session
-            if ($session->has('OrdenControllerFilter')) {
-                $filterData = $session->get('OrdenControllerFilter');
-                $filterForm = $this->createForm(new OrdenFilterType(), $filterData);
+            if ($session->has('MaquinaControllerFilter')) {
+                $filterData = $session->get('MaquinaControllerFilter');
+                $filterForm = $this->createForm(new MaquinaFilterType(), $filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
@@ -93,21 +81,23 @@ class OrdenController extends Controller
     * Get results from paginator and get paginator view.
     *
     */
-    protected function paginator($queryBuilder, $cuantos)
+    protected function paginator($queryBuilder)
     {
+        // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $currentPage = $this->getRequest()->get('page', 1);
-        $pagerfanta->setMaxPerPage($cuantos);
         $pagerfanta->setCurrentPage($currentPage);
         $entities = $pagerfanta->getCurrentPageResults();
-  
+    
+        // Paginator - route generator
         $me = $this;
         $routeGenerator = function($page) use ($me)
         {
-            return $me->generateUrl('orden', array('page' => $page));
+            return $me->generateUrl('maquina', array('page' => $page));
         };
-
+    
+        // Paginator - view
         $translator = $this->get('translator');
         $view = new TwitterBootstrapView();
         $pagerHtml = $view->render($pagerfanta, $routeGenerator, array(
@@ -120,50 +110,50 @@ class OrdenController extends Controller
     }
     
     /**
-     * Finds and displays a Orden entity.
+     * Finds and displays a Maquina entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBProduccionBundle:Orden')->find($id);
+        $entity = $em->getRepository('PBProduccionBundle:Maquina')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Orden entity.');
+            throw $this->createNotFoundException('Unable to find Maquina entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PBProduccionBundle:Orden:show.html.twig', array(
+        return $this->render('PBProduccionBundle:Maquina:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
-     * Displays a form to create a new Orden entity.
+     * Displays a form to create a new Maquina entity.
      *
      */
     public function newAction()
     {
-        $entity = new Orden();
-        $form   = $this->createForm(new OrdenType(), $entity);
+        $entity = new Maquina();
+        $form   = $this->createForm(new MaquinaType(), $entity);
 
-        return $this->render('PBProduccionBundle:Orden:new.html.twig', array(
+        return $this->render('PBProduccionBundle:Maquina:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a new Orden entity.
+     * Creates a new Maquina entity.
      *
      */
     public function createAction()
     {
-        $entity  = new Orden();
+        $entity  = new Maquina();
         $request = $this->getRequest();
-        $form    = $this->createForm(new OrdenType(), $entity);
+        $form    = $this->createForm(new MaquinaType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -172,68 +162,78 @@ class OrdenController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
-            return $this->redirect($this->generateUrl('orden_show', array('id' => $entity->getId())));        } else {
+            return $this->redirect($this->generateUrl('maquina_show', array('id' => $entity->getId())));        } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
         }
 
-        return $this->render('PBProduccionBundle:Orden:new.html.twig', array(
+        return $this->render('PBProduccionBundle:Maquina:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
     /**
-     * Displays a form to edit an existing Orden entity.
+     * Displays a form to edit an existing Maquina entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('PBProduccionBundle:Orden')->find($id);
+        $entity = $em->getRepository('PBProduccionBundle:Maquina')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Orden entity.');
+            throw $this->createNotFoundException('Unable to find Maquina entity.');
         }
 
-        $editForm = $this->createForm(new OrdenType(), $entity);
+        $editForm = $this->createForm(new MaquinaType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('PBProduccionBundle:Orden:edit.html.twig', array(
+        return $this->render('PBProduccionBundle:Maquina:edit.html.twig', array(
             'entity'      => $entity,
-            'form'   => $editForm->createView(),
+            'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Edits an existing Orden entity.
+     * Edits an existing Maquina entity.
      *
      */
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('PBProduccionBundle:Orden')->find($id);
-        if (!$entity) {  throw $this->createNotFoundException('Unable to find Orden entity.');}
-        $editForm   = $this->createForm(new OrdenType(), $entity);
+
+        $entity = $em->getRepository('PBProduccionBundle:Maquina')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Maquina entity.');
+        }
+
+        $editForm   = $this->createForm(new MaquinaType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
+
         $request = $this->getRequest();
+
         $editForm->bind($request);
+
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
-            return $this->redirect($this->generateUrl('orden_show', array('id' => $id)));
+            return $this->redirect($this->generateUrl('maquina_edit', array('id' => $id)));
         } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }
 
-        return $this->render('PBProduccionBundle:Orden:edit.html.twig', array(
-            'entity'      => $entity, 'form'   => $editForm->createView(), 'delete_form' => $deleteForm->createView(),
+        return $this->render('PBProduccionBundle:Maquina:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Orden entity.
+     * Deletes a Maquina entity.
      *
      */
     public function deleteAction($id)
@@ -245,10 +245,10 @@ class OrdenController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('PBProduccionBundle:Orden')->find($id);
+            $entity = $em->getRepository('PBProduccionBundle:Maquina')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Orden entity.');
+                throw $this->createNotFoundException('Unable to find Maquina entity.');
             }
 
             $em->remove($entity);
@@ -258,32 +258,14 @@ class OrdenController extends Controller
             $this->get('session')->getFlashBag()->add('error', 'flash.delete.error');
         }
 
-        return $this->redirect($this->generateUrl('orden'));
+        return $this->redirect($this->generateUrl('maquina'));
     }
-    
-    private function getHtmlpdf($id) {
-    	$em = $this->getDoctrine()->getManager();
-    	$entity = $em->getRepository('PBProduccionBundle:Orden')->find($id);
-    	if (!$entity) {	throw $this->createNotFoundException('Unable to find Pedido Cliente entity.'); }
-    
-    	$request = $this->getRequest();
-    	$url = $this->container->getParameter('url');
-    	$html = $this->renderView('PBProduccionBundle:Orden:print.html.twig', array('entity' => $entity,'url'  => $url));
-    
-    	return $html;
-    }
-    
-    private function createDeleteForm($id) {    return $this->createFormBuilder(array('id' => $id))->add('id', 'hidden')->getForm(); }
-    
-    public function printAction($id)
+
+    private function createDeleteForm($id)
     {
-    
-    	$html = $this->getHtmlpdf($id);
-    	$printer = new PrintOrden(); //HTML2PDF
-    	$response = new Response($printer->getPdf($html));
-    
-    	$response->headers->set('Content-Type', 'application/pdf');
-    	$response->headers->set('Content-Disposition', 'inline; filename="PedidoCliente.pdf"');
-    	return $response;
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm()
+        ;
     }
 }

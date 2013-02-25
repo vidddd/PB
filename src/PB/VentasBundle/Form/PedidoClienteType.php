@@ -19,7 +19,7 @@ class PedidoClienteType extends AbstractType
     		$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
     	} catch (ParseException $e) { printf("Unable to parse the YAML string: %s", $e->getMessage()); }
     	$tipos = $value['tipo_material'];
-    	$estados = $value['estados_pedidos']; $cliches = $value['cliches']; $tubos = $value['tipo_tubo']; $bolsas = $value['soldadura']; $asas = $value['asas'];
+    	$estados = $value['estados_pedidos']; $productos = $value['producto']; $cliches = $value['cliches']; $tubos = $value['tipo_tubo']; $bolsas = $value['soldadura']; $asas = $value['asas'];
     	
         $builder
             ->add('cliente', 'cliente_text', array('error_bubbling' => true))
@@ -34,9 +34,13 @@ class PedidoClienteType extends AbstractType
             ->add('cantidaduni', 'choice', array(
             		'choices'   => array('1'   => 'Bolsas','2' => 'Kg', '3' => 'Metros',
             		), 'multiple'  => false, 'expanded' => true, 'required' => false))
+            ->add('producto', 'choice', array( 'choices' => $productos,'error_bubbling' => true, 'empty_value' => ''))
             ->add('ancho', 'text', array('required' => true))
             ->add('largo')
             ->add('galga', 'text', array('required' => true))
+            ->add('galgauni', 'choice', array(
+            		'choices'   => array('1'   => 'Galgas','2' => 'Micras',
+            		), 'multiple'  => false, 'expanded' => true, 'required' => false))
             ->add('plegado')
             ->add('solapa')
             ->add('precio')

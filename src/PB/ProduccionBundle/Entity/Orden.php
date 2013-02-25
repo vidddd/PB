@@ -1551,6 +1551,20 @@ class Orden
     	}
     	if($this->cliche != null) return $value['cliches'][$this->cliche];
     }
+    public function getTipoBolsaText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->tipobolsa != null) return $value['soldadura'][$this->tipobolsa];
+    }
+    public function getAsaText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->asa != null) return $value['asas'][$this->asa];
+    }
     /**
      * @var PB\VentasBundle\Entity\PedidoCliente
      */
@@ -1608,5 +1622,341 @@ class Orden
     public function removePedidocliente(\PB\VentasBundle\Entity\Pedidocliente $pedidocliente)
     {
         $this->pedidocliente->removeElement($pedidocliente);
+    }
+    /**
+     * @var integer $tipobolsa
+     */
+    private $tipobolsa;
+
+    /**
+     * @var integer $asa
+     */
+    private $asa;
+
+
+    /**
+     * Set tipobolsa
+     *
+     * @param integer $tipobolsa
+     * @return Orden
+     */
+    public function setTipobolsa($tipobolsa)
+    {
+        $this->tipobolsa = $tipobolsa;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipobolsa
+     *
+     * @return integer 
+     */
+    public function getTipobolsa()
+    {
+        return $this->tipobolsa;
+    }
+
+    /**
+     * Set asa
+     *
+     * @param integer $asa
+     * @return Orden
+     */
+    public function setAsa($asa)
+    {
+        $this->asa = $asa;
+    
+        return $this;
+    }
+
+    /**
+     * Get asa
+     *
+     * @return integer 
+     */
+    public function getAsa()
+    {
+        return $this->asa;
+    }
+    /**
+     * @var integer $rebobinado
+     */
+    private $rebobinado;
+
+    /**
+     * @var float $bobinasr
+     */
+    private $bobinasr;
+
+    /**
+     * @var float $metrosr
+     */
+    private $metrosr;
+
+    /**
+     * @var float $kgr
+     */
+    private $kgr;
+
+    /**
+     * @var float $totalrebobinado
+     */
+    private $totalrebobinado;
+
+    /**
+     * @var string $notasrebobinado
+     */
+    private $notasrebobinado;
+
+    /**
+     * @var integer $maquina_rebobinado
+     */
+    private $maquina_rebobinado;
+
+    /**
+     * @var \DateTime $fecha_rebobinado
+     */
+    private $fecha_rebobinado;
+
+    /**
+     * @var string $tiempo_rebobinado
+     */
+    private $tiempo_rebobinado;
+
+    /**
+     * @var string $operario_rebobinado
+     */
+    private $operario_rebobinado;
+
+
+    /**
+     * Set rebobinado
+     *
+     * @param integer $rebobinado
+     * @return Orden
+     */
+    public function setRebobinado($rebobinado)
+    {
+        $this->rebobinado = $rebobinado;
+    
+        return $this;
+    }
+
+    /**
+     * Get rebobinado
+     *
+     * @return integer 
+     */
+    public function getRebobinado()
+    {
+        return $this->rebobinado;
+    }
+
+    /**
+     * Set bobinasr
+     *
+     * @param float $bobinasr
+     * @return Orden
+     */
+    public function setBobinasr($bobinasr)
+    {
+        $this->bobinasr = $bobinasr;
+    
+        return $this;
+    }
+
+    /**
+     * Get bobinasr
+     *
+     * @return float 
+     */
+    public function getBobinasr()
+    {
+        return $this->bobinasr;
+    }
+
+    /**
+     * Set metrosr
+     *
+     * @param float $metrosr
+     * @return Orden
+     */
+    public function setMetrosr($metrosr)
+    {
+        $this->metrosr = $metrosr;
+    
+        return $this;
+    }
+
+    /**
+     * Get metrosr
+     *
+     * @return float 
+     */
+    public function getMetrosr()
+    {
+        return $this->metrosr;
+    }
+
+    /**
+     * Set kgr
+     *
+     * @param float $kgr
+     * @return Orden
+     */
+    public function setKgr($kgr)
+    {
+        $this->kgr = $kgr;
+    
+        return $this;
+    }
+
+    /**
+     * Get kgr
+     *
+     * @return float 
+     */
+    public function getKgr()
+    {
+        return $this->kgr;
+    }
+
+    /**
+     * Set totalrebobinado
+     *
+     * @param float $totalrebobinado
+     * @return Orden
+     */
+    public function setTotalrebobinado($totalrebobinado)
+    {
+        $this->totalrebobinado = $totalrebobinado;
+    
+        return $this;
+    }
+
+    /**
+     * Get totalrebobinado
+     *
+     * @return float 
+     */
+    public function getTotalrebobinado()
+    {
+        return $this->totalrebobinado;
+    }
+
+    /**
+     * Set notasrebobinado
+     *
+     * @param string $notasrebobinado
+     * @return Orden
+     */
+    public function setNotasrebobinado($notasrebobinado)
+    {
+        $this->notasrebobinado = $notasrebobinado;
+    
+        return $this;
+    }
+
+    /**
+     * Get notasrebobinado
+     *
+     * @return string 
+     */
+    public function getNotasrebobinado()
+    {
+        return $this->notasrebobinado;
+    }
+
+    /**
+     * Set maquina_rebobinado
+     *
+     * @param integer $maquinaRebobinado
+     * @return Orden
+     */
+    public function setMaquinaRebobinado($maquinaRebobinado)
+    {
+        $this->maquina_rebobinado = $maquinaRebobinado;
+    
+        return $this;
+    }
+
+    /**
+     * Get maquina_rebobinado
+     *
+     * @return integer 
+     */
+    public function getMaquinaRebobinado()
+    {
+        return $this->maquina_rebobinado;
+    }
+
+    /**
+     * Set fecha_rebobinado
+     *
+     * @param \DateTime $fechaRebobinado
+     * @return Orden
+     */
+    public function setFechaRebobinado($fechaRebobinado)
+    {
+        $this->fecha_rebobinado = $fechaRebobinado;
+    
+        return $this;
+    }
+
+    /**
+     * Get fecha_rebobinado
+     *
+     * @return \DateTime 
+     */
+    public function getFechaRebobinado()
+    {
+        return $this->fecha_rebobinado;
+    }
+
+    /**
+     * Set tiempo_rebobinado
+     *
+     * @param string $tiempoRebobinado
+     * @return Orden
+     */
+    public function setTiempoRebobinado($tiempoRebobinado)
+    {
+        $this->tiempo_rebobinado = $tiempoRebobinado;
+    
+        return $this;
+    }
+
+    /**
+     * Get tiempo_rebobinado
+     *
+     * @return string 
+     */
+    public function getTiempoRebobinado()
+    {
+        return $this->tiempo_rebobinado;
+    }
+
+    /**
+     * Set operario_rebobinado
+     *
+     * @param string $operarioRebobinado
+     * @return Orden
+     */
+    public function setOperarioRebobinado($operarioRebobinado)
+    {
+        $this->operario_rebobinado = $operarioRebobinado;
+    
+        return $this;
+    }
+
+    /**
+     * Get operario_rebobinado
+     *
+     * @return string 
+     */
+    public function getOperarioRebobinado()
+    {
+        return $this->operario_rebobinado;
     }
 }

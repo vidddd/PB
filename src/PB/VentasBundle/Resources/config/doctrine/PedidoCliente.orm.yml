@@ -21,6 +21,8 @@ PB\VentasBundle\Entity\PedidoCliente:
     cantidaduni:
       type: smallint
       nullable: true
+    producto:
+      type: smallint
     ancho:
       type: float
       nullable: true
@@ -29,6 +31,9 @@ PB\VentasBundle\Entity\PedidoCliente:
       nullable: true
     galga:
       type: float
+      nullable: true
+    galgauni:
+      type: smallint
       nullable: true
     plegado:
       type: integer

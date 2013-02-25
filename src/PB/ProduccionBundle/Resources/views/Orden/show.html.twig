@@ -4,10 +4,9 @@
 
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
-<div class="title title-spacing almacen"><h2>Orden de Fabricación</h2></div>
+<div class="title title-spacing produccion"><h2>Orden de Fabricación</h2></div>
 	{% include 'PBProduccionBundle:Orden:vista.html.twig' with { 'entity' : entity } %}
- 	<br />
-	<div class="clearfix"></div>
+
     <div class="float-left volver">
         <a href="{{ path('orden') }}">
           <<  {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}

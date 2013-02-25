@@ -1,0 +1,30 @@
+maquina:
+    pattern:  /
+    defaults: { _controller: "PBProduccionBundle:Maquina:index" }
+
+maquina_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBProduccionBundle:Maquina:show" }
+
+maquina_new:
+    pattern:  /new
+    defaults: { _controller: "PBProduccionBundle:Maquina:new" }
+
+maquina_create:
+    pattern:  /create
+    defaults: { _controller: "PBProduccionBundle:Maquina:create" }
+    requirements: { _method: post }
+
+maquina_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBProduccionBundle:Maquina:edit" }
+
+maquina_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBProduccionBundle:Maquina:update" }
+    requirements: { _method: post }
+
+maquina_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBProduccionBundle:Maquina:delete" }
+    requirements: { _method: post }

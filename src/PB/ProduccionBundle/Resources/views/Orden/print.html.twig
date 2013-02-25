@@ -1,0 +1,73 @@
+<style type="text/css">
+<!--
+/*
+* Verdefondo: b0ccc5
+* Verde Linea: 869a90
+*/
+.presupuesto {
+ border: 1px solid blue;
+ fon-size: 11px;
+ color: #111;
+ font-family: Arial,sans-serif;
+}
+table {border-collapse: collapse; }
+.verde { color:#869a90; }
+.verdebg { background-color: #b0ccc5; }
+h2 { text-align: center; }
+h3 { font-size: 16px; color: #221;}
+.bordenegro { border: 1px solid #111;} .bordenegroright { border-right: 1px solid #111;}
+.etiqueta2 {}
+
+.tabla1 { width:700px; }
+.tabla1 .etiqueta { padding: 6px 0; text-align:center; background-color:#ddd; font-size: 10px;}
+.tabla1 td {border: 1px solid #111; padding:5px 15px;}
+.tabla1 p {border: 1px solid red; margin:3px; }
+-->
+</style>
+<page backtop="5mm" backbottom="7mm" backleft="11mm" backright="11mm">
+{% block content %}
+<div class="ordenfabricacion">
+<h2>ORDEN DE FABRICACIÓN</h2>	
+	<table class="tabla1 bordenegro" cellspacing="10" style="width:700px;">
+    	<tr>
+    		<td class="etiqueta">CLIENTE</td><td class="etiqueta">FECHA</td><td class="etiqueta">SUBCLIENTE</td><td class="etiqueta">MATERIAL</td><td class="etiqueta">PRODUCTO</td><td class="etiqueta">CANTIDAD</td><td class="etiqueta">ESPESOR</td>
+		</tr>
+		<tr>
+			<td>{{ entity.cliente }}</td><td>{{ entity.fecha|date('d.m.Y') }}</td><td>{{ entity.subcliente }}</td><td>{{ entity.tipomaterialText }}</td><td>{{ entity.productoText }}</td><td>{{ entity.cantidad }} {{ entity.cantidaduniText }}</td><td>{{ entity.espesor }} {{ entity.espesoruniText }}</td>	
+		</tr>
+	</table>
+	{% if entity.extrusion %}
+	<h3>EXTRUSION</h3>
+		<table class="">
+			<tr>
+			
+			</tr>
+		</table>
+	{% endif %}
+	{% if entity.impresion %}
+	<h3>IMPRESIÓN</h3>
+		<table class="">
+			<tr>
+			
+			</tr>
+		</table>
+	{% endif %}
+	{% if entity.corte %}
+	<h3>CORTE</h3>
+		<table class="">
+			<tr>
+			
+			</tr>
+		</table>
+	{% endif %}
+	{% if entity.rebobinado %}
+	<h3>REBOBINADO</h3>
+		<table class="">
+			<tr>
+			
+			</tr>
+		</table>
+	{% endif %}
+</div>
+{% endblock %}
+</page>

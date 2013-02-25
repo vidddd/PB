@@ -136,7 +136,15 @@ class PedidoClienteController extends Controller
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
-
+    
+    public function showLightboxAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$entity = $em->getRepository('PBProduccionBundle:Orden')->find($id);
+    	if (!$entity) {	throw $this->createNotFoundException('Unable to find Orden entity.');	}
+    
+    	return $this->render('PBProduccionBundle:Orden:show_lightbox.html.twig', array( 'entity'      => $entity ));
+    }
     public function newAction()
     {
         $entity = new PedidoCliente();
@@ -301,18 +309,18 @@ class PedidoClienteController extends Controller
     	));
     }
     
-    private function getHtmlpdf($id) {
-    	$em = $this->getDoctrine()->getManager();
-    	$entity = $em->getRepository('PBVentasBundle:PedidoCliente')->find($id);
-    	if (!$entity) {	throw $this->createNotFoundException('Unable to find Pedido Cliente entity.'); }
-    	 
-    	$request = $this->getRequest();
-    	$url = $this->container->getParameter('url');
-    	
-    	$html = $this->renderView('PBVentasBundle:PedidoCliente:print.html.twig', array('entity' => $entity,'url'  => $url));
-    	 
-    	return $html;
-    }
+	    private function getHtmlpdf($id) {
+	    	$em = $this->getDoctrine()->getManager();
+	    	$entity = $em->getRepository('PBVentasBundle:PedidoCliente')->find($id);
+	    	if (!$entity) {	throw $this->createNotFoundException('Unable to find Pedido Cliente entity.'); }
+	    	 
+	    	$request = $this->getRequest();
+	    	$url = $this->container->getParameter('url');
+	    	
+	    	$html = $this->renderView('PBVentasBundle:PedidoCliente:print.html.twig', array('entity' => $entity,'url'  => $url));
+	    	 
+	    	return $html;
+	    }
     
     public function duplicarAction($id)
     {
@@ -368,8 +376,18 @@ class PedidoClienteController extends Controller
         $orden->setPedidocliente($pedido);
         $orden->setCliente($pedido->getCliente());$orden->setSubcliente($pedido->getSubcliente());
         $orden->setCantidad($pedido->getCantidad()); $orden->setCantidaduni($pedido->getCantidaduni());
-        $orden->setEspesor($pedido->getGalga());
-        $orden->setTipomaterial($pedido->getMaterial());
+        $orden->setEspesor($pedido->getGalga()); $orden->setEspesoruni($pedido->getGalgauni());
+        $orden->setTipomaterial($pedido->getMaterial()); $orden->setColor($pedido->getColor());
+        $orden->setAncho($pedido->getAncho());
+        $orden->setGalga($pedido->getGalga()); $orden->setPlegado($pedido->getPlegado());
+        $orden->setTipotubo($pedido->getTipotubo());
+        $orden->setAnverso($pedido->getImpresion1()); $orden->setReverso($pedido->getImpresion2());
+        $orden->setColoresa($pedido->getColor1()); $orden->setColoresr($pedido->getColor2());
+        $orden->setCliche($pedido->getCliche());
+        $orden->setAnchoc($pedido->getAncho()); $orden->setLargoc($pedido->getLargo()); $orden->setSolapa($pedido->getSolapa());
+        $orden->setTipobolsa($pedido->getTipobolsa()); $orden->setAsa($pedido->getAsa());
+        $orden->setProducto($pedido->getProducto());
+        $orden->setBobinasr($pedido->getBobinasnumero()); $orden->setMetrosr($pedido->getBobinasmetros()); $orden->setKgr($pedido->getBobinaskg());
         $form   = $this->createForm(new OrdenType(), $orden);
               
         return $this->render('PBVentasBundle:PedidoCliente:fabricarPedido.html.twig', array(

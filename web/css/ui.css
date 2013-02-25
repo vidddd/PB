@@ -836,7 +836,7 @@ border: 1px solid #CDCDCD; }
 .orden{font-size: 12px;}
 .orden input {margin:0;}
 .tabla4 { height: 80px;}
-.tabla4 th { font-weight: bold; padding-left: 5px; padding:0; vertical-align: middle;}
+.tabla4 th { padding-left: 5px; padding:0; vertical-align: middle;}
 .tabla4 td { padding:0 12px !important; vertical-align: middle; }
 .tabla4 label, .tabla4  input[type="radio"]{ margin-left: 9px; display: inline !important;color: #666; text-shadow: 0 1px 0 #FFFFFF;}
 

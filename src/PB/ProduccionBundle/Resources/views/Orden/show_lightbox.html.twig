@@ -1,0 +1,11 @@
+{% extends '::layout_ajax.html.twig' %}
+
+{% block title 'Orden de Fabricación' %}
+
+{# block width100 "widthtotal" %}{% block displaysidebar "display:none;" #}
+{% block content %}
+<div id="lightbox-wrapper"><div class="title title-spacing produccion"><h2>Orden de Fabricación OF</h2></div>
+{% include 'PBProduccionBundle:Orden:vista.html.twig' with { 'entity' : entity } %}
+<div class="clearfix"></div></div>
+
+{% endblock %}

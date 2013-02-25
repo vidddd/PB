@@ -27,4 +27,7 @@ PB\ProduccionBundle\Entity\Maquina:
     tiempo_despues:
       type: time
       nullable: true
+    observaciones:
+      type: text
+      nullable: true
     lifecycleCallbacks: {  }

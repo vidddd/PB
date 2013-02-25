@@ -1,10 +1,9 @@
 <style type="text/css">
 <!--
-/**
- * #42929d Verde mar
- * #97afa0 Verde Apagado
- * #788884 Verde lineas
- */
+/*
+* Verdefondo: b0ccc5
+* Verde Linea: 869a90
+*/
 .presupuesto {
  /*border: 1px solid blue;*/
  fon-size: 12px;
@@ -85,6 +84,7 @@ table { }
     <table class="tabla5" cellspacing="0">
 		<tr>
 			<td style="width:22%" class="bgverde bordeverde etiqueta">CANTIDAD</td>
+			<td style="width:13%" class="bgverde bordeverde etiqueta">PRODUCTO</td>
 			<td style="width:13%" class="bgverde bordeverde etiqueta">ANCHO</td>
 			<td style="width:13%" class="bgverde bordeverde etiqueta">LARGO</td>
 			<td style="width:13%" class="bgverde bordeverde etiqueta">GALGA</td>
@@ -94,6 +94,7 @@ table { }
 		</tr>
 		<tr>
 			<td class="bordeverde">{{ entity.cantidad }} {{ entity.cantidaduniText }}</td>
+			<td class="bordeverde">{{ entity.producto }}</td>
 			<td class="bordeverde">{{ entity.ancho }}</td>
 			<td class="bordeverde">{{ entity.largo }}</td>
 			<td class="bordeverde">{{ entity.galga }}</td>

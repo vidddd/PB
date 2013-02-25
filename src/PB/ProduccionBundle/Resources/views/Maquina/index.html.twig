@@ -1,0 +1,127 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Maquinas" %}
+
+{% block content %}
+<div class="title title-spacing produccion"><h2>Maquinaria</h2></div>
+<div id="maquinaria" class="vista3">
+	<div class="contenttitle2"><h3>Extrusión</h3></div>
+		<table>
+			<thead>
+			  <tr>
+				<th style="width:120px;">Código de Máquina</th>
+				<th>Descripción</th>
+			  </tr>
+			</thead>
+			<tbody>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 1 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">E1</a></b></td>
+		        <td>IBAÑEZ</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 2 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">E2</a></b></td>
+		        <td>COVEX 75</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 3 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">E3</a></b></td>
+		        <td>COREANA I</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 4 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">E4</a></b></td>
+		        <td>COREANA II</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 5 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">E5</a></b></td>
+		        <td>COVEX 60</td>
+		      </tr>
+			</tbody>
+		</table>
+	<div class="contenttitle2"><h3>Impresión</h3></div>
+			<table>
+			<thead>
+			  <tr>	<th style="width:120px;">Código de Máquina</th>	<th>Descripción</th></tr>
+			</thead>
+			<tbody>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 6 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">I1</a></b></td>
+		        <td>GIAVE 800 I</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 7 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">I2</a></b></td>
+		        <td>GIAVE 1200</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 8 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">I3</a></b></td>
+		        <td>GIAVE 1000</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 9 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">I4</a></b></td>
+		        <td>GIAVE 800 II</td>
+		      </tr>
+			</tbody>
+		</table>
+	<div class="contenttitle2"><h3>Corte</h3></div>
+				<table>
+			<thead>
+			  <tr>
+				<th style="width:120px;">Código de Máquina</th>
+				<th>Descripción</th>
+			  </tr>
+			</thead>
+			<tbody>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 10 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">C1</a></b></td>
+		        <td>COEMTER 1100</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 11 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">C2</a></b></td>
+		        <td>COEMTER 810</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 12 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">C3</a></b></td>
+		        <td>ARVOR</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 13 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">C4</a></b></td>
+		        <td>MAC 800</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 14 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">C5</a></b></td>
+		        <td>MAC 810</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 15 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">C6</a></b></td>
+		        <td>MAC 1100</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 16 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">C7</a></b></td>
+		        <td>COEMTER ROLLO</td>
+		      </tr>
+			</tbody>
+		</table>
+	<div class="contenttitle2"><h3>Rebobinadoras</h3></div>
+	<table>
+			<thead>
+			  <tr>
+				<th style="width:120px;">Código de Máquina</th>
+				<th>Descripción</th>
+			  </tr>
+			</thead>
+			<tbody>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 17 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">R1</a></b></td>
+		        <td>GIAVE 1300</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 18 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">R2</a></b></td>
+		        <td>GIAVE RG 160</td>
+		      </tr>
+		      <tr>
+		        <td><b><a  rel="prettyPhoto[iframe]" href="{{ path('maquina_show', { 'id': 19 , 'iframe': 'true', 'width': 650, 'height': 400 }) }}">R3</a></b></td>
+		        <td>MPC</td>
+		      </tr>
+		      	</tbody>
+		</table>
+</div>
+
+   {% endblock %}
