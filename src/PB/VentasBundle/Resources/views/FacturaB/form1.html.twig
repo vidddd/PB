@@ -7,11 +7,18 @@ $(document).ready(function() {
 
 		$('#facturab_iva').val('0');
 		$('#facturab_recargo').val('0');
-	
+		$("#form1").submit(function(e) {
+			getNombreclienteFacturab();
+   		    var form = this;
+   		    e.preventDefault();
+   		    setTimeout(function () {
+   		        form.submit();
+   		    }, 1000); // in milliseconds
+		 });
 	});
 //-->
 </script>
-<form action="{{ entity.id  ? path('facturab_edit', { 'id': entity.id }) : path('facturab_new') }}" novalidate="novalidate" method="post" {{ form_enctype(form) }}>
+<form id="form1" action="{{ entity.id  ? path('facturab_edit', { 'id': entity.id }) : path('facturab_new') }}" novalidate="novalidate" method="post" {{ form_enctype(form) }}>
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
 	<div class="portlet-header ui-widget-header">DATOS LA FACTURA</div>
 		<div class="portlet-content">

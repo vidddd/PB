@@ -54,7 +54,7 @@
     <thead>
         <tr>
             <th width="25">Código Pedido</th>
-            <th>Cod. Factura</th>
+            {% if is_granted('ROLE_CONTABILIDAD') %} <th>Cod. Factura</th> {% endif %}
             <th>Cliente</th>
             <th>Concepto</th>
             <th>Ancho</th>
@@ -69,7 +69,7 @@
       {% for linea in entities %}
         <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
             <td>{{ linea.referencia }}</td>
-            <td><a rel="prettyPhoto[iframe]" href="{{ path('factura_show_lightbox', { 'id': linea.factura.id , 'iframe': 'true', 'width': 760, 'height': 600 }) }}" title="">{{ linea.factura.id }}</a></td>
+            {% if is_granted('ROLE_CONTABILIDAD') %} <td><a rel="prettyPhoto[iframe]" href="{{ path('factura_show_lightbox', { 'id': linea.factura.id , 'iframe': 'true', 'width': 760, 'height': 600 }) }}" title="">{{ linea.factura.id }}</a></td> {% endif %}
             <td>{{ linea.factura.cliente }}</td>
             <td><b>{{ linea.descripcion }}</b></td>
             <td>{{ linea.ancho }}</td>

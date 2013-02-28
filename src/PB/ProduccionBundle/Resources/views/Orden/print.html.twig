@@ -10,61 +10,113 @@
  color: #111;
  font-family: Arial,sans-serif;
 }
-table {border-collapse: collapse; }
+
 .verde { color:#869a90; }
 .verdebg { background-color: #b0ccc5; }
 h2 { text-align: center; }
-h3 { font-size: 16px; color: #221;}
+h3 { font-size: 15px; color: #221;}
 .bordenegro { border: 1px solid #111;} .bordenegroright { border-right: 1px solid #111;}
 .etiqueta2 {}
-
-.tabla1 { width:700px; }
+table td p { border: 1px solid red; margin: 3px 2px;}
+.tabla1 { width:700px; border-collapse: collapse; }
 .tabla1 .etiqueta { padding: 6px 0; text-align:center; background-color:#ddd; font-size: 10px;}
 .tabla1 td {border: 1px solid #111; padding:5px 15px;}
-.tabla1 p {border: 1px solid red; margin:3px; }
+
+.tabla2 { width: 250px; float:left; background: #F7F7F7; font-size: 10pt; }
+.tabla3 {width: 100%; border: solid 1px black; background: #E7E7E7; text-align: center; font-size: 9pt;}
+.tabla3 th {padding: 2px;}
+.width1 { width: 100px;}
+.tabla4 { width: 100%; background: #F7F7F7; text-align: center; font-size: 9pt; border-collapse: collapse;}
+.tabla4 td {  border: solid 1px black; }
 -->
 </style>
 <page backtop="5mm" backbottom="7mm" backleft="11mm" backright="11mm">
 {% block content %}
 <div class="ordenfabricacion">
 <h2>ORDEN DE FABRICACIÓN</h2>	
-	<table class="tabla1 bordenegro" cellspacing="10" style="width:700px;">
+	<table class="tabla1 bordenegro" cellspacing="0" style="width:700px;">
     	<tr>
     		<td class="etiqueta">CLIENTE</td><td class="etiqueta">FECHA</td><td class="etiqueta">SUBCLIENTE</td><td class="etiqueta">MATERIAL</td><td class="etiqueta">PRODUCTO</td><td class="etiqueta">CANTIDAD</td><td class="etiqueta">ESPESOR</td>
 		</tr>
 		<tr>
-			<td>{{ entity.cliente }}</td><td>{{ entity.fecha|date('d.m.Y') }}</td><td>{{ entity.subcliente }}</td><td>{{ entity.tipomaterialText }}</td><td>{{ entity.productoText }}</td><td>{{ entity.cantidad }} {{ entity.cantidaduniText }}</td><td>{{ entity.espesor }} {{ entity.espesoruniText }}</td>	
+			<td>{{ entity.cliente }}&nbsp;</td><td>{{ entity.fecha|date('d.m.Y') }}&nbsp;</td><td>{{ entity.subcliente }}</td><td>{{ entity.tipomaterialText }}</td><td>{{ entity.productoText }}</td><td>{{ entity.cantidad }} {{ entity.cantidaduniText }}</td><td>{{ entity.espesor }} {{ entity.espesoruniText }}</td>	
 		</tr>
 	</table>
 	{% if entity.extrusion %}
 	<h3>EXTRUSION</h3>
-		<table class="">
-			<tr>
-			
-			</tr>
-		</table>
+	<table>
+		<tr><td>
+			<table class="tabla2 bordenegro" cellspacing="0">
+				<tr><td>
+				<p>Color</p><p>Ancho</p><p>Galga</p><p>Plegado</p><p>Bobinas</p><p>Peso Teórico</p><p>Tratado</p><p>Tipo Tubo</p><p>Observaciones</p>
+				</td>
+				<td class="width1">
+					<p>{{ entity.color }}&nbsp;</p><p>{{ entity.ancho }}&nbsp;</p><p>{{ entity.galga }}&nbsp;</p><p>{{ entity.plegado }}&nbsp;</p><p>{{ entity.bobinas }}&nbsp;</p><p>{{ entity.pesoteorico }}&nbsp;</p><p>{{ entity.tratadoText }}&nbsp;</p><p>{{ entity.tipotuboText }}&nbsp;</p><p>{{ entity.notasextrusion }}&nbsp;</p>
+				</td>
+				</tr>
+			</table>
+		</td>
+		<td>
+		  <table cellspacing="0" class="tabla3" style="">
+	        <tr>
+	            <th style="width: 20%">FECHA</th>
+	            <th style="width: 20%">Nº BOB</th>
+	            <th style="width: 20%">ANCHO</th>
+	            <th style="width: 20%">LARGO</th>
+	            <th style="width: 20%">PESO</th>
+	            <th style="width: 20%">RESULTADO</th>
+	            <th style="width: 20%">FIRMA</th>
+	        </tr>
+	    </table>
+	    {% for i in 0..5 %}
+	    <table cellspacing="0" class="tabla4">
+        	<tr>
+            	<td style="width: 20%; text-align: left; height:20px;"></td>
+            	<td style="width: 20%; text-align: left"></td>
+            	<td style="width: 20%; text-align: right"></td>
+            	<td style="width: 20%"></td>
+            	<td style="width: 20%"></td>
+            	<td style="width: 20%"></td>
+            	<td style="width: 20%; text-align: right;"></td>
+        	</tr>
+    	</table>
+    	{%  endfor %}
+	    </td></tr>
+	 </table>
 	{% endif %}
 	{% if entity.impresion %}
 	<h3>IMPRESIÓN</h3>
-		<table class="">
-			<tr>
-			
+		<table class="tabla2 bordenegro">
+			<tr><td>
+			<p>Kilos</p><p>Medida</p><p>Anverso</p><p>Reverso</p><p>Colores A</p><p>Colores R</p><p>Cliche</p><p>Carpeta</p><p>Soldadura</p><p>Observaciones</p>
+			</td>
+			<td class="width1">
+				<p>{{ entity.kilosimp }}&nbsp;</p><p>{{ entity.medidaimp }}&nbsp;</p><p>{{ entity.anverso }}&nbsp;</p><p>{{ entity.reverso }}&nbsp;</p><p>{{ entity.coloresa }}&nbsp;</p><p>{{ entity.coloresr }}&nbsp;</p><p>{{ entity.clicheText }}&nbsp;</p><p>{{ entity.carpeta }}&nbsp;</p><p>{{ entity.soldadura }}&nbsp;</p><p>{{ entity.notasimpresion }}&nbsp;</p>
+			</td>
 			</tr>
 		</table>
 	{% endif %}
 	{% if entity.corte %}
 	<h3>CORTE</h3>
-		<table class="">
-			<tr>
-			
+		<table class="tabla2 bordenegro">
+			<tr><td>
+			<p>Cantidad</p><p>Ancho</p><p>Largo</p><p>Solapa</p><p>Bolsa</p><p>Asa</p><p>Paquete</p><p>Saco</p><p>Palet</p><p>Observaciones</p>
+			</td>
+			<td class="width1">
+				<p>{{ entity.cantidadc }}&nbsp;</p><p>{{ entity.anchoc }}&nbsp;</p><p>{{ entity.largoc }}&nbsp;</p><p>{{ entity.solapa }}&nbsp;</p><p>{{ entity.tipobolsaText }}&nbsp;</p><p>{{ entity.asaText }}&nbsp;</p><p>{{ entity.paquete }}&nbsp;</p><p>{{ entity.saco }}&nbsp;</p><p>{{ entity.palets }}&nbsp;</p><p>{{ entity.notascorte }}&nbsp;</p>
+			</td>
 			</tr>
 		</table>
 	{% endif %}
 	{% if entity.rebobinado %}
 	<h3>REBOBINADO</h3>
-		<table class="">
-			<tr>
-			
+		<table class="tabla2 bordenegro">
+			<tr><td>
+			<p>Bobinas</p><p>Metros</p><p>Kgs</p><p>Total</p><p>Observaciones</p>
+			</td>
+			<td class="width1">
+				<p>{{ entity.bobinasr }}&nbsp;</p><p>{{ entity.metrosr }}&nbsp;</p><p>{{ entity.kgr }}&nbsp;</p><p>{{ entity.totalrebobinado }}&nbsp;</p><p>{{ entity.notasrebobinado }}&nbsp;</p>
+			</td>
 			</tr>
 		</table>
 	{% endif %}

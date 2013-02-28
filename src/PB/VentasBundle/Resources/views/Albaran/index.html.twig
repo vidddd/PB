@@ -61,7 +61,7 @@
 		            <th>Fecha</th>
 		            <th>Importe</th>
 		            <th>Tipo</th>
-		            <th>Factura</th>
+		            {% if is_granted('ROLE_CONTABILIDAD') %}<th>Factura</th>{% endif %}
 		            <th width="132">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
 		        </tr>
 		    </thead>
@@ -73,19 +73,22 @@
 		            <td>{{ entity.fecha|date('d.m.Y') }}</td>
 		            <td>{{ entity.importetotalf }}</td>
 		            <td>{{ entity.tipoText }}</td>
-		            <td>		
+		            {% if is_granted('ROLE_CONTABILIDAD') %}<td>		
 						{% if entity.codfactura %}
 							{% if entity.tipo is sameas(1) %}
 								<a href="{{ path('factura_show', { 'id': entity.codfactura }) }}">{{ entity.codfactura }}</a>
 							{% endif %}
 							{% if entity.tipo is sameas(2) %}
-								<a href="{{ path('facturab_show', { 'id': entity.codfactura }) }}">{{ entity.codfactura }}</a>
+									{% if is_granted('ROLE_CONTABILIDADB') %}	<a href="{{ path('facturab_show', { 'id': entity.codfactura }) }}">{{ entity.codfactura }}</a> {% endif %}
 							{% endif %}
-						{% else %}
-						<!--  <a class="btn2 btn2-mini btn2-facturar" rel="prettyPhoto[iframe][facturando]" href="{{ path('albaran_facturar', { 'id': entity.id , 'iframe': 'true', 'width': 580, 'height': 470 }) }}">Facturar</a> -->
-							<a class="btn2 btn2-mini btn2-facturar" href="{{ path('albaran_facturar', { 'id': entity.id }) }}">Facturar</a>
+						{% else %}	
+							{% if entity.tipo is sameas(2) %}
+								{% if is_granted('ROLE_CONTABILIDADB') %} <a class="btn2 btn2-mini btn2-facturar" href="{{ path('albaran_facturar', { 'id': entity.id }) }}">Facturar</a> {% endif %}
+							{% else %}
+								<a class="btn2 btn2-mini btn2-facturar" href="{{ path('albaran_facturar', { 'id': entity.id }) }}">Facturar</a>
+							{% endif %}
 						{% endif %}
-				    </td>
+				    </td>{% endif %}
 				    <td>
 		        		<a href="{{ path('albaran_show', { 'id': entity.id }) }}" title="Ver ficha" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
 		     			{% if entity.codfactura %}

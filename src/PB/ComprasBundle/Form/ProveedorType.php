@@ -57,7 +57,7 @@ class ProveedorType extends AbstractType
             ->add('fecha_evaluacion', 'date', array(
             		'widget' => 'single_text',
             		'error_bubbling' => true,
-            		'required' => false
+            		'required' => false, 'read_only' => true
             ))
             ->add('fecha_evaluacion2', 'date', array(
             		'widget' => 'single_text',
@@ -65,7 +65,7 @@ class ProveedorType extends AbstractType
             		'required' => false
             ))
             ->add('aprovado')
-            ->add('tipo_evaluacion', 'choice', array( 'choices' => $tipose))
+            ->add('tipo_evaluacion', 'choice', array( 'choices' => $tipose, 'read_only' => true))
         ;
     }
 

@@ -19,7 +19,7 @@
 				<table id="form-alta">
 	   				<tbody>		
 	         			<tr>
-	        				<td class="label">{{ form_label(filterForm.id, 'Código Factura') }}</td>
+	        				<td class="label" style="width:160px;">{{ form_label(filterForm.id, 'Código Factura') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
 	      				<tr>
 	      				<tr>
@@ -30,7 +30,15 @@
 	        				<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
 	      				<tr>
-	      	         	<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(filterForm.fecha_cobro, 'Fecha Cobro') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.fecha_cobro, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha_cobro) }}</td>
+	      				<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(filterForm.concepto, 'Concepto / Descripción') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.concepto, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.concepto) }}</td>
+	      				<tr>
+	      				<tr>
 	        				<td class="label">{{ form_label(filterForm.estado, 'Estado') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.estado, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
 	      				<tr>

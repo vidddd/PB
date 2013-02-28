@@ -1236,3 +1236,5 @@ border-radius: 3px;
 }
 .fases-fabricacion label, .fases-fabricacion input { display: inline; margin:5px;}
 .maquina-detalle td { padding: 15px 0;}
+#pc-incidencias { border: 1px solid #ccc;}
+#pc-incidencias table th {font-size: 11px; color: #11}

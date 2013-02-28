@@ -50,3 +50,7 @@ UPDATE `proveedores` SET `aprovado` = '1' WHERE `proveedores`.`id` =306;
 {% if is_granted("ROLE_ADMIN") %}
     <a href="...">Delete</a>
 {% endif %}
+
+    if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        throw new AccessDeniedException();
+    }

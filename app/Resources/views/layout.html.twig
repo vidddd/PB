@@ -3,7 +3,8 @@
 {% block body %}
 <div id="header">
 		<div id="top-menu">		
-			<span>Hola!! <a href="#" title="Logged in as admin">{{ app.user.username }}</a></span>
+			<span>Hola!! <a href="#" title="Logged in as admin">{% if app.user %}{{ app.user.username }}
+															{% endif %}</a></span>
 			| <a href="{{ path('logout') }}" title="Logout">Salir</a>
 		</div>
 		<div id="sitename">
@@ -49,20 +50,24 @@
 								<li><a href="{{ path('albaran_prenew') }}">Nuevo Albaran</a></li>	
 						</ul>
 					</li>
+					{% if is_granted('ROLE_CONTABILIDAD') %}
 	    			<li><a href="{{ path('factura') }}">Facturas</a>
 						<ul>
 								<li><a href="{{ path('factura_prenew') }}">Nueva Factura</a></li>	
+								{% if is_granted('ROLE_CONTABILIDADB') %}
 								<li><a href="{{ path('facturab') }}">Facturas B</a>
 									<ul>
 										<li><a href="{{ path('facturab_prenew') }}">Nueva Factura</a></li>
 									</ul>
 								</li>				
+								{% endif %}
 						</ul>
 					</li>
+					{% endif %}
 					<li><a href="{{ path('precio') }}">Precios</a>
 					   <ul>
-							<li><a href="{{ path('precio_buscador_facturas') }}">Precios en Facturas</a></li>		
-							<li><a href="{{ path('precio_buscador_facturasb') }}">Precios en Facturas B</a></li>
+							<li><a href="{{ path('precio_buscador_facturas') }}">Precios en Albaranes</a></li>		
+								<li><a href="{{ path('precio_buscador_facturasb') }}">Precios en Albaranes B</a></li>
 							<li><a href="{{ path('precio_minorista') }}">Tarifa Minoristas</a>	
 							<li><a href="{{ path('precio_mayorista') }}">Tarifa Mayoritas</a>							
 						</ul>

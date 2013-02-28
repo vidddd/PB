@@ -31,13 +31,14 @@ class FacturaType extends AbstractType
 							    //'format' => 'dd.MM.yyyy',
     							//'data' => $hoy,
             					'error_bubbling' => true
-							))
+							)) 
             ->add('fecha_cobro', 'date', array(
 							    'widget' => 'single_text',
 							    //'format' => 'dd.MM.yyyy',
     							//'data' => $hoy,
             					'error_bubbling' => true
 							))
+			
 		    ->add('formapago_factura')
             ->add('tipo', 'choice', array('choices' => $tipos, 'error_bubbling' => true))
             ->add('iva' , 'choice', array('choices' => $ivas, 'data' => 21,'error_bubbling' => true))

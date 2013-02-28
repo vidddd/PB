@@ -25,11 +25,12 @@ security:
              memory:
                  users:
                      admin: { password: deivid39, roles: 'ROLE_SUPER_ADMIN' }
-                     david: { password: deivid39, roles: 'ROLE_CONTABILIDAD' }
-                     luis:  { password: 925461, roles: 'ROLE_USER' }
-                     clara: { password: 17dic84, roles: 'ROLE_USER' }
-                     paquita: { password: 15896, roles: 'ROLE_USER' }
-                     marijose: { password: 28081, roles: 'ROLE_USER' }
+                     david: { password: deivid39, roles: 'ROLE_CONTABILIDADB' }
+                     luis:  { password: 925461, roles: 'ROLE_CONTABILIDADB' }
+                     clara: { password: 17dic84, roles: 'ROLE_CONTABILIDADB' }
+                     paquita: { password: 15896, roles: 'ROLE_CONTABILIDAD' }
+                     paquitab: { password: 15896, roles: 'ROLE_CONTABILIDADB' }
+                     marijose: { password: 28081, roles: 'ROLE_GESTION' }
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
@@ -58,28 +59,15 @@ security:
             anonymous: true
     access_control:
         - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /inicio, roles: ROLE_USER }
-        - { path: /*, roles: ROLE_CONTABILIDAD }
-        #- { path: ^/ventas/factura, roles: ROLE_CONTABILIDAD }
+        - { path: ^/ventas/factura, roles: ROLE_CONTABILIDAD }
+        #- { path: /inicio, roles: ROLE_CONTABILIDAD }
+        #- { path: /*, roles: ROLE_USER }
+        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/compras, roles: ROLE_CONTABILIDADB }
+        - { path: ^/general, roles: ROLE_CONTABILIDAD }
+
         - { path: /ventas/facturab/*, roles: ROLE_CONTABILIDADB }
         
-        # - { path: /.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        #login:
-        #    pattern:  ^/demo/secured/login$
-        #    security: false
-
-        #secured_area:
-        #    pattern:    ^/demo/secured/
-        #    form_login:
-        #        check_path: /demo/secured/login_check
-        #        login_path: /demo/secured/login
-        #    logout:
-        #        path:   /demo/secured/logout
-        #        target: /demo/
-            #anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
-
     #access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }

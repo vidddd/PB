@@ -43,9 +43,13 @@
 
 							</li>
 							<li>
+							{% if is_granted('ROLE_CONTABILIDAD') %}
 								<a href="{{ path('factura') }}" class="facturas tooltip" title="Facturas">
 								Facturas
 								</a>
+							{% else %}
+								<a href="#" class=" tooltip" title=""></a>
+							{% endif %}
 							</li>
 							<li>
 								<a href="#" class=" tooltip" title="">

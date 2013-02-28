@@ -84,7 +84,7 @@ class FacturaController extends Controller
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
-    
+        // var_dump($queryBuilder->getDql());
         return array($filterForm, $queryBuilder);
     }
 

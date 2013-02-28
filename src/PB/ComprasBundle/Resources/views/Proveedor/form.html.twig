@@ -146,10 +146,10 @@
 			<tbody>
 				
 			   <tr> <td class="label">{{ form_label(form.fecha_evaluacion) }}</td>
-		           <td class="campo">{{ form_widget(form.fecha_evaluacion, { 'attr': {'class': 'date small'}}) }}</td><td> {{ form_errors(form.fecha_evaluacion) }} </td>
+		           <td class="campo">{{ form_widget(form.fecha_evaluacion, { 'attr': {'class': 'date small', 'disabled':'disabled'}}) }}</td><td> {{ form_errors(form.fecha_evaluacion) }} </td>
 		       </tr>
 		       <tr> <td class="label">{{ form_label(form.tipo_evaluacion) }}</td>
-		           <td class="campo">{{ form_widget(form.tipo_evaluacion, { 'attr': {'class': ''}}) }}</td><td> {{ form_errors(form.fecha_evaluacion) }} </td>
+		           <td class="campo">{{ form_widget(form.tipo_evaluacion, { 'attr': {'class': '', 'disabled':'disabled'}}) }}</td><td> {{ form_errors(form.fecha_evaluacion) }} </td>
 		       </tr>
 			</tbody>
 		</table>

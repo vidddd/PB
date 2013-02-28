@@ -15,10 +15,19 @@ $(document).ready(function() {
 				   $('#albaran_iva').val('21');
 			   }
 			});
+				
+	     $("#form1").submit(function(e) {
+    		 getNombreclienteAlbaran();
+    		    var form = this;
+    		    e.preventDefault();
+    		    setTimeout(function () {
+    		        form.submit();
+    		    }, 1000); // in milliseconds
+		 });
 	});
 //-->
 </script>
-<form action="{{ entity.id  ? path('albaran_edit', { 'id': entity.id }) : path('albaran_new') }}" novalidate="novalidate" method="post" {{ form_enctype(form) }}>
+<form id="form1" action="{{ entity.id  ? path('albaran_edit', { 'id': entity.id }) : path('albaran_new') }}" novalidate="novalidate" method="post" {{ form_enctype(form) }}>
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
 	<div class="portlet-header ui-widget-header">DATOS DEL ALBARAN</div>
 		<div class="portlet-content">

@@ -19,9 +19,10 @@
 								<div>
 									<ul class="side-menu">
 										<li><a href="{{ path('cliente') }}" title="Clientes">Clientes</a></li>
+										<li><a href="{{ path('presupuesto') }}" title="Pedidos">Presupuestos</a></li>
 										<li><a href="{{ path('pedido') }}" title="Pedidos">Pedidos</a></li>
 										<li><a href="{{ path('albaran') }}" title="Pedidos">Albaranes</a></li>
-										<li><a href="{{ path('factura') }}" title="Pedidos">Facturas</a></li>
+										{% if is_granted('ROLE_CONTABILIDAD') %}<li><a href="{{ path('factura') }}" title="Pedidos">Facturas</a></li>{% endif %}
 										<li><a href="{{ path('precio') }}" title="Precios">Precios</a></li>
 									</ul>
 								</div>

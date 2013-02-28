@@ -10,6 +10,10 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
+use Doctrine\ORM\QueryBuilder;
+use Lexik\Bundle\FormFilterBundle\Filter\Expr;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\NumberFilterType;
 
 class FacturaFilterType extends AbstractType
 {
@@ -34,7 +38,22 @@ class FacturaFilterType extends AbstractType
 		    											),
 		    										   'right_date' => array('widget' => 'single_text')
 		    									 ))
-            ->add('fecha_cobro', 'filter_date_range')
+            ->add('fecha_cobro', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
+		    															   'label' => 'aaaaa',
+		    											//'format' => 'dd.MM.yyyy'
+		    											),
+		    										   'right_date' => array('widget' => 'single_text')
+		    									 ))
+		    ->add('concepto', 'filter_text', array(
+		    		    //'condition_pattern' => TextFilterType::PATTERN_CONTAINS,
+					    'apply_filter' => function (QueryBuilder $queryBuilder, Expr $expr, $field, array $values) {
+					        if (!empty($values['value'])) {
+					            $queryBuilder->leftJoin('e.facturalineas', 'f');
+					            $queryBuilder->andWhere('f.descripcion LIKE :name')
+					                ->setParameter('name', $values['value']);
+					        }
+					    },
+					))
             ->add('tipo', 'filter_number_range')
             ->add('iva', 'filter_number_range')
             ->add('descuento', 'filter_number_range')
