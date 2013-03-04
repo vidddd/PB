@@ -19,7 +19,7 @@
 				<table id="form-alta">
 	   				<tbody>		
 	         			<tr>
-	        				<td class="label">{{ form_label(filterForm.id, 'Código Albaran') }}</td>
+	        				<td class="label" style="width:160px;">{{ form_label(filterForm.id, 'Código Albaran') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small numeric'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
 	      				<tr>
 	      				<tr>
@@ -31,6 +31,10 @@
 	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
 	      				<tr>
 	      	         	<tr>
+	        				<td class="label">{{ form_label(filterForm.concepto, 'Concepto / Descripcion') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.concepto, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.concepto) }}</td>
+	      				<tr>
+	      				<tr>
 	        				<td class="label">{{ form_label(filterForm.tipo, 'Tipo') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.tipo, { 'Tipo': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>
 	      				<tr>

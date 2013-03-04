@@ -283,7 +283,7 @@ class OrdenController extends Controller
     	$response = new Response($printer->getPdf($html));
     
     	$response->headers->set('Content-Type', 'application/pdf');
-    	$response->headers->set('Content-Disposition', 'inline; filename="PedidoCliente.pdf"');
+    	$response->headers->set('Content-Disposition', 'inline; filename="OrdenFabricacion.pdf"');
     	return $response;
     }
 }

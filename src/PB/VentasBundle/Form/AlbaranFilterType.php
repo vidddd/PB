@@ -8,6 +8,10 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
+use Doctrine\ORM\QueryBuilder;
+use Lexik\Bundle\FormFilterBundle\Filter\Expr;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\NumberFilterType;
 
 class AlbaranFilterType extends AbstractType
 {
@@ -27,6 +31,15 @@ class AlbaranFilterType extends AbstractType
 		    									 ))
             ->add('tipo' , 'filter_choice', array(
 					    'choices'   => $tipos,
+					))
+			->add('concepto', 'filter_text', array('condition_pattern' => TextFilterType::PATTERN_CONTAINS,
+					'apply_filter' => function (QueryBuilder $queryBuilder, Expr $expr, $field, array $values) {
+							if (!empty($values['value'])) {
+								$queryBuilder->leftJoin('e.albaranlineas', 'f');
+								$queryBuilder->andWhere('f.descripcion LIKE :name')
+								->setParameter('name', '%'.$values['value'].'%');
+							}
+					},
 					))
             ->add('codfactura', 'filter_number_range')
             ->add('iva', 'filter_number_range')

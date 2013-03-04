@@ -48,7 +48,7 @@ class FacturaBFilterType extends AbstractType
 		    							 		if (!empty($values['value'])) {
 		    							 			$queryBuilder->leftJoin('e.facturalineas', 'f');
 		    							 			$queryBuilder->andWhere('f.descripcion LIKE :name')
-		    							 			->setParameter('name', $values['value']);
+		    							 			->setParameter('name', '%'.$values['value'].'%');
 		    							 		}
 		    							 },
 		    						 ))

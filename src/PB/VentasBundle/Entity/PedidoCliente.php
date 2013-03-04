@@ -925,4 +925,8 @@ class PedidoCliente
     {
         return $this->producto;
     }
+    public function __toString()
+    {
+    	return $this->id;
+    }
 }

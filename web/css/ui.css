@@ -832,7 +832,7 @@ div.totals textarea:focus{
 /** ORDEN de Fabricacion */
 .orden .ui-widget-content { background-color: #EFEFEF !important;
 border: 1px solid #CDCDCD; }
-.orden .ui-widget-content label{ font-weight:bold; color: #666; text-shadow: 0 1px 0 #FFFFFF; }
+.orden .ui-widget-content label{ font-weight:normal !important; color: #666; text-shadow: 0 1px 0 #FFFFFF; }
 .orden{font-size: 12px;}
 .orden input {margin:0;}
 .tabla4 { height: 80px;}

@@ -227,4 +227,13 @@ PB\ProduccionBundle\Entity\Orden:
       targetEntity: PB\VentasBundle\Entity\Pedidocliente
       cascade: {  }
       mappedBy: orden
+#  oneToOne:
+#    pedidocliente:
+#      targetEntity: PB\VentasBundle\Entity\Pedidocliente
+#      cascade: {  }
+#      mappedBy: null
+#      inversedBy: null
+#      joinColumns:
+#        pedidocliente_id:
+#          referencedColumnName: pedidocliente_id
   lifecycleCallbacks: {  }

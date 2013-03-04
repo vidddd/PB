@@ -1,24 +1,26 @@
 <div id="ver-orden" class="vista3 orden">
 	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">	
 				<div class="span-17 form-horizontal label-column-small form-condensed">
-					<div class="control-group"><label class="control-label required">Cliente</label><div class="controls codigo"><b>{{ entity.cliente }}</b></div></div>
+					<div class="control-group"><label class="control-label required">Cliente</label><div class="controls codigo"><b>{{ entity.cliente }}</div></div>
+     				<div class="control-group"><label class="control-label required">Pedido Cliente</label><div class="codigo"><b>{# entity.pedidocliente.id #}</div></div>
+     		
      			</div>
-     			<div class="span-14 form-horizontal label-column-small form-condensed"><div class="control-group required">
+     			<div class="span-12 form-horizontal label-column-small form-condensed"><div class="control-group required">
 						<label class="control-label required">Código Orden</label><div class="controls codigo"> {{ entity.id }}</div>
 	     			</div>
      			</div>
-      			<div class="span-16 form-horizontal label-column-small form-condensed"><div class="control-group required"><label class="control-label required">Fecha</label>
-						<div class="controls codigo">{{ entity.fecha|date('d.m.Y') }}</div>
+      			<div class="span-14 form-horizontal label-column-small form-condensed"><div class="control-group required"><label class="control-label required">Fecha</label>
+						<div class="controls">{{ entity.fecha|date('d.m.Y') }}</div>
 	     			</div>
      			</div>
      			<div class="span-17 form-horizontal label-column-small form-condensed">	<div class="control-group required">
 						<label class="control-label required">Subcliente</label>
-						<div class="controls codigo"> {{ entity.subcliente }}</div>
+						<div class="controls"> {{ entity.subcliente }}</div>
 	     			</div>
      			</div>
      			<div class="span-14 form-horizontal label-column-small form-condensed"><div class="control-group required">
 						<label class="control-label required">Estado</label>
-						<div class="controls codigo"> {{ entity.estadoText }}</div>
+						<div class="controls"> {{ entity.estadoText }}</div>
 	     			</div>
      			</div>
 	</div>
@@ -58,35 +60,35 @@
 				<div class="span-23">
 						<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 							 <tr>
-								<th style="width:120px;"><b>Color</b></th>
+								<th style="width:120px;">Color</th>
 								<td>{{ entity.color }}</td>
 							  </tr>
 							  <tr>
-						        <th><b>Ancho</b></th>
+						        <th>Ancho</th>
 						        <td>{{ entity.ancho  }}</td>
 						      </tr>
 							<tr>
-						        <th><b>Galga</b></th>
+						        <th>Galga</th>
 						        <td>{{ entity.galga  }}</td>
 						      </tr>
 						      <tr>
-						        <th><b>Plegado</b></th>
+						        <th>Plegado</th>
 						        <td>{{ entity.plegado  }}</td>
 						      </tr>
 						      <tr>
-						        <th><b>Bobinas</b></th>
+						        <th>Bobinas</th>
 						        <td>{{ entity.bobinas  }}</td> 
 						      </tr>
 						      <tr>
-						        <th><b>Peso Teórico</b></th>
+						        <th>Peso Teórico</th>
 						        <td>{{ entity.pesoteorico }}</td>
 						      </tr>
 						      <tr>
-						        <th><b>Tipo Tubo</b></th>
+						        <th>Tipo Tubo</th>
 						        <td>{{ entity.tipotuboText  }}</td>
 						      </tr>
 						      <tr>
-						        <th><b>Tratado</b></th>
+						        <th>Tratado</th>
 						        <td>{{ entity.tratadoText }}</td>
 						      </tr>
 						      <tr>
@@ -98,23 +100,23 @@
 					 <div class="span-23">
 						<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 							 <tr>
-								<th style="width:120px;"><b>Fecha Extrusión</b></th>
+								<th style="width:120px;">Fecha Extrusión</th>
 								<td>{{ entity.fechaextrusion is empty ? "" : entity.fechaextrusion|date("d.m.Y") }}</td>
 							  </tr>
 							  <tr>
-						        <th><b>Operario</b></th>
+						        <th>Operario</th>
 						        <td>{{ entity.operarioextrusion }}</td>
 						      </tr>
 							<tr>
-						        <th><b>Tiempo</b></th>
+						        <th>Tiempo</th>
 						        <td>{{  entity.tiempoextrusion is empty ? "" : entity.tiempoextrusion|date('H:i') }}</td>
 						      </tr>
 						      <tr>
-						        <th><b>Maquina</b></th>
+						        <th>Maquina</th>
 						        <td>{{ entity.maquinaextrusion }}</td>
 						      </tr>
 						      <tr>
-						        <th><b>Materia Prima</b></th>
+						        <th>Materia Prima</th>
 						        <td></td>
 						      </tr>
 						</table>
@@ -130,39 +132,39 @@
 					<div class="span-23">
 							<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 								 <tr>
-									<th style="width:120px;"><b>Medida </b></th>
+									<th style="width:120px;">Medida </th>
 									<td>{{ entity.medidaimp }}</td>
 								  </tr>
 								  <tr>
-							        <th><b>Kilos</b></th>
+							        <th>Kilos</th>
 							        <td>{{ entity.kilosimp  }}</td>
 							      </tr>
 								  <tr>
-							        <th><b>Anverso</b></th>
+							        <th>Anverso</th>
 							        <td>{{ entity.anverso  }}</td>
 							      </tr>
 								<tr>
-							        <th><b>Reverso</b></th>
+							        <th>Reverso</th>
 							        <td>{{ entity.reverso  }}</td>
 							      </tr>
 							      <tr>
-							        <th><b>Colores Anversor</b></th>
+							        <th>Colores Anversor</th>
 							        <td>{{ entity.coloresa  }}</td>
 							      </tr>
 							      <tr>
-							        <th><b>Colores Reverso</b></th>
+							        <th>Colores Reverso</th>
 							        <td>{{ entity.coloresr  }}</td>
 							      </tr>
 							      <tr>
-							        <th><b>Cliche</b></th>
+							        <th>Cliche</th>
 							        <td>{{ entity.clicheText }}</td>
 							      </tr>
 							      <tr>
-							        <th><b>Carpeta</b></th>
+							        <th>Carpeta</th>
 							        <td>{{ entity.carpeta }}</td>
 							      </tr>
 							      <tr>
-							        <th><b>Soldadura</b></th>
+							        <th>Soldadura</th>
 							        <td>{{ entity.soldadura }}</td>
 							      </tr>
 							      <tr>
@@ -174,23 +176,23 @@
 						 <div class="span-23">
 							<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 								 <tr>
-									<th style="width:120px;"><b>Fecha Impresión</b></th>
+									<th style="width:120px;">Fecha Impresión</th>
 									<td>{{ entity.fechaimpresion is empty ? "" : entity.fechaimpresion|date("d.m.Y") }}</td>
 								  </tr>
 								  <tr>
-							        <th><b>Operario</b></th>
+							        <th>Operario</th>
 							        <td>{{ entity.operarioimpresion }}</td>
 							      </tr>
 								<tr>
-							        <th><b>Tiempo</b></th>
+							        <th>Tiempo</th>
 							        <td>{{ entity.tiempoimpresion is empty ? "" : entity.tiempoimpresion|date('H:i')  }}</td>
 							      </tr>
 							      <tr>
-							        <th><b>Maquina</b></th>
+							        <th>Maquina</th>
 							        <td>{{ entity.maquinaimpresion }}</td>
 							      </tr>
 							      <tr>
-							        <th><b>Materia Prima</b></th>
+							        <th>Materia Prima</th>
 							        <td></td>
 							      </tr>
 							</table>
@@ -206,39 +208,39 @@
  				<div class="span-23">
 					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 						 <tr>
-							<th style="width:120px;"><b>Cantidad</b></th>
+							<th style="width:120px;">Cantidad</th>
 							<td>{{ entity.cantidadc }}</td>
 						  </tr>
 						  <tr>
-					        <th><b>Ancho</b></th>
+					        <th>Ancho</th>
 					        <td>{{ entity.anchoc  }}</td>
 					      </tr>
 						<tr>
-					        <th><b>Largo</b></th>
+					        <th>Largo</th>
 					        <td>{{ entity.largoc  }}</td>
 					      </tr>
 					      <tr>
-					        <th><b>Solapa</b></th>
+					        <th>Solapa</th>
 					        <td>{{ entity.solapa  }}</td>
 					      </tr>
 					      <tr>
-					        <th><b>Bolsa</b></th>
+					        <th>Bolsa</th>
 					        <td>{{ entity.tipobolsaText  }}</td>
 					      </tr>
 					    <tr>
-					        <th><b>Asa</b></th>
+					        <th>Asa</th>
 					        <td>{{ entity.asaText  }}</td>
 					      </tr>
 					      <tr>
-					        <th><b>Paquete</b></th>
+					        <th>Paquete</th>
 					        <td>{{ entity.paquete  }}</td>
 					      </tr>
 					      <tr>
-					        <th><b>Saco</b></th>
+					        <th>Saco</th>
 					        <td>{{ entity.saco }}</td>
 					      </tr>
 					      <tr>
-					        <th><b>Palet</b></th>
+					        <th>Palet</th>
 					        <td>{{ entity.palets }}</td>
 					      </tr>
 					      <tr>
@@ -250,23 +252,23 @@
 				 <div class="span-23">
 					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 						 <tr>
-							<th style="width:120px;"><b>Fecha Producción</b></th>
+							<th style="width:120px;">Fecha Producción</th>
 							<td>{{ entity.fechacorte is empty ? "" : entity.fechacorte|date("d.m.Y") }}</td>
 						  </tr>
 						  <tr>
-					        <th><b>Operario</b></th>
+					        <th>Operario</th>
 					        <td>{{ entity.operariocorte }}</td>
 					      </tr>
 						<tr>
-					        <th><b>Tiempo</b></th>
+					        <th>Tiempo</th>
 					        <td>{{ entity.tiempocorte is empty ? "" : entity.tiempocorte|date('H:i') }}</td>
 					      </tr>
 					      <tr>
-					        <th><b>Maquina</b></th>
+					        <th>Maquina</th>
 					        <td>{{ entity.maquinacorte}}</td>
 					      </tr>
 					      <tr>
-					        <th><b>Materia Prima</b></th>
+					        <th>Materia Prima</th>
 					        <td></td>
 					      </tr>
 					</table>
@@ -282,19 +284,19 @@
  				<div class="span-23">
 					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 						 <tr>
-							<th style="width:120px;"><b>Bobinas</b></th>
+							<th style="width:120px;">Bobinas</th>
 							<td>{{ entity.bobinasr }}</td>
 						  </tr>
 						  <tr>
-					        <th><b>Metros Bobina</b></th>
+					        <th>Metros Bobina</th>
 					        <td>{{ entity.metrosr  }}</td>
 					      </tr>
 						<tr>
-					        <th><b>Kg Bobina</b></th>
+					        <th>Kg Bobina</th>
 					        <td>{{ entity.kgr  }}</td>
 					      </tr>
 					      <tr>
-					        <th><b>Total</b></th>
+					        <th>Total</th>
 					        <td>{{ entity.totalrebobinado  }}</td>
 					      </tr>
 					       <tr>
@@ -306,23 +308,23 @@
 				 <div class="span-23">
 					<table cellspacing="0" cellpadding="0" class="tabla4" style="width:350px;">
 						 <tr>
-							<th style="width:120px;"><b>Fecha Producción</b></th>
+							<th style="width:120px;">Fecha Producción</th>
 							<td>{{ entity.fecharebobinado is empty ? "" : entity.fecharebobinado|date("d.m.Y") }}</td>
 						  </tr>
 						  <tr>
-					        <th><b>Operario</b></th>
+					        <th>Operario</th>
 					        <td>{{ entity.operariorebobinado }}</td>
 					      </tr>
 						<tr>
-					        <th><b>Tiempo</b></th>
+					        <th>Tiempo</th>
 					        <td>{{ entity.tiemporebobinado is empty ? "" : entity.tiemporebobinado|date('H:i') }}</td>
 					      </tr>
 					      <tr>
-					        <th><b>Maquina</b></th>
+					        <th>Maquina</th>
 					        <td>{{ entity.maquinarebobinado }}</td>
 					      </tr>
 					      <tr>
-					        <th><b>Materia Prima</b></th>
+					        <th>Materia Prima</th>
 					        <td></td>
 					      </tr>
 					</table>

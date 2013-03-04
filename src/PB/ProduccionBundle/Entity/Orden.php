@@ -1593,6 +1593,11 @@ class Orden
     {
         return $this->pedidocliente;
     }
+    public function getPedidoclienteId()
+    {
+    	$pe = $this->pedidocliente;
+    	return $pe->getId();
+    }
     /**
      * Constructor
      */
