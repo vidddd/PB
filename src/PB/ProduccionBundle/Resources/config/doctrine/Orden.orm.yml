@@ -61,9 +61,6 @@ PB\ProduccionBundle\Entity\Orden:
     notasextrusion:
       type: text
       nullable: true
-    maquina_extrusion:
-      type: smallint
-      nullable: true
     fecha_extrusion:
       type: date
       nullable: true
@@ -116,9 +113,6 @@ PB\ProduccionBundle\Entity\Orden:
     notasimpresion:
       type: text
       nullable: true
-    maquina_impresion:
-      type: smallint
-      nullable: true
     fecha_impresion:
       type: date
       nullable: true
@@ -169,9 +163,6 @@ PB\ProduccionBundle\Entity\Orden:
     notascorte:
       type: text
       nullable: true
-    maquina_corte:
-      type: smallint
-      nullable: true
     fecha_corte:
       type: date
       nullable: true
@@ -201,9 +192,6 @@ PB\ProduccionBundle\Entity\Orden:
     notasrebobinado:
       type: text
       nullable: true   
-    maquina_rebobinado:
-      type: smallint
-      nullable: true
     fecha_rebobinado:
       type: date
       nullable: true
@@ -221,6 +209,30 @@ PB\ProduccionBundle\Entity\Orden:
       inversedBy: orden
       joinColumn:
         name: cliente_id
+        referencedColumnName: id
+    maquinaextrusion:
+      targetEntity: PB\ProduccionBundle\Entity\Maquina
+      inversedBy: orden
+      joinColumn:
+        name: maquinaextrusion
+        referencedColumnName: id
+    maquinaimpresion:
+      targetEntity: PB\ProduccionBundle\Entity\Maquina
+      inversedBy: orden2
+      joinColumn:
+        name: maquinaimpresion
+        referencedColumnName: id
+    maquinacorte:
+      targetEntity: PB\ProduccionBundle\Entity\Maquina
+      inversedBy: orden3
+      joinColumn:
+        name: maquinacorte
+        referencedColumnName: id
+    maquinarebobinado:
+      targetEntity: PB\ProduccionBundle\Entity\Maquina
+      inversedBy: orden4
+      joinColumn:
+        name: maquinarebobinado
         referencedColumnName: id
   oneToMany:
     pedidocliente:

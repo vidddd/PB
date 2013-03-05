@@ -276,4 +276,167 @@ class Maquina
     {
         return $this->observaciones;
     }
+    public function __toString()
+    {
+    	return $this->codigo." - ".$this->nombre;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $orden;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->orden = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add orden
+     *
+     * @param PB\ProduccionBundle\Entity\Orden $orden
+     * @return Maquina
+     */
+    public function addOrden(\PB\ProduccionBundle\Entity\Orden $orden)
+    {
+        $this->orden[] = $orden;
+    
+        return $this;
+    }
+
+    /**
+     * Remove orden
+     *
+     * @param PB\ProduccionBundle\Entity\Orden $orden
+     */
+    public function removeOrden(\PB\ProduccionBundle\Entity\Orden $orden)
+    {
+        $this->orden->removeElement($orden);
+    }
+
+    /**
+     * Get orden
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOrden()
+    {
+        return $this->orden;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $orden2;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $orden3;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $orden4;
+
+
+    /**
+     * Add orden2
+     *
+     * @param PB\ProduccionBundle\Entity\Orden $orden2
+     * @return Maquina
+     */
+    public function addOrden2(\PB\ProduccionBundle\Entity\Orden $orden2)
+    {
+        $this->orden2[] = $orden2;
+    
+        return $this;
+    }
+
+    /**
+     * Remove orden2
+     *
+     * @param PB\ProduccionBundle\Entity\Orden $orden2
+     */
+    public function removeOrden2(\PB\ProduccionBundle\Entity\Orden $orden2)
+    {
+        $this->orden2->removeElement($orden2);
+    }
+
+    /**
+     * Get orden2
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOrden2()
+    {
+        return $this->orden2;
+    }
+
+    /**
+     * Add orden3
+     *
+     * @param PB\ProduccionBundle\Entity\Orden $orden3
+     * @return Maquina
+     */
+    public function addOrden3(\PB\ProduccionBundle\Entity\Orden $orden3)
+    {
+        $this->orden3[] = $orden3;
+    
+        return $this;
+    }
+
+    /**
+     * Remove orden3
+     *
+     * @param PB\ProduccionBundle\Entity\Orden $orden3
+     */
+    public function removeOrden3(\PB\ProduccionBundle\Entity\Orden $orden3)
+    {
+        $this->orden3->removeElement($orden3);
+    }
+
+    /**
+     * Get orden3
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOrden3()
+    {
+        return $this->orden3;
+    }
+
+    /**
+     * Add orden4
+     *
+     * @param PB\ProduccionBundle\Entity\Orden $orden4
+     * @return Maquina
+     */
+    public function addOrden4(\PB\ProduccionBundle\Entity\Orden $orden4)
+    {
+        $this->orden4[] = $orden4;
+    
+        return $this;
+    }
+
+    /**
+     * Remove orden4
+     *
+     * @param PB\ProduccionBundle\Entity\Orden $orden4
+     */
+    public function removeOrden4(\PB\ProduccionBundle\Entity\Orden $orden4)
+    {
+        $this->orden4->removeElement($orden4);
+    }
+
+    /**
+     * Get orden4
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOrden4()
+    {
+        return $this->orden4;
+    }
 }

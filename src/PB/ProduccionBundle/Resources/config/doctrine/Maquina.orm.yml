@@ -30,4 +30,17 @@ PB\ProduccionBundle\Entity\Maquina:
     observaciones:
       type: text
       nullable: true
-    lifecycleCallbacks: {  }
+  oneToMany:
+    orden:
+      targetEntity: PB\ProduccionBundle\Entity\Orden
+      mappedBy: maquinaextrusion
+    orden2:
+      targetEntity: PB\ProduccionBundle\Entity\Orden
+      mappedBy: maquinaimpresion
+    orden3:
+      targetEntity: PB\ProduccionBundle\Entity\Orden
+      mappedBy: maquinacorte
+    orden4:
+      targetEntity: PB\ProduccionBundle\Entity\Orden
+      mappedBy: maquinarebobinado
+  lifecycleCallbacks: {  }

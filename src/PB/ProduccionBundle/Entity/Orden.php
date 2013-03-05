@@ -112,11 +112,6 @@ class Orden
     private $notasextrusion;
 
     /**
-     * @var integer $maquina_extrusion
-     */
-    private $maquina_extrusion;
-
-    /**
      * @var \DateTime $fecha_extrusion
      */
     private $fecha_extrusion;
@@ -192,11 +187,6 @@ class Orden
     private $notasimpresion;
 
     /**
-     * @var integer $maquina_impresion
-     */
-    private $maquina_impresion;
-
-    /**
      * @var \DateTime $fecha_impresion
      */
     private $fecha_impresion;
@@ -255,12 +245,7 @@ class Orden
      * @var string $notascorte
      */
     private $notascorte;
-
-    /**
-     * @var integer $maquina_corte
-     */
-    private $maquina_corte;
-
+    
     /**
      * @var \DateTime $fecha_corte
      */
@@ -730,29 +715,6 @@ class Orden
     }
 
     /**
-     * Set maquina_extrusion
-     *
-     * @param integer $maquinaExtrusion
-     * @return Orden
-     */
-    public function setMaquinaExtrusion($maquinaExtrusion)
-    {
-        $this->maquina_extrusion = $maquinaExtrusion;
-    
-        return $this;
-    }
-
-    /**
-     * Get maquina_extrusion
-     *
-     * @return integer 
-     */
-    public function getMaquinaExtrusion()
-    {
-        return $this->maquina_extrusion;
-    }
-
-    /**
      * Set fecha_extrusion
      *
      * @param \DateTime $fechaExtrusion
@@ -1096,30 +1058,7 @@ class Orden
     {
         return $this->notasimpresion;
     }
-
-    /**
-     * Set maquina_impresion
-     *
-     * @param integer $maquinaImpresion
-     * @return Orden
-     */
-    public function setMaquinaImpresion($maquinaImpresion)
-    {
-        $this->maquina_impresion = $maquinaImpresion;
     
-        return $this;
-    }
-
-    /**
-     * Get maquina_impresion
-     *
-     * @return integer 
-     */
-    public function getMaquinaImpresion()
-    {
-        return $this->maquina_impresion;
-    }
-
     /**
      * Set fecha_impresion
      *
@@ -1394,29 +1333,6 @@ class Orden
     public function getNotascorte()
     {
         return $this->notascorte;
-    }
-
-    /**
-     * Set maquina_corte
-     *
-     * @param integer $maquinaCorte
-     * @return Orden
-     */
-    public function setMaquinaCorte($maquinaCorte)
-    {
-        $this->maquina_corte = $maquinaCorte;
-    
-        return $this;
-    }
-
-    /**
-     * Get maquina_corte
-     *
-     * @return integer 
-     */
-    public function getMaquinaCorte()
-    {
-        return $this->maquina_corte;
     }
 
     /**
@@ -1715,11 +1631,6 @@ class Orden
     private $notasrebobinado;
 
     /**
-     * @var integer $maquina_rebobinado
-     */
-    private $maquina_rebobinado;
-
-    /**
      * @var \DateTime $fecha_rebobinado
      */
     private $fecha_rebobinado;
@@ -1872,30 +1783,7 @@ class Orden
     {
         return $this->notasrebobinado;
     }
-
-    /**
-     * Set maquina_rebobinado
-     *
-     * @param integer $maquinaRebobinado
-     * @return Orden
-     */
-    public function setMaquinaRebobinado($maquinaRebobinado)
-    {
-        $this->maquina_rebobinado = $maquinaRebobinado;
     
-        return $this;
-    }
-
-    /**
-     * Get maquina_rebobinado
-     *
-     * @return integer 
-     */
-    public function getMaquinaRebobinado()
-    {
-        return $this->maquina_rebobinado;
-    }
-
     /**
      * Set fecha_rebobinado
      *
@@ -1963,5 +1851,117 @@ class Orden
     public function getOperarioRebobinado()
     {
         return $this->operario_rebobinado;
+    }
+    /**
+     * @var PB\ProduccionBundle\Entity\Maquina
+     */
+    private $maquinaextrusion;
+
+
+    /**
+     * Set maquinaextrusion
+     *
+     * @param PB\ProduccionBundle\Entity\Maquina $maquinaextrusion
+     * @return Orden
+     */
+    public function setMaquinaextrusion(\PB\ProduccionBundle\Entity\Maquina $maquinaextrusion = null)
+    {
+        $this->maquinaextrusion = $maquinaextrusion;
+    
+        return $this;
+    }
+
+    /**
+     * Get maquinaextrusion
+     *
+     * @return PB\ProduccionBundle\Entity\Maquina 
+     */
+    public function getMaquinaextrusion()
+    {
+        return $this->maquinaextrusion;
+    }
+    /**
+     * @var PB\ProduccionBundle\Entity\Maquina
+     */
+    private $maquinaimpresion;
+
+    /**
+     * @var PB\ProduccionBundle\Entity\Maquina
+     */
+    private $maquinacorte;
+
+    /**
+     * @var PB\ProduccionBundle\Entity\Maquina
+     */
+    private $maquinarebobinado;
+
+
+    /**
+     * Set maquinaimpresion
+     *
+     * @param PB\ProduccionBundle\Entity\Maquina $maquinaimpresion
+     * @return Orden
+     */
+    public function setMaquinaimpresion(\PB\ProduccionBundle\Entity\Maquina $maquinaimpresion = null)
+    {
+        $this->maquinaimpresion = $maquinaimpresion;
+    
+        return $this;
+    }
+
+    /**
+     * Get maquinaimpresion
+     *
+     * @return PB\ProduccionBundle\Entity\Maquina 
+     */
+    public function getMaquinaimpresion()
+    {
+        return $this->maquinaimpresion;
+    }
+
+    /**
+     * Set maquinacorte
+     *
+     * @param PB\ProduccionBundle\Entity\Maquina $maquinacorte
+     * @return Orden
+     */
+    public function setMaquinacorte(\PB\ProduccionBundle\Entity\Maquina $maquinacorte = null)
+    {
+        $this->maquinacorte = $maquinacorte;
+    
+        return $this;
+    }
+
+    /**
+     * Get maquinacorte
+     *
+     * @return PB\ProduccionBundle\Entity\Maquina 
+     */
+    public function getMaquinacorte()
+    {
+        return $this->maquinacorte;
+    }
+
+    /**
+     * Set maquinarebobinado
+     *
+     * @param PB\ProduccionBundle\Entity\Maquina $maquinarebobinado
+     * @return Orden
+     */
+    public function setMaquinarebobinado(\PB\ProduccionBundle\Entity\Maquina $maquinarebobinado = null)
+    {
+        $this->maquinarebobinado = $maquinarebobinado;
+    
+        return $this;
+    }
+
+    /**
+     * Get maquinarebobinado
+     *
+     * @return PB\ProduccionBundle\Entity\Maquina 
+     */
+    public function getMaquinarebobinado()
+    {
+        return $this->maquinarebobinado;
     }
 }

@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use PB\VentasBundle\Form\DataTransformer\ClilenteToIdTransformer;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
+use PB\ProduccionBundle\Entity\Maquina;
+use Doctrine\ORM\EntityRepository;
 
 class OrdenType extends AbstractType
 {
@@ -46,7 +48,12 @@ class OrdenType extends AbstractType
             ->add('tratado', 'choice', array( 'choices' => $tratados,'error_bubbling' => true, 'empty_value' => '', 'required' => false))
             ->add('tipotubo', 'choice', array( 'choices' => $tubos,'error_bubbling' => true, 'empty_value' => '', 'required' => false))
             ->add('notasextrusion')
-            ->add('maquina_extrusion')
+           // ->add('maquinaextrusion')
+            ->add('maquinaextrusion', 'entity', array(
+            		'class' => 'PBProduccionBundle:Maquina','empty_value' => '', 'required' => false,
+            		'query_builder' => function(EntityRepository $er) {
+            		return $er->createQueryBuilder('u')->add('where', 'u.tipo = :ti')->setParameter('ti', "1")->orderBy('u.id', 'ASC');
+            },))
             ->add('fecha_extrusion', 'date', array('widget' => 'single_text','empty_value' => '',  'required' => false ))
             ->add('operario_extrusion')
             ->add('kgfinal')
@@ -65,7 +72,11 @@ class OrdenType extends AbstractType
             ->add('carpeta')
             ->add('soldadura')
             ->add('notasimpresion')
-            ->add('maquina_impresion')
+            ->add('maquinaimpresion', 'entity', array(
+            		'class' => 'PBProduccionBundle:Maquina','empty_value' => '','required' => false,
+            		'query_builder' => function(EntityRepository $er) {
+            		return $er->createQueryBuilder('u')->add('where', 'u.tipo = :ti')->setParameter('ti', "2")->orderBy('u.id', 'ASC');
+            },))
             ->add('fecha_impresion', 'date', array('widget' => 'single_text', 'required' => false ))
             ->add('operario_impresion')
             ->add('tiempo_impresion', 'time', array(
@@ -83,7 +94,11 @@ class OrdenType extends AbstractType
             ->add('saco')
             ->add('palets')
             ->add('notascorte')
-            ->add('maquina_corte')
+            ->add('maquinacorte', 'entity', array(
+            		'class' => 'PBProduccionBundle:Maquina','empty_value' => '','required' => false,
+            		'query_builder' => function(EntityRepository $er) {
+            		return $er->createQueryBuilder('u')->add('where', 'u.tipo = :ti')->setParameter('ti', "3")->orderBy('u.id', 'ASC');
+            },))
             ->add('fecha_corte', 'date', array('widget' => 'single_text', 'required' => false ))
             ->add('tiempo_corte', 'time', array(
  				   'input'  => 'string',
@@ -92,7 +107,11 @@ class OrdenType extends AbstractType
             ->add('operario_corte')
             ->add('rebobinado')->add('kgr')->add('bobinasr')->add('metrosr')->add('totalrebobinado')
             ->add('notasrebobinado')
-            ->add('maquina_rebobinado')
+            ->add('maquinarebobinado', 'entity', array(
+            		'class' => 'PBProduccionBundle:Maquina','empty_value' => '','required' => false,
+            		'query_builder' => function(EntityRepository $er) {
+            		return $er->createQueryBuilder('u')->add('where', 'u.tipo = :ti')->setParameter('ti', "4")->orderBy('u.id', 'ASC');
+            },))
             ->add('fecha_rebobinado', 'date', array('widget' => 'single_text', 'required' => false ))
             ->add('tiempo_rebobinado', 'time', array(
             		'input'  => 'string',

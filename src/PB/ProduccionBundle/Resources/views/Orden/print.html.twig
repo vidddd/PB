@@ -1,11 +1,8 @@
 <style type="text/css">
 <!--
-/*
-* Verdefondo: b0ccc5
-* Verde Linea: 869a90
-*/
+
 .ordenfabricacion {
- fon-size: 11px;
+ fon-size: 10px;
  color: #212121;
  font-family: Arial,sans-serif;
 }
@@ -18,25 +15,28 @@ h2 { text-align: center; color:#212121; font-size: 19px; margin:0; padding:0 0 0
 h3 { font-size: 15px; color: #221; margin:0; padding: 0;}
 .bordenegro { border: 1px solid #111;} .bordenegroright { border-right: 1px solid #111;}
 
+#cliente { font-size: 11px;}
+
 table td p { margin: 3px 2px;}
-.tabla1 { width:700px; border-collapse: collapse; }
-.tabla1 .etiqueta { padding: 6px 0; text-align:center; background-color:#ddd; font-size: 10px;}
+.tabla1 { border-collapse: collapse;  font-size: 11px;}
+.tabla1 .etiqueta { background: #E7E7E7; }
 .tabla1 td {border: 1px solid #111; padding:5px 15px;}
 .etiqueta2 {color: #444; font-style: italic;}
 
-.tabla2 { float:left; background: #F7F7F7; font-size: 10pt; }
+.tabla2 { float:left; background: #F7F7F7; font-size: 11px; }
 
-.tabla3 { font-size: 9pt; border-collapse: collapse; border: 1px solid #111;}
-.tabla3 th {text-align: center; padding: 2px; background: #E7E7E7; border: 1px solid #111; font-size: 11px;}
+.tabla3 {border-collapse: collapse; border: 1px solid #111;}
+.tabla3 th {text-align: center; padding: 2px; background: #E7E7E7; border: 1px solid #111; font-size: 10px;}
 h4 {margin:0; padding:0; float:left; font-size: 11px;}
 p.info {margin:0; padding:0; float:left; font-size: 9px;}
 
 .width1 { width: 100px;}
-.tabla4 { text-align: center; font-size: 9pt; border-collapse: collapse;}
+.tabla4 { text-align: center; font-size:11px; border-collapse: collapse;}
 .tabla4 td {  border: 1px solid #111; }
 
-.total {width: 700px; border:1px solid #111; border-collapse: collapse; }
-.total td  { width: 30px; border:1px solid #111; }
+.total {width: 600px;}
+.total td { width: 30px; border:1px solid #111; border-collapse: collapse; }
+.totaleti { padding: 6px 0; text-align:center; background: #E7E7E7; font-size: 10px; width: 50px;}
 -->
 </style>
 <page backtop="5mm" backbottom="7mm" backleft="11mm" backright="11mm">
@@ -88,10 +88,10 @@ p.info {margin:0; padding:0; float:left; font-size: 9px;}
 	            <th style="width: 14%;">FIRMA</th>
 	        </tr>
 	    </table>
-	    {% for i in 0..5 %}
+	    {% for i in 0..6 %}
 	    <table cellspacing="0" class="tabla4">
         	<tr>
-            	<td style="width: 14%; height:20px;"></td>
+            	<td style="width: 14%; height:18px;"></td>
             	<td style="width: 14%;"></td>
             	<td style="width: 14%;"></td>
             	<td style="width: 14%;"></td>
@@ -103,11 +103,11 @@ p.info {margin:0; padding:0; float:left; font-size: 9px;}
     	{%  endfor %}
 	    </td></tr>
 	 </table>
-	 <table class="total">
+	 <table class="total" cellspacing="0">
 	 	<tr>
-	 		<td>Totales</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+	 		<td class="totaleti">Totales</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 	 	</tr>
-	 </table>
+	 </table><br />
 	{% endif %}
 	{% if entity.impresion %}
 	<table>
@@ -138,7 +138,7 @@ p.info {margin:0; padding:0; float:left; font-size: 9px;}
 			    {% for i in 0..5 %}
 			    <table cellspacing="0" class="tabla4">
 		        	<tr>
-		            	<td style="width: 16%; height:20px;"></td>
+		            	<td style="width: 16%; height:18px;"></td>
 		            	<td style="width: 16%;"></td>
 		            	<td style="width: 16%;"></td>
 		            	<td style="width: 16%;"></td>
@@ -179,7 +179,7 @@ p.info {margin:0; padding:0; float:left; font-size: 9px;}
 			    {% for i in 0..5 %}
 			    <table cellspacing="0" class="tabla4">
 		        	<tr>
-		            	<td style="width: 16%; height:20px;"></td>
+		            	<td style="width: 16%; height:18px;"></td>
 		            	<td style="width: 16%;"></td>
 		            	<td style="width: 16%;"></td>
 		            	<td style="width: 16%;"></td>
