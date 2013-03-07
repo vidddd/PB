@@ -1,0 +1,30 @@
+noconformidad:
+    pattern:  /
+    defaults: { _controller: "PBCalidadBundle:Noconformidad:index" }
+
+noconformidad_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "PBCalidadBundle:Noconformidad:show" }
+
+noconformidad_new:
+    pattern:  /new
+    defaults: { _controller: "PBCalidadBundle:Noconformidad:new" }
+
+noconformidad_create:
+    pattern:  /create
+    defaults: { _controller: "PBCalidadBundle:Noconformidad:create" }
+    requirements: { _method: post }
+
+noconformidad_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "PBCalidadBundle:Noconformidad:edit" }
+
+noconformidad_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "PBCalidadBundle:Noconformidad:update" }
+    requirements: { _method: post }
+
+noconformidad_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "PBCalidadBundle:Noconformidad:delete" }
+    requirements: { _method: post }

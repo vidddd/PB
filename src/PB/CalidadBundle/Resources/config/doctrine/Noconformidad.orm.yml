@@ -1,0 +1,30 @@
+PB\CalidadBundle\Entity\Noconformidad:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        fecha_apertura:
+            type: date
+        descripcion:
+            type: text
+        acciones_inmediatas:
+            type: text
+        analisis_causas:
+            type: text
+        acciones:
+            type: text
+        responsable:
+            type: string
+            length: 255
+        plazo:
+            type: string
+            length: 255
+        fecha_cierre:
+            type: date
+        explicacion:
+            type: text
+    lifecycleCallbacks: {  }

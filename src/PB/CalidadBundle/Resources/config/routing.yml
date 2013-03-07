@@ -1,3 +1,7 @@
 pb_calidad_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: PBCalidadBundle:Default:index }
+
+PBCalidadBundle_noconformidad:
+    resource: "@PBCalidadBundle/Resources/config/routing/noconformidad.yml"
+    prefix:   /noconformidad
