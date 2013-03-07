@@ -80,6 +80,7 @@ class OrdenFilterType extends AbstractType
             ->add('fecha_corte', 'filter_date_range')
             ->add('tiempo_corte', 'filter_text')
             ->add('operario_corte', 'filter_text')
+            ->add('rebobinado', 'filter_checkbox')
         ;
 
         $listener = function(FormEvent $event)

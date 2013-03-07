@@ -3,7 +3,7 @@
 {% block title "Ordenes de Fabricación" %}
 
 {% block content %}
-<div id="pedido">
+<div id="orden">
 	<div class="title title-spacing produccion"><h2>Ordenes de Fabricación</h2></div>        
     <div class="span2">
         {% if form_errors(filterForm) %}
@@ -42,7 +42,8 @@
 	        				<td class="label"><label>Fase de Fabricación</label></td>
 	        				<td class="campo"><div class="fases-fabricacion">{{ form_label(filterForm.extrusion, 'Extrusion') }}{{ form_widget(filterForm.extrusion, { 'attr': {'class': ''}}) }}
 	        								  {{ form_label(filterForm.impresion, 'Impresión') }}{{ form_widget(filterForm.impresion, { 'attr': {'class': ''}}) }}
-	        								  {{ form_label(filterForm.corte, 'Corte') }}{{ form_widget(filterForm.corte, { 'attr': {'class': ''}}) }}</div></td><td>{{ form_errors(filterForm.estado) }}</td>
+	        								  {{ form_label(filterForm.corte, 'Corte') }}{{ form_widget(filterForm.corte, { 'attr': {'class': ''}}) }}
+	        								  {{ form_label(filterForm.rebobinado, 'Rebobinado') }}{{ form_widget(filterForm.rebobinado, { 'attr': {'class': ''}}) }}</div></td><td>{{ form_errors(filterForm.estado) }}</td>
 	      				<tr>
 	            	</tbody>
 	          </table>

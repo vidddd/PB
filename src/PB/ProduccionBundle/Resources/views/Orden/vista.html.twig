@@ -5,12 +5,17 @@
      				<div class="control-group"><label class="control-label required">Pedido Cliente</label><div class="codigo"><b>{# entity.pedidocliente.id #}</div></div>
      		
      			</div>
-     			<div class="span-12 form-horizontal label-column-small form-condensed"><div class="control-group required">
+     			<div class="span-10 form-horizontal label-column-small form-condensed"><div class="control-group required">
 						<label class="control-label required">Código Orden</label><div class="controls codigo"> {{ entity.id }}</div>
 	     			</div>
      			</div>
-      			<div class="span-14 form-horizontal label-column-small form-condensed"><div class="control-group required"><label class="control-label required">Fecha</label>
+      			<div class="span-10 form-horizontal label-column-small form-condensed"><div class="control-group required"><label class="control-label required">Fecha</label>
 						<div class="controls">{{ entity.fecha|date('d.m.Y') }}</div>
+	     			</div>
+     			</div>
+     			<div class="span-11 form-horizontal label-column-small form-condensed"><div class="control-group required">
+						<label class="control-label required">Estado</label>
+						<div class="controls"> {{ entity.estadoText }}</div>
 	     			</div>
      			</div>
      			<div class="span-17 form-horizontal label-column-small form-condensed">	<div class="control-group required">
@@ -18,11 +23,7 @@
 						<div class="controls"> {{ entity.subcliente }}</div>
 	     			</div>
      			</div>
-     			<div class="span-14 form-horizontal label-column-small form-condensed"><div class="control-group required">
-						<label class="control-label required">Estado</label>
-						<div class="controls"> {{ entity.estadoText }}</div>
-	     			</div>
-     			</div>
+     		
 	</div>
 	<div class="span-25">
 		<table cellspacing="0" cellpadding="0" class="tabla4">

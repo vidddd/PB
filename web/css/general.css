@@ -1223,6 +1223,9 @@ border-radius: 3px;
 	width: 450px; float:left;
 	clear:both;
 }
+#orden #form-alta td.campo {
+    width: 350px;
+}
 #precio_incremento { height: 20px; display:inline; }
 .incrementar-precios select { height: 20px;}
 .incrementar-precios #precio_incremento label{ float: left; width: 100px; clear: none !important; font-size: 13px; }
