@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new PB\ContabilidadBundle\PBContabilidadBundle(),
         	//	new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new PB\AlmacenBundle\PBAlmacenBundle(),
+            new PB\CalidadBundle\PBCalidadBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

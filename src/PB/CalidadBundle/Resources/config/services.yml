@@ -1,0 +1,7 @@
+parameters:
+#    pb_calidad.example.class: PB\CalidadBundle\Example
+
+services:
+#    pb_calidad.example:
+#        class: %pb_calidad.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
