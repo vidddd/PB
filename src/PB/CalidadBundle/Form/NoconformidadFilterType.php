@@ -8,6 +8,12 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
+use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\NumberFilterType;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
+use Lexik\Bundle\FormFilterBundle\Filter\Expr;
+use Doctrine\ORM\QueryBuilder;
 
 class NoconformidadFilterType extends AbstractType
 {
@@ -15,7 +21,11 @@ class NoconformidadFilterType extends AbstractType
     {
         $builder
             ->add('id', 'filter_number_range')
-            ->add('fecha_apertura', 'filter_date_range')
+            ->add('fecha_apertura', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
+		    															   'label' => 'aaaaa',
+		    											//'format' => 'dd.MM.yyyy'
+		    											),
+		    										   'right_date' => array('widget' => 'single_text')))
             ->add('descripcion', 'filter_text')
             ->add('acciones_inmediatas', 'filter_text')
             ->add('analisis_causas', 'filter_text')

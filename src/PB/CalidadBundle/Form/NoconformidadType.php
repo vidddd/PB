@@ -10,8 +10,14 @@ class NoconformidadType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+    	$hoy = new \DateTime();
         $builder
-            ->add('fecha_apertura')
+            ->add('fecha_apertura', 'date', array(
+							    'widget' => 'single_text',
+							    //'format' => 'dd.MM.yyyy',
+    							'data' => $hoy,
+            					'error_bubbling' => true
+							)) 
             ->add('descripcion')
             ->add('acciones_inmediatas')
             ->add('analisis_causas')

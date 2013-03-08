@@ -1,0 +1,24 @@
+<form action="{{ entity.id  ? path('noconformidad_edit', { 'id': entity.id }) : path('noconformidad_create') }}" method="post" {{ form_enctype(form) }}>
+<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+	<div class="portlet-header ui-widget-header">Nueva Incidencia</div>
+          {% if form_errors(form) %}
+          <div class="response-msg notice iu-corner-all">{{ form_errors(form) }}</div>
+          {% endif %}
+		<div class="portlet-content">
+		    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+		<table id="form-alta">
+		  <tr>
+		       <td class="label">{{ form_label(form.fecha_apertura) }}</td>
+		       <td class="campo">{{ form_widget(form.fecha_apertura) }}</td><td>{{ form_errors(form.fecha_apertura) }}</td>
+		  </tr>
+		<tr>
+       	 	<td valgin="top">{{ form_label(form.descripcion) }}</td>
+        	<td>{{ form_widget(form.descripcion, { 'attr': {'cols': '34', 'rows': '7'} }) }}</td><td>{{ form_errors(form.descripcion) }}</td>
+     	 </tr> 
+        </tbody>
+     </table>  </div>
+<div class="guardar">
+       <input type="submit" class="submit" value="Guardar" />
+    </div> 
+{{ form_widget(form._token) }}</form>
+		</div></div>

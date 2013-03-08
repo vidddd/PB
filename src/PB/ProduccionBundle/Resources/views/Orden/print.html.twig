@@ -42,9 +42,16 @@ p.info {margin:0; padding:0; float:left; font-size: 9px;}
 .total {width: 600px; border-collapse: collapse;}
 .total td { width: 30px; border:1px solid #111; }
 .totaleti { padding: 6px 0; text-align:center; background: #E7E7E7; font-size: 10px; width: 50px;}
+
+#footer {margin:0; padding: 0; border: 1px solid blue; float:left; width: 100%;}
 -->
 </style>
 <page backtop="5mm" backbottom="7mm" backleft="9mm" backright="11mm">
+     <page_header>
+     </page_header>
+     <page_footer>
+       <div id="footer"><h1>Footer</h1></div>
+     </page_footer>
 {% block content %}
 <div class="ordenfabricacion">
 <div class="tith2"><h2>ORDEN DE FABRICACIÓN - <span class="h2id">{{ entity.id }}</span></h2></div>	
@@ -148,7 +155,7 @@ p.info {margin:0; padding:0; float:left; font-size: 9px;}
 			            <th style="width: 17%;">FIRMA</th>
 			        </tr>
 			    </table>
-			    {% for i in 0..5 %}
+			    {% for i in 0..6 %}
 			    <table cellspacing="0" class="tabla4">
 		        	<tr>
 		            	<td style="width: 16%; height:18px;"></td>
@@ -228,7 +235,29 @@ p.info {margin:0; padding:0; float:left; font-size: 9px;}
 					<tr><td class="tabla5eti">Total</td><td>&nbsp;</td></tr>
 			</table>
 		</td>
-		<td style="width:500px;">
+		<td style="width:500px;"><h4>CONTROL DE CALIDAD </h4><p class="info">Inspección de una bobina cada 2 horas. Si se detecta incidencia se inspeccionaran todas las bobinas</p>
+				  <table cellspacing="0" class="tabla3" style="">
+			        <tr>
+			            <th style="width: 16%;">FECHA</th>
+			            <th style="width: 16%;">HORA</th>
+			            <th style="width: 16%;">Nº BOBINA</th>
+			            <th style="width: 16%;">PESO</th>
+			            <th style="width: 17%;">RESULTADO</th>
+			            <th style="width: 17%;">FIRMA</th>
+			        </tr>
+			    </table>
+			    {% for i in 0..5 %}
+			    <table cellspacing="0" class="tabla4">
+		        	<tr>
+		            	<td style="width: 16%; height:18px;"></td>
+		            	<td style="width: 16%;"></td>
+		            	<td style="width: 16%;"></td>
+		            	<td style="width: 16%;"></td>
+		            	<td style="width: 17%; padding-top:2px;"> <img src="{{ url }}{{ asset('images/nok.png') }}" /></td>
+		            	<td style="width: 17%;"></td>
+		        	</tr>
+		    	</table>
+		    	{%  endfor %}
 		</td></tr>
 	</table>
 	{% endif %}

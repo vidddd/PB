@@ -882,6 +882,9 @@ border-radius: 3px;
 .almacen, .almacen h2{
 	color: #777 !important; /* morado */
 }
+.calidad, .calidad h2{
+	color: #e33d3d !important; /* rojo */
+}
 .general, .general h2{
 	color: #974848 !important;
 }

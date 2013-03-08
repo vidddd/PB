@@ -18,19 +18,24 @@ use PB\CalidadBundle\Form\NoconformidadFilterType;
  */
 class NoconformidadController extends Controller
 {
-    /**
-     * Lists all Noconformidad entities.
-     *
-     */
     public function indexAction()
     {
-        list($filterForm, $queryBuilder) = $this->filter();
-
-        list($entities, $pagerHtml) = $this->paginator($queryBuilder);
-
-    
+    	$request = $this->getRequest();$session = $request->getSession();   	 
+    	if($this->getRequest()->get('cuantos')) {
+    		$cuantos = $this->getRequest()->get('cuantos');
+    	} else if ($session->get('NoconformidadCuantos')){
+    		$cuantos = $session->get('NoconformidadCuantos');
+    	} else { $cuantos = 10;
+    	}
+    	
+    	list($filterForm, $queryBuilder) = $this->filter();
+        list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
+        $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');
+        if($cuantos) $session->set('NoconformidadCuantos', $cuantos);
+        ($cuantos)? $entradas = $cuantos : $entradas = 10;
+        
         return $this->render('PBCalidadBundle:Noconformidad:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $entities,'cuantos' => $cuantosarr, 'entradas' => $entradas,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
         ));
@@ -81,23 +86,20 @@ class NoconformidadController extends Controller
     * Get results from paginator and get paginator view.
     *
     */
-    protected function paginator($queryBuilder)
+    protected function paginator($queryBuilder, $cuantos)
     {
-        // Paginator
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pagerfanta = new Pagerfanta($adapter);
         $currentPage = $this->getRequest()->get('page', 1);
         $pagerfanta->setCurrentPage($currentPage);
+        $pagerfanta->setMaxPerPage($cuantos);
         $entities = $pagerfanta->getCurrentPageResults();
-    
-        // Paginator - route generator
         $me = $this;
         $routeGenerator = function($page) use ($me)
         {
             return $me->generateUrl('noconformidad', array('page' => $page));
         };
     
-        // Paginator - view
         $translator = $this->get('translator');
         $view = new TwitterBootstrapView();
         $pagerHtml = $view->render($pagerfanta, $routeGenerator, array(
@@ -116,18 +118,10 @@ class NoconformidadController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('PBCalidadBundle:Noconformidad')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Noconformidad entity.');
-        }
-
+        if (!$entity) {  throw $this->createNotFoundException('Unable to find Noconformidad entity.'); }
         $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('PBCalidadBundle:Noconformidad:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+        return $this->render('PBCalidadBundle:Noconformidad:show.html.twig', array('entity' => $entity,  'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**

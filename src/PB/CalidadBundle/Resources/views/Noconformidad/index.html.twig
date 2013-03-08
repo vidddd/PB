@@ -1,110 +1,82 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
-
-{% block title %}
-{{ parent() }} - Noconformidad {{ 'views.index.list'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-{% endblock %}
-
-{% block page %}
-
-<div class="row">
-
-    <div class="span8">
-        <h1>Noconformidad {{ 'views.index.list'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</h1>
-    </div>
-    <div class="span2">
-        {% if form_errors(filterForm) %}
-        <div class="alert alert-block alert-error fade in form-errors">
-            {{ form_errors(filterForm) }}
-        </div>
+{% extends '::layout.html.twig' %}
+{% block title "Incidencias" %}
+{% block content %}
+<div class="title title-spacing calidad">
+					<h2>Incidencias / No Conformidades</h2>
+</div>
+    <div class="span2">  {% if form_errors(filterForm) %}
+        <div class="response-msg notice iu-corner-all"><span> {{ form_errors(filterForm) }}</span></div>
         {% endif %}
         &nbsp;
     </div>
-    <div class="span2">
-        <div class="filters-right">
-            <a class="btn dropdown-toggle" data-toggle="collapse" data-target="#filters">
-                {{ 'views.index.filters'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-                <span class="caret"></span>
-            </a>
-        </div>
-    </div>
-
-    <div class="span12">
-        <div id="filters" class="collapse">
-
-            <form class="well" action="{{ path('noconformidad') }}" method="post" {{ form_enctype(filterForm) }}>
-                {{ form_row(filterForm.id) }}
-                {{ form_row(filterForm.fecha_apertura) }}
-                {{ form_row(filterForm.descripcion) }}
-                {{ form_row(filterForm.acciones_inmediatas) }}
-                {{ form_row(filterForm.analisis_causas) }}
-                {{ form_row(filterForm.acciones) }}
-                {{ form_row(filterForm.responsable) }}
-                {{ form_row(filterForm.plazo) }}
-                {{ form_row(filterForm.fecha_cierre) }}
-                {{ form_row(filterForm.explicacion) }}
-                {{ form_rest(filterForm) }}
-
-                <p>
-                    <button type="submit" name="filter_action" value="reset">{{ 'views.index.reset'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-                    <button type="submit" name="filter_action" value="filter">{{ 'views.index.filter'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
+    <div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
+    <div class="portlet-content">
+		<form class="well" action="{{ path('noconformidad') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
+			<table id="form-alta">
+   				<tbody>		
+      				<tr>
+        				<td class="label">{{ form_label(filterForm.fecha_apertura, 'Fecha Apertura') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.fecha_apertura, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha_apertura) }}</td>
+      				<tr>
+      				<tr>
+        				<td class="label">{{ form_label(filterForm.descripcion, 'Descripcion') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.descripcion) }}</td><td>{{ form_errors(filterForm.descripcion) }}</td>
+      				<tr>
+            </tbody></table>
+                <p class="botones-buscador">
+                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>   
                 </p>
-            </form>
-        </div>
-    </div>
+                <input type="hidden" name="buscar" value="1" />
+			 {{ form_widget(filterForm._token) }}</form>
+	</div><div class="clear"></div>
+</div>
+    
+<div class="btn-nuevo">
+<a class="btn ui-state-default ui-corner-all" href="{{ path('noconformidad_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nueva Incidencia</a></div>
 
-    <div class="span12">
 
-    <table class="table table-striped table-bordered table-condensed">
+
+<div class="clearfix"></div>
+<div class="hastable">
+    <table class="records_list">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Fecha_apertura</th>
+            <th width="25">Código Incidencia</th>
+            <th>Fecha</th>
             <th>Descripcion</th>
-            <th>Acciones_inmediatas</th>
-            <th>Analisis_causas</th>
-            <th>Acciones</th>
-            <th>Responsable</th>
-            <th>Plazo</th>
-            <th>Fecha_cierre</th>
-            <th>Explicacion</th>
-            <th>{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+            <th>Causas</th>
+            <th width="70">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
         </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
-        <tr>
-            <td><a href="{{ path('noconformidad_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{% if entity.fechaapertura %}{{ entity.fechaapertura|date('Y-m-d H:i:s') }}{% endif %}</td>
+        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+        	<td><a rel="prettyPhoto[iframe]" href="{{ path('noconformidad_show', { 'id': entity.id , 'iframe': 'true', 'width': 700, 'height': 400 }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.fecha|date('d.m.Y') }}</td>
             <td>{{ entity.descripcion }}</td>
-            <td>{{ entity.accionesinmediatas }}</td>
             <td>{{ entity.analisiscausas }}</td>
-            <td>{{ entity.acciones }}</td>
-            <td>{{ entity.responsable }}</td>
-            <td>{{ entity.plazo }}</td>
-            <td>{% if entity.fechacierre %}{{ entity.fechacierre|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{{ entity.explicacion }}</td>
             <td>
-        <a class="btn btn-mini" href="{{ path('noconformidad_show', { 'id': entity.id }) }}">
-            {{ 'views.actions.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-        <a class="btn btn-mini" href="{{ path('noconformidad_edit', { 'id': entity.id }) }}">
-            {{ 'views.actions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>            </td>
+                <a title="Ver Incidencia" href="{{ path('proveedor_show', { 'id': entity.id , 'iframe': 'true', 'width': 700, 'height': 400 }) }}" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-search"></span></a>
+        		<a href="{{ path('noconformidad_edit', { 'id': entity.id }) }}" title="Editar elemento" class="btn_no_text btn ui-state-default ui-corner-all tooltip"><span class="ui-icon ui-icon-wrench"></span></a>
+          </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
     </div>
-
     <div class="span4">
     {{ pagerHtml|raw }}
+     <form id="form1" name="form1" method="post" action="{{ path('noconformidad') }}"> 
+    <div class="dataTables_length"><label>Mostrar 
+    	<select name="cuantos" id="cuantos" onchange="this.form.submit()" size="1">   		
+        {% for item in cuantos %}
+                <option value="{{ item }}" {% if item == entradas %} selected="selected" {% endif %}>{{ item }}</option>
+        {% endfor %}
+        </ul>
+    	</select></label>
     </div>
-
-        <div class="span8">
-    <a class="btn btn-primary likepaginator" href="{{ path('noconformidad_new') }}">
-            {{ 'views.index.createnew'|trans({}, 'JordiLlonchCrudGeneratorBundle') }} Noconformidad
-        </a>
-    </div>
+    </form>
     </div>
 
 {% endblock %}

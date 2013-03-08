@@ -353,7 +353,6 @@ table.spreadsheet {
     border-left: 1px solid #CCCCCC;
     border-spacing: 0;
     width: 100%;
-    font-family: Verdana;
 }
 
 table.spreadsheet td {
@@ -696,7 +695,6 @@ div.totals textarea:focus{
     border-left: 0 none;
     border-top: 1px solid #CCCCCC;
     color: #616161;
-    font-weight: bold;
     line-height: 18px;
     padding: 4px 5px;
     text-align: left;
