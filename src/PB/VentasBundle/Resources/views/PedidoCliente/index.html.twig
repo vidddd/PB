@@ -26,6 +26,10 @@
 	        				<td class="label">{{ form_label(filterForm.cliente, 'Código Cliente') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.cliente, { 'attr': {'class': 'small numeric buscadorid'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': '' , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a></td><td>{{ form_errors(filterForm.cliente) }}</td>
 	      				<tr>
+	      				<tr>
+	        				<td class="label">{{ form_label(filterForm.comercial, 'Comercial') }}</td>
+	        				<td class="campo">{{ form_widget(filterForm.comercial, { 'attr': {'class': ''}}) }}</td><td>{{ form_errors(filterForm.comercial) }}</td>
+	      				<tr>
 	      	         	<tr>
 	        				<td class="label">{{ form_label(filterForm.fecha, 'Fecha') }}</td>
 	        				<td class="campo">{{ form_widget(filterForm.fecha, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha) }}</td>

@@ -20,7 +20,7 @@ class NoconformidadFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', 'filter_number_range')
+            ->add('id', 'filter_number')
             ->add('fecha_apertura', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
 		    															   'label' => 'aaaaa',
 		    											//'format' => 'dd.MM.yyyy'

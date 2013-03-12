@@ -24,6 +24,9 @@ class PedidoClienteFilterType extends AbstractType
 		    									),
 		    						   'right_date' => array('widget' => 'single_text')
 		    						 ))
+		    ->add('comercial','filter_entity', array('error_bubbling' => true, 'required' => false,
+		    					'class' => 'PB\VentasBundle\Entity\Comercial',
+		    					'empty_value' => ''))
             ->add('subcliente','filter_text', array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS))
             ->add('estado', 'filter_number_range')
             ->add('cantidad', 'filter_text')

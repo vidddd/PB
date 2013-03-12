@@ -17,14 +17,18 @@ PB\CalidadBundle\Entity\Noconformidad:
             type: text
         acciones:
             type: text
+            nullable: true
         responsable:
             type: string
             length: 255
         plazo:
             type: string
             length: 255
+            nullable: true
         fecha_cierre:
             type: date
+            nullable: true
         explicacion:
             type: text
+            nullable: true
     lifecycleCallbacks: {  }

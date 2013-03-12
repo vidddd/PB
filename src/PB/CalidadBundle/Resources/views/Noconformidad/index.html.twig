@@ -13,7 +13,11 @@
     <div class="portlet-content">
 		<form class="well" action="{{ path('noconformidad') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
 			<table id="form-alta">
-   				<tbody>		
+   				<tbody>
+   				<tr>
+        				<td class="label">{{ form_label(filterForm.id, 'Código de Incidencia') }}</td>
+        				<td class="campo">{{ form_widget(filterForm.id, { 'attr': {'class': 'small'}}) }}</td><td>{{ form_errors(filterForm.id) }}</td>
+      				<tr>		
       				<tr>
         				<td class="label">{{ form_label(filterForm.fecha_apertura, 'Fecha Apertura') }}</td>
         				<td class="campo">{{ form_widget(filterForm.fecha_apertura, { 'attr': {'class': 'date small'}}) }}</td><td>{{ form_errors(filterForm.fecha_apertura) }}</td>
@@ -53,7 +57,7 @@
     {% for entity in entities %}
         <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
         	<td><a rel="prettyPhoto[iframe]" href="{{ path('noconformidad_show', { 'id': entity.id , 'iframe': 'true', 'width': 700, 'height': 400 }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.fecha|date('d.m.Y') }}</td>
+            <td>{{ entity.fechaapertura|date('d.m.Y') }}</td>
             <td>{{ entity.descripcion }}</td>
             <td>{{ entity.analisiscausas }}</td>
             <td>

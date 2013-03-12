@@ -191,9 +191,8 @@ label.choice{
 .portlet-content label{
     color: #878D96;
    font-size:1.1em;
+   line-height: 1.2em;
 }
-
-	/* Required */
 
 form span.req, .error_list li{
 	display:inline;
@@ -202,9 +201,6 @@ form span.req, .error_list li{
 	font-weight:bold;
 }
 
-form table td {
-
-}
 #main-content .portlet-content table{
 	width:740px;
 }
@@ -253,11 +249,12 @@ input.submit, button.submit{
 #form-alta td.errores{
 	border:1px solid red;
 	height:20px;
-	
 }
 #form-alta label {
 	margin-left:5px;
-	
+}
+#form-alta .tope {
+	vertical-align: top;
 }
 .grupo-campos{
  float: left;

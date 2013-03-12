@@ -30,7 +30,9 @@ class PedidoFilterType extends AbstractType
             ->add('id', 'filter_number')
             ->add('cliente', 'filter_number')->add('anchoc', 'filter_number')
             ->add('subcliente', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS))
-    		->add('estado','filter_choice', array('error_bubbling' => true, 'required' => false,'choices' => $estados,'empty_value' => ''))
+    		->add('estado','filter_choice', array('error_bubbling' => true, 'required' => false,
+    						'choices' => $estados,
+    							'empty_value' => ''))
            
 		    ->add('fecha', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
 		    															   'label' => 'aaaaa',

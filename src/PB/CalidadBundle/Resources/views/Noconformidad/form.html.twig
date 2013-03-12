@@ -1,4 +1,4 @@
-<form action="{{ entity.id  ? path('noconformidad_edit', { 'id': entity.id }) : path('noconformidad_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ entity.id  ? path('noconformidad_update', { 'id': entity.id }) : path('noconformidad_create') }}" method="post" {{ form_enctype(form) }}>
 <div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
 	<div class="portlet-header ui-widget-header">Nueva Incidencia</div>
           {% if form_errors(form) %}
@@ -9,12 +9,40 @@
 		<table id="form-alta">
 		  <tr>
 		       <td class="label">{{ form_label(form.fecha_apertura) }}</td>
-		       <td class="campo">{{ form_widget(form.fecha_apertura) }}</td><td>{{ form_errors(form.fecha_apertura) }}</td>
+		       <td class="campo">{{ form_widget(form.fecha_apertura, { 'attr': {'class': 'small date'} }) }}</td><td>{{ form_errors(form.fecha_apertura) }}</td>
 		  </tr>
 		<tr>
-       	 	<td valgin="top">{{ form_label(form.descripcion) }}</td>
+       	 	<td class="tope">{{ form_label(form.descripcion, 'Descripcion de la Incidencia') }}</td>
         	<td>{{ form_widget(form.descripcion, { 'attr': {'cols': '34', 'rows': '7'} }) }}</td><td>{{ form_errors(form.descripcion) }}</td>
      	 </tr> 
+     	 <tr>
+       	 	<td class="tope">{{ form_label(form.acciones_inmediatas, 'Acciones Inmediatas') }}</td>
+        	<td>{{ form_widget(form.acciones_inmediatas, { 'attr': {'cols': '34', 'rows': '7'} }) }}</td><td>{{ form_errors(form.acciones_inmediatas) }}</td>
+     	 </tr> 
+     	 <tr>
+       	 	<td class="tope">{{ form_label(form.analisis_causas, 'Analisis de Causas') }}</td>
+        	<td>{{ form_widget(form.analisis_causas, { 'attr': {'cols': '34', 'rows': '7'} }) }}</td><td>{{ form_errors(form.analisis_causas) }}</td>
+     	 </tr> 
+     	 <tr>
+       	 	<td class="tope">{{ form_label(form.acciones, 'Acciones Correctivas - Preventivas') }}</td>
+        	<td>{{ form_widget(form.acciones, { 'attr': {'cols': '34', 'rows': '7'} }) }}</td><td>{{ form_errors(form.acciones) }}</td>
+     	 </tr> 
+     	 <tr>
+       	 	<td class="tope">{{ form_label(form.responsable, 'Responsable') }}</td>
+        	<td>{{ form_widget(form.responsable, { 'class': {'': ''} }) }}</td><td>{{ form_errors(form.responsable) }}</td>
+     	 </tr> 
+     	 <tr>
+       	 	<td class="tope">{{ form_label(form.plazo, 'Plazo') }}</td>
+        	<td>{{ form_widget(form.plazo, { 'class': {'': ''} }) }}</td><td>{{ form_errors(form.plazo) }}</td>
+     	 </tr>
+     	 <tr>
+		       <td class="label">{{ form_label(form.fecha_cierre) }}</td>
+		       <td class="campo">{{ form_widget(form.fecha_cierre, { 'attr': {'class': 'small date'} }) }}</td><td>{{ form_errors(form.fecha_cierre) }}</td>
+		  </tr>
+		 <tr>
+       	 	<td class="tope">{{ form_label(form.explicacion, 'Explicación - Eficacia') }}</td>
+        	<td>{{ form_widget(form.explicacion, { 'attr': {'cols': '34', 'rows': '7'} }) }}</td><td>{{ form_errors(form.explicacion) }}</td>
+     	 </tr>  
         </tbody>
      </table>  </div>
 <div class="guardar">

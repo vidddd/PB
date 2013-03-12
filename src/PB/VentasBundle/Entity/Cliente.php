@@ -1045,7 +1045,7 @@ class Cliente
         return $this->formapago_cliente;
     }
     /**
-     * @var PB\VentasBundle\Entity\comercial
+     * @var PB\VentasBundle\Entity\Comercial
      */
     private $comercial_cliente;
 
@@ -1056,7 +1056,7 @@ class Cliente
      * @param PB\VentasBundle\Entity\comercial $comercialCliente
      * @return Cliente
      */
-    public function setComercialCliente(\PB\VentasBundle\Entity\comercial $comercialCliente = null)
+    public function setComercialCliente(\PB\VentasBundle\Entity\Comercial $comercialCliente = null)
     {
         $this->comercial_cliente = $comercialCliente;
     
@@ -1066,7 +1066,7 @@ class Cliente
     /**
      * Get comercial_cliente
      *
-     * @return PB\VentasBundle\Entity\comercial 
+     * @return PB\VentasBundle\Entity\Comercial 
      */
     public function getComercialCliente()
     {

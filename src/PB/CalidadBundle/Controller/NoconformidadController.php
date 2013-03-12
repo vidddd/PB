@@ -156,7 +156,7 @@ class NoconformidadController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.create.success');
 
-            return $this->redirect($this->generateUrl('noconformidad_show', array('id' => $entity->getId())));        } else {
+            return $this->redirect($this->generateUrl('noconformidad', array('id' => $entity->getId())));        } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.create.error');
         }
 
@@ -184,7 +184,7 @@ class NoconformidadController extends Controller
 
         return $this->render('PBCalidadBundle:Noconformidad:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -215,14 +215,14 @@ class NoconformidadController extends Controller
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'flash.update.success');
 
-            return $this->redirect($this->generateUrl('noconformidad_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('noconformidad', array('id' => $id)));
         } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.update.error');
         }
 
         return $this->render('PBCalidadBundle:Noconformidad:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

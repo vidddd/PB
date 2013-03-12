@@ -24,7 +24,13 @@ class NoconformidadType extends AbstractType
             ->add('acciones')
             ->add('responsable')
             ->add('plazo')
-            ->add('fecha_cierre')
+            ->add('fecha_cierre', 'date', array(
+							    'widget' => 'single_text',
+							    //'format' => 'dd.MM.yyyy',
+    							//'data' => $hoy,
+        						'required' => false,
+            					'error_bubbling' => true
+							)) 
             ->add('explicacion')
         ;
     }

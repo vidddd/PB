@@ -21,7 +21,11 @@ class ClienteFilterType extends AbstractType
             ->add('nif','filter_text', array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS ))
             ->add('localidad', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
             ->add('cp', 'filter_text')
-
+            ->add('comercial_cliente','filter_entity', array('error_bubbling' => true, 'required' => false,
+            		'class' => 'PBVentasBundle:Comercial',
+            		'property' => 'nombre',
+            		//'empty_value' => ''
+            		))
         ;
 
         $listener = function(FormEvent $event)
@@ -45,6 +49,6 @@ class ClienteFilterType extends AbstractType
 
     public function getName()
     {
-        return 'pb_ventasbundle_clientefiltertype';
+        return 'clientefilter';
     }
 }
