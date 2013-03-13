@@ -58,3 +58,7 @@ pedidocliente_fabricar_guardar:
 pedidocliente_show_lightbox:
     pattern:  /{id}/showLightbox
     defaults: { _controller: "PBVentasBundle:PedidoCliente:showLightbox" }
+
+buscador_pedidos_cliente2:
+    pattern:  /pedidos_cliente/{id}
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:buscadorPedidosCliente" }

@@ -46,9 +46,12 @@ tipo_tubo:
 
 estados_orden:
   1: "Nuevo"
-  2: "Activo"
-  3: "Finalizado"
-
+  2: "En Extrusion"
+  3: "En Impresión"
+  4: "En Corte"
+  5: "En Rebobinado"
+  6: "Finalizado"
+  8: "Histórico"
 producto:
   1: "Bolsas"
   2: "Bobinas"
@@ -71,10 +74,3 @@ asas:
   1: "Sin Asa"
   2: "Asa Riñon"
   3: "Asa Rígida"
-
-estados_ordenes:
-  1: "Nuevo"
-  2: "En fabrica"
-  3: "Finalizado"
-  4: "Facturado"
-  8: "Histórico"

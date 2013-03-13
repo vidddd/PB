@@ -33,8 +33,7 @@ class OrdenType extends AbstractType
 				    'choices'   => array('1'   => 'Bolsas','2' => 'Kg', '3' => 'Metros',
 				    ), 'multiple'  => false, 'expanded' => true))
             ->add('espesor')
-            ->add('espesoruni', 'choice', array(
-				    'choices'   => array('1'   => 'galga','2' => 'Micras',
+            ->add('espesoruni', 'choice', array( 'choices'   => array('1'   => 'galga','2' => 'Micras',
 				    ), 'multiple'  => false, 'expanded' => true))
             ->add('tipomaterial', 'choice', array( 'choices' => $tipos,'error_bubbling' => true, 'empty_value' => '-- Elige un Material --'))
             ->add('producto', 'choice', array( 'choices' => $productos,'error_bubbling' => true, 'empty_value' => '--Eligue un Producto --',))

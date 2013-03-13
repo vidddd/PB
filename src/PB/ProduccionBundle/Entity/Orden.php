@@ -1511,8 +1511,10 @@ class Orden
     }
     public function getPedidoclienteId()
     {
-    	$pe = $this->pedidocliente;
-    	return $pe->getId();
+    	foreach ($this->pedidocliente as $pe) {
+    	 			return $pe->getId();
+    	
+    	}
     }
     /**
      * Constructor

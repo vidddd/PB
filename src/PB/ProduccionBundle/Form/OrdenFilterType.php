@@ -24,7 +24,7 @@ class OrdenFilterType extends AbstractType
     	} catch (ParseException $e) {
     		printf("Unable to parse the YAML string: %s", $e->getMessage());
     	}
-    	$estados = $value['estados_ordenes'];
+    	$estados = $value['estados_orden'];
         $builder
             ->add('id', 'filter_number')
             ->add('cliente', 'filter_number')

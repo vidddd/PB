@@ -2,7 +2,7 @@
 	<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container container-sin-header">	
 				<div class="span-17 form-horizontal label-column-small form-condensed">
 					<div class="control-group"><label class="control-label required">Cliente</label><div class="controls codigo"><b>{{ entity.cliente }}</div></div>
-     				<div class="control-group"><label class="control-label required">Pedido Cliente</label><div class="codigo"><b>{# entity.pedidocliente.id #}</div></div>
+     				<div class="control-group"><label class="control-label required">Pedido Cliente</label><div class="codigo"><b><a href="{{ path('pedidocliente_show', { 'id': entity.pedidoclienteid }) }}">{{ entity.pedidoclienteid }}</a></div></div>
      		
      			</div>
      			<div class="span-10 form-horizontal label-column-small form-condensed"><div class="control-group required">

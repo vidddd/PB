@@ -341,7 +341,7 @@ class PedidoClienteController extends Controller
     	$entity = $em->getRepository('PBVentasBundle:PedidoCliente')->find($id);
     	if (!$entity) {	throw $this->createNotFoundException('Unable to find PedidoCliente entity.');}
     	$B = clone $entity;
-    	$B->setId(null);
+    	$B->setId(null); $B->setOrden(null);
     	$hoy = new \DateTime();
     	$editForm   = $this->createForm(new PedidoClienteType(), $B);$deleteForm = $this->createDeleteForm($id); $request = $this->getRequest();
     
@@ -409,6 +409,7 @@ class PedidoClienteController extends Controller
 	        if ($form->isValid()) {
 	        	$em->persist($orden);
 	        	$pedido->setOrden($orden); $em->persist($pedido);
+	        	$pedido->setEstado(2);
 	        	$em->flush();
 	        	$this->get('session')->getFlashBag()->add('success', 'Nueva Orden de Fabricación Creada');
 	        
@@ -422,5 +423,25 @@ class PedidoClienteController extends Controller
             'form'   => $form->createView(),
         ));
     	
+    }
+    public function buscadorPedidosClienteAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$request = $this->get('request');
+    	$query = $em->createQuery('SELECT p FROM PBVentasBundle:PedidoCliente p WHERE p.cliente = :cliente AND p.estado != :esta ORDER BY p.fecha DESC')
+    	->setParameter('cliente', $id)->setParameter('esta', '8');
+    	try {
+    		$entity = $query->getResult();
+    	} catch (\Doctrine\Orm\NoResultException $e) {
+    		return $this->render('PBVentasBundle:PedidoCliente:pedidos_cliente_lighbox.html.twig', array(
+    				'error' => 'El cliente no tiene Tarifa de precios o el Código de cliente es erróneo',
+    				'entity' => ''
+    		));
+    	}
+    
+    	return $this->render('PBVentasBundle:PedidoCliente:pedidos_cliente_lighbox.html.twig', array(
+    			'entity' => $entity,
+    			'error' => '',
+    	));
     }
 }
