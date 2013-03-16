@@ -26,6 +26,7 @@ class PedidoType extends AbstractType
     	// add a normal text field, but add our transformer to it
     	
         $builder
+        
         	->add('cliente', 'cliente_text', array('error_bubbling' => true))
             //->add('id', 'number', array('read_only' => true,'error_bubbling' => true))
             ->add('fecha', 'date', array(

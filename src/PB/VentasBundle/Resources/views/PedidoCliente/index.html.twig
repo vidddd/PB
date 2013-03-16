@@ -3,7 +3,7 @@
 {% block title "Pedidos" %}
 {% block width100 "widthtotal" %}{% block displaysidebar "display:none;" %}
 {% block content %}
-<div id="presupuesto">
+<div id="pedido">
 	<div class="title title-spacing ventas"><h2>Pedidos Cliente</h2></div>        
     <div class="span2">
         {% if form_errors(filterForm) %}
@@ -15,7 +15,7 @@
     </div>
 	<div class="portlet form-bg ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">Filtros</div>
 	    <div class="portlet-content">
-			<form class="well" action="{{ path('presupuesto') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
+			<form class="well" action="{{ path('pedidocliente') }}" method="post" {{ form_enctype(filterForm) }} novalidate="novalidate">
 				<table id="form-alta">
 	   				<tbody>		
 	         			<tr>
@@ -61,7 +61,7 @@
 		            <th>Subcliente</th>
 		            <th>Ancho</th>
 		            <th>Largo</th>
-		            <th>Estado</th>
+		            <th width="75">Estado</th>
 		            <th>Orden <br />Fabricación</th>
 		            <th> Precio </th>
 		            <th width="164">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
@@ -76,12 +76,15 @@
 		            <td>{{ entity.subcliente }}</td>
 		            <td>{{ entity.ancho }}</td>
 		            <td>{{ entity.largo }}</td>
-		            <td>{{ entity.estadoText }}</td>
+		            <td><span class="estadoc estado{{ entity.estado }}">{{ entity.estadoText }}</span></td>
 		            <td>{% if entity.orden %}
-		              <a rel="prettyPhoto[iframe]" href="{{ path('pedidocliente_show_lightbox', { 'id': entity.orden.id , 'iframe': 'true', 'width': 1000, 'height': 500 }) }}"title="Ver Orden de Fabricación" style="font-size:12px; font-weight:bold;">{{ entity.orden.id }}</a>
+		                   <a rel="prettyPhoto[iframe]" href="{{ path('pedidocliente_show_lightbox', { 'id': entity.orden.id , 'iframe': 'true', 'width': 1000, 'height': 500 }) }}"title="Ver Orden de Fabricación" style="font-size:12px; font-weight:bold;">{{ entity.orden.id }}</a>
          		       {% else %}
+						 {# Si es facturado o historico ya no se fabrica #}
+						 {% if entity.estado == 1 %}
 							<a class="btn2 btn2-mini btn2-fabricar" href="{{ path('pedidocliente_fabricar', { 'id': entity.id }) }}">Fabricar</a>
-						{% endif %}</td>
+						 {% endif %}
+         		       {% endif %}</td>
 		            <td>{% if entity.precio %}		{{ entity.precio }}
 						{% else %}
 							<a href="{{ path('calcular_precio_pedidocliente', { 'id': entity.id }) }}">Calcular</a>

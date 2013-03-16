@@ -62,3 +62,10 @@ pedidocliente_show_lightbox:
 buscador_pedidos_cliente2:
     pattern:  /pedidos_cliente/{id}
     defaults: { _controller: "PBVentasBundle:PedidoCliente:buscadorPedidosCliente" }
+
+get_pedidocliente:
+    pattern:  /getpedido
+    defaults: { _controller: "PBVentasBundle:PedidoCliente:getPedido", _format: json }
+    requirements:
+        _format: (xml|json)
+        _method:  POST

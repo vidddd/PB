@@ -186,5 +186,8 @@ PB\VentasBundle\Entity\Cliente:
     pedidocliente:
         targetEntity: PB\VentasBundle\Entity\PedidoCliente
         mappedBy: cliente
+    noconformidad:
+        targetEntity: PB\CalidadBundle\Entity\Noconformidad
+        mappedBy: cliente
   lifecycleCallbacks: 
     prePersist: [ setFechaAltaPre ]

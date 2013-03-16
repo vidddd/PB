@@ -1376,4 +1376,42 @@ class Cliente
     {
         return $this->pedidocliente;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $noconformidad;
+
+
+    /**
+     * Add noconformidad
+     *
+     * @param PB\CalidadBundle\Entity\Noconformidad $noconformidad
+     * @return Cliente
+     */
+    public function addNoconformidad(\PB\CalidadBundle\Entity\Noconformidad $noconformidad)
+    {
+        $this->noconformidad[] = $noconformidad;
+    
+        return $this;
+    }
+
+    /**
+     * Remove noconformidad
+     *
+     * @param PB\CalidadBundle\Entity\Noconformidad $noconformidad
+     */
+    public function removeNoconformidad(\PB\CalidadBundle\Entity\Noconformidad $noconformidad)
+    {
+        $this->noconformidad->removeElement($noconformidad);
+    }
+
+    /**
+     * Get noconformidad
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getNoconformidad()
+    {
+        return $this->noconformidad;
+    }
 }

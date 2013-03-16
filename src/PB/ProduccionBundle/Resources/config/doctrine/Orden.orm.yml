@@ -236,7 +236,7 @@ PB\ProduccionBundle\Entity\Orden:
         referencedColumnName: id
   oneToMany:
     pedidocliente:
-      targetEntity: PB\VentasBundle\Entity\Pedidocliente
+      targetEntity: PB\VentasBundle\Entity\PedidoCliente
       cascade: {  }
       mappedBy: orden
 #  oneToOne:

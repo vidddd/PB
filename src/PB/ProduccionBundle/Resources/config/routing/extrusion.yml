@@ -1,0 +1,3 @@
+extrusion:
+    pattern:  /
+    defaults: { _controller: "PBProduccionBundle:Extrusion:index" }

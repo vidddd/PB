@@ -1,63 +1,55 @@
-{% extends 'JordiLlonchCrudGeneratorBundle::layout.html.twig' %}
+{# note que en este caso utilizamos el layout de ajax para así no cargar todo el contenido del layout general #}
+{# extends app.request.isXmlHttpRequest ? "::layout_ajax.html.twig" : "::layout.html.twig" #}
+{% extends "::layout_ajax.html.twig" %}
+{% block title "Incidencia / No conformidad" %}
 
-{% block title %}
-{{ parent() }} - Noconformidad {{ 'views.show.show'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-{% endblock %}
-
-{% block page %}
-
-<h1>Noconformidad</h1>
-
-<form class="form-horizontal">
-    <fieldset>        <div class="control-group">
-            <label class="control-label">Id</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.id }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fecha_apertura</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechaapertura|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Descripcion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.descripcion }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Acciones_inmediatas</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.accionesinmediatas }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Analisis_causas</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.analisiscausas }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Acciones</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.acciones }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Responsable</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.responsable }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Plazo</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.plazo }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Fecha_cierre</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.fechacierre|date('Y-m-d H:i:s') }}</span>            </div>
-        </div>        <div class="control-group">
-            <label class="control-label">Explicacion</label>
-            <div class="controls">                <span class="input-xlarge uneditable-input">{{ entity.explicacion }}</span>            </div>
-        </div>    </fieldset>
-</form>
-
-<div>
-    <div class="float-left">
-        <a class="btn" href="{{ path('noconformidad') }}">
-            {{ 'views.recordactions.backtothelist'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-    </div>
-    <div class="float-left">
-        <a class="btn btn-primary" href="{{ path('noconformidad_edit', { 'id': entity.id }) }}">
-            {{ 'views.recordactions.edit'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}
-        </a>
-    </div>
-    <div class="float-left">
-        <form action="{{ path('noconformidad_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button class="btn btn-danger" type="submit" onclick="return confirm('{{ 'views.recordactions.confirm'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}');">{{ 'views.recordactions.delete'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</button>
-        </form>
-    </div>
-</div>
+{% block content %}
+<div id="ver-producto"><div id="lightbox-wrapper">
+<div class="title title-spacing calidad"><h2>Incidencia</h2></div>
+<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+		<div class="portlet-content show">
+    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+		
+    <div id="tabs-1">
+		 <table>
+   <tbody>
+     <tr>
+        <td class="label">Código Incidencia</td><td class="campo">{{ entity.id }}</td>
+      </tr>
+     <tr>
+        <td class="label">Fecha Apertura</td><td class="campo"><b>{{ entity.fechaapertura|date('d.m.Y') }}</b></td>
+      </tr>
+     <tr>
+        <td class="label">Descripción</td><td class="campo">{{ entity.descripcion|nl2br }}<br/></td>
+      </tr> 
+     <tr>
+        <td class="label">Cliente</td><td class="campo">{{ entity.cliente }}<br/></td>
+      </tr> 
+      <tr>
+        <td class="label">Pedido</td><td class="campo">{{ entity.pedidocliente }}<br/></td>
+      </tr> 
+      <tr>
+        <td class="label">Acciones Inmediatas</td><td class="campo">{{ entity.accionesinmediatas|nl2br }}</td>
+      </tr>
+      <tr>
+        <td class="label">Análisis de Causas</td><td class="campo">{{ entity.analisiscausas|nl2br }}</td>
+      </tr>
+      <tr>
+        <td class="label">Acciones</td><td class="campo">{{ entity.acciones|nl2br }}</td>
+      </tr>
+      <tr>
+        <td class="label">Responsable</td><td class="campo">{{ entity.responsable }}</td>
+      </tr>
+      <tr>
+        <td class="label">Plazo</td><td class="campo">{{ entity.plazo }}</td>
+      </tr>
+      <tr>
+        <td class="label">Fecha Cierre</td><td class="campo">{{ entity.fechacierre|date('d.m.Y') }}</td>
+      </tr>
+      <tr>
+        <td class="label">Explicación</td><td class="campo">{{ entity.explicacion|nl2br }}</td>
+      </tr>
+    </tbody>
+   </table>  
+   </div></div></div>
 {% endblock %}

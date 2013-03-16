@@ -16,7 +16,7 @@ class PedidoClienteFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', 'filter_number_range')
+            ->add('id', 'filter_number')
             ->add('cliente', 'filter_number')
             ->add('fecha', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
 		    									   'label' => 'aaaaa',

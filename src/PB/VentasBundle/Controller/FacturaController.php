@@ -133,11 +133,12 @@ class FacturaController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Factura entity.');
         }
-
+        $albaran = $em->getRepository('PBVentasBundle:Albaran');
+        $result = $albaran->getAlbaranidBycodfactura($id);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('PBVentasBundle:Factura:show.html.twig', array(
-            'entity'      => $entity,
+            'entity'      => $entity, 'albaranid' => $result,
             'delete_form' => $deleteForm->createView(),        ));
     }
     

@@ -9,6 +9,9 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
 use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
+use Doctrine\ORM\QueryBuilder;
+use Lexik\Bundle\FormFilterBundle\Filter\Expr;
+
 
 class ClienteFilterType extends AbstractType
 {
@@ -21,11 +24,27 @@ class ClienteFilterType extends AbstractType
             ->add('nif','filter_text', array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS ))
             ->add('localidad', 'filter_text',array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS, ))
             ->add('cp', 'filter_text')
+            
             ->add('comercial_cliente','filter_entity', array('error_bubbling' => true, 'required' => false,
             		'class' => 'PBVentasBundle:Comercial',
             		'property' => 'nombre',
-            		//'empty_value' => ''
+            		'apply_filter' => function (QueryBuilder $queryBuilder, Expr $expr, $field, array $values) {
+            			if (!empty($values['value'])) {
+            			//	$queryBuilder->leftJoin('e.comercial_cliente', 'f');
+            			//	$queryBuilder->andWhere('f.id = :name')
+            			//	->setParameter('name',$values['value']);
+            			}	
+            			$queryBuilder->getDQL();
+            	
+            		},
+        //'empty_value' => ''
             		))
+        /*
+        ->add('comercial_cliente', 'filter_entity', array(
+        		'label' => '',
+        		'class' => 'PBVentasBundle:Comercial',
+        		'empty_value' => 'Choose a Product Option'
+        ))*/
         ;
 
         $listener = function(FormEvent $event)

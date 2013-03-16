@@ -12,4 +12,24 @@ use Doctrine\ORM\EntityRepository;
  */
 class AlbaranRepository extends EntityRepository
 {
+	
+	public function getAlbaranidBycodfactura($codfactura)
+	{
+		
+		$query = $this->getEntityManager()
+		->createQuery('SELECT a FROM PBVentasBundle:Albaran a	WHERE a.codfactura = :id')->setParameter('id', $codfactura);
+		$result = $query->getOneOrNullResult();
+		//$query->getOneOrNullResult();
+		if($result) {
+			return $result->getId();
+		} else {
+			return '';
+		}
+		/*
+		try {
+			return $query->getOneOrNullResult()->getId();
+		} catch (\Doctrine\ORM\NoResultException $e) {
+			return;
+		}*/	
+	}
 }

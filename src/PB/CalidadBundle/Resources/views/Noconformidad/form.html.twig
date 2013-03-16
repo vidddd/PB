@@ -6,7 +6,7 @@
           {% endif %}
 		<div class="portlet-content">
 		    <div id="tabs2" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-		<table id="form-alta">
+		<table id="form-alta" style="width: 900px;">
 		  <tr>
 		       <td class="label">{{ form_label(form.fecha_apertura) }}</td>
 		       <td class="campo">{{ form_widget(form.fecha_apertura, { 'attr': {'class': 'small date'} }) }}</td><td>{{ form_errors(form.fecha_apertura) }}</td>
@@ -15,6 +15,14 @@
        	 	<td class="tope">{{ form_label(form.descripcion, 'Descripcion de la Incidencia') }}</td>
         	<td>{{ form_widget(form.descripcion, { 'attr': {'cols': '34', 'rows': '7'} }) }}</td><td>{{ form_errors(form.descripcion) }}</td>
      	 </tr> 
+     	<tr>
+			<td>{{ form_label(form.cliente, null, { 'label': 'Cliente', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.cliente, { 'attr': {'class': 'small numeric buscadorid buscadorclienteAlbaran'}}) }}<a rel="prettyPhoto[iframe]" href="{{ path('buscador_cliente', { 'id': entity.id , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a></td><td><p>Seleccione el código de cliente al que se le asignará la Incidencia</p></td>
+		</tr>
+     	<tr>
+			<td>{{ form_label(form.pedidocliente, null, { 'label': 'Pedido', 'label_attr': {'class': 'control-label'} }) }}</td>
+			<td>{{ form_widget(form.pedidocliente, { 'attr': {'class': 'small numeric'}}) }}</td><td><p>Seleccione el código de pedido al que se le asignará la Incidencia</p></td>
+		</tr>
      	 <tr>
        	 	<td class="tope">{{ form_label(form.acciones_inmediatas, 'Acciones Inmediatas') }}</td>
         	<td>{{ form_widget(form.acciones_inmediatas, { 'attr': {'cols': '34', 'rows': '7'} }) }}</td><td>{{ form_errors(form.acciones_inmediatas) }}</td>
@@ -43,6 +51,10 @@
        	 	<td class="tope">{{ form_label(form.explicacion, 'Explicación - Eficacia') }}</td>
         	<td>{{ form_widget(form.explicacion, { 'attr': {'cols': '34', 'rows': '7'} }) }}</td><td>{{ form_errors(form.explicacion) }}</td>
      	 </tr>  
+        <tr>
+		       <td class="label">{{ form_label(form.estado) }}</td>
+		       <td class="campo">{{ form_widget(form.estado, { 'attr': {'class': ''} }) }}</td><td>{{ form_errors(form.estado) }}</td>
+		  </tr>
         </tbody>
      </table>  </div>
 <div class="guardar">

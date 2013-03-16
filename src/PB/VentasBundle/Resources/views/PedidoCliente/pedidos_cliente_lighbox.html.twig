@@ -31,6 +31,7 @@ $(document).ready(function() {
 	            <th>Fecha</th>
 	            <th>Cliente</th>
 	            <th>Estado</th>
+	            <th>Orden Fabricación</th>
 	        </tr>
 	    </thead>
 	    <tbody>
@@ -41,6 +42,7 @@ $(document).ready(function() {
 	            <td>{{ linea.fecha|date('d.m.Y') }}</td>
 	            <td>{{ linea.cliente }}   </td>
 	        	<td><span class="estadoc estado{{ linea.estado }}">{{ linea.estadoText }}</span></td>
+	         	<td>{% if linea.orden %} {{ linea.orden.id }} {% endif %} </td>
 	         </tr>
 	    {% endfor %}
 	    </tbody>

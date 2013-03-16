@@ -927,6 +927,107 @@ class PedidoCliente
     }
     public function __toString()
     {
-    	return $this->id;
+    	return (string)$this->id;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $noconformidad;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->noconformidad = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add noconformidad
+     *
+     * @param PB\CalidadBundle\Entity\Noconformidad $noconformidad
+     * @return PedidoCliente
+     */
+    public function addNoconformidad(\PB\CalidadBundle\Entity\Noconformidad $noconformidad)
+    {
+        $this->noconformidad[] = $noconformidad;
+    
+        return $this;
+    }
+
+    /**
+     * Remove noconformidad
+     *
+     * @param PB\CalidadBundle\Entity\Noconformidad $noconformidad
+     */
+    public function removeNoconformidad(\PB\CalidadBundle\Entity\Noconformidad $noconformidad)
+    {
+        $this->noconformidad->removeElement($noconformidad);
+    }
+
+    /**
+     * Get noconformidad
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getNoconformidad()
+    {
+        return $this->noconformidad;
+    }
+    /**
+     * @var integer $codalbaran
+     */
+    private $codalbaran;
+
+    /**
+     * @var integer $codfactura
+     */
+    private $codfactura;
+
+
+    /**
+     * Set codalbaran
+     *
+     * @param integer $codalbaran
+     * @return PedidoCliente
+     */
+    public function setCodalbaran($codalbaran)
+    {
+        $this->codalbaran = $codalbaran;
+    
+        return $this;
+    }
+
+    /**
+     * Get codalbaran
+     *
+     * @return integer 
+     */
+    public function getCodalbaran()
+    {
+        return $this->codalbaran;
+    }
+
+    /**
+     * Set codfactura
+     *
+     * @param integer $codfactura
+     * @return PedidoCliente
+     */
+    public function setCodfactura($codfactura)
+    {
+        $this->codfactura = $codfactura;
+    
+        return $this;
+    }
+
+    /**
+     * Get codfactura
+     *
+     * @return integer 
+     */
+    public function getCodfactura()
+    {
+        return $this->codfactura;
     }
 }

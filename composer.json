@@ -35,7 +35,6 @@
         "toooni/fpdf": "dev-master",
         "ensepar/html2pdf": "dev-master",
         "phpexcel/phpexcel": "dev-master",
-		"irongit/symfony2-stream-response": "dev-master",
  		"liuggio/ExcelBundle": "dev-master"
     },
     "repositories": [{

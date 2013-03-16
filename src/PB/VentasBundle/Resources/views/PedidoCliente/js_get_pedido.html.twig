@@ -15,7 +15,7 @@
 			alert('Introduce un codigo de pedido')
 		} else {
 	       $.ajax({
-				url: "{{ path('get_pedido') }}",
+				url: "{{ path('get_pedidocliente') }}",
 				type: "post",
 				dataType: "json",
 				data: {id: id},

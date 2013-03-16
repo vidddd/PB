@@ -14,3 +14,6 @@ PBProduccionBundle_maquina:
     resource: "@PBProduccionBundle/Resources/config/routing/maquina.yml"
     prefix:   /maquina
 
+PBProduccionBundle_extrusion:
+    resource: "@PBProduccionBundle/Resources/config/routing/extrusion.yml"
+    prefix:   /extrusion

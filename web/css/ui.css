@@ -10,6 +10,7 @@ body {
 }
 
 	/* Rounded corners ( CSS3 ony ) */
+/*
 .ui-corner-tl {
 	-moz-border-radius-topleft:3px;
 	-webkit-border-top-left-radius:3px;
@@ -61,7 +62,7 @@ body {
 .ui-corner-all, .pagination li a, .pagination span, .pagination li, #tooltip, ul#dashboard-buttons li a, .fixed #sidebar {
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
-}
+}*/
 
 	/* States and Images */
 .ui-icon { 
@@ -619,7 +620,7 @@ div.totals textarea:focus{
 /**
 * Estados 
 **/
-#pedido-compra .estadoc, #pedido .estadoc {
+#pedido-compra .estadoc, #pedido .estadoc, #orden .estadoc{
 	border-radius: 3px 3px 3px 3px;
     color: #333333;
    /* font-family: Monaco,Menlo,Consolas,"Courier New",monospace;*/
@@ -643,12 +644,13 @@ div.totals textarea:focus{
 	background-color:#f2634b;
 	border: 1px solid #f2634b;
 }
+/* ESTADOS PEDIDOS CLIENTE */
 #pedido .estado1{ /* Nuevo */
 		border: 1px solid #a6a6a6;
 	background-color:#a6a6a6;
 }
 #pedido .estado2{ /* En Fabrica */
-	border: 1px solid #6e90c9;
+	border: 1px solid #;
 	background-color:#6e90c9;
 }
 #pedido .estado3{ /* Finalizado */
@@ -660,6 +662,23 @@ div.totals textarea:focus{
 	background-color:#e28f8f;
 }
 #pedido .estado8{ /* Histórico */
+	border: 1px solid #616160;
+	background-color:#616160;
+}
+/* ESTADOS ORDEN FABRICACION */
+#orden .estado1{ /* Nuevo */
+	border: 1px solid #a6a6a6;
+	background-color:#a6a6a6;
+}
+#orden .estado2, #orden .estado3, #orden .estado4, #orden .estado5 { /* En Extrusion, En Impresion, En Corte, En Rebobinado */
+	border: 1px solid #6e90c9;
+	background-color:#6e90c9;
+}
+#orden .estado6{ /* Finalizado */
+	border: 1px solid #5aa064;
+	background-color:#5aa064;
+}
+#orden .estado8{ /* Histórico */
 	border: 1px solid #616160;
 	background-color:#616160;
 }

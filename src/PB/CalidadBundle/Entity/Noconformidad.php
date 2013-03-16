@@ -3,6 +3,8 @@
 namespace PB\CalidadBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
  * PB\CalidadBundle\Entity\Noconformidad
@@ -275,5 +277,124 @@ class Noconformidad
     public function getExplicacion()
     {
         return $this->explicacion;
+    }
+    /**
+     * @var PB\VentasBundle\Entity\Cliente
+     */
+    private $cliente;
+
+    /**
+     * @var PB\VentasBundle\Entity\Cliente
+     */
+    private $pedidiocliente;
+
+
+    /**
+     * Set cliente
+     *
+     * @param PB\VentasBundle\Entity\Cliente $cliente
+     * @return Noconformidad
+     */
+    public function setCliente(\PB\VentasBundle\Entity\Cliente $cliente = null)
+    {
+        $this->cliente = $cliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get cliente
+     *
+     * @return PB\VentasBundle\Entity\Cliente 
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+    /**
+     * Set pedidiocliente
+     *
+     * @param PB\VentasBundle\Entity\Cliente $pedidiocliente
+     * @return Noconformidad
+     */
+    public function setPedidiocliente(\PB\VentasBundle\Entity\Cliente $pedidiocliente = null)
+    {
+        $this->pedidiocliente = $pedidiocliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get pedidiocliente
+     *
+     * @return PB\VentasBundle\Entity\Cliente 
+     */
+    public function getPedidiocliente()
+    {
+        return $this->pedidiocliente;
+    }
+    /**
+     * @var PB\VentasBundle\Entity\PedidoCliente
+     */
+    private $pedidocliente;
+
+
+    /**
+     * Set pedidocliente
+     *
+     * @param PB\VentasBundle\Entity\PedidoCliente $pedidocliente
+     * @return Noconformidad
+     */
+    public function setPedidocliente(\PB\VentasBundle\Entity\PedidoCliente $pedidocliente = null)
+    {
+        $this->pedidocliente = $pedidocliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get pedidocliente
+     *
+     * @return PB\VentasBundle\Entity\PedidoCliente 
+     */
+    public function getPedidocliente()
+    {
+        return $this->pedidocliente;
+    }
+    /**
+     * @var integer $estado
+     */
+    private $estado;
+
+
+    /**
+     * Set estado
+     *
+     * @param integer $estado
+     * @return Noconformidad
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return integer 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+    public function getEstadoText(){
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	if($this->estado != null) return $value['estados_incidencias'][$this->estado];
     }
 }

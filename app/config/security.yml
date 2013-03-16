@@ -30,7 +30,7 @@ security:
                      clara: { password: 17dic84, roles: 'ROLE_CONTABILIDADB' }
                      paquita: { password: 15896, roles: 'ROLE_CONTABILIDAD' }
                      paquitab: { password: 15896, roles: 'ROLE_CONTABILIDADB' }
-                     marijose: { password: 28081, roles: 'ROLE_GESTION' }
+                     marijose: { password: 28081, roles: 'ROLE_CONTABILIDADB' }
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/

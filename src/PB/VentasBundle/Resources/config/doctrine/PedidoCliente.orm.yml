@@ -7,6 +7,12 @@ PB\VentasBundle\Entity\PedidoCliente:
       id: true
       generator:
         strategy: AUTO
+    codalbaran:
+      type: integer
+      nullable: true
+    codfactura:
+      type: integer
+      nullable: true
     fecha:
       type: date
     subcliente:
@@ -108,4 +114,8 @@ PB\VentasBundle\Entity\PedidoCliente:
       joinColumn:
         name: orden_id
         referencedColumnName: id
+  oneToMany:
+    noconformidad:
+        targetEntity: PB\CalidadBundle\Entity\Noconformidad
+        mappedBy: pedidocliente
   lifecycleCallbacks: {  }

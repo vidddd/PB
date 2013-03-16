@@ -38,7 +38,7 @@ class OrdenController extends Controller
         list($entities, $pagerHtml) = $this->paginator($queryBuilder, $cuantos);
         
         $cuantosarr = array('10' => '10','25' => '25','50' => '50','100' => '100');
-        if($cuantos) $session->set('PedidoCuantos', $cuantos);
+        if($cuantos) $session->set('OrdenCuantos', $cuantos);
         ($cuantos)? $entradas = $cuantos : $entradas = 10;
     
         return $this->render('PBProduccionBundle:Orden:index.html.twig', array(

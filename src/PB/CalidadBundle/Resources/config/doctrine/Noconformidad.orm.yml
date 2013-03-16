@@ -31,4 +31,19 @@ PB\CalidadBundle\Entity\Noconformidad:
         explicacion:
             type: text
             nullable: true
+        estado:
+            type: smallint
+    manyToOne:
+        cliente:
+            targetEntity: PB\VentasBundle\Entity\Cliente
+            inversedBy: noconformidad
+            joinColumn:
+                name: cliente_id
+                referencedColumnName: id
+        pedidocliente:
+            targetEntity: PB\VentasBundle\Entity\PedidoCliente
+            inversedBy: noconformidad
+            joinColumn:
+                name: pedidocliente_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }

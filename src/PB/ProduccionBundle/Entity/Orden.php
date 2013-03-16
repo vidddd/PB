@@ -654,7 +654,6 @@ class Orden
     public function setTratado($tratado)
     {
         $this->tratado = $tratado;
-    
         return $this;
     }
 
@@ -677,7 +676,6 @@ class Orden
     public function setTipotubo($tipotubo)
     {
         $this->tipotubo = $tipotubo;
-    
         return $this;
     }
 
@@ -700,7 +698,6 @@ class Orden
     public function setNotasextrusion($notasextrusion)
     {
         $this->notasextrusion = $notasextrusion;
-    
         return $this;
     }
 
@@ -723,7 +720,6 @@ class Orden
     public function setFechaExtrusion($fechaExtrusion)
     {
         $this->fecha_extrusion = $fechaExtrusion;
-    
         return $this;
     }
 

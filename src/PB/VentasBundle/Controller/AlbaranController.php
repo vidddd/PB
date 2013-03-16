@@ -17,6 +17,8 @@ use PB\VentasBundle\Form\FacturaType;
 use PB\VentasBundle\Form\FacturaBType;
 use PB\VentasBundle\Entity\FacturaB;
 use PB\VentasBundle\Entity\FacturaBLinea;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 /**
  * Albaran controller.
@@ -221,7 +223,7 @@ class AlbaranController extends Controller
             	// Cambiamos a facturado los pedidos
             	$codpedido = $linea->getCodpedido();
             	if($codpedido) {
-            		$this->setEstadoPedido($codpedido,8);
+            		$this->setEstadoPedidoCliente($codpedido,4);
             	}
             }
             $em->persist($entity);
@@ -322,7 +324,7 @@ class AlbaranController extends Controller
             	$codpedido = $linea->getCodpedido();
             	if($codpedido) {
             		//Pone los estados de pedido a facturado
-            		$this->setEstadoPedido($codpedido,8);
+            		$this->setEstadoPedidoCliente($codpedido,4);
             	}
             }
             $em->flush();
@@ -416,8 +418,7 @@ class AlbaranController extends Controller
        // $factura->setFormapagoFactura($cliente->getFormapagocliente());
         
         foreach ($albaran->getAlbaranLineas() as $linea)
-            {
-            	
+            {	
             	switch ($albaran->getTipo()){
             		case "1":
             			$flinea = new FacturaLinea();
@@ -452,19 +453,14 @@ class AlbaranController extends Controller
             		break;
             	default: $form   = $this->createForm(new FacturaType(), $factura);
             }		
-        
-    
         if ($request->getMethod() == 'POST') {
         	$form->bind($request);
         	if ($form->isValid()) {
-        		  
         	      $em->persist($factura);
         	      $em->flush();
-        	      
         	      $albaran->setCodfactura($factura->getId());
         	      $em->persist($albaran);
         	      $em->flush();
-        	      
         	      $this->get('session')->getFlashBag()->add('success', 'Nueva Factura Creada');
 	              //return $this->redirect($this->generateUrl('factura_show', array('id' => $factura->getId())));
         	      return $this->redirect($this->generateUrl('albaran'));
@@ -494,6 +490,25 @@ class AlbaranController extends Controller
     	$em->flush();	 
     }
     
+    public function setEstadoPedidoCliente($id, $estado){
+    	if (!$estado) {
+    		throw $this->createNotFoundException('Falta el estado de pedido AlbaranController->setEstadoPedido().');
+    	}
+    	if (!$id) {
+    		throw $this->createNotFoundException('Falta código de pedido AlbaranController->setEstadoPedido().');
+    	}
+    	$em = $this->get('doctrine')->getEntityManager();
+    	$entity = $em->getRepository('PBVentasBundle:PedidoCliente')->find($id);
+    	$entity->setEstado($estado);
+    	$em->persist($entity);
+    	$em->flush();
+    	$yaml = new Parser();
+    	try {  $value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml')); } catch (ParseException $e) {	printf("Unable to parse the YAML string: %s", $e->getMessage());}
+    	    	
+    	$this->get('session')->getFlashBag()->add('notice', 'Pedido '.$id.': cambio a estado "'.$value['estados_pedidos'][$estado].'"');
+    }
+    
+ 
     public function mailAction($id){
     
     	$em = $this->getDoctrine()->getManager();$request = $this->getRequest();

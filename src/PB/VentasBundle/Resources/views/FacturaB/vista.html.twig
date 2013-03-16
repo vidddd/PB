@@ -34,9 +34,10 @@
 			<td class="label3">Cod. Cliente</td>
 			<td>{{ entity.cliente.id }}</td>
 		</tr>
+
 		<tr>
-			<td class="label3">Nif</td>
-			<td>{{ entity.cliente.nif }}</td>
+			<td class="label3">Nº Albaran</td>
+			<td>{% if albaranid %}{{ albaranid }}{% endif %}</td>
 		</tr> 
 		</table>
 	</div>

@@ -32,17 +32,17 @@ class FacturaBFilterType extends AbstractType
             ->add('id', 'filter_number')
             ->add('cliente', 'filter_number', array('error_bubbling' => true))
 		    ->add('fecha', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
-		    															   'label' => 'aaaaa',
+		    										   'label' => 'aaaaa',
 		    											//'format' => 'dd.MM.yyyy'
 		    											),
 		    										   'right_date' => array('widget' => 'single_text')
-		    									 ))
+		    									))
             ->add('fecha_cobro', 'filter_date_range', array('left_date' => array('widget' => 'single_text',
-		    															   'label' => 'aaaaa',
+		    										   'label' => 'aaaaa',
 		    											//'format' => 'dd.MM.yyyy'
 		    											),
 		    										   'right_date' => array('widget' => 'single_text')
-		    									 ))
+		    									))
 		    ->add('concepto', 'filter_text', array('condition_pattern' => TextFilterType::PATTERN_CONTAINS,
 		     				 		'apply_filter' => function (QueryBuilder $queryBuilder, Expr $expr, $field, array $values) {
 		    							 		if (!empty($values['value'])) {

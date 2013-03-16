@@ -1,0 +1,37 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Extrusion" %}
+
+{% block content %}
+<div id="orden">
+	<div class="title title-spacing produccion"><h2>Extrusion</h2></div>        
+    
+    <div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" href=""><span class="ui-icon ui-icon-plusthick"></span>Añadir Trabajo</a></div>
+	<div class="clearfix"></div>
+ <div class="tablesup"><h6>I1 - Ibañez</h6></div>
+ <div class="hastable">
+    	<table class="records_list">
+    		<thead> <tr>
+		            <th width="25">Código Orden</th>
+		            <th>Ancho</th>
+		            <th>Galga</th>
+		            <th>Metros</th>
+		            <th>Plegado</th>
+		            <th>Material</th>
+		            <th>Color</th>
+		            <th>Peso Teórico</th>
+		            <th>Cliente</th>
+		            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    {# for entity in entities #}
+
+		    {# endfor #}
+		    </tbody>
+		</table>
+    </div>
+    
+    
+ </div>
+   {% endblock %}

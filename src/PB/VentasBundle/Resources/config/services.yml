@@ -34,3 +34,8 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type, alias: cliente_text }
+    ventas.type.pedidocliente_id:
+        class: PB\VentasBundle\Form\Type\PedidoClienteIdType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: pedidocliente_text }

@@ -147,7 +147,9 @@ class PedidoClienteController extends Controller
     }
     public function newAction()
     {
+    	
         $entity = new PedidoCliente();
+        
         $form   = $this->createForm(new PedidoClienteType(), $entity);
 
         return $this->render('PBVentasBundle:PedidoCliente:new.html.twig', array(
@@ -428,8 +430,8 @@ class PedidoClienteController extends Controller
     {
     	$em = $this->getDoctrine()->getManager();
     	$request = $this->get('request');
-    	$query = $em->createQuery('SELECT p FROM PBVentasBundle:PedidoCliente p WHERE p.cliente = :cliente AND p.estado != :esta ORDER BY p.fecha DESC')
-    	->setParameter('cliente', $id)->setParameter('esta', '8');
+    	$query = $em->createQuery('SELECT p FROM PBVentasBundle:PedidoCliente p WHERE p.cliente = :cliente AND p.estado != :esta AND p.estado != :esta2 ORDER BY p.fecha DESC')
+    	->setParameter('cliente', $id)->setParameter('esta', '8')->setParameter('esta2', '4');
     	try {
     		$entity = $query->getResult();
     	} catch (\Doctrine\Orm\NoResultException $e) {
@@ -443,5 +445,24 @@ class PedidoClienteController extends Controller
     			'entity' => $entity,
     			'error' => '',
     	));
+    }
+    
+    public function getPedidoAction(){
+    	$request = $this->get('request');
+    	$id=$request->request->get('id');
+    	$em = $this->get('doctrine')->getEntityManager();
+    	$pedido = $em->getRepository('PBVentasBundle:PedidoCliente')->findOneById($id);
+    
+    	if($pedido && is_numeric($id) && $id != '') {
+    		$referencia = $pedido->getId();
+    		$descripcion = $pedido->getMaterialText().' '.$pedido->getColor().' '.$pedido->getSubcliente();
+    		$ancho = $pedido->getAncho();
+    		$largo = $pedido->getLargo();
+    		$galga = $pedido->getGalga();
+    		$precio = $pedido->getPrecio();
+    		return new Response(json_encode(array('referencia' => $referencia, 'descripcion' => $descripcion, 'ancho' => $ancho, 'largo' => $largo, 'galga' => $galga, 'precio' =>$precio)));
+    	} else {
+    		return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de pedido erróneo</span>')));
+    	}
     }
 }
