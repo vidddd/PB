@@ -32,7 +32,7 @@ h4 {margin:0; padding:0; float:left; font-size: 11px;}
 p.info {margin:0; padding:0; float:left; font-size: 9px;}
 
 .width1 { width: 100px;}
-.tabla4 { text-align: center; font-size:11px; border-collapse: collapse;}
+.tabla4 { border-collapse: collapse;}
 .tabla4 td {  border: 1px solid #111; }
 
 .tabla5 { border-collapse: collapse; margin-top: -1px;  }
@@ -97,10 +97,10 @@ p.info {margin:0; padding:0; float:left; font-size: 9px;}
 		<h3>EXTRUSION</h3>
 			<table class="tabla2 bordenegro" cellspacing="0">
 				<tr><td>
-				<p><i>Color</i></p><p><i>Ancho</i></p><p><i>Galga</i></p><p><i>Plegado</i></p><p><i>Bobinas</i></p><p><i>Peso Teórico</i></p><p><i>Tratado</i></p><p><i>Tipo Tubo</i></p><p><i>Observaciones</i></p>
+				<p><i>Color</i></p><p><i>Ancho</i></p><p><i>Galga</i></p><p><i>Plegado</i></p><p><i>Metros</i></p><p><i>Bobinas</i></p><p><i>Peso Teórico</i></p><p><i>Tratado</i></p><p><i>Tipo Tubo</i></p><p><i>Observaciones</i></p>
 				</td>
 				<td class="width1">
-					<p>{{ entity.color }}&nbsp;</p><p>{{ entity.ancho }}&nbsp;</p><p>{{ entity.galga }}&nbsp;</p><p>{{ entity.plegado }}&nbsp;</p><p>{{ entity.bobinas }}&nbsp;</p><p>{{ entity.pesoteorico }}&nbsp;</p><p>{{ entity.tratadoText }}&nbsp;</p><p>{{ entity.tipotuboText }}&nbsp;</p><p>{{ entity.notasextrusion }}&nbsp;</p><p></p>
+					<p>{{ entity.color }}&nbsp;</p><p>{{ entity.ancho }}&nbsp;</p><p>{{ entity.galga }}&nbsp;</p><p>{{ entity.plegado }}&nbsp;</p><p>{{ entity.metrose }}&nbsp;</p><p>{{ entity.bobinas }}&nbsp;</p><p>{{ entity.pesoteorico }}&nbsp;</p><p>{{ entity.tratadoText }}&nbsp;</p><p>{{ entity.tipotuboText }}&nbsp;</p><p>{{ entity.notasextrusion }}&nbsp;</p><p></p>
 				</td>
 				</tr>
 			</table>
@@ -114,9 +114,9 @@ p.info {margin:0; padding:0; float:left; font-size: 9px;}
 		 <table cellspacing="0" class="tabla3" style="">
 	        <tr>
 	            <th style="width: 14%;">FECHA</th>
+	            <th style="width: 14%;">TURNO</th>
 	            <th style="width: 14%;">Nº BOB</th>
 	            <th style="width: 14%;">ANCHO</th>
-	            <th style="width: 14%;">LARGO</th>
 	            <th style="width: 14%;">PESO</th>
 	            <th style="width: 15%;">RESULTADO</th>
 	            <th style="width: 14%;">FIRMA</th>
@@ -149,16 +149,17 @@ p.info {margin:0; padding:0; float:left; font-size: 9px;}
 		<h3>IMPRESIÓN</h3>
 			<table class="tabla2 bordenegro">
 				<tr><td>
-				<p><i>Kilos</i></p><p><i>Medida</i></p><p><i>Anverso</i></p><p><i>Reverso</i></p><p><i>Colores A</i></p><p><i>Colores R</i></p><p><i>Cliche</i></p><p><i>Carpeta</i></p><p><i>Soldadura</i></p><p><i>Observaciones</i></p>
+				<p><i>Kilos</i></p><p><i>Medida</i></p><p><i>Anverso</i></p><p><i>Reverso</i></p><p><i>Colores A</i></p><p><i>Colores R</i></p><p><i>Cliche</i></p><p><i>Carpeta</i></p><p><i>Observaciones</i></p>
 				</td>
 				<td class="width1">
-					<p>{{ entity.kilosimp }}&nbsp;</p><p>{{ entity.medidaimp }}&nbsp;</p><p>{{ entity.anverso }}&nbsp;</p><p>{{ entity.reverso }}&nbsp;</p><p>{{ entity.coloresa }}&nbsp;</p><p>{{ entity.coloresr }}&nbsp;</p><p>{{ entity.clicheText }}&nbsp;</p><p>{{ entity.carpeta }}&nbsp;</p><p>{{ entity.soldadura }}&nbsp;</p><p>{{ entity.notasimpresion }}&nbsp;</p>
+					<p>{{ entity.kilosimp }}&nbsp;</p><p>{{ entity.medidaimp }}&nbsp;</p><p>{{ entity.anverso }}&nbsp;</p><p>{{ entity.reverso }}&nbsp;</p><p>{{ entity.coloresa }}&nbsp;</p><p>{{ entity.coloresr }}&nbsp;</p><p>{{ entity.clicheText }}&nbsp;</p><p>{{ entity.carpeta }}&nbsp;</p><p>{{ entity.notasimpresion }}&nbsp;</p>
 				</td>
 				</tr>
 			</table>
 			<table class="tabla5 bordenegro">
 				<tr><td class="tabla5eti">Máquina</td><td>&nbsp;</td></tr>
 				<tr><td class="tabla5eti">Tiempo</td><td>&nbsp;</td></tr>
+				<tr><td class="tabla5eti">Total</td><td>&nbsp;</td></tr>
 			</table>
 		</td>
 		<td style="width:500px;"><h4>CONTROL DE CALIDAD </h4>

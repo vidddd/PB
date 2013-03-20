@@ -439,4 +439,42 @@ class Maquina
     {
         return $this->orden4;
     }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $extrusion;
+
+
+    /**
+     * Add extrusion
+     *
+     * @param PB\ProduccionBundle\Entity\Extrusion $extrusion
+     * @return Maquina
+     */
+    public function addExtrusion(\PB\ProduccionBundle\Entity\Extrusion $extrusion)
+    {
+        $this->extrusion[] = $extrusion;
+    
+        return $this;
+    }
+
+    /**
+     * Remove extrusion
+     *
+     * @param PB\ProduccionBundle\Entity\Extrusion $extrusion
+     */
+    public function removeExtrusion(\PB\ProduccionBundle\Entity\Extrusion $extrusion)
+    {
+        $this->extrusion->removeElement($extrusion);
+    }
+
+    /**
+     * Get extrusion
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getExtrusion()
+    {
+        return $this->extrusion;
+    }
 }

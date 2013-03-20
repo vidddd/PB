@@ -1962,4 +1962,70 @@ class Orden
     {
         return $this->maquinarebobinado;
     }
+    /**
+     * @var integer $metrose
+     */
+    private $metrose;
+
+
+    /**
+     * Set metrose
+     *
+     * @param integer $metrose
+     * @return Orden
+     */
+    public function setMetrose($metrose)
+    {
+        $this->metrose = $metrose;
+    
+        return $this;
+    }
+
+    /**
+     * Get metrose
+     *
+     * @return integer 
+     */
+    public function getMetrose()
+    {
+        return $this->metrose;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $extrusion_orden;
+
+
+    /**
+     * Add extrusion_orden
+     *
+     * @param PB\ProduccionBundle\Entity\Extrusion $extrusionOrden
+     * @return Orden
+     */
+    public function addExtrusionOrden(\PB\ProduccionBundle\Entity\Extrusion $extrusionOrden)
+    {
+        $this->extrusion_orden[] = $extrusionOrden;
+    
+        return $this;
+    }
+
+    /**
+     * Remove extrusion_orden
+     *
+     * @param PB\ProduccionBundle\Entity\Extrusion $extrusionOrden
+     */
+    public function removeExtrusionOrden(\PB\ProduccionBundle\Entity\Extrusion $extrusionOrden)
+    {
+        $this->extrusion_orden->removeElement($extrusionOrden);
+    }
+
+    /**
+     * Get extrusion_orden
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getExtrusionOrden()
+    {
+        return $this->extrusion_orden;
+    }
 }

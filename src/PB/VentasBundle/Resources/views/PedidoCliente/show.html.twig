@@ -16,6 +16,13 @@
     <li class="ui-state-default ui-corner-all imprimir" style="float:left;"><a class="btn" href="{{ path('pedidocliente_print', { 'id': entity.id , _format: "pdf" }) }}"><span class="ui-icon ui-icon-print"></span> Imprimir </a> </li>
     <li class="ui-state-default ui-corner-all editar" style="float:left;"><a class="btn" href="{{  path('pedidocliente_edit', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-wrench"></span> Editar </a> </li>
     <li class="ui-state-default ui-corner-all duplicar" style="float:left;"><a class="btn" href="{{  path('pedidocliente_duplicar', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-copy"></span> Duplicar </a> </li>
+    {% if entity.orden %}
+	    {% else %}
+	    {# Si es facturado o historico ya no se fabrica #}
+		{% if entity.estado == 1 %}
+			<li class="ui-state-default ui-corner-all duplicar" style="float:left;"><a class="btn" href="{{  path('pedidocliente_fabricar', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-transferthick-e-w"></span> Fabricar </a> </li>
+    	{% endif %}
+     {% endif %}
     <li class="ui-state-default ui-corner-all mail" style="float:left;"><a class="btn iframe-mail" href="{{ path('pedidocliente_mail', { 'id': entity.id }) }}"><span class="ui-icon ui-icon-mail-closed"></span> Enviar por e-mail </a> </li>
     
     </ul>

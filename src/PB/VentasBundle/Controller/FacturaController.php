@@ -330,7 +330,7 @@ class FacturaController extends Controller
             	$codpedido = $linea->getCodpedido();
             	if($codpedido) {
             		//Pone los estados de pedido a facturado
-            		$this->setEstadoPedido($codpedido,4);
+            		//$this->setEstadoPedido($codpedido,4);
             	}
             }
             $em->flush();

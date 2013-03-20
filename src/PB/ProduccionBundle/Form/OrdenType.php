@@ -42,6 +42,7 @@ class OrdenType extends AbstractType
             ->add('ancho')
             ->add('galga')
             ->add('plegado')
+            ->add('metrose')
             ->add('bobinas')
             ->add('pesoteorico')
             ->add('tratado', 'choice', array( 'choices' => $tratados,'error_bubbling' => true, 'empty_value' => '', 'required' => false))

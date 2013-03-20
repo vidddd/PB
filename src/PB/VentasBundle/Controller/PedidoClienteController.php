@@ -386,7 +386,7 @@ class PedidoClienteController extends Controller
         $orden->setAnverso($pedido->getImpresion1()); $orden->setReverso($pedido->getImpresion2());
         $orden->setColoresa($pedido->getColor1()); $orden->setColoresr($pedido->getColor2());
         $orden->setCliche($pedido->getCliche());
-        $orden->setAnchoc($pedido->getAncho()); $orden->setLargoc($pedido->getLargo()); $orden->setSolapa($pedido->getSolapa());
+        $orden->setCantidadc($pedido->getCantidad());$orden->setAnchoc($pedido->getAncho()); $orden->setLargoc($pedido->getLargo()); $orden->setSolapa($pedido->getSolapa());
         $orden->setTipobolsa($pedido->getTipobolsa()); $orden->setAsa($pedido->getAsa());
         $orden->setProducto($pedido->getProducto());
         $orden->setBobinasr($pedido->getBobinasnumero()); $orden->setMetrosr($pedido->getBobinasmetros()); $orden->setKgr($pedido->getBobinaskg());

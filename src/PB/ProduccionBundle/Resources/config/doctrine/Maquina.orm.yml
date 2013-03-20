@@ -43,4 +43,7 @@ PB\ProduccionBundle\Entity\Maquina:
     orden4:
       targetEntity: PB\ProduccionBundle\Entity\Orden
       mappedBy: maquinarebobinado
+    extrusion:
+      targetEntity: PB\ProduccionBundle\Entity\Extrusion
+      mappedBy: maquina
   lifecycleCallbacks: {  }

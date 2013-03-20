@@ -572,13 +572,13 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 }
 	
 #page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a {
-	display:block;
-	width:100px;
-	padding:80px 0 0;
-	height:20px;
-	background-repeat:no-repeat;
-	background-position:50% 5px;
-	text-align:center;
+    background-position: 50% 10px;
+    background-repeat: no-repeat;
+    display: block;
+    height: 25px;
+    padding: 70px 0 0;
+    text-align: center;
+    width: 100px;
 }
 
 #page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.pedidocompra {
@@ -609,35 +609,13 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 	background-image:url('../images/icons/presupuesto.png');
 }
 
-#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.Chart_4 {
-	background-image:url('../images/icons/Chart_4.png');
+#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.maquinaicon {
+	background-image:url('../images/icons/maquinaria.png');
 }
 
-#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.Mail_open {
-	background-image:url('../images/icons/Mail_open.png');
+#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.ordenicon {
+	background-image:url('../images/icons/orden.png');
 }
-
-#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.Glass {
-	background-image:url('../images/icons/Glass.png');
-}
-
-#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.Globe {
-	background-image:url('../images/icons/Globe.png');
-}
-
-#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.Mail_compose {
-	background-image:url('../images/icons/Mail_compose.png');
-}
-
-#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.Star {
-	background-image:url('../images/icons/Star.png');
-}
-
-#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a.Monitor {
-	background-image:url('../images/icons/Monitor.png');
-}
-
-	/* Different title styles */
 
 #page-wrapper #main-wrapper .title, #lightbox-wrapper .title {
 	padding:0 15px 10px;
@@ -1255,4 +1233,8 @@ border-radius: 3px;
 	color: #6c93b1;
 	font-weight: bold;
 	text-transform: uppercase;
+}
+
+.maquinaextrusion {
+	margin-bottom: 40px;
 }

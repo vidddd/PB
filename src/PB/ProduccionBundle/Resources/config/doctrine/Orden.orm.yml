@@ -46,6 +46,9 @@ PB\ProduccionBundle\Entity\Orden:
     plegado:
       type: float
       nullable: true
+    metrose:
+      type: integer
+      nullable: true
     bobinas:
       type: float
       nullable: true
@@ -237,6 +240,10 @@ PB\ProduccionBundle\Entity\Orden:
   oneToMany:
     pedidocliente:
       targetEntity: PB\VentasBundle\Entity\PedidoCliente
+      cascade: {  }
+      mappedBy: orden
+    extrusion_orden:
+      targetEntity: PB\ProduccionBundle\Entity\Extrusion
       cascade: {  }
       mappedBy: orden
 #  oneToOne:

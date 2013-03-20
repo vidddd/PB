@@ -10,11 +10,20 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
 use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\TextFilterType;
 use Lexik\Bundle\FormFilterBundle\Filter\Extension\Type\NumberFilterType;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 class PedidoClienteFilterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+    	$yaml = new Parser();
+    	try {$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/ventas.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	
+    	$estados = $value['estados_pedidos'];
         $builder
             ->add('id', 'filter_number')
             ->add('cliente', 'filter_number')
@@ -28,13 +37,16 @@ class PedidoClienteFilterType extends AbstractType
 		    					'class' => 'PB\VentasBundle\Entity\Comercial',
 		    					'empty_value' => ''))
             ->add('subcliente','filter_text', array( 'condition_pattern' => TextFilterType::PATTERN_CONTAINS))
-            ->add('estado', 'filter_number_range')
+			->add('estado','filter_choice', array('error_bubbling' => true, 'required' => false,
+    						'choices' => $estados,
+    							'empty_value' => ''))
+           
             ->add('cantidad', 'filter_text')
-            ->add('ancho', 'filter_number_range')
-            ->add('largo', 'filter_number_range')
-            ->add('galga', 'filter_number_range')
-            ->add('plegado', 'filter_number_range')
-            ->add('precio', 'filter_number_range')
+            ->add('ancho', 'filter_number')
+            ->add('largo', 'filter_number')
+            ->add('galga', 'filter_number')
+            ->add('plegado', 'filter_number')
+            ->add('precio', 'filter_number')
             ->add('preciocliche', 'filter_number_range')
             ->add('material', 'filter_number_range')
             ->add('color', 'filter_text')

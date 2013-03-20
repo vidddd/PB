@@ -1,0 +1,46 @@
+PB\ProduccionBundle\Entity\Extrusion:
+  type: entity
+  table: null
+  repositoryClass: PB\ProduccionBundle\Repository\ExtrusionRepository
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    fecha:
+      type: date
+      nullable: true
+    ancho:
+      type: integer
+    galga:
+      type: integer
+    plegado:
+      type: integer
+      nullable: true
+    metros:
+      type: integer
+    bobinas:
+      type: integer
+      nullable: true
+    tratado:
+      type: smallint
+      nullable: true
+    pesoneto:
+      type: float
+    pesoteorico:
+      type: float
+  manyToOne:
+    maquina:
+      targetEntity: PB\ProduccionBundle\Entity\Maquina
+      inversedBy: extrusion
+      joinColumn:
+        name: maquina_id
+        referencedColumnName: id
+    orden:
+      targetEntity: PB\ProduccionBundle\Entity\Orden
+      inversedBy: extrusion_orden
+      joinColumn:
+        name: orden_id
+        referencedColumnName: id
+  lifecycleCallbacks: {  }
