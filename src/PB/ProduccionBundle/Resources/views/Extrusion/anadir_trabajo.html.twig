@@ -6,9 +6,10 @@
 <script>
 $(document).ready(function() { 
     $("a").click(function () {
-    	var pedidoid = this.rel;
-    	$('#codpedido', window.parent.document).val(pedidoid);
-	    window.parent.getPedido();
+    	var ordenid = this.rel;
+    	alert(ordenid);
+    	//$('#codpedido', window.parent.document).val(pedidoid);
+	    //window.parent.getPedido();
         window.parent.$.prettyPhoto.close();
         return;
     })
@@ -16,31 +17,31 @@ $(document).ready(function() {
 </script>
 <div id="orden">
 <div id="lightbox-wrapper" style="width:750px;">
-	<div class="buscador-pedidos-cliente">
+	<div class="anadir-trabajo-extrusion">
 	<div class="title title-spacing produccion"><h2>Ordenes de Fabricación</h2></div> 
 	    {% if error %}<h2 class="errorprecios" style="color:red;">{{ error }}</h2>{% endif %}
 	<div class="hastable">
 	    <table class="records_list">
 	    <thead>
 	        <tr>
+	        	<th width="25">Añadir</th>
 	            <th width="25">Código Orden</th>
 	            <th>Material</th>
 	            <th>Ancho</th>
 	            <th>Galga</th>
 	            <th>Cliente</th>
-	            <th>Fecha</th>
 	            <th>Estado</th>
 	        </tr>
 	    </thead>
 	    <tbody>
 	    {% for linea in entity %}
 	        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
-	            <td><a class="pedidoid" rel="{{ linea.id }}" href="#">{{ linea.id }}</a></td>
+	        	<td><a title="Añadir Trabajo" href="{{ path('extrusion', {'id' : '3'}) }}" rel="{{ linea.id }}"><img src="{{ asset('images/math-add-icon.png') }}" alt="Añadir Trabajo" /></a></td>
+	            <td>{{ linea.id }}</td>
 	            <td>{{ linea.tipomaterialText }}</td>
 	            <td>{{ linea.ancho }}</td>
 	            <td>{{ linea.galga }}</td>
-	            <td>{{ linea.cliente }}   </td>
-	            <td>{{ linea.fecha|date('d.m.Y') }}</td>
+	            <td>{{ linea.cliente }}</td>
 	        	<td><span class="estadoc estado{{ linea.estado }}">{{ linea.estadoText }}</span></td>
 	         </tr>
 	    {% endfor %}

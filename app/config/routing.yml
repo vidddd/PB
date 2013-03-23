@@ -1,6 +1,6 @@
 pb_calidad:
     resource: "@PBCalidadBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /calidad
 
 pb_almacen:
     resource: "@PBAlmacenBundle/Resources/config/routing.yml"

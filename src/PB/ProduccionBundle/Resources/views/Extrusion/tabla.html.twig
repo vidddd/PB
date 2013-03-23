@@ -1,22 +1,28 @@
 <div class="hastable">
     	<table class="records_list">
     		<thead> <tr>
-		            <th width="25">Código Orden</th>
+		            <th width="25">Codigo Orden</th>
+		            <th>Material</th>
+		            <th>Color</th>
 		            <th>Ancho</th>
 		            <th>Galga</th>
 		            <th>Metros</th>
 		            <th>Plegado</th>
-		            <th>Material</th>
-		            <th>Color</th>
 		            <th>Peso Teórico</th>
 		            <th>Cliente</th>
 		            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
 		        </tr>
 		    </thead>
 		    <tbody>
-		    {# for entity in entities #}
-
-		    {# endfor #}
+		    {% for linea in entities %}
+				<tr>
+					<td>{{ linea.orden.id }}</td>
+					<td>{{ linea.orden.tipomaterialText }}</td>
+					<td>{{ linea.ancho }}</td>
+					<td>{{ linea.galga }}</td>
+					<td>{{ linea.metros }}</td>
+				</tr>
+		    {%  endfor %}
 		    </tbody>
 		</table>
     </div>

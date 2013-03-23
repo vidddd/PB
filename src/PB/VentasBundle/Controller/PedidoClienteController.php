@@ -389,6 +389,7 @@ class PedidoClienteController extends Controller
         $orden->setCantidadc($pedido->getCantidad());$orden->setAnchoc($pedido->getAncho()); $orden->setLargoc($pedido->getLargo()); $orden->setSolapa($pedido->getSolapa());
         $orden->setTipobolsa($pedido->getTipobolsa()); $orden->setAsa($pedido->getAsa());
         $orden->setProducto($pedido->getProducto());
+        $orden->setMetrose($pedido->getBobinasmetros()); $orden->setBobinas($pedido->getBobinasnumero());
         $orden->setBobinasr($pedido->getBobinasnumero()); $orden->setMetrosr($pedido->getBobinasmetros()); $orden->setKgr($pedido->getBobinaskg());
         $form   = $this->createForm(new OrdenType(), $orden);
               

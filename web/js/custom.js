@@ -155,20 +155,6 @@ $(document).ready(function() {
 		$('#dialog').dialog('open');
 		return false;
 	});
-
-	// Dialog auto open			
-	$('#welcome').dialog({
-		autoOpen: true,
-		width: 470,
-		height: 180,
-		bgiframe: true,
-		modal: true,
-		buttons: {
-			"Close this dialog box": function() { 
-				$(this).dialog("close"); 
-			}
-		}
-	});
 */
 
 	// Dialog auto open			
@@ -187,12 +173,6 @@ $(document).ready(function() {
 		}
 	});
 
-	// Datepicker
-	/*
-	$('#datepicker').datepicker({
-		inline: true
-	});
-	*/
 	//Hover states on the static widgets
 	$('#dialog_link, ul#icons li').hover(
 		function() { $(this).addClass('ui-state-hover'); }, 
@@ -212,7 +192,6 @@ $(document).ready(function() {
 		$(this).parents(".portlet:first").find(".portlet-content").slideToggle();
 	});
 
-	//$(".column").disableSelection();
     // http://fancybox.net/api
 	$("a.iframe-mail").fancybox({
 		'hideOnContentClick': false,
@@ -224,6 +203,7 @@ $(document).ready(function() {
 			//window.location.reload();
 		                 }
 	});
+
 	$("#collapse1").click(function(event) {
 		event.preventDefault();
 		$("#collapseOne").slideToggle();
@@ -290,23 +270,7 @@ $(document).ready(function() {
     		yearSuffix: ''};
     	$.datepicker.setDefaults($.datepicker.regional['es']);
     });
-    
- 	/* Check all table rows */
-			/*
-		var checkflag = "false";
-		function check(field) {
-		if (checkflag == "false") {
-		for (i = 0; i < field.length; i++) {
-		field[i].checked = true;}
-		checkflag = "true";
-		return "check_all"; }
-		else {
-		for (i = 0; i < field.length; i++) {
-		field[i].checked = false; }
-		checkflag = "false";
-		return "check_none"; }
-		}
-		*/
+
     function stringToDate(dateString)
     {
         try

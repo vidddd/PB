@@ -136,11 +136,15 @@
 			   <tr> <td class="label">Fecha Última Evaluación</td><td class="campo">{{ entity.fechaevaluacion2|date('d.m.Y') }}</td>
 		       </tr>
 		       <tr><td class="label">Incidencias</td><td class="campo">
+		       <div id="pedido-compra">
 		       <table id="pc-incidencias">
-		       <tr><th>Pedido de Compra</th><th>Observaciones</th></tr>
+		       <tr><th>Pedido de Compra</th><th style="width:130px;">Estado</th><th>Observaciones</th></tr>
 		               {% for inci in incidencias %}
-                <tr><td><a href="{{ path('compras_pedidocompra_show', { 'id': inci.id }) }}">{{ inci.id }}</a></td><td> {{ inci.observaciones }} </td></tr>
+                <tr><td><a href="{{ path('compras_pedidocompra_show', { 'id': inci.id }) }}" style="font-size: 13px;">{{ inci.id }}</a></td>
+                            <td><span class="estadoc estado{{ inci.estado }}">{{ inci.estadoText }}</span></td>
+                <td> {{ inci.observaciones }} </td></tr>
         {% endfor %}</table>
+        		</div>
 		       </td>
 		       </tr>
 			</tbody>

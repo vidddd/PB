@@ -1220,21 +1220,28 @@ border-radius: 3px;
 }
 .fases-fabricacion label, .fases-fabricacion input { display: inline; margin:5px;}
 .maquina-detalle td { padding: 15px 0;}
-#pc-incidencias { border: 1px solid #ccc;}
-#pc-incidencias table th {font-size: 11px; color: #11}
+
+#pc-incidencias { border: 1px solid #ccc; border-collapse: collapse;}
+#pc-incidencias th {font-size: 11px; color: #12; border: 1px solid #ccc;}
+#pc-incidencias td { border: 1px solid #ccc; font-size: 11px;}
 
 .tablesup {
     border-radius: 3px 3px 0 0;
     padding: 10px 6px 10px 30px;
-    background: none repeat scroll 0 0 #f3f0c8 !important;
+    background: none repeat scroll 0 0 #ededed !important;
 }
 .tablesup h6 {
 	font-size: 15px;
-	color: #6c93b1;
+	color: #e04c4c;
 	font-weight: bold;
 	text-transform: uppercase;
 }
 
 .maquinaextrusion {
 	margin-bottom: 40px;
+}
+
+.anadir-trabajo-extrusion {
+	/*overflow: scroll;*/
+	height: 400px;
 }

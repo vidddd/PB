@@ -513,7 +513,7 @@ class AlbaranController extends Controller
     
     	$em = $this->getDoctrine()->getManager();$request = $this->getRequest();
     	$entity = $em->getRepository('PBVentasBundle:Albaran')->find($id);
-    	if (!$entity) {	throw $this->createNotFoundException('Unable to find Presupuesto entity.'); }
+    	if (!$entity) {	throw $this->createNotFoundException('Unable to find Albaran entity.'); }
     
     	$defaultData = array( 'email' => $entity->getCliente()->getEmail() , 'subject' => 'Albaran PB', 'message' => '');
     	$form = $this->createFormBuilder($defaultData)

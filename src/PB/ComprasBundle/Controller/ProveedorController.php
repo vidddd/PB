@@ -203,7 +203,7 @@ class ProveedorController extends Controller
         $em = $this->getDoctrine()->getManager();
         // Sacamos los pedido de compra con errores
         $qb = $em->getRepository('PBComprasBundle:PedidoCompra')->createQueryBuilder('p')->orderBy('p.id', 'DESC');
-        $qb->andwhere('p.estado = :estadoi');  	$qb->setParameter('estadoi', 3);
+        $qb->andwhere('p.estado = :estadoi');  	$qb->setParameter('estadoi', 3);$qb->orwhere('p.estado = :estador');  	$qb->setParameter('estador', 4);
         $qb->andwhere('p.proveedor = :proveedori');   $qb->setParameter('proveedori', $id);
         $incidencias = $qb->getQuery()->getResult();
     	
@@ -238,13 +238,14 @@ class ProveedorController extends Controller
      */
     public function createAction()
     {
-        $entity  = new Proveedor();
+        $entity  = new Proveedor();            $em = $this->getDoctrine()->getManager();
         $request = $this->getRequest();
         $form    = $this->createForm(new ProveedorType(), $entity);
+        
+        echo $request->get('nif'); 
         $form->bind($request);
-
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+		
             $em->persist($entity);
             $em->flush();
             $this->get('session')->setFlash('success', 'El proveedor se ha guardado!');

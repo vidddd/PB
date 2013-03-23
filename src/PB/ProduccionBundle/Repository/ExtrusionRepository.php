@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class ExtrusionRepository extends EntityRepository
 {
+	public function getExtrusion($maquina)
+	{
+		$query = $this->getEntityManager()
+		->createQuery('SELECT e FROM PBProduccionBundle:Extrusion e	WHERE e.maquina = :id')->setParameter('id', $maquina);
+		$result = $query->getResult();
+		return $result;
+		/*
+		if($result) {
+			return $result->getId();
+		} else {
+			return '';
+		}*/
+	}
 }

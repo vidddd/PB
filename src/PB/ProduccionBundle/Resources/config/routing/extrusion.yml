@@ -1,5 +1,5 @@
 extrusion:
-    pattern:  /
+    pattern:  /{id}
     defaults: { _controller: "PBProduccionBundle:Extrusion:index" }
  
 anadir_trabajo:

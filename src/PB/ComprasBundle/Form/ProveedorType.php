@@ -32,7 +32,7 @@ class ProveedorType extends AbstractType
             ->add('email_contacto')
             ->add('telefono')->add('telefono2')
             ->add('fax')
-            ->add('email', 'text',array('error_bubbling' => true))->add('web')
+            ->add('email', 'text',array('error_bubbling' => true, 'required' => false))->add('web')
             ->add('direccion', 'text', array('required' => true))
             ->add('cp', 'text', array('max_length' => '5'))
             ->add('localidad', 'text', array('required' => true))
