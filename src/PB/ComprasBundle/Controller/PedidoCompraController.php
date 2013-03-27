@@ -194,10 +194,10 @@ class PedidoCompraController extends Controller
         		$albaran->addAlbarancompralinea($alinea);
         	}
         	
-        	$em->persist($entity); //$em->persist($albaran); 
+        	$em->persist($entity); $em->persist($albaran); 
         	$em->flush();
             $this->get('session')->getFlashBag()->add('success', 'Nuevo Pedido de compra creado');
-            //$this->get('session')->getFlashBag()->add('success', 'Nuevo Albaran de compra creado');
+            $this->get('session')->getFlashBag()->add('success', 'Nuevo Albaran de compra creado');
             
             return $this->redirect($this->generateUrl('compras_pedidocompra_show', array('id' => $entity->getId())));       } else {
             $this->get('session')->getFlashBag()->add('error', 'flash.create.error');

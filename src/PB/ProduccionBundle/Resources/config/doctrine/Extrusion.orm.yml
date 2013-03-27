@@ -37,6 +37,7 @@ PB\ProduccionBundle\Entity\Extrusion:
       joinColumn:
         name: maquina_id
         referencedColumnName: id
+  oneToOne:
     orden:
       targetEntity: PB\ProduccionBundle\Entity\Orden
       inversedBy: extrusion_orden

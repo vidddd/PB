@@ -363,8 +363,11 @@ table.spreadsheet td {
     text-align: left;
     vertical-align: top;
 }
+table.spreadsheet td.sininput {
+	vertical-align: middle;
+}
 table.spreadsheet td.sininput span{
-	padding:7px 3px; float:left;
+	padding:5px 5px; float:left;
 }
 table.spreadsheet td:hover { background-color:#F9F9F9; }
 table.spreadsheet thead th.first-column, table.spreadsheet td.action-buttons {
@@ -620,7 +623,7 @@ div.totals textarea:focus{
 /**
 * Estados 
 **/
-#pedido-compra .estadoc, #pedido .estadoc, #orden .estadoc{
+#pedido-compra .estadoc, #pedido .estadoc, #orden .estadoc, .recibir-materiales .estadoc{
 	border-radius: 3px 3px 3px 3px;
     color: #333333;
    /* font-family: Monaco,Menlo,Consolas,"Courier New",monospace;*/
@@ -635,6 +638,10 @@ div.totals textarea:focus{
 #pedido-compra .estado2{ /* Recibido OK */
 	background-color:#5aa064;
 	border: 1px solid #5aa064;
+}
+#pedido-compra .estado5{ /* En proceso */
+	background-color:#006cda;
+	border: 1px solid #006cda;
 }
 #pedido-compra .estado3{ /* Recibido con Errores */
 	background-color:#d18578;
@@ -681,6 +688,11 @@ div.totals textarea:focus{
 #orden .estado8{ /* Histórico */
 	border: 1px solid #616160;
 	background-color:#616160;
+}
+
+.recibir-materiales .estado1{ /* Enviado */
+	border: 1px solid #a6a6a6;
+	background-color:#a6a6a6;
 }
 
 /** precios */

@@ -1,6 +1,8 @@
 <?php
 
 namespace PB\ComprasBundle\Entity;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,12 +20,6 @@ class AlbaranCompra
      * @var \DateTime $fecha
      */
     private $fecha;
-
-    /**
-     * @var PB\ComprasBundle\Entity\PedidoCompra
-     */
-    private $albarancompra_pedido;
-
 
     /**
      * Get id
@@ -60,29 +56,6 @@ class AlbaranCompra
     public function getFecha()
     {
         return $this->fecha;
-    }
-
-    /**
-     * Set albarancompra_pedido
-     *
-     * @param PB\ComprasBundle\Entity\PedidoCompra $albarancompraPedido
-     * @return AlbaranCompra
-     */
-    public function setAlbarancompraPedido(\PB\ComprasBundle\Entity\PedidoCompra $albarancompraPedido = null)
-    {
-        $this->albarancompra_pedido = $albarancompraPedido;
-    
-        return $this;
-    }
-
-    /**
-     * Get albarancompra_pedido
-     *
-     * @return PB\ComprasBundle\Entity\PedidoCompra 
-     */
-    public function getAlbarancompraPedido()
-    {
-        return $this->albarancompra_pedido;
     }
     /**
      * @var string $referencia
@@ -413,5 +386,41 @@ class AlbaranCompra
     public function getFechaRecepcion()
     {
         return $this->fecha_recepcion;
+    }
+    public function getEstadoText()
+    {
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	return $value['estados'][$this->estado];
+    }
+    /**
+     * @var PB\ComprasBundle\Entity\PedidoCompra
+     */
+    private $albarancompra_pedido;
+
+
+    /**
+     * Set albarancompra_pedido
+     *
+     * @param PB\ComprasBundle\Entity\PedidoCompra $albarancompraPedido
+     * @return AlbaranCompra
+     */
+    public function setAlbarancompraPedido(\PB\ComprasBundle\Entity\PedidoCompra $albarancompraPedido = null)
+    {
+        $this->albarancompra_pedido = $albarancompraPedido;
+    
+        return $this;
+    }
+
+    /**
+     * Get albarancompra_pedido
+     *
+     * @return PB\ComprasBundle\Entity\PedidoCompra 
+     */
+    public function getAlbarancompraPedido()
+    {
+        return $this->albarancompra_pedido;
     }
 }

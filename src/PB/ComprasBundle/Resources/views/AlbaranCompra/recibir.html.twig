@@ -42,20 +42,20 @@ $(document).ready(function() {
 			    			<span> {{ entity.fecha|date('d.m.Y') }} </span>
 		        		</div>
 	     			</div>
+     			</div>
+      			<div class="span-16 form-horizontal label-column-small form-condensed">
 					<div class="control-group required">
 						{{ form_label(form.fecha_recepcion, null, { 'label': 'Fecha Recepción', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
 			    			{{ form_widget(form.fecha_recepcion, { 'attr': {'class': 'date small'}}) }}
 		        		</div>
 	     			</div>
-     			</div>
-      			<div class="span-16 form-horizontal label-column-small form-condensed">
-					<div class="control-group required">
+				<!-- 	<div class="control-group required">
 						{{ form_label(form.estado, null, { 'label': 'Estado', 'label_attr': {'class': 'control-label'} }) }}
 						<div class="controls">
 			    			{{ form_widget(form.estado, { 'attr': {'class': 'small'}}) }}
 		        		</div>
-	     			</div>
+	     			</div> -->
      			</div>
  			</div>
  		</div>
@@ -74,10 +74,10 @@ $(document).ready(function() {
 					<td class="editable">
 					    {{ form_widget(linea.cantidad, { 'attr': {'class': 'ta_right icantidad numeric'}}) }}
 					</td>
-					<td class="editable sininput"><span>{{ linea.estadoText.vars.value }}</span> </td>
+					<td class="editable sininput"><span class="estadoc estado{{ linea.estado.vars.value }}">{{ linea.estadoText.vars.value }}</span>
+					 </td>
 					<td class="editable sininput"><span>
-					 <!-- <a rel="prettyPhoto[iframe]" href="{{ path('albarancompra_procesar', { 'id': linea.id.vars.value , 'iframe': 'true', 'width': 800, 'height': 510 }) }}">Procesar <img src="{{ asset('images/received.png') }}" alt="Procesar MAteriales" /></a> -->
-					 <a class="iframe" href="{{ path('albarancompra_procesar', { 'id': linea.id.vars.value }) }}"><img src="{{ asset('images/received.png') }}" alt="Procesar MAteriales" /></a>
+					<a class="iframe" href="{{ path('albarancompra_procesar', { 'id': linea.id.vars.value }) }}"><img src="{{ asset('images/received.png') }}" alt="Procesar MAteriales" /></a>
 					 
 					 </span></td>
 				</tr>

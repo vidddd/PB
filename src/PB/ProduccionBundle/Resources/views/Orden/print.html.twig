@@ -72,13 +72,13 @@ p.info {margin:0; padding:0; float:left; font-size: 9px;}
      </page_footer>
 {% block content %}
 <div class="ordenfabricacion">
-<div class="tith2"><h2>ORDEN DE FABRICACIÓN - <span class="h2id">{{ entity.id }}</span></h2></div>	
+<div class="tith2"><h2>ORDEN DE FABRICACIÓN - <span class="h2id">{{ entity.id }}</span></h2></div>
 	<table>
 		<tr><td style="width: 300px;">
 			<table id="cliente">
-				<tr><td class="etiqueta2">Cliente</td><td><strong>{{ entity.cliente }}&nbsp;</strong></td></tr>
-				<tr><td class="etiqueta2">Pedido Cliente</td><td><strong>{{ entity.pedidoclienteid }}&nbsp;</strong></td></tr>
-				<tr><td class="etiqueta2">Subcliente</td><td><strong>{{ entity.subcliente }}&nbsp;</strong></td></tr>
+				<tr><td class="etiqueta2">Cliente</td><td colspan="2"><strong>{{ entity.cliente.id}} - {{ entity.cliente }}&nbsp;</strong></td></tr>
+				<tr><td class="etiqueta2">Pedido Cliente</td><td><strong>{{ entity.pedidoclienteid }}&nbsp;</strong></td><td>Fecha: <strong>{{ entity.fecha|date('d.m.Y') }}</strong></td></tr>
+				<tr><td class="etiqueta2">Subcliente</td><td colspan="2"><strong>{{ entity.subcliente }}&nbsp;</strong></td></tr>
 			</table>
 		</td><td>
 			<table class="tabla1 bordenegro" cellspacing="0" style="width:700px;">

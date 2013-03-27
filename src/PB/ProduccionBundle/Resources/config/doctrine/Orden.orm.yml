@@ -242,6 +242,7 @@ PB\ProduccionBundle\Entity\Orden:
       targetEntity: PB\VentasBundle\Entity\PedidoCliente
       cascade: {  }
       mappedBy: orden
+  oneToOne:
     extrusion_orden:
       targetEntity: PB\ProduccionBundle\Entity\Extrusion
       cascade: {  }

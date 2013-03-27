@@ -207,6 +207,7 @@ $(document).ready(function() {
 	$("#collapse1").click(function(event) {
 		event.preventDefault();
 		$("#collapseOne").slideToggle();
+		calcularPesoTeorico();
 		$('#orden_extrusion').attr('checked', 'checked');
 	});
 	$("#collapse2").click(function(event) {

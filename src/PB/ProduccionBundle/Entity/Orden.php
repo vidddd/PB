@@ -1492,7 +1492,6 @@ class Orden
     public function setPedidocliente(\PB\VentasBundle\Entity\PedidoCliente $pedidocliente = null)
     {
         $this->pedidocliente = $pedidocliente;
-    
         return $this;
     }
 
@@ -2027,5 +2026,18 @@ class Orden
     public function getExtrusionOrden()
     {
         return $this->extrusion_orden;
+    }
+
+    /**
+     * Set extrusion_orden
+     *
+     * @param PB\ProduccionBundle\Entity\Extrusion $extrusionOrden
+     * @return Orden
+     */
+    public function setExtrusionOrden(\PB\ProduccionBundle\Entity\Extrusion $extrusionOrden = null)
+    {
+        $this->extrusion_orden = $extrusionOrden;
+    
+        return $this;
     }
 }

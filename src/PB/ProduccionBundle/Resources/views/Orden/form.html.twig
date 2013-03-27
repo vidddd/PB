@@ -353,3 +353,15 @@
 </div>
 		<div class="clearfix"></div> <BR />
 	<div class="guardar"><button type="submit" class="ui-state-default ui-corner-all">Guardar</button></div> 
+	<script type="text/javascript">
+	function calcularPesoTeorico() {
+		 var cantidad = $("#orden_cantidad").val();
+		 var ancho = $("#orden_ancho").val();
+		 var galga = $("#orden_galga").val();
+		 if(cantidad != '' && ancho != '' && galga != ''){
+			var peso = cantidad * ancho * galga * 0.0047;
+			$("#orden_pesoteorico").val(roundNumber(peso,2));
+		}
+		
+		}
+	</script>

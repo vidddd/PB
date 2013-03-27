@@ -5,12 +5,13 @@
 		            <th>Material</th>
 		            <th>Color</th>
 		            <th>Ancho</th>
+		            <th>Plegado</th>
 		            <th>Galga</th>
 		            <th>Metros</th>
-		            <th>Plegado</th>
+		            <th>Bobinas</th>
+					<th>Peso Neto</th>
 		            <th>Peso Teórico</th>
 		            <th>Cliente</th>
-		            <th width="100">{{ 'views.index.actions'|trans({}, 'JordiLlonchCrudGeneratorBundle') }}</th>
 		        </tr>
 		    </thead>
 		    <tbody>
@@ -18,9 +19,15 @@
 				<tr>
 					<td>{{ linea.orden.id }}</td>
 					<td>{{ linea.orden.tipomaterialText }}</td>
-					<td>{{ linea.ancho }}</td>
-					<td>{{ linea.galga }}</td>
-					<td>{{ linea.metros }}</td>
+					<td>{{ linea.orden.color }}</td>
+					<td>{{ linea.orden.ancho }}</td>
+					<td>{{ linea.orden.plegado }}</td>
+					<td>{{ linea.orden.galga }}</td>
+					<td>{{ linea.orden.metrose }}</td>
+					<td>{{ linea.orden.bobinas }}</td>
+					<td>{{ linea.pesoneto }}</td>
+					<td>{{ linea.pesoteorico }}</td>
+					<td>{{ linea.orden.cliente }}</td>
 				</tr>
 		    {%  endfor %}
 		    </tbody>

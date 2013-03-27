@@ -4,7 +4,7 @@
 
 {% block content %}
 <div id="pedido">
-	<div class="title title-spacing ventas"><h2>Pedidos</h2></div>        
+	<div class="title title-spacing ventas"><h2>Pedidos Históricos</h2></div>        
     <div class="span2">
         {% if form_errors(filterForm) %}
         <div class="response-msg notice iu-corner-all"><span>
@@ -51,8 +51,6 @@
 				 {{ form_widget(filterForm._token) }}</form>
 		</div>
 	</div>
-	    
-	<div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" href="{{ path('pedido_new') }}"><span class="ui-icon ui-icon-plusthick"></span>Nuevo Pedido</a></div>
 
 	<div class="clearfix"></div>
 	<div class="hastable">
