@@ -2,7 +2,7 @@
 
 {% block title "Albaranes Compra" %}
 {% block content %}
-<div id="pedido-compra">
+<div class="recibir-materiales">
 <div class="title title-spacing">
 					<h2>Albaranes Compra</h2>
 </div>
@@ -78,7 +78,8 @@
             <td><a rel="prettyPhoto[iframe]" href="{{ path('compras_pedidocompra_show_lightbox', { 'id': entity.albarancomprapedido.id , 'iframe': 'true', 'width': 780, 'height': 500 }) }}">{{ entity.albarancomprapedido }}</a></td>
             <td>{% if entity.fecha %}{{ entity.fecha|date('d.m.Y') }}{% endif %}</td>
             <td>{% if entity.fecharecepcion %}{{ entity.fecharecepcion|date('d.m.Y') }}{% endif %}</td>
-            <td><span class="estadoc estado{{ entity.albarancomprapedido.estado }}">{{ entity.albarancomprapedido.estadoText }}</span></td>
+            <td> <span class="estadoc estado{{ entity.estadoProcesado }}">{{ entity.estadoProcesadoText }}</span>
+            </td>
            <!-- <td>z/td> -->
             <td>		
 			<a href="{{ path('albarancompra_recibir', { 'id': entity.id }) }}" class="btn2 btn2-mini btn2-facturar">Recibir</a>

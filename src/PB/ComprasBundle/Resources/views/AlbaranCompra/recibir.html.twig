@@ -76,10 +76,13 @@ $(document).ready(function() {
 					</td>
 					<td class="editable sininput"><span class="estadoc estado{{ linea.estado.vars.value }}">{{ linea.estadoText.vars.value }}</span>
 					 </td>
-					<td class="editable sininput"><span>
-					<a class="iframe" href="{{ path('albarancompra_procesar', { 'id': linea.id.vars.value }) }}"><img src="{{ asset('images/received.png') }}" alt="Procesar MAteriales" /></a>
-					 
-					 </span></td>
+					<td class="editable sininput">
+						{% if linea.estado.vars.value != 3 %}
+						<span><a class="iframe" href="{{ path('albarancompra_procesar', { 'id': linea.id.vars.value }) }}"><img src="{{ asset('images/received.png') }}" alt="Procesar MAteriales" /></a></span>
+				    	{% else %}
+				    		{{ linea.referencia.vars.value }}
+				    	{% endif %}
+				    </td>
 				</tr>
 	     {% endmacro %}
 		<table cellspacing="0" style="" class="invoice-lines spreadsheet" id="invoice-time">

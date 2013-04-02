@@ -70,3 +70,9 @@ parameters:
     url: http://localhost:8888
 
 pb_almacen:
+
+services:
+    pb_compras.twig.extension.debug:
+        class:        Twig_Extension_Debug
+        tags:
+             - { name: 'twig.extension' }

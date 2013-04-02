@@ -423,4 +423,39 @@ class AlbaranCompra
     {
         return $this->albarancompra_pedido;
     }
+    
+    public function getEstadoProcesado() {
+        return $this->getEstadoProcesadoNum();
+    }
+    public function getEstadoProcesadoNum() {
+    	$nuevo = false;
+    	$parcial = false;
+    	$total = false;
+    	foreach($this->albarancompralineas as $linea) {
+    		$estado = $linea->getEstado();
+    		if ($estado == 1) {
+    			$nuevo = true;
+    		} else if ($estado == 2) {
+    			$parcial = true;
+    		}
+    	}
+    	if ($nuevo) {
+    		return 1;
+    	}
+    	if ($parcial) {
+    		return 2;
+    	}
+    	if (!$nuevo || !$parcial) {
+    		return 3;
+    	}
+    }
+    public function getEstadoProcesadoText()
+    {
+    	$yaml = new Parser(); try {	$value = $yaml->parse(file_get_contents(__DIR__ . '/../Resources/config/compras.yml'));
+    	} catch (ParseException $e) {
+    		printf("Unable to parse the YAML string: %s", $e->getMessage());
+    	}
+    	$estado = $this->getEstadoProcesadoNum();
+    	return $value['estados_albarancompralinea'][$estado];
+    }
 }

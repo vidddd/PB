@@ -30,6 +30,7 @@ class AlmacenType extends AbstractType
             ->add('cantidad')
             ->add('paquete')
             ->add('serie')->add('ancho')->add('largo')->add('galga')
+            ->add('estanteria')->add('nivel')->add('posicion')
             ->add('fecha_entrada', 'date', array(
 									'widget' => 'single_text','data' => $hoy,
 									'error_bubbling' => true

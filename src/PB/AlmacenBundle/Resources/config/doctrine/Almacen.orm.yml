@@ -37,6 +37,22 @@ PB\AlmacenBundle\Entity\Almacen:
         galga: 
             type: integer
             nullable: true
+        ubicacion:
+            type: string
+            lenght: 255
+            nullable: true
+        estanteria:
+            type: string
+            lenght: 55
+            nullable: true
+        nivel:    
+            type: string
+            lenght: 55
+            nullable: true
+        posicion:    
+            type: string
+            lenght: 55
+            nullable: true
     manyToOne:
         producto:
             targetEntity: PB\AlmacenBundle\Entity\Producto

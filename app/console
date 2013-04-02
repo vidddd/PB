@@ -7,6 +7,8 @@
 
 set_time_limit(0);
 
+ini_set('memory_limit', '464M');
+
 require_once __DIR__.'/bootstrap.php.cache';
 require_once __DIR__.'/AppKernel.php';
 

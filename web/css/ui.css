@@ -365,9 +365,10 @@ table.spreadsheet td {
 }
 table.spreadsheet td.sininput {
 	vertical-align: middle;
+		padding:5px 5px; 
 }
 table.spreadsheet td.sininput span{
-	padding:5px 5px; float:left;
+
 }
 table.spreadsheet td:hover { background-color:#F9F9F9; }
 table.spreadsheet thead th.first-column, table.spreadsheet td.action-buttons {
@@ -640,8 +641,8 @@ div.totals textarea:focus{
 	border: 1px solid #5aa064;
 }
 #pedido-compra .estado5{ /* En proceso */
-	background-color:#006cda;
-	border: 1px solid #006cda;
+	background-color:#798cc2;
+	border: 1px solid #798cc2;
 }
 #pedido-compra .estado3{ /* Recibido con Errores */
 	background-color:#d18578;
@@ -689,10 +690,22 @@ div.totals textarea:focus{
 	border: 1px solid #616160;
 	background-color:#616160;
 }
-
-.recibir-materiales .estado1{ /* Enviado */
+/* ESTADOS ALBARANES DE COMPRA */
+.recibir-materiales .estado1{ /* Disponible */
 	border: 1px solid #a6a6a6;
 	background-color:#a6a6a6;
+}
+.recibir-materiales .estado2{ /* Procesado Parcial */
+	border: 1px solid #798cc2;
+	background-color:#798cc2;
+}
+.recibir-materiales .estado3{ /* Procesado */
+	border: 1px solid #5aa064;
+	background-color:#5aa064;
+}
+.recibir-materiales .estado4{ /* Cancelado */
+	border: 1px solid #d18578;
+	background-color:#d18578;
 }
 
 /** precios */

@@ -24,9 +24,13 @@ function Cancelar() {
           {% endif %}
 		<div class="span-19 form-horizontal">
 		  <div class="control-group">
+			 	{{ form_label(form.cantidad, null, { 'label': 'Cantidad', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.cantidad, { 'attr': {'class': 'small numeric'}}) }}</div>
+		  </div>
+		<!--  <div class="control-group">
 			{{ form_label(form.referencia, null, { 'label': 'Referencia', 'label_attr': {'class': 'control-label'} }) }}
 			<div class="controls">{{ form_widget(form.referencia, { 'attr': {'class': 'small'}}) }}</div>
-		  </div>
+		  </div> -->
 		  <div class="control-group">
 			 	{{ form_label(form.descripcion, null, { '': 'Descripcion', 'label_attr': {'class': 'control-label'} }) }}
 			<div class="controls">{{ form_widget(form.descripcion, { 'attr': {'class': 'medium'}}) }}</div>
@@ -39,24 +43,21 @@ function Cancelar() {
 			 	{{ form_label(form.ancho, null, { 'label': 'Ancho', 'label_attr': {'class': 'control-label'} }) }}
 			<div class="controls">{{ form_widget(form.ancho, { 'attr': {'class': 'small'}}) }}</div>
 		  </div>
-		  <div class="control-group">
+		 <!--  <div class="control-group">
 			 	{{ form_label(form.largo, null, { 'label': 'Largo', 'label_attr': {'class': 'control-label'} }) }}
 			<div class="controls">{{ form_widget(form.largo, { 'attr': {'class': 'small'}}) }}</div>
-		  </div>
+		  </div> -->
 		  <div class="control-group">
 			 	{{ form_label(form.galga, null, { 'label': 'Galga / Espesor', 'label_attr': {'class': 'control-label'} }) }}
 			<div class="controls">{{ form_widget(form.galga, { 'attr': {'class': 'small'}}) }}</div>
 		  </div>
 		</div>
 		<div class="span-18 form-horizontal">
-		  <div class="control-group">
-			 	{{ form_label(form.cantidad, null, { 'label': 'Cantidad', 'label_attr': {'class': 'control-label'} }) }}
-			<div class="controls">{{ form_widget(form.cantidad, { 'attr': {'class': 'small numeric'}}) }}</div>
-		  </div>
-		  		  <div class="control-group">
+
+		   <!-- <div class="control-group">
 			 	{{ form_label(form.paquete, null, { 'label': 'Paquete', 'label_attr': {'class': 'control-label'} }) }}
 			<div class="controls">{{ form_widget(form.paquete, { 'attr': {'class': 'small'}}) }}</div>
-		  </div>
+		  </div> -->
 		  <div class="control-group">
 			 	{{ form_label(form.serie, null, { 'label': 'Serie / Lote', 'label_attr': {'class': 'control-label'} }) }}
 			<div class="controls">{{ form_widget(form.serie, { 'attr': {'class': 'small'}}) }}</div>
@@ -65,6 +66,22 @@ function Cancelar() {
 			 	{{ form_label(form.fecha_entrada, null, { 'label': 'Fecha Entrada', 'label_attr': {'class': 'control-label'} }) }}
 			<div class="controls">{{ form_widget(form.fecha_entrada, { 'attr': {'class': 'small date'}}) }}</div>
 		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.estanteria, null, { 'label': 'Estanteria', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.estanteria, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.nivel, null, { 'label': 'Nivel', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.nivel, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  <div class="control-group">
+			 	{{ form_label(form.posicion, null, { 'label': 'Posicion', 'label_attr': {'class': 'control-label'} }) }}
+			<div class="controls">{{ form_widget(form.posicion, { 'attr': {'class': 'small'}}) }}</div>
+		  </div>
+		  
+		  
+		  
+		  
 		  <div class="guardar">
 	        <button type="submit"  class="ui-state-default ui-corner-all">Guardar en Almacen</button>
 		  </div> 		  

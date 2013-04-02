@@ -332,4 +332,116 @@ class Almacen
     {
         return $this->albarancompralinea;
     }
+    /**
+     * @var string $ubicacion
+     */
+    private $ubicacion;
+
+    /**
+     * @var string $estanteria
+     */
+    private $estanteria;
+
+    /**
+     * @var string $nivel
+     */
+    private $nivel;
+
+    /**
+     * @var string $posicion
+     */
+    private $posicion;
+
+
+    /**
+     * Set ubicacion
+     *
+     * @param string $ubicacion
+     * @return Almacen
+     */
+    public function setUbicacion($ubicacion)
+    {
+        $this->ubicacion = $ubicacion;
+    
+        return $this;
+    }
+
+    /**
+     * Get ubicacion
+     *
+     * @return string 
+     */
+    public function getUbicacion()
+    {
+        return $this->ubicacion;
+    }
+
+    /**
+     * Set estanteria
+     *
+     * @param string $estanteria
+     * @return Almacen
+     */
+    public function setEstanteria($estanteria)
+    {
+        $this->estanteria = $estanteria;
+    
+        return $this;
+    }
+
+    /**
+     * Get estanteria
+     *
+     * @return string 
+     */
+    public function getEstanteria()
+    {
+        return $this->estanteria;
+    }
+
+    /**
+     * Set nivel
+     *
+     * @param string $nivel
+     * @return Almacen
+     */
+    public function setNivel($nivel)
+    {
+        $this->nivel = $nivel;
+    
+        return $this;
+    }
+
+    /**
+     * Get nivel
+     *
+     * @return string 
+     */
+    public function getNivel()
+    {
+        return $this->nivel;
+    }
+
+    /**
+     * Set posicion
+     *
+     * @param string $posicion
+     * @return Almacen
+     */
+    public function setPosicion($posicion)
+    {
+        $this->posicion = $posicion;
+    
+        return $this;
+    }
+
+    /**
+     * Get posicion
+     *
+     * @return string 
+     */
+    public function getPosicion()
+    {
+        return $this->posicion;
+    }
 }

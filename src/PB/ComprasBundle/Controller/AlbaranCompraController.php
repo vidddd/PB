@@ -128,18 +128,11 @@ class AlbaranCompraController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('PBComprasBundle:AlbaranCompra')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find AlbaranCompra entity.');
-        }
-
+        if (!$entity) {  throw $this->createNotFoundException('Unable to find AlbaranCompra entity.'); }
         $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('PBComprasBundle:AlbaranCompra:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'entity'      => $entity,    'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
@@ -150,10 +143,8 @@ class AlbaranCompraController extends Controller
     {
         $entity = new AlbaranCompra();
         $form   = $this->createForm(new AlbaranCompraType(), $entity);
-
         return $this->render('PBComprasBundle:AlbaranCompra:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+            'entity' => $entity,  'form'   => $form->createView(),
         ));
     }
 
@@ -179,10 +170,10 @@ class AlbaranCompraController extends Controller
         }
 
         return $this->render('PBComprasBundle:AlbaranCompra:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+            'entity' => $entity,  'form'   => $form->createView(),
         ));
     }
+    
     /**
      * Displays a form to edit an existing AlbaranCompra entity.
      *
@@ -190,19 +181,13 @@ class AlbaranCompraController extends Controller
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('PBComprasBundle:AlbaranCompra')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find AlbaranCompra entity.');
-        }
-
+        if (!$entity) {  throw $this->createNotFoundException('Unable to find AlbaranCompra entity.'); }
         $editForm = $this->createForm(new AlbaranCompraType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('PBComprasBundle:AlbaranCompra:edit.html.twig', array(
-            'entity'      => $entity,
-            'form'   => $editForm->createView(),
+            'entity'      => $entity,   'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -214,12 +199,8 @@ class AlbaranCompraController extends Controller
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('PBComprasBundle:AlbaranCompra')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find AlbaranCompra entity.');
-        }
+        if (!$entity) {  throw $this->createNotFoundException('Unable to find AlbaranCompra entity.'); }
         $beforeSaveLineas = $currentLineasIds = array();
         foreach ($entity->getAlbarancompralineas() as $linea)
         	$beforeSaveLineas [$linea->getId()] = $linea;
@@ -286,10 +267,7 @@ class AlbaranCompraController extends Controller
 
     private function createDeleteForm($id)
     {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
+        return $this->createFormBuilder(array('id' => $id))            ->add('id', 'hidden')->getForm();
     }
 public function recibirAction($id)
     {
@@ -311,7 +289,7 @@ public function recibirAction($id)
     			$this->get('session')->getFlashBag()->add('error', 'flash.update.error');
     		}
     	}
-    
+    	
     	return $this->render('PBComprasBundle:AlbaranCompra:recibir.html.twig', array(
     			'entity' => $albaran,'id' => $albaran->getId(), 'form'   => $form->createView(),
     	));

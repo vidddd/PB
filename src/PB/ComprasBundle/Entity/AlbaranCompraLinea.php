@@ -266,12 +266,7 @@ class AlbaranCompraLinea
     		printf("Unable to parse the YAML string: %s", $e->getMessage());
     	}
     	if ($this->estado) return $value['estados_albarancompralinea'][$this->estado];
-    }
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    private $almacen;
-
+   }
     /**
      * Constructor
      */
@@ -279,7 +274,12 @@ class AlbaranCompraLinea
     {
         $this->almacen = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $almacen;
+
+
     /**
      * Add almacen
      *

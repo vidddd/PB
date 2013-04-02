@@ -1,6 +1,7 @@
 PB\ComprasBundle\Entity\AlbaranCompraLinea:
   type: entity
   table: null
+  repositoryClass: PB\ComprasBundle\Repository\AlbaranCompraLineaRepository
   fields:
     id:
       type: integer

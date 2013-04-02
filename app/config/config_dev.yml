@@ -22,5 +22,10 @@ monolog:
 assetic:
     use_controller: true
 
+twig:
+    debug:            true
+
+
+
 #swiftmailer:
 #    delivery_address: me@example.com
