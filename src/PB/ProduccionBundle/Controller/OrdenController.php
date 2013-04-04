@@ -286,4 +286,20 @@ class OrdenController extends Controller
     	$response->headers->set('Content-Disposition', 'inline; filename="OrdenFabricacion.pdf"');
     	return $response;
     }
+    
+    /**
+     * Return a ajax response
+     */
+    public function getOrdenFabricacionAction(){
+    	$request = $this->get('request');  	$id=$request->request->get('id');
+    	$em = $this->get('doctrine')->getEntityManager();
+    	 
+    	$orden = $em->getRepository('PBProduccionBundle:Orden')->findOneById($id);
+    	
+    	if($orden) {
+    		return new Response(json_encode(array('cliente' => $orden->getCliente())));
+    	} else {
+    		return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de Orden de Fabricación erróneo</span>')));
+    	}
+    }
 }

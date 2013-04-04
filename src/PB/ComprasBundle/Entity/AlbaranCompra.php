@@ -431,20 +431,28 @@ class AlbaranCompra
     	$nuevo = false;
     	$parcial = false;
     	$total = false;
+    	$count = $this->albarancompralineas;
+    	$parciales = 0; $totales = 0;
     	foreach($this->albarancompralineas as $linea) {
     		$estado = $linea->getEstado();
     		if ($estado == 1) {
     			$nuevo = true;
     		} else if ($estado == 2) {
-    			$parcial = true;
+    			$parciales++; $parcial = true;
+    		} else if ($estado == 3) {
+    			$totales++; $total = true;
     		}
     	}
-    	if ($nuevo) {
+    	if ($nuevo && $parciales == 0 && $totales == 0) {
     		return 1;
     	}
     	if ($parcial) {
     		return 2;
     	}
+    	/*
+    	if((int)$totales < (int)$count){
+    		return 2;
+    	}*/
     	if (!$nuevo || !$parcial) {
     		return 3;
     	}

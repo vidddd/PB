@@ -88,6 +88,10 @@
 						        <td>{{ form_widget(form.plegado, { 'attr': {'class': 'small numeric'}}) }}</td>
 						      </tr>
 						      <tr>
+						        <th>Largo</th>
+						        <td>{{ form_widget(form.largo, { 'attr': {'class': 'small numeric'}}) }}</td>
+						      </tr>
+						      <tr>
 						        <th>Metros</th>
 						        <td>{{ form_widget(form.metrose, { 'attr': {'class': 'small numeric'}}) }}</td>
 						      </tr>
@@ -98,7 +102,7 @@
 						      
 						      <tr>
 						        <th>Peso Teórico</th>
-						        <td>{{ form_widget(form.pesoteorico, { 'attr': {'class': 'small'}}) }}</td>
+						        <td>{{ form_widget(form.pesoteorico, { 'attr': {'class': 'small'}}) }}<a href="" id="calcular">Calcular</a></td>
 						      </tr>
 						      <tr>
 						        <th>Tipo Tubo</th>
@@ -354,12 +358,23 @@
 		<div class="clearfix"></div> <BR />
 	<div class="guardar"><button type="submit" class="ui-state-default ui-corner-all">Guardar</button></div> 
 	<script type="text/javascript">
+	$(document).ready(function() { 
+		$('#orden_pesoteorico').focus(function() {
+			calcularPesoTeorico();
+		});
+		$('#calcular').click(function(event) {
+			calcularPesoTeorico();
+			event.preventDefault();
+		});
+	});
+	
 	function calcularPesoTeorico() {
 		 var cantidad = $("#orden_cantidad").val();
 		 var ancho = $("#orden_ancho").val();
+		 var largo = $("#orden_largo").val();
 		 var galga = $("#orden_galga").val();
-		 if(cantidad != '' && ancho != '' && galga != ''){
-			var peso = cantidad * ancho * galga * 0.0047;
+		 if(cantidad != '' && ancho != '' && galga != '' && largo != ''){
+			var peso = cantidad * ancho * largo * galga * 0.000000047;
 			$("#orden_pesoteorico").val(roundNumber(peso,2));
 		}
 		

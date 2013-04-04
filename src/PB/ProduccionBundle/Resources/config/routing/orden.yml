@@ -32,3 +32,10 @@ orden_delete:
 orden_print:
     pattern:  /{id}/print
     defaults: { _controller: "PBProduccionBundle:Orden:print" }
+    
+get_orden_fabricacion:
+    pattern:  /getordenfabricacion
+    defaults: { _controller: "PBProduccionBundle:Orden:getOrdenFabricacion", _format: json }
+    requirements:
+        _format: (xml|json)
+        _method:  POST

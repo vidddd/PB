@@ -39,7 +39,7 @@ class OrdenType extends AbstractType
             ->add('producto', 'choice', array( 'choices' => $productos,'error_bubbling' => true, 'empty_value' => '--Eligue un Producto --',))
             ->add('extrusion')
             ->add('color')
-            ->add('ancho')
+            ->add('ancho')->add('largo')
             ->add('galga')
             ->add('plegado')
             ->add('metrose')

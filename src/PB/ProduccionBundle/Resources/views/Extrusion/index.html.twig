@@ -18,12 +18,57 @@ $(document).ready(function() {
 			window.location.reload();
 		 }
 	});
+	/*$("a.iframe3").fancybox({
+		'hideOnContentClick': false,
+		'width': 650,
+		'height': 500,
+		'scrolling': 'yes',
+		'transitionIn': 'elastic',
+		'modal': false,
+		'onClosed': function() {
+			window.location.reload();
+		 }
+	});*/
 });
 //-->
 </script>
 <div id="orden">
 	<div class="title title-spacing produccion"><h2>Extrusion</h2></div>        
  <div class="maquinaextrusion">   
+ <div class="portlet form-bg-2 ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">AÑADIR TRABAJO</div>
+	    <div class="portlet-content">
+            <form class="well" action="{{ path('extrusion') }}" method="post" {{ form_enctype(form) }}>
+			<table id="form-alta">
+	   				<tbody> 
+	   				   <tr>
+	        				<td class="label">{{ form_label(form.orden, 'Orden de Fabricación') }}</td>
+	        				<td class="campo">{{ form_widget(form.orden, { 'attr': {'class': 'small'}}) }}
+	        				<!--  <a class="iframe3" href="{{ path('anadir_orden_fabricacion') }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a></td><td></td> -->
+	      					<a rel="prettyPhoto[iframe]" href="{{ path('anadir_orden_fabricacion', { 'id': '' , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a>
+	      				<tr>
+	   				   <tr>
+	        				<td class="label">{{ form_label(form.material, 'Material') }}</td>
+	        				<td class="campo">{{ form_widget(form.material, { 'attr': {'class': ''}}) }}</td><td></td>
+	      				<tr>
+	      			   <tr>
+	        				<td class="label">{{ form_label(form.ancho, 'Ancho') }}</td>
+	        				<td class="campo">{{ form_widget(form.ancho, { 'attr': {'class': 'small'}}) }}</td><td></td>
+	      				<tr>
+	            	   <tr>
+	        				<td class="label">{{ form_label(form.galga, 'Galga') }}</td>
+	        				<td class="campo">{{ form_widget(form.galga, { 'attr': {'class': 'small numeric'}}) }}</td><td></td>
+	      				<tr>
+	            	
+	            	</tbody>
+	          </table>
+                <p class="botones-buscador">
+                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Filtrar</button>
+                    <button type="submit" name="filter_action" value="reset" class="ui-state-default ui-corner-all">Limpiar</button>   
+                </p>
+				 {{ form_widget(form._token) }}</form>
+		</div>
+	</div>
+ 
  <div class="btn-nuevo"><a class="iframe-extrusion btn ui-state-default ui-corner-all" href="{{ path('anadir_trabajo_extrusion') }}"><span class="ui-icon ui-icon-plusthick"></span>Añadir Trabajo</a></div>
 	 
 	 <div class="clearfix"></div>

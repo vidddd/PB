@@ -42,7 +42,7 @@ class OrdenFilterType extends AbstractType
             ->add('producto', 'filter_number_range')
             ->add('extrusion', 'filter_checkbox')
             ->add('color', 'filter_text')
-            ->add('ancho', 'filter_text')
+            ->add('ancho', 'filter_text')->add('largo', 'filter_text')
             ->add('largo', 'filter_text')
             ->add('galga', 'filter_number_range')
             ->add('plegado', 'filter_number_range')

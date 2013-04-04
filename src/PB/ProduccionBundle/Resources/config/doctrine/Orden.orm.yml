@@ -40,6 +40,9 @@ PB\ProduccionBundle\Entity\Orden:
     ancho:
       type: float
       nullable: true
+    largo:
+      type: float
+      nullable: true
     galga:
       type: float
       nullable: true

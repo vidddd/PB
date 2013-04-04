@@ -2040,4 +2040,32 @@ class Orden
     
         return $this;
     }
+    /**
+     * @var float $largo
+     */
+    private $largo;
+
+
+    /**
+     * Set largo
+     *
+     * @param float $largo
+     * @return Orden
+     */
+    public function setLargo($largo)
+    {
+        $this->largo = $largo;
+    
+        return $this;
+    }
+
+    /**
+     * Get largo
+     *
+     * @return float 
+     */
+    public function getLargo()
+    {
+        return $this->largo;
+    }
 }

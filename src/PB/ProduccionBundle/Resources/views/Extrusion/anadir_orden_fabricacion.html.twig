@@ -1,0 +1,53 @@
+{% extends '::layout_ajax.html.twig' %}
+
+{% block title "Añadir Orden de Fabricacion" %}
+
+{% block content %}
+<script>
+$(document).ready(function() { 
+	    $(".ordenid").click(function () {
+    	var ordenid = this.rel;
+    	$('#form_orden', window.parent.document).val(ordenid);
+	    //window.parent.getPedido();
+        window.parent.$.prettyPhoto.close();
+        return;
+    })
+});
+</script>
+<div id="orden">
+<div id="lightbox-wrapper" style="width:750px;">
+	<div class="anadir-trabajo-extrusion">
+	<div class="title title-spacing produccion"><h2>Ordenes de Fabricación</h2></div> 
+	    {% if error %}<h2 class="errorprecios" style="color:red;">{{ error }}</h2>{% endif %}
+	<div class="hastable">
+	    <table class="records_list">
+	    <thead>
+	        <tr>
+	        	<th width="25">Añadir</th>
+	            <th width="25">Código Orden</th>
+	            <th>Material</th>
+	            <th>Ancho</th>
+	            <th>Galga</th>
+	            <th>Cliente</th>
+	            <th>Estado</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    {% for linea in entity %}
+	        <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+	        	<!-- <td><a title="Añadir Trabajo" href="{{ path('extrusion', {'id' : linea.id }) }}" rel="{{ linea.id }}"><img src="{{ asset('images/math-add-icon.png') }}" alt="Añadir Trabajo" /></a></td> -->
+	            <td><a title="Añadir Trabajo" class="ordenid" href="#" rel="{{ linea.id }}"><img src="{{ asset('images/math-add-icon.png') }}" alt="Añadir Trabajo" /></a></td>
+	            <td>{{ linea.id }}</td>
+	            <td>{{ linea.tipomaterialText }}</td>
+	            <td>{{ linea.ancho }}</td>
+	            <td>{{ linea.galga }}</td>
+	            <td>{{ linea.cliente }}</td>
+	        	<td><span class="estadoc estado{{ linea.estado }}">{{ linea.estadoText }}</span></td>
+	         </tr>
+	    {% endfor %}
+	    </tbody>
+	</table>
+	    </div>
+	</div>
+</div></div>
+{% endblock %}
