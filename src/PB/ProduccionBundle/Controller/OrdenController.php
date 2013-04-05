@@ -297,9 +297,9 @@ class OrdenController extends Controller
     	$orden = $em->getRepository('PBProduccionBundle:Orden')->findOneById($id);
     	
     	if($orden) {
-    		return new Response(json_encode(array('cliente' => $orden->getCliente())));
+    		return new Response(json_encode(array('cliente' => $orden->getClienteNombre(),'subcliente' => $orden->getSubcliente(), 'material' => $orden->getTipomaterial(), 'ancho' => $orden->getAncho(),'galga' => $orden->getGalga())));
     	} else {
-    		return new Response(json_encode(array('nombre' => '<span class="error-nombre">Código de Orden de Fabricación erróneo</span>')));
+    		return new Response(json_encode(array('error' => '<span class="error-nombre">Código de Orden de Fabricación erróneo</span>')));
     	}
     }
 }

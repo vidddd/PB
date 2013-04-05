@@ -25,10 +25,8 @@ class MaquinaController extends Controller
     public function indexAction()
     {
         list($filterForm, $queryBuilder) = $this->filter();
-
         list($entities, $pagerHtml) = $this->paginator($queryBuilder);
 
-    
         return $this->render('PBProduccionBundle:Maquina:index.html.twig', array(
             'entities' => $entities,
             'pagerHtml' => $pagerHtml,

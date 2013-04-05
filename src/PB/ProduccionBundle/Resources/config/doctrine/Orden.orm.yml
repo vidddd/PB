@@ -240,23 +240,17 @@ PB\ProduccionBundle\Entity\Orden:
       joinColumn:
         name: maquinarebobinado
         referencedColumnName: id
+    extrusion_orden:
+      targetEntity: PB\ProduccionBundle\Entity\Extrusion
+      inversedBy: ordenes
+      cascade: [persist]
+      joinColumn:
+        name: extrusion_id
+        referencedColumnName: id
+        onDelete: CASCADE
   oneToMany:
     pedidocliente:
       targetEntity: PB\VentasBundle\Entity\PedidoCliente
       cascade: {  }
       mappedBy: orden
-  oneToOne:
-    extrusion_orden:
-      targetEntity: PB\ProduccionBundle\Entity\Extrusion
-      cascade: {  }
-      mappedBy: orden
-#  oneToOne:
-#    pedidocliente:
-#      targetEntity: PB\VentasBundle\Entity\Pedidocliente
-#      cascade: {  }
-#      mappedBy: null
-#      inversedBy: null
-#      joinColumns:
-#        pedidocliente_id:
-#          referencedColumnName: pedidocliente_id
   lifecycleCallbacks: {  }

@@ -1,0 +1,129 @@
+{% extends '::layout.html.twig' %}
+
+{% block title "Extrusion" %}
+
+{% block content %}
+<script type="text/javascript">
+<!--
+// http://fancybox.net/api
+$(document).ready(function() { 
+	$("a.iframe-extrusion").fancybox({
+		'hideOnContentClick': false,
+		'width': 650,
+		'height': 500,
+		'scrolling': 'yes',
+		'transitionIn': 'elastic',
+		'modal': false,
+		'onClosed': function() {
+			window.location.reload();
+		 }
+	});
+	/*$("a.iframe3").fancybox({
+		'hideOnContentClick': false,
+		'width': 650,
+		'height': 500,
+		'scrolling': 'yes',
+		'transitionIn': 'elastic',
+		'modal': false,
+		'onClosed': function() {
+			window.location.reload();
+		 }
+	});*/
+});
+//-->
+</script>
+<div id="extrusion">
+	<div class="title title-spacing produccion"><h2>Extrusion</h2></div>        
+ <div class="maquinaextrusion">   
+ <div class="portlet form-bg-2 ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">AÑADIR TRABAJO</div>
+	    <div class="portlet-content">
+            <form class="well" action="{{ path('extrusion') }}" method="post" {{ form_enctype(form) }}>
+			<table id="form-alta">
+	   				<tbody> 
+	   				   <tr>
+	        				<td class="label">{{ form_label(form.orden, 'Orden de Fabricación') }}</td>
+	        				<td class="campo" style="width:100px;">{{ form_widget(form.orden, { 'attr': {'class': 'small numeric ordenid'}}) }}
+	        				<!--  <a class="iframe3" href="{{ path('anadir_orden_fabricacion') }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a></td><td></td> -->
+	      					<a rel="prettyPhoto[iframe]" href="{{ path('anadir_orden_fabricacion', { 'id': '' , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title=""><img src="{{ asset('images/search.png') }}" /></a></td><td><div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div></td>
+	      				<tr>
+	   				   <tr>
+	        				<td class="label">{{ form_label(form.material, 'Material') }}</td>
+	        				<td class="campo">{{ form_widget(form.material, { 'attr': {'class': ''}}) }}</td><td><div class="controls nombre-subcliente" style="display:none;"><h2>Nombre de Subcliente</h2></div></td>
+	      				<tr>
+	      			   <tr>
+	        				<td class="label">{{ form_label(form.ancho, 'Ancho') }}</td>
+	        				<td class="campo">{{ form_widget(form.ancho, { 'attr': {'class': 'small numeric'}}) }}</td><td></td>
+	      				<tr>
+	            	   <tr>
+	        				<td class="label">{{ form_label(form.galga, 'Galga') }}</td>
+	        				<td class="campo">{{ form_widget(form.galga, { 'attr': {'class': 'small numeric'}}) }}</td><td></td>
+	      				<tr>
+	            	
+	            	</tbody>
+	          </table>
+                <p class="botones-buscador">
+                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Añadir</button>
+                    <button type="reset" name="filter_action" class="ui-state-default ui-corner-all">Limpiar</button>   
+                </p>
+				 {{ form_widget(form._token) }}</form> <div class="clearfix"></div><br />
+				
+				<div class="extrusion-visual">
+				<div class="progress">
+					<div style="width: 50%;" class="bar">15%</div>
+					<div style="width: 15%;" class="bar bar-info">15%</div>
+					<div style="width: 30%;" class="bar bar-success">30%</div>
+					<div style="width: 10%;" class="bar bar-warning">10%</div>
+					<div style="width: 10%;" class="bar bar-danger">10%</div>
+				</div>
+				</div>
+		</div>
+	</div>
+ 
+ <div class="btn-nuevo"><a class="iframe-extrusion btn ui-state-default ui-corner-all" href="{{ path('anadir_trabajo_extrusion') }}"><span class="ui-icon ui-icon-plusthick"></span>Añadir Trabajo</a></div>
+	 
+	 <div class="clearfix"></div>
+	 <div class="tablesup"><h6>{{ codigo }} - {{ nombre }}</h6></div>
+<div class="hastable">
+    	<table class="records_list">
+    		<thead> <tr>
+		            <th width="25">Codigo Orden</th>
+		            <th>Material</th>
+		            <th>Color</th>
+		            <th>Ancho</th>
+		            <th>Plegado</th>
+		            <th>Galga</th>
+		            <th>Metros</th>
+		            <th>Bobinas</th>
+					<th>Peso Neto</th>
+		            <th>Peso Teórico</th>
+		            <th>Cliente</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    {% for linea in extrusion %}
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+		    {%  endfor %}
+		    </tbody>
+		</table>
+    </div>
+ </div>
+    <div class="float-left volver">
+        <a href="{{ path('extrusion') }}">
+          <<  Volver al Listado de Máquinas
+        </a>
+    </div>
+</div>
+	     {% include 'PBProduccionBundle:Orden:js_get_orden.html.twig' %} 
+   {% endblock %}

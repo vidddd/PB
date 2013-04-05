@@ -332,4 +332,77 @@ class Extrusion
     {
         return $this->orden;
     }
+    /**
+     * @var integer $estado
+     */
+    private $estado;
+
+
+    /**
+     * Set estado
+     *
+     * @param integer $estado
+     * @return Extrusion
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return integer 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    private $ordenes;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ordenes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add ordenes
+     *
+     * @param PB\ProduccionBundle\Entity\orden $ordenes
+     * @return Extrusion
+     */
+    public function addOrdene(\PB\ProduccionBundle\Entity\orden $ordenes)
+    {
+        $this->ordenes[] = $ordenes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove ordenes
+     *
+     * @param PB\ProduccionBundle\Entity\orden $ordenes
+     */
+    public function removeOrdene(\PB\ProduccionBundle\Entity\orden $ordenes)
+    {
+        $this->ordenes->removeElement($ordenes);
+    }
+
+    /**
+     * Get ordenes
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOrdenes()
+    {
+        return $this->ordenes;
+    }
 }

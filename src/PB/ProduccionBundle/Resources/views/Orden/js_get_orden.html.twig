@@ -5,19 +5,26 @@
 		    });
 	});
 	function getOrdenFabricacion(){
-		var id = $(".buscadorid").val();
+		var id = $(".ordenid").val();
 		if(id){
 	       $.ajax({
-				url: "{{ path('get_nombre_cliente') }}",
+				url: "{{ path('get_orden_fabricacion') }}",
 				type: "post",
 				dataType: "json",
 				data: {id: id},
 				success: function(resp){
-					$('.nombre-cliente').html(resp.nombre).show();
-					if(resp.comercial != null) $('.nombre-comercial').html(resp.comercial).show();
+					if(resp.error) {
+						$('.nombre-cliente').html(resp.error).show();
+					} else {
+						if(resp.cliente != null) $('.nombre-cliente').html(resp.cliente).show();
+						if(resp.subcliente != null) $('.nombre-subcliente').html(resp.subcliente).show();
+						if(resp.material != null) $('#form_material').val(resp.material);
+						if(resp.ancho != null) $('#form_ancho').val(resp.ancho);
+						if(resp.galga != null) $('#form_galga').val(resp.galga);
+					}
 				},
 				error: function(jqXHR,estado,error){
-				//	alert(estado);
+					alert(estado);
 				//	alert(error);
 				},
 				complete: function(jqXHR,estado){},

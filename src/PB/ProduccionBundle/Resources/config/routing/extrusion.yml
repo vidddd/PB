@@ -1,7 +1,11 @@
 extrusion:
     pattern:  /
     defaults: { _controller: "PBProduccionBundle:Extrusion:index" }
- 
+
+extrusion_maquina:
+    pattern:  /{maquina}/maquina
+    defaults: { _controller: "PBProduccionBundle:Extrusion:extrusion" }
+
 anadir_orden_fabricacion:
     pattern:  /anadir-orden-fabricacion
     defaults: { _controller: "PBProduccionBundle:Extrusion:anadirOrdenFabricacion" }

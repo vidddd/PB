@@ -566,12 +566,12 @@ button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em 
 
 	/* Dashboard buttons */
 	
-#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li {
+#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li, #extrusion ul#dashboard-buttons li {
 	float:left;
 	margin:7px;
 }
 	
-#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a {
+#page-wrapper #main-wrapper #main-content .page-title .other ul#dashboard-buttons li a, #extrusion ul#dashboard-buttons li a {
     background-position: 50% 10px;
     background-repeat: no-repeat;
     display: block;
@@ -1244,4 +1244,11 @@ border-radius: 3px;
 .anadir-trabajo-extrusion {
 	/*overflow: scroll;*/
 	height: 400px;
+}
+#extrusion .page-title {
+    margin: 0 !important; padding: 0 !important;
+}
+#extrusion ul#dashboard-buttons li a {
+	width: 125px !important;
+	height: 35px !important;
 }

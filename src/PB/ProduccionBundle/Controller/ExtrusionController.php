@@ -9,34 +9,34 @@ use Symfony\Component\Yaml\Exception\ParseException;
 
 class ExtrusionController extends Controller
 {
-    public function indexAction()
+	public function indexAction()
+	{
+		return $this->render('PBProduccionBundle:Extrusion:index.html.twig');
+	}
+    public function extrusionAction($maquina)
     {
     	$request = $this->get('request');    	$em = $this->getDoctrine()->getManager();
-    	$id = $request->get('id');
-		/*if($id) {
-			$maquina = 1;
-			$this->anadirOrdenTrabajo($id, $maquina);	
-		}*/
-		$yaml = new Parser();
-		try { $value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml')); } catch (ParseException $e) {	printf("Unable to parse the YAML string: %s", $e->getMessage()); }
+    	
+    	$maquinae = $em->getRepository('PBProduccionBundle:Maquina')->find($maquina);
+    	
+		$yaml = new Parser(); try { $value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml')); } catch (ParseException $e) {	printf("Unable to parse the YAML string: %s", $e->getMessage()); }
 		$tipos = $value['tipo_material'];
 		
 		$defaultData = array();
 		
 		$form = $this->createFormBuilder($defaultData)
-		->add('material', 'choice', array( 'choices' => $tipos,'error_bubbling' => true, 'empty_value' => '-- Elige un Material --'))
+		->add('material', 'choice', array( 'choices' => $tipos,'error_bubbling' => true, 'empty_value' => ''))
 		->add('ancho', 'text')->add('orden', 'text')
 		->add('galga', 'text')
 		->getForm();
 		
-		$extrusion = $em->getRepository('PBProduccionBundle:Extrusion');
-		$tabla1 = $extrusion->getExtrusion(1);
-		$tabla2 = $extrusion->getExtrusion(2);
-		$tabla3 = $extrusion->getExtrusion(3);
-		$tabla4 = $extrusion->getExtrusion(4);
-		$tabla5 = $extrusion->getExtrusion(5);
+    	$query = $em->createQueryBuilder()->select('e')->from('PBProduccionBundle:Extrusion', 'e')
+    			->where('e.maquina = :maq')
+    			->setParameter('maq', $maquina);
+    	
+    	$extrusion = $query->getQuery()->getResult();
 		
-    	return $this->render('PBProduccionBundle:Extrusion:index.html.twig', array('form' => $form->createView(), 'tabla1' => $tabla1, 'tabla2' => $tabla2));
+    	return $this->render('PBProduccionBundle:Extrusion:extrusion.html.twig', array('maquina' => $maquina,'codigo' => $maquinae->getCodigo(),'nombre' => $maquinae->getNombre(), 'form' => $form->createView(), 'extrusion' => $extrusion));
     }
     
     public function anadirTrabajoAction()
@@ -46,8 +46,7 @@ class ExtrusionController extends Controller
     	$request = $this->get('request');
     	// Saca los trabajos en estado nuevo
     	
-    	//$query = $em->createQuery('SELECT o FROM PBProduccionBundle:Orden o LEFT JOIN PBProduccionBundle:Extrusion e WHERE o.estado = 1 ORDER BY o.fecha DESC')->setParameter('esta', '1');
-    	//$query = $em->createQuery('SELECT o FROM PBProduccionBundle:Orden o WHERE o.estado = :esta AND o.extrusion=1 ORDER BY o.fecha DESC')->setParameter('esta', '1');
+       //$query = $em->createQuery('SELECT o FROM PBProduccionBundle:Orden o WHERE o.estado = :esta AND o.extrusion=1 ORDER BY o.fecha DESC')->setParameter('esta', '1');
     	$query = $em->createQueryBuilder()->select('o')
     			->from('PBProduccionBundle:Extrusion', 'e')
     			->innerJoin('PBProduccionBundle:Orden', 'o')

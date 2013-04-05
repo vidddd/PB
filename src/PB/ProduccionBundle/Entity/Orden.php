@@ -2068,4 +2068,8 @@ class Orden
     {
         return $this->largo;
     }
+    public function getClienteNombre()
+    {
+    	return $this->cliente->getNombre();
+    }
 }
