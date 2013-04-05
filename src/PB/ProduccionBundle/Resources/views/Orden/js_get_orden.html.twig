@@ -14,7 +14,7 @@
 				data: {id: id},
 				success: function(resp){
 					if(resp.error) {
-						$('.nombre-cliente').html(resp.error).show();
+						$('.nombre-cliente').html(resp.error).show(); limpiarForm();
 					} else {
 						if(resp.cliente != null) $('.nombre-cliente').html(resp.cliente).show();
 						if(resp.subcliente != null) $('.nombre-subcliente').html(resp.subcliente).show();
@@ -33,4 +33,8 @@
 	       });//It is silly. But you should not write 'json' or any thing as the fourth parameter. It should be undefined. I'll explain it futher down
 		}
 	}
+	function limpiarForm(){
+		$('.nombre-subcliente').hide();
+		$('#form_material').val('');$('#form_ancho').val('');$('#form_galga').val('');
+		}
 </script>

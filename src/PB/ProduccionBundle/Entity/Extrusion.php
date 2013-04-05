@@ -405,4 +405,116 @@ class Extrusion
     {
         return $this->ordenes;
     }
+    /**
+     * @var \DateTime $inicio
+     */
+    private $inicio;
+
+    /**
+     * @var \DateTime $fin
+     */
+    private $fin;
+
+    /**
+     * @var integer $tipomaterial
+     */
+    private $tipomaterial;
+
+    /**
+     * @var string $color
+     */
+    private $color;
+
+
+    /**
+     * Set inicio
+     *
+     * @param \DateTime $inicio
+     * @return Extrusion
+     */
+    public function setInicio($inicio)
+    {
+        $this->inicio = $inicio;
+    
+        return $this;
+    }
+
+    /**
+     * Get inicio
+     *
+     * @return \DateTime 
+     */
+    public function getInicio()
+    {
+        return $this->inicio;
+    }
+
+    /**
+     * Set fin
+     *
+     * @param \DateTime $fin
+     * @return Extrusion
+     */
+    public function setFin($fin)
+    {
+        $this->fin = $fin;
+    
+        return $this;
+    }
+
+    /**
+     * Get fin
+     *
+     * @return \DateTime 
+     */
+    public function getFin()
+    {
+        return $this->fin;
+    }
+
+    /**
+     * Set tipomaterial
+     *
+     * @param integer $tipomaterial
+     * @return Extrusion
+     */
+    public function setTipomaterial($tipomaterial)
+    {
+        $this->tipomaterial = $tipomaterial;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipomaterial
+     *
+     * @return integer 
+     */
+    public function getTipomaterial()
+    {
+        return $this->tipomaterial;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     * @return Extrusion
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+    
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string 
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
 }

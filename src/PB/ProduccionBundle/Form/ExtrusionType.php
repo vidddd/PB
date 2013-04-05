@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class MaquinaType extends AbstractType
+class ExtrusionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -25,12 +25,12 @@ class MaquinaType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PB\ProduccionBundle\Entity\Maquina'
+            'data_class' => 'PB\ProduccionBundle\Entity\Extrusion'
         ));
     }
 
     public function getName()
     {
-        return 'maquina';
+        return 'extrusion';
     }
 }

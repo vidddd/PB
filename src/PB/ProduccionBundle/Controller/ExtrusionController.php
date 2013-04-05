@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PB\ProduccionBundle\Entity\Extrusion;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
+use PB\ProduccionBundle\Form\ExtrusionType;
+use Symfony\Component\HttpFoundation\Response;
 
 class ExtrusionController extends Controller
 {
@@ -15,9 +17,10 @@ class ExtrusionController extends Controller
 	}
     public function extrusionAction($maquina)
     {
-    	$request = $this->get('request');    	$em = $this->getDoctrine()->getManager();
+    	$request = $this->get('request'); $em = $this->getDoctrine()->getManager();
     	
     	$maquinae = $em->getRepository('PBProduccionBundle:Maquina')->find($maquina);
+    	//$extrusionform   = $this->createForm(new ExtrusionType());
     	
 		$yaml = new Parser(); try { $value = $yaml->parse(file_get_contents(__DIR__ . '/../../VentasBundle/Resources/config/ventas.yml')); } catch (ParseException $e) {	printf("Unable to parse the YAML string: %s", $e->getMessage()); }
 		$tipos = $value['tipo_material'];
@@ -26,7 +29,7 @@ class ExtrusionController extends Controller
 		
 		$form = $this->createFormBuilder($defaultData)
 		->add('material', 'choice', array( 'choices' => $tipos,'error_bubbling' => true, 'empty_value' => ''))
-		->add('ancho', 'text')->add('orden', 'text')
+		->add('ancho', 'text')->add('orden', 'text')->add('cliente', 'hidden')
 		->add('galga', 'text')
 		->getForm();
 		

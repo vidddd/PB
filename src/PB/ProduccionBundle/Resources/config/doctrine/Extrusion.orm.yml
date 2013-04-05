@@ -8,11 +8,20 @@ PB\ProduccionBundle\Entity\Extrusion:
       id: true
       generator:
         strategy: AUTO
-    fecha:
-      type: date
+    inicio:
+      type: datetime
+      nullable: true
+    fin:
+      type: datetime
       nullable: true
     estado:
       type: smallint
+    tipomaterial:
+      type: smallint
+    color:
+      type: string
+      lenght: 55
+      nullable: true
     ancho:
       type: integer
     galga:
@@ -20,13 +29,13 @@ PB\ProduccionBundle\Entity\Extrusion:
     plegado:
       type: integer
       nullable: true
+    tratado:
+      type: smallint
+      nullable: true
     metros:
       type: integer
     bobinas:
       type: integer
-      nullable: true
-    tratado:
-      type: smallint
       nullable: true
     pesoneto:
       type: float

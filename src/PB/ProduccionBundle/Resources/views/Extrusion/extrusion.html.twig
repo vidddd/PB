@@ -18,33 +18,31 @@ $(document).ready(function() {
 			window.location.reload();
 		 }
 	});
-	/*$("a.iframe3").fancybox({
-		'hideOnContentClick': false,
-		'width': 650,
-		'height': 500,
-		'scrolling': 'yes',
-		'transitionIn': 'elastic',
-		'modal': false,
-		'onClosed': function() {
-			window.location.reload();
-		 }
-	});*/
+	 $("#anadir").click(function (event) {
+	     var ordenid = $('#form_orden').val();
+	     if (ordenid == '') {
+			alert('Debe Introducir un código de orden');
+		 } else {
+			 var material = $('#form_material').val();
+			 var ancho = $('#form_ancho').val();
+			 $('.bar').css('width','100px').show();
+	     } event.preventDefault();
+		 });
 });
 //-->
 </script>
 <div id="extrusion">
-	<div class="title title-spacing produccion"><h2>Extrusion</h2></div>        
+	<div class="title title-spacing produccion"><h2>{{ codigo }} - {{ nombre }}</h2></div>        
  <div class="maquinaextrusion">   
  <div class="portlet form-bg-2 ui-widget ui-widget-content ui-helper-clearfix ui-corner-all buscador"><div class="portlet-header ui-widget-header">AÑADIR TRABAJO</div>
 	    <div class="portlet-content">
-            <form class="well" action="{{ path('extrusion') }}" method="post" {{ form_enctype(form) }}>
+            <form class="well" action="" method="post" {{ form_enctype(form) }}>
 			<table id="form-alta">
 	   				<tbody> 
 	   				   <tr>
 	        				<td class="label">{{ form_label(form.orden, 'Orden de Fabricación') }}</td>
 	        				<td class="campo" style="width:100px;">{{ form_widget(form.orden, { 'attr': {'class': 'small numeric ordenid'}}) }}
-	        				<!--  <a class="iframe3" href="{{ path('anadir_orden_fabricacion') }}" title="Buscador de Clientes"><img src="{{ asset('images/search.png') }}" /></a></td><td></td> -->
-	      					<a rel="prettyPhoto[iframe]" href="{{ path('anadir_orden_fabricacion', { 'id': '' , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title=""><img src="{{ asset('images/search.png') }}" /></a></td><td><div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div></td>
+	        				<a rel="prettyPhoto[iframe]" href="{{ path('anadir_orden_fabricacion', { 'id': '' , 'iframe': 'true', 'width': 650, 'height': 400 }) }}" title=""><img src="{{ asset('images/search.png') }}" /></a></td><td><div class="controls nombre-cliente" style="display:none;"><h2>Nombre de cliente</h2></div></td>
 	      				<tr>
 	   				   <tr>
 	        				<td class="label">{{ form_label(form.material, 'Material') }}</td>
@@ -62,24 +60,25 @@ $(document).ready(function() {
 	            	</tbody>
 	          </table>
                 <p class="botones-buscador">
-                    <button type="submit" name="filter_action" value="filter" class="ui-state-default ui-corner-all">Añadir</button>
-                    <button type="reset" name="filter_action" class="ui-state-default ui-corner-all">Limpiar</button>   
+ 					<div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" id="anadir" href="#"><span class="ui-icon ui-icon-plusthick"></span>Añadir Trabajo</a></div>
                 </p>
 				 {{ form_widget(form._token) }}</form> <div class="clearfix"></div><br />
 				
 				<div class="extrusion-visual">
 				<div class="progress">
-					<div style="width: 50%;" class="bar">15%</div>
-					<div style="width: 15%;" class="bar bar-info">15%</div>
-					<div style="width: 30%;" class="bar bar-success">30%</div>
-					<div style="width: 10%;" class="bar bar-warning">10%</div>
-					<div style="width: 10%;" class="bar bar-danger">10%</div>
+					<div style="display:none;" class="bar"></div>
+					<div style="display:none;" class="bar bar-info"></div>
+					<div style="display:none;" class="bar bar-success"></div>
+					<div style="display:none;" class="bar bar-warning"></div>
+					<div style="display:none;" class="bar bar-danger"></div>
 				</div>
 				</div>
 		</div>
 	</div>
+	<div style="display:none;">
+	</div>
  
- <div class="btn-nuevo"><a class="iframe-extrusion btn ui-state-default ui-corner-all" href="{{ path('anadir_trabajo_extrusion') }}"><span class="ui-icon ui-icon-plusthick"></span>Añadir Trabajo</a></div>
+ <div class="btn-nuevo"><a class="btn ui-state-default ui-corner-all" href="{{ path('anadir_trabajo_extrusion') }}"><span class="ui-icon ui-icon-plusthick"></span>Añadir Trabajo</a></div>
 	 
 	 <div class="clearfix"></div>
 	 <div class="tablesup"><h6>{{ codigo }} - {{ nombre }}</h6></div>
@@ -119,7 +118,7 @@ $(document).ready(function() {
 		</table>
     </div>
  </div>
-    <div class="float-left volver">
+    <div class="float-left volver" style="width: 200px;">
         <a href="{{ path('extrusion') }}">
           <<  Volver al Listado de Máquinas
         </a>
